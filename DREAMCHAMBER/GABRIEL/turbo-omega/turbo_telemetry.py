@@ -6,9 +6,12 @@ Single-process, in-memory timer registry with optional JSONL log to
 from __future__ import annotations
 
 import json
+import logging
 import time
 from pathlib import Path
 from threading import Lock
+
+log = logging.getLogger("gabriel.telemetry")
 
 LOG_PATH = Path.home() / "NOIZYANTHROPIC" / "NOIZYLAB" / "ops" / "logs" / "telemetry.jsonl"
 LOG_PATH.parent.mkdir(parents=True, exist_ok=True)
@@ -42,8 +45,8 @@ class Telemetry:
                     )
                     + "\n"
                 )
-        except Exception:
-            pass
+        except Exception as e:
+            log.warning("telemetry write failed for %s: %s", name, e)
         return elapsed
 
 

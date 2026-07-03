@@ -4,7 +4,7 @@
 
 set -e
 
-ACCOUNT_ID="${CLOUDFLARE_ACCOUNT_ID:-2446d788cc4280f5ea22a9948410c355}"
+ACCOUNT_ID="${CLOUDFLARE_ACCOUNT_ID:-5f36aa9795348ea681d0b21910dfc82a}"  # canonical rsp@noizy.ai (fallback from retired Fishmusicinc 2446d788...)
 WORKER_NAME="noizylab-edge"
 SCRIPT_FILE="src/index.js"
 

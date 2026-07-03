@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.noizy.gabriel</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/opt/homebrew/bin/node</string>
+        <string>--env-file=/Users/m2ultra/NOIZYANTHROPIC/.env</string>
+        <string>--env-file=/Users/m2ultra/NOIZYANTHROPIC/GABRIEL/.env</string>
+        <string>/Users/m2ultra/NOIZYANTHROPIC/GABRIEL/dist/index.js</string>
+        <string>--daemon</string>
+    </array>
+
+    <key>WorkingDirectory</key>
+    <string>/Users/m2ultra/NOIZYANTHROPIC/GABRIEL</string>
+
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>PATH</key>
+        <string>/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin</string>
+        <key>NODE_ENV</key>
+        <string>production</string>
+    </dict>
+
+    <key>RunAtLoad</key>
+    <true/>
+
+    <key>KeepAlive</key>
+    <dict>
+        <key>SuccessfulExit</key>
+        <false/>
+    </dict>
+
+    <key>StandardOutPath</key>
+    <string>/Users/m2ultra/NOIZYANTHROPIC/GABRIEL/logs/gabriel.log</string>
+
+    <key>StandardErrorPath</key>
+    <string>/Users/m2ultra/NOIZYANTHROPIC/GABRIEL/logs/gabriel.err</string>
+
+    <key>ThrottleInterval</key>
+    <integer>30</integer>
+</dict>
+</plist>

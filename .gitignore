@@ -158,3 +158,11 @@ gabriel/vault/artifacts/manifests/FISHNET_MANIFEST.json
 *.json.bak
 **/*MANIFEST*.json
 MC96/
+
+# Custom project exclusions
+M2ULTRA_ALL/
+_ARCHIVE/
+extracted_gdrive/
+_Temp/
+_CONSTRUCT/
+12TB_RESCUE/

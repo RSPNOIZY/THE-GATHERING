@@ -1,0 +1,16 @@
+[
+  {
+    "actor_id": "RSP_001",
+    "notification_type": "revenue_unlock",
+    "message": "Lucy discovered: First creator onboarding ready",
+    "opportunity_id": "2c6de7d4-254e-46de-906b-3cebc638ad74",
+    "requires_action": false
+  },
+  {
+    "actor_id": "RSP_001",
+    "notification_type": "teaching_opportunity",
+    "message": "Lucy discovered: NOIZYKIDZ teaching pipeline can launch with RSP_001 as founding teacher",
+    "opportunity_id": "2a0312e9-2fe5-4cbe-be8f-6f232a4734a6",
+    "requires_action": true
+  }
+]

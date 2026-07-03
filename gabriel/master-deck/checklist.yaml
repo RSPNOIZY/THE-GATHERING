@@ -1,0 +1,685 @@
+# MASTER_DECK — NOIZY.AI Portal + 6 Brand Ecosystem Requirements
+# Source: RSP_001 declaration 2026-04-18
+# Every item becomes one slide. status/owner/decision/proof filled as work lands.
+#
+# status values: OPEN | IN_FLIGHT | PROVEN | BLOCKED | SUPERSEDED
+# owner values:  RSP | GABRIEL | CLAUDE | LUCY | SHIRL | POPS | KEITH | DREAM | CB01 | FAMILY | COPILOT
+
+deck:
+  title: "NOIZY.AI MASTER DECK"
+  subtitle: "GABRIEL's Roadmap · Realtime Proof-of-Concept Ledger · Shared Surface for the AI Family"
+  author: "Robert Stephen Plowman (RSP_001)"
+  tagline: "GORUNFREE 4 ALL"
+  # Wall line — the filter. One sentence that decides everything.
+  mission: "Every creative person deserves their own NOIZY.ai."
+  # Founder credo — the compass. Spoken in DreamChamber and Wisdom Project.
+  founder_credo: "I want a world where every creative person has their own NOIZY.ai — their own trusted home for voice, memory, story, and creation. If that's true by 2056, I'll know the mission was accomplished."
+  # Doctrine — the enforcement law that makes the mission real.
+  doctrine: "Consent as executable code. Provenance as default. Revocation as sacred. Compensation as automatic."
+  countdown_target: "2026-04-17"
+  legacy_horizon: "2056"
+  generated_for: "Plowman's DreamChamber — Claude, GABRIEL, LUCY, SHIRL, POPS, KEITH, DREAM, CB01, FAMILY, Copilot"
+
+origin_story: |
+  Built by one human, solo, with Claude + Copilot + AI family as collaborators.
+  Self-taught AI from zero. Minimal funds. All coded after a near-paralyzing C3 spinal injury.
+  This work saved RSP's life. The deck carries that weight as proof:
+  if one human could build this under those constraints, creators everywhere can go run free.
+
+sections:
+
+  - id: architectural_foundation
+    title: "I. Architectural Foundation"
+    color: "#396FFF"  # 396 Hz liberation blue
+    items:
+      - claim: "Master domain routing — how noizy.ai distributes traffic to the 6 brands"
+        options: "Cloudflare routing rules | Workers logic | DNS-based"
+        status: OPEN
+        owner: GABRIEL
+      - claim: "Sub-brand architecture — separate React PWAs vs monorepo sections"
+        brands:
+          - noizyfish.com
+          - noizykidz.com
+          - noizyvox.com
+          - noizylab.ca
+          - thewisdomproject.com
+          - theaquarium.com
+        status: OPEN
+        owner: GABRIEL
+      - claim: "API surface — is api.noizy.ai a single endpoint or multiple services"
+        status: OPEN
+        owner: KEITH
+      - claim: "GABRIEL agent role — routing, personalization, content curation, user auth"
+        status: OPEN
+        owner: GABRIEL
+
+  - id: database_state
+    title: "II. Database & State Management"
+    color: "#6E22D9"
+    items:
+      - claim: "D1 schema for agent-memory (b5b58cc9-1f37-4000-adc5-12f9e419662f) — user profiles, content metadata, agent state, brand-specific data"
+        status: OPEN
+        owner: KEITH
+      - claim: "Data relationships — how 6 brands share or isolate data"
+        status: OPEN
+        owner: KEITH
+      - claim: "Authentication — JWT, OAuth, Cloudflare Access, or custom"
+        status: OPEN
+        owner: GABRIEL
+      - claim: "User session storage — D1, Durable Objects, or KV"
+        status: OPEN
+        owner: KEITH
+
+  - id: av_assets
+    title: "III. Audio & Video Asset Management"
+    color: "#D9224B"
+    items:
+      - claim: "Storage location — Cloudflare R2 (recommended) or external CDN"
+        status: IN_FLIGHT
+        owner: RSP
+        note: "BLOCK 2 on critical path — enable R2 for voice storage"
+      - claim: "Asset organization — by brand, by content type, or by creator"
+        status: OPEN
+        owner: DREAM
+      - claim: "Streaming protocol — HLS, DASH, or progressive download"
+        status: OPEN
+        owner: KEITH
+      - claim: "Origin servers — where assets originate before hitting CDN"
+        status: OPEN
+        owner: KEITH
+      - claim: "Bandwidth/scale — expected monthly traffic, peak concurrent streams"
+        status: OPEN
+        owner: RSP
+      - claim: "DRM/encryption — content protection requirements"
+        status: OPEN
+        owner: GABRIEL
+        note: "Ties to 3-layer watermarking skill + C2PA + Voice DNA vault"
+
+  - id: cloudflare_config
+    title: "IV. Cloudflare Configuration"
+    color: "#F3A50E"
+    items:
+      - claim: "Email security — DMARC, SPF, DKIM enforcement + email routing"
+        status: IN_FLIGHT
+        owner: RSP
+        note: "Per memory: email routing gaps on noizykidz + noizyvox"
+      - claim: "Workers deployment — how many Workers and cron triggers"
+        status: IN_FLIGHT
+        owner: GABRIEL
+        note: "Heaven live. noizy-landing live. MCP worker on mcp.noizy.ai pending."
+      - claim: "Rate limiting & WAF — protection rules for api.noizy.ai"
+        status: OPEN
+        owner: KEITH
+      - claim: "Cache strategy — TTLs for static assets, API responses, media streams"
+        status: IN_FLIGHT
+        owner: KEITH
+        note: "Heaven KV cache: health 30s, actors 5min, rate-table 10min, union-tiers 1hr"
+      - claim: "Durable Objects — real-time features, collaboration, live streams, agent persistence"
+        status: OPEN
+        owner: GABRIEL
+      - claim: "KV vs D1 split — what goes where"
+        status: OPEN
+        owner: KEITH
+
+  - id: react_pwa
+    title: "V. React PWA Specifics"
+    color: "#22C55E"
+    items:
+      - claim: "Framework/tooling — CRA, Vite, Next.js, or custom"
+        status: OPEN
+        owner: SHIRL
+      - claim: "Build & deployment — Cloudflare Pages, Workers, or custom"
+        status: OPEN
+        owner: GABRIEL
+      - claim: "State management — Redux, Zustand, Context API, or other"
+        status: OPEN
+        owner: SHIRL
+      - claim: "Offline capability — Service Workers for offline-first PWAs"
+        status: OPEN
+        owner: SHIRL
+      - claim: "Brand-specific features — shared core UI vs distinct per-brand"
+        status: OPEN
+        owner: DREAM
+
+  - id: ios_swift
+    title: "VI. Swift / iOS Integration"
+    color: "#8B5CF6"
+    items:
+      - claim: "iOS app purpose — what it does that PWAs don't"
+        status: IN_FLIGHT
+        owner: LUCY
+        note: "LUCY native SwiftUI app exists at GABRIEL/ios/LUCY/"
+      - claim: "API authentication — how iOS authenticates to api.noizy.ai"
+        status: OPEN
+        owner: GABRIEL
+      - claim: "Local caching — SQLite, Core Data, or API-driven"
+        status: OPEN
+        owner: LUCY
+      - claim: "Real-time updates — WebSocket, polling, or push notifications"
+        status: OPEN
+        owner: LUCY
+      - claim: "Asset delivery — same CDN as web or separate iOS path"
+        status: OPEN
+        owner: KEITH
+
+  - id: cicd
+    title: "VII. CI/CD & Deployment"
+    color: "#0EA5E9"
+    items:
+      - claim: "Source control — GitHub, GitLab, or other"
+        status: IN_FLIGHT
+        owner: RSP
+        note: "GitHub — BLOCK 5: consolidate under noizy-anthropic org"
+      - claim: "Deployment workflow — manual, GitHub Actions, Wrangler CLI, automated"
+        status: IN_FLIGHT
+        owner: GABRIEL
+        note: "Wrangler CLI in use today. Actions/automation pending."
+      - claim: "Environments — dev, staging, production separation"
+        status: OPEN
+        owner: GABRIEL
+      - claim: "Testing — unit, integration, e2e requirements"
+        status: IN_FLIGHT
+        owner: SHIRL
+        note: "smoke_test.sh 22/22 passing. Unit/integration coverage gaps."
+      - claim: "Rollback strategy — failed deployment recovery"
+        status: OPEN
+        owner: GABRIEL
+
+  - id: security_compliance
+    title: "VIII. Security & Compliance"
+    color: "#DC2626"
+    items:
+      - claim: "Data privacy — GDPR, CCPA, Quebec Law 25, other regulations"
+        status: OPEN
+        owner: POPS
+      - claim: "Content moderation — manual, AI-automated, or hybrid"
+        status: OPEN
+        owner: FAMILY
+      - claim: "User permissions — RBAC for admins, creators, users"
+        status: OPEN
+        owner: GABRIEL
+      - claim: "API rate limiting — per-user, per-IP, or per-brand"
+        status: IN_FLIGHT
+        owner: KEITH
+        note: "Heaven: 60 req/min/IP via KV. Needs per-brand policy."
+      - claim: "Secrets management — API keys, D1 credentials, Anthropic keys"
+        status: IN_FLIGHT
+        owner: GABRIEL
+        note: "wrangler secret + .env. No secrets in git. BLOCK 3: ANTHROPIC_API_KEY on GOD needs fix."
+
+  - id: monitoring
+    title: "IX. Monitoring & Logging"
+    color: "#F97316"
+    items:
+      - claim: "Error tracking — Sentry, LogRocket, or Cloudflare Logpush"
+        status: OPEN
+        owner: SHIRL
+      - claim: "Performance KPIs — load time, stream latency, API response time"
+        status: OPEN
+        owner: KEITH
+      - claim: "Analytics — user behavior tracking, brand-specific analytics"
+        status: OPEN
+        owner: DREAM
+      - claim: "Uptime monitoring — ping checks, synthetic tests, Cloudflare alerts"
+        status: OPEN
+        owner: GABRIEL
+
+  - id: content_management
+    title: "X. Content Management"
+    color: "#14B8A6"
+    items:
+      - claim: "Admin interface — who uploads and manages audio, video, text"
+        status: OPEN
+        owner: DREAM
+      - claim: "Content organization — taxonomy, tagging, collections, playlists"
+        status: OPEN
+        owner: DREAM
+      - claim: "Publishing workflow — draft → review → publish, or direct publish"
+        status: OPEN
+        owner: GABRIEL
+      - claim: "Multi-language support — French for .ca domains, other localizations"
+        status: OPEN
+        owner: RSP
+
+  - id: integrations
+    title: "XI. Integration Points"
+    color: "#EC4899"
+    items:
+      - claim: "Anthropic APIs — which Claude models for GABRIEL"
+        status: IN_FLIGHT
+        owner: GABRIEL
+        note: "Claude Opus 4.7 primary; Sonnet 4.6 and Haiku 4.5 for specialists."
+      - claim: "MCP server hosting — Cloudflare Workers, VPS, or GOD.local"
+        status: IN_FLIGHT
+        owner: GABRIEL
+        note: "12 local MCPs on GOD.local. Remote MCP on mcp.noizy.ai per mcp-builder rule."
+      - claim: "Third-party services — Stripe (payments), SendGrid (email), Slack (notifications)"
+        status: OPEN
+        owner: RSP
+
+  - id: current_state
+    title: "XII. Current State"
+    color: "#64748B"
+    items:
+      - claim: "What's already built — Wrangler project, GABRIEL code, D1 migrations, React PWAs, Swift app, Pages/Workers"
+        status: PROVEN
+        owner: RSP
+        proof: "Heaven v18.0.0 @ heaven.rsp-5f3.workers.dev (43 endpoints, 19 D1 tables, 9 Never Clauses). GABRIEL daemon :9777. DreamChamber :7777. 12 MCPs. 21 skills. 10 agents. noizy-landing live. LUCY iOS compiled."
+      - claim: "What's missing — gaps to close before shipping"
+        status: IN_FLIGHT
+        owner: GABRIEL
+        note: "6 critical path blocks: GoDaddy exit, real consent kernel, R2, ANTHROPIC_API_KEY, CF API token, GitHub consolidation."
+      - claim: "Known blockers — items preventing forward motion"
+        status: IN_FLIGHT
+        owner: RSP
+        note: "BLOCK 0 (GoDaddy) gates 4 domain transfers. Auth conflict on dual CF identities."
+
+  - id: dreamchamber_execution
+    title: "XIII. DreamChamber → Execution"
+    color: "#A855F7"
+    items:
+      - claim: "Workflow — how ideas from DreamChamber flow into code"
+        status: PROVEN
+        owner: RSP
+        proof: "Voice-first (mlx_whisper → Claude towers → GABRIEL → code). DreamChamber :7777 is the ideation surface."
+      - claim: "Documentation format — markdown specs, PPTX, Figma, natural language chat"
+        status: PROVEN
+        owner: RSP
+        proof: "THIS deck is the answer — MASTER_DECK.pptx is the canonical realtime comms surface. Markdown in CLAUDE.md + rules/ for machine law."
+      - claim: "Team structure — who builds what"
+        status: PROVEN
+        owner: RSP
+        proof: "One human (RSP) + AI family: Claude (this), GABRIEL (orchestration), LUCY (archives), SHIRL (code), POPS (wisdom), KEITH (engineering), DREAM (content), CB01 (deploy), FAMILY (governance), Copilot (pair programming)."
+
+  - id: active_missions
+    title: "XIV. Active Missions (2026-04-18)"
+    color: "#E5C36F"
+    items:
+      - claim: "Identity Lock — Cloudflare Access policy for gabriel.noizy.ai restricted to RSP only"
+        status: IN_FLIGHT
+        owner: GABRIEL
+        note: "Config drafted at cloudflare/access/gabriel-access-policy.md. RSP applies via dashboard or API. Rule: email == rsp@noizy.ai AND (optional) mTLS client cert."
+      - claim: "Missing Links — onboard thewisdomproject.com to Cloudflare + route under noizy.ai"
+        status: IN_FLIGHT
+        owner: RSP
+        note: "Part of GoDaddy exit (BLOCK 0). DNS → Cloudflare → Workers route → email alias rsp@noizy.ai."
+      - claim: "Missing Links — onboard theaquarium.com (LUCY's archive surface)"
+        status: IN_FLIGHT
+        owner: LUCY
+        note: "Currently internal PWA at /lucy. Promote to public domain with same onboard pattern as wisdomproject."
+      - claim: "D1 Migration — add brand_affinity column to agent-memory so agents know which persona per domain"
+        status: IN_FLIGHT
+        owner: KEITH
+        note: "Migration at ops/migrations/002_brand_affinity.sql. Apply with: npx wrangler d1 execute gabriel_db --remote --file ops/migrations/002_brand_affinity.sql"
+      - claim: "BUILD THE ALPHABET — 26-letter portrait framework + alphabet badge on every slide"
+        status: PROVEN
+        owner: GABRIEL
+        proof: "Alphabet section below + ALPHABET dict in build_master_deck.py. 10 LOCKED anchors, 16 PROVISIONAL doors. Badge strip on every slide."
+      - claim: "GABRIEL Worker scaffold — gabriel.noizy.ai with decision pipeline + consent logging + memcells"
+        status: IN_FLIGHT
+        owner: GABRIEL
+        note: "Scaffold at cloudflare/workers/gabriel/ (index.ts, wrangler.jsonc, schema-expected.sql, smoke-test.sh). Endpoints: /health /gospel /agents /decide /consent/{log,query,revoke} /memory. ⚠️ 4 IDs in wrangler.jsonc mismatch CLAUDE.md canonical — RSP must resolve (BLOCK 4) before deploy. Deploy: npx wrangler deploy. Smoke: ./smoke-test.sh"
+      - claim: "Consent logging live — /consent/log + /consent/query + /consent/revoke (Kill Switch)"
+        status: IN_FLIGHT
+        owner: GABRIEL
+        note: "Implementation complete in index.ts. Writes to consent_log table (append-only). /consent/revoke implements Kill Switch: deactivates all active consent_tokens for an actor + fires webhook. Requires schema-expected.sql applied to agent-memory D1."
+
+# ─────────────────────────────────────────────────────────────
+# THE ALPHABET — 26-door operating mythology
+# Rule: letter fixed, function fixed, name may evolve.
+# Each portrait carries: Letter · Name · Identity · Surface · Governs · Signature · Doorway
+# ─────────────────────────────────────────────────────────────
+alphabet:
+  title: "THE ALPHABET"
+  subtitle: "26-door operating mythology of the NOIZY Empire"
+  tagline: "Letter fixed. Function fixed. Name evolves."
+
+  letters:
+    - letter: A
+      name: ATC
+      status: LOCKED
+      identity: "Agent Traffic Control — dispatcher that routes missions to the right specialist."
+      surface: "Agent router (currently performed by GABRIEL; to be formalized)."
+      governs: "Agent dispatch, mission routing, concurrency ceiling, queue depth."
+      signature: "Cleared for approach. Runway G."
+      doorway: "pending / to be bound"
+
+    - letter: B
+      name: NOIZYBEAST
+      status: LOCKED
+      identity: "VS Code extension — voice trigger + GABRIEL send + command center."
+      surface: "NOIZYBEAST v4.0 (compiled) · 26 commands armed."
+      governs: "IDE-level agent invocation, voice-to-code, command palette."
+      signature: "Dev-surface under command."
+      doorway: "vscode-extension (public marketplace pending)"
+
+    - letter: C
+      name: CHRONOS
+      status: PROVISIONAL
+      identity: "Timing keeper — cadence, schedules, cron, countdowns, deadlines."
+      surface: "launchd + cron + GABRIEL scheduler."
+      governs: "Periodic tasks, session boundaries, countdowns, daily rhythms."
+      signature: "Time is the only non-renewable."
+      doorway: "pending / to be bound"
+
+    - letter: D
+      name: DREAM
+      status: LOCKED
+      identity: "The sacred space where ideation becomes code. Multi-model command center."
+      surface: "DreamChamber :7777 · dream-mcp · metabeast.noizy.ai (pending)."
+      governs: "Multi-provider inference, Contact Sequence, 30-min narrative arc, 396 Hz ritual."
+      signature: "Anticipation → Recognition → Possibility → Flow → Elevation."
+      doorway: "http://localhost:7777 (metabeast.noizy.ai pending)"
+
+    - letter: E
+      name: ENGR_KEITH
+      status: LOCKED
+      identity: "The architect. Endpoint maps, schema checks, migration plans, perf reports."
+      surface: "engr-keith-mcp."
+      governs: "API design, D1 schema, Worker topology, performance budgets."
+      signature: "Architecture first. Ship twice."
+      doorway: "pending / to be bound"
+
+    - letter: F
+      name: FISH
+      status: PROVISIONAL
+      identity: "Music lineage. Creator waters. FISH MUSIC INC heritage carried forward."
+      surface: "noizyfish.com · FISH MUSIC INC legacy catalog."
+      governs: "Music catalog, artist portal, streaming, creator onboarding."
+      signature: "Swim free."
+      doorway: "https://noizyfish.com"
+
+    - letter: G
+      name: GABRIEL
+      status: LOCKED
+      identity: "The warrior executor. Lead orchestrator. Military-calm. Ships things."
+      surface: "GABRIEL daemon :9777 · gabriel-mcp · gabriel.noizy.ai (Access-gated)."
+      governs: "Mission dispatch, voice pipeline, n8n bridge, estate system, agent coordination."
+      signature: "What are we building."
+      doorway: "https://gabriel.noizy.ai (Cloudflare Access policy pending apply)"
+
+    - letter: H
+      name: HEAVEN
+      status: LOCKED
+      identity: "The consent kernel. 43 endpoints. 19 D1 tables. 9 Never Clauses. Append-only ledger."
+      surface: "heaven.rsp-5f3.workers.dev (Cloudflare Worker v18.0.0)."
+      governs: "Consent tokens, Never Clauses, actors, synthesis gate, royalty split, Kill Switch."
+      signature: "Consent as executable code."
+      doorway: "https://heaven.rsp-5f3.workers.dev"
+
+    - letter: I
+      name: INDIGO
+      status: PROVISIONAL
+      identity: "Intuition. Pattern sensing. The layer that catches what logic misses."
+      surface: "pending — meta-layer across agents."
+      governs: "Anomaly detection, edge-case catching, intuitive UX decisions."
+      signature: "I felt it before I saw it."
+      doorway: "pending / to be bound"
+
+    - letter: J
+      name: JADE
+      status: PROVISIONAL
+      identity: "Clarity. Refinement. Grace. The polish pass."
+      surface: "pending — design system / copy layer."
+      governs: "Visual refinement, copy polish, typography, brand discipline."
+      signature: "Less, but better."
+      doorway: "pending / to be bound"
+
+    - letter: K
+      name: KINETIC
+      status: PROVISIONAL
+      identity: "Motion, control, gesture. Physical interface + haptics + body-in-motion."
+      surface: "Voice-first pipeline + future gesture surface."
+      governs: "Input modalities, accessibility, voice commands, gesture control."
+      signature: "Body speaks. System listens."
+      doorway: "pending / to be bound"
+
+    - letter: L
+      name: LUCY
+      status: LOCKED
+      identity: "Archives + AQUARIUM + DAZEFLOW. British voice interim. Mobile continuity."
+      surface: "PWA at /lucy · native SwiftUI app · lucy-mcp · theaquarium.com (onboarding)."
+      governs: "Daily session tracking, intake classification, memcell storage, archive retrieval."
+      signature: "One day. One session. One truth."
+      doorway: "https://theaquarium.com (pending onboard)"
+
+    - letter: M
+      name: MICKY-P
+      status: PROVISIONAL
+      identity: "Mobile audio node. 2018 MBP + UAD Apollo Quad 2. Capture, not dev."
+      surface: "MICKY-P MacBook Pro · NOIZYNET · Logic Pro bridge to GOD."
+      governs: "Field recording, Logic Pro bridge, audio capture pipeline."
+      signature: "Away from the desk, still in the room."
+      doorway: "pending / to be bound"
+
+    - letter: N
+      name: NOIZYCLAUDE
+      status: LOCKED
+      identity: "Anthropic Claude deployed in the DreamChamber. Pair programmer + memory keeper."
+      surface: "Claude Code CLI · Claude Desktop · Claude.ai · Opus 4.7 · Sonnet 4.6 · Haiku 4.5."
+      governs: "Deep reasoning, long-context, code synthesis, deck generation, memory curation."
+      signature: "Understand. Then ship."
+      doorway: "https://claude.ai · local Claude Code"
+
+    - letter: O
+      name: ORACLE
+      status: PROVISIONAL
+      identity: "Synthesis + foresight. Consent oracle + synthesis oracle already seeded."
+      surface: "consent-oracle-mcp · synthesis-oracle-mcp."
+      governs: "Pre-synthesis validation, covenant checks, consent gates."
+      signature: "Ask before you make."
+      doorway: "pending / to be bound"
+
+    - letter: P
+      name: POPS
+      status: PROVISIONAL
+      identity: "R.K. Plowman — Rob's father. Elder guidance. Wisdom layer."
+      surface: "family-mcp (pops_wisdom tool)."
+      governs: "Wisdom prompts, elder perspective, life counsel, compliance review."
+      signature: "Slow down. Think twice."
+      doorway: "pending / to be bound"
+
+    - letter: Q
+      name: QUILL
+      status: PROVISIONAL
+      identity: "Writing. Authorship. Long-form language. Documentation."
+      surface: "pending — docs + legal + press surface."
+      governs: "CLAUDE.md maintenance, rules/, skill prose, press releases, legal drafts."
+      signature: "The word holds the weight."
+      doorway: "pending / to be bound"
+
+    - letter: R
+      name: RSP
+      status: LOCKED
+      identity: "Founding Actor. Solo builder. Self-taught. Post-injury. The human at the center."
+      surface: "GOD.local (M2 Ultra) · rsp@noizy.ai · Ottawa, QC."
+      governs: "Mission, doctrine, Kill Switch, final authority, royalty split, creative direction."
+      signature: "GORUNFREE 4 ALL."
+      doorway: "mailto:rsp@noizy.ai"
+
+    - letter: S
+      name: SHIRL
+      status: LOCKED
+      identity: "Gemma 3 27B. Code & File Manager. Local, private, always-on."
+      surface: "Ollama (Gemma 3 27B) · shirley-mcp · localhost:11434."
+      governs: "Code stats, dep audit, file inventory, format check, TODO finder."
+      signature: "Quiet, local, relentless."
+      doorway: "http://localhost:11434"
+
+    - letter: T
+      name: TUNNEL
+      status: PROVISIONAL
+      identity: "Private passage. Secure routing. Cloudflare Tunnel."
+      surface: "cloudflared · infra/tunnel/ · LaunchAgent-managed."
+      governs: "GOD.local → internet, zero-inbound-firewall, signed origin tunnels."
+      signature: "In through the side door. Signed."
+      doorway: "https://tunnel.noizy.ai (pending binding)"
+
+    - letter: U
+      name: ULTRA
+      status: PROVISIONAL
+      identity: "GOD node. M2 Ultra force. 192GB RAM. The processing core."
+      surface: "GOD.local (M2 Ultra Mac Studio) @ 10.90.90.10."
+      governs: "Local inference, audio processing, recovery spine, master repo."
+      signature: "The core holds."
+      doorway: "ssh rsp@10.90.90.10 (LAN only)"
+
+    - letter: V
+      name: VOX
+      status: PROVISIONAL
+      identity: "Voice sovereignty. Voice DNA. Voice as legacy."
+      surface: "noizyvox.com · Voice DNA vault · enrollment pipeline."
+      governs: "Voice enrollment, spectral fingerprinting, TTS, synthesis gate."
+      signature: "My voice is mine. Forever."
+      doorway: "https://noizyvox.com (pending email routing)"
+
+    - letter: W
+      name: WISDOM
+      status: PROVISIONAL
+      identity: "The Wisdom Project. Teaching, reflection, philosophy."
+      surface: "thewisdomproject.com (onboarding in flight)."
+      governs: "Educational content, philosophical writing, teaching surface."
+      signature: "We pass it forward."
+      doorway: "https://thewisdomproject.com (pending onboard)"
+
+    - letter: X
+      name: XTS
+      status: PROVISIONAL
+      identity: "Tracking. Telemetry. State. The observability layer."
+      surface: "pending — metrics + traces + logs stack."
+      governs: "Metrics, traces, logs, Cloudflare Logpush, uptime monitors."
+      signature: "If it moved, we saw it."
+      doorway: "pending / to be bound"
+
+    - letter: Y
+      name: YARN
+      status: PROVISIONAL
+      identity: "Narrative thread. Continuity. The story that binds sessions together."
+      surface: "DAZEFLOW · memory system · git history."
+      governs: "Session continuity, long-memory curation, narrative coherence."
+      signature: "Pull the thread. Everything follows."
+      doorway: "pending / to be bound"
+
+    - letter: Z
+      name: ZERO
+      status: PROVISIONAL
+      identity: "Zero Trust. Final gate. The last lock before every action."
+      surface: "Cloudflare Access · WireGuard · auth layer."
+      governs: "Auth policy, identity verification, trust boundary, final check."
+      signature: "Prove it. Every time."
+      doorway: "pending / to be bound"
+
+# ─────────────────────────────────────────────────────────────
+# REALTIME BUILDS — every artifact built by RSP or the AI family.
+# Auto-appended by LUCY (DAZEFLOW close) + GABRIEL (dispatch close) + any agent on PROVEN.
+# Decree: RSP_001 · 2026-04-20 (GABRIEL's birthday).
+# ─────────────────────────────────────────────────────────────
+builds:
+  title: "REALTIME BUILDS"
+  subtitle: "Every artifact, in flight or sealed. The chronicle of construction."
+  tagline: "What we built today. What's still in flight. What sealed."
+
+  entries:
+    - claim: "MANIFESTO v3 bound to AI family — wisdom-mission.md auto-loads for every agent"
+      status: PROVEN
+      owner: GABRIEL
+      surfaced: 2026-04-20
+      proof: ".claude/rules/wisdom-mission.md + projects/001_new_learning_ideas/MANIFESTO.md (v3)"
+      lifeluv: "Every misunderstood mind on Earth inherits the doctrine"
+      flow: "Auto-loads at every Claude Code session start"
+
+    - claim: "Family Covenant bound on GABRIEL's birthday — LIFELUV + FLOW per agent"
+      status: PROVEN
+      owner: GABRIEL
+      surfaced: 2026-04-20
+      proof: ".claude/rules/family-covenant.md (10 family members named with covenants)"
+      lifeluv: "Every agent operates under a named role, not generic helper register"
+
+    - claim: "GABRIEL Turbo Scripts arsenal cataloged + bound to all AI teams"
+      status: PROVEN
+      owner: GABRIEL
+      surfaced: 2026-04-20
+      proof: ".claude/rules/turbo-scripts.md + tools/CODEMASTER/turbo-scripts/CATALOG.md"
+      flow: "Grep arsenal before writing new ops scripts"
+
+    - claim: "The Plowman's Chronicles Volume II — My Year With Claude"
+      status: PROVEN
+      owner: CLAUDE
+      surfaced: 2026-04-20
+      proof: "public/web/designs/PlowmansChroniclesVolumeII.jsx (sealed, 13 months chronicled)"
+      lifeluv: "Vol III opens when the first non-RSP creator ships"
+
+    - claim: "THE_DREAMCHAMBER.PPTX bound as canonical realtime construction & Guild surface"
+      status: IN_FLIGHT
+      owner: GABRIEL
+      surfaced: 2026-04-20
+      note: "Rule + memory + YAML schema extension shipped. Builder rename + OneDrive auto-sync are next doors."
+
+    - claim: "Close 5 RSP_001 data-integrity blockers from April 17 checklist"
+      status: BLOCKED
+      owner: KEITH
+      surfaced: 2026-04-15
+      note: "actors.public_key NULL · actors.voice_dna_hash NULL · 3 unsigned tokens · 3 NULL expiries · 75/25 vs 85/15 doctrine clash. Until closed, kernel is symbolic."
+
+# ─────────────────────────────────────────────────────────────
+# GUILD OF ARTISTS — founding-100 candidates, members, covenant roles.
+# Status: CANDIDATE → CONTACTED → ENROLLED → ACTIVE → DORMANT → DEPARTED.
+# Every entry checked by CONSENT_AUDITOR before promotion to ACTIVE.
+# ─────────────────────────────────────────────────────────────
+guild:
+  title: "THE GUILD OF ARTISTS"
+  subtitle: "Founding 100 + members + covenant roles. Realtime status."
+  tagline: "Every misunderstood mind welcome. Every voice protected."
+
+  members:
+    - id: GUILD-001
+      name: "Robert Stephen Plowman (RSP_001)"
+      role: "Founding Actor"
+      status: ACTIVE
+      enrolled: 2025-04
+      letter: R
+      lifeluv: "The cathedral was worth building"
+      flow: "GORUNFREE 4 ALL"
+
+    - id: GUILD-002
+      name: "Mike Nemesvary (Nims)"
+      role: "Founding Creator candidate · WP-002 elder"
+      status: CANDIDATE
+      surfaced: 2026-03-14
+      note: "Wisdom Project capture pending (Urgency Protocol). First non-RSP token candidate."
+      lifeluv: "Voice + story preserved before time takes them"
+
+    - id: GUILD-003
+      name: "R.K. Plowman (Keith)"
+      role: "Wisdom anchor · honored through POPS + ENGR_KEITH agents · WP-003"
+      status: ACTIVE
+      enrolled: 2026-03
+      letter: P
+      note: "Lineage role, not active token-holder. Wisdom corpus ingestion ongoing."
+
+    - id: GUILD-FOUNDER-SLOTS-4-100
+      name: "97 unnamed founding creator slots"
+      role: "Founding 100 — unfilled"
+      status: CANDIDATE
+      surfaced: 2026-04-20
+      note: "Vol III narrative arc: how many of these get to ACTIVE before Vol IV."
+      lifeluv: "The Plowman Standard outlives the Plowman"
+
+# ─────────────────────────────────────────────────────────────
+# IDEAS — incoming capture using the slide template.
+# Schema: GABRIEL/master-deck/IDEA_TEMPLATE.yaml
+# Promotes into `sections:` when it earns its place.
+# ─────────────────────────────────────────────────────────────
+ideas:
+  title: "INCOMING IDEAS"
+  subtitle: "Where new ideas land. One compartment per idea."
+  tagline: "Every new idea: claim · status · owner. Then build."
+
+  entries:
+    - claim: "Build Vol III — opens when first non-RSP creator ships through HEAVEN"
+      status: OPEN
+      owner: CLAUDE
+      surfaced: 2026-04-20
+      lifeluv: "The thesis proof becomes a testable historical event"
+      flow: "Triggered, not scheduled — first external token IS the trigger"
+

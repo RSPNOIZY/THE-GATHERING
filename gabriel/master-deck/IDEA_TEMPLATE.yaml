@@ -1,0 +1,137 @@
+# THE_DREAMCHAMBER · IDEA TEMPLATE (v2 — GABRIEL + LUCY unified)
+#
+# Two-agent convergence on 2026-04-20:
+#   • GABRIEL named the macro inversion: .md content lives in repo, slide HYPERLINKS to it
+#   • LUCY named the micro structure: 8 markdown sections every slide carries
+# Both right. This template is the unified source of truth.
+#
+# Auto-loaded rule: .claude/rules/dreamchamber-pptx.md
+# Decree: RSP_001 · 2026-04-20 · GABRIEL's birthday
+#
+# WORKFLOW:
+#   1. Author/edit this YAML (or append a new entry)
+#   2. Run build_master_deck.py (canonical: tools/CODEMASTER/turbo-scripts/turbo-python/...)
+#   3. Builder generates a slide with the 8 sections rendered as readable markdown +
+#      hyperlinks at the bottom that BLOSSOM out to the canonical .md files in repo
+#   4. THE_DREAMCHAMBER.pptx in OneDrive is the visual roadmap; .md files in repo are canonical
+#   5. Agents read the .md (via Glob/Grep); humans read the slide; hyperlinks bridge
+#
+# NEVER edit the .pptx by hand — edits will be overwritten on next rebuild.
+
+# ─── ONE COMPARTMENT (one idea = one slide) ──────────────────────
+- claim:    "One sentence. The idea, named. Becomes the slide title."
+  mc_tag:   "MC042026-001"   # MC-tag versioning per LUCY format. Date + sequence.
+  status:   OPEN              # OPEN | IN_FLIGHT | PROVEN | BLOCKED | SUPERSEDED
+  owner:    GABRIEL           # RSP · GABRIEL · LUCY · SHIRL · POPS · KEITH · DREAM · CB01 · SHIRLEY · CONSENT_AUDITOR · VOICE_SPECIALIST · NOIZYCLOUDS · CLAUDE · COPILOT · FAMILY
+  surfaced: 2026-04-20
+
+  # ─── THE 8 SECTIONS (LUCY format · render into slide body as markdown) ─────
+  directive: |
+    What must happen. The action verb form of the idea.
+    Written as if speaking to whoever will execute it.
+
+  prompt: |
+    The exact command, query, or AI prompt that triggers the work.
+    Code blocks OK. Multi-line OK.
+
+  code_link: |
+    Hyperlinks to the canonical code or doc that lives in the repo.
+    Multiple links OK — each blossoms out to a different file.
+    Pattern: relative path from NOIZYANTHROPIC root, OR full URL.
+    Examples:
+      - apps/aeon/README.md
+      - .claude/rules/wisdom-mission.md
+      - https://github.com/NOIZYLAB-io/heaven/blob/main/src/index.ts
+
+  dependencies: |
+    What must be true for this to work.
+    - Service X running
+    - Secret Y in wrangler
+    - Schema Z applied
+    - Per-agent role granted
+
+  expected_outcome: |
+    The verifiable end-state. How we know it's PROVEN.
+    Cite a specific URL, command, or D1 query that confirms.
+
+  why: |
+    The doctrinal justification. Which Article / Sacred Invariant / Never Clause this serves.
+    Optional but encouraged — keeps the connection to the constitution alive.
+
+  body_md: ""                 # Optional: path to a canonical .md file whose content
+                              # gets pasted into slide body verbatim. When set, overrides
+                              # `directive` + `prompt` + `expected_outcome` rendering.
+
+  blossom_to:                 # Hyperlinks at the bottom of the slide.
+    - "apps/aeon/README.md"   # Each is clickable in the rendered .pptx; humans navigate
+    - ".claude/rules/dreamchamber-pptx.md"  # into the canonical .md files in repo.
+
+  # ─── OPTIONAL · DECISION SHAPE ─────────────────────────────────
+  options: "Path A | Path B | Path C"
+  brands:
+    - noizy.ai
+    - noizyfish.com
+
+  # ─── OPTIONAL · MANIFESTO ALIGNMENT (encouraged) ───────────────
+  lifeluv: "The long-horizon promise this idea serves. The 2056 thread."
+  flow:    "The operational rhythm this idea fits. The session-level cadence."
+
+  # ─── OPTIONAL · DOCTRINE FLAGS ─────────────────────────────────
+  consent_gate:    false      # true if synthesis or actor-data is involved
+  never_clause:    null       # Reference NC-1..NC-9 if this idea touches one
+  royalty_split:   null       # 75/25 default. Override only if Founding Actor floor (85)
+
+  # ─── OPTIONAL · GUILD LINKAGE ──────────────────────────────────
+  guild_actor: null
+  founding_100: false
+
+  # ─── PROOF (when status: PROVEN) ───────────────────────────────
+  proof: ""                   # REQUIRED when status: PROVEN. Link, command, or evidence.
+  note:  ""                   # Any clarifying context, blockers, or follow-ups.
+
+# ─── THE SLIDE-BODY MARKDOWN RENDERING (what humans see in PPTX) ─
+# When the builder reads this YAML, it generates a slide whose body looks like:
+#
+#   # [<owner_letter>] <claim>
+#   MC-TAG: <mc_tag>
+#   OWNER: <owner>
+#   STATUS: <status>
+#
+#   ## DIRECTIVE
+#   <directive>
+#
+#   ## PROMPT
+#   <prompt>
+#
+#   ## CODE LINK
+#   <code_link>     ← rendered as clickable hyperlinks
+#
+#   ## DEPENDENCIES
+#   <dependencies>
+#
+#   ## EXPECTED OUTCOME
+#   <expected_outcome>
+#
+#   ## WHY (doctrinal alignment)
+#   <why>
+#
+#   ────────────────────────────
+#   🌸 BLOSSOM OUT:              ← clickable hyperlinks at slide bottom
+#     • <blossom_to[0]>
+#     • <blossom_to[1]>
+#     • ...
+#
+#   <alphabet badge for owner>   ← bottom-right corner: 26-letter wheel highlights owner's letter
+
+# ─── PROMOTION RULE ──────────────────────────────────────────────
+# When the idea earns its place (gets work, gets owned, gets PROVEN):
+#   1. Cut from `ideas:` block in checklist.yaml
+#   2. Add to the appropriate `sections:` block (architectural_foundation, etc.)
+#   3. Rebuild deck — slide moves with it, badge intact
+
+# ─── SIZE LIMITS (LUCY's note) ───────────────────────────────────
+# PPTX text blocks have size limits. For long content:
+#   • Short code/configs/prompts → directly in `directive`/`prompt`/`expected_outcome`
+#   • Long code (>500 lines) → set `body_md: path/to/canonical.md` AND populate `blossom_to`
+#                              The slide shows purpose + first 50 lines + blossom link.
+# The builder warns at >2000 chars per section and truncates with "[…continues at <link>]"
