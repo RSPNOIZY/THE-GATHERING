@@ -1,0 +1,69 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "noizy-consent-gateway",
+  "main": "index.ts",
+  "compatibility_date": "2026-03-27",
+  "workers_dev": true,
+
+  // Observability — first-class deploy requirement
+  "observability": { "enabled": true },
+
+  // ── Default bindings (development) ───────────────────────────────────
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "gabriel_db",
+      "database_id": "a31d68e2-f2d4-4203-a803-8039fdff31cb"
+    }
+  ],
+
+  "vars": {
+    "NOIZY_ENV": "development",
+    "SERVICE_NAME": "consent-gateway",
+    "DEFAULT_REVOCATION_SLA_HOURS": "1",
+    "CF_ACCOUNT": "5f36aa9795348ea681d0b21910dfc82a"
+  },
+
+  // ── Staging ──────────────────────────────────────────────────────────
+  "env": {
+    "staging": {
+      "name": "noizy-consent-gateway-staging",
+      "workers_dev": true,
+      "d1_databases": [
+        {
+          "binding": "DB",
+          "database_name": "gabriel_db",
+          "database_id": "a31d68e2-f2d4-4203-a803-8039fdff31cb"
+        }
+      ],
+      "vars": {
+        "NOIZY_ENV": "staging",
+        "SERVICE_NAME": "consent-gateway",
+        "DEFAULT_REVOCATION_SLA_HOURS": "1",
+        "CF_ACCOUNT": "5f36aa9795348ea681d0b21910dfc82a"
+      }
+    },
+
+    // ── Production ───────────────────────────────────────────────────────
+    // Routes activate after noizy.ai zone transfer to CF account
+    "production": {
+      "name": "noizy-consent-gateway",
+      // "routes": [
+      //   { "pattern": "consent.noizy.ai/*", "zone_name": "noizy.ai" }
+      // ],
+      "d1_databases": [
+        {
+          "binding": "DB",
+          "database_name": "gabriel_db",
+          "database_id": "a31d68e2-f2d4-4203-a803-8039fdff31cb"
+        }
+      ],
+      "vars": {
+        "NOIZY_ENV": "production",
+        "SERVICE_NAME": "consent-gateway",
+        "DEFAULT_REVOCATION_SLA_HOURS": "1",
+        "CF_ACCOUNT": "5f36aa9795348ea681d0b21910dfc82a"
+      }
+    }
+  }
+}

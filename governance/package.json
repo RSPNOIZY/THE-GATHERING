@@ -1,0 +1,27 @@
+{
+  "name": "@noizy/governance",
+  "version": "1.0.0",
+  "description": "NOIZY.AI Governance Operating System — Memory promotion, blessing gate, decision queue, daily standup",
+  "author": "Robert Stephen Plowman <rsp@noizy.ai>",
+  "license": "UNLICENSED",
+  "private": true,
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "tsx src/smoke-test.ts",
+    "standup": "tsx src/daily-standup.ts",
+    "lint": "tsc --noEmit"
+  },
+  "dependencies": {
+    "uuid": "^9.0.0",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/uuid": "^9.0.0",
+    "tsx": "^4.0.0",
+    "typescript": "^5.3.0"
+  }
+}

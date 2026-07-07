@@ -1,0 +1,21 @@
+name = "webhook-proxy"
+main = "src/index.ts"
+compatibility_date = "2026-04-01"
+account_id = "5f36aa9795348ea681d0b21910dfc82a"
+workers_dev = true
+
+# Production route — uncomment when ready
+# routes = [
+#   { pattern = "webhooks.noizy.ai/*", zone_name = "noizy.ai" }
+# ]
+
+# KV for webhook queue
+[[kv_namespaces]]
+binding = "WEBHOOK_QUEUE"
+id = "REPLACE_WITH_KV_ID"
+preview_id = "REPLACE_WITH_PREVIEW_KV_ID"
+
+# Secrets (set via: wrangler secret put KEY)
+# NOIZY_KEY
+# LINEAR_WEBHOOK_SECRET
+# GITHUB_WEBHOOK_SECRET

@@ -1,0 +1,33 @@
+name = "noizy-claude-proxy"
+main = "src/index.ts"
+compatibility_date = "2024-09-23"
+compatibility_flags = ["nodejs_compat"]
+account_id = "5f36aa9795348ea681d0b21910dfc82a"
+# Migrated 2026-04-02 from Account 2 (5ba03939...)
+# See: docs/CLOUDFLARE_AUDIT_AND_MIGRATION.md
+
+# Secrets — set with wrangler secret put:
+# ANTHROPIC_API_KEY
+# NOIZY_SECRET
+
+[observability]
+enabled = true
+
+[vars]
+ENVIRONMENT = "production"
+OLLAMA_URL = "http://localhost:11434"
+
+[[d1_databases]]
+binding = "NOIZY_DB"
+database_name = "gabriel_db"
+database_id = "a31d68e2-f2d4-4203-a803-8039fdff31cb"  # CANONICAL - same as main Heaven worker
+
+# R2: DISABLED until R2 is enabled on Account 1
+# When R2 is activated, create bucket "noizy-voice-archive" and uncomment:
+# [[r2_buckets]]
+# binding = "VOICE_BUCKET"
+# bucket_name = "noizy-voice-archive"
+
+[[kv_namespaces]]
+binding = "NOIZY_KV"
+id = "f205b56a9914413da0ec454a9dc4c2bd"  # CANONICAL GABRIEL_KV on rsp@noizy.ai

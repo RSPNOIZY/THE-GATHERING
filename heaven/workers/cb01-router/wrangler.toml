@@ -1,0 +1,36 @@
+name               = "noizy-cb01-router"
+main               = "src/index.js"
+compatibility_date = "2026-03-30"
+workers_dev        = false
+
+# CB01 Router — forwards requests to consent-gateway with FULL path preserved.
+# No segment stripping. What comes in goes out intact.
+#
+# Routing:
+#   /health            → consent-gateway /health
+#   /verify            → consent-gateway /verify
+#   /revoke            → consent-gateway /revoke
+#   /status/:creatorId → consent-gateway /status/:creatorId
+#
+# Auth headers (X-NOIZY-Key) are forwarded transparently.
+
+[observability]
+enabled = true
+
+[vars]
+CONSENT_GATEWAY_URL = "https://noizy-consent-gateway.workers.dev"
+
+[env.staging]
+name = "noizy-cb01-router-staging"
+account_id = "5f36aa9795348ea681d0b21910dfc82a"
+workers_dev = true
+
+[env.staging.vars]
+CONSENT_GATEWAY_URL = "https://noizy-consent-gateway-staging.workers.dev"
+
+[env.production]
+name  = "noizy-cb01-router"
+route = { pattern = "cb01.noizy.ai/*", custom_domain = true }
+
+[env.production.vars]
+CONSENT_GATEWAY_URL = "https://noizy-consent-gateway.workers.dev"

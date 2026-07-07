@@ -1,0 +1,85 @@
+name = "heaven"
+main = "src/index.js"
+compatibility_date = "2026-04-06"
+compatibility_flags = ["nodejs_compat"]
+account_id = "5f36aa9795348ea681d0b21910dfc82a"
+
+# ═══════════════════════════════════════════════════════════════════════════
+# CANONICAL BINDINGS — rsp@noizy.ai Account (NOIZY.AI)
+# Workers LIVE at *.rsp-5f3.workers.dev
+# Custom domain: Add noizy.ai zone to this account in CF dashboard
+# ═══════════════════════════════════════════════════════════════════════════
+
+# ── Workers AI (Edge Inference) ────────────────────────────────────────────
+# Models: @cf/meta/llama-3.1-8b-instruct, @cf/openai/whisper, 
+#          @cf/stabilityai/stable-diffusion-xl-base-1.0
+# Spectral analysis, voice fingerprinting, consent validation at the edge
+[ai]
+binding = "AI"
+
+# ── D1 Database ────────────────────────────────────────────────────────────
+[[d1_databases]]
+binding = "GABRIEL_DB"
+database_name = "gabriel_db"
+database_id = "a31d68e2-f2d4-4203-a803-8039fdff31cb"
+
+# ── R2 Object Storage (Voice Vault) — DISABLED until R2 enabled in dashboard ─
+# Enable at: https://dash.cloudflare.com/5f36aa9795348ea681d0b21910dfc82a/r2
+# Then uncomment and redeploy.
+# [[r2_buckets]]
+# binding = "VOICE_VAULT"
+# bucket_name = "noizy-voice-vault"
+# preview_bucket_name = "noizy-voice-vault-preview"
+
+# ── KV Namespaces ──────────────────────────────────────────────────────────
+[[kv_namespaces]]
+binding = "GABRIEL_KV"
+id = "f205b56a9914413da0ec454a9dc4c2bd"
+
+[[kv_namespaces]]
+binding = "GABRIEL_VOICE"
+id = "16532a32b2e8455486cc966403f3442e"
+
+# ── Feature Flags KV (Edge Runtime Control) ──────────────────────────────
+# <1ms runtime behavior changes without deploys
+# IMPORTANT: Create on rsp@noizy.ai account after `wrangler login`:
+#   npx wrangler kv namespace create "FEATURE_FLAGS"
+# Then update the ID below
+[[kv_namespaces]]
+binding = "FEATURE_FLAGS"
+id = "88331123208c460eb26cb703d5a38c50"
+
+# ── Gap Solver KV (GORUNFREE Absence Intelligence) ────────────────────────
+# KV = fast hypothesis layer. D1 = durable truth. KV writes free, D1 writes earn.
+# IMPORTANT: Create on rsp@noizy.ai account after `wrangler login`:
+#   npx wrangler kv namespace create "GAP_SOLVER"
+# Then update the ID below
+[[kv_namespaces]]
+binding = "GAP_SOLVER"
+id = "4941fb7967d14406bad7a252cd3d0a1e"
+
+# ── Environment Variables ──────────────────────────────────────────────────
+[vars]
+NOIZY_ENV = "production"
+NOIZY_VERSION = "18.0.0"
+FOUNDING_ACTOR_FLOOR = "85"
+STANDARD_ACTOR_FLOOR = "75"
+VOICE_VAULT_BUCKET = "noizy-voice-vault"
+MESH_ORIGIN = "http://127.0.0.1:9696"
+
+# ── Observability ──────────────────────────────────────────────────────────
+[observability]
+enabled = true
+
+# ── Environments ───────────────────────────────────────────────────────────
+[env.preview]
+name = "heaven-preview"
+vars = { NOIZY_ENV = "preview", NOIZY_VERSION = "18.0.0" }
+
+[env.canary]
+name = "heaven-canary"
+vars = { NOIZY_ENV = "canary", NOIZY_VERSION = "18.0.0" }
+
+[env.production]
+name = "heaven"
+vars = { NOIZY_ENV = "production", NOIZY_VERSION = "18.0.0" }

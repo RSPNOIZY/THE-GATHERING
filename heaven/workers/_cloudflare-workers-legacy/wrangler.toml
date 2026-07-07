@@ -1,0 +1,32 @@
+name = "noizyempire-email-ai"
+main = "src/index.js"
+compatibility_date = "2024-01-01"
+compatibility_flags = ["email_bindings"]
+account_id = "5f36aa9795348ea681d0b21910dfc82a"
+# Added 2026-04-02 — was missing account_id entirely
+# See: docs/CLOUDFLARE_AUDIT_AND_MIGRATION.md
+
+# Email Worker binding (beta feature)
+[[email_bindings]]
+name = "EMAIL_WORKER"
+allowed_destination_addresses = ["*@noizy.ai", "*@fishmusicinc.com", "*@noizyfish.com"]
+
+# AI Gateway for external AI calls
+[[ai.bindings]]
+binding = "AI"
+gateway = { id = "your-gateway-id" }
+
+# Durable Object for conversation state
+[[durable_objects.bindings]]
+name = "CONVERSATION_STATE"
+class_name = "ConversationState"
+
+# Environment variables — THESE NEED REAL VALUES via `wrangler secret put`
+# DO NOT commit real keys here
+[vars]
+CRM_WEBHOOK_URL = "https://your-crm-webhook"
+
+# Routes for HTTP API
+[[routes]]
+pattern = "api.noizy.ai/*"
+zone_name = "noizy.ai"

@@ -1,168 +1,82 @@
-# Audio/Video - HARD BLOCK: no audio or video belongs in Git.
-# Audio/video libraries live in OneDrive AUDIO_CORAL or external storage only.
-*.wav
-*.WAV
-*.mp3
-*.MP3
-*.mov
-*.MOV
-*.mp4
-*.MP4
-*.avi
-*.AVI
-*.mkv
-*.MKV
-*.webm
-*.WEBM
-*.flv
-*.FLV
-*.wmv
-*.WMV
-*.m4v
-*.M4V
-*.logicx
-*.flac
-*.FLAC
-*.aif
-*.aiff
-*.AIF
-*.AIFF
-*.m4a
-*.M4A
-*.ogg
-*.OGG
-*.opus
-*.wma
-*.WMA
-*.aac
-*.AAC
-*.caf
-*.CAF
-*.bwf
-*.BWF
-*.wv
-*.WV
-*.snd
-*.SND
-*.sd2
-*.SD2
-*.au
-*.AU
-*.amr
-*.AMR
-*.ac3
-*.dts
-*.3gp
-*.3GP
-*.mxf
-*.MXF
-*.mts
-*.MTS
-*.m2ts
-*.M2TS
-*.vob
-*.VOB
-*.ogv
-*.OGV
-*.nki
-*.nkm
-*.nkc
-*.nkx
-*.nks
-*.nicnt
-*.ncw
-*.kontakt
-*.exs
-*.rex
-*.rx2
-*.sf2
-*.sfz
-*.gig
-*.als
-*.ptx
-*.ptf
-*.cpr
-*.npr
-*.sesx
-*.dmg
-*.iso
-*.img
-*.pkg
-*.zip
-*.tar.gz
-*.rar
-*.7z
+# THE-GATHERING — Master .gitignore
+# RSP_001 / NOIZY Empire / GOD.local
 
-# Large binary/sample directories
-**/Samples/
-**/samples/
-**/Audio Files/
-**/Bounces/
-**/Renders/
-**/Exports/
-**/AUDIO_CORAL/
-**/audio_coral/
-**/Audio_Coral/
-**/Video/
-**/Videos/
-**/video/
-**/videos/
-
-# macOS
-.DS_Store
-.AppleDouble
-.LSOverride
-
-# Dependencies
-node_modules/
-.venv/
-venv/
+# ── Python ────────────────────────────────────────────────────
 __pycache__/
-*.pyc
+*.py[cod]
+*.pyo
+.Python
+*.egg-info/
+venv/
+.venv/
+env/
+.env/
+ENV/
 
-# Environment
+# ── Node / JS ─────────────────────────────────────────────────
+node_modules/
+npm-debug.log*
+*.tsbuildinfo
+.next/
+.cache/
+
+# ── Secrets & Keys (NEVER commit these) ──────────────────────
 .env
-.env.local
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+secrets/
+.secrets/
+wrangler.toml.bak
 
-# Logs
-*.log
+# ── Databases (local runtime state) ──────────────────────────
+*.db
+*.sqlite
+*.sqlite3
+*.duckdb
+memory/chroma/
+
+# ── Ollama / AI Models (huge) ────────────────────────────────
+*.gguf
+*.bin
+*.safetensors
+models/
+.ollama/
+
+# ── macOS ─────────────────────────────────────────────────────
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+*.icloud
+
+# ── IDE ───────────────────────────────────────────────────────
+.idea/
+.vscode/settings.json
+*.swp
+*~
+
+# ── Logs & temp ───────────────────────────────────────────────
 logs/
-
-# Data directories (large files)
-PROJECTS/*/data/raw_wavs/
-PROJECTS/*/data/dataset/
-PROJECTS/*/data/curated/
-
-# Catalogs (generated, large)
-docs/*_CATALOG.md
-
-# Temporary
+*.log
 *.tmp
 *.bak
-mission-run-*/
-archives/
-
-_Archives/
-_Screenshots/
-_Shortcuts/
-archives/
-logs/
-.vscode/
-.cursor/
-.copilot/
-output_directory/
+*.orig
+_quarantine_duplicates/
 reports/
-.worktrees/
-gabriel/vault/artifacts/manifests/FISHNET_MANIFEST.json
-gabriel/vault/artifacts/manifests/FISHNET_MANIFEST.json
-*.json.bak
-**/*MANIFEST*.json
-MC96/
 
-# Custom project exclusions
-M2ULTRA_ALL/
-_ARCHIVE/
-extracted_gdrive/
-_Temp/
-_CONSTRUCT/
-12TB_RESCUE/
+# ── Audio / Media (large — keep in THE-AQUARIUM) ─────────────
+*.wav
+*.aiff
+*.flac
+*.mp3
+*.mp4
+*.mov
+
+# ── Build artifacts ───────────────────────────────────────────
+target/
+*.class
+*.jar
+*.dylib

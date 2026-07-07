@@ -1,0 +1,139 @@
+{
+  "version": "1.0.0",
+  "generated": "2026-07-07",
+  "machine": "GOD.local — M2 Ultra 192GB",
+  "mcps": {
+    "local_servers": [
+      {
+        "name": "gfix",
+        "path": "/opt/homebrew/opt/gfix/bin/gfix",
+        "args": ["mcp"],
+        "version": "0.1.0-alpha.6",
+        "status": "installed",
+        "role": "Cross-agent MCP-native merge resolver"
+      },
+      {
+        "name": "gabriel-mcp",
+        "path": "/Users/m2ultra/NOIZYANTHROPIC/mcp/gabriel-mcp",
+        "status": "copied",
+        "role": "GABRIEL dispatcher MCP bridge"
+      },
+      {
+        "name": "cb01-mcp",
+        "path": "/Users/m2ultra/THE-GATHERING/mcps/servers/cb01-mcp",
+        "status": "copied",
+        "role": "CB01 deployment smoke test router"
+      },
+      {
+        "name": "consent-oracle",
+        "path": "/Users/m2ultra/THE-GATHERING/mcps/servers/consent-oracle",
+        "status": "copied",
+        "role": "HEAVEN consent kernel query interface"
+      },
+      {
+        "name": "dream-mcp",
+        "path": "/Users/m2ultra/THE-GATHERING/mcps/servers/dream-mcp",
+        "status": "copied",
+        "role": "DREAM vision alignment checker"
+      },
+      {
+        "name": "dreamchamber-audio",
+        "path": "/Users/m2ultra/THE-GATHERING/mcps/servers/dreamchamber-audio",
+        "status": "copied",
+        "role": "DreamChamber audio processing bridge"
+      },
+      {
+        "name": "engr-keith-mcp",
+        "path": "/Users/m2ultra/THE-GATHERING/mcps/servers/engr-keith-mcp",
+        "status": "copied",
+        "role": "ENGR_KEITH infrastructure + Cloudflare"
+      },
+      {
+        "name": "family-mcp",
+        "path": "/Users/m2ultra/THE-GATHERING/mcps/servers/family-mcp",
+        "status": "copied",
+        "role": "MYFAMILY.AI personal data bridge"
+      },
+      {
+        "name": "hf-mcp-server",
+        "path": "pm2 id:7",
+        "status": "online",
+        "role": "HuggingFace model hub bridge"
+      },
+      {
+        "name": "chroma",
+        "path": "/opt/homebrew/bin/chroma",
+        "port": 8765,
+        "status": "online",
+        "role": "Vector DB — semantic memory"
+      }
+    ],
+    "cloud_mcps": [
+      {
+        "name": "Antigravity IDE",
+        "provider": "Google DeepMind",
+        "status": "active",
+        "role": "Primary AI coding assistant"
+      },
+      {
+        "name": "alloydb-postgresql",
+        "provider": "Google Cloud",
+        "status": "available"
+      },
+      {
+        "name": "cloud-sql",
+        "provider": "Google Cloud",
+        "status": "available"
+      },
+      {
+        "name": "google-cloud-firestore",
+        "provider": "Google Cloud",
+        "status": "available"
+      },
+      {
+        "name": "supabase",
+        "provider": "Supabase",
+        "status": "available"
+      },
+      {
+        "name": "vertex-ai-search",
+        "provider": "Google Cloud",
+        "status": "available"
+      }
+    ],
+    "ollama_models": [
+      {"name": "gabriel-brain:latest", "size_gb": 47, "role": "GABRIEL primary brain"},
+      {"name": "lucy-brain:latest", "size_gb": 19, "role": "LUCY primary brain"},
+      {"name": "hf.co/lmstudio-community/Qwen2.5-VL-72B-Instruct-GGUF:Q4_K_M", "size_gb": 48, "role": "Multimodal vision"},
+      {"name": "gemma4:26b", "size_gb": 17, "role": "General reasoning"},
+      {"name": "gemma4:12b", "size_gb": 7.6, "role": "Fast reasoning"},
+      {"name": "qwen2.5-coder:32b", "size_gb": 19, "role": "Code generation"},
+      {"name": "qwen2.5:72b", "size_gb": 47, "role": "Advanced reasoning"},
+      {"name": "deepseek-coder-v2:16b", "size_gb": 8.9, "role": "Code specialist"},
+      {"name": "nomic-embed-text:latest", "size_gb": 0.27, "role": "Embeddings for Chroma"}
+    ]
+  },
+  "brands_in_gathering": [
+    "agents (gabriel + lucy)",
+    "heaven",
+    "noizy-ai",
+    "noizyfish",
+    "noizykidz",
+    "noizyvox",
+    "noizylab",
+    "myfamily-ai",
+    "dreamchamber",
+    "wizdom",
+    "metabeast",
+    "the-conductor",
+    "lifeluv",
+    "flow",
+    "the-perfectionist",
+    "mcps",
+    "apis",
+    "infrastructure",
+    "tools",
+    "governance",
+    "docs"
+  ]
+}

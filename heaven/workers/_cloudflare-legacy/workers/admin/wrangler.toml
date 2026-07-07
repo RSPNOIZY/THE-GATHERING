@@ -1,0 +1,10 @@
+name = "noizy-admin"
+account_id = "5f36aa9795348ea681d0b21910dfc82a"
+main = "src/index.js"
+compatibility_date = "2025-01-01"
+workers_dev = true
+
+# Activate after noizy.ai zone is fully controlled
+# routes = [
+#   { pattern = "admin.noizy.ai/*", zone_name = "noizy.ai" }
+# ]

@@ -1,96 +1,77 @@
-# 🌍 NOIZYLAB — The United Nations of Code
+# THE-GATHERING
+> *One canonical repo. All RSP. All NOIZY. All sovereign.*
 
-> **One repo. All platforms. All humans. GoRunFree!**
-
-🇺🇸 English | 🇪🇸 Español | 🇫🇷 Français | 🇩🇪 Deutsch | 🇯🇵 日本語 | 🇨🇳 中文 | 🇧🇷 Português | 🇷🇺 Русский | 🇮🇳 हिन्दी | 🇸🇦 العربية
-
----
-
-## 📋 XENODOCHIAL-ALMEIDA: Unified NOIZYLAB Integration Platform
-
-## Overview
-
-The **xenodochial-almeida** branch contains the **complete unified integration infrastructure** for M2-Ultra and HP-OMEN systems, consolidating the NOIZYLAB ecosystem into a single coherent platform.
-
-**Universal Compatibility**: macOS, Windows, Linux, Cloudflare Workers, Docker, VMs.  
-**Accessibility**: Designed for global teams; translation-ready docs and UI.
-
-**Status**: ✅ **PRODUCTION READY**  
-**Completion**: 100% (All 6 TODOs implemented)  
-**Lines of Code**: 3,550+  
-**Systems Integrated**: 5+ (AEON, RepairRob, 10CC, TUNNEL, INGESTION)
+**Founder:** Robert Stephen Plowman (RSP_001) — rsp@noizy.ai — Canada  
+**Machine:** GOD.local — M2 Ultra Mac Studio, 192GB RAM, 24-core  
+**Doctrine:** Consent as executable code. Provenance as default. Revocation as sacred. Compensation as automatic.
 
 ---
 
-## 🚀 Quick Start
+## Structure
 
-### Read the Docs
-- **[INTEGRATION_COMPLETION_REPORT.md](./INTEGRATION_COMPLETION_REPORT.md)** - Comprehensive guide
-- **[QUICK_START_EXAMPLES.py](./QUICK_START_EXAMPLES.py)** - 9 runnable examples
-
-### Run Examples
-```python
-python QUICK_START_EXAMPLES.py
+```
+THE-GATHERING/
+├── agents/          GABRIEL dispatcher + LUCY file intelligence
+├── heaven/          HEAVEN consent kernel + Cloudflare Workers
+├── noizy-ai/        NOIZY.AI brand + consent API
+├── noizyfish/       NOIZYFISH music platform + MC96ECO catalogue
+├── infrastructure/  PM2, Cloudflare, MCP configs
+├── tools/           Turbo scripts, voice pipeline, supersonic
+├── memory/          Chroma vector DB, DuckDB (gitignored)
+└── docs/            EMPIRE_MAP, AGENT_STACK, ARCHITECTURE
 ```
 
-### Initialize System
-```python
-import asyncio
-from unified_integration_bridge import UnifiedIntegrationBridge
+## The Crew (PM2 on GOD.local)
 
-async def main():
-    bridge = UnifiedIntegrationBridge()
-    results = await bridge.initialize_all()
-    print(bridge.get_health_report())
+| Agent | Process | Role |
+|-------|---------|------|
+| GABRIEL | `gabriel-lucy-core` | Dispatcher — intent → crew → TTS |
+| LUCY | `lucy-data-manager` | File intelligence, catalogue, SHA256 |
+| CHROMA | `chroma` | Vector DB at :8765 |
+| HF-MCP | `hf-mcp-server` | HuggingFace MCP bridge |
+| OLLAMA | `ollama` | Local inference host |
 
-asyncio.run(main())
+## Local Models (Ollama)
+
+| Model | Size | Role |
+|-------|------|------|
+| `gabriel-brain:latest` | 47 GB | GABRIEL's primary brain |
+| `lucy-brain:latest` | 19 GB | LUCY's primary brain |
+| `Qwen2.5-VL-72B` | 48 GB | Multimodal vision |
+| `gemma4:26b` | 17 GB | General reasoning |
+| `qwen2.5-coder:32b` | 19 GB | Code generation |
+
+## Quick Start
+
+```bash
+# Start all daemons
+pm2 start infrastructure/pm2/ecosystem.config.cjs
+
+# Run GABRIEL (voice loop)
+python3 agents/gabriel/gabriel_core.py --loop
+
+# Check empire health
+python3 agents/gabriel/gabriel_monitor.py
+
+# Turbo pipeline (format + dedupe + verify)
+bash tools/turbo-scripts/turbo_pipeline.sh .
 ```
 
----
+## The 10 Brands
 
-## 📦 Core Modules
-
-| Module | Lines | Purpose |
-|--------|-------|---------|
-| **unified_integration_bridge.py** | 1,000+ | Master orchestrator for all systems |
-| **secure_transport_layer.py** | 700+ | SSH tunneling + VPN fallback + Network resilience |
-| **unified_auth_system.py** | 550+ | Keychain integration + API keys + Token management |
-| **unified_file_sync.py** | 600+ | Bidirectional sync + Conflict resolution |
-| **unified_remote_display.py** | 600+ | Remote display + H.265 codec + Window sharing |
-| **unified_performance_metrics.py** | 700+ | Metrics collection + Bandwidth throttling + Optimization |
-
----
-
-## ✨ Key Features
-
-✅ **File Synchronization** - Bidirectional sync with 5 conflict strategies  
-✅ **Network Security** - SSH tunneling with 3-tier fallback strategy  
-✅ **Authentication** - Keychain integration + API key rotation + OAuth2  
-✅ **Remote Display** - H.264/VP9/H.265 codecs + Window sharing + Annotations  
-✅ **Performance Monitoring** - Real-time metrics + Bandwidth throttling + Recommendations  
-✅ **System Integration** - AEON, RepairRob, 10CC, TUNNEL, INGESTION orchestration
-| `homeAccountId` | A unique identifier for the account                                 |
-
-### Security considerations
-
-- The user profile's `.azure` directory is already used by other products, such as MSAL and Azure CLI to store metadata in `msal_token_cache.bin` and `azureProfile.json`, respectively.
-- While `authRecord.json` itself isn't inherently dangerous, it should still be excluded from source control. A preconfigued `.gitignore` file is written alongside the file for that purpose.
+| Brand | Domain | Status |
+|-------|--------|--------|
+| NOIZY.AI | noizy.ai | Active |
+| NOIZYFISH | noizyfish.com | Building |
+| NOIZYKIDZ | noizykidz.com | Planned |
+| NOIZYVOX | noizyvox.com | Building |
+| NOIZYLAB | noizylab.ca | Active |
+| DREAMCHAMBER | — | Building |
+| THE-OLD-GUARD | — | Building |
+| THE-AQUARIUM | — | 34TB audio vault |
+| NOIZYANTHROPIC | — | Active |
+| RSPNOIZY | github.com/RSPNOIZY | Active |
 
 ---
 
-## Part of the NOIZY Empire
-
-| Brand | Role |
-|---|---|
-| [NOIZY.AI](https://noizy.ai) | Sovereign AI infrastructure |
-| [NOIZYFISH](https://noizyfish.com) | Producer ecosystem |
-| [NOIZYKIDZ](https://noizykidz.com) | Youth division |
-| [NOIZYVOX](https://noizyvox.com) | Voice + schema core |
-| [NOIZYLAB](https://noizylab.ca) | Research + shared tooling |
-| [DREAMCHAMBER](https://github.com/RSPNOIZY/DREAMCHAMBER) | Creative residency |
-| [THE-OLD-GUARD](https://github.com/RSPNOIZY/THE-OLD-GUARD) | Legacy artist catalog |
-| [THE-GATHERING](https://github.com/RSPNOIZY/THE-GATHERING) | Community gathering point |
-| [NOIZYANTHROPIC](https://github.com/RSPNOIZY/NOIZYANTHROPIC) | AI governance + doctrine |
-| [THE-AQUARIUM](https://github.com/RSPNOIZY/THE-AQUARIUM) | Audio vault -- CLIENT#1 RSP001 |
-
-**killSwitchHolder:** RSP_001 | **covenant:** 75/25 | **canon:** noizy.ai
+*"We are the new punk rockers: capitalist free thinkers who believe in peace, love, and understanding."*

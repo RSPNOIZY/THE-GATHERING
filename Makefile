@@ -1,42 +1,57 @@
-.PHONY: help build test lint clean deploy install upgrade
+# ═══════════════════════════════════════════════════════════════════════════
+# NOIZY EMPIRE — Makefile
+# ═══════════════════════════════════════════════════════════════════════════
 
+.PHONY: help doctor deploy deploy-canary smoke status rollback audit tail dev
+
+# Default target
 help:
-	@echo "NOIZYLAB — Available targets:"
-	@echo "  make install    — Install dependencies"
-	@echo "  make upgrade    — Upgrade all packages"
-	@echo "  make build      — Build/compile project"
-	@echo "  make test       — Run all tests"
-	@echo "  make lint       — Run linters"
-	@echo "  make clean      — Clean build artifacts"
-	@echo "  make deploy     — Deploy to production"
+	@echo "NOIZY Empire Commands"
+	@echo "═════════════════════"
+	@echo ""
+	@echo "  make doctor       - Check environment & auth"
+	@echo "  make deploy       - Deploy Heaven (with smoke test)"
+	@echo "  make deploy-canary - Deploy with canary verification"
+	@echo "  make smoke        - Run smoke tests"
+	@echo "  make status       - Full system status"
+	@echo "  make rollback     - Emergency rollback"
+	@echo "  make audit        - Export deployment audit log"
+	@echo "  make tail         - Stream live logs"
+	@echo "  make dev          - Start local dev server"
+	@echo ""
 
-install:
-	@echo "Installing dependencies..."
-	pip install -r requirements.txt 2>/dev/null || echo "No requirements.txt"
-	npm install 2>/dev/null || echo "No package.json"
+# Preflight check
+doctor:
+	@./scripts/wrangler-doctor.sh
 
-upgrade:
-	@echo "Upgrading packages..."
-	pip install --upgrade pip 2>/dev/null || true
-	npm upgrade 2>/dev/null || true
-	brew upgrade 2>/dev/null || true
-
-build:
-	@echo "Building project..."
-	npm run build 2>/dev/null || python -m py_compile src/**/*.py 2>/dev/null || echo "No build script"
-
-test:
-	@echo "Running tests..."
-	pytest tests/ 2>/dev/null || npm test 2>/dev/null || echo "No tests configured"
-
-lint:
-	@echo "Running linters..."
-	pylint src/ 2>/dev/null || npm run lint 2>/dev/null || echo "No linters configured"
-
-clean:
-	@echo "Cleaning build artifacts..."
-	rm -rf build/ dist/ *.egg-info __pycache__ node_modules .pytest_cache
-
+# Standard deploy
 deploy:
-	@echo "Deploying..."
-	wrangler deploy 2>/dev/null || echo "Wrangler not configured"
+	@./scripts/deploy-heaven.sh
+
+# Canary deploy
+deploy-canary:
+	@./scripts/canary-deploy.sh
+
+# Smoke tests
+smoke:
+	@./scripts/smoke-test.sh
+
+# Full status
+status:
+	@./scripts/full-status.sh
+
+# Emergency rollback
+rollback:
+	@./scripts/rollback.sh
+
+# Export audit log
+audit:
+	@./scripts/export-audit-log.sh
+
+# Live logs
+tail:
+	@npx wrangler tail heaven
+
+# Local development
+dev:
+	@npx wrangler dev

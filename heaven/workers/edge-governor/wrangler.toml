@@ -1,0 +1,36 @@
+# EdgeGovernor — Cryptographic Intent Enforcement
+# Durable Object that gates high-risk operations with time-bounded, single-use tokens
+# Account: rsp@noizy.ai (5f36aa9795348ea681d0b21910dfc82a)
+
+name = "edge-governor"
+main = "../../src/edge-governor.ts"
+compatibility_date = "2026-04-06"
+compatibility_flags = ["nodejs_compat"]
+account_id = "5f36aa9795348ea681d0b21910dfc82a"
+
+# Durable Objects
+[durable_objects]
+bindings = [
+  { name = "EDGE_GOVERNOR", class_name = "EdgeGovernor" }
+]
+
+[[migrations]]
+tag = "v1"
+new_classes = ["EdgeGovernor"]
+
+# Observability
+[observability]
+enabled = true
+
+# Environment variables
+[vars]
+NOIZY_ENV = "production"
+SERVICE_NAME = "edge-governor"
+
+# Routes (custom domain after setup)
+# route = { pattern = "edge-governor.noizy.ai/*", custom_domain = true }
+
+# Development
+[env.preview]
+name = "edge-governor-preview"
+vars = { NOIZY_ENV = "preview" }

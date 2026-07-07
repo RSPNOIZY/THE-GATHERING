@@ -1,0 +1,49 @@
+name                = "noizy-consent-gateway"
+main                = "src/index.js"
+compatibility_date  = "2026-03-30"
+workers_dev         = false
+
+# Routing contract:
+#   PUBLIC:    GET  /health
+#   PROTECTED: POST /verify  |  POST /revoke  |  GET /status/:creatorId
+#   LEGACY:    /v1/check-eligibility  /v1/revoke  /v1/consent/:id  /v1/audit/:asset_id
+
+[vars]
+NOIZY_ENV            = "production"
+ENFORCEMENT_SLA_HOURS = "1"
+
+[[d1_databases]]
+binding       = "NOIZY_DB"
+database_name = "agent-memory"
+database_id   = "7b813205-fd12-4a23-84a6-ce83bc49ec70"
+
+[observability]
+enabled = true
+
+# ── Staging ────────────────────────────────────────────────────────────────────
+[env.staging]
+name    = "noizy-consent-gateway-staging"
+workers_dev = true
+
+[env.staging.vars]
+NOIZY_ENV            = "staging"
+ENFORCEMENT_SLA_HOURS = "1"
+
+[[env.staging.d1_databases]]
+binding       = "NOIZY_DB"
+database_name = "agent-memory"
+database_id   = "7b813205-fd12-4a23-84a6-ce83bc49ec70"
+
+# ── Production ─────────────────────────────────────────────────────────────────
+[env.production]
+name    = "noizy-consent-gateway"
+route   = { pattern = "consent.noizy.ai/*", custom_domain = true }
+
+[env.production.vars]
+NOIZY_ENV            = "production"
+ENFORCEMENT_SLA_HOURS = "1"
+
+[[env.production.d1_databases]]
+binding       = "NOIZY_DB"
+database_name = "agent-memory"
+database_id   = "7b813205-fd12-4a23-84a6-ce83bc49ec70"

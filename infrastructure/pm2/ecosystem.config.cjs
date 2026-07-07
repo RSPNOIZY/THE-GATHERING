@@ -1,0 +1,50 @@
+module.exports = {
+  apps: [
+    {
+      name: 'voice-bridge',
+      script: '/Users/m2ultra/NOIZYLAB/voice-bridge-server.js',
+      cwd: '/Users/m2ultra/NOIZYLAB',
+      watch: false,
+      env: { PORT: '8080', NODE_ENV: 'production', DREAMCHAMBER_URL: 'http://localhost:7777' },
+      restart_delay: 3000,
+      max_restarts: 10,
+    },
+    {
+      name: 'gemma3-mcp',
+      script: '/Users/m2ultra/NOIZYLAB/mcp-gemma3/server.js',
+      cwd: '/Users/m2ultra/NOIZYLAB/mcp-gemma3',
+      watch: false,
+      env: {
+        OLLAMA_URL: 'http://localhost:11434',
+        GEMMA_MODEL: 'gemma3:latest',
+        NOIZYLAB_DIR: '/Users/m2ultra/NOIZYLAB',
+      },
+    },
+    {
+      name: 'dreamchamber',
+      script: 'docker-compose',
+      args: 'up',
+      cwd: '/Users/m2ultra/NOIZYLAB/dreamchamber',
+      watch: false,
+      autorestart: false,
+    },
+    {
+      name: 'noizystream',
+      script: '/Users/m2ultra/NOIZYLAB/apps/noizystream/src/server.js',
+      cwd: '/Users/m2ultra/NOIZYLAB/apps/noizystream',
+      watch: false,
+      env: { NOIZYSTREAM_PORT: '4040', NODE_ENV: 'production', DREAMCHAMBER_URL: 'http://localhost:7777' },
+      restart_delay: 3000,
+      max_restarts: 10,
+    },
+    {
+      name: 'noizy-airplay',
+      script: '/Users/m2ultra/NOIZYLAB/apps/noizy-airplay/src/server.js',
+      cwd: '/Users/m2ultra/NOIZYLAB/apps/noizy-airplay',
+      watch: false,
+      env: { PORT: '3001', NODE_ENV: 'production', DREAMCHAMBER_URL: 'http://localhost:7777' },
+      restart_delay: 3000,
+      max_restarts: 10,
+    },
+  ],
+};

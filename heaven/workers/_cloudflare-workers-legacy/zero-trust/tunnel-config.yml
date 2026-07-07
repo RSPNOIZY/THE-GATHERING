@@ -1,0 +1,111 @@
+# NOIZY DreamChamber — Cloudflare Zero Trust Tunnel Configuration
+# Tunnel: god-local
+# Machine: GOD.local (M2 Ultra Mac Studio)
+# Author: Robert Stephen Plowman (RSP_001)
+# Updated: 2026-04-10
+#
+# Install location: ~/.cloudflared/config.yml
+# Start: cloudflared tunnel run god-local
+# Service: sudo cloudflared service install
+
+tunnel: god-local
+credentials-file: /Users/m2ultra/.cloudflared/<TUNNEL_ID>.json
+
+# ─── LAYER 1: CREATIVE PRODUCTION ───────────────────────────────
+ingress:
+  # 1. DreamChamber — Multi-model AI command center
+  - hostname: dreamchamber.noizy.ai
+    service: http://localhost:7777
+    originRequest:
+      noTLSVerify: false
+      connectTimeout: 30s
+      httpHostHeader: dreamchamber.noizy.ai
+
+  # 2. Voice Bridge — Phone/Siri/Assistant → GOD.local commands
+  - hostname: voice.noizy.ai
+    service: http://localhost:8080
+    originRequest:
+      noTLSVerify: false
+      connectTimeout: 10s
+
+  # 3. Open WebUI — Chat with 16 Ollama models from any browser
+  - hostname: ollama.noizy.ai
+    service: http://localhost:3080
+    originRequest:
+      noTLSVerify: false
+      connectTimeout: 30s
+
+# ─── LAYER 2: AI INFRASTRUCTURE ─────────────────────────────────
+
+  # 4. Ollama API — Direct model inference endpoint
+  - hostname: ollama-api.noizy.ai
+    service: http://localhost:11434
+    originRequest:
+      noTLSVerify: false
+      connectTimeout: 120s
+      httpHostHeader: ollama-api.noizy.ai
+
+  # 5. n8n — 18 automation workflows
+  - hostname: n8n.noizy.ai
+    service: http://localhost:5678
+    originRequest:
+      noTLSVerify: false
+      connectTimeout: 30s
+
+  # 6. Grafana — Empire monitoring dashboards
+  - hostname: grafana.noizy.ai
+    service: http://localhost:3000
+    originRequest:
+      noTLSVerify: false
+      connectTimeout: 10s
+
+  # 7. Neo4j Browser — Knowledge graph
+  - hostname: graph.noizy.ai
+    service: http://localhost:7474
+    originRequest:
+      noTLSVerify: false
+      connectTimeout: 10s
+
+  # 8. Qdrant — Vector database + dashboard
+  - hostname: vectors.noizy.ai
+    service: http://localhost:6333
+    originRequest:
+      noTLSVerify: false
+      connectTimeout: 30s
+
+  # 9. RabbitMQ Management — Message queue dashboard
+  - hostname: mq.noizy.ai
+    service: http://localhost:15672
+    originRequest:
+      noTLSVerify: false
+      connectTimeout: 10s
+
+  # 10. Meilisearch — Full-text search engine
+  - hostname: search.noizy.ai
+    service: http://localhost:7700
+    originRequest:
+      noTLSVerify: false
+      connectTimeout: 10s
+
+# ─── LAYER 3: DEVELOPMENT ───────────────────────────────────────
+
+  # 11. HEAVEN Dev — Local consent kernel API (wrangler dev)
+  - hostname: heaven-dev.noizy.ai
+    service: http://localhost:8787
+    originRequest:
+      noTLSVerify: false
+      connectTimeout: 30s
+
+  # 12. Kubernetes Dashboard — Kind cluster
+  - hostname: k8s.noizy.ai
+    service: https://localhost:54335
+    originRequest:
+      noTLSVerify: true
+      connectTimeout: 10s
+
+  # 13. SSH Terminal — Browser-rendered command line
+  - hostname: ssh.noizy.ai
+    service: ssh://localhost:22
+
+# ─── CATCH-ALL ──────────────────────────────────────────────────
+  - service: http_status:404
