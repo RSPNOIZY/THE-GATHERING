@@ -308,3 +308,18 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+# ─── LUCY VOICE (Kate Enhanced — interim NOIZYVOX FEMALE) ─────────────────────
+import sys as _sys
+_lv = __import__("pathlib").Path(__file__).parent.parent.parent / "agents/lucy/lucy_voice.py"
+if _lv.exists():
+    _sys.path.insert(0, str(_lv.parent))
+    try:
+        from lucy_voice import lucy_say as LUCY_SAY, LUCY_VOICE_CONFIG
+        print(f"[VOICE SERVER] LUCY voice loaded: {LUCY_VOICE_CONFIG['name']} ({LUCY_VOICE_CONFIG['description']})")
+    except ImportError:
+        LUCY_SAY = lambda t, **kw: __import__("subprocess").run(["say", "-v", "Kate", "-r", "185", t])
+        print("[VOICE SERVER] LUCY voice: Kate fallback mode")
+else:
+    LUCY_SAY = lambda t, **kw: __import__("subprocess").run(["say", "-v", "Kate", "-r", "185", t])
+    print("[VOICE SERVER] LUCY voice: Kate standalone mode")
