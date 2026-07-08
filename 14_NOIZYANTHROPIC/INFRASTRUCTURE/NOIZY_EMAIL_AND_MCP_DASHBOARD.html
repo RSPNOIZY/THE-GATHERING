@@ -1,0 +1,1794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NOIZY EMPIRE — Email Architecture & Local Rig Command Center</title>
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-dark: #06060c;
+    --glass-bg: rgba(18, 18, 30, 0.45);
+    --glass-border: rgba(255, 255, 255, 0.05);
+    --glass-border-hover: rgba(155, 89, 182, 0.35);
+    
+    --purple: #9b59b6;
+    --purple-glow: rgba(155, 89, 182, 0.4);
+    --gold: #f1c40f;
+    --gold-glow: rgba(241, 196, 15, 0.3);
+    
+    --green: #00e676;
+    --green-glow: rgba(0, 230, 118, 0.25);
+    --red: #ff3d00;
+    --red-glow: rgba(255, 61, 0, 0.25);
+    --cyan: #00d4ff;
+    --cyan-glow: rgba(0, 212, 255, 0.25);
+    --yellow: #ff9100;
+    --yellow-glow: rgba(255, 145, 0, 0.25);
+    
+    --text-primary: #f5f5fa;
+    --text-secondary: #a0a0b0;
+    --text-muted: #62627a;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    background: var(--bg-dark);
+    background-image: 
+      radial-gradient(circle at 10% 20%, rgba(155, 89, 182, 0.07) 0%, transparent 40%),
+      radial-gradient(circle at 90% 80%, rgba(0, 212, 255, 0.05) 0%, transparent 40%),
+      radial-gradient(circle at 50% 50%, rgba(241, 196, 15, 0.03) 0%, transparent 50%);
+    color: var(--text-primary);
+    font-family: 'Outfit', sans-serif;
+    padding: 2.5rem 1.5rem;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.01);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(155, 89, 182, 0.2);
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(155, 89, 182, 0.4);
+  }
+
+  .container {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  /* Glassmorphism Header */
+  .header {
+    background: var(--glass-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    padding: 2.5rem;
+    text-align: center;
+    margin-bottom: 2.5rem;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -50%;
+    width: 200%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--purple), var(--cyan), var(--gold), transparent);
+    animation: animateGlow 8s linear infinite;
+  }
+
+  @keyframes animateGlow {
+    0% { transform: translateX(-30%); }
+    100% { transform: translateX(30%); }
+  }
+
+  .header h1 {
+    font-size: 2.75rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    background: linear-gradient(90deg, var(--text-primary), var(--purple), var(--cyan), var(--gold));
+    background-size: 300% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: textShine 10s ease infinite;
+    margin-bottom: 0.5rem;
+  }
+
+  @keyframes textShine {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  .header .subtitle {
+    color: var(--text-secondary);
+    font-size: 1.05rem;
+    font-weight: 400;
+    letter-spacing: 1px;
+  }
+
+  .header .meta-bar {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 1rem;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+  }
+
+  .header .meta-bar span strong {
+    color: var(--cyan);
+  }
+
+  /* Dashboard Stats Grid */
+  .stats-strip {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .stat-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), border-color 0.3s;
+    box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.15);
+  }
+
+  .stat-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--glass-border-hover);
+  }
+
+  .stat-card .info .val {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.2rem;
+  }
+
+  .stat-card .info .label {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+  }
+
+  .stat-card .chart-container {
+    position: relative;
+    width: 60px;
+    height: 60px;
+  }
+
+  .stat-card svg {
+    transform: rotate(-90deg);
+  }
+
+  .stat-card svg circle {
+    fill: none;
+    stroke-width: 6;
+    stroke-linecap: round;
+  }
+
+  .stat-card svg circle.bg {
+    stroke: rgba(255, 255, 255, 0.05);
+  }
+
+  .stat-card svg circle.fill {
+    transition: stroke-dashoffset 1s ease-out;
+  }
+
+  /* Interactive Controls & Custom DNS Playground */
+  .control-panel {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    padding: 1.5rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .control-panel .status-text {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .control-panel .status-text .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--green);
+    box-shadow: 0 0 10px var(--green-glow);
+    display: inline-block;
+  }
+
+  .control-panel .status-text .dot.scanning {
+    background: var(--gold);
+    box-shadow: 0 0 10px var(--gold-glow);
+    animation: pulse 1.5s infinite;
+  }
+
+  @keyframes pulse {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.3); opacity: 0.5; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+
+  .btn {
+    background: linear-gradient(135deg, var(--purple), #7b2cbf);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 0.75rem 1.75rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 15px rgba(155, 89, 182, 0.4);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(155, 89, 182, 0.6);
+  }
+
+  .btn:active {
+    transform: translateY(0);
+  }
+
+  .btn-cyan {
+    background: linear-gradient(135deg, var(--cyan), #00a8cc);
+    box-shadow: 0 4px 15px rgba(0, 212, 255, 0.4);
+  }
+
+  .btn-cyan:hover {
+    box-shadow: 0 6px 20px rgba(0, 212, 255, 0.6);
+  }
+
+  /* DNS Playground Layout */
+  .dns-playground {
+    background: rgba(10, 10, 18, 0.5);
+    border: 1px dashed rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .dns-playground-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    color: var(--cyan);
+    font-size: 1rem;
+    font-weight: 600;
+  }
+
+  .dns-playground-inputs {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .dns-playground-inputs input {
+    flex-grow: 1;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--glass-border);
+    border-radius: 6px;
+    padding: 0.6rem 1rem;
+    color: white;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.9rem;
+    outline: none;
+    min-width: 200px;
+  }
+
+  .dns-playground-inputs input:focus {
+    border-color: var(--cyan);
+  }
+
+  .dns-playground-inputs select {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--glass-border);
+    border-radius: 6px;
+    padding: 0.6rem 1rem;
+    color: white;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.9rem;
+    outline: none;
+    cursor: pointer;
+  }
+
+  .dns-playground-inputs select:focus {
+    border-color: var(--cyan);
+  }
+
+  /* Grid Layouts */
+  .section-title {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--gold);
+    margin: 2.5rem 0 1.25rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    letter-spacing: 0.5px;
+  }
+
+  .section-title span {
+    font-size: 0.85rem;
+    font-family: 'IBM Plex Mono', monospace;
+    color: var(--text-muted);
+  }
+
+  /* Filters UI */
+  .filters-strip {
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .filter-btn {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--glass-border);
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .filter-btn:hover, .filter-btn.active {
+    background: rgba(155, 89, 182, 0.15);
+    border-color: var(--purple);
+    color: var(--purple);
+  }
+
+  .domains-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+  }
+
+  /* Interactive Domain Cards */
+  .domain-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    position: relative;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 250px;
+  }
+
+  .domain-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 25px rgba(155, 89, 182, 0.15);
+  }
+
+  .domain-card.cf-active { border-left: 4px solid var(--green); }
+  .domain-card.cf-active:hover { border-color: var(--green); }
+
+  .domain-card.cf-changed { border-left: 4px solid var(--cyan); }
+  .domain-card.cf-changed:hover { border-color: var(--cyan); }
+
+  .domain-card.godaddy-stuck { border-left: 4px solid var(--yellow); }
+  .domain-card.godaddy-stuck:hover { border-color: var(--yellow); }
+
+  .domain-card.unregistered { border-left: 4px solid var(--red); }
+  .domain-card.unregistered:hover { border-color: var(--red); }
+
+  .domain-card .top-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.75rem;
+  }
+
+  .domain-card .registrar {
+    font-size: 0.7rem;
+    font-family: 'IBM Plex Mono', monospace;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .domain-card .domain-name {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+    word-break: break-all;
+  }
+
+  .badge {
+    padding: 0.25rem 0.65rem;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    display: inline-block;
+  }
+
+  .badge.cf { background: rgba(0, 230, 118, 0.12); color: var(--green); box-shadow: 0 0 10px rgba(0, 230, 118, 0.05); }
+  .badge.changed { background: rgba(0, 212, 255, 0.12); color: var(--cyan); box-shadow: 0 0 10px rgba(0, 212, 255, 0.05); }
+  .badge.transfer { background: rgba(255, 145, 0, 0.12); color: var(--yellow); box-shadow: 0 0 10px rgba(255, 145, 0, 0.05); }
+  .badge.buy { background: rgba(255, 61, 0, 0.12); color: var(--red); box-shadow: 0 0 10px rgba(255, 61, 0, 0.05); }
+
+  .domain-card .details {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-bottom: 1.25rem;
+    flex-grow: 1;
+  }
+
+  .domain-card .details p {
+    margin-bottom: 0.35rem;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .domain-card .details p span:last-child {
+    color: var(--text-primary);
+    font-weight: 500;
+  }
+
+  .domain-card .details .doh-live-records {
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+    border-top: 1px dashed rgba(255, 255, 255, 0.05);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+  }
+
+  .domain-card .actions {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: auto;
+  }
+
+  .btn-sm {
+    padding: 0.4rem 0.85rem;
+    font-size: 0.8rem;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.02);
+    color: var(--text-primary);
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s;
+    flex-grow: 1;
+    text-align: center;
+  }
+
+  .btn-sm:hover {
+    background: rgba(155, 89, 182, 0.1);
+    border-color: var(--purple);
+    color: var(--purple);
+  }
+
+  .btn-sm-primary {
+    background: var(--purple);
+    border-color: var(--purple);
+    color: white;
+  }
+  
+  .btn-sm-primary:hover {
+    background: #7b2cbf;
+    border-color: #7b2cbf;
+    color: white;
+    box-shadow: 0 0 10px var(--purple-glow);
+  }
+
+  /* Live Terminal Logs output */
+  .log-console {
+    background: rgba(5, 5, 10, 0.85);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.8rem;
+    color: #a9b7c6;
+    margin-top: 2rem;
+    height: 220px;
+    overflow-y: auto;
+    box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.8);
+  }
+
+  .log-console .entry {
+    margin-bottom: 0.25rem;
+    line-height: 1.4;
+  }
+
+  .log-console .entry .time {
+    color: var(--text-muted);
+  }
+
+  .log-console .entry.info { color: var(--text-secondary); }
+  .log-console .entry.success { color: var(--green); }
+  .log-console .entry.error { color: var(--red); }
+  .log-console .entry.warning { color: var(--yellow); }
+  .log-console .entry.cyan { color: var(--cyan); }
+
+  /* Two Column Section */
+  .split-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+    align-items: start;
+  }
+
+  @media(max-width: 1024px) {
+    .split-layout { grid-template-columns: 1fr; }
+  }
+
+  /* Action checklist card */
+  .action-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    padding: 1.75rem;
+    min-height: 480px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  .checklist-progress-bar {
+    width: 100%;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 3px;
+    margin: 1rem 0 1.5rem;
+    overflow: hidden;
+  }
+
+  .checklist-progress-fill {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, var(--purple), var(--cyan));
+    border-radius: 3px;
+    transition: width 0.4s ease-out;
+  }
+
+  .checklist-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.85rem;
+    padding: 0.85rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    cursor: pointer;
+  }
+
+  .checklist-item:last-child { border-bottom: none; }
+
+  .checklist-item input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 2px solid rgba(255, 255, 255, 0.15);
+    border-radius: 4px;
+    margin-top: 0.15rem;
+    cursor: pointer;
+    position: relative;
+    transition: background 0.2s, border-color 0.2s;
+  }
+
+  .checklist-item input[type="checkbox"]:checked {
+    background: var(--purple);
+    border-color: var(--purple);
+  }
+
+  .checklist-item input[type="checkbox"]:checked::after {
+    content: '✓';
+    color: white;
+    font-weight: bold;
+    font-size: 0.75rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .checklist-item .task-text {
+    flex-grow: 1;
+    font-size: 0.9rem;
+    transition: color 0.2s;
+  }
+
+  .checklist-item input[type="checkbox"]:checked + .task-text {
+    color: var(--text-muted);
+    text-decoration: line-through;
+  }
+
+  .checklist-item .priority-lbl {
+    font-size: 0.65rem;
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 700;
+    padding: 0.1rem 0.4rem;
+    border-radius: 4px;
+    text-transform: uppercase;
+  }
+
+  .checklist-item .priority-lbl.high { background: rgba(255, 61, 0, 0.15); color: var(--red); }
+  .checklist-item .priority-lbl.med { background: rgba(255, 145, 0, 0.15); color: var(--yellow); }
+  .checklist-item .priority-lbl.low { background: rgba(0, 212, 255, 0.15); color: var(--cyan); }
+
+  /* Cloudflare DB & KV Tabs Layout */
+  .tabs-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    padding: 1.75rem;
+    min-height: 480px;
+  }
+
+  .tab-buttons {
+    display: flex;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    margin-bottom: 1.25rem;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .tab-btn {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 0.75rem 0.25rem;
+    cursor: pointer;
+    position: relative;
+    transition: color 0.3s;
+  }
+
+  .tab-btn:hover {
+    color: var(--text-primary);
+  }
+
+  .tab-btn.active {
+    color: var(--gold);
+  }
+
+  .tab-btn.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--gold);
+    border-radius: 2px;
+  }
+
+  .tab-content {
+    display: none;
+  }
+
+  .tab-content.active {
+    display: block;
+    animation: fadeIn 0.4s ease-out;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Tables styling */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+  }
+
+  th {
+    text-align: left;
+    padding: 0.75rem 1rem;
+    background: rgba(155, 89, 182, 0.06);
+    border-bottom: 2px solid var(--purple);
+    color: var(--purple);
+    font-weight: 600;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    color: var(--text-secondary);
+  }
+
+  tr:hover td {
+    background: rgba(255, 255, 255, 0.01);
+    color: var(--text-primary);
+  }
+
+  code {
+    font-family: 'IBM Plex Mono', monospace;
+    background: rgba(0, 0, 0, 0.25);
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    color: var(--cyan);
+  }
+
+  .btn-action-small {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .btn-action-small:hover {
+    background: var(--purple);
+    border-color: var(--purple);
+  }
+
+  /* MCP audit list */
+  .mcp-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1rem;
+  }
+
+  .mcp-mini-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 10px;
+    padding: 1.15rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.2s, border-color 0.2s;
+  }
+
+  .mcp-mini-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--purple);
+  }
+
+  .mcp-mini-card.success { border-left: 3px solid var(--green); }
+  .mcp-mini-card.warning { border-left: 3px solid var(--yellow); }
+  .mcp-mini-card.error { border-left: 3px solid var(--red); }
+
+  .mcp-mini-card .row-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .mcp-mini-card .name {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  .mcp-mini-card .indicator {
+    font-size: 0.75rem;
+    font-weight: bold;
+  }
+
+  .mcp-mini-card .indicator.success { color: var(--green); }
+  .mcp-mini-card .indicator.warning { color: var(--yellow); }
+  .mcp-mini-card .indicator.error { color: var(--red); }
+
+  .mcp-mini-card .desc {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-top: 0.5rem;
+    line-height: 1.35;
+  }
+
+  /* Interactive Modal Dialog / Drawer */
+  dialog {
+    background: #0d0d17;
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    padding: 2.5rem 2rem;
+    margin: auto;
+    width: 90%;
+    max-width: 550px;
+    color: var(--text-primary);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+    outline: none;
+    z-index: 100;
+  }
+
+  dialog::backdrop {
+    background-color: rgba(3, 3, 6, 0.85);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  dialog .title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+
+  dialog h2 {
+    font-size: 1.6rem;
+    color: var(--gold);
+    font-weight: 700;
+  }
+
+  dialog .close-btn {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 1.8rem;
+    cursor: pointer;
+    line-height: 1;
+  }
+
+  dialog .close-btn:hover {
+    color: var(--text-primary);
+  }
+
+  .modal-section {
+    margin-bottom: 2rem;
+  }
+
+  .modal-section h4 {
+    font-size: 0.9rem;
+    color: var(--purple);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+  }
+
+  .modal-section .dns-block {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    border-radius: 8px;
+    padding: 1rem;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.8rem;
+    margin-bottom: 0.75rem;
+    position: relative;
+  }
+
+  .modal-section .dns-block .copy-btn {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+    color: var(--text-secondary);
+    font-size: 0.7rem;
+    padding: 0.2rem 0.4rem;
+    cursor: pointer;
+    font-family: sans-serif;
+  }
+
+  .modal-section .dns-block .copy-btn:hover {
+    background: var(--purple);
+    color: white;
+  }
+
+  .footer-meta {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    margin-top: 4rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.03);
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  
+  <!-- Header -->
+  <div class="header">
+    <h1>NOIZY EMPIRE</h1>
+    <div class="subtitle">Email Routing & Rig Command Center</div>
+    <div class="meta-bar">
+      <span>SOVEREIGN: <strong>RSP_001</strong></span>
+      <span>RIG: <strong>Apple M2 Ultra</strong></span>
+      <span>LEDGER: <strong>Consensual</strong></span>
+    </div>
+  </div>
+
+  <!-- Dashboard Overview Strip -->
+  <div class="stats-strip">
+    
+    <!-- Cloudflare Integration Progress -->
+    <div class="stat-card" id="stat-cf">
+      <div class="info">
+        <div class="val" id="stat-val-cf">2 / 7</div>
+        <div class="label">CF Registry</div>
+      </div>
+      <div class="chart-container">
+        <svg width="60" height="60">
+          <circle class="bg" cx="30" cy="30" r="26"></circle>
+          <circle class="fill" id="circle-cf" cx="30" cy="30" r="26" stroke="var(--green)" stroke-dasharray="163.36" stroke-dashoffset="116.68"></circle>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Active DNS Records -->
+    <div class="stat-card" id="stat-dns">
+      <div class="info">
+        <div class="val" id="stat-val-dns">2 / 5</div>
+        <div class="label">Active DNS Domains</div>
+      </div>
+      <div class="chart-container">
+        <svg width="60" height="60">
+          <circle class="bg" cx="30" cy="30" r="26"></circle>
+          <circle class="fill" id="circle-dns" cx="30" cy="30" r="26" stroke="var(--cyan)" stroke-dasharray="163.36" stroke-dashoffset="98.02"></circle>
+        </svg>
+      </div>
+    </div>
+
+    <!-- MCP Status -->
+    <div class="stat-card" id="stat-mcp">
+      <div class="info">
+        <div class="val" id="stat-val-mcp">11 / 12</div>
+        <div class="label">MCP Connectors</div>
+      </div>
+      <div class="chart-container">
+        <svg width="60" height="60">
+          <circle class="bg" cx="30" cy="30" r="26"></circle>
+          <circle class="fill" id="circle-mcp" cx="30" cy="30" r="26" stroke="var(--purple)" stroke-dasharray="163.36" stroke-dashoffset="13.61"></circle>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Action checklist progress -->
+    <div class="stat-card" id="stat-progress">
+      <div class="info">
+        <div class="val" id="stat-val-progress">0%</div>
+        <div class="label">Setup Progress</div>
+      </div>
+      <div class="chart-container">
+        <svg width="60" height="60">
+          <circle class="bg" cx="30" cy="30" r="26"></circle>
+          <circle class="fill" id="circle-progress" cx="30" cy="30" r="26" stroke="var(--gold)" stroke-dasharray="163.36" stroke-dashoffset="163.36"></circle>
+        </svg>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Command Control & Global Audit Status -->
+  <div class="control-panel">
+    <div class="status-text">
+      <span class="dot" id="audit-dot"></span>
+      <span id="audit-status-label">Empire Status: Idle. Active listeners verified.</span>
+    </div>
+    <div>
+      <button class="btn btn-cyan" id="btn-scan" onclick="triggerDnsAudit()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        Run Live DNS Audit
+      </button>
+    </div>
+  </div>
+
+  <!-- Custom DNS Playground -->
+  <div class="dns-playground">
+    <div class="dns-playground-header">
+      <span>🛠️ INTERACTIVE DNS PLAYGROUND</span>
+      <span style="font-size: 0.75rem; color: var(--text-muted); font-family: monospace;">Queries resolved live via Google DoH API</span>
+    </div>
+    <div class="dns-playground-inputs">
+      <input type="text" id="pg-domain" placeholder="Enter domain (e.g. google.com, noizy.ai)" value="noizy.ai">
+      <select id="pg-type">
+        <option value="A">A (IPv4)</option>
+        <option value="AAAA">AAAA (IPv6)</option>
+        <option value="MX" selected>MX (Mail Exchange)</option>
+        <option value="TXT">TXT (Text Records)</option>
+        <option value="NS">NS (Name Servers)</option>
+      </select>
+      <button class="btn btn-sm btn-sm-primary" style="flex-grow: 0; min-width: 120px;" onclick="playgroundResolve()">Resolve</button>
+    </div>
+  </div>
+
+  <!-- Domains Section Title & Filters -->
+  <div class="section-title">
+    Domain Registry & Routing Status
+    <span>Google DoH (DNS-over-HTTPS) Scanner</span>
+  </div>
+  
+  <div class="filters-strip">
+    <button class="filter-btn active" onclick="filterDomains('all', this)">All Domains (7)</button>
+    <button class="filter-btn" onclick="filterDomains('cf-active', this)">Cloudflare Active</button>
+    <button class="filter-btn" onclick="filterDomains('cf-changed', this)">NS Changed</button>
+    <button class="filter-btn" onclick="filterDomains('godaddy-stuck', this)">Needs Transfer</button>
+    <button class="filter-btn" onclick="filterDomains('unregistered', this)">Needs Purchase</button>
+  </div>
+  
+  <div class="domains-grid" id="domains-container">
+    <!-- Domain cards will be dynamically managed/upgraded by Javascript -->
+  </div>
+
+  <!-- Log Console Output -->
+  <div class="log-console" id="console-output">
+    <div class="entry info"><span class="time">[00:00:00]</span> Initialized NOIZY local DoH resolver client. Sandbox bypass enabled.</div>
+    <div class="entry info"><span class="time">[00:00:01]</span> Ready. Click "Run Live DNS Audit" or use the DNS Playground above.</div>
+  </div>
+
+  <!-- Two Column Layout: Action Items & Cloudflare/Rig Monitor -->
+  <div class="split-layout">
+    
+    <!-- Action Plan Checklist -->
+    <div class="action-card">
+      <h2 style="color: var(--gold); border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 0.5rem; margin-bottom: 0.5rem;">Action Items Checklist</h2>
+      <div class="checklist-progress-bar">
+        <div class="checklist-progress-fill" id="checklist-fill"></div>
+      </div>
+      <div id="checklist-container" style="flex-grow: 1; overflow-y: auto;">
+        <!-- Checklist items rendered by JS -->
+      </div>
+    </div>
+
+    <!-- Cloudflare & Rig Resources Panel -->
+    <div class="tabs-card">
+      <div class="tab-buttons">
+        <button class="tab-btn active" onclick="switchTab('tab-db', this)">D1 DBs (10)</button>
+        <button class="tab-btn" onclick="switchTab('tab-kv', this)">KV Namespaces (20)</button>
+        <button class="tab-btn" id="btn-tab-rig" onclick="switchTab('tab-rig', this)">Local Rig Monitor</button>
+      </div>
+      
+      <!-- D1 DB Tab Content -->
+      <div class="tab-content active" id="tab-db">
+        <table style="font-size: 0.8rem;">
+          <thead>
+            <tr><th>Database Name</th><th>UUID</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>agent-memory</td><td><code>7b813205-fd12...</code></td></tr>
+            <tr><td>rsp-master-budget</td><td><code>74e6b824-2bd4...</code></td></tr>
+            <tr><td>gabriel_db</td><td><code>f75939d5-d1a5...</code></td></tr>
+            <tr><td>noizylab-repairs</td><td><code>2bd4aa06-4731...</code></td></tr>
+            <tr><td>tencc-pipeline</td><td><code>d1a5c748-df36...</code></td></tr>
+            <tr><td>mc96-command-central</td><td><code>ef4eda10-e6f9...</code></td></tr>
+            <tr><td>aquarium-archive</td><td><code>e6f98279-d1a5...</code></td></tr>
+            <tr><td>godaddy-escape-tracker</td><td><code>dfe9343e-145b...</code></td></tr>
+            <tr><td>subscription-killer</td><td><code>145b3abb-932e...</code></td></tr>
+            <tr><td>noizyanthropic</td><td><code>932e36f7-7b81...</code></td></tr>
+          </tbody>
+        </table>
+        <p style="font-size: 0.75rem; color: var(--red); margin-top: 0.75rem;">Capacity: 10 / 10 database slots used. Max limit reached.</p>
+      </div>
+
+      <!-- KV Tab Content -->
+      <div class="tab-content" id="tab-kv">
+        <table style="font-size: 0.8rem;">
+          <thead>
+            <tr><th>Namespace Name</th><th>Category</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>GABRIEL_KV, GABRIEL_VOICE</td><td>AI Agent</td></tr>
+            <tr><td>noizyvox-signups, noizyvox-royalties</td><td>NOIZYVOX Platform</td></tr>
+            <tr><td>gorunfree-execution-state</td><td>Protocol</td></tr>
+            <tr><td>mc96-hotrod-cache</td><td>Infrastructure</td></tr>
+            <tr><td>agent-state, session-cache</td><td>Operations</td></tr>
+            <tr><td>noizylab-edge-config, noizylab-submissions</td><td>NOIZYLAB</td></tr>
+            <tr><td>conductor-locks, tencc-locks</td><td>Concurrency</td></tr>
+            <tr><td>antigravity-cache, CRAWLER_KV</td><td>Utilities</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Local Rig Monitor Content -->
+      <div class="tab-content" id="tab-rig">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+          <p style="font-size: 0.85rem; color: var(--text-secondary);">Direct browser health checks to local network endpoints:</p>
+          <button class="btn-action-small" onclick="checkLocalServices()">Ping All Nodes</button>
+        </div>
+        <table style="font-size: 0.8rem;">
+          <thead>
+            <tr><th>Service Node</th><th>Local Endpoint</th><th>Live Connection Status</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>DreamChamber Engine</td>
+              <td><code>localhost:7777</code></td>
+              <td id="rig-status-dreamchamber"><span class="indicator warning">Not checked</span></td>
+            </tr>
+            <tr>
+              <td>n8n Stack (Docker)</td>
+              <td><code>localhost:5678</code></td>
+              <td id="rig-status-n8n-stack"><span class="indicator warning">Not checked</span></td>
+            </tr>
+            <tr>
+              <td>GABRIEL Core API</td>
+              <td><code>localhost:9777</code></td>
+              <td id="rig-status-gabriel-core"><span class="indicator warning">Not checked</span></td>
+            </tr>
+            <tr>
+              <td>Ollama Local AI</td>
+              <td><code>localhost:11434</code></td>
+              <td id="rig-status-ollama-local-ai"><span class="indicator warning">Not checked</span></td>
+            </tr>
+          </tbody>
+        </table>
+        
+        <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(0,0,0,0.2); border-radius: 8px; font-size: 0.8rem;">
+          <strong style="color: var(--gold);">Service Management Command:</strong>
+          <p style="color: var(--text-secondary); margin-top: 0.25rem;">To trigger service recovery in host terminal:</p>
+          <div style="position: relative; margin-top: 0.5rem;">
+            <code style="display: block; padding: 0.5rem; color: var(--cyan);">bash /Users/m2ultra/NOIZYANTHROPIC/scripts/RESTART_SERVICES_NOW.sh</code>
+            <button class="btn-action-small" style="position: absolute; right: 4px; top: 4px;" onclick="copyText('bash /Users/m2ultra/NOIZYANTHROPIC/scripts/RESTART_SERVICES_NOW.sh')">Copy</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- MCP Connectors List -->
+  <div class="section-title" style="margin-top: 3rem;">
+    MCP Connectors Audit
+    <span>12 Active Pipelines</span>
+  </div>
+  
+  <div class="mcp-grid" id="mcp-container">
+    <!-- MCP list rendered by JS -->
+  </div>
+
+  <div class="footer-meta">
+    NOIZY EMPIRE — Dynamic Security & Local Rig Command Center Dashboard
+    <br>Generated by Robert Stephen Plowman + Claude (Co-Architect) | 2026-06-02
+  </div>
+
+</div>
+
+<!-- Drawer Modal for Details -->
+<dialog id="details-modal" closedby="any">
+  <div class="title-row">
+    <h2 id="modal-domain">domain.com</h2>
+    <button class="close-btn" onclick="document.getElementById('details-modal').close()">&times;</button>
+  </div>
+  
+  <div class="modal-section">
+    <h4>Current Status</h4>
+    <div id="modal-status-badge"></div>
+    <p id="modal-desc" style="font-size: 0.9rem; color: var(--text-secondary); margin-top: 0.5rem;"></p>
+  </div>
+
+  <div class="modal-section">
+    <h4>Live Resolved Records (DoH)</h4>
+    <div id="modal-live-records">
+      <p style="color: var(--text-muted); font-size: 0.85rem; font-style: italic;">No audit run yet. Run the Live DNS Audit first.</p>
+    </div>
+  </div>
+
+  <div class="modal-section">
+    <h4>Recommended DNS Setup</h4>
+    <p style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 0.75rem;">Configure these records in your DNS editor:</p>
+    
+    <div class="dns-block">
+      <button class="copy-btn" onclick="copyText('MX @ amir.mx.cloudflare.net Priority 3')">Copy</button>
+      <strong>MX</strong> @ <span style="color: var(--cyan);">amir.mx.cloudflare.net</span> (Priority 3)
+    </div>
+    <div class="dns-block">
+      <button class="copy-btn" onclick="copyText('TXT @ v=spf1 include:_spf.mx.cloudflare.net ~all')">Copy</button>
+      <strong>SPF</strong> @ <span style="color: var(--cyan);">v=spf1 include:_spf.mx.cloudflare.net ~all</span>
+    </div>
+    <div class="dns-block">
+      <button class="copy-btn" onclick="copyText('TXT _dmarc v=DMARC1; p=quarantine; pct=100')">Copy</button>
+      <strong>DMARC</strong> _dmarc <span style="color: var(--cyan);">v=DMARC1; p=quarantine; pct=100</span>
+    </div>
+  </div>
+
+  <div class="modal-section">
+    <h4>Resolution Playbook</h4>
+    <p id="modal-playbook" style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5; white-space: pre-line;"></p>
+  </div>
+</dialog>
+
+<!-- JavaScript Logic -->
+<script>
+  // Static Domains configuration
+  const domainsData = [
+    {
+      id: "noizy-ai",
+      domain: "noizy.ai",
+      registrar: "Cloudflare",
+      statusClass: "cf-active",
+      statusLabel: "On Cloudflare",
+      desc: "Primary brand identity and developer endpoint. Fully on Cloudflare.",
+      expected: { ns: "cloudflare", mx: "cloudflare", spf: "cloudflare", dmarc: true },
+      playbook: "No immediate actions needed. SPF and DMARC have been configured. Ready for outbound SMTP integrations."
+    },
+    {
+      id: "noizylab-ca",
+      domain: "noizylab.ca",
+      registrar: "Cloudflare",
+      statusClass: "cf-active",
+      statusLabel: "On Cloudflare",
+      desc: "R&D domain and Wisdom Project interface. Active on Cloudflare.",
+      expected: { ns: "cloudflare", mx: "cloudflare", spf: "cloudflare", dmarc: true },
+      playbook: "Ready for email forwarding. Verify your Cloudflare Email Routing configuration in the dashboard."
+    },
+    {
+      id: "fishmusicinc-com",
+      domain: "fishmusicinc.com",
+      registrar: "GoDaddy",
+      statusClass: "cf-changed",
+      statusLabel: "NS Changed",
+      desc: "Parent company identity. Name servers pointed to Cloudflare but domain registration still on GoDaddy.",
+      expected: { ns: "cloudflare", mx: "microsoft", spf: "microsoft", dmarc: true },
+      playbook: "1. Log into GoDaddy. Unlock domain.\n2. Request EPP auth code.\n3. Log into Cloudflare. Transfer domain to Cloudflare Registrar to consolidate billing."
+    },
+    {
+      id: "noizyfish-com",
+      domain: "noizyfish.com",
+      registrar: "GoDaddy",
+      statusClass: "godaddy-stuck",
+      statusLabel: "Needs Transfer",
+      desc: "Legacy music catalog domain. Entirely hosted on GoDaddy (NS and Registrar).",
+      expected: { ns: "cloudflare", mx: "microsoft", spf: "microsoft", dmarc: true },
+      playbook: "1. Change name servers to Melinda and Alex on Cloudflare.\n2. Request transfer code from GoDaddy to migrate domain entirely to Cloudflare."
+    },
+    {
+      id: "noizylab-com",
+      domain: "noizylab.com",
+      registrar: "GoDaddy",
+      statusClass: "godaddy-stuck",
+      statusLabel: "Needs Transfer",
+      desc: "Wisdom project public face legacy. Stored on GoDaddy.",
+      expected: { ns: "cloudflare", mx: "cloudflare", spf: "cloudflare", dmarc: true },
+      playbook: "1. Deploy Cloudflare nameservers.\n2. Unlock domain at GoDaddy and transfer registration to Cloudflare."
+    },
+    {
+      id: "noizyvox-com",
+      domain: "noizyvox.com",
+      registrar: "Unregistered",
+      statusClass: "unregistered",
+      statusLabel: "Needs Purchase",
+      desc: "Planned voice platform domain. Currently unregistered.",
+      expected: { ns: "cloudflare", mx: "cloudflare", spf: "cloudflare", dmarc: true },
+      playbook: "1. Search for domain availability.\n2. Purchase directly via Cloudflare Registrar to bypass markups and secure immediately."
+    },
+    {
+      id: "noizykids-com",
+      domain: "noizykids.com",
+      registrar: "Unregistered",
+      statusClass: "unregistered",
+      statusLabel: "Needs Purchase",
+      desc: "Planned kid's brand domain. Unregistered. Brand uses Z (NOIZYKIDZ).",
+      expected: { ns: "cloudflare", mx: "cloudflare", spf: "cloudflare", dmarc: true },
+      playbook: "1. Buy noizykids.com on Cloudflare.\n2. Also purchase noizykidz.com to protect the exact brand name."
+    }
+  ];
+
+  // Action Checklist configuration
+  const checklistData = [
+    { id: "chk-vox", text: "Register noizyvox.com on Cloudflare Registrar", priority: "high", checked: false },
+    { id: "chk-kids", text: "Register noizykids.com (and noizykidz.com) on Cloudflare", priority: "high", checked: false },
+    { id: "chk-routing", text: "Deploy Email Routing rules for noizy.ai + noizylab.ca", priority: "high", checked: false },
+    { id: "chk-fishmusic", text: "Transfer fishmusicinc.com domain registration from GoDaddy to Cloudflare", priority: "med", checked: false },
+    { id: "chk-noizyfish", text: "Update Name Servers of noizyfish.com to point to Cloudflare", priority: "med", checked: false },
+    { id: "chk-gmail", text: "Enable Gmail API in Google Cloud Console for Gmail MCP", priority: "med", checked: false },
+    { id: "chk-resend", text: "Verify noizy.ai domain on Resend.com for SMTP outbound", priority: "med", checked: false },
+    { id: "chk-r2", text: "Enable R2 storage in Cloudflare dashboard for The Aquarium", priority: "low", checked: false }
+  ];
+
+  // MCP Connectors Audit configuration
+  const mcpData = [
+    { name: "☁️ Cloudflare", status: "success", label: "Operational", desc: "Access to 10 D1 DBs (Limit!), 20 KV namespaces, and Workers deployment." },
+    { name: "💬 Slack", status: "success", label: "Operational", desc: "Connected to noizyfishcom workspace. Channel posting and messaging active." },
+    { name: "📋 Linear", status: "success", label: "Operational", desc: "Linked to NOIZYLAB team. Synchronizing cycle tasks and tickets." },
+    { name: "📝 Notion", status: "success", label: "Operational", desc: "Connected to Fish Music workspace. Page searching and rendering ready." },
+    { name: "🎨 Figma", status: "success", label: "Operational", desc: "Active connection for layouts and design diagrams." },
+    { name: "📁 Google Drive", status: "success", label: "Operational", desc: "Full access to shared sheets, voice recordings, and catalog blueprints." },
+    { name: "🧠 Memory", status: "success", label: "Operational", desc: "Persistent local semantic knowledge graph with 40+ entities." },
+    { name: "💾 Filesystem", status: "success", label: "Operational", desc: "Local folder access to /Users/m2ultra workspace directories." },
+    { name: "📧 Gmail", status: "error", label: "Broken", desc: "Error: 'Mail service not enabled'. Enable the Gmail API in Google Cloud Console." },
+    { name: "🌐 Domains", status: "warning", label: "Quota Hit", desc: "GoDaddy query limit exceeded. Resets at midnight UTC." },
+    { name: "🛒 AWS Marketplace", status: "warning", label: "Untested", desc: "Connector active but no active subscriptions queried." },
+    { name: "🌐 Chrome Control", status: "warning", label: "Available", desc: "Browser automation hook active. Available for manual browser control." }
+  ];
+
+  let currentFilter = 'all';
+
+  // Initialize page
+  window.onload = function() {
+    renderDomains();
+    renderChecklist();
+    renderMcp();
+    loadChecklistState();
+    updateProgress();
+    checkLocalServices();
+    
+    // Setup light dismiss fallback
+    const dialog = document.getElementById("details-modal");
+    dialog.addEventListener("click", function(event) {
+      if (event.target === dialog) {
+        dialog.close();
+      }
+    });
+  };
+
+  // Render domains grid
+  function renderDomains() {
+    const container = document.getElementById("domains-container");
+    container.innerHTML = "";
+    
+    domainsData.forEach(d => {
+      if (currentFilter !== 'all' && d.statusClass !== currentFilter) {
+        return;
+      }
+      
+      const card = document.createElement("div");
+      card.className = `domain-card ${d.statusClass}`;
+      card.id = `card-${d.id}`;
+      card.innerHTML = `
+        <div>
+          <div class="top-row">
+            <span class="registrar">${d.registrar}</span>
+            <span class="badge ${getBadgeClass(d.statusClass)}">${d.statusLabel}</span>
+          </div>
+          <div class="domain-name">${d.domain}</div>
+          <div class="details">
+            <p><span>Expected NS:</span> <span>${d.expected.ns}</span></p>
+            <p><span>Email Setup:</span> <span>${d.expected.mx === 'cloudflare' ? 'Routing' : d.expected.mx === 'microsoft' ? 'M365' : 'None'}</span></p>
+            <div class="doh-live-records" id="live-dns-${d.id}">
+              DNS Audit status: Unscanned
+            </div>
+          </div>
+        </div>
+        <div class="actions">
+          <button class="btn-sm btn-sm-primary" onclick="auditSingleDomain('${d.id}')">Scan</button>
+          <button class="btn-sm" onclick="openDetails('${d.id}')">Playbook</button>
+        </div>
+      `;
+      container.appendChild(card);
+    });
+  }
+
+  function getBadgeClass(statusClass) {
+    if (statusClass === "cf-active") return "cf";
+    if (statusClass === "cf-changed") return "changed";
+    if (statusClass === "godaddy-stuck") return "transfer";
+    return "buy";
+  }
+
+  // Filter Domains logic
+  function filterDomains(filter, btn) {
+    currentFilter = filter;
+    document.querySelectorAll(".filter-btn").forEach(el => el.classList.remove("active"));
+    btn.classList.add("active");
+    renderDomains();
+  }
+
+  // Render Checklist
+  function renderChecklist() {
+    const container = document.getElementById("checklist-container");
+    container.innerHTML = "";
+    checklistData.forEach((item, index) => {
+      const div = document.createElement("label");
+      div.className = "checklist-item";
+      div.innerHTML = `
+        <input type="checkbox" id="${item.id}" onchange="toggleCheck('${item.id}')">
+        <span class="task-text">${item.text}</span>
+        <span class="priority-lbl ${item.priority}">${item.priority}</span>
+      `;
+      container.appendChild(div);
+    });
+  }
+
+  // Render MCP
+  function renderMcp() {
+    const container = document.getElementById("mcp-container");
+    container.innerHTML = "";
+    mcpData.forEach(m => {
+      const card = document.createElement("div");
+      card.className = `mcp-mini-card ${m.status}`;
+      card.innerHTML = `
+        <div>
+          <div class="row-top">
+            <span class="name">${m.name}</span>
+            <span class="indicator ${m.status}">${m.label}</span>
+          </div>
+          <div class="desc">${m.desc}</div>
+        </div>
+      `;
+      container.appendChild(card);
+    });
+  }
+
+  // Handle Tab Switch
+  function switchTab(tabId, btn) {
+    const card = btn.closest(".tabs-card");
+    card.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+    card.querySelectorAll(".tab-content").forEach(content => content.classList.remove("active"));
+    
+    btn.classList.add("active");
+    document.getElementById(tabId).classList.add("active");
+  }
+
+  // Handle Checklist check toggling
+  function toggleCheck(id) {
+    const item = checklistData.find(c => c.id === id);
+    if (item) {
+      item.checked = document.getElementById(id).checked;
+      saveChecklistState();
+      updateProgress();
+    }
+  }
+
+  function saveChecklistState() {
+    const state = {};
+    checklistData.forEach(c => {
+      state[c.id] = c.checked;
+    });
+    localStorage.setItem("noizy_checklist_state", JSON.stringify(state));
+  }
+
+  function loadChecklistState() {
+    const saved = localStorage.getItem("noizy_checklist_state");
+    if (saved) {
+      const state = JSON.parse(saved);
+      checklistData.forEach(c => {
+        if (state[c.id] !== undefined) {
+          c.checked = state[c.id];
+          const chk = document.getElementById(c.id);
+          if (chk) chk.checked = c.checked;
+        }
+      });
+    }
+  }
+
+  function updateProgress() {
+    const total = checklistData.length;
+    const completed = checklistData.filter(c => c.checked).length;
+    const pct = total > 0 ? Math.round((completed / total) * 100) : 0;
+    
+    // Update value text
+    document.getElementById("stat-val-progress").innerText = `${pct}%`;
+    
+    // Update circular progress
+    const circle = document.getElementById("circle-progress");
+    const strokeDash = 163.36;
+    const offset = strokeDash - (strokeDash * (pct / 100));
+    circle.style.strokeDashoffset = offset;
+    
+    // Update progress fill bar
+    document.getElementById("checklist-fill").style.width = `${pct}%`;
+  }
+
+  // Log outputs utility
+  function addConsoleLog(text, type = "info") {
+    const consoleBox = document.getElementById("console-output");
+    const date = new Date();
+    const timeStr = date.toTimeString().split(' ')[0];
+    
+    const entry = document.createElement("div");
+    entry.className = `entry ${type}`;
+    entry.innerHTML = `<span class="time">[${timeStr}]</span> ${text}`;
+    
+    consoleBox.appendChild(entry);
+    consoleBox.scrollTop = consoleBox.scrollHeight;
+  }
+
+  // Copy records utility
+  function copyText(text) {
+    navigator.clipboard.writeText(text).then(() => {
+      addConsoleLog(`Copied code block: "${text}"`, "cyan");
+      const btn = event.currentTarget;
+      const originalText = btn.innerText;
+      btn.innerText = "✓ Copied";
+      btn.style.background = "var(--green)";
+      btn.style.color = "white";
+      setTimeout(() => {
+        btn.innerText = originalText;
+        btn.style.background = "";
+        btn.style.color = "";
+      }, 1500);
+    }).catch(err => {
+      addConsoleLog("Failed to copy text: " + err, "error");
+    });
+  }
+
+  // Live DNS Scan logic
+  async function resolveDoH(domain, type) {
+    try {
+      const response = await fetch(`https://dns.google/resolve?name=${encodeURIComponent(domain)}&type=${type}`);
+      if (!response.ok) throw new Error("DoH fetch failed");
+      const data = await response.json();
+      return data.Answer || [];
+    } catch(err) {
+      addConsoleLog(`Failed resolving ${domain} ${type}: ${err.message}`, "error");
+      return null;
+    }
+  }
+
+  // Run audit for single domain
+  async function auditSingleDomain(domainId) {
+    const d = domainsData.find(item => item.id === domainId);
+    if (!d) return;
+    
+    const dot = document.getElementById("audit-dot");
+    const statusLabel = document.getElementById("audit-status-label");
+    dot.className = "dot scanning";
+    statusLabel.innerText = `Scanning domain: ${d.domain}...`;
+    
+    addConsoleLog(`Starting DNS audit for ${d.domain}...`, "info");
+    
+    const ns = await resolveDoH(d.domain, "NS");
+    const mx = await resolveDoH(d.domain, "MX");
+    const txt = await resolveDoH(d.domain, "TXT");
+    
+    let nsVal = "None";
+    let mxVal = "None";
+    let spfVal = "None";
+    let dmarcVal = "None";
+    
+    if (ns && ns.length > 0) {
+      nsVal = ns.map(a => a.data).join(", ");
+      addConsoleLog(`  [NS] Found: ${ns.length} records.`, "success");
+    } else {
+      addConsoleLog(`  [NS] No records found.`, "warning");
+    }
+
+    if (mx && mx.length > 0) {
+      mxVal = mx.map(a => `${a.data.split(' ').pop()} (P${a.data.split(' ')[0]})`).join(", ");
+      addConsoleLog(`  [MX] Found: ${mx.length} records.`, "success");
+    } else {
+      addConsoleLog(`  [MX] No records found.`, "warning");
+    }
+
+    if (txt && txt.length > 0) {
+      const spf = txt.find(a => a.data.includes("v=spf1"));
+      if (spf) {
+        spfVal = spf.data;
+        addConsoleLog(`  [SPF] Found: ${spfVal}`, "success");
+      }
+      
+      // Query DMARC separately
+      const dmarcRecords = await resolveDoH(`_dmarc.${d.domain}`, "TXT");
+      if (dmarcRecords && dmarcRecords.length > 0) {
+        const dmarc = dmarcRecords.find(a => a.data.includes("v=DMARC1"));
+        if (dmarc) {
+          dmarcVal = dmarc.data;
+          addConsoleLog(`  [DMARC] Found: ${dmarcVal}`, "success");
+        }
+      }
+    }
+
+    // Render results on domain card
+    const targetDiv = document.getElementById(`live-dns-${d.id}`);
+    
+    let isNsOk = nsVal.toLowerCase().includes("cloudflare");
+    let isMxOk = mxVal.toLowerCase().includes("cloudflare") || mxVal.toLowerCase().includes("outlook") || mxVal.toLowerCase().includes("microsoft");
+    
+    targetDiv.innerHTML = `
+      <p style="color: var(--text-primary); font-weight: 500; border-bottom: 1px dotted rgba(255,255,255,0.05); padding-bottom: 0.2rem;">Live Resolve Results:</p>
+      <p><span>NS:</span> <span style="color: ${isNsOk ? 'var(--green)' : 'var(--yellow)'}">${isNsOk ? 'Cloudflare ✅' : 'GoDaddy/Other ⚠️'}</span></p>
+      <p><span>MX:</span> <span style="color: ${isMxOk ? 'var(--green)' : 'var(--red)'}">${isMxOk ? 'Configured ✅' : 'Missing ❌'}</span></p>
+      <p><span>SPF:</span> <span style="color: ${spfVal !== 'None' ? 'var(--green)' : 'var(--red)'}">${spfVal !== 'None' ? 'Configured ✅' : 'Missing ❌'}</span></p>
+      <p><span>DMARC:</span> <span style="color: ${dmarcVal !== 'None' ? 'var(--green)' : 'var(--red)'}">${dmarcVal !== 'None' ? 'Configured ✅' : 'Missing ❌'}</span></p>
+    `;
+    
+    dot.className = "dot";
+    statusLabel.innerText = "Empire Status: Idle. Active listeners verified.";
+    
+    // Save live audit output state on domains data for detail modal
+    d.liveData = {
+      ns: nsVal,
+      mx: mxVal,
+      spf: spfVal,
+      dmarc: dmarcVal,
+      auditedAt: new Date().toLocaleTimeString()
+    };
+    
+    updateHeaderCounters();
+  }
+
+  // Trigger full audit
+  async function triggerDnsAudit() {
+    const btn = document.getElementById("btn-scan");
+    btn.disabled = true;
+    btn.innerHTML = `<svg class="scanning" style="animation: pulse 1s infinite" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg> Auditing...`;
+    
+    addConsoleLog("🚀 Starting complete Empire Live DNS-over-HTTPS Audit...", "cyan");
+    
+    for (let i = 0; i < domainsData.length; i++) {
+      const d = domainsData[i];
+      // Skip unregistered domains for scan
+      if (d.statusClass === "unregistered") {
+        addConsoleLog(`Skipping scan for unregistered domain: ${d.domain}`, "warning");
+        const targetDiv = document.getElementById(`live-dns-${d.id}`);
+        targetDiv.innerHTML = `<span style="color: var(--red);">Registration Needed</span>`;
+        continue;
+      }
+      await auditSingleDomain(d.id);
+      // Brief sleep between domains
+      await new Promise(r => setTimeout(r, 600));
+    }
+    
+    addConsoleLog("🏁 Complete Live DNS Audit finished successfully.", "cyan");
+    
+    btn.disabled = false;
+    btn.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg> Run Live DNS Audit`;
+  }
+
+  // Update Stats strip progress counters
+  function updateHeaderCounters() {
+    // 1. CF count
+    const cfCount = domainsData.filter(d => d.registrar === 'Cloudflare' || d.statusClass === 'cf-changed').length;
+    document.getElementById("stat-val-cf").innerText = `${cfCount} / 7`;
+    const fillCf = document.getElementById("circle-cf");
+    const strokeDash = 163.36;
+    fillCf.style.strokeDashoffset = strokeDash - (strokeDash * (cfCount / 7));
+
+    // 2. Active DNS
+    const audited = domainsData.filter(d => d.liveData && d.liveData.ns && d.liveData.ns !== 'None').length;
+    document.getElementById("stat-val-dns").innerText = `${audited} / 5`;
+    const fillDns = document.getElementById("circle-dns");
+    fillDns.style.strokeDashoffset = strokeDash - (strokeDash * (audited / 5));
+  }
+
+  // Modal Open details view using HTML5 <dialog>
+  function openDetails(domainId) {
+    const d = domainsData.find(item => item.id === domainId);
+    if (!d) return;
+    
+    document.getElementById("modal-domain").innerText = d.domain;
+    document.getElementById("modal-desc").innerText = d.desc;
+    document.getElementById("modal-playbook").innerText = d.playbook;
+    
+    const badge = document.getElementById("modal-status-badge");
+    badge.className = `badge ${getBadgeClass(d.statusClass)}`;
+    badge.innerText = d.statusLabel;
+
+    const liveRecordsDiv = document.getElementById("modal-live-records");
+    if (d.liveData) {
+      liveRecordsDiv.innerHTML = `
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 0.8rem; line-height: 1.5; color: var(--text-secondary);">
+          <p><strong style="color: var(--purple);">NS:</strong> ${d.liveData.ns}</p>
+          <p><strong style="color: var(--purple);">MX:</strong> ${d.liveData.mx}</p>
+          <p><strong style="color: var(--purple);">SPF:</strong> ${d.liveData.spf}</p>
+          <p><strong style="color: var(--purple);">DMARC:</strong> ${d.liveData.dmarc}</p>
+          <p style="font-size: 0.7rem; color: var(--text-muted); margin-top: 0.5rem; border-top: 1px dotted rgba(255,255,255,0.05); padding-top: 0.25rem;">Audited via DoH at: ${d.liveData.auditedAt}</p>
+        </div>
+      `;
+    } else {
+      liveRecordsDiv.innerHTML = `<p style="color: var(--text-muted); font-size: 0.85rem; font-style: italic;">No audit run yet. Click "Scan" on the card to run a live DoH scan.</p>`;
+    }
+
+    document.getElementById("details-modal").showModal();
+  }
+
+  // DNS Playground Resolver execution
+  async function playgroundResolve() {
+    const domain = document.getElementById("pg-domain").value.trim();
+    const type = document.getElementById("pg-type").value;
+    if (!domain) {
+      addConsoleLog("Playground: Please enter a valid domain name.", "error");
+      return;
+    }
+    
+    addConsoleLog(`Playground: Querying ${domain} [${type}] via Google DoH...`, "info");
+    const answers = await resolveDoH(domain, type);
+    
+    if (answers && answers.length > 0) {
+      addConsoleLog(`Playground Results for ${domain} (${type}):`, "cyan");
+      answers.forEach(ans => {
+        addConsoleLog(`  • Name: ${ans.name} | TTL: ${ans.TTL} | Data: <strong>${ans.data}</strong>`, "success");
+      });
+    } else {
+      addConsoleLog(`Playground: No ${type} records returned for ${domain}.`, "warning");
+    }
+  }
+
+  // Local Rig Monitor ping logic
+  async function checkLocalServices() {
+    const services = [
+      { id: "dreamchamber", name: "DreamChamber Engine", port: 7777, path: "/health" },
+      { id: "n8n-stack", name: "n8n Stack", port: 5678, path: "/healthz" },
+      { id: "gabriel-core", name: "GABRIEL Core API", port: 9777, path: "/healthz" },
+      { id: "ollama-local-ai", name: "Ollama Local AI", port: 11434, path: "/api/tags" }
+    ];
+    
+    addConsoleLog("Checking connectivity to local Rig services...", "info");
+    
+    for (const s of services) {
+      const statusCell = document.getElementById(`rig-status-${s.id}`);
+      if (!statusCell) continue;
+      
+      statusCell.innerHTML = `<span class="indicator warning" style="color: var(--gold);">Pinging...</span>`;
+      
+      try {
+        const controller = new AbortController();
+        const id = setTimeout(() => controller.abort(), 1500); // 1.5s timeout limit
+        
+        // Mode: no-cors is sandbox safe and allows ping checks to local servers that have strict CORS blocks
+        const res = await fetch(`http://localhost:${s.port}${s.path}`, { 
+          mode: 'no-cors', 
+          signal: controller.signal 
+        });
+        clearTimeout(id);
+        
+        // If promise resolves, it means the server responded (port is active/listening)
+        statusCell.innerHTML = `<span class="indicator success" style="color: var(--green);">Online 🟢</span>`;
+        addConsoleLog(`Service ${s.name} is ONLINE.`, "success");
+      } catch (err) {
+        statusCell.innerHTML = `<span class="indicator error" style="color: var(--red);">Offline 🔴</span>`;
+        addConsoleLog(`Service ${s.name} is OFFLINE (Connection failed).`, "error");
+      }
+    }
+    
+    updateRigCounter();
+  }
+
+  // Update Rig Indicator tab count
+  function updateRigCounter() {
+    const table = document.getElementById("tab-rig");
+    const online = table.querySelectorAll(".indicator.success").length;
+    const total = 4;
+    document.getElementById("btn-tab-rig").innerText = `Local Rig Monitor (${online}/${total})`;
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "../../.."
+		}
+	],
+	"settings": {
+		"python.analysis.extraPaths": [
+			"/Users/m2ultra/.vscode/extensions/ms-security.ms-sentinel-2.1.0/python"
+		],
+		"sweetpad.build.xcodeWorkspacePath": "RSPNOIZY/NOIZY-iOS-Native/Package.swift"
+	}
+}

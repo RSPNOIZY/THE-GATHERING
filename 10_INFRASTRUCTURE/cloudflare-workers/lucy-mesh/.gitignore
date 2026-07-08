@@ -1,0 +1,18 @@
+# Secrets and local-only config
+.env
+.env.local
+.env.*.local
+pwa/.env.local
+pwa/.env.*.local
+
+# Build output
+pwa/dist/
+pwa/node_modules/
+.wrangler/
+
+# OS cruft
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log

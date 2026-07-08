@@ -1,0 +1,308 @@
+# ============================================================
+#  MC96 UNIVERSE — Docker Compose Stack
+#  Services: controller, worker-micky-p, worker-michael
+#            dashboard (Web UI), rsync-daemon
+# ============================================================
+
+version: "3.9"
+
+# ── Shared network ───────────────────────────────────────────
+networks:
+  mc96_hive:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.96.0.0/24
+
+# ── Named volumes ─────────────────────────────────────────────
+volumes:
+  mc96_registry:
+  mc96_logs:
+  mc96_ssh_keys:
+
+# ── Service definitions ───────────────────────────────────────
+services:
+
+  # ──────────────────────────────────────────────────────────
+  #  CONTROLLER — M2 Ultra (this machine) command plane
+  # ──────────────────────────────────────────────────────────
+  mc96-controller:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: mc96-universe:latest
+    container_name: mc96-controller
+    hostname: mc96-controller
+    restart: unless-stopped
+
+    environment:
+      MC96_NODE_NAME: "M2_ULTRA_CONTROLLER"
+      MC96_ROLE: "controller"
+      MC96_HIVE_HOST: "mc96-controller"
+      MC96_HIVE_PORT: "8096"
+      MC96_SSH_PORT: "2222"
+
+    ports:
+      - "8096:8096"     # REST API / Dashboard
+      - "8097:8097"     # WebSocket log stream
+      - "2222:2222"     # SSH relay
+
+    volumes:
+      # Mount local physical drives into the container
+      - /Volumes/JOE:/volumes/JOE:rw
+      - /Volumes/SAMPLE_MASTER:/volumes/SAMPLE_MASTER:ro
+      - /Volumes/4TB_02:/volumes/4TB_02:rw
+      - /Volumes/4TB Lacie:/volumes/4TB_Lacie:rw
+      # Shared data
+      - mc96_registry:/data
+      - mc96_logs:/data/logs
+      - mc96_ssh_keys:/root/.ssh
+      # Source scripts from host
+      - ../:/opt/mc96/host_scripts:ro
+
+    networks:
+      mc96_hive:
+        ipv4_address: 172.96.0.10
+
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8096/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 15s
+
+  # ──────────────────────────────────────────────────────────
+  #  WORKER: MICKY-P (MacBook Pro) — deploy this on MICKY-P
+  # ──────────────────────────────────────────────────────────
+  mc96-micky-p:
+    image: mc96-universe:latest
+    container_name: mc96-micky-p
+    hostname: micky-p
+    restart: unless-stopped
+    profiles: ["micky-p"]   # Only starts when --profile micky-p passed
+
+    environment:
+      MC96_NODE_NAME: "MICKY_P_MACBOOK"
+      MC96_ROLE: "worker"
+      MC96_HIVE_HOST: "${CONTROLLER_IP:-172.96.0.10}"
+      MC96_HIVE_PORT: "8096"
+      MC96_SSH_PORT: "2222"
+
+    ports:
+      - "8196:8096"     # Worker dashboard offset +100
+      - "2322:2222"     # SSH relay offset
+
+    volumes:
+      # Map MICKY-P local 4TB drives
+      - /Volumes/4TB_MICKY:/volumes/4TB_MICKY:rw
+      - mc96_logs:/data/logs
+      - mc96_ssh_keys:/root/.ssh
+
+    networks:
+      mc96_hive:
+        ipv4_address: 172.96.0.11
+
+  # ──────────────────────────────────────────────────────────
+  #  WORKER: MICHAEL (Mac Pro) — deploy this on MICHAEL
+  # ──────────────────────────────────────────────────────────
+  mc96-michael:
+    image: mc96-universe:latest
+    container_name: mc96-michael
+    hostname: michael
+    restart: unless-stopped
+    profiles: ["michael"]   # Only starts when --profile michael passed
+
+    environment:
+      MC96_NODE_NAME: "MICHAEL_MAC_PRO"
+      MC96_ROLE: "worker"
+      MC96_HIVE_HOST: "${CONTROLLER_IP:-172.96.0.10}"
+      MC96_HIVE_PORT: "8096"
+      MC96_SSH_PORT: "2222"
+
+    ports:
+      - "8296:8096"     # Worker dashboard offset +200
+      - "2422:2222"     # SSH relay offset
+
+    volumes:
+      # Map MICHAEL's connected drives
+      - /Volumes/4TB_MICHAEL_A:/volumes/4TB_MICHAEL_A:rw
+      - /Volumes/4TB_MICHAEL_B:/volumes/4TB_MICHAEL_B:rw
+      - mc96_logs:/data/logs
+      - mc96_ssh_keys:/root/.ssh
+
+    networks:
+      mc96_hive:
+        ipv4_address: 172.96.0.12
+
+  # ──────────────────────────────────────────────────────────
+  #  RSYNC DAEMON — High-speed file transfer service
+  # ──────────────────────────────────────────────────────────
+  mc96-rsync:
+    image: mc96-universe:latest
+    container_name: mc96-rsync
+    hostname: mc96-rsync
+    restart: unless-stopped
+    command: ["/opt/mc96/scripts/rsync_daemon.sh"]
+
+    environment:
+      MC96_ROLE: "rsync"
+
+    ports:
+      - "873:873"       # rsync native port
+
+    volumes:
+      - /Volumes/JOE:/volumes/JOE:rw
+      - /Volumes/4TB_02:/volumes/4TB_02:rw
+      - mc96_logs:/data/logs
+
+    networks:
+      mc96_hive:
+        ipv4_address: 172.96.0.20
+
+  # ──────────────────────────────────────────────────────────
+  #  WEB DASHBOARD — Real-time browser UI
+  # ──────────────────────────────────────────────────────────
+  mc96-dashboard:
+    image: mc96-universe:latest
+    container_name: mc96-dashboard
+    hostname: mc96-dashboard
+    restart: unless-stopped
+    command: ["python3", "/opt/mc96/scripts/dashboard_api.py"]
+
+    environment:
+      MC96_ROLE: "dashboard"
+      MC96_CONTROLLER_HOST: "mc96-controller"
+
+    ports:
+      - "8080:8080"     # Web browser access → http://localhost:8080
+
+    volumes:
+      - mc96_registry:/data:ro
+      - mc96_logs:/data/logs:ro
+
+    networks:
+      mc96_hive:
+        ipv4_address: 172.96.0.30
+
+    depends_on:
+      mc96-controller:
+        condition: service_healthy
+
+  # ──────────────────────────────────────────────────────────
+  #  n8n — Advanced Workflow Orchestrator
+  # ──────────────────────────────────────────────────────────
+  mc96-n8n:
+    image: docker.n8n.io/n8nio/n8n:latest
+    container_name: mc96-n8n
+    restart: always
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5678/healthz"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    ports:
+      - "5678:5678"
+    environment:
+      - N8N_HOST=localhost
+      - N8N_PORT=5678
+      - N8N_PROTOCOL=http
+      - NODE_ENV=production
+      - WEBHOOK_URL=http://localhost:5678/
+      - GENERIC_TIMEZONE=America/New_York
+    volumes:
+      - ./data/n8n:/home/node/.n8n
+    networks:
+      mc96_hive:
+        ipv4_address: 172.96.0.40
+
+  # ──────────────────────────────────────────────────────────
+  #  Node-RED — Hardware / IoT / OSC Orchestrator
+  # ──────────────────────────────────────────────────────────
+  mc96-nodered:
+    image: nodered/node-red:latest
+    container_name: mc96-nodered
+    restart: always
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:1880/"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    ports:
+      - "1880:1880"
+    volumes:
+      - ./data/nodered:/data
+    networks:
+      mc96_hive:
+        ipv4_address: 172.96.0.41
+
+  # ──────────────────────────────────────────────────────────
+  #  Home Assistant — The IoT / Hardware Nervous System
+  # ──────────────────────────────────────────────────────────
+  mc96-homeassistant:
+    image: lscr.io/linuxserver/homeassistant:latest
+    container_name: mc96-homeassistant
+    restart: always
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8123/"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    ports:
+      - "8123:8123"
+    environment:
+      - PUID=501
+      - PGID=20
+      - TZ=America/New_York
+    volumes:
+      - ./data/homeassistant:/config
+    networks:
+      mc96_hive:
+        ipv4_address: 172.96.0.42
+
+  # ──────────────────────────────────────────────────────────
+  #  Grafana — The AQUARIUM Visual Telemetry Dashboard
+  # ──────────────────────────────────────────────────────────
+  mc96-grafana:
+    image: grafana/grafana:latest
+    container_name: mc96-grafana
+    restart: always
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_USER=mc96
+      - GF_SECURITY_ADMIN_PASSWORD=empire
+      - GF_USERS_ALLOW_SIGN_UP=false
+      - GF_DEFAULT_THEME=dark
+    volumes:
+      - ./data/grafana:/var/lib/grafana
+    networks:
+      mc96_hive:
+        ipv4_address: 172.96.0.43
+
+  # ──────────────────────────────────────────────────────────
+  #  ChromaDB — The AQUARIUM Vector Brain
+  # ──────────────────────────────────────────────────────────
+  mc96-chromadb:
+    image: chromadb/chroma:latest
+    container_name: mc96-chromadb
+    restart: always
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/api/v1/heartbeat"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    ports:
+      - "8000:8000"
+    environment:
+      - IS_PERSISTENT=TRUE
+      - PERSIST_DIRECTORY=/chroma/chroma
+    volumes:
+      - ./data/chromadb:/chroma/chroma
+    networks:
+      mc96_hive:
+        ipv4_address: 172.96.0.44

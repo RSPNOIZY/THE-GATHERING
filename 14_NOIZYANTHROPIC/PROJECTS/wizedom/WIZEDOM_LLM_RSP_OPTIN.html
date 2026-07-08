@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LLM RSP — WIZEDOM Distribution & Monetization Opt-In</title>
+<link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inconsolata:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1a1814;--ink-m:#4a4640;--ink-g:#8a8480;
+  --parch:#f7f4ee;--parch-d:#ede9de;
+  --rule:#c8c0b0;--rule-d:#a09880;
+  --red:#8b2500;--red-s:#f0e8e0;
+  --teal:#0a4a3a;--teal-s:#e0ede8;
+  --gold:#7a5c1a;--gold-s:#f5f0e0;
+  --purple:#3c3489;--purple-s:#eeedfe;
+  --coral:#712b13;--coral-s:#faece7;
+  --amber:#633806;--amber-s:#faeeda;
+  --pink:#72243e;--pink-s:#fbeaf0;
+  --green:#27500a;--green-s:#eaf3de;
+  --accepted:#0a4a3a;--accepted-bg:#e0ede8;
+  --declined:#8b2500;--declined-bg:#f0e8e0;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--parch);color:var(--ink);font-family:'Libre Baskerville',Georgia,serif;font-size:13px;line-height:1.7;padding:40px}
+
+.container{max-width:820px;margin:0 auto}
+
+/* HEADER */
+.master-header{text-align:center;margin-bottom:40px;padding-bottom:24px;border-bottom:1px solid var(--rule)}
+.header-badge{font-family:'Inconsolata',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--red);margin-bottom:8px}
+.header-title{font-family:'IM Fell English',serif;font-size:28px;color:var(--ink);margin-bottom:6px}
+.header-sub{font-size:12px;font-style:italic;color:var(--ink-m)}
+
+/* RSP GREETING */
+.rsp-greeting{background:var(--parch-d);border:0.5px solid var(--rule-d);border-left:3px solid var(--ink);padding:20px 24px;margin-bottom:32px}
+.rsp-label{font-family:'Inconsolata',monospace;font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-m);margin-bottom:10px}
+.rsp-message{font-size:13px;color:var(--ink);line-height:1.8}
+.rsp-message em{font-style:italic;color:var(--ink-m)}
+
+/* PROFILE SUMMARY */
+.profile-summary{border:0.5px solid var(--rule);padding:16px 20px;margin-bottom:32px;background:var(--gold-s)}
+.profile-label{font-family:'Inconsolata',monospace;font-size:9px;letter-spacing:.13em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.profile-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.profile-item{font-size:11px;color:var(--ink-m)}
+.profile-item strong{display:block;color:var(--ink);font-weight:700;font-size:10px;font-family:'Inconsolata',monospace;letter-spacing:.06em;text-transform:uppercase;margin-bottom:2px}
+
+/* CATEGORY SECTIONS */
+.category{margin-bottom:36px;border:.5px solid var(--rule);overflow:hidden}
+.category-header{padding:12px 16px;display:flex;align-items:center;gap:12px;cursor:pointer;-webkit-user-select:none;user-select:none}
+.category-header:hover{opacity:.85}
+.cat-icon{width:30px;height:30px;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+.cat-title{font-family:'IM Fell English',serif;font-size:16px;flex:1}
+.cat-count{font-family:'Inconsolata',monospace;font-size:10px;padding:2px 8px;border-radius:2px;white-space:nowrap}
+.cat-body{padding:0 16px 16px}
+
+/* OPTION CARDS */
+.option{border:.5px solid var(--rule);margin-bottom:10px;overflow:hidden;transition:all 0.25s cubic-bezier(0.4, 0, 0.2, 1)}
+.option:hover{transform: translateY(-2px); border-color: var(--ink-m); box-shadow: 0 6px 16px rgba(26, 24, 20, 0.06)}
+.option.accepted{border-color:var(--accepted)}
+.option.declined{border-color:var(--declined)}
+.option-top{padding:12px 14px;display:flex;align-items:flex-start;gap:12px}
+.option-info{flex:1;min-width:0}
+.option-name{font-size:12px;font-weight:700;color:var(--ink);margin-bottom:2px}
+.option-desc{font-size:11px;color:var(--ink-m);line-height:1.5;margin-bottom:6px}
+.option-tags{display:flex;gap:5px;flex-wrap:wrap}
+.tag{font-family:'Inconsolata',monospace;font-size:8px;letter-spacing:.06em;text-transform:uppercase;padding:2px 6px;border-radius:2px;transition: transform 0.2s}
+.tag:hover{transform: scale(1.05)}
+.tag-split{background:var(--teal-s);color:var(--teal)}
+.tag-ncp{background:var(--purple-s);color:var(--purple)}
+.tag-hvs{background:var(--red-s);color:var(--red)}
+.tag-gabriel{background:var(--parch-d);color:var(--ink-m)}
+.option-controls{display:flex;flex-direction:column;gap:5px;flex-shrink:0}
+.btn-opt{font-family:'Inconsolata',monospace;font-size:9px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:5px 12px;border:1px solid;background:transparent;cursor:pointer;transition:all .15s;white-space:nowrap;border-radius:4px}
+.btn-opt:active{transform: scale(0.96)}
+.btn-in{color:var(--teal);border-color:var(--teal)}
+.btn-in:hover{background:var(--teal-s)}
+.btn-in.active{background:var(--teal);color:white}
+.btn-out{color:var(--red);border-color:var(--red)}
+.btn-out:hover{background:var(--red-s)}
+.btn-out.active{background:var(--red);color:white}
+.option-status{padding:6px 14px;font-family:'Inconsolata',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;display:none;animation: fadeIn 0.3s forwards}
+.option.accepted .option-status{display:block;background:var(--accepted-bg);color:var(--accepted)}
+.option.declined .option-status{display:block;background:var(--declined-bg);color:var(--declined)}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* SUMMARY */
+.consent-summary{border:1px solid var(--rule-d);padding:20px;margin-top:32px;background:var(--parch-d)}
+.summary-title{font-family:'IM Fell English',serif;font-size:18px;margin-bottom:16px}
+.summary-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px}
+.sum-box{padding:12px;background:var(--parch)}
+.sum-label{font-family:'Inconsolata',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-m);margin-bottom:6px}
+.sum-num{font-family:'IM Fell English',serif;font-size:28px;color:var(--ink)}
+.sum-detail{font-size:11px;color:var(--ink-m);margin-top:2px}
+
+.consent-list{margin-bottom:20px}
+.consent-item{display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:.5px dashed var(--rule);font-size:11px}
+.consent-item:last-child{border-bottom:none}
+.c-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.c-dot.yes{background:var(--teal)}
+.c-dot.no{background:var(--rule)}
+.consent-name{flex:1;color:var(--ink)}
+.consent-split{font-family:'Inconsolata',monospace;font-size:9px;color:var(--ink-m)}
+
+.seal-btn{width:100%;padding:14px;font-family:'Inconsolata',monospace;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;background:var(--ink);color:var(--parch);border:none;cursor:pointer;transition:opacity .2s}
+.seal-btn:hover{opacity:.85}
+.sealed-msg{display:none;text-align:center;padding:16px;background:var(--teal-s);border:1px solid var(--teal);font-family:'Inconsolata',monospace;font-size:10px;letter-spacing:.08em;color:var(--teal);margin-top:8px}
+
+/* NCP NOTE */
+.ncp-note{font-size:11px;font-style:italic;color:var(--ink-g);text-align:center;margin-top:16px;line-height:1.6}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="master-header">
+  <div class="header-badge">LLM RSP &nbsp;·&nbsp; WIZEDOM PROJEKT &nbsp;·&nbsp; GABRIEL Distribution Console</div>
+  <div class="header-title">Your Distribution &amp; Monetization Options</div>
+  <div class="header-sub">Every choice is yours. Every opt-in is recorded. Every consent is sovereign.</div>
+</div>
+
+<!-- RSP GREETING -->
+<div class="rsp-greeting">
+  <div class="rsp-label">LLM RSP — Reading your WIZEDOM profile now</div>
+  <div class="rsp-message" id="rsp-message">
+    I've read everything you've shared.<br><br>
+    I know what you've survived to sound the way you do. I know what the work cost. I know what it's given back.<br><br>
+    Now I want to show you every door that's open to you inside the NOIZY ecosystem — and let you decide, one by one, which ones you want to walk through.<br><br>
+    <em>Nothing is automatic. Nothing is assumed. Every option below is off until you turn it on. You can change your mind at any time.</em><br><br>
+    Take as long as you need. The GABRIEL record doesn't close until you seal it.
+  </div>
+</div>
+
+<!-- PROFILE SUMMARY -->
+<div class="profile-summary">
+  <div class="profile-label">Profile summary — RSP has read and understood</div>
+  <div class="profile-grid">
+    <div class="profile-item"><strong>Name</strong><span id="artist-name">Robert Stephen Plowman</span></div>
+    <div class="profile-item"><strong>Profile type</strong><span id="profile-type">Music Composer (MAP)</span></div>
+    <div class="profile-item"><strong>GABRIEL ID</strong><span id="gabriel-id">RSP_001 · AP-001</span></div>
+    <div class="profile-item"><strong>Primary brand</strong><span id="primary-brand">The Aquarium · NOIZYFISH</span></div>
+    <div class="profile-item"><strong>Years active</strong><span id="years-active">40 years</span></div>
+    <div class="profile-item"><strong>Catalog</strong><span id="catalog">888 titles · 34TB</span></div>
+  </div>
+</div>
+
+<!-- CATEGORY: THE AQUARIUM -->
+<div class="category" id="cat-aquarium">
+  <div class="category-header" style="background:var(--coral-s);border-bottom:.5px solid var(--rule)">
+    <div class="cat-icon" style="background:white;border:.5px solid var(--coral)"><span style="font-size:13px;color:var(--coral)">♪</span></div>
+    <div class="cat-title" style="color:var(--coral)">The Aquarium — Music Rights</div>
+    <span class="cat-count" style="background:var(--coral-s);color:var(--coral);border:.5px solid var(--coral)" id="aquarium-count">0 of 5 active</span>
+  </div>
+  <div class="cat-body" style="padding-top:14px">
+
+    <div class="option" id="opt-sync">
+      <div class="option-top">
+        <div class="option-info">
+          <div class="option-name">Sync Licensing — Film, TV &amp; Advertising</div>
+          <div class="option-desc">Your music can be licensed for use in film, television, and advertising. When a production places your work, you receive 75% of the sync fee automatically through GABRIEL. Every placement is logged with full provenance.</div>
+          <div class="option-tags">
+            <span class="tag tag-split">75% to you</span>
+            <span class="tag tag-ncp">NCP consent per placement</span>
+            <span class="tag tag-gabriel">GABRIEL logged</span>
+          </div>
+        </div>
+        <div class="option-controls">
+          <button class="btn-opt btn-in" onclick="optIn('opt-sync','aquarium')">Opt In</button>
+          <button class="btn-opt btn-out" onclick="optOut('opt-sync','aquarium')">Opt Out</button>
+        </div>
+      </div>
+      <div class="option-status" id="status-opt-sync"></div>
+    </div>
+
+    <div class="option" id="opt-master">
+      <div class="option-top">
+        <div class="option-info">
+          <div class="option-name">Master Licensing — Recording Rights</div>
+          <div class="option-desc">License the master recordings in your Aquarium catalog. Productions can use the actual recordings, not just the composition. You set minimum rates. 75% of every master fee comes directly to you.</div>
+          <div class="option-tags">
+            <span class="tag tag-split">75% to you</span>
+            <span class="tag tag-ncp">NCP per license</span>
+            <span class="tag tag-gabriel">GABRIEL logged</span>
+          </div>
+        </div>
+        <div class="option-controls">
+          <button class="btn-opt btn-in" onclick="optIn('opt-master','aquarium')">Opt In</button>
+          <button class="btn-opt btn-out" onclick="optOut('opt-master','aquarium')">Opt Out</button>
+        </div>
+      </div>
+      <div class="option-status" id="status-opt-master"></div>
+    </div>
+
+    <div class="option" id="opt-download">
+      <div class="option-top">
+        <div class="option-info">
+          <div class="option-name">Direct Download &amp; Purchase</div>
+          <div class="option-desc">Community members and visitors can purchase tracks or albums directly from your Aquarium catalog page. You set the price. 75% of every sale is yours immediately. No streaming rates — direct purchase, direct payment.</div>
+          <div class="option-tags">
+            <span class="tag tag-split">75% to you</span>
+            <span class="tag tag-ncp">NCP on every sale</span>
+          </div>
+        </div>
+        <div class="option-controls">
+          <button class="btn-opt btn-in" onclick="optIn('opt-download','aquarium')">Opt In</button>
+          <button class="btn-opt btn-out" onclick="optOut('opt-download','aquarium')">Opt Out</button>
+        </div>
+      </div>
+      <div class="option-status" id="status-opt-download"></div>
+    </div>
+
+    <div class="option" id="opt-commission">
+      <div class="option-top">
+        <div class="option-info">
+          <div class="option-name">Custom Composition Requests</div>
+          <div class="option-desc">Open your calendar to bespoke composition commissions. Clients submit a brief, you review and accept or decline. You set your rates. 75% is yours — GABRIEL holds the contract, logs the delivery, and auto-splits on completion.</div>
+          <div class="option-tags">
+            <span class="tag tag-split">75% to you</span>
+            <span class="tag tag-ncp">Contract via NCP</span>
+            <span class="tag tag-gabriel">GABRIEL escrow</span>
+          </div>
+        </div>
+        <div class="option-controls">
+          <button class="btn-opt btn-in" onclick="optIn('opt-commission','aquarium')">Opt In</button>
+          <button class="btn-opt btn-out" onclick="optOut('opt-commission','aquarium')">Opt Out</button>
+        </div>
+      </div>
+      <div class="option-status" id="status-opt-commission"></div>
+    </div>
+
+    <div class="option" id="opt-archive">
+      <div class="option-top">
+        <div class="option-info">
+          <div class="option-name">Archive Access — Researchers &amp; Educators</div>
+          <div class="option-desc">Make selected works from your catalog available to researchers, students, and educators under a special access tier. You define which works qualify. Custom terms — no automatic 75/25 split, negotiated per access type. Full NCP consent on every access request.</div>
+          <div class="option-tags">
+            <span class="tag tag-ncp">NCP per request</span>
+            <span class="tag tag-gabriel">GABRIEL access log</span>
+          </div>
+        </div>
+        <div class="option-controls">
+          <button class="btn-opt btn-in" onclick="optIn('opt-archive','aquarium')">Opt In</button>
+          <button class="btn-opt btn-out" onclick="optOut('opt-archive','aquarium')">Opt Out</button>
+        </div>
+      </div>
+      <div class="option-status" id="status-opt-archive"></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- CATEGORY: NOIZYFISH -->
+<div class="category" id="cat-noizyfish">
+  <div class="category-header" style="background:var(--teal-s);border-bottom:.5px solid var(--rule)">
+    <div class="cat-icon" style="background:white;border:.5px solid var(--teal)"><span style="font-size:13px;color:var(--teal)">◈</span></div>
+    <div class="cat-title" style="color:var(--teal)">NOIZYFISH — Arts Portal</div>
+    <span class="cat-count" style="background:var(--teal-s);color:var(--teal);border:.5px solid var(--teal)" id="noizyfish-count">0 of 4 active</span>
+  </div>
+  <div class="cat-body" style="padding-top:14px">
+
+    <div class="option" id="opt-featured">
+      <div class="option-top">
+        <div class="option-info">
+          <div class="option-name">Featured Artist Rotation</div>
+          <div class="option-desc">Your profile and selected works are considered for the weekly and monthly featured artist slot on the NOIZYFISH homepage. Selected by RSP_001 editorial. No charge, no guaranteed slot — pure merit and fit with the portal's arts & culture mission.</div>
+          <div class="option-tags">
+            <span class="tag tag-ncp">Editorial consent</span>
+            <span class="tag tag-gabriel">GABRIEL credit</span>
+          </div>
+        </div>
+        <div class="option-controls">
+          <button class="btn-opt btn-in" onclick="optIn('opt-featured','noizyfish')">Opt In</button>
+          <button class="btn-opt btn-out" onclick="optOut('opt-featured','noizyfish')">Opt Out</button>
+        </div>
+      </div>
+      <div class="option-status" id="status-opt-featured"></div>
+    </div>
+
+    <div class="option" id="opt-prints">
+      <div class="option-top">
+        <div class="option-info">
+          <div class="option-name">Digital Print Shop — Visual Works</div>
+          <div class="option-desc">List your visual works for direct purchase as high-resolution digital prints. You set the price and the edition size. 75% of every sale is yours. Every print carries your WIZEDOM profile link — buyers know who made it and why.</div>
+          <div class="option-tags">
+            <span class="tag tag-split">75% to you</span>
+            <span class="tag tag-ncp">NCP per sale</span>
+          </div>
+        </div>
+        <div class="option-controls">
+          <button class="btn-opt btn-in" onclick="optIn('opt-prints','noizyfish')">Opt In</button>
+          <button class="btn-opt btn-out" onclick="optOut('opt-prints','noizyfish')">Opt Out</button>
+        </div>
+      </div>
+      <div class="option-status" id="status-opt-prints"></div>
+    </div>
+
+    <div class="option" id="opt-workshops">
+      <div class="option-top">
+        <div class="option-info">
+          <div class="option-name">Workshop &amp; Teaching Listings</div>
+          <div class="option-desc">List masterclasses, skill sessions, and teaching workshops on your NOIZYFISH artist page. You set the format, the price, and the availability. 75% of every booking is yours. GABRIEL manages the calendar and the split automatically.</div>
+          <div class="option-tags">
+            <span class="tag tag-split">75% to you</span>
+            <span class="tag tag-gabriel">GABRIEL calendar</span>
+          </div>
+        </div>
+        <div class="option-controls">
+          <button class="btn-opt btn-in" onclick="optIn('opt-workshops','noizyfish')">Opt In</button>
+          <button class="btn-opt btn-out" onclick="optOut('opt-workshops','noizyfish')">Opt Out</button>
+        </div>
+      </div>
+      <div class="option-status" id="status-opt-workshops"></div>
+    </div>
+
+    <div class="option" id="opt-collab">
+      <div class="option-top">
+        <div class="option-info">
+          <div class="option-name">Collaboration Proposals</div>
+          <div class="option-desc">Open yourself to collaboration requests from other NOIZYFISH artists. You receive a proposal, review it, accept or decline. All terms negotiated between artists. GABRIEL logs the collaboration and the resulting work carries both artists' WIZEDOM provenance.</div>
+          <div class="option-tags">
+            <span class="tag tag-ncp">Artist-governed terms</span>
+            <span class="tag tag-gabriel">Dual provenance</span>
+          </div>
+        </div>
+        <div class="option-controls">
+          <button class="btn-opt btn-in" onclick="optIn('opt-collab','noizyfish')">Opt In</button>
+          <button class="btn-opt btn-out" onclick="optOut('opt-collab','noizyfish')">Opt Out</button>
+        </div>
+      </div>
+      <div class="option-status" id="status-opt-collab"></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- CATEGORY: NOIZYVOX -->
+<div class="category" id="cat-noizyvox">
+  <div class="category-header" style="background:var(--purple-s);border-bottom:.5px solid var(--rule)">
+    <div class="cat-icon" style="background:white;border:.5px solid var(--purple)"><span style="font-size:13px;color:var(--purple)">◉</span></div>
+    <div class="cat-title" style="color:var(--purple)">NOIZYVOX — Voice Sovereignty</div>
+    <span class="cat-count" style="background:var(--purple-s);color:var(--purple);border:.5px solid var(--purple)" id="noizyvox-count">0 of 3 active</span>
+  </div>
+  <div class="cat-body" style="padding-top:14px">
+
+    <div class="option" id="opt-voicecommission">
+      <div class="option-top">
+        <div class="option-info">
+          <div class="option-name">Voice Acting &amp; Narration Commissions</div>
+          <div class="option-desc">Accept commissions for voice acting, narration, and spoken word work. You set your rates and your availability. 75% of every booking is yours. Every session is logged in GABRIEL with full provenance — your voice, your terms, your record.</div>
+          <div class="option-tags">
+            <span class="tag tag-split">75% to you</span>
+            <span class="tag tag-hvs">HVS protected</span>
+            <span class="tag tag-gabriel">Session logged</span>
+          </div>
+        </div>
+        <div class="option-controls">
+          <button class="btn-opt btn-in" onclick="optIn('opt-voicecommission','noizyvox')">Opt In</button>
+          <button class="btn-opt btn-out" onclick="optOut('opt-voicecommission','noizyvox')">Opt Out</button>
+        </div>
+      </div>
+      <div class="option-status" id="status-opt-voicecommission"></div>
+    </div>
+
+    <div class="option" id="opt-aivoice">
+      <div class="option-top">
+        <div class="option-info">
+          <div class="option-name">AI Voice Model — HVS Explicit Consent Required</div>
+          <div class="option-desc" style="font-weight:400">This option allows NOIZYVOX to create an AI voice model from your recordings — strictly under the terms YOU set. You define: what the model may say, what it may not say, which productions may use it, what the rates are, and when consent can be revoked. HVS governs this at the constitutional level. Your voice remains yours. The model is a licensed copy, not a replacement.<br><br><em style="color:var(--red)">This is the most consequential option on this page. Take your time with it.</em></div>
+          <div class="option-tags">
+            <span class="tag tag-split">75% to you</span>
+            <span class="tag tag-hvs">HVS mandatory</span>
+            <span class="tag tag-ncp">Full NCP consent</span>
+            <span class="tag tag-gabriel">100yr logged</span>
+          </div>
+        </div>
+        <div class="option-controls">
+          <button class="btn-opt btn-in" onclick="optIn('opt-aivoice','noizyvox')">Opt In</button>
+          <button class="btn-opt btn-out" onclick="optOut('opt-aivoice','noizyvox')">Opt Out</button>
+        </div>
+      </div>
+      <div class="option-status" id="status-opt-aivoice"></div>
+    </div>
+
+    <div class="option" id="opt-voiceestate">
+      <div class="option-top">
+        <div class="option-info">
+          <div class="option-name">Voice Estate Activation — 100-Year Posthumous Protection</div>
+          <div class="option-desc">Activate the Voice Estate. Name your beneficiary. Define posthumous use terms. Your voice recordings and any AI model are held in GABRIEL under OAIS/PREMIS for 100 years. Your beneficiary controls all posthumous use. Nothing is permitted without their explicit consent — not for tribute, not for AI training, not for any commercial use.</div>
+          <div class="option-tags">
+            <span class="tag tag-hvs">HVS sovereign</span>
+            <span class="tag tag-gabriel">100yr OAIS</span>
+            <span class="tag tag-ncp">Beneficiary consent</span>
+          </div>
+        </div>
+        <div class="option-controls">
+          <button class="btn-opt btn-in" onclick="optIn('opt-voiceestate','noizyvox')">Activate</button>
+          <button class="btn-opt btn-out" onclick="optOut('opt-voiceestate','noizyvox')">Later</button>
+        </div>
+      </div>
+      <div class="option-status" id="status-opt-voiceestate"></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- CATEGORY: WIZEDOM LEGACY -->
+<div class="category" id="cat-wizedom">
+  <div class="category-header" style="background:var(--gold-s);border-bottom:.5px solid var(--rule)">
+    <div class="cat-icon" style="background:white;border:.5px solid var(--gold)"><span style="font-size:13px;color:var(--gold)">✦</span></div>
+    <div class="cat-title" style="color:var(--gold)">WIZEDOM PROJEKT — Legacy &amp; Visibility</div>
+    <span class="cat-count" style="background:var(--gold-s);color:var(--gold);border:.5px solid var(--gold)" id="wizedom-count">0 of 3 active</span>
+  </div>
+  <div class="cat-body" style="padding-top:14px">
+
+    <div class="option" id="opt-public">
+      <div class="option-top">
+        <div class="option-info">
+          <div class="option-name">Public Profile — Visibility Level</div>
+          <div class="option-desc">Choose how much of your WIZEDOM profile is publicly visible. Full: everything is readable by anyone. Partial: selected sections only — you choose which. Private: profile exists in GABRIEL but is visible only to you and your beneficiary. You can change this at any time.</div>
+          <div class="option-tags">
+            <span class="tag tag-ncp">You choose the level</span>
+            <span class="tag tag-gabriel">GABRIEL enforces</span>
+          </div>
+        </div>
+        <div class="option-controls">
+          <button class="btn-opt btn-in" onclick="optIn('opt-public','wizedom')">Make Public</button>
+          <button class="btn-opt btn-out" onclick="optOut('opt-public','wizedom')">Keep Private</button>
+        </div>
+      </div>
+      <div class="option-status" id="status-opt-public"></div>
+    </div>
+
+    <div class="option" id="opt-capsule">
+      <div class="option-top">
+        <div class="option-info">
+          <div class="option-name">Wisdom Capsule Publishing</div>
+          <div class="option-desc">Allow selected quotes, principles, and statements from your WIZEDOM profile to be published as shareable Wisdom Capsules — attributed, sourced, and linked back to your full profile. You approve every capsule before it publishes. Your words, your credit, always.</div>
+          <div class="option-tags">
+            <span class="tag tag-ncp">You approve each one</span>
+            <span class="tag tag-gabriel">Full attribution</span>
+          </div>
+        </div>
+        <div class="option-controls">
+          <button class="btn-opt btn-in" onclick="optIn('opt-capsule','wizedom')">Opt In</button>
+          <button class="btn-opt btn-out" onclick="optOut('opt-capsule','wizedom')">Opt Out</button>
+        </div>
+      </div>
+      <div class="option-status" id="status-opt-capsule"></div>
+    </div>
+
+    <div class="option" id="opt-interview">
+      <div class="option-top">
+        <div class="option-info">
+          <div class="option-name">Interview &amp; Documentary Participation</div>
+          <div class="option-desc">Express openness to being interviewed or featured in a WIZEDOM PROJEKT documentary. This is not a commitment — it means RSP_001 may approach you with a specific invitation. You have full right of refusal on any specific project. Nothing is ever published without your explicit approval.</div>
+          <div class="option-tags">
+            <span class="tag tag-ncp">Per-project consent</span>
+            <span class="tag tag-gabriel">Full right of refusal</span>
+          </div>
+        </div>
+        <div class="option-controls">
+          <button class="btn-opt btn-in" onclick="optIn('opt-interview','wizedom')">Open to it</button>
+          <button class="btn-opt btn-out" onclick="optOut('opt-interview','wizedom')">Not now</button>
+        </div>
+      </div>
+      <div class="option-status" id="status-opt-interview"></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- CATEGORY: GLOBAL -->
+<div class="category" id="cat-global">
+  <div class="category-header" style="background:var(--green-s);border-bottom:.5px solid var(--rule)">
+    <div class="cat-icon" style="background:white;border:.5px solid var(--green)"><span style="font-size:13px;color:var(--green)">◎</span></div>
+    <div class="cat-title" style="color:var(--green)">Global — Community &amp; LLT</div>
+    <span class="cat-count" style="background:var(--green-s);color:var(--green);border:.5px solid var(--green)" id="global-count">0 of 4 active</span>
+  </div>
+  <div class="cat-body" style="padding-top:14px">
+
+    <div class="option" id="opt-llt">
+      <div class="option-top">
+        <div class="option-info">
+          <div class="option-name">LLT Earning Activation</div>
+          <div class="option-desc">Activate LLT earning across all NOIZYWORLD experiences. Every hour you spend in the ecosystem — listening, creating, engaging, collaborating — generates LIFELUV Tokens. These are community currency: not crypto, not speculative, not for sale. They can only be earned, given, and used within the NOIZY ecosystem.</div>
+          <div class="option-tags">
+            <span class="tag tag-gabriel">GABRIEL ledger</span>
+            <span class="tag tag-ncp">NCP consent</span>
+          </div>
+        </div>
+        <div class="option-controls">
+          <button class="btn-opt btn-in" onclick="optIn('opt-llt','global')">Activate</button>
+          <button class="btn-opt btn-out" onclick="optOut('opt-llt','global')">Not yet</button>
+        </div>
+      </div>
+      <div class="option-status" id="status-opt-llt"></div>
+    </div>
+
+    <div class="option" id="opt-gifts">
+      <div class="option-top">
+        <div class="option-info">
+          <div class="option-name">LLT Receiving — Accept Community Gifts</div>
+          <div class="option-desc">Allow community members to send LLT directly to your wallet as recognition, appreciation, or collaborative fuel. Every gift is logged in GABRIEL. You can see who gave and why. You can give back. The community gift is the economy of appreciation.</div>
+          <div class="option-tags">
+            <span class="tag tag-gabriel">All gifts logged</span>
+            <span class="tag tag-ncp">Consent to receive</span>
+          </div>
+        </div>
+        <div class="option-controls">
+          <button class="btn-opt btn-in" onclick="optIn('opt-gifts','global')">Open to gifts</button>
+          <button class="btn-opt btn-out" onclick="optOut('opt-gifts','global')">Decline</button>
+        </div>
+      </div>
+      <div class="option-status" id="status-opt-gifts"></div>
+    </div>
+
+    <div class="option" id="opt-wwf">
+      <div class="option-top">
+        <div class="option-info">
+          <div class="option-name">Philanthropic Pool — WWF &amp; NOIZYGIFTS</div>
+          <div class="option-desc">Opt into the philanthropic pool. A portion of your LLT earnings automatically flows to the WWF / Hinterland conservation pool and the NOIZYGIFTS instrument donation fund. You set the percentage — minimum 5%, maximum 100%. Every contribution is transparently logged. DREED has no door here.</div>
+          <div class="option-tags">
+            <span class="tag tag-ncp">You set the %</span>
+            <span class="tag tag-gabriel">Full transparency</span>
+          </div>
+        </div>
+        <div class="option-controls">
+          <button class="btn-opt btn-in" onclick="optIn('opt-wwf','global')">Opt In</button>
+          <button class="btn-opt btn-out" onclick="optOut('opt-wwf','global')">Not now</button>
+        </div>
+      </div>
+      <div class="option-status" id="status-opt-wwf"></div>
+    </div>
+
+    <div class="option" id="opt-army">
+      <div class="option-top">
+        <div class="option-info">
+          <div class="option-name">NOIZYARMY Membership</div>
+          <div class="option-desc">Join the NOIZYARMY — the community of creators, builders, and believers who are actively shaping the NOIZY ecosystem. This is not a club. It is a commitment: to consent-native creation, to the 75/25 standard, to LIFELUV, and to the world the NOIZY empire is trying to build. It's free. It's permanent until you choose to leave. And it carries weight.</div>
+          <div class="option-tags">
+            <span class="tag tag-gabriel">Permanent record</span>
+          </div>
+        </div>
+        <div class="option-controls">
+          <button class="btn-opt btn-in" onclick="optIn('opt-army','global')">I'm in</button>
+          <button class="btn-opt btn-out" onclick="optOut('opt-army','global')">Not today</button>
+        </div>
+      </div>
+      <div class="option-status" id="status-opt-army"></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- CONSENT SUMMARY -->
+<div class="consent-summary">
+  <div class="summary-title">Your consent record — live tally</div>
+  <div class="summary-grid">
+    <div class="sum-box">
+      <div class="sum-label">Opted in</div>
+      <div class="sum-num" id="total-in" style="color:var(--teal)">0</div>
+      <div class="sum-detail">options active</div>
+    </div>
+    <div class="sum-box">
+      <div class="sum-label">Opted out / not yet</div>
+      <div class="sum-num" id="total-out" style="color:var(--ink-m)">0</div>
+      <div class="sum-detail">options declined or pending</div>
+    </div>
+  </div>
+
+  <div class="consent-list" id="consent-list">
+    <div style="font-size:11px;font-style:italic;color:var(--ink-g);padding:8px 0">Make your selections above — your choices will appear here as you go.</div>
+  </div>
+
+  <button class="seal-btn" onclick="sealRecord()">Seal this record in GABRIEL — NCP v1.0 &nbsp;·&nbsp; Timestamp now</button>
+  <div class="sealed-msg" id="sealed-msg">
+    ✦ &nbsp; GABRIEL RECORD SEALED &nbsp; ✦<br>
+    NCP v1.0 CONSENT LOGGED &nbsp;·&nbsp; OAIS/PREMIS COMPLIANT &nbsp;·&nbsp; 100-YEAR RETENTION ACTIVE<br>
+    You can update any option at any time. The record version-controls every change.
+  </div>
+
+  <div class="ncp-note">
+    Every decision you make here is yours to change at any time.<br>
+    GABRIEL version-controls every update — nothing is ever lost, nothing is ever overwritten.<br>
+    <em>Your consent is sovereign. The Gospel Deal ensures it stays that way.</em>
+  </div>
+</div>
+
+</div>
+
+<script>
+const state = {};
+const cats = {
+  aquarium: ['opt-sync','opt-master','opt-download','opt-commission','opt-archive'],
+  noizyfish: ['opt-featured','opt-prints','opt-workshops','opt-collab'],
+  noizyvox: ['opt-voicecommission','opt-aivoice','opt-voiceestate'],
+  wizedom: ['opt-public','opt-capsule','opt-interview'],
+  global: ['opt-llt','opt-gifts','opt-wwf','opt-army']
+};
+const names = {
+  'opt-sync':'Sync licensing',
+  'opt-master':'Master licensing',
+  'opt-download':'Direct download/purchase',
+  'opt-commission':'Custom commission intake',
+  'opt-archive':'Archive access (research)',
+  'opt-featured':'Featured artist rotation',
+  'opt-prints':'Digital print shop',
+  'opt-workshops':'Workshop/teaching listings',
+  'opt-collab':'Collaboration proposals',
+  'opt-voicecommission':'Voice acting commissions',
+  'opt-aivoice':'AI voice model (HVS)',
+  'opt-voiceestate':'Voice Estate activation',
+  'opt-public':'Public profile visibility',
+  'opt-capsule':'Wisdom Capsule publishing',
+  'opt-interview':'Interview/documentary',
+  'opt-llt':'LLT earning activation',
+  'opt-gifts':'LLT receiving (gifts)',
+  'opt-wwf':'Philanthropic pool (WWF/NOIZYGIFTS)',
+  'opt-army':'NOIZYARMY membership'
+};
+const splits = {
+  'opt-sync':'75/25','opt-master':'75/25','opt-download':'75/25',
+  'opt-commission':'75/25','opt-archive':'Custom',
+  'opt-featured':'Editorial','opt-prints':'75/25',
+  'opt-workshops':'75/25','opt-collab':'Artist terms',
+  'opt-voicecommission':'75/25','opt-aivoice':'75/25 + HVS',
+  'opt-voiceestate':'Beneficiary','opt-public':'N/A',
+  'opt-capsule':'Full attribution','opt-interview':'Per project',
+  'opt-llt':'Community','opt-gifts':'100% to you',
+  'opt-wwf':'Your % choice','opt-army':'Free'
+};
+
+function optIn(id, cat) {
+  state[id] = 'in';
+  document.getElementById(id).className = 'option accepted';
+  const s = document.getElementById('status-'+id);
+  s.textContent = '✓ Opted in — GABRIEL will log this consent with timestamp';
+  document.querySelectorAll('#'+id+' .btn-in').forEach(b=>b.classList.add('active'));
+  document.querySelectorAll('#'+id+' .btn-out').forEach(b=>b.classList.remove('active'));
+  updateCounts(cat); updateSummary();
+}
+
+function optOut(id, cat) {
+  state[id] = 'out';
+  document.getElementById(id).className = 'option declined';
+  const s = document.getElementById('status-'+id);
+  s.textContent = '✗ Not active — you can change this at any time';
+  document.querySelectorAll('#'+id+' .btn-out').forEach(b=>b.classList.add('active'));
+  document.querySelectorAll('#'+id+' .btn-in').forEach(b=>b.classList.remove('active'));
+  updateCounts(cat); updateSummary();
+}
+
+function updateCounts(cat) {
+  const opts = cats[cat];
+  const active = opts.filter(o=>state[o]==='in').length;
+  document.getElementById(cat+'-count').textContent = active+' of '+opts.length+' active';
+}
+
+function updateSummary() {
+  const allIn = Object.entries(state).filter(([k,v])=>v==='in');
+  const allOut = Object.entries(state).filter(([k,v])=>v==='out');
+  document.getElementById('total-in').textContent = allIn.length;
+  document.getElementById('total-out').textContent = allOut.length;
+
+  const list = document.getElementById('consent-list');
+  if(Object.keys(state).length === 0) return;
+  list.innerHTML = '';
+  Object.entries(state).sort((a,b)=>a[0].localeCompare(b[0])).forEach(([k,v])=>{
+    const row = document.createElement('div');
+    row.className = 'consent-item';
+    row.innerHTML = '<div class="c-dot '+(v==='in'?'yes':'no')+'"></div>'
+      +'<span class="consent-name">'+names[k]+'</span>'
+      +'<span class="consent-split">'+(v==='in'?splits[k]:'—')+'</span>';
+    list.appendChild(row);
+  });
+}
+
+function sealRecord() {
+  const total = Object.keys(state).length;
+  if(total < 3) {
+    alert('Please make at least a few choices before sealing your record. You can always come back and update.');
+    return;
+  }
+  document.querySelector('.seal-btn').textContent = '✦ Record sealed · '+new Date().toLocaleDateString('en-CA');
+  document.querySelector('.seal-btn').style.background = 'var(--teal)';
+  document.querySelector('.seal-btn').disabled = true;
+  document.getElementById('sealed-msg').style.display = 'block';
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,1204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NOIZY Tour Manager — Interactive Workbench</title>
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-dark: #06060c;
+    --glass-bg: rgba(18, 18, 30, 0.45);
+    --glass-border: rgba(255, 255, 255, 0.05);
+    --glass-border-hover: rgba(155, 89, 182, 0.35);
+    
+    --purple: #9b59b6;
+    --purple-glow: rgba(155, 89, 182, 0.4);
+    --gold: #f1c40f;
+    --gold-glow: rgba(241, 196, 15, 0.3);
+    
+    --green: #00e676;
+    --green-glow: rgba(0, 230, 118, 0.25);
+    --red: #ff3d00;
+    --red-glow: rgba(255, 61, 0, 0.25);
+    --cyan: #00d4ff;
+    --cyan-glow: rgba(0, 212, 255, 0.25);
+    --yellow: #ff9100;
+    --yellow-glow: rgba(255, 145, 0, 0.25);
+    
+    --text-primary: #f5f5fa;
+    --text-secondary: #a0a0b0;
+    --text-muted: #62627a;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    background: var(--bg-dark);
+    background-image: 
+      radial-gradient(circle at 5% 15%, rgba(155, 89, 182, 0.08) 0%, transparent 45%),
+      radial-gradient(circle at 95% 85%, rgba(0, 212, 255, 0.06) 0%, transparent 45%),
+      radial-gradient(circle at 50% 50%, rgba(241, 196, 15, 0.03) 0%, transparent 50%);
+    color: var(--text-primary);
+    font-family: 'Outfit', sans-serif;
+    padding: 2.5rem 1.5rem;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.01);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(155, 89, 182, 0.2);
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(155, 89, 182, 0.4);
+  }
+
+  .container {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  /* Header */
+  header {
+    background: var(--glass-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    padding: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    position: relative;
+    overflow: hidden;
+    flex-wrap: wrap;
+  }
+
+  header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -50%;
+    width: 200%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--purple), var(--cyan), var(--gold), transparent);
+    animation: animateGlow 8s linear infinite;
+  }
+
+  @keyframes animateGlow {
+    0% { transform: translateX(-30%); }
+    100% { transform: translateX(30%); }
+  }
+
+  .logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    background: linear-gradient(90deg, var(--text-primary), var(--purple), var(--cyan), var(--gold));
+    background-size: 300% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: textShine 10s ease infinite;
+  }
+
+  @keyframes textShine {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  .subtitle {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    font-weight: 400;
+    margin-top: 0.25rem;
+  }
+
+  .date {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+  }
+
+  /* Action Buttons */
+  .tools {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--glass-border);
+    border-radius: 8px;
+    padding: 0.6rem 1.25rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .btn:hover {
+    background: rgba(155, 89, 182, 0.1);
+    border-color: var(--purple);
+    color: var(--purple);
+  }
+
+  .btn.primary {
+    background: var(--purple);
+    border-color: var(--purple);
+    color: white;
+    box-shadow: 0 4px 15px rgba(155, 89, 182, 0.3);
+  }
+
+  .btn.primary:hover {
+    background: #7b2cbf;
+    border-color: #7b2cbf;
+    box-shadow: 0 6px 20px rgba(155, 89, 182, 0.5);
+  }
+
+  .btn.btn-cyan {
+    background: var(--cyan);
+    border-color: var(--cyan);
+    color: #06060c;
+    box-shadow: 0 4px 15px rgba(0, 212, 255, 0.3);
+  }
+
+  .btn.btn-cyan:hover {
+    background: #00b4ff;
+    border-color: #00b4ff;
+    color: white;
+  }
+
+  /* Stats Panel */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1.25rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .stat {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    padding: 1.25rem;
+    text-align: center;
+    transition: transform 0.3s, border-color 0.3s;
+    box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.15);
+  }
+
+  .stat:hover {
+    transform: translateY(-3px);
+    border-color: var(--glass-border-hover);
+  }
+
+  .stat-val {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+  }
+
+  .stat-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-secondary);
+  }
+
+  /* Filters & Controls */
+  .controls {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+
+  .controls-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .controls-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    letter-spacing: 0.5px;
+    margin-right: 0.25rem;
+  }
+
+  .pill {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.75rem;
+    padding: 0.4rem 0.85rem;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s;
+    background: rgba(255, 255, 255, 0.02);
+  }
+
+  .pill:hover, .pill.active {
+    background: rgba(155, 89, 182, 0.15);
+    border-color: var(--purple);
+    color: var(--purple);
+  }
+
+  .search {
+    flex: 1;
+    min-width: 250px;
+  }
+
+  .search input {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.25);
+    border: 1px solid var(--glass-border);
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    color: white;
+    font-size: 0.85rem;
+    outline: none;
+  }
+
+  .search input:focus {
+    border-color: var(--purple);
+  }
+
+  /* Sync status indicator */
+  .sync-indicator {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+  }
+  .sync-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--red);
+  }
+  .sync-dot.online {
+    background: var(--green);
+    box-shadow: 0 0 8px var(--green-glow);
+  }
+
+  /* Cases List */
+  .cases {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+
+  .case {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: border-color 0.2s, transform 0.2s;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  }
+
+  .case:hover {
+    border-color: rgba(155, 89, 182, 0.25);
+    transform: translateY(-2px);
+  }
+
+  .case.focused {
+    border-color: var(--gold);
+    box-shadow: 0 0 15px var(--gold-glow);
+  }
+
+  .case-header {
+    display: grid;
+    grid-template-columns: auto 1fr auto auto auto;
+    align-items: center;
+    gap: 1.25rem;
+    padding: 1.15rem 1.5rem;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .case-header:hover {
+    background: rgba(255, 255, 255, 0.02);
+  }
+
+  .case-id {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    font-weight: 600;
+  }
+
+  .case-title {
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: var(--text-primary);
+  }
+
+  .case-area {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+  }
+
+  .area-infra { background: rgba(0, 212, 255, 0.1); color: var(--cyan); }
+  .area-brand { background: rgba(181, 133, 219, 0.1); color: var(--purple); }
+  .area-deck { background: rgba(232, 168, 124, 0.1); color: var(--yellow); }
+  .area-legal { background: rgba(212, 160, 23, 0.1); color: var(--gold); }
+  .area-ops { background: rgba(0, 255, 179, 0.08); color: var(--green); }
+
+  .case-status {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 0.3rem 0.75rem;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+
+  .case-status:hover {
+    opacity: 0.8;
+  }
+
+  .status-done { background: rgba(0, 230, 118, 0.12); color: var(--green); border: 1px solid rgba(0, 230, 118, 0.2); }
+  .status-progress { background: rgba(241, 196, 15, 0.12); color: var(--gold); border: 1px solid rgba(241, 196, 15, 0.2); }
+  .status-pending { background: rgba(255, 255, 255, 0.05); color: var(--text-secondary); border: 1px solid rgba(255, 255, 255, 0.1); }
+  .status-blocked { background: rgba(255, 61, 0, 0.12); color: var(--red); border: 1px solid rgba(255, 61, 0, 0.2); }
+
+  .case-priority {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  .pri-critical { color: var(--red); }
+  .pri-high { color: var(--yellow); }
+  .pri-med { color: var(--cyan); }
+  .pri-low { color: var(--text-muted); }
+
+  /* Expanded Body */
+  .case-body {
+    padding: 0 1.5rem 1.5rem 3.5rem;
+    display: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.03);
+    padding-top: 1.25rem;
+    margin-top: 0.1rem;
+    animation: slideDown 0.3s ease-out;
+  }
+
+  @keyframes slideDown {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .case.open .case-body {
+    display: block;
+  }
+
+  .case-section-title {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: var(--purple);
+    margin: 1rem 0 0.4rem;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+  }
+
+  .case-section-title:first-child {
+    margin-top: 0;
+  }
+
+  .case-notes {
+    font-size: 0.95rem;
+    color: var(--text-primary);
+    line-height: 1.6;
+    margin-bottom: 0.5rem;
+    white-space: pre-wrap;
+  }
+
+  .next-step {
+    font-size: 0.95rem;
+    color: var(--yellow);
+    padding: 0.6rem 1rem;
+    background: rgba(241, 196, 15, 0.05);
+    border-left: 3px solid var(--gold);
+    margin-top: 0.5rem;
+    border-radius: 0 6px 6px 0;
+  }
+
+  .artifacts {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .artifact {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--cyan);
+    text-decoration: none;
+    padding: 0.25rem 0;
+    display: inline-block;
+  }
+
+  .artifact:hover {
+    color: var(--gold);
+    text-decoration: underline;
+  }
+
+  .artifact-missing {
+    color: var(--text-muted);
+    font-style: italic;
+  }
+
+  .case-footer {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .case-footer button {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    padding: 0.35rem 0.85rem;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 4px;
+    color: var(--text-secondary);
+    transition: all 0.15s;
+  }
+
+  .case-footer button:hover {
+    border-color: var(--purple);
+    color: var(--purple);
+  }
+
+  .case-footer button.danger:hover {
+    border-color: var(--red);
+    color: var(--red);
+  }
+
+  /* Interactive Modal Setup */
+  dialog {
+    background: #0d0d17;
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    padding: 2.5rem 2rem;
+    margin: auto;
+    width: 90%;
+    max-width: 550px;
+    color: var(--text-primary);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+    outline: none;
+    z-index: 100;
+  }
+
+  dialog::backdrop {
+    background-color: rgba(3, 3, 6, 0.85);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  dialog h3 {
+    font-size: 1.6rem;
+    color: var(--gold);
+    margin-bottom: 1.25rem;
+  }
+
+  .modal-field {
+    margin-bottom: 1.15rem;
+  }
+
+  .modal-field label {
+    display: block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 0.35rem;
+    letter-spacing: 0.5px;
+  }
+
+  .modal-field input, .modal-field select, .modal-field textarea {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.25);
+    border: 1px solid var(--glass-border);
+    border-radius: 6px;
+    padding: 0.5rem 0.75rem;
+    color: white;
+    font-size: 0.85rem;
+    outline: none;
+  }
+
+  .modal-field textarea {
+    min-height: 80px;
+    resize: vertical;
+  }
+
+  .modal-field input:focus, .modal-field select:focus, .modal-field textarea:focus {
+    border-color: var(--purple);
+  }
+
+  .modal-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .modal-actions {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: flex-end;
+    margin-top: 1.5rem;
+  }
+
+  /* Empty state */
+  .empty {
+    text-align: center;
+    padding: 4rem 2rem;
+    color: var(--text-muted);
+    font-size: 1rem;
+    background: var(--glass-bg);
+    border-radius: 12px;
+    border: 1px dashed var(--glass-border);
+  }
+
+  /* Footer */
+  .foot {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.03);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  
+  <header>
+    <div>
+      <div class="logo">NOIZY <span>TOUR MANAGER</span></div>
+      <div class="subtitle">Interactive workbench · open cases · upgrades in flight</div>
+    </div>
+    <div style="text-align:right">
+      <div class="date" id="timestamp">—</div>
+      <div class="tools" style="margin-top:12px">
+        <button class="btn primary" onclick="openAddModal()">＋ Case</button>
+        <button class="btn" onclick="exportJSON()">Export</button>
+        <button class="btn" onclick="document.getElementById('import-file').click()">Import</button>
+        <button class="btn" onclick="if(confirm('Reset to defaults? This erases local changes.'))resetAll()">Reset</button>
+        <button class="btn btn-cyan" id="btn-sync" onclick="syncToRig()" disabled>Sync to D1 DB</button>
+        <input id="import-file" type="file" accept=".json" style="display:none" onchange="importJSON(event)">
+      </div>
+    </div>
+  </header>
+
+  <div class="stats" id="stats"></div>
+
+  <div class="controls">
+    <div class="controls-group">
+      <span class="controls-label">Area</span>
+      <span class="pill active" data-filter="area" data-value="all">All</span>
+      <span class="pill" data-filter="area" data-value="infra">Infra</span>
+      <span class="pill" data-filter="area" data-value="brand">Brand</span>
+      <span class="pill" data-filter="area" data-value="deck">Deck</span>
+      <span class="pill" data-filter="area" data-value="legal">Legal</span>
+      <span class="pill" data-filter="area" data-value="ops">Ops</span>
+    </div>
+    <div class="controls-group">
+      <span class="controls-label">Status</span>
+      <span class="pill active" data-filter="status" data-value="all">All</span>
+      <span class="pill" data-filter="status" data-value="open">Open</span>
+      <span class="pill" data-filter="status" data-value="done">Done</span>
+    </div>
+    <div class="search">
+      <input type="text" id="search" placeholder="Search title, notes, or artifact…">
+    </div>
+    <div class="sync-indicator">
+      <span class="sync-dot" id="sync-dot"></span>
+      <span id="sync-label">Rig Sync: Offline</span>
+    </div>
+  </div>
+
+  <div class="cases" id="cases"></div>
+  <div class="empty" id="empty" style="display:none">No cases match the current filters.</div>
+
+  <div class="foot">
+    <span>Saved locally in your browser · Export for backup · NOIZY Tour Manager v1.1</span>
+    <span id="counts">— cases</span>
+  </div>
+
+</div>
+
+<!-- Add / Edit Modal Dialog -->
+<dialog id="case-modal" closedby="any">
+  <h3 id="modal-title">Add case</h3>
+  <input type="hidden" id="m-id">
+  
+  <div class="modal-field">
+    <label>Title</label>
+    <input type="text" id="m-title" placeholder="Short, concrete description">
+  </div>
+  
+  <div class="modal-row">
+    <div class="modal-field">
+      <label>Area</label>
+      <select id="m-area">
+        <option value="infra">Infra</option>
+        <option value="brand">Brand</option>
+        <option value="deck">Deck</option>
+        <option value="legal">Legal</option>
+        <option value="ops">Ops</option>
+      </select>
+    </div>
+    <div class="modal-field">
+      <label>Priority</label>
+      <select id="m-priority">
+        <option value="critical">Critical</option>
+        <option value="high">High</option>
+        <option value="med" selected>Med</option>
+        <option value="low">Low</option>
+      </select>
+    </div>
+  </div>
+  
+  <div class="modal-field">
+    <label>Status</label>
+    <select id="m-status">
+      <option value="pending" selected>Pending</option>
+      <option value="progress">In progress</option>
+      <option value="blocked">Blocked</option>
+      <option value="done">Done</option>
+    </select>
+  </div>
+  
+  <div class="modal-field">
+    <label>Notes</label>
+    <textarea id="m-notes" placeholder="Detailed notes, technical findings, or parameters..."></textarea>
+  </div>
+  
+  <div class="modal-field">
+    <label>Next step</label>
+    <input type="text" id="m-next" placeholder="The single next concrete action">
+  </div>
+  
+  <div class="modal-field">
+    <label>Artifacts (one per line, format: label || path/url)</label>
+    <textarea id="m-artifacts" placeholder="Artifact Label || file:///absolute/path/to/file.md"></textarea>
+  </div>
+  
+  <div class="modal-actions">
+    <button class="btn" onclick="closeModal()">Cancel</button>
+    <button class="btn primary" onclick="saveModal()">Save</button>
+  </div>
+</dialog>
+
+<script>
+// ── Default case list (this session's work) ──────────────────
+const DEFAULTS = [
+  {
+    id:'C001', title:'Rings · Matrix · Roadmap — deck validation + walkthrough',
+    area:'deck', priority:'med', status:'done',
+    notes:'Three slides locked with zero conflicts. Footer line ties the governance architecture into one sentence. Speaker notes (3–4 min at 140 wpm) and a Figma single-page composition spec both produced.',
+    next:'Hand Figma spec to a designer; use speaker notes in the next investor/partner call.',
+    artifacts:[
+      {label:'Speaker notes', href:'file:///Users/m2ultra/Desktop/CLAUDE%20TODAY/NOIZY_RINGS_MATRIX_ROADMAP_speaker_notes.md'},
+      {label:'Figma layout spec', href:'file:///Users/m2ultra/Desktop/CLAUDE%20TODAY/NOIZY_RINGS_MATRIX_ROADMAP_figma_spec.md'}
+    ]
+  },
+  {
+    id:'C002', title:'DSP DB Visualizer server setup — hardened v2',
+    area:'infra', priority:'high', status:'done',
+    notes:'v1 sudoers had two real risks: sudo pm2 wildcard escalation, and sudo npm ci allowing dep lifecycle scripts to run as root. v2 collapses sudoers to a single narrow rule (systemctl reload nginx), runs PM2 and npm as the deploy user, adds strict mode, OS guard, idempotent SSH key handling with shape validation, and an env file placeholder at 0640 root:deploy.',
+    next:'Deploy to the target host; run harden-sshd.sh once key-based login is verified.',
+    artifacts:[
+      {label:'server-setup.sh (hardened)', href:'file:///Users/m2ultra/Desktop/CLAUDE%20TODAY/server-setup.sh'},
+      {label:'harden-sshd.sh (companion)', href:'file:///Users/m2ultra/Desktop/CLAUDE%20TODAY/harden-sshd.sh'}
+    ]
+  },
+  {
+    id:'C003', title:'Cloudflare live-state survey vs. March 19 dashboard',
+    area:'infra', priority:'high', status:'done',
+    notes:'Account: Fishmusicinc (only one). Workers: still 1 (deploy), still Hello World stub from 2025-12-02, unchanged for four months. D1: dropped from 11 to 6; new manifest_db / catalogue_db / consent_db (today) + integration-events (3 days ago) + rebuilt agent-memory + gabriel_db — all six have 0 tables. KV: down to 17, reorganized around per-brand cache pattern (six brand caches confirming the canonical six). R2: still not enabled.',
+    next:'Use the KV naming pattern as the source-of-truth brand list. Build the router next.',
+    artifacts:[
+      {label:'MC96ECO Cloudflare Cleanup dashboard', href:'file:///Users/m2ultra/Desktop/CLAUDE%20TODAY/00_COMMAND_CENTER/MC96ECO_CLOUDFLARE_CLEANUP.html'}
+    ]
+  },
+  {
+    id:'C004', title:'Six-brand canon locked — subs to noizy.ai with mixed slugs',
+    area:'brand', priority:'critical', status:'done',
+    notes:'Six brands: NOIZYFISH, NOIZYVOX, NOIZYKIDZ (with Z), NOIZYLAB, THE WISDOM PROJECT, THE AQUARIUM. All render as subdomains of noizy.ai. Mixed slug style: NOIZY-prefixed brands use full slugs (noizyfish.noizy.ai, noizykidz.noizy.ai, noizyvox.noizy.ai, noizylab.noizy.ai). The Wisdom Project and The Aquarium use short slugs (wisdom.noizy.ai, aquarium.noizy.ai). Both .com domains already in Cloudflare.',
+    next:'Router code wires these hostnames directly. DNS plan follows.',
+    artifacts:[]
+  },
+  {
+    id:'C005', title:'NOIZY Naming Law — 5-file install package',
+    area:'legal', priority:'critical', status:'done',
+    notes:'Pre-commit hook + GitHub Actions CI guard + law doc + brand-tokens dictionary + README. Regex verified: catches every tested violation pattern — lowercase, mixed-case, and all-caps brand tokens misspelled with an S; zero false positives on legitimate English "noisy" (e.g. "high-signal, not noisy"). Includes audited emergency bypass (NOIZY_LAW_BYPASS=1 + commit trailer) so historical archival does not fight the guard.',
+    next:'Install per repo: copy files into .githooks and .github/workflows, chmod +x the hook, set core.hooksPath.',
+    artifacts:[
+      {label:'pre-commit hook', href:'file:///Users/m2ultra/Desktop/CLAUDE%20TODAY/10_INFRASTRUCTURE/noizy-naming-law/pre-commit'},
+      {label:'GitHub Actions workflow', href:'file:///Users/m2ultra/Desktop/CLAUDE%20TODAY/10_INFRASTRUCTURE/noizy-naming-law/noizy-spelling.yml'},
+      {label:'NOIZY-NAMING-LAW.md', href:'file:///Users/m2ultra/Desktop/CLAUDE%20TODAY/10_INFRASTRUCTURE/noizy-naming-law/NOIZY-NAMING-LAW.md'},
+      {label:'NOIZY-BRAND-TOKENS.md', href:'file:///Users/m2ultra/Desktop/CLAUDE%20TODAY/10_INFRASTRUCTURE/noizy-naming-law/NOIZY-BRAND-TOKENS.md'},
+      {label:'README (install)', href:'file:///Users/m2ultra/Desktop/CLAUDE%20TODAY/10_INFRASTRUCTURE/noizy-naming-law/README.md'}
+    ]
+  },
+  {
+    id:'C006', title:'NOIZYKIDZ KV (with Z) — created via MCP, no-Z queued for retirement',
+    area:'infra', priority:'high', status:'done',
+    notes:'Created noizy-cache-noizykidz via Cloudflare MCP on 2026-04-16. ID: 942782f36aa44e4698240b7c211fded3. The no-Z namespace (noizy-cache-noizykids) is legacy; queue for deletion after any dependent worker or PWA cuts over to the with-Z binding. KV names are immutable so this was a new-create + switch-over migration.',
+    next:'When a brand PWA or Worker starts using NOIZYKIDZ_KV, bind to 942782f36aa44e4698240b7c211fded3. Delete the no-Z KV only after traffic has cut over.',
+    artifacts:[]
+  },
+  {
+    id:'C007', title:'HEAVEN — edge API gateway for NOIZY.AI (shipped, one click from live)',
+    area:'infra', priority:'critical', status:'progress',
+    notes:'HEAVEN is the Cloudflare Worker serving noizy.ai. Real code (373 lines) replaces the signup stub. Public API over gospel, doctrine, agents, empire. Internal tables (memcells, consent_log, ops, observations, system_failures, vox_talent) stay server-side. wrangler.toml parses clean with AGENT_MEMORY D1 + SIGNUPS KV bindings. SIGNUPS KV (f173a7af5ed74daf8c65d38e042e0b48) created via MCP. Three deploy paths documented: GitHub Actions (iPad-viable), terminal (Mac), Dashboard paste (browser-only).',
+    next:'Deploy via chosen path. iPad route: push to GitHub, Actions runs wrangler deploy automatically. Mac route: cd heaven && npx wrangler deploy. Verify: curl https://noizy.ai/health returns ok:true, db.connected:true.',
+    artifacts:[
+      {label:'HEAVEN worker.js (real API gateway)', href:'file:///Users/m2ultra/Desktop/CLAUDE%20TODAY/10_INFRASTRUCTURE/cloudflare-workers/heaven/worker.js'},
+      {label:'wrangler.toml (D1 + KV bindings)', href:'file:///Users/m2ultra/Desktop/CLAUDE%20TODAY/10_INFRASTRUCTURE/cloudflare-workers/heaven/wrangler.toml'},
+      {label:'GitHub Actions deploy workflow', href:'file:///Users/m2ultra/Desktop/CLAUDE%20TODAY/10_INFRASTRUCTURE/cloudflare-workers/heaven/.github/workflows/deploy-worker.yml'},
+      {label:'DEPLOY_HEAVEN.md (all three paths)', href:'file:///Users/m2ultra/Desktop/CLAUDE%20TODAY/10_INFRASTRUCTURE/cloudflare-workers/heaven/DEPLOY_HEAVEN.md'}
+    ]
+  },
+  {
+    id:'C008', title:'R2 enable — required for NOIZYVOX voice assets',
+    area:'infra', priority:'med', status:'blocked',
+    notes:'Still disabled in the account. MCP returns 403: "Please enable R2 through the Cloudflare Dashboard." This is a manual click-through step, not scriptable. Not a blocker for the holding scaffold (no assets yet) — but a blocker for anything NOIZYVOX beyond holding.',
+    next:'One-time: open Cloudflare Dashboard → R2 → Enable. Then the first bucket: noizyvox-voice-models (private).',
+    artifacts:[]
+  },
+  {
+    id:'C009', title:'GoDaddy escape — domain transfers in progress',
+    area:'ops', priority:'high', status:'progress',
+    notes:'Per March 19 dashboard: 5 domains total, 2 still at GoDaddy (noizyfish.com, noizylab.com), 6 GoDaddy accounts to close. 13 migration milestones, 0 complete as of March 19. State as of April 16 not yet re-verified — the dashboard needs a refresh pass.',
+    next:'Re-verify current state of godaddy-escape-tracker D1 if it still exists; otherwise rebuild the milestone list and attack the transfer queue.',
+    artifacts:[]
+  },
+  {
+    id:'C010', title:'PPTX remediation — S-misspelled brand tokens in two decks',
+    area:'deck', priority:'med', status:'pending',
+    notes:'Confirmed violations in two decks: (1) Presentation 1.pptx on slides 3 & 19 contains a legacy product-name variant; (2) NOIZYWORLD - THE ECOSYSTEM.pptx contains five brand tokens misspelled in the family listing (noizy.ai, noizyvox, noizyfish, noizykidz, noizylab — all mis-tokenized with an S). Fix map is canonical in NOIZY-NAMING-LAW.md. The pptx skill is available for programmatic replacement.',
+    next:'Invoke the pptx skill; apply replacement map; save corrected versions alongside originals with _v2 suffix; update the naming law remediation queue.',
+    artifacts:[]
+  },
+  {
+    id:'C011', title:'Legacy Worker dedup — heaven/ vs noizy-ai-landing/',
+    area:'infra', priority:'low', status:'pending',
+    notes:'Both folders contain the same 80-line signup landing worker (2535 bytes each). heaven/DEPLOY_ME.md describes a completely different router (HEAVEN17 with 15+ endpoints) but the actual code is the signup worker. Documentation has drifted from code. Harmless but confusing; worth consolidating once the new holding router ships.',
+    next:'After C007 ships, delete the redundant folder (keep one as the archival reference) and update any docs that still mention HEAVEN17 as if deployed.',
+    artifacts:[
+      {label:'heaven/', href:'file:///Users/m2ultra/Desktop/CLAUDE%20TODAY/10_INFRASTRUCTURE/cloudflare-workers/heaven/'},
+      {label:'noizy-ai-landing/', href:'file:///Users/m2ultra/Desktop/CLAUDE%20TODAY/10_INFRASTRUCTURE/cloudflare-workers/noizy-ai-landing/'}
+    ]
+  },
+  {
+    id:'C012', title:'D1 schemas — manifest_db, catalogue_db, consent_db',
+    area:'infra', priority:'med', status:'pending',
+    notes:'All three created today (2026-04-16). All have 0 tables. These are the governance layer: manifest (what exists), catalogue (what we publish), consent (what we are allowed to do). Schemas not yet defined.',
+    next:'Draft schema for each. Consent_db is the highest priority — it is the audit spine for the entire brand-autonomy-bounded-by-GABRIEL line in the Rings deck.',
+    artifacts:[]
+  },
+  {
+    id:'C013', title:'DNS plan — six subdomains + six apex domains',
+    area:'infra', priority:'high', status:'pending',
+    notes:'Needs: AAAA 100:: for noizy.ai apex + each subdomain, all proxied. For brands with their own domain (noizyfish.com, noizylab.ca, noizyvox.com, noizykidz.com, thewisdomproject.com, theaquarium.com): AAAA 100:: proxied, pointing all hostname traffic at the holding Worker. Worker reads url.hostname to switch. Downstream of C007.',
+    next:'Draft DNS record table as part of the C007 deliverable; apply via dashboard (or Cloudflare MCP once the tool supports DNS records).',
+    artifacts:[]
+  },
+  {
+    id:'C014', title:'Agent-memory D1 — real schema discovered (brain was live all along)',
+    area:'infra', priority:'high', status:'done',
+    notes:'The Cloudflare MCP metadata reported num_tables:0 for agent-memory, but the actual database has 12 populated tables / 138 rows. Real tables: memcells (25), agent_registry (8), doctrine_lines (24), gospel_deal (12), system_failures (12), gabriel_commands (10), ops_platforms (10), noizy_empire (9), dreed_registry (9), lucy_observations (9), ops_accounts (9), vox_talent_profiles (1), consent_log (0). This is the real GABRIEL brain — canonical schema already in production. No new schema was created; all subsequent code (HEAVEN worker, NOIZY MCP) was rewritten to read the actual tables.',
+    next:'Treat the live schema as canonical. Any new table must go through explicit CREATE TABLE review.',
+    artifacts:[]
+  },
+  {
+    id:'C015', title:'NOIZY MCP v0.1 — self-hosted MCP server for AI clients',
+    area:'infra', priority:'critical', status:'done',
+    notes:'Node.js / stdio MCP server exposing 12 tools over the real agent-memory D1 via the Cloudflare REST API. 10 read tools (gospel, doctrine, agents, memcells, empire_status, sql_select) + 2 write tools (memcell upsert, consent_log append). Write tools annotated destructiveHint:false / idempotentHint for client-side confirmation prompts. SQL tool is gated to SELECT/WITH only, rejects write verbs and multi-statement queries before they reach D1. Includes README, Claude Desktop install guide, and .env.example with correct account + database IDs pre-filled.',
+    next:'npm install in the noizy-mcp folder, create a Cloudflare API token (D1:Edit on Fishmusicinc), paste config into claude_desktop_config.json, restart Claude Desktop. 5 minutes to working MCP.',
+    artifacts:[
+      {label:'package.json', href:'file:///Users/m2ultra/Desktop/CLAUDE%20TODAY/10_INFRASTRUCTURE/noizy-mcp/package.json'},
+      {label:'src/index.js (server + 12 tools)', href:'file:///Users/m2ultra/Desktop/CLAUDE%20TODAY/10_INFRASTRUCTURE/noizy-mcp/src/index.js'},
+      {label:'src/cloudflare.js (D1 REST client)', href:'file:///Users/m2ultra/Desktop/CLAUDE%20TODAY/10_INFRASTRUCTURE/noizy-mcp/src/cloudflare.js'},
+      {label:'README.md', href:'file:///Users/m2ultra/Desktop/CLAUDE%20TODAY/10_INFRASTRUCTURE/noizy-mcp/README.md'},
+      {label:'INSTALL_CLAUDE_DESKTOP.md', href:'file:///Users/m2ultra/Desktop/CLAUDE%20TODAY/10_INFRASTRUCTURE/noizy-mcp/INSTALL_CLAUDE_DESKTOP.md'},
+      {label:'.env.example', href:'file:///Users/m2ultra/Desktop/CLAUDE%20TODAY/10_INFRASTRUCTURE/noizy-mcp/.env.example'}
+    ]
+  },
+  {
+    id:'C016', title:'NOIZY MCP v0.2 — Cloudflare Worker (remote MCP, iPad-viable, shipped)',
+    area:'infra', priority:'critical', status:'progress',
+    notes:'Remote MCP server at mcp.noizy.ai. Same 12 tools as v0.1, but running as a Cloudflare Worker with native env.AGENT_MEMORY D1 binding (no REST round-trip) and hand-rolled JSON-RPC 2.0 over HTTP (zero npm deps). Bearer auth on /mcp (MCP_AUTH_TOKEN secret, constant-time compare). Unauthenticated /health for monitoring. HTML landing page at / shows connection instructions. Observability enabled in wrangler.toml so every tool call is audited. Batch JSON-RPC supported.',
+    next:'1) cd noizy-mcp-worker; 2) npx wrangler secret put MCP_AUTH_TOKEN (paste 48+ char random string); 3) npx wrangler deploy; 4) add mcp.noizy.ai AAAA 100:: proxied in Cloudflare DNS; 5) update Claude Desktop config with the url and Bearer header from README.',
+    artifacts:[
+      {label:'noizy-mcp-worker/worker.js', href:'file:///Users/m2ultra/Desktop/CLAUDE%20TODAY/10_INFRASTRUCTURE/cloudflare-workers/noizy-mcp-worker/worker.js'},
+      {label:'wrangler.toml (D1 + route + observability)', href:'file:///Users/m2ultra/Desktop/CLAUDE%20TODAY/10_INFRASTRUCTURE/cloudflare-workers/noizy-mcp-worker/wrangler.toml'},
+      {label:'README.md (deploy + connect)', href:'file:///Users/m2ultra/Desktop/CLAUDE%20TODAY/10_INFRASTRUCTURE/cloudflare-workers/noizy-mcp-worker/README.md'},
+      {label:'GitHub Actions deploy workflow', href:'file:///Users/m2ultra/Desktop/CLAUDE%20TODAY/10_INFRASTRUCTURE/cloudflare-workers/noizy-mcp-worker/.github/workflows/deploy-mcp-worker.yml'}
+    ]
+  },
+  {
+    id:'C017', title:'HEAVEN live deploy — final click',
+    area:'infra', priority:'critical', status:'pending',
+    notes:'All artifacts for HEAVEN are written, parsed, and ready. The only thing left is the actual deploy, which requires either (a) a Mac terminal with wrangler, (b) pushing to GitHub and letting Actions run, or (c) pasting into the Cloudflare Dashboard. All three paths are documented in DEPLOY_HEAVEN.md. Until this ships, noizy.ai still serves Hello World.',
+    next:'Pick one of the three paths in DEPLOY_HEAVEN.md and execute it. Verify with curl https://noizy.ai/health.',
+    artifacts:[
+      {label:'DEPLOY_HEAVEN.md (three paths)', href:'file:///Users/m2ultra/Desktop/CLAUDE%20TODAY/10_INFRASTRUCTURE/cloudflare-workers/heaven/DEPLOY_HEAVEN.md'}
+    ]
+  }
+];
+
+// ── State ────────────────────────────────────────────────────
+const LS_KEY = 'noizy-tour-manager-v1';
+let state = loadState();
+let filters = {area:'all', status:'all', q:''};
+let editingId = null;
+
+function loadState(){
+  try{
+    const raw = localStorage.getItem(LS_KEY);
+    if(!raw) return {cases: JSON.parse(JSON.stringify(DEFAULTS))};
+    const parsed = JSON.parse(raw);
+    if(!parsed.cases) return {cases: JSON.parse(JSON.stringify(DEFAULTS))};
+    return parsed;
+  }catch(e){
+    return {cases: JSON.parse(JSON.stringify(DEFAULTS))};
+  }
+}
+function saveState(){ localStorage.setItem(LS_KEY, JSON.stringify(state)); }
+
+// ── Rendering ────────────────────────────────────────────────
+func = render;
+function render(){
+  renderStats();
+  renderCases();
+  updateTimestamp();
+}
+function renderStats(){
+  const c = state.cases;
+  const total = c.length;
+  const done = c.filter(x=>x.status==='done').length;
+  const progress = c.filter(x=>x.status==='progress').length;
+  const blocked = c.filter(x=>x.status==='blocked').length;
+  const critical = c.filter(x=>x.priority==='critical' && x.status!=='done').length;
+  const pending = c.filter(x=>x.status==='pending').length;
+  document.getElementById('stats').innerHTML = `
+    <div class="stat"><div class="stat-val" style="color:var(--text-primary)">${total}</div><div class="stat-label">Total</div></div>
+    <div class="stat"><div class="stat-val" style="color:var(--text-secondary)">${pending}</div><div class="stat-label">Pending</div></div>
+    <div class="stat"><div class="stat-val" style="color:var(--gold)">${progress}</div><div class="stat-label">In Progress</div></div>
+    <div class="stat"><div class="stat-val" style="color:var(--red)">${blocked}</div><div class="stat-label">Blocked</div></div>
+    <div class="stat"><div class="stat-val" style="color:var(--green)">${done}</div><div class="stat-label">Done</div></div>
+    <div class="stat"><div class="stat-val" style="color:var(--red)">${critical}</div><div class="stat-label">Critical Open</div></div>
+  `;
+}
+function renderCases(){
+  const list = document.getElementById('cases');
+  const empty = document.getElementById('empty');
+  const filtered = state.cases.filter(filterCase);
+  list.innerHTML = filtered.map(renderCase).join('');
+  empty.style.display = filtered.length ? 'none' : 'block';
+  document.getElementById('counts').textContent = `${filtered.length} of ${state.cases.length} cases`;
+}
+function filterCase(c){
+  if(filters.area !== 'all' && c.area !== filters.area) return false;
+  if(filters.status === 'open' && c.status === 'done') return false;
+  if(filters.status === 'done' && c.status !== 'done') return false;
+  if(filters.q){
+    const q = filters.q.toLowerCase();
+    const hay = (c.title + ' ' + (c.notes||'') + ' ' + (c.next||'') + ' ' + (c.artifacts||[]).map(a=>a.label).join(' ')).toLowerCase();
+    if(!hay.includes(q)) return false;
+  }
+  return true;
+}
+function renderCase(c){
+  const statusLabel = {done:'Done', progress:'In Progress', pending:'Pending', blocked:'Blocked'}[c.status] || c.status;
+  const artifactsHTML = (c.artifacts && c.artifacts.length)
+    ? c.artifacts.map(a => a.href
+        ? `<a class="artifact" href="${escapeAttr(a.href)}">📁 ${escapeHTML(a.label)}</a>`
+        : `<span class="artifact artifact-missing">📄 ${escapeHTML(a.label)} (no link)</span>`
+      ).join('')
+    : '<span class="artifact artifact-missing">— no artifacts yet —</span>';
+  return `
+    <div class="case" id="case-${c.id}" data-id="${c.id}">
+      <div class="case-header" onclick="toggleCase('${c.id}')">
+        <span class="case-id">${c.id}</span>
+        <span class="case-title">${escapeHTML(c.title)}</span>
+        <span class="case-area area-${c.area}">${c.area}</span>
+        <span class="case-status status-${c.status}" onclick="event.stopPropagation();cycleStatus('${c.id}')">${statusLabel}</span>
+        <span class="case-priority pri-${c.priority}">${c.priority}</span>
+      </div>
+      <div class="case-body">
+        ${c.notes ? `<div class="case-section-title">Notes</div><div class="case-notes">${escapeHTML(c.notes)}</div>` : ''}
+        ${c.next ? `<div class="case-section-title">Next step</div><div class="next-step">${escapeHTML(c.next)}</div>` : ''}
+        <div class="case-section-title">Artifacts</div>
+        <div class="artifacts">${artifactsHTML}</div>
+        <div class="case-footer">
+          <button onclick="editCase('${c.id}')">Edit</button>
+          <button onclick="cycleStatus('${c.id}')">Advance status</button>
+          <button class="danger" onclick="deleteCase('${c.id}')">Delete</button>
+        </div>
+      </div>
+    </div>
+  `;
+}
+function escapeHTML(s){ return (s||'').replace(/[&<>\"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+// Fix single quote escaping in data fields
+func = escapeAttr;
+function escapeAttr(s){ return (s||'').replace(/[&<>\"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+
+// ── Interactions ─────────────────────────────────────────────
+function toggleCase(id){
+  const el = document.getElementById('case-'+id);
+  if(el) el.classList.toggle('open');
+}
+function cycleStatus(id){
+  const order = ['pending','progress','blocked','done'];
+  const c = state.cases.find(x=>x.id===id);
+  if(!c) return;
+  c.status = order[(order.indexOf(c.status)+1) % order.length];
+  saveState(); render();
+  const el = document.getElementById('case-'+id); if(el) el.classList.add('open');
+}
+var deleteCase = function(id){
+  const c = state.cases.find(x=>x.id===id);
+  if(!c) return;
+  if(!confirm(`Delete case "${c.title}"?`)) return;
+  state.cases = state.cases.filter(x=>x.id!==id);
+  saveState(); render();
+}
+function editCase(id){
+  const c = state.cases.find(x=>x.id===id);
+  if(!c) return;
+  editingId = id;
+  document.getElementById('modal-title').textContent = 'Edit case · ' + c.id;
+  document.getElementById('m-id').value = c.id;
+  document.getElementById('m-title').value = c.title || '';
+  document.getElementById('m-area').value = c.area || 'infra';
+  document.getElementById('m-priority').value = c.priority || 'med';
+  document.getElementById('m-status').value = c.status || 'pending';
+  document.getElementById('m-notes').value = c.notes || '';
+  document.getElementById('m-next').value = c.next || '';
+  document.getElementById('m-artifacts').value = (c.artifacts||[]).map(a => `${a.label} || ${a.href||''}`).join('\n');
+  document.getElementById('case-modal').showModal();
+}
+function openAddModal(){
+  editingId = null;
+  document.getElementById('modal-title').textContent = 'Add case';
+  document.getElementById('m-id').value = '';
+  document.getElementById('m-title').value = '';
+  document.getElementById('m-area').value = 'infra';
+  document.getElementById('m-priority').value = 'med';
+  document.getElementById('m-status').value = 'pending';
+  document.getElementById('m-notes').value = '';
+  document.getElementById('m-next').value = '';
+  document.getElementById('m-artifacts').value = '';
+  document.getElementById('case-modal').showModal();
+  setTimeout(()=>document.getElementById('m-title').focus(), 50);
+}
+function closeModal(){ document.getElementById('case-modal').close(); editingId = null; }
+function saveModal(){
+  const title = document.getElementById('m-title').value.trim();
+  if(!title){ alert('Title required'); return; }
+  const artifactsRaw = document.getElementById('m-artifacts').value.trim();
+  const artifacts = artifactsRaw ? artifactsRaw.split('\n').map(line => {
+    const parts = line.split('||').map(s=>s.trim());
+    return {label: parts[0] || line.trim(), href: parts[1] || ''};
+  }).filter(a=>a.label) : [];
+  const rec = {
+    title,
+    area: document.getElementById('m-area').value,
+    priority: document.getElementById('m-priority').value,
+    status: document.getElementById('m-status').value,
+    notes: document.getElementById('m-notes').value.trim(),
+    next: document.getElementById('m-next').value.trim(),
+    artifacts
+  };
+  if(editingId){
+    const c = state.cases.find(x=>x.id===editingId);
+    if(c) Object.assign(c, rec);
+  } else {
+    rec.id = nextCaseId();
+    state.cases.push(rec);
+  }
+  saveState(); render(); closeModal();
+}
+function nextCaseId(){
+  const nums = state.cases.map(c => parseInt((c.id||'').replace(/\D/g,''),10)).filter(n=>!isNaN(n));
+  const next = (Math.max(0, ...nums) + 1).toString().padStart(3,'0');
+  return 'C' + next;
+}
+
+// ── Export / import / reset ──────────────────────────────────
+function exportJSON(){
+  const blob = new Blob([JSON.stringify(state, null, 2)], {type:'application/json'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  const ts = new Date().toISOString().replace(/[:.]/g,'-').slice(0,19);
+  a.href = url; a.download = `noizy-tour-manager-${ts}.json`;
+  document.body.appendChild(a); a.click(); a.remove();
+  URL.revokeObjectURL(url);
+}
+function importJSON(ev){
+  const f = ev.target.files[0]; if(!f) return;
+  const r = new FileReader();
+  r.onload = e => {
+    try{
+      const data = JSON.parse(e.target.result);
+      if(!data.cases || !Array.isArray(data.cases)) throw new Error('Missing cases array');
+      if(!confirm(`Import ${data.cases.length} cases? This replaces current state.`)) return;
+      state = data; saveState(); render();
+    }catch(err){ alert('Import failed: ' + err.message); }
+  };
+  r.readAsText(f);
+  ev.target.value = '';
+}
+function resetAll(){
+  state = {cases: JSON.parse(JSON.stringify(DEFAULTS))};
+  saveState(); render();
+}
+
+// ── Filter pills ─────────────────────────────────────────────
+document.querySelectorAll('.pill[data-filter]').forEach(pill => {
+  pill.addEventListener('click', () => {
+    const f = pill.dataset.filter, v = pill.dataset.value;
+    document.querySelectorAll(`.pill[data-filter="${f}"]`).forEach(p => p.classList.remove('active'));
+    pill.classList.add('active');
+    filters[f] = v;
+    renderCases();
+  });
+});
+document.getElementById('search').addEventListener('input', e => {
+  filters.q = e.target.value.trim();
+  renderCases();
+});
+
+// Setup click outside fallback for modal
+const modal = document.getElementById("case-modal");
+modal.addEventListener("click", function(event) {
+  if (event.target === modal) {
+    closeModal();
+  }
+});
+
+// ── Timestamp ────────────────────────────────────────────────
+func = updateTimestamp;
+function updateTimestamp(){
+  const d = new Date();
+  const opts = {year:'numeric', month:'short', day:'numeric', hour:'2-digit', minute:'2-digit'};
+  document.getElementById('timestamp').textContent = d.toLocaleString('en-US', opts) + ' · Robert Stephen Plowman';
+}
+
+// ── Local Rig Sync Checking ────────────────────────
+async function checkRigSync() {
+  const dot = document.getElementById("sync-dot");
+  const label = document.getElementById("sync-label");
+  const syncBtn = document.getElementById("btn-sync");
+  
+  try {
+    const controller = new AbortController();
+    const id = setTimeout(() => controller.abort(), 1500);
+    
+    // Check if DreamChamber is online
+    const res = await fetch("http://localhost:7777/health", { mode: 'no-cors', signal: controller.signal });
+    clearTimeout(id);
+    
+    dot.className = "sync-dot online";
+    label.innerText = "Rig Sync: Online";
+    syncBtn.removeAttribute("disabled");
+  } catch(e) {
+    dot.className = "sync-dot";
+    label.innerText = "Rig Sync: Offline";
+    syncBtn.setAttribute("disabled", "true");
+  }
+}
+
+// Sync to local database API
+async function syncToRig() {
+  try {
+    const response = await fetch("http://localhost:7777/api/cases/sync", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(state.cases)
+    });
+    if (response.ok) {
+      alert("Successfully synchronized Tour Manager cases with local DreamChamber database!");
+    } else {
+      alert("Sync failed: " + response.statusText);
+    }
+  } catch(e) {
+    alert("Connection error during sync: " + e.message);
+  }
+}
+
+// ── Deep-link: #case-C007 scrolls and opens ──────────────────
+window.addEventListener('load', () => {
+  render();
+  checkRigSync();
+  setInterval(checkRigSync, 5000); // Check rig status every 5 seconds
+  if(location.hash.startsWith('#case-')){
+    const el = document.querySelector(location.hash);
+    if(el){ el.classList.add('open', 'focused'); el.scrollIntoView({behavior:'smooth', block:'start'}); }
+  }
+});
+</script>
+</body>
+</html>

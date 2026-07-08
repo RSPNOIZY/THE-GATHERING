@@ -1,0 +1,39 @@
+# Exclude huge installers and manuals in 00_DLS
+00_DLS/
+
+# Exclude common large binary formats
+*.dmg
+*.pkg
+*.zip
+*.7z
+*.tar.gz
+*.epub
+*.pdf
+*.exe
+*.msi
+*.iso
+
+# Exclude audio and video files
+*.wav
+*.WAV
+*.mp3
+*.MP3
+*.mp4
+*.MP4
+*.mov
+*.MOV
+*.avi
+*.mkv
+*.aif
+*.aiff
+*.flac
+*.wav/
+
+# Exclude IDE/Editor files and system files
+.DS_Store
+Thumbs.db
+node_modules/
+.ts/
+.vscode/
+*.bak
+*.BAK

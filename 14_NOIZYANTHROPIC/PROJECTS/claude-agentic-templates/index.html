@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dreamchamber | NOIZYLAB.CA</title>
+    <meta name="description" content="The Wisdom Project: Redefining learning through agentic intelligence and the superpower of dyslexia.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Outfit:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app">
+        <header>
+            <div class="key-status-bar animate-up">
+                <span class="status-dot"></span> PROJECT_001_NEW_LEARNING_IDEAS | ACTIVE
+            </div>
+            <h1>Dreamchamber</h1>
+            <p class="subtitle">NOIZYLAB.CA | The Wisdom Project</p>
+        </header>
+
+        <!-- MISSION MANIFESTO -->
+        <section id="manifesto" class="animate-up">
+            <div class="card manifesto-card">
+                <div class="card-title">The Clarion Call</div>
+                <p class="manifesto-text">"The true power of dyslexia lies in its unconventional perspective—seeing connections where others see divisions, discovering patterns amidst chaos, and engineering systems that defy the impossible."</p>
+                <div class="manifesto-author">— RSP | Founder, NOIZY.AI</div>
+            </div>
+        </section>
+
+        <!-- THE KEY: Initiation Section -->
+        <section id="the-key" class="animate-up delay-1">
+            <div class="grid">
+                <div class="card key-card">
+                    <div class="key-header">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00f2ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3L15.5 7.5z"></path></svg>
+                        <h2>Turn the Master Key</h2>
+                    </div>
+                    <div class="card-body">Execute the primary boot sequence for Project 001.</div>
+                    <div class="terminal-box">
+                        <code id="init-cmd">bash /Users/m2ultra/DREAMCHAMBER_KEY.sh</code>
+                    </div>
+                    <button class="copy-btn" onclick="copyTemplate('init-cmd')">
+                        Initiate Core
+                    </button>
+                </div>
+                
+                <div class="card key-card bot-setup-card">
+                    <div class="key-header">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#bc13fe" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
+                        <h2>Deploy Bot Swarm</h2>
+                    </div>
+                    <div class="card-body">Install, configure, and launch Discord & Slack bots via PM2.</div>
+                    <div class="terminal-box">
+                        <code id="bot-cmd">bash /Users/m2ultra/noizy-bots/setup_bots.sh</code>
+                    </div>
+                    <button class="copy-btn" onclick="copyTemplate('bot-cmd')">
+                        Deploy Swarm
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Generator -->
+        <section id="generator" class="animate-up delay-2">
+            <h2>The Wisdom Assembler</h2>
+            <div class="card">
+                <div class="card-title">Project 001 Tooling</div>
+                <div class="generator-controls">
+                    <select id="template-select" class="custom-select" onchange="updateGenerator()" title="Select a template">
+                        <optgroup label="Wisdom Project Core">
+                            <option value="19">Template 19 — Learning Node Blueprint</option>
+                            <option value="20">Template 20 — Executive Function Exoskeleton</option>
+                            <option value="1">Template 1 — Dreamchamber Launch</option>
+                        </optgroup>
+                        <optgroup label="Blocker #2: Bots & PM2">
+                            <option value="17">Template 17 — Discord Bot Deployment</option>
+                            <option value="18">Template 18 — Slack Bot Deployment</option>
+                        </optgroup>
+                        <optgroup label="Infrastructure & Technical">
+                            <option value="6">Template 6 — Infrastructure Recovery</option>
+                            <option value="13">Template 13 — Spring Boot Fixer</option>
+                            <option value="8">Template 8 — Founder Architecture</option>
+                        </optgroup>
+                    </select>
+                </div>
+                <div id="generator-inputs" class="input-grid">
+                    <!-- Dynamic inputs -->
+                </div>
+                <div class="template-box" id="generated-prompt">Select template to begin...</div>
+                <button class="copy-btn" onclick="copyTemplate('generated-prompt')">
+                    Awaken the Task
+                </button>
+            </div>
+        </section>
+
+        <!-- Cognitive Exoskeleton (PPTX) -->
+        <section id="pptx" class="animate-up delay-3">
+            <h2>The Cognitive Exoskeleton</h2>
+            <div class="card pptx-hero-card">
+                <div class="card-title">Choose Your Architecture</div>
+                <p class="body-text">Select the foundation for your node-based memory palace.</p>
+                
+                <div class="pptx-grid">
+                    <div class="pptx-option" onclick="selectPPTX('A')">
+                        <div class="opt-label">A</div>
+                        <div class="opt-title">Full OS</div>
+                        <div class="opt-desc">Everything. Hub, Labs, Bots, Ops.</div>
+                    </div>
+                    <div class="pptx-option" onclick="selectPPTX('B')">
+                        <div class="opt-label">B</div>
+                        <div class="opt-title">Creative Lab</div>
+                        <div class="opt-desc">Music, Design, Identity focus.</div>
+                    </div>
+                    <div class="pptx-option active" onclick="selectPPTX('D')">
+                        <div class="opt-label">D</div>
+                        <div class="opt-title">Hybrid</div>
+                        <div class="opt-desc">Balanced Core + Creative.</div>
+                    </div>
+                    <div class="pptx-option" onclick="selectPPTX('E')">
+                        <div class="opt-label">E</div>
+                        <div class="opt-title">Minimal</div>
+                        <div class="opt-desc">The "Seed". Core logic only.</div>
+                    </div>
+                </div>
+                
+                <div class="terminal-box mt-2">
+                    <code id="pptx-blueprint-cmd">Select an architecture to generate the blueprint...</code>
+                </div>
+                <button class="copy-btn" id="pptx-copy-btn" onclick="copyTemplate('pptx-blueprint-cmd')">
+                    Capture Blueprint
+                </button>
+            </div>
+
+            <div class="grid mt-2">
+                <div class="card">
+                    <div class="card-title">Slide Ruleset</div>
+                    <ul class="body-list">
+                        <li><strong>Large Text:</strong> No small fonts, maximum clarity.</li>
+                        <li><strong>Icon-Driven:</strong> Visual navigation for rapid context.</li>
+                        <li><strong>Node-Based:</strong> Flow diagrams instead of sentences.</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <div class="card-title">Tracking System</div>
+                    <ul class="body-list">
+                        <li><strong>Now/Next/Later:</strong> Visual priority columns.</li>
+                        <li><strong>3-Priority Rule:</strong> 1 objective, 3 tasks, 1 milestone.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <p>&copy; 2026 NOIZYLAB.CA | THE WISDOM PROJECT</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

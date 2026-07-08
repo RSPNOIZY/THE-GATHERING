@@ -1,0 +1,16 @@
+{
+  "name": "noizy-game-chase-bot",
+  "version": "1.0.0",
+  "description": "Discord Bot for Fish Music Archive Mission (NOI-29) - Massive Game Chase Down",
+  "main": "src/bot.js",
+  "scripts": {
+    "start": "node src/bot.js",
+    "check": "node --check src/bot.js"
+  },
+  "dependencies": {
+    "better-sqlite3": "^11.0.0",
+    "discord.js": "^14.15.0"
+  },
+  "author": "Robert Stephen Plowman / NOIZY.AI",
+  "license": "ISC"
+}

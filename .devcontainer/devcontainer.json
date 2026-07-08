@@ -1,0 +1,35 @@
+{
+  "name": "Node.js 22 & TypeScript Development",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:1-22-bookworm",
+  "features": {
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "installZsh": true,
+      "configureZshAsDefaultShell": true,
+      "upgradePackages": false
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "zsh"
+      },
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-eslint",
+        "usernamehw.errorlens",
+        "eamodio.gitlens",
+        "mhutchie.git-graph"
+      ]
+    }
+  },
+  "forwardPorts": [
+    8088
+  ],
+  "portsAttributes": {
+    "8088": {
+      "label": "Bot API Server",
+      "onAutoForward": "notify"
+    }
+  },
+  "postCreateCommand": "echo 'Dev Container started successfully! Run npm install inside your project subdirectories to get started.'"
+}

@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+:root {
+  --noizy-bg: #0D0D0D;
+  --noizy-surface: #1A1A1A;
+  --noizy-burgundy: #6B1D2A;
+  --noizy-brown: #4A3223;
+  --noizy-amber: #D4A03C;
+  --noizy-cream: #F5E6C8;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--noizy-bg);
+  color: #EDEDED;
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+/* Custom scrollbar — NOIZY Dark */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--noizy-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--noizy-brown);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--noizy-burgundy);
+}
+
+/* Focus styles — amber ring, not blue */
+*:focus-visible {
+  outline: 2px solid var(--noizy-amber);
+  outline-offset: 2px;
+}
+
+/* Selection color — burgundy */
+::selection {
+  background-color: rgba(107, 29, 42, 0.5);
+  color: #F5E6C8;
+}

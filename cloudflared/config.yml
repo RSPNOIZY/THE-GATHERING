@@ -1,0 +1,40 @@
+# NOIZY Dreamchamber — Cloudflared tunnel config
+# Place at: ~/.cloudflared/config.yml on the M2 Ultra (GOD.local)
+#
+# One-time setup:
+#   cloudflared tunnel login
+#   cloudflared tunnel create noizy-dreamchamber
+#   cloudflared tunnel route dns noizy-dreamchamber voice.noizy.ai
+#   cloudflared tunnel route dns noizy-dreamchamber gabriel.noizy.ai
+#   cloudflared tunnel run noizy-dreamchamber
+#
+# To run as a system service on macOS:
+#   sudo cloudflared service install
+
+tunnel: noizy-dreamchamber
+credentials-file: /Users/rsp/.cloudflared/noizy-dreamchamber.json
+
+# Optional: emit Prometheus metrics on localhost for local observability.
+metrics: localhost:2000
+
+# Log level — set to "info" in production, "debug" when troubleshooting.
+loglevel: info
+
+ingress:
+  # OpenCode MCP Server (voice-bridge-local) — fronted by the edge Worker at voice-mcp.noizy.ai
+  - hostname: voice.noizy.ai
+    service: http://localhost:4096
+    originRequest:
+      connectTimeout: 30s
+      tcpKeepAlive: 30s
+      noHappyEyeballs: false
+
+  # GABRIEL / Heaven voice pipeline
+  - hostname: gabriel.noizy.ai
+    service: http://localhost:17017
+    originRequest:
+      connectTimeout: 30s
+      tcpKeepAlive: 30s
+
+  # Catch-all — refuse anything not explicitly mapped.
+  - service: http_status:404

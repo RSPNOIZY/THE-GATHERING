@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NOIZY.AI — Your AI that actually understands your sound</title>
+  <meta name="description" content="NOIZY learns your creative DNA — then helps you build faster, release smarter, and grow louder." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    /* ============================================
+       DESIGN TOKENS
+    ============================================ */
+    :root {
+      --color-brand-primary: #7c3aed;
+      --color-brand-secondary: #2563eb;
+      --color-brand-accent: #0ea5e9;
+      --color-bg-base: #08090d;
+      --color-bg-surface: #0f1117;
+      --color-bg-elevated: #161b27;
+      --color-text-primary: #f8fafc;
+      --color-text-muted: #94a3b8;
+      --color-text-subtle: #475569;
+      --color-border: rgba(255,255,255,0.07);
+      --color-border-strong: rgba(255,255,255,0.12);
+      --gradient-brand: linear-gradient(135deg, #7c3aed 0%, #2563eb 55%, #0ea5e9 100%);
+      --gradient-text: linear-gradient(90deg, #e879f9 0%, #818cf8 50%, #38bdf8 100%);
+      --radius-card: 20px;
+      --radius-chip: 10px;
+      --radius-input: 12px;
+      --radius-button: 12px;
+      --shadow-cta: 0 0 32px rgba(124,58,237,0.4);
+      --shadow-cta-hover: 0 0 52px rgba(124,58,237,0.65);
+      --shadow-card: 0 24px 64px rgba(0,0,0,0.5);
+      --transition-fast: 0.15s ease;
+      --transition-bounce: 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+    }
+
+    /* ============================================
+       RESET & BASE
+    ============================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-sans);
+      background: var(--color-bg-base);
+      color: var(--color-text-primary);
+      min-height: 100vh;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    button { cursor: pointer; border: none; background: none; font-family: inherit; }
+    a { color: inherit; text-decoration: none; }
+    input { font-family: inherit; }
+
+    /* ============================================
+       NAVBAR
+    ============================================ */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 48px;
+      background: rgba(8,9,13,0.8);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--color-border);
+    }
+    .nav-logo {
+      font-size: 22px;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      background: var(--gradient-text);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .nav-links { display: flex; align-items: center; gap: 32px; }
+    .nav-link {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--color-text-muted);
+      transition: color var(--transition-fast);
+    }
+    .nav-link:hover { color: var(--color-text-primary); }
+    .nav-signin {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--color-text-primary);
+      padding: 8px 20px;
+      border: 1px solid var(--color-border-strong);
+      border-radius: 8px;
+      transition: all var(--transition-fast);
+    }
+    .nav-signin:hover {
+      border-color: rgba(124,58,237,0.5);
+      background: rgba(124,58,237,0.08);
+    }
+
+    /* ============================================
+       HERO SECTION
+    ============================================ */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 120px 48px 96px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -200px; left: -200px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(124,58,237,0.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -100px; right: -100px;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(14,165,233,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-grid {
+      max-width: 1280px;
+      margin: 0 auto;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 5fr 7fr;
+      gap: 64px;
+      align-items: center;
+    }
+
+    /* Hero Content */
+    .hero-content { position: relative; z-index: 2; }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      background: rgba(124,58,237,0.12);
+      border: 1px solid rgba(167,139,250,0.25);
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #a78bfa;
+      margin-bottom: 24px;
+      opacity: 0;
+      transform: translateY(8px);
+      animation: fadeUp 0.4s ease forwards;
+    }
+    .eyebrow-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: #a78bfa;
+      animation: pulse 2s ease infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.8); }
+    }
+    .hero-h1 {
+      font-size: clamp(42px, 4.5vw, 68px);
+      font-weight: 800;
+      line-height: 1.04;
+      letter-spacing: -0.03em;
+      color: var(--color-text-primary);
+      margin-bottom: 24px;
+      opacity: 0;
+      transform: translateY(12px);
+      animation: fadeUp 0.5s ease 0.1s forwards;
+    }
+    .hero-h1 em {
+      font-style: normal;
+      background: var(--gradient-text);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-sub {
+      font-size: 18px;
+      line-height: 1.65;
+      color: var(--color-text-muted);
+      max-width: 480px;
+      margin-bottom: 40px;
+      opacity: 0;
+      transform: translateY(8px);
+      animation: fadeUp 0.4s ease 0.25s forwards;
+    }
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 48px;
+      opacity: 0;
+      transform: translateY(8px) scale(0.97);
+      animation: fadeUpScale 0.35s ease 0.4s forwards;
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 16px 30px;
+      background: var(--color-brand-primary);
+      color: #fff;
+      font-size: 16px;
+      font-weight: 700;
+      border-radius: var(--radius-button);
+      box-shadow: var(--shadow-cta);
+      transition: all var(--transition-bounce);
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.08), transparent);
+    }
+    .btn-primary:hover {
+      background: #6d28d9;
+      box-shadow: var(--shadow-cta-hover);
+      transform: translateY(-2px) scale(1.02);
+    }
+    .btn-primary:active {
+      transform: translateY(0) scale(0.98);
+    }
+    .btn-secondary-link {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--color-text-muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all var(--transition-fast);
+    }
+    .btn-secondary-link:hover {
+      color: var(--color-text-primary);
+      gap: 10px;
+    }
+    .social-proof {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      opacity: 0;
+      animation: fadeUp 0.3s ease 0.55s forwards;
+    }
+    .stars { color: #fbbf24; font-size: 15px; letter-spacing: 1px; }
+    .proof-text {
+      font-size: 14px;
+      color: var(--color-text-muted);
+    }
+    .proof-text strong { color: var(--color-text-primary); }
+
+    /* Hero Visual */
+    .hero-visual {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      animation: fadeIn 0.8s ease 0.05s forwards;
+    }
+    .visual-card {
+      width: 100%;
+      max-width: 540px;
+      aspect-ratio: 4/3;
+      background: var(--color-bg-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 24px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow-card);
+    }
+    .visual-bg {
+      position: absolute;
+      inset: 0;
+      background: 
+        radial-gradient(circle at 30% 30%, rgba(124,58,237,0.3) 0%, transparent 60%),
+        radial-gradient(circle at 80% 70%, rgba(14,165,233,0.2) 0%, transparent 50%);
+    }
+    .waveform-container {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+    }
+    .waveform { display: flex; align-items: center; gap: 5px; height: 120px; }
+    .waveform-bar {
+      width: 4px;
+      border-radius: 100px;
+      background: var(--gradient-brand);
+      animation: waveAnim var(--dur, 1.2s) ease-in-out infinite alternate;
+      animation-delay: var(--delay, 0s);
+      transform-origin: center;
+    }
+    @keyframes waveAnim {
+      0% { transform: scaleY(0.15); opacity: 0.4; }
+      100% { transform: scaleY(1); opacity: 1; }
+    }
+    .visual-ui-card {
+      position: absolute;
+      background: rgba(15,17,23,0.9);
+      border: 1px solid var(--color-border-strong);
+      border-radius: 14px;
+      padding: 14px 18px;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+    .visual-card-1 {
+      bottom: 24px; left: 24px;
+      display: flex; align-items: center; gap: 12px;
+      animation: floatY 4s ease-in-out infinite;
+    }
+    .visual-card-2 {
+      top: 24px; right: 20px;
+      animation: floatY 3.5s ease-in-out 0.5s infinite;
+    }
+    @keyframes floatY {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+    .vc-icon {
+      width: 36px; height: 36px;
+      border-radius: 10px;
+      background: var(--gradient-brand);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px;
+    }
+    .vc-label { font-size: 12px; color: var(--color-text-muted); }
+    .vc-value { font-size: 15px; font-weight: 700; }
+    .vc2-row { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
+    .vc2-dot { width: 8px; height: 8px; border-radius: 50%; }
+    .vc2-text { font-size: 13px; font-weight: 600; }
+    .vc2-sub { font-size: 11px; color: var(--color-text-muted); }
+
+    /* Trust strip */
+    .trust-strip {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 48px 80px;
+      display: flex;
+      align-items: center;
+      gap: 48px;
+      opacity: 0;
+      animation: fadeIn 0.5s ease 0.8s forwards;
+    }
+    .trust-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--color-text-subtle);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      white-space: nowrap;
+    }
+    .trust-logos { display: flex; align-items: center; gap: 40px; }
+    .trust-logo {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--color-text-subtle);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: color var(--transition-fast);
+    }
+    .trust-logo:hover { color: var(--color-text-muted); }
+
+    /* Animations */
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeUpScale {
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    /* ============================================
+       MODAL
+    ============================================ */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      background: rgba(4,5,8,0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+    .modal-backdrop.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+    .modal-card {
+      background: #0f1117;
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: 24px;
+      width: 100%;
+      max-width: 480px;
+      padding: 40px;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.04);
+      position: relative;
+      transform: scale(0.92);
+      opacity: 0;
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.25s ease;
+    }
+    .modal-backdrop.open .modal-card {
+      transform: scale(1);
+      opacity: 1;
+    }
+    .modal-close {
+      position: absolute;
+      top: 20px; right: 20px;
+      width: 32px; height: 32px;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.06);
+      color: var(--color-text-muted);
+      font-size: 18px;
+      display: flex; align-items: center; justify-content: center;
+      transition: all var(--transition-fast);
+    }
+    .modal-close:hover { background: rgba(255,255,255,0.1); color: var(--color-text-primary); }
+    .modal-glyph {
+      width: 52px; height: 52px;
+      border-radius: 14px;
+      background: var(--gradient-brand);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 26px;
+      margin-bottom: 24px;
+      box-shadow: 0 8px 24px rgba(124,58,237,0.4);
+    }
+    .modal-h2 {
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin-bottom: 10px;
+    }
+    .modal-sub {
+      font-size: 15px;
+      color: var(--color-text-muted);
+      line-height: 1.55;
+      margin-bottom: 28px;
+    }
+    .form-group { margin-bottom: 20px; }
+    .form-label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--color-text-muted);
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .form-input {
+      width: 100%;
+      padding: 14px 16px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-input);
+      color: var(--color-text-primary);
+      font-size: 16px;
+      font-weight: 500;
+      outline: none;
+      transition: all var(--transition-fast);
+    }
+    .form-input::placeholder { color: var(--color-text-subtle); }
+    .form-input:focus {
+      border-color: rgba(124,58,237,0.6);
+      background: rgba(124,58,237,0.05);
+      box-shadow: 0 0 0 3px rgba(124,58,237,0.15);
+    }
+    .form-input.error {
+      border-color: rgba(239,68,68,0.6);
+      box-shadow: 0 0 0 3px rgba(239,68,68,0.12);
+      animation: shake 0.35s ease;
+    }
+    .form-error {
+      font-size: 13px;
+      color: #f87171;
+      margin-top: 6px;
+      display: none;
+    }
+    .form-error.visible { display: block; }
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20% { transform: translateX(-6px); }
+      40% { transform: translateX(6px); }
+      60% { transform: translateX(-4px); }
+      80% { transform: translateX(4px); }
+    }
+    .prefs-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+    .pref-chip {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 14px 8px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-chip);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--color-text-muted);
+      transition: all var(--transition-bounce);
+      user-select: none;
+    }
+    .pref-chip-icon {
+      font-size: 22px;
+      transition: transform var(--transition-bounce);
+    }
+    .pref-chip:hover {
+      border-color: rgba(124,58,237,0.4);
+      background: rgba(124,58,237,0.06);
+      color: var(--color-text-primary);
+      transform: translateY(-2px);
+    }
+    .pref-chip.selected {
+      background: rgba(124,58,237,0.18);
+      border-color: #7c3aed;
+      color: #a78bfa;
+    }
+    .pref-chip.selected .pref-chip-icon {
+      transform: scale(1.2);
+    }
+    .btn-submit {
+      width: 100%;
+      padding: 16px;
+      background: var(--color-brand-primary);
+      color: #fff;
+      font-size: 16px;
+      font-weight: 700;
+      border-radius: var(--radius-button);
+      box-shadow: var(--shadow-cta);
+      transition: all var(--transition-bounce);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-submit::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.08), transparent);
+    }
+    .btn-submit:hover:not(:disabled) {
+      background: #6d28d9;
+      box-shadow: var(--shadow-cta-hover);
+      transform: translateY(-2px);
+    }
+    .btn-submit:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+    .btn-submit.loading { background: #4c1d95; }
+    .btn-submit.success { background: linear-gradient(135deg, #059669, #10b981); box-shadow: 0 0 32px rgba(16,185,129,0.4); }
+    .btn-submit.error-state { background: linear-gradient(135deg, #991b1b, #ef4444); }
+    .spinner {
+      width: 18px; height: 18px;
+      border: 2px solid rgba(255,255,255,0.3);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin 0.6s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .modal-legal {
+      font-size: 12px;
+      color: var(--color-text-subtle);
+      text-align: center;
+      line-height: 1.6;
+    }
+    .modal-legal a { color: var(--color-text-muted); text-decoration: underline; }
+    .trust-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      margin-top: 16px;
+      font-size: 12px;
+      color: var(--color-text-subtle);
+    }
+    .trust-badge {
+      display: flex; align-items: center; gap: 4px;
+    }
+    .trust-sep { color: var(--color-border); margin: 0 4px; }
+
+    /* ============================================
+       COPY VARIANT SWITCHER (prototype utility)
+    ============================================ */
+    .variant-bar {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--color-bg-elevated);
+      border: 1px solid var(--color-border-strong);
+      border-radius: 100px;
+      padding: 8px 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      z-index: 300;
+      font-size: 12px;
+      color: var(--color-text-muted);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+    }
+    .variant-btn {
+      padding: 5px 14px;
+      border-radius: 100px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--color-text-muted);
+      transition: all var(--transition-fast);
+    }
+    .variant-btn.active {
+      background: var(--gradient-brand);
+      color: #fff;
+    }
+    .variant-btn:hover:not(.active) { color: var(--color-text-primary); }
+
+    /* ============================================
+       RESPONSIVE
+    ============================================ */
+    @media (max-width: 900px) {
+      .nav { padding: 18px 24px; }
+      .nav-links .nav-link { display: none; }
+      .hero { padding: 100px 24px 60px; }
+      .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+      .hero-visual { order: -1; }
+      .hero-h1 { font-size: clamp(34px, 9vw, 48px); }
+      .trust-strip { padding: 0 24px 60px; flex-wrap: wrap; gap: 24px; }
+      .trust-logos { gap: 24px; flex-wrap: wrap; }
+      .prefs-grid { grid-template-columns: repeat(3, 1fr); }
+      .modal-card { padding: 28px 24px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-delay: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <span class="nav-logo">NOIZY.AI</span>
+    <div class="nav-links">
+      <a href="#" class="nav-link">Pricing</a>
+      <a href="#" class="nav-link">Features</a>
+      <a href="#" class="nav-signin" id="nav-signin">Sign In</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" aria-labelledby="hero-headline">
+    <div class="hero-grid">
+
+      <!-- Content -->
+      <div class="hero-content">
+        <div class="eyebrow" role="note">
+          <div class="eyebrow-dot" aria-hidden="true"></div>
+          <span id="eyebrow-text">⚡ Now in Early Access</span>
+        </div>
+        <h1 class="hero-h1" id="hero-headline">
+          Your AI that actually <em id="h1-gradient">understands</em><br>your sound
+        </h1>
+        <p class="hero-sub" id="hero-sub">
+          NOIZY learns your creative DNA — then helps you build faster, release smarter, and grow louder. No templates. No guessing.
+        </p>
+        <div class="hero-actions">
+          <button
+            class="btn-primary"
+            id="hero-cta"
+            aria-haspopup="dialog"
+            onclick="openModal()"
+          >
+            <span id="cta-label">Start Free — No credit card</span>
+            <span aria-hidden="true">→</span>
+          </button>
+          <a href="#" class="btn-secondary-link" id="hero-secondary-link">
+            Watch 90-sec demo <span aria-hidden="true">→</span>
+          </a>
+        </div>
+        <div class="social-proof" aria-label="Customer ratings">
+          <div class="stars" aria-label="5 stars">★★★★★</div>
+          <p class="proof-text" id="proof-text">
+            <strong>"Finally, an AI built for producers."</strong> — 2,400+ creators
+          </p>
+        </div>
+      </div>
+
+      <!-- Visual -->
+      <div class="hero-visual" aria-hidden="true">
+        <div class="visual-card">
+          <div class="visual-bg"></div>
+
+          <!-- Waveform bars -->
+          <div class="waveform-container">
+            <div class="waveform" id="waveform"></div>
+          </div>
+
+          <!-- Floating UI cards -->
+          <div class="visual-ui-card visual-card-1">
+            <div class="vc-icon">🎛️</div>
+            <div>
+              <div class="vc-label">Track analysis</div>
+              <div class="vc-value">98.4% ready</div>
+            </div>
+          </div>
+
+          <div class="visual-ui-card visual-card-2">
+            <div class="vc2-row">
+              <div class="vc2-dot" style="background:#10b981"></div>
+              <div class="vc2-text">AI Mix Engine</div>
+            </div>
+            <div class="vc2-sub">Processing your session…</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST STRIP -->
+  <div class="trust-strip" aria-label="Trusted by leading creators">
+    <span class="trust-label">Trusted by</span>
+    <div class="trust-logos">
+      <span class="trust-logo">Republic</span>
+      <span class="trust-logo">Interscope</span>
+      <span class="trust-logo">Sony Music</span>
+      <span class="trust-logo">Ableton</span>
+    </div>
+  </div>
+
+  <!-- SIGNUP MODAL -->
+  <div
+    class="modal-backdrop"
+    id="modal-backdrop"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="modal-headline"
+    tabindex="-1"
+  >
+    <div class="modal-card" id="modal-card">
+      <button
+        class="modal-close"
+        id="modal-close"
+        aria-label="Close signup dialog"
+        onclick="closeModal()"
+      >✕</button>
+
+      <div class="modal-glyph" aria-hidden="true">🎛️</div>
+
+      <h2 class="modal-h2" id="modal-headline">
+        You're 30 seconds from your<br>first AI mix session
+      </h2>
+      <p class="modal-sub" id="modal-sub">
+        Drop your email and tell us what you make. That's it.
+      </p>
+
+      <form id="signup-form" onsubmit="handleSubmit(event)" novalidate>
+        <div class="form-group">
+          <label class="form-label" for="email-input">Email address</label>
+          <input
+            type="email"
+            id="email-input"
+            class="form-input"
+            placeholder="your@email.com"
+            autocomplete="email"
+            inputmode="email"
+            aria-required="true"
+            aria-describedby="email-error"
+          />
+          <div class="form-error" id="email-error" role="alert">
+            That doesn't look right — check your email
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">What do you create?</label>
+          <div class="prefs-grid" role="group" aria-label="Select your creator type">
+            <button type="button" class="pref-chip" data-pref="beats" onclick="selectPref(this)" aria-pressed="false">
+              <span class="pref-chip-icon" aria-hidden="true">🎹</span>Beats
+            </button>
+            <button type="button" class="pref-chip" data-pref="band" onclick="selectPref(this)" aria-pressed="false">
+              <span class="pref-chip-icon" aria-hidden="true">🎸</span>Bands
+            </button>
+            <button type="button" class="pref-chip" data-pref="solo" onclick="selectPref(this)" aria-pressed="false">
+              <span class="pref-chip-icon" aria-hidden="true">🎤</span>Solo
+            </button>
+            <button type="button" class="pref-chip" data-pref="mixing" onclick="selectPref(this)" aria-pressed="false">
+              <span class="pref-chip-icon" aria-hidden="true">🎚️</span>Mix/Master
+            </button>
+            <button type="button" class="pref-chip" data-pref="podcast" onclick="selectPref(this)" aria-pressed="false">
+              <span class="pref-chip-icon" aria-hidden="true">🎙️</span>Podcast
+            </button>
+            <button type="button" class="pref-chip" data-pref="other" onclick="selectPref(this)" aria-pressed="false">
+              <span class="pref-chip-icon" aria-hidden="true">✦</span>Other
+            </button>
+          </div>
+        </div>
+
+        <button
+          type="submit"
+          class="btn-submit"
+          id="submit-btn"
+          disabled
+          aria-disabled="true"
+        >
+          <span id="submit-label">Let's go →</span>
+        </button>
+      </form>
+
+      <p class="modal-legal">
+        By continuing you agree to our
+        <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.
+      </p>
+      <div class="trust-row">
+        <span class="trust-badge">🔒 No credit card</span>
+        <span class="trust-sep">·</span>
+        <span class="trust-badge">Cancel anytime</span>
+        <span class="trust-sep">·</span>
+        <span class="trust-badge">Free forever plan</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- COPY VARIANT SWITCHER (prototype utility) -->
+  <div class="variant-bar" role="group" aria-label="Copy variant selector">
+    <span>Copy variant:</span>
+    <button class="variant-btn active" id="var-a" onclick="setVariant('A')">2A</button>
+    <button class="variant-btn" id="var-b" onclick="setVariant('B')">2B</button>
+    <button class="variant-btn" id="var-c" onclick="setVariant('C')">2C</button>
+  </div>
+
+  <script>
+    /* ============================
+       WAVEFORM BARS
+    ============================ */
+    (function buildWaveform() {
+      const bars = 48;
+      const wf = document.getElementById('waveform');
+      const heights = [0.2,0.35,0.55,0.7,0.9,1,0.85,0.6,0.4,0.25,0.45,0.65,0.88,1,0.95,0.7,0.5,0.3,0.2,
+        0.38,0.6,0.85,1,0.9,0.72,0.5,0.28,0.18,0.42,0.68,0.9,1,0.88,0.65,0.45,0.22,
+        0.3,0.55,0.75,0.92,1,0.8,0.6,0.35,0.25,0.48,0.7,0.9];
+      heights.forEach((h, i) => {
+        const bar = document.createElement('div');
+        bar.className = 'waveform-bar';
+        bar.style.setProperty('--dur', `${0.8 + Math.random() * 0.8}s`);
+        bar.style.setProperty('--delay', `${Math.random() * 0.6}s`);
+        bar.style.height = `${h * 100}%`;
+        wf.appendChild(bar);
+      });
+    })();
+
+    /* ============================
+       MODAL
+    ============================ */
+    const backdrop = document.getElementById('modal-backdrop');
+    let selectedPref = null;
+    let emailValid = false;
+
+    function openModal() {
+      trackEvent('hero_cta_click', { copy_variant: currentVariant, cta_label: document.getElementById('cta-label').textContent });
+      backdrop.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      setTimeout(() => document.getElementById('email-input').focus(), 320);
+      trackEvent('modal_open', { copy_variant: currentVariant, trigger_source: 'hero_cta' });
+    }
+
+    function closeModal() {
+      const emailFilled = document.getElementById('email-input').value.length > 0;
+      trackEvent('modal_close', { reason: 'x_button', email_filled: emailFilled, pref_selected: !!selectedPref });
+      backdrop.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    // Backdrop click closes
+    backdrop.addEventListener('click', (e) => {
+      if (e.target === backdrop) {
+        trackEvent('modal_close', { reason: 'backdrop', email_filled: document.getElementById('email-input').value.length > 0, pref_selected: !!selectedPref });
+        backdrop.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+    });
+
+    // Escape closes
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && backdrop.classList.contains('open')) {
+        trackEvent('modal_close', { reason: 'escape' });
+        closeModal();
+      }
+    });
+
+    /* ============================
+       EMAIL VALIDATION
+    ============================ */
+    const emailInput = document.getElementById('email-input');
+    emailInput.addEventListener('blur', validateEmail);
+    emailInput.addEventListener('input', () => {
+      if (emailInput.classList.contains('error')) validateEmail();
+      updateSubmit();
+    });
+
+    function validateEmail() {
+      const val = emailInput.value;
+      const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
+      const errEl = document.getElementById('email-error');
+      if (!valid && val.length > 0) {
+        emailInput.classList.add('error');
+        errEl.classList.add('visible');
+        emailValid = false;
+      } else {
+        emailInput.classList.remove('error');
+        errEl.classList.remove('visible');
+        emailValid = valid;
+        if (valid) trackEvent('email_entered', { copy_variant: currentVariant });
+      }
+      updateSubmit();
+    }
+
+    /* ============================
+       PREFERENCE SELECTION
+    ============================ */
+    function selectPref(el) {
+      document.querySelectorAll('.pref-chip').forEach(c => {
+        c.classList.remove('selected');
+        c.setAttribute('aria-pressed', 'false');
+      });
+      el.classList.add('selected');
+      el.setAttribute('aria-pressed', 'true');
+      selectedPref = el.dataset.pref;
+      trackEvent('preference_selected', { preference_id: selectedPref, copy_variant: currentVariant });
+      updateSubmit();
+    }
+
+    function updateSubmit() {
+      const btn = document.getElementById('submit-btn');
+      const ready = emailValid && selectedPref;
+      btn.disabled = !ready;
+      btn.setAttribute('aria-disabled', String(!ready));
+    }
+
+    /* ============================
+       FORM SUBMISSION
+    ============================ */
+    async function handleSubmit(e) {
+      e.preventDefault();
+      const btn = document.getElementById('submit-btn');
+      const label = document.getElementById('submit-label');
+      trackEvent('signup_attempted', { copy_variant: currentVariant, preference_id: selectedPref });
+
+      // Loading state
+      btn.classList.add('loading');
+      btn.disabled = true;
+      label.innerHTML = '<div class="spinner"></div> Setting up your workspace…';
+
+      // Simulate API call
+      await new Promise(r => setTimeout(r, 1800));
+
+      // Success state
+      btn.classList.remove('loading');
+      btn.classList.add('success');
+      label.textContent = '✓ Welcome to NOIZY!';
+      trackEvent('signup_complete', { copy_variant: currentVariant, preference_id: selectedPref, time_to_complete_ms: 1800 });
+
+      // Redirect simulation
+      setTimeout(() => {
+        btn.textContent = '→ Opening your dashboard…';
+      }, 800);
+    }
+
+    /* ============================
+       COPY VARIANTS
+    ============================ */
+    let currentVariant = 'A';
+    const variants = {
+      A: {
+        eyebrow: '⚡ Now in Early Access',
+        h1: 'Your AI that actually <em>understands</em><br>your sound',
+        sub: 'NOIZY learns your creative DNA — then helps you build faster, release smarter, and grow louder. No templates. No guessing.',
+        cta: 'Start Free — No credit card',
+        secondary: 'Watch 90-sec demo →',
+        proof: '<strong>"Finally, an AI built for producers."</strong> — 2,400+ creators',
+        modalH2: 'You\'re 30 seconds from your<br>first AI mix session',
+        modalSub: 'Drop your email and tell us what you make. That\'s it.',
+        modalCta: 'Let\'s go →',
+      },
+      B: {
+        eyebrow: '🔒 Limited Beta · 847 spots left',
+        h1: 'The AI studio your competitors<br>don\'t know about <em>yet</em>',
+        sub: 'NOIZY is the unfair advantage serious creators are using to 10× their output — without burning out.',
+        cta: 'Claim My Spot Free',
+        secondary: 'See what\'s inside →',
+        proof: 'Joined by top producers from <strong>Republic, Interscope & Sony</strong>',
+        modalH2: 'Almost there — you\'re<br>#848 in line',
+        modalSub: 'Reserve your spot in 20 seconds.',
+        modalCta: 'Reserve My Spot',
+      },
+      C: {
+        eyebrow: '🎚️ AI for serious music creators',
+        h1: 'Mix. Master. Market.<br>All in one <em>AI workspace</em>',
+        sub: 'From rough idea to release-ready track — NOIZY covers production insight, distribution strategy, and fan growth in one dashboard.',
+        cta: 'Try NOIZY Free',
+        secondary: 'Explore features →',
+        proof: 'Used by <strong>2,400+ producers</strong>, beatmakers and artists worldwide',
+        modalH2: 'Create your<br>free account',
+        modalSub: 'Takes 30 seconds. No payment needed.',
+        modalCta: 'Create Account',
+      }
+    };
+
+    function setVariant(key) {
+      currentVariant = key;
+      const v = variants[key];
+      document.getElementById('eyebrow-text').textContent = v.eyebrow;
+      document.getElementById('hero-headline').innerHTML = v.h1;
+      document.getElementById('hero-sub').textContent = v.sub;
+      document.getElementById('cta-label').textContent = v.cta;
+      document.getElementById('hero-secondary-link').innerHTML = v.secondary;
+      document.getElementById('proof-text').innerHTML = v.proof;
+      document.getElementById('modal-headline').innerHTML = v.modalH2;
+      document.getElementById('modal-sub').textContent = v.modalSub;
+      if (document.getElementById('submit-label').textContent !== '✓ Welcome to NOIZY!') {
+        document.getElementById('submit-label').textContent = v.modalCta;
+      }
+
+      // Re-apply gradient on re-render
+      document.querySelectorAll('.hero-h1 em').forEach(em => {
+        em.removeAttribute('style');
+      });
+
+      document.querySelectorAll('.variant-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById('var-' + key.toLowerCase()).classList.add('active');
+    }
+
+    /* ============================
+       ANALYTICS STUB
+    ============================ */
+    function trackEvent(name, props) {
+      console.log('[NOIZY Analytics]', name, { ...props, timestamp: Date.now() });
+      // Replace with: analytics.track(name, props);
+    }
+
+    // Track hero view on load
+    window.addEventListener('load', () => {
+      trackEvent('hero_viewed', { copy_variant: currentVariant, session_id: 'demo-session' });
+    });
+  </script>
+</body>
+</html>

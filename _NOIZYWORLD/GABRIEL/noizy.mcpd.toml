@@ -1,0 +1,406 @@
+# ═══════════════════════════════════════════════════════════════════════════
+#  NOIZY EMPIRE — MCP Fleet Configuration
+#  .mcpd.toml · GABRIEL Crew Declaration
+#  GOD.local · M2 Ultra 192GB · 10.90.90.10
+#
+#  "requirements.txt for agentic systems" — mozilla-ai/mcpd
+#
+#  Usage:
+#    brew install mcpd           (or: brew tap mozilla-ai/tap && brew install mcpd)
+#    cd ~/NOIZYLAB
+#    mcpd init                   (creates .mcpd.toml — or use this file)
+#    mcpd start                  (starts all servers on http://localhost:8090)
+#    mcpd start --reload         (hot reload on SIGHUP — no restart needed)
+#
+#  HTTP API (once running):
+#    curl http://localhost:8090/api/v1/servers/lucy-mcp/tools/lucy_status
+#    curl -X POST http://localhost:8090/api/v1/servers/gabriel-mcp/tools/gabriel_speak \
+#         -H "Content-Type: application/json" \
+#         -d '{"text": "Overnight batch complete"}'
+#
+#  GABRIEL calls crew via Python:
+#    import httpx
+#    httpx.post("http://localhost:8090/api/v1/servers/lucy-mcp/tools/lucy_intake_receive",
+#               json={"data": ..., "source": "gabriel"})
+#
+#  SIGHUP hot reload:
+#    kill -HUP $(cat ~/.mcpd/mcpd.pid)
+#
+#  Docs: https://mozilla-ai.github.io/mcpd/
+# ═══════════════════════════════════════════════════════════════════════════
+
+# ── API SERVER ──────────────────────────────────────────────────────────────
+
+[api]
+addr = "127.0.0.1:8090"    # local only — Cloudflare Tunnel handles external
+
+[api.timeout]
+shutdown = "30s"
+
+[api.cors]
+enable = false              # no CORS needed — same-host only
+
+
+# ── MCP TIMEOUTS ───────────────────────────────────────────────────────────
+
+[mcp.timeout]
+init = "30s"                # some agents need time to load Ollama models
+
+[mcp.interval]
+health = "30s"              # health check every 30s
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+#  CREW MANIFEST
+#  10 NOIZY agents + system MCP servers
+#
+#  From swap-to-gemma4.sh — the canonical agent roster:
+#    gabriel-mind     → dispatcher / orchestrator
+#    family-keeper    → family schedules, medical, domestic
+#    dream-weaver     → creative engine, music concepts
+#    vox-architect    → voice pipelines, TTS/STT, NOIZYVOX
+#    heaven-forger    → infrastructure, Cloudflare, Docker
+#    mission-control  → task tracking, project status
+#    consent-guardian → privacy law, NCP v1.0, COPPA
+#    wisdom-scribe    → documentation, architecture decisions
+#    fish-cataloguer  → THE AQUARIUM, 888 titles, ISRC
+#    kidz-worldbuilder → NOIZYKIDZ content, ages 2-8
+# ═══════════════════════════════════════════════════════════════════════════
+
+
+# ── LUCY MCP ─────────────────────────────────────────────────────────────
+# DAZEFLOW keeper · Task log · Session index · INTAKE PIPELINE
+# Source: ~/NOIZYANTHROPIC/repos/lucy-mcp/ (already deployed locally)
+
+[[servers]]
+name        = "lucy-mcp"
+package     = "path::~/NOIZYANTHROPIC/RSPNOIZY/mcp/lucy-mcp"
+tools       = [
+  "lucy_dazeflow_today",
+  "lucy_dazeflow_log",
+  "lucy_dazeflow_close",
+  "lucy_dazeflow_history",
+  "lucy_task_list",
+  "lucy_task_add",
+  "lucy_task_done",
+  "lucy_task_drop",
+  "lucy_intake_receive",
+  "lucy_intake_classify",
+  "lucy_intake_synthesize",
+  "lucy_intake_archive",
+  "lucy_intake_search",
+  "lucy_intake_queue",
+  "lucy_intake_status",
+  "lucy_memcell_list",
+  "lucy_memcell_write",
+  "lucy_status",
+]
+
+
+# ── SUPERSONIC MCP ─────────────────────────────────────────────────────────
+# Empire-wide: Heaven, Gabriel, CB01, SHIRL, POPS, ENGR_KEITH, DREAM
+# Already running on GOD.local — expose via mcpd HTTP
+
+[[servers]]
+name        = "supersonic"
+package     = "path::~/NOIZYANTHROPIC/repos/supersonic"
+tools       = [
+  "heaven_health",
+  "heaven_kpi",
+  "heaven_ledger",
+  "heaven_status",
+  "gabriel_speak",
+  "gabriel_dispatch",
+  "deploy_health_check",
+  "deploy_smoke_test",
+  "deploy_status",
+  "infra_processes",
+  "infra_disk",
+  "infra_health",
+  "infra_ollama",
+  "family_shirl_check",
+  "family_break_reminder",
+  "family_session_check",
+  "family_pops_wisdom",
+  "dream_vision_check",
+  "dream_roadmap",
+  "dream_status",
+  "consent_check",
+  "consent_audit",
+]
+
+
+# ── FAMILY MCP ─────────────────────────────────────────────────────────────
+# SHIRL · POPS · wellbeing guardian
+
+[[servers]]
+name        = "family-mcp"
+package     = "path::~/NOIZYANTHROPIC/RSPNOIZY/mcp/family-mcp"
+tools       = [
+  "family_break_reminder",
+  "family_celebrate",
+  "family_pops_wisdom",
+  "family_session_check",
+  "family_shirl_check",
+  "family_status",
+]
+
+
+# ── HEAVEN MCP (once NOI-90 is fixed) ─────────────────────────────────────
+# CONSENT KERNEL — currently Hello World stub (NOI-90 blocks)
+# Uncomment after fixing D1 UUID in wrangler.toml
+
+# [[servers]]
+# name        = "heaven-mcp"
+# package     = "path::~/NOIZYANTHROPIC/repos/heaven-mcp"
+# tools       = [
+#   "h17_health",
+#   "h17_actors",
+#   "h17_consent_tokens",
+#   "h17_never_clauses",
+#   "h17_ledger",
+#   "h17_kpi",
+#   "h17_gabriel",
+#   "h17_audit",
+#   "h17_rate_table",
+#   "h17_union_tiers",
+# ]
+# [servers.heaven-mcp.env]
+# HEAVEN_URL     = "https://heaven.rsp-5f3.workers.dev"
+
+
+# ── DREAM MCP ──────────────────────────────────────────────────────────────
+# 5th Epoch doctrine alignment
+
+[[servers]]
+name        = "dream-mcp"
+package     = "path::~/NOIZYANTHROPIC/RSPNOIZY/mcp/dream-mcp"
+tools       = [
+  "dream_elevator_pitch",
+  "dream_prioritize",
+  "dream_roadmap",
+  "dream_status",
+  "dream_vision_check",
+]
+
+
+# ── CB01 MCP ───────────────────────────────────────────────────────────────
+# Deployment · Health checks · Smoke tests
+
+[[servers]]
+name        = "cb01-mcp"
+package     = "path::~/NOIZYANTHROPIC/RSPNOIZY/mcp/cb01-mcp"
+tools       = [
+  "cb01_deploy_status",
+  "cb01_domain_audit",
+  "cb01_env_check",
+  "cb01_godaddy_checklist",
+  "cb01_health_check",
+  "cb01_smoke_test",
+  "cb01_status",
+]
+
+
+# ── ENGR-KEITH MCP ─────────────────────────────────────────────────────────
+# Infrastructure · Schema · Heaven kernel
+
+[[servers]]
+name        = "engr-keith-mcp"
+package     = "path::~/NOIZYANTHROPIC/RSPNOIZY/mcp/engr-keith-mcp"
+tools       = [
+  "engr_keith_architecture",
+  "engr_keith_endpoint_map",
+  "engr_keith_migration_plan",
+  "engr_keith_perf_report",
+  "engr_keith_schema_check",
+  "engr_keith_status",
+]
+
+
+# ── SHIRLEY MCP (code manager) ─────────────────────────────────────────────
+# Code stats · Dependency audit · TODO finder
+
+[[servers]]
+name        = "shirley-mcp"
+package     = "path::~/NOIZYANTHROPIC/RSPNOIZY/mcp/shirley-mcp"
+tools       = [
+  "shirley_code_stats",
+  "shirley_dep_audit",
+  "shirley_file_inventory",
+  "shirley_find_todos",
+  "shirley_format_check",
+  "shirley_status",
+]
+
+
+# ── LUCY-FILES MCP ─────────────────────────────────────────────────────────
+# TagSpaces · folder scan · index · dedup · rename preview
+# Already deployed on GOD.local at ~/lucy-files-mcp/
+
+[[servers]]
+name        = "lucy-files"
+package     = "path::~/lucy-files-mcp"
+tools       = [
+  "apply_tags",
+  "execute_plan",
+  "find_duplicates",
+  "generate_index",
+  "preview_rename",
+  "preview_reorganize",
+  "repair_metadata",
+  "scan_folder",
+]
+
+
+# ── CONSENT ORACLE MCP ─────────────────────────────────────────────────────
+# NCP v1.0 · audit trail · voice registry
+
+[[servers]]
+name        = "consent-oracle"
+package     = "path::~/NOIZYANTHROPIC/RSPNOIZY/mcp/consent-oracle"
+tools       = [
+  "audit_trail",
+  "can_i_do",
+  "grant_consent",
+  "log_mutation",
+  "query_grants",
+  "register_voice",
+  "revoke_consent",
+  "voice_registry_list",
+]
+
+
+# ── NOIZYBEAST MCP (write operations — high power) ─────────────────────────
+# Compression · Move · Verified copy · Transcode
+# Safety: Worker checks Pulse before calling these
+
+[[servers]]
+name        = "noizybeast-mcp"
+package     = "path::~/NOIZYANTHROPIC/RSPNOIZY/mcp/noizybeast-mcp"
+tools       = [
+  "compress_dir",
+  "guardian_kick",
+  "parallel_hash",
+  "rclone_sync",
+  "scan_all_drives",
+  "transcode",
+  "verified_move",
+]
+
+
+# ── NOIZYANTHROPIC MCP (read-only tools) ───────────────────────────────────
+# Disk usage · File search · Content search · SQLite · Media probe
+
+[[servers]]
+name        = "noizyanthropic-mcp"
+package     = "path::~/NOIZYANTHROPIC/RSPNOIZY/mcp/noizyanthropic-mcp"
+tools       = [
+  "checksum",
+  "dedupe_scan",
+  "disk_usage",
+  "find_files",
+  "foss_run",
+  "guardian_status",
+  "json_query",
+  "largest_files",
+  "media_probe",
+  "recent_changes",
+  "search_content",
+  "sqlite_query",
+  "text_extract",
+  "tool_inventory",
+]
+
+
+# ── SYNTHESIS ORACLE MCP ───────────────────────────────────────────────────
+# Voice synthesis · Transcription · Analysis
+
+[[servers]]
+name        = "synthesis-oracle"
+package     = "path::~/NOIZYANTHROPIC/RSPNOIZY/mcp/synthesis-oracle"
+tools       = [
+  "analyze_voice",
+  "compare_voices",
+  "pipeline_status",
+  "synthesize",
+  "transcribe",
+]
+
+
+# ── AUDIO MCP ──────────────────────────────────────────────────────────────
+# DreamChamber audio: mute/solo/volume/record
+# Used by GABRIEL to control DreamChamber sessions
+
+[[servers]]
+name        = "audio-mcp"
+package     = "path::~/NOIZYANTHROPIC/RSPNOIZY/mcp/audio-mcp"
+tools       = [
+  "dreamchamber_bring_in",
+  "dreamchamber_close",
+  "dreamchamber_mute",
+  "dreamchamber_open",
+  "dreamchamber_record",
+  "dreamchamber_remove",
+  "dreamchamber_setup_guide",
+  "dreamchamber_solo",
+  "dreamchamber_status",
+  "dreamchamber_stop_recording",
+  "dreamchamber_unmute",
+  "dreamchamber_unmute_all",
+  "dreamchamber_volume",
+]
+
+
+# ── N8N MCP (once integrated) ──────────────────────────────────────────────
+# Lucy's bridge to automation workflows
+# n8n is already running on GOD.local (14 PIDs detected)
+
+[[servers]]
+name        = "n8n-mcp"
+package     = "npx::@n8n/mcp-server@latest"
+tools       = [
+  "n8n_list_workflows",
+  "n8n_get_workflow",
+  "n8n_create_workflow",
+  "n8n_test_workflow",
+  "n8n_validate_workflow",
+  "n8n_health_check",
+]
+required_env = ["N8N_API_KEY"]
+
+[servers.n8n-mcp.env]
+N8N_BASE_URL = "http://localhost:5678"
+
+
+# ── GEMMA3 LOCAL MCP ───────────────────────────────────────────────────────
+# Ask Gemma3:27b running on GOD.local directly
+
+[[servers]]
+name        = "gemma3"
+package     = "path::~/NOIZYANTHROPIC/RSPNOIZY/mcp/gemma3-mcp"
+tools       = [
+  "gemma3_ask",
+  "noizy_setup_guide",
+  "ollama_models",
+  "run_shell",
+  "cloudflare_status",
+  "list_dir",
+  "read_file",
+  "write_file",
+  "voice_pipeline_status",
+]
+
+
+# ── VOICE BRIDGE MCP ───────────────────────────────────────────────────────
+# RSP voice command pipeline · Heaven query · System status
+
+[[servers]]
+name        = "voice-bridge"
+package     = "path::~/NOIZYANTHROPIC/RSPNOIZY/mcp/voice-bridge"
+tools       = [
+  "claude_tower",
+  "heaven_query",
+  "run_script",
+  "system_status",
+  "voice_command",
+]
