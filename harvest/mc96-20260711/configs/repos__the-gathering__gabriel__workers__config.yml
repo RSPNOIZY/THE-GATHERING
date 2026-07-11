@@ -1,0 +1,21 @@
+# Cloudflare Tunnel Config for GABRIEL
+# Location: C:\Users\<USER>\.cloudflared\config.yml
+
+tunnel: <TUNNEL_ID>
+credentials-file: C:\Users\<USER>\.cloudflared\<TUNNEL_ID>.json
+
+ingress:
+  # Main HTTP service (local server on GABRIEL)
+  - hostname: gabriel.fishmusicinc.com
+    service: http://localhost:8080
+  
+  # SSH (if enabled)
+  - hostname: gabriel-ssh.fishmusicinc.com
+    service: ssh://localhost:22
+  
+  # RDP (browser-based)
+  - hostname: gabriel-rdp.fishmusicinc.com
+    service: rdp://localhost:3389
+  
+  # Catch-all (required)
+  - service: http_status:404

@@ -1,0 +1,41 @@
+# ═══════════════════════════════════════════════════════════════════════════════
+# NOIZY.AI SECRETS MANIFEST
+# Asset: Cloudflare Account API Token
+# Managed By: @OXYGEN.IO / ENGR
+# Canonical Repo: THE-GATHERING
+#
+# ⚠️  THIS FILE CONTAINS NO RAW SECRETS.
+#     Actual tokens live in: Mac Keychain (local) + Cloudflare Secrets (remote)
+#     Set via: npx wrangler secret put <KEY> --name heaven
+# ═══════════════════════════════════════════════════════════════════════════════
+
+secret_id: "cf_master_token_01"
+display_name: "NOIZY Heaven / Lucy — Cloudflare API Token"
+system_target: "heaven"                          # Worker name in wrangler.toml
+account_id: "5f36aa9795348ea681d0b21910dfc82a"  # CANONICAL — rsp@noizy.ai
+zone: "noizy.ai"
+
+rotation_cadence_days: 90
+last_rotated: null                                # Update after first rotation
+next_rotation_due: null                           # YYYY-MM-DD
+
+storage_location:
+  local: "Mac Studio M2 Ultra Keychain (security find-generic-password -s noizy-cf-token)"
+  remote: "Cloudflare Workers Secrets (wrangler secret)"
+
+required_scopes:
+  - "Workers Scripts:Edit"
+  - "D1:Edit"
+  - "KV Storage:Edit"
+  - "DNS:Read"
+  - "Access: Organizations, Identity Providers, and Groups:Read"
+
+validation_status: "pending_manual_rotation"
+runbook_reference: "AGENTS/engr/runbooks/cloudflare-token-rotation.md"
+
+# Dead accounts — never use these IDs
+dead_accounts:
+  - id: "f75939d5-DEAD"
+    note: "Original gabriel_db — DO NOT USE"
+  - id: "fc0edd97-WRONG"
+    note: "Wrong Cloudflare account — DO NOT USE"

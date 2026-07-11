@@ -1,0 +1,252 @@
+# ═══════════════════════════════════════════════════════════════════════════════
+# NOIZY EMPIRE — Agent Mesh + Central Gateway
+# All agents expose /health. Central gateway aggregates on :9696.
+# Heaven Worker forwards dispatch requests here via CF Access Service Token.
+#
+# Hardened: 2026-04-13 — resource limits, logging, labels, shared log volume
+# ═══════════════════════════════════════════════════════════════════════════════
+
+services:
+
+  # ── Central Gateway (9696) ─────────────────────────────────────────────────
+  central-gateway:
+    build: ./central-gateway
+    container_name: noizy-central-gateway
+    ports:
+      - "9696:9696"
+    environment:
+      - PORT=9696
+      - AGENT_GABRIEL_URL=http://agent-gabriel:7001
+      - AGENT_LUCY_URL=http://agent-lucy:7002
+      - AGENT_SHIRLEY_URL=http://agent-shirley:7003
+      - AGENT_KEITH_URL=http://agent-keith:7004
+      - AGENT_DREAM_URL=http://agent-dream:7005
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://127.0.0.1:9696/health || exit 1"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    depends_on:
+      agent-gabriel:
+        condition: service_healthy
+    networks:
+      - noizy-mesh
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+          cpus: "0.5"
+        reservations:
+          memory: 128M
+          cpus: "0.1"
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+    labels:
+      com.noizy.empire: "true"
+      com.noizy.service: "central-gateway"
+      com.noizy.tier: "routing"
+    volumes:
+      - shared-logs:/var/log/noizy
+
+  # ── Agent: Gabriel (orchestrator) ──────────────────────────────────────────
+  agent-gabriel:
+    build: ./agents/gabriel
+    container_name: noizy-agent-gabriel
+    environment:
+      - PORT=7001
+      - AGENT_NAME=gabriel
+      - AGENT_ROLE=orchestrator
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://127.0.0.1:7001/health || exit 1"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+    networks:
+      - noizy-mesh
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+          cpus: "0.25"
+        reservations:
+          memory: 64M
+          cpus: "0.05"
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+    labels:
+      com.noizy.empire: "true"
+      com.noizy.service: "agent-gabriel"
+      com.noizy.tier: "agent"
+      com.noizy.role: "orchestrator"
+    volumes:
+      - shared-logs:/var/log/noizy
+
+  # ── Agent: Lucy (session tracker) ──────────────────────────────────────────
+  agent-lucy:
+    build: ./agents/gabriel
+    container_name: noizy-agent-lucy
+    environment:
+      - PORT=7002
+      - AGENT_NAME=lucy
+      - AGENT_ROLE=session-tracker
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://127.0.0.1:7002/health || exit 1"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+    networks:
+      - noizy-mesh
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+          cpus: "0.25"
+        reservations:
+          memory: 64M
+          cpus: "0.05"
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+    labels:
+      com.noizy.empire: "true"
+      com.noizy.service: "agent-lucy"
+      com.noizy.tier: "agent"
+      com.noizy.role: "session-tracker"
+    volumes:
+      - shared-logs:/var/log/noizy
+
+  # ── Agent: Shirley (code + file manager) ───────────────────────────────────
+  agent-shirley:
+    build: ./agents/gabriel
+    container_name: noizy-agent-shirley
+    environment:
+      - PORT=7003
+      - AGENT_NAME=shirley
+      - AGENT_ROLE=code-manager
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://127.0.0.1:7003/health || exit 1"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+    networks:
+      - noizy-mesh
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+          cpus: "0.25"
+        reservations:
+          memory: 64M
+          cpus: "0.05"
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+    labels:
+      com.noizy.empire: "true"
+      com.noizy.service: "agent-shirley"
+      com.noizy.tier: "agent"
+      com.noizy.role: "code-manager"
+    volumes:
+      - shared-logs:/var/log/noizy
+
+  # ── Agent: Keith (engineering) ─────────────────────────────────────────────
+  agent-keith:
+    build: ./agents/gabriel
+    container_name: noizy-agent-keith
+    environment:
+      - PORT=7004
+      - AGENT_NAME=keith
+      - AGENT_ROLE=engineer
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://127.0.0.1:7004/health || exit 1"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+    networks:
+      - noizy-mesh
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+          cpus: "0.25"
+        reservations:
+          memory: 64M
+          cpus: "0.05"
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+    labels:
+      com.noizy.empire: "true"
+      com.noizy.service: "agent-keith"
+      com.noizy.tier: "agent"
+      com.noizy.role: "engineer"
+    volumes:
+      - shared-logs:/var/log/noizy
+
+  # ── Agent: Dream (creative engine) ────────────────────────────────────────
+  agent-dream:
+    build: ./agents/gabriel
+    container_name: noizy-agent-dream
+    environment:
+      - PORT=7005
+      - AGENT_NAME=dream
+      - AGENT_ROLE=creative-engine
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://127.0.0.1:7005/health || exit 1"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+    networks:
+      - noizy-mesh
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+          cpus: "0.25"
+        reservations:
+          memory: 64M
+          cpus: "0.05"
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+    labels:
+      com.noizy.empire: "true"
+      com.noizy.service: "agent-dream"
+      com.noizy.tier: "agent"
+      com.noizy.role: "creative-engine"
+    volumes:
+      - shared-logs:/var/log/noizy
+
+volumes:
+  shared-logs:
+    name: noizy-mesh-logs
+
+networks:
+  noizy-mesh:
+    driver: bridge

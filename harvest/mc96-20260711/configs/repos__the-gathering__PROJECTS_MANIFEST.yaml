@@ -1,0 +1,200 @@
+# 🔗 NOIZYLAB PROJECTS MANIFEST
+# M2-Ultra Production Aliases
+# Originals stored in GitHub repos or Google Drive (for audio/video)
+# This file tracks all external project locations
+
+---
+
+projects:
+  
+  # ─────────────────────────────────────────────────────────────────
+  # AI/ML SYSTEMS
+  # ─────────────────────────────────────────────────────────────────
+  
+  AEON:
+    name: "AEON AI/ML Training System"
+    versions:
+      - v1: "aeon-v2-supreme-v1"
+      - v2: "aeon-v2-supreme-v2"
+      - mega: "AEON-MEGA"
+      - power: "AEON-POWER-COMPLETE"
+    primary_location: "GitHub: https://github.com/Noizyfish/AEON-MEGA"
+    local_alias: "./PROJECTS/AI_ML/AEON-MEGA"
+    description: "AI/ML training framework for neural networks"
+    size: "~2GB (compressed)"
+    critical_files:
+      - AEON-MASTER-DEPLOY.sh
+      - solar_sim.py
+      - power_analysis.py
+    status: "Active"
+  
+  RepairRob:
+    name: "RepairRob AI Inference Engine"
+    versions:
+      - v1: "repairrob_staging"
+    primary_location: "GitHub: https://github.com/Noizyfish/repairrob"
+    local_alias: "./PROJECTS/AI_ML/repairrob"
+    description: "32GB+ training dataset + robot damage analysis"
+    size: "~32GB (on GitHub releases)"
+    critical_files:
+      - inference_engine.py
+      - model_loader.py
+    data_location: "GitHub Releases (large file storage)"
+    status: "Active"
+  
+  # ─────────────────────────────────────────────────────────────────
+  # AUDIO/MUSIC SYSTEMS
+  # ─────────────────────────────────────────────────────────────────
+  
+  "10CC Audio":
+    name: "10CC Room Simulation & Audio Processing"
+    versions:
+      - v1: "10CC-ROOM-v1"
+      - v2: "10CC-ROOM-v2"
+    primary_location: "GitHub: https://github.com/Noizyfish/10CC-AUDIO"
+    local_alias: "./PROJECTS/AUDIO/10CC-ROOM-v1"
+    description: "Spatial audio, room acoustics, sound processing"
+    size: "~500MB"
+    audio_files_location: "Google Drive: NOIZYLAB-AUDIO shared folder"
+    critical_files:
+      - room_sim.py
+      - convolver.py
+      - effects_chain.py
+    status: "Active"
+  
+  # ─────────────────────────────────────────────────────────────────
+  # NETWORKING & INFRASTRUCTURE
+  # ─────────────────────────────────────────────────────────────────
+  
+  "NOIZYLAB-TUNNEL":
+    name: "Network Tunneling & Gabriel Agent"
+    versions:
+      - v1: "NOIZYLAB-TUNNEL"
+    primary_location: "GitHub: https://github.com/Noizyfish/NOIZYLAB-TUNNEL"
+    local_alias: "./PROJECTS/NETWORK/NOIZYLAB-TUNNEL"
+    description: "SSH tunneling, VPN fallback, network resilience"
+    size: "~50MB"
+    critical_files:
+      - gabriel-agent.py
+      - tunnel_manager.py
+      - health_monitor.py
+    status: "Active"
+  
+  # ─────────────────────────────────────────────────────────────────
+  # DATA PIPELINE
+  # ─────────────────────────────────────────────────────────────────
+  
+  "UNIVERSAL-INGESTION":
+    name: "Data Ingestion Pipeline"
+    versions:
+      - v1: "UNIVERSAL-INGESTION"
+    primary_location: "GitHub: https://github.com/Noizyfish/UNIVERSAL-INGESTION"
+    local_alias: "./PROJECTS/DATA/UNIVERSAL-INGESTION"
+    description: "Multi-format data processing, ETL pipeline"
+    size: "~100MB"
+    critical_files:
+      - ingestion_engine.py
+      - transformers.py
+      - data_loader.py
+    status: "Active"
+  
+  # ─────────────────────────────────────────────────────────────────
+  # CORE PLATFORM
+  # ─────────────────────────────────────────────────────────────────
+  
+  "NOIZYLAB-ULTIMATE":
+    name: "NOIZYLAB Core Platform"
+    versions:
+      - v1: "NOIZYLAB-ULTIMATE"
+    primary_location: "GitHub: https://github.com/Noizyfish/NOIZYLAB-ULTIMATE"
+    local_alias: "./PROJECTS/CORE/noizylab-ultimate"
+    description: "Master orchestration, deployment, system integration"
+    size: "~300MB"
+    critical_files:
+      - master_orchestrator.py
+      - deploy.sh
+      - config.yaml
+    status: "Active"
+
+---
+
+storage_strategy:
+  
+  SOURCE_OF_TRUTH:
+    GitHub: "All source code (Python, shell, config)"
+    GoogleDrive: "Audio/video files (shared folder: NOIZYLAB-MEDIA)"
+    Releases: "Large datasets (32GB+) via GitHub Releases
+  
+  M2_ULTRA:
+    role: "Development & Testing"
+    contains: "Aliases only, critical code, configs"
+    size: "Keep <500MB in git"
+    updates: "Pull latest from GitHub daily"
+    
+  HP_OMEN:
+    role: "Backup & Inference"
+    contains: "Cached copies of latest builds"
+    size: "Keep <1GB"
+    updates: "Sync from M2-Ultra when needed"
+
+---
+
+access_instructions:
+  
+  FOR_DEVELOPMENT:
+    1: "Clone from GitHub: git clone https://github.com/Noizyfish/PROJECT_NAME"
+    2: "Audio/video files: Access Google Drive shared folder NOIZYLAB-MEDIA"
+    3: "Large datasets: Download from GitHub Releases"
+  
+  FOR_ALIASES_ON_M2:
+    1: "Install project: ln -s /path/to/github/repo ./PROJECTS/CATEGORY/PROJECT_NAME"
+    2: "Or use: source ./scripts/setup_aliases.sh"
+    3: "Verify: ls -l ./PROJECTS/ (should show symlinks with ->)"
+  
+  FOR_DEPLOYMENT:
+    1: "Use master_orchestrator.py to coordinate all systems"
+    2: "Audio files pulled from Google Drive on demand"
+    3: "Large models cached locally after first use"
+
+---
+
+github_repositories:
+  - https://github.com/Noizyfish/AEON-MEGA
+  - https://github.com/Noizyfish/repairrob
+  - https://github.com/Noizyfish/10CC-AUDIO
+  - https://github.com/Noizyfish/NOIZYLAB-TUNNEL
+  - https://github.com/Noizyfish/UNIVERSAL-INGESTION
+  - https://github.com/Noizyfish/NOIZYLAB-ULTIMATE
+  - https://github.com/Noizyfish/NOIZYLAB (master)
+
+google_drive:
+  folder: "NOIZYLAB-MEDIA (Shared)"
+  contains: "Audio samples, music files, video tutorials"
+  access: "Share link provided to team members"
+
+---
+
+cleanup_policy:
+  
+  NEVER_COMMIT:
+    - Large binaries (>10MB)
+    - Audio/video files
+    - System backups
+    - IDE config files
+    - Package manager directories
+  
+  ALWAYS_CLEAN:
+    - "Run: rm -rf __pycache__ node_modules .venv dist build"
+    - "Run: git clean -fXd (remove untracked ignored files)"
+    - "Verify: git status (should be clean before commit)"
+  
+  MAINTENANCE:
+    weekly: "Check for accidentally committed large files"
+    monthly: "Prune old branches, archived projects"
+    quarterly: "Audit GitHub repo sizes, optimize large projects"
+
+---
+
+last_updated: 2025-12-07
+maintained_by: "m2ultra@NOIZYLAB"
+version: "1.0"

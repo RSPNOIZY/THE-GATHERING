@@ -1,0 +1,57 @@
+name: Canary Deploy Heaven
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      skip_canary:
+        description: 'Skip canary, deploy 100% immediately'
+        type: boolean
+        default: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      SMOKE_TEST_URL: https://noizy.ai/health
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Token scope lint
+        run: ./scripts/token-scope-lint.sh
+
+      - name: Canary deploy
+        if: ${{ !inputs.skip_canary }}
+        run: ./scripts/canary-deploy.sh
+
+      - name: Direct deploy (skip canary)
+        if: ${{ inputs.skip_canary }}
+        run: ./scripts/deploy-with-rollback.sh
+
+      - name: Export audit log
+        run: ./scripts/export-deploy-log.sh
+
+      - name: Upload audit artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: deploy-audit-${{ github.sha }}
+          path: deployments_audit.json
+
+      - name: Report success
+        if: success()
+        run: echo "✅ Heaven deployed to noizy.ai"

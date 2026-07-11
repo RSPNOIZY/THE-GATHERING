@@ -1,0 +1,40 @@
+# NOIZY EMPIRE — GitKraken Workspace
+# All repos visible in one view across GOD, iPhone, iPad
+
+name: NOIZY EMPIRE
+description: "MC96ECO Universe — All Brands · One Vision · RSP_001 Sovereign"
+
+repositories:
+  - name: NOIZYLAB (Core)
+    path: /Users/m2ultra/NOIZYLAB
+    remote: https://github.com/NOIZYLAB-io/NOIZYLAB.git
+    branch: main
+
+  - name: NOIZY.AI
+    remote: https://github.com/NOIZYLAB-io/NOIZY.ai.git
+
+  - name: GABRIEL
+    remote: https://github.com/Noizyfish/GABRIEL.git
+
+  - name: swift-library
+    path: /Users/m2ultra/swift-library
+    remote: https://github.com/Noizyfish/swift-library.git
+    branch: main
+
+  - name: MC96 Mission Control
+    remote: https://github.com/Noizyfish/MC96-Mission-Control.git
+
+labels:
+  - name: empire
+    color: "#C8A84B"
+  - name: sovereign
+    color: "#00FFB2"
+  - name: voice-army
+    color: "#E63946"
+
+# GitLens integration
+gitlens:
+  launchpad: true
+  graph: editor
+  branchVisibility: smart
+  ai_model: "copilot:gpt-4.1"

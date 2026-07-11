@@ -1,0 +1,135 @@
+# ═══════════════════════════════════════════════════════════════
+# NOIZY EMPIRE — Admin Automation Toolkit
+# Docker Compose for local admin operations
+#
+# Usage:
+#   cd infra/docker
+#   docker compose -f docker-compose.admin.yml up -d
+#   docker compose -f docker-compose.admin.yml run --rm admin bash
+#
+# Services:
+#   - admin:     CLI toolkit (wrangler, gcloud, terraform, dig, whois)
+#   - n8n:       Workflow automation engine
+#   - postgres:  n8n persistence
+#   - newman:    Postman API test runner
+#
+# Hardened: 2026-04-13 — pinned images, resource limits, healthchecks
+# ═══════════════════════════════════════════════════════════════
+
+services:
+  # ─── Admin CLI Toolkit ──────────────────────────────────────
+  admin:
+    build:
+      context: .
+      dockerfile: Dockerfile.admin
+    container_name: noizy-admin
+    volumes:
+      - ../../:/workspace
+      - ~/.wrangler:/root/.wrangler
+      - ~/.config/gcloud:/root/.config/gcloud
+      - admin-cache:/root/.cache
+    environment:
+      - NOIZY_PROJECT_ROOT=/workspace
+      - CLOUDFLARE_ACCOUNT_ID=5f36aa9795348ea681d0b21910dfc82a
+      - TZ=America/Toronto
+    env_file:
+      - ../../.env
+    working_dir: /workspace
+    stdin_open: true
+    tty: true
+    networks:
+      - noizy-admin
+
+  # ─── n8n Workflow Engine ────────────────────────────────────
+  n8n:
+    image: docker.n8n.io/n8nio/n8n:1.76.1
+    container_name: noizy-n8n
+    ports:
+      - "5678:5678"
+    volumes:
+      - n8n-data:/home/node/.n8n
+      - ../../n8n/workflows:/home/node/workflows
+    environment:
+      - N8N_PUBLIC_API_ENABLED=true
+      - N8N_BASIC_AUTH_ACTIVE=true
+      - N8N_BASIC_AUTH_USER=noizy
+      - N8N_BASIC_AUTH_PASSWORD=${N8N_PASSWORD}
+      - DB_TYPE=postgresdb
+      - DB_POSTGRESDB_HOST=postgres
+      - DB_POSTGRESDB_PORT=5432
+      - DB_POSTGRESDB_DATABASE=n8n
+      - DB_POSTGRESDB_USER=n8n
+      - DB_POSTGRESDB_PASSWORD=${POSTGRES_PASSWORD}
+      - GENERIC_TIMEZONE=America/Toronto
+      - TZ=America/Toronto
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - noizy-admin
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+          cpus: "1.0"
+        reservations:
+          memory: 256M
+          cpus: "0.25"
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://127.0.0.1:5678/healthz || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+
+  # ─── PostgreSQL (n8n persistence) ───────────────────────────
+  postgres:
+    image: postgres:16.6-alpine
+    container_name: noizy-postgres
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=n8n
+      - POSTGRES_USER=n8n
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U n8n"]
+      interval: 5s
+      timeout: 10s
+      retries: 5
+      start_period: 10s
+    networks:
+      - noizy-admin
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+          cpus: "0.5"
+        reservations:
+          memory: 128M
+          cpus: "0.1"
+
+  # ─── Newman (Postman API Test Runner) ───────────────────────
+  newman:
+    image: postman/newman:latest
+    container_name: noizy-newman
+    volumes:
+      - ../../postman:/etc/newman
+    entrypoint: ["newman", "run"]
+    command: ["/etc/newman/NOIZY.postman_collection.json",
+              "-e", "/etc/newman/env.local.json",
+              "--reporters", "cli,json",
+              "--reporter-json-export", "/etc/newman/results.json"]
+    networks:
+      - noizy-admin
+
+volumes:
+  n8n-data:
+  postgres-data:
+  admin-cache:
+
+networks:
+  noizy-admin:
+    name: noizy-admin

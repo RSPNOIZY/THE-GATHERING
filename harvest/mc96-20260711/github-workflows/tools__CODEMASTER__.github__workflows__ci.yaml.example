@@ -1,0 +1,81 @@
+name: CODEMASTER CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  lint:
+    name: Validate Scripts & Config
+    runs-on: macos-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check shell syntax
+        run: |
+          echo "═══ Shell Script Validation ═══"
+          ERRORS=0
+          while IFS= read -r -d '' f; do
+            if bash -n "$f" 2>/dev/null; then
+              echo "  ✅ $f"
+            else
+              echo "  ❌ $f"
+              ERRORS=$((ERRORS + 1))
+            fi
+          done < <(find . -name "*.sh" -not -path "./.git/*" -print0)
+          if [ "$ERRORS" -gt 0 ]; then
+            echo "::error::$ERRORS shell script(s) have syntax errors"
+            exit 1
+          fi
+
+      - name: Validate JSON files
+        run: |
+          echo "═══ JSON Validation ═══"
+          ERRORS=0
+          while IFS= read -r -d '' f; do
+            if python3 -m json.tool "$f" > /dev/null 2>&1; then
+              echo "  ✅ $f"
+            else
+              echo "  ❌ $f"
+              ERRORS=$((ERRORS + 1))
+            fi
+          done < <(find . -name "*.json" -not -path "./.git/*" -not -path "*/node_modules/*" -print0)
+          if [ "$ERRORS" -gt 0 ]; then
+            echo "::error::$ERRORS JSON file(s) are invalid"
+            exit 1
+          fi
+
+      - name: Check for leaked secrets
+        run: |
+          echo "═══ Secret Leak Check ═══"
+          PATTERNS="sk-ant-|ANTHROPIC_API_KEY=sk|privatekey|BEGIN.*PRIVATE"
+          if grep -rn --include="*.sh" --include="*.json" --include="*.yaml" --include="*.md" -E "$PATTERNS" . --exclude-dir=.git --exclude=".env.example" --exclude=".gitignore" --exclude="copilot-instructions.md" 2>/dev/null; then
+            echo "::error::Potential secret leak detected!"
+            exit 1
+          else
+            echo "  ✅ No secrets found in tracked files"
+          fi
+
+      - name: Verify .gitignore protections
+        run: |
+          echo "═══ .gitignore Protection Check ═══"
+          for pattern in "privatekey" "publickey" "logs/" ".env"; do
+            if grep -q "$pattern" .gitignore 2>/dev/null; then
+              echo "  ✅ $pattern is gitignored"
+            else
+              echo "  ❌ $pattern is NOT in .gitignore"
+              exit 1
+            fi
+          done
+
+      - name: Validate Anthropic status URL
+        run: |
+          echo "═══ Anthropic Status URL Check ═══"
+          if grep -rn "status.anthropic.com" --include="*.sh" --include="*.json" . --exclude-dir=.git 2>/dev/null; then
+            echo "::warning::Found old status.anthropic.com URL — should be status.claude.com"
+          else
+            echo "  ✅ All scripts use status.claude.com"
+          fi

@@ -1,0 +1,17 @@
+registry:
+  fetch:
+    ref: ""
+  notion:
+    ref: ""
+  notion-remote:
+    ref: ""
+  playwright:
+    ref: ""
+  puppeteer:
+    ref: ""
+  sequentialthinking:
+    ref: ""
+  slack:
+    ref: ""
+  time:
+    ref: ""

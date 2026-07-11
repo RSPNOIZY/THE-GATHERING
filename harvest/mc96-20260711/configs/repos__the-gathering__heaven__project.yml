@@ -1,0 +1,191 @@
+name: Heaven
+options:
+  bundleIdPrefix: ai.noizy
+  deploymentTarget:
+    iOS: "18.0"
+  xcodeVersion: "26.3"
+  createIntermediateGroups: true
+  generateEmptyDirectories: true
+
+settings:
+  base:
+    SWIFT_VERSION: 6.0
+    DEVELOPMENT_TEAM: $(DEVELOPMENT_TEAM)
+    MARKETING_VERSION: "1.0.0"
+    CURRENT_PROJECT_VERSION: "1"
+    
+packages:
+  Alamofire:
+    url: https://github.com/Alamofire/Alamofire
+    from: "5.9.0"
+  Starscream:
+    url: https://github.com/daltoniam/Starscream
+    from: "4.0.0"
+  Kingfisher:
+    url: https://github.com/onevcat/Kingfisher
+    from: "7.0.0"
+
+targets:
+  Heaven:
+    type: application
+    platform: iOS
+    sources:
+      - Heaven
+    info:
+      path: Heaven/Info.plist
+      properties:
+        CFBundleName: Heaven
+        CFBundleDisplayName: Heaven
+        CFBundleIdentifier: ai.noizy.heaven
+        CFBundleShortVersionString: "1.0.0"
+        NSMicrophoneUsageDescription: "Heaven needs microphone access for voice control and accessibility features"
+        NSSpeechRecognitionUsageDescription: "Heaven uses speech recognition to understand your voice commands"
+        NSCameraUsageDescription: "Heaven uses camera for eye tracking accessibility features"
+        NSLocalNetworkUsageDescription: "Heaven connects to DreamChamber on your local network"
+        UILaunchScreen:
+          UIColorName: "LaunchBackground"
+        UISupportedInterfaceOrientations~ipad:
+          - UIInterfaceOrientationPortrait
+          - UIInterfaceOrientationLandscapeLeft
+          - UIInterfaceOrientationLandscapeRight
+        UIUserInterfaceStyle: Dark
+        NSAppTransportSecurity:
+          NSAllowsArbitraryLoads: true
+          NSAllowsLocalNetworking: true
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: ai.noizy.heaven
+        TARGETED_DEVICE_FAMILY: "1,2"
+    dependencies:
+      - package: Alamofire
+      - package: Starscream
+      - package: Kingfisher
+    scheme:
+      testTargets:
+        - HeavenTests
+
+  Lucy:
+    type: application
+    platform: iOS
+    sources:
+      - Lucy
+    info:
+      path: Lucy/Info.plist
+      properties:
+        CFBundleName: Lucy
+        CFBundleDisplayName: Lucy
+        CFBundleIdentifier: ai.noizy.lucy
+        CFBundleShortVersionString: "1.0.0"
+        NSMicrophoneUsageDescription: "Lucy needs microphone access for voice interaction"
+        NSSpeechRecognitionUsageDescription: "Lucy uses speech recognition to understand you"
+        NSCameraUsageDescription: "Lucy uses camera for accessibility features"
+        NSLocalNetworkUsageDescription: "Lucy connects to DreamChamber on your local network"
+        UIUserInterfaceStyle: Dark
+        NSAppTransportSecurity:
+          NSAllowsArbitraryLoads: true
+          NSAllowsLocalNetworking: true
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: ai.noizy.lucy
+        TARGETED_DEVICE_FAMILY: "1,2"
+    dependencies:
+      - package: Alamofire
+      - package: Starscream
+      - package: Kingfisher
+    scheme:
+      testTargets:
+        - LucyTests
+
+  Gabriel:
+    type: application
+    platform: iOS
+    sources:
+      - Gabriel
+    info:
+      path: Gabriel/Info.plist
+      properties:
+        CFBundleName: Gabriel
+        CFBundleDisplayName: Gabriel
+        CFBundleIdentifier: ai.noizy.gabriel
+        CFBundleShortVersionString: "1.0.0"
+        NSLocalNetworkUsageDescription: "Gabriel connects to DreamChamber on your local network"
+        UIUserInterfaceStyle: Dark
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+        NSAppTransportSecurity:
+          NSAllowsArbitraryLoads: true
+          NSAllowsLocalNetworking: true
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: ai.noizy.gabriel
+        TARGETED_DEVICE_FAMILY: "1"
+        SWIFT_VERSION: 6.0
+    dependencies:
+      - package: Alamofire
+      - package: Starscream
+    scheme:
+      testTargets:
+        - GabrielTests
+
+  Micky:
+    type: application
+    platform: macOS
+    deploymentTarget:
+      macOS: "13.0"
+    sources:
+      - Micky
+    info:
+      path: Micky/Info.plist
+      properties:
+        CFBundleName: Micky
+        CFBundleDisplayName: Micky
+        CFBundleIdentifier: ai.noizy.micky
+        CFBundleShortVersionString: "1.0.0"
+        NSMicrophoneUsageDescription: "Micky captures audio from Loopback and system sources"
+        NSLocalNetworkUsageDescription: "Micky connects to GOD on your local network"
+        NSAppTransportSecurity:
+          NSAllowsArbitraryLoads: true
+          NSAllowsLocalNetworking: true
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: ai.noizy.micky
+        SWIFT_VERSION: 6.0
+        MACOSX_DEPLOYMENT_TARGET: "13.0"
+    entitlements:
+      path: Micky/Micky.entitlements
+    scheme:
+      testTargets:
+        - MickyTests
+
+  HeavenTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - HeavenTests
+    dependencies:
+      - target: Heaven
+
+  LucyTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - LucyTests
+    dependencies:
+      - target: Lucy
+
+  GabrielTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - GabrielTests
+    dependencies:
+      - target: Gabriel
+
+  MickyTests:
+    type: bundle.unit-test
+    platform: macOS
+    sources:
+      - MickyTests
+    dependencies:
+      - target: Micky
+

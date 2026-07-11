@@ -1,0 +1,58 @@
+# ═══════════════════════════════════════════════════════════════════════════════
+#
+#  NOIZYNET — Cloudflare Tunnel Configuration
+#  Maps noizynet.noizy.ai → GOD's handshake service (:17777)
+#
+#  Setup:
+#    cloudflared tunnel create noizylab
+#    cloudflared tunnel route dns noizylab noizynet.noizy.ai
+#    cp this-file ~/.cloudflared/config.yml
+#    cloudflared tunnel run noizylab
+#
+# ═══════════════════════════════════════════════════════════════════════════════
+
+tunnel: noizylab
+credentials-file: ~/.cloudflared/<TUNNEL-ID>.json
+
+ingress:
+  # NOIZYNET Handshake Service (GOD ↔ Heaven bridge)
+  - hostname: noizynet.noizy.ai
+    service: http://localhost:17777
+    originRequest:
+      noTLSVerify: true
+      connectTimeout: 10s
+      
+  # Heaven API (Docker — when running)
+  - hostname: heaven.noizy.ai
+    service: http://localhost:8080
+
+  # Lucy API (Docker fork)
+  - hostname: lucy.noizy.ai
+    service: http://localhost:8081
+
+  # DreamChamber Core
+  - hostname: dreamchamber.noizy.ai
+    service: http://localhost:7777
+
+  # Voice Pipeline
+  - hostname: voice.noizy.ai
+    service: http://localhost:17017
+
+  # GORUNFREE Voice Server
+  - hostname: gorunfree.noizy.ai
+    service: http://localhost:9099
+
+  # n8n Automation
+  - hostname: n8n.noizy.ai
+    service: http://localhost:5678
+
+  # Open WebUI (Ollama Frontend)
+  - hostname: ai.noizy.ai
+    service: http://localhost:3080
+
+  # Grafana
+  - hostname: metrics.noizy.ai
+    service: http://localhost:3000
+
+  # Catch-all
+  - service: http_status:404

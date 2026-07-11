@@ -1,0 +1,63 @@
+# GABRIEL MCP Server CI
+# Model Context Protocol Server Validation
+# https://github.com/NOIZYLAB-io/GABRIEL
+
+name: GABRIEL MCP CI
+
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - 'mcp_servers/**'
+      - 'UNIFIED_MCP/**'
+      - 'gabriel_mcp/**'
+      - '*_mcp*.py'
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  mcp-test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+    
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20.x'
+    
+    - name: Install MCP dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install mcp anthropic httpx
+        npm install -g @anthropic-ai/sdk
+    
+    - name: Validate MCP Servers
+      run: |
+        echo "🔌 GABRIEL MCP Server Validation"
+        echo "================================="
+        
+        # Check Python MCP servers
+        for server in gabriel_mcp_server.py noizylab_mcp_server.py dreamchamber_mcp.py; do
+          if [ -f "$server" ]; then
+            echo "  ✓ $server - Syntax OK"
+            python -m py_compile "$server"
+          fi
+        done
+        
+        # Check MCP directories
+        for dir in mcp_servers UNIFIED_MCP gabriel_mcp; do
+          if [ -d "$dir" ]; then
+            echo "  📁 $dir/"
+            find "$dir" -name "*.py" -exec python -m py_compile {} \; 2>/dev/null || true
+          fi
+        done
+        
+        echo ""
+        echo "✅ MCP Validation Complete"

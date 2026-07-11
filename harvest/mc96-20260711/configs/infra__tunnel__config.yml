@@ -1,0 +1,43 @@
+# ═══════════════════════════════════════════════════════════════════════════════
+# Cloudflare Tunnel Config — noizy-god
+# Pre-built. Activate after: cloudflared tunnel login
+# Then: cloudflared tunnel create noizy-god
+# Then: copy tunnel UUID into this file
+# Then: cloudflared tunnel route dns noizy-god gabriel.noizy.ai
+# Then: cloudflared tunnel route dns noizy-god n8n.noizy.ai
+# ═══════════════════════════════════════════════════════════════════════════════
+
+# Replace TUNNEL_UUID after 'cloudflared tunnel create noizy-god'
+tunnel: TUNNEL_UUID_HERE
+credentials-file: /Users/m2ultra/.cloudflared/TUNNEL_UUID_HERE.json
+
+ingress:
+  # GABRIEL daemon — voice pipeline, LUCY, n8n bridge
+  - hostname: gabriel.noizy.ai
+    service: http://localhost:9777
+    originRequest:
+      noTLSVerify: true
+      connectTimeout: 30s
+
+  # n8n — workflow automation
+  - hostname: n8n.noizy.ai
+    service: http://localhost:5678
+    originRequest:
+      noTLSVerify: true
+      connectTimeout: 30s
+
+  # Ollama — local LLM inference
+  - hostname: ollama.noizy.ai
+    service: http://localhost:11434
+    originRequest:
+      noTLSVerify: true
+      connectTimeout: 60s
+
+  # DreamChamber UI (existing server on 7777)
+  - hostname: dream.noizy.ai
+    service: http://localhost:7777
+    originRequest:
+      noTLSVerify: true
+
+  # Catch-all (required by cloudflared)
+  - service: http_status:404

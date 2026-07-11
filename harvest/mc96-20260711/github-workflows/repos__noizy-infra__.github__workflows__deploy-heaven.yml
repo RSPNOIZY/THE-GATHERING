@@ -1,0 +1,46 @@
+name: Deploy HEAVEN Worker
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'workers/heaven/**'
+      - '.github/workflows/deploy-heaven.yml'
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    name: Deploy to Cloudflare
+    runs-on: ubuntu-latest
+    environment: production
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Wrangler
+        run: npm install -g wrangler
+
+      - name: Deploy HEAVEN Worker
+        working-directory: workers/heaven
+        run: npx wrangler deploy
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: '2446d788cc4280f5ea22a9948410c355'
+
+      - name: Verify deployment
+        run: |
+          sleep 5
+          curl -sf https://noizy.ai/api/health | jq .
+        continue-on-error: true
+
+      - name: Notify Gabriel
+        if: always()
+        run: |
+          echo "HEAVEN Worker deployed at $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          echo "Status: ${{ job.status }}"
