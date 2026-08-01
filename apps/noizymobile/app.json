@@ -1,0 +1,36 @@
+{
+  "expo": {
+    "name": "Noizymobile",
+    "slug": "noizymobile",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "dark",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#0c0f12"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.noizy.noizymobile",
+      "infoPlist": {
+        "NSCameraUsageDescription": "Noizymobile needs camera access to scan business and fuel receipts for CRA tax deductions."
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#0c0f12"
+      },
+      "package": "com.noizy.noizymobile",
+      "permissions": [
+        "android.permission.CAMERA",
+        "android.permission.RECORD_AUDIO"
+      ]
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    }
+  }
+}

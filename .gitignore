@@ -1,89 +1,39 @@
-# THE-GATHERING — Master .gitignore
-# RSP_001 / NOIZY Empire / GOD.local
+# Exclude huge installers and manuals in 00_DLS
+00_DLS/
 
-# ── Python ────────────────────────────────────────────────────
-__pycache__/
-*.py[cod]
-*.pyo
-.Python
-*.egg-info/
-venv/
-.venv/
-env/
-.env/
-ENV/
+# Exclude common large binary formats
+*.dmg
+*.pkg
+*.zip
+*.7z
+*.tar.gz
+*.epub
+*.pdf
+*.exe
+*.msi
+*.iso
 
-# ── Node / JS ─────────────────────────────────────────────────
-node_modules/
-npm-debug.log*
-*.tsbuildinfo
-.next/
-.cache/
-
-# ── Secrets & Keys (NEVER commit these) ──────────────────────
-.env
-.env.*
-!.env.example
-*.pem
-*.key
-*.p12
-secrets/
-.secrets/
-wrangler.toml.bak
-
-# ── Databases (local runtime state) ──────────────────────────
-*.db
-*.sqlite
-*.sqlite3
-*.duckdb
-memory/chroma/
-
-# ── Ollama / AI Models (huge) ────────────────────────────────
-*.gguf
-*.bin
-*.safetensors
-models/
-.ollama/
-
-# ── macOS ─────────────────────────────────────────────────────
-.DS_Store
-._*
-.Spotlight-V100
-.Trashes
-*.icloud
-
-# ── IDE ───────────────────────────────────────────────────────
-.idea/
-.vscode/settings.json
-*.swp
-*~
-
-# ── Logs & temp ───────────────────────────────────────────────
-logs/
-*.log
-*.tmp
-*.bak
-*.orig
-_quarantine_duplicates/
-reports/
-
-# ── Audio / Media (large — keep in THE-AQUARIUM) ─────────────
+# Exclude audio and video files
 *.wav
+*.WAV
+*.mp3
+*.MP3
+*.mp4
+*.MP4
+*.mov
+*.MOV
+*.avi
+*.mkv
+*.aif
 *.aiff
 *.flac
-*.mp3
-*.mp4
-*.mov
+*.wav/
 
-# ── Build artifacts ───────────────────────────────────────────
-target/
-*.class
-*.jar
-*.dylib
-
-# ── Non-Repo Large Folders ────────────────────────────────────
-extracted_gdrive/
-_Temp/
-12TB_RESCUE/
-_mc96-common/
-
+# Exclude IDE/Editor files and system files
+.DS_Store
+Thumbs.db
+node_modules/
+.ts/
+.vscode/
+*.bak
+*.BAK
