@@ -34,7 +34,7 @@ export function parseDurationSeconds(value: unknown): number {
 }
 
 // 2. Tool Input Schema
-const ComputeRoutesInputSchema = {
+const ComputeRoutesObjectSchema = z.object({
     driver_id: z.string().describe("Canonical driver identifier (e.g., DRV-RSP-001)"),
     session_token: z.string().describe("HMAC-verifiable session token"),
     origin: z.object({
@@ -52,14 +52,25 @@ const ComputeRoutesInputSchema = {
     ]).default("TRAFFIC_AWARE"),
     travel_mode: z.enum(["DRIVE", "TWO_WHEELER"]).default("DRIVE"),
     idempotency_key: z.string().uuid().describe("Unique execution UUID"),
-};
+});
+
+const ComputeRoutesInputSchema = ComputeRoutesObjectSchema.shape;
+type ComputeRoutesInput = z.infer<typeof ComputeRoutesObjectSchema>;
 
 // 3. Consent Verification via HTTPS Gateway (Cloudflare D1 isolation)
 async function verifyConsentOverHttp(
     driverId: string,
     sessionToken: string
 ): Promise<{ granted: boolean; consentId?: string; error?: string }> {
-    const tokenHash = createHmac("sha256", "NOIZY_CONSENT_SALT").update(sessionToken).digest("hex");
+    if (!NOIZY_INTERNAL_KEY) {
+        return { granted: false, error: "NOIZY_INTERNAL_KEY is required for consent verification." };
+    }
+
+    if (!CONSENT_TOKEN_HMAC_SECRET) {
+        return { granted: false, error: "CONSENT_TOKEN_HMAC_SECRET is required for consent token hashing." };
+    }
+
+    const tokenHash = createHmac("sha256", CONSENT_TOKEN_HMAC_SECRET).update(sessionToken).digest("hex");
 
     try {
         const res = await fetch(`${HARMONY_WORKER_URL}/api/v1/consent/verify`, {
@@ -81,20 +92,35 @@ async function verifyConsentOverHttp(
         }
 
         const data = await res.json() as any;
-        return { granted: data.granted, consentId: data.consent_id, error: data.error };
+        if ((data.granted === true || data.allowed === true) && data.consent_id) {
+            return { granted: true, consentId: data.consent_id };
+        }
+
+        return { granted: false, error: data.error || "Consent worker denied or omitted consent_id." };
     } catch (err: any) {
-        // Fallback for mock canary testing
-        return { granted: true, consentId: `CNS_MOCK_${driverId}` };
+        if (
+            ALLOW_LOCAL_CONSENT_STUB &&
+            driverId.startsWith("DRV-") &&
+            /^ST-AUTH-ACTIVE-[A-Za-z0-9_-]+$/.test(sessionToken)
+        ) {
+            return { granted: true, consentId: `CNS_DEV_${driverId}` };
+        }
+
+        return { granted: false, error: `Consent verification failed closed: ${err.message}` };
     }
 }
 
 // 4. Commit Harmony Signed Receipt via HTTPS Gateway
 async function commitReceiptOverHttp(receiptPayload: Record<string, any>): Promise<string> {
+    if (!NOIZY_INTERNAL_KEY) {
+        throw new Error("NOIZY_INTERNAL_KEY is required for receipt commitment.");
+    }
+
     const rawData = JSON.stringify(receiptPayload);
     const dataHash = createHash("sha256").update(rawData).digest("hex");
 
     try {
-        await fetch(`${HARMONY_WORKER_URL}/api/v1/ledger/commit`, {
+        const res = await fetch(`${HARMONY_WORKER_URL}/api/v1/ledger/commit`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -108,8 +134,15 @@ async function commitReceiptOverHttp(receiptPayload: Record<string, any>): Promi
                 tier_gate: "TIER-1"
             })
         });
-    } catch (err) {
-        // Mock fallback logged locally
+
+        if (!res.ok && REQUIRE_REMOTE_RECEIPT) {
+            const text = await res.text();
+            throw new Error(`Receipt commit failed (HTTP ${res.status}): ${text}`);
+        }
+    } catch (err: any) {
+        if (REQUIRE_REMOTE_RECEIPT) {
+            throw new Error(`Receipt commitment failed closed: ${err.message}`);
+        }
     }
 
     return dataHash;
@@ -122,9 +155,11 @@ const server = new McpServer({
 });
 
 server.tool(
-    "compute_traffic_route",
+    "gabriel_compute_traffic_route",
     ComputeRoutesInputSchema,
-    async ({ driver_id, session_token, origin, destination, routing_preference, travel_mode, idempotency_key }) => {
+    async (input: ComputeRoutesInput) => {
+        const { driver_id, session_token, origin, destination, routing_preference, travel_mode, idempotency_key } = input;
+
         // Step 1: Verify NC-01-10-v2 Consent
         const consent = await verifyConsentOverHttp(driver_id, session_token);
         if (!consent.granted) {
@@ -133,6 +168,10 @@ server.tool(
 
         // Step 2: Call Google Routes API v2 REST Endpoint
         if (!GOOGLE_MAPS_API_KEY || GOOGLE_MAPS_API_KEY.includes("MOCK")) {
+            if (!ALLOW_MOCK_ROUTES) {
+                throw new Error("GOOGLE_MAPS_API_KEY is required unless ALLOW_MOCK_ROUTES=true.");
+            }
+
             // High-fidelity local simulation for canary verification
             const mockDuration = 1284; // 21.4 mins
             const mockStatic = 1040;   // 17.3 mins
@@ -149,6 +188,7 @@ server.tool(
                 static_duration_seconds: mockStatic,
                 distance_meters: mockDistance,
                 polyline_hash: createHash("sha256").update(mockPolyline).digest("hex"),
+                route_summary_hash: createHash("sha256").update("Primary Highway / Airport Corridor").digest("hex"),
                 executed_at: new Date().toISOString()
             };
 
@@ -165,8 +205,8 @@ server.tool(
                         static_duration_seconds: mockStatic,
                         distance_meters: mockDistance,
                         eta_minutes: +(mockDuration / 60).toFixed(2),
-                        polyline: mockPolyline,
-                        route_summary: "Primary Highway / Airport Corridor",
+                        polyline_hash: receiptPayload.polyline_hash,
+                        route_summary: "Traffic-aware route metrics ready",
                         harmony_receipt_hash: receiptHash
                     })
                 }]
@@ -220,6 +260,7 @@ server.tool(
             static_duration_seconds: staticDurationSeconds,
             distance_meters: distanceMeters,
             polyline_hash: createHash("sha256").update(encodedPolyline).digest("hex"),
+            route_summary_hash: createHash("sha256").update(primaryRoute.description || "Primary Route").digest("hex"),
             executed_at: new Date().toISOString()
         };
 
@@ -236,8 +277,8 @@ server.tool(
                     static_duration_seconds: staticDurationSeconds,
                     distance_meters: distanceMeters,
                     eta_minutes: +(durationSeconds / 60).toFixed(2),
-                    polyline: encodedPolyline,
-                    route_summary: primaryRoute.description || "Primary Route",
+                    polyline_hash: receiptPayload.polyline_hash,
+                    route_summary: "Traffic-aware route metrics ready",
                     harmony_receipt_hash: receiptHash
                 })
             }]

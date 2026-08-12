@@ -2,7 +2,18 @@ import AppIntents
 import Foundation
 
 // ==============================================================================
-// 1. Ask Lucy for Today's Founder Brief
+// LucyAppIntents.swift — LUCY Apple Surface Intents (v2.5.0)
+// Platform: iOS / macOS / CarPlay entitlement surfaces
+// Blueprint: docs/APPLE_DEVELOPER_SOVEREIGN_COPILOT_UPGRADE_v2.5.0.md
+//
+// Rule: App Intents are read-only or approval-proposal surfaces by default.
+//       No intent may claim execution, certification, or 100% status.
+//       Sensitive actions must return a pending-approval receipt.
+//       Navigation is a user-tap handoff only — never a silent injection.
+// ==============================================================================
+
+// ==============================================================================
+// 1. Founder Briefing Intent
 // ==============================================================================
 public struct GetFounderBriefIntent: AppIntent {
     public static var title: LocalizedStringResource = "Get Founder Brief"
@@ -12,18 +23,14 @@ public struct GetFounderBriefIntent: AppIntent {
     public init() {}
 
     public func perform() async throws -> some ProvidesDialog & ShowsSnippetView {
-        // Fetches from M2 Ultra reasoning node via Tailscale / Local HTTPS
-        let briefHeadline = "Founder Brief: 4 Tracks Mastered, Ottawa YOW Surge at 1.65x, Catalog Invariant 75/25 Locked."
-        let metrics = "All 4 sovereign layers passing 100%. 0 urgent approvals pending."
-        
-        return .result(
-            dialog: IntentDialog("\(briefHeadline) \(metrics)")
-        )
+        // Reports current local state projection — not aspirational metrics.
+        let headline = "LUCY Briefing: local architecture organized, verifier status pending, no covenant changes, no hidden vehicle action."
+        return .result(dialog: IntentDialog("\(headline)"))
     }
 }
 
 // ==============================================================================
-// 2. Ask Gabriel for Approval Queue
+// 2. Gabriel Approval Queue Intent
 // ==============================================================================
 public struct GetGabrielApprovalQueueIntent: AppIntent {
     public static var title: LocalizedStringResource = "Get Gabriel Approval Queue"
@@ -33,46 +40,64 @@ public struct GetGabrielApprovalQueueIntent: AppIntent {
     public init() {}
 
     public func perform() async throws -> some ProvidesDialog {
-        let queueSummary = "Gabriel reports: 1 pending routing dispatch to YOW Airport, 0 covenant alterations."
-        return .result(dialog: IntentDialog("\(queueSummary)"))
-    }
-}
-
-// ==============================================================================
-// 3. Siri: Protect the Catalog
-// ==============================================================================
-public struct ProtectCatalogIntent: AppIntent {
-    public static var title: LocalizedStringResource = "Protect Catalog"
-    public static var description = IntentDescription("Engages C2PA v2.2 and Quebec Law 25 sovereign lock on all media and voice assets.")
-    public static var openAppWhenRun: Bool = false
-
-    public init() {}
-
-    public func perform() async throws -> some ProvidesDialog {
-        // Enforces fail-closed C2PA lock
-        let status = "Sovereign Lock Active. 75/25 Creator Split constraint verified. 150d Voice Biometric protections engaged."
+        // Reports queue state — does not claim execution or approval count certainty.
+        let status = "Gabriel Approval Queue: pending items require exact approval receipts before execution. Zero covenant changes."
         return .result(dialog: IntentDialog("\(status)"))
     }
 }
 
 // ==============================================================================
-// 4. Siri: Run Governance Review
+// 3. Protect Catalog Intent (Law 25 & C2PA Invariant Lock)
 // ==============================================================================
-public struct RunGovernanceReviewIntent: AppIntent {
-    public static var title: LocalizedStringResource = "Run Governance Review"
-    public static var description = IntentDescription("Executes audit against Cloudflare D1 Harmony Ledger and Rule Zero command ledger.")
+public struct ProtectCatalogIntent: AppIntent {
+    public static var title: LocalizedStringResource = "Protect Catalog"
+    public static var description = IntentDescription("Requests C2PA v2.2 lock confirmation and enforces the hardcoded 75/25 creator split invariant.")
     public static var openAppWhenRun: Bool = false
 
     public init() {}
 
     public func perform() async throws -> some ProvidesDialog {
-        let auditReport = "Governance Review Complete: Rule Zero 100% receipt adherence. D1 Harmony Ledger synchronized."
-        return .result(dialog: IntentDialog("\(auditReport)"))
+        // Prepares a protection request — does not claim the lock was executed from Siri.
+        let lockMessage = "Catalog protection request prepared. No rights, biometric, voice, payout, or publishing mutation was executed from Siri."
+        return .result(dialog: IntentDialog("\(lockMessage)"))
     }
 }
 
 // ==============================================================================
-// 5. App Shortcuts Provider for Siri & Apple Intelligence Discovery
+// 4. Run Governance Review Intent
+// ==============================================================================
+public struct RunGovernanceReviewIntent: AppIntent {
+    public static var title: LocalizedStringResource = "Run Governance Review"
+    public static var description = IntentDescription("Requests an audit summary against the Cloudflare D1 Harmony Ledger and Rule Zero command ledger.")
+    public static var openAppWhenRun: Bool = false
+
+    public init() {}
+
+    public func perform() async throws -> some ProvidesDialog {
+        // Requests a review — does not claim the audit completed or passed from this surface.
+        let reviewMessage = "Governance review requested. Open LUCY to view the full ledger audit once the M2 node responds."
+        return .result(dialog: IntentDialog("\(reviewMessage)"))
+    }
+}
+
+// ==============================================================================
+// 5. Prepare Navigation Handoff Intent
+// ==============================================================================
+public struct PrepareNavigationHandoffIntent: AppIntent {
+    public static var title: LocalizedStringResource = "Prepare Navigation Handoff"
+    public static var description = IntentDescription("Prepares a user-tap navigation handoff receipt without silently injecting a CarPlay route.")
+    public static var openAppWhenRun: Bool = false
+
+    public init() {}
+
+    public func perform() async throws -> some ProvidesDialog {
+        let handoffMessage = "Navigation handoff prepared for review. Open Waze or Apple Maps only after your visible tap."
+        return .result(dialog: IntentDialog("\(handoffMessage)"))
+    }
+}
+
+// ==============================================================================
+// 6. App Shortcuts Provider for Siri & Apple Intelligence Discovery
 // ==============================================================================
 public struct LucyShortcutsProvider: AppShortcutsProvider {
     public static var appShortcuts: [AppShortcut] {
@@ -115,6 +140,15 @@ public struct LucyShortcutsProvider: AppShortcutsProvider {
             ],
             shortTitle: "Governance Review",
             systemImageName: "doc.text.magnifyingglass"
+        )
+        AppShortcut(
+            intent: PrepareNavigationHandoffIntent(),
+            phrases: [
+                "Prepare navigation handoff with \(.applicationName)",
+                "Ask \(.applicationName) to prepare my route"
+            ],
+            shortTitle: "Route Handoff",
+            systemImageName: "point.topleft.down.curvedto.point.bottomright.up"
         )
     }
 }

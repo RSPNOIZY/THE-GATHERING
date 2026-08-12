@@ -3,7 +3,8 @@ import Foundation
 
 // ==============================================================================
 // LucyIntents.swift - Native App Intents for LUCY & GABRIEL
-// Platform: iOS 18+ / macOS Sequoia / CarPlay Ultra
+// Platform: iOS / macOS / CarPlay entitlement surfaces
+// Rule: App Intents are read-only or approval-proposal surfaces by default.
 // ==============================================================================
 
 // 1. Founder Briefing Intent
@@ -15,7 +16,7 @@ public struct LucyBriefingIntent: AppIntent {
     public init() {}
 
     public func perform() async throws -> some ProvidesDialog & ShowsSnippetView {
-        let headline = "LUCY Briefing: Ottawa YOW Surge is at 1.65x. 4 Master Stems Ingested at 396Hz. All 4 Sovereign Layers 100% Certified."
+        let headline = "LUCY Briefing: local architecture organized, verifier status pending, no covenant changes, no hidden vehicle action."
         return .result(dialog: IntentDialog("\(headline)"))
     }
 }
@@ -29,7 +30,7 @@ public struct GabrielApprovalIntent: AppIntent {
     public init() {}
 
     public func perform() async throws -> some ProvidesDialog {
-        let status = "Gabriel Approval Queue: 1 pending routing handoff to YOW International Airport. Zero covenant changes."
+        let status = "Gabriel Approval Queue: pending items require exact approval receipts before execution. Zero covenant changes."
         return .result(dialog: IntentDialog("\(status)"))
     }
 }
@@ -43,12 +44,26 @@ public struct ProtectCatalogIntent: AppIntent {
     public init() {}
 
     public func perform() async throws -> some ProvidesDialog {
-        let lockMessage = "Sovereign Catalog Lock Active: 75/25 split invariant verified. 150d Voice Biometric protections engaged."
+        let lockMessage = "Catalog protection request prepared. No rights, biometric, voice, payout, or publishing mutation was executed from Siri."
         return .result(dialog: IntentDialog("\(lockMessage)"))
     }
 }
 
-// 4. App Shortcuts Provider
+// 4. Prepare Navigation Handoff Intent
+public struct PrepareNavigationHandoffIntent: AppIntent {
+    public static var title: LocalizedStringResource = "Prepare Navigation Handoff"
+    public static var description = IntentDescription("Prepares a user-tap navigation handoff receipt without silently injecting a CarPlay route.")
+    public static var openAppWhenRun: Bool = false
+
+    public init() {}
+
+    public func perform() async throws -> some ProvidesDialog {
+        let handoffMessage = "Navigation handoff prepared for review. Open Waze or Apple Maps only after your visible tap."
+        return .result(dialog: IntentDialog("\(handoffMessage)"))
+    }
+}
+
+// 5. App Shortcuts Provider
 public struct LucyShortcutsProvider: AppShortcutsProvider {
     public static var appShortcuts: [AppShortcut] {
         AppShortcut(
@@ -79,6 +94,15 @@ public struct LucyShortcutsProvider: AppShortcutsProvider {
             ],
             shortTitle: "Protect Catalog",
             systemImageName: "lock.shield"
+        )
+        AppShortcut(
+            intent: PrepareNavigationHandoffIntent(),
+            phrases: [
+                "Prepare navigation handoff with \(.applicationName)",
+                "Ask \(.applicationName) to prepare my route"
+            ],
+            shortTitle: "Route Handoff",
+            systemImageName: "point.topleft.down.curvedto.point.bottomright.up"
         )
     }
 }

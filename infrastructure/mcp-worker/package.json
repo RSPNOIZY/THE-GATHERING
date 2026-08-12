@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "NOIZY Model Context Protocol (MCP) Edge Worker Router for mcp.noizyfish.com",
   "main": "src/index.ts",
+  "type": "module",
   "scripts": {
     "dev": "wrangler dev",
     "deploy": "wrangler deploy",

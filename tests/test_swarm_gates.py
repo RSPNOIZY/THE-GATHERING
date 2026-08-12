@@ -11,7 +11,6 @@ Tests:
 import os
 import re
 import json
-import pytest
 
 MIGRATIONS_DIR = "/Users/m2ultra/THE-GATHERING/supabase/migrations"
 SWARM_YAML = "/Users/m2ultra/THE-GATHERING/agents/noizyarmy/swarm_spec_v1.yaml"

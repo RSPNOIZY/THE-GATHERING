@@ -1,0 +1,324 @@
+{
+  "empire": "MC96ECOUNIVERSE / NOIZYWORLD",
+  "version": "5.0.0",
+  "generated": "2026-08-31T17:46:00-04:00",
+  "master_architect": "RSP_001",
+  "machine": "GOD.local (Apple M2 Ultra 192GB RAM, 24-core)",
+  "canonical_repo": "https://github.com/RSPNOIZY/THE-GATHERING",
+  "contact": "rsp@noizy.ai",
+  "frequency": "396Hz",
+
+  "invariants": {
+    "rule_zero": "ONE COMMAND → ONE ACTION → ONE RECEIPT",
+    "plowman_standard": "75/25 Creator Revenue Floor (Hardcoded Const)",
+    "founding_actor_rate": "85/15 RSP_001",
+    "gorunfree_trust": "1% to NOIZYKIDZ — always — irremovable",
+    "biometric_law25": "150-dimensional non-reversible voice hash & CAI 60-day filing clearance",
+    "provenance": "C2PA v2.2 JUMBF Manifests & Ed25519 Chain Signatures",
+    "kill_switch": "Absolute. 1-hour SLA. No review board.",
+    "never_clauses": 9
+  },
+
+  "brands": [
+    {
+      "id": "noizy-ai",
+      "name": "NOIZY.AI",
+      "domain": "noizy.ai",
+      "status": "active",
+      "owner_agent": "GABRIEL",
+      "description": "The public face. Landing, consent portal, API docs, launch site.",
+      "master_doc": "DREAMCHAMBER/NOIZY.AI/MASTER_NOIZY_AI.md",
+      "local_path": "noizy-ai/",
+      "subpaths": ["consent/", "landing/"],
+      "stack": "Cloudflare Pages + Workers"
+    },
+    {
+      "id": "noizyfish",
+      "name": "NOIZYFISH",
+      "domain": "noizyfish.com",
+      "status": "building",
+      "owner_agent": "LUCY",
+      "description": "Music catalog platform + MC96ECO catalogue. 'The revolution will sound like yesterday.'",
+      "local_path": "noizyfish/",
+      "subpaths": ["isrc/", "licensing/", "mc96/", "pipeline/", "web/"],
+      "stack": "Cloudflare Pages"
+    },
+    {
+      "id": "noizykidz",
+      "name": "NOIZYKIDZ",
+      "domain": "noizykidz.com",
+      "status": "planned",
+      "owner_agent": "LUCY",
+      "description": "Haptic music education. Deaf-first. Autism-calm. 1% GORUNFREE Trust Clause.",
+      "local_path": "noizykidz/",
+      "stack": "TBD"
+    },
+    {
+      "id": "noizyvox",
+      "name": "NOIZYVOX",
+      "domain": "noizyvox.com",
+      "status": "building",
+      "owner_agent": "LUCY",
+      "description": "Consent-locked voice ownership protocol. Artist-facing. XTTS v2.",
+      "master_doc": "DREAMCHAMBER/NOIZYVOX/MASTER_NOIZYVOX.md",
+      "local_path": "noizyvox/",
+      "port": 8090,
+      "stack": "FastAPI + uvicorn + XTTS v2"
+    },
+    {
+      "id": "noizylab",
+      "name": "NOIZYLAB",
+      "domain": "noizylab.ca",
+      "status": "active",
+      "owner_agent": "GABRIEL",
+      "description": "The lab. Internal tooling, Heaven Worker, DreamChamber dev surface.",
+      "local_path": "noizylab/",
+      "stack": "Various"
+    },
+    {
+      "id": "dreamchamber",
+      "name": "DREAMCHAMBER",
+      "domain": null,
+      "status": "building",
+      "owner_agent": "GABRIEL",
+      "description": "The sacred creative space. Swift package. Voice → Claude → TTS. Port 7777.",
+      "local_path": "DREAMCHAMBER/",
+      "port": 7777,
+      "stack": "Swift Package + GRDB+FTS5"
+    },
+    {
+      "id": "the-old-guard",
+      "name": "THE-OLD-GUARD",
+      "domain": null,
+      "status": "building",
+      "description": "ResurrectionOS — older Apple device revival + global charitable deployment + MC96-DB"
+    },
+    {
+      "id": "the-gathering",
+      "name": "THE-GATHERING",
+      "domain": null,
+      "status": "active",
+      "description": "Canonical monorepo. All RSP. All NOIZY. All sovereign.",
+      "local_path": "/Users/m2ultra/THE-GATHERING"
+    },
+    {
+      "id": "noizyanthropic",
+      "name": "NOIZYANTHROPIC",
+      "domain": null,
+      "status": "active",
+      "description": "Claude/SDK/MCP integration workspace.",
+      "local_path": "/Users/m2ultra/NOIZYANTHROPIC"
+    },
+    {
+      "id": "the-aquarium",
+      "name": "THE-AQUARIUM",
+      "domain": null,
+      "status": "active",
+      "description": "34TB heritage archive. 16M files, 888 titles. 8-stage experience.",
+      "cold_storage": "/Volumes/12TB"
+    }
+  ],
+
+  "agents": [
+    {
+      "id": "gabriel",
+      "name": "GABRIEL",
+      "full_name": "GABRIEL ALMEIDA",
+      "acronym": "Generative Adaptive Bridge for Intelligent Expression and Learning",
+      "role": "Commander · Executor · Conscience · Bridge",
+      "voice": "Daniel",
+      "owns": ["NOIZY.AI", "NOIZYLAB", "DREAMCHAMBER"],
+      "port": 7777,
+      "master_doc": "DREAMCHAMBER/GABRIEL/MASTER_GABRIEL.md",
+      "status": "active",
+      "entrypoint": "agents/gabriel/",
+      "capabilities": ["voice", "orchestration", "dispatch", "consent-guard"]
+    },
+    {
+      "id": "shirl",
+      "name": "SHIRL",
+      "role": "Consent guardian — Aunt Shirley energy",
+      "voice": "Karen",
+      "master_doc": "DREAMCHAMBER/AGENTS/MASTER_SHIRL.md",
+      "status": "active"
+    },
+    {
+      "id": "pops",
+      "name": "POPS",
+      "role": "Estate & legacy — 100-year OAIS/PREMIS view",
+      "voice": "Fred",
+      "master_doc": "DREAMCHAMBER/AGENTS/MASTER_POPS.md",
+      "status": "active"
+    },
+    {
+      "id": "dream",
+      "name": "DREAM",
+      "role": "Creative partner — DreamChamber is her room",
+      "voice": "Victoria",
+      "master_doc": "DREAMCHAMBER/AGENTS/MASTER_DREAM.md",
+      "status": "active"
+    },
+    {
+      "id": "engr-keith",
+      "name": "ENGR_KEITH",
+      "role": "Infrastructure engineer — Cloudflare, D1, Workers, tunnels",
+      "voice": "Alex",
+      "port": 7006,
+      "master_doc": "DREAMCHAMBER/AGENTS/MASTER_ENGR_KEITH.md",
+      "status": "active"
+    },
+    {
+      "id": "lucy",
+      "name": "LUCY",
+      "role": "Archives, AQUARIUM indexing, receipts, LIFELUV — Sovereign brand side",
+      "voice": "Moira",
+      "owns": ["NOIZYVOX", "FISHMUSICINC", "NOIZYKIDZ"],
+      "master_doc": "DREAMCHAMBER/AGENTS/MASTER_LUCY.md",
+      "status": "active"
+    },
+    {
+      "id": "claude",
+      "name": "CLAUDE",
+      "role": "Analyst — code, refactor, advisory",
+      "advises": ["NOIZY.AI", "NOIZYLAB", "DREAMCHAMBER"],
+      "master_doc": "DREAMCHAMBER/AGENTS/MASTER_CLAUDE.md",
+      "status": "active"
+    },
+    {
+      "id": "shelper",
+      "name": "SHELPER",
+      "role": "Auxiliary agent",
+      "master_doc": "DREAMCHAMBER/AGENTS/MASTER_SHELPER.md",
+      "status": "active"
+    },
+    {
+      "id": "jessy",
+      "name": "JESSY",
+      "role": "Auxiliary agent",
+      "master_doc": "DREAMCHAMBER/AGENTS/MASTER_JESSY.md",
+      "status": "active"
+    }
+  ],
+
+  "services": [
+    { "name": "NOIZYBEAST", "port": 7777, "desc": "FastAPI HTMX dashboard (4 panes)", "tech": "FastAPI+HTMX" },
+    { "name": "GABRIEL Daemon", "port": 9777, "desc": "Agent runner, voice pipeline" },
+    { "name": "NOIZYARMY Orchestrator", "port": 9333, "desc": "Discord bot + swarm engine" },
+    { "name": "NOIZYARMY Dashboard", "port": 9334, "desc": "Swarm dashboard" },
+    { "name": "Voice Bridge", "port": 8080, "desc": "Audio routing" },
+    { "name": "MESH", "port": 9696, "desc": "CF Access tunnel" },
+    { "name": "STT Whisper", "port": 8000, "desc": "Speech-to-text (local)" },
+    { "name": "Ollama", "port": 11434, "desc": "Local AI inference (15 models)" },
+    { "name": "n8n", "port": 5678, "desc": "Automation (25 workflows, Docker)" },
+    { "name": "NOIZYVOX Engine", "port": 8420, "desc": "XTTS v2 voice synthesis" },
+    { "name": "THE-HOST ENGR", "port": 8421, "desc": "THE-HOST AIVA agent" },
+    { "name": "NOIZYVOX API", "port": 8090, "desc": "FastAPI consent-locked voice" },
+    { "name": "Rob-AVA", "port": 8091, "desc": "Persona + trust loop" },
+    { "name": "ENGR_KEITH", "port": 7006, "desc": "Infrastructure engineer agent" },
+    { "name": "Signal Daemon", "port": 9699, "desc": "Signal routing" }
+  ],
+
+  "cloudflare": {
+    "account_id": "5f36aa9795348ea681d0b21910dfc82a",
+    "legacy_account": "2446d788cc4280f5ea22a9948410c355 (DEAD — never deploy)",
+    "workers": [
+      { "name": "heaven", "url": "heaven.rsp-5f3.workers.dev", "path": "heaven/workers/heaven/" },
+      { "name": "cb01-router", "path": "heaven/workers/cb01-router/" },
+      { "name": "claude-proxy", "path": "heaven/workers/claude-proxy/" },
+      { "name": "consent-gateway", "path": "heaven/workers/consent-gateway/" },
+      { "name": "edge-governor", "path": "heaven/workers/edge-governor/" },
+      { "name": "noizy-chat-glue", "path": "heaven/workers/noizy-chat-glue/" },
+      { "name": "webhook-proxy", "path": "heaven/workers/webhook-proxy/" }
+    ],
+    "d1_databases": [
+      { "name": "gabriel_db", "id": "a31d68e2-f2d4-4203-a803-8039fdff31cb", "purpose": "Heaven primary" },
+      { "name": "agent-memory", "id": "7b813205-fd12-4a23-84a6-ce83bc49ec70", "purpose": "Shared agent memory" }
+    ],
+    "kv_namespaces": [
+      { "name": "NOIZY-CONSENT", "id": "f205b56a9914413da0ec454a9dc4c2bd" },
+      { "name": "NOIZY-SESSIONS", "id": "16532a32b2e8455486cc966403f3442e" },
+      { "name": "heaven-KV_GABRIEL", "id": "a674bf34bea64c02b0f6cb06b048e566" },
+      { "name": "heaven-KV_VOICE", "id": "64a82e751e654657a6b13ba984fe2cd1" }
+    ],
+    "domains": [
+      { "domain": "noizy.ai", "plan": "Pro", "status": "Active" },
+      { "domain": "noizyfish.com", "plan": "Free", "status": "Active" },
+      { "domain": "noizykidz.com", "plan": "Free", "status": "Active" },
+      { "domain": "fishmusicinc.com", "plan": "Free", "status": "Active" },
+      { "domain": "noizylab.ca", "plan": "Free", "status": "Pending NS" }
+    ]
+  },
+
+  "tools": {
+    "deploy": ["deploy.sh", "deploy-heaven.sh", "deploy-readiness.sh", "canary-deploy.sh", "promote-variant.sh", "gradual-rollout.sh"],
+    "audit": ["audit-mickey-p.sh", "audit-readiness-gate.sh", "export-audit-log.sh", "time-travel-audit-gate.sh", "regulator-bundle-gate.sh"],
+    "voice": ["voice-bridge-server.js", "voice-capture.sh", "noizyvox-notification-hooks.js", "audio-hijack-noizy-airstream.js"],
+    "security": ["harden-secrets.sh", "preflight-security-gates.sh", "setup-zero-trust.sh", "setup-local-auth.sh", "ethics-gate.sh", "policy-compiler-gate.sh"],
+    "empire": ["empire-boot.sh", "empire-status.sh", "empire-status-email.js", "LAUNCH_NOIZYLAB_COMPLETE.sh", "gorunfree-launch.sh"],
+    "gabriel": ["gabriel-dispatch.sh", "gabriel-merge.sh"],
+    "infrastructure": ["cloudflare-consolidation.sh", "cloudflare-inventory.sh", "convert-to-cloudflare.sh", "export-dns.sh", "bootstrap-n8n.sh", "setup-integrations.sh"],
+    "maintenance": ["fix-everything.sh", "fix-noizylab-mx.sh", "declutter.sh", "delete_empty_folders.sh", "organize_projects.sh", "triage_downloads.sh", "rebuild_bottomlayer.sh"],
+    "testing": ["smoke-test.sh", "smoke_test.sh", "chaos-test.sh", "test-integrations.sh", "full-status.sh", "multi-region-health.sh", "verify-staging-endpoints.sh"],
+    "git": ["git-align.sh", "git-mirror.sh", "scan_workspace.sh", "manifest.sh"],
+    "disaster_recovery": ["dr-drill.sh", "drill-dr.sh", "rollback.sh", "capture-postmortem.sh", "change-freeze.sh"],
+    "validation": ["validate-proof-vs-contract.mjs", "validate-wrangler-configs.mjs", "check-error-budget.js", "check-no-placeholders.sh", "check-placeholders.sh", "production-gate.sh"],
+    "docs": ["create-noi15-docx.js", "create-noizy-prompt-docx.js"],
+    "fish": ["fishnet.sh", "talespin-finder.sh"],
+    "accessibility": ["optimize-accessibility.sh"],
+    "features": ["setup-feature-flags.sh"]
+  },
+
+  "database_schemas": [
+    { "file": "001_core.sql", "purpose": "Core tables" },
+    { "file": "002_consent_law25.sql", "purpose": "Consent + Law 25 compliance" },
+    { "file": "002_telemetry_multimodal.sql", "purpose": "Telemetry + multimodal" },
+    { "file": "003_mc96_ledger.sql", "purpose": "MC96 append-only ledger" },
+    { "file": "003_swarm_agents.sql", "purpose": "Swarm agent definitions" },
+    { "file": "004_audit_evidence_c2pa.sql", "purpose": "Audit evidence + C2PA provenance" }
+  ],
+
+  "projects": [
+    { "name": "GABRIEL", "path": "PROJECTS/GABRIEL/", "status": "active" },
+    { "name": "GORUNFREE", "path": "PROJECTS/GORUNFREE/", "status": "active" },
+    { "name": "GOD-LOCAL", "path": "PROJECTS/GOD-LOCAL/", "status": "active" },
+    { "name": "UNIFIED-BRIDGE", "path": "PROJECTS/UNIFIED-BRIDGE/", "status": "active", "modules": 7 },
+    { "name": "FISHMUSICINC", "path": "PROJECTS/FISHMUSICINC/", "status": "staging" },
+    { "name": "APPLE-STACK", "path": "PROJECTS/APPLE-STACK/", "status": "staging" },
+    { "name": "NLR_01", "path": "PROJECTS/NLR_01/", "status": "staging" },
+    { "name": "ABRIEL", "path": "PROJECTS/ABRIEL/", "status": "staging" },
+    { "name": "repairrob_staging", "path": "PROJECTS/repairrob_staging/", "status": "staging" },
+    { "name": "imports_AEON-MEGA", "path": "PROJECTS/imports_20251207_AEON-MEGA/", "status": "archive" }
+  ],
+
+  "unified_bridge_modules": [
+    { "file": "unified_auth_manager.py", "purpose": "Cross-platform auth" },
+    { "file": "unified_auth_system.py", "purpose": "Auth system core" },
+    { "file": "unified_file_sync.py", "purpose": "File synchronization" },
+    { "file": "unified_integration_bridge.py", "purpose": "Integration bridge" },
+    { "file": "unified_performance_metrics.py", "purpose": "Performance monitoring" },
+    { "file": "unified_remote_display.py", "purpose": "Remote display" },
+    { "file": "secure_transport_layer.py", "purpose": "Encrypted transport" }
+  ],
+
+  "ollama_models": [
+    { "name": "gabriel-brain:latest", "size": "47 GB", "role": "GABRIEL primary brain" },
+    { "name": "lucy-brain:latest", "size": "19 GB", "role": "LUCY primary brain" },
+    { "name": "Qwen2.5-VL-72B", "size": "48 GB", "role": "Multimodal vision" },
+    { "name": "gemma4:26b", "size": "17 GB", "role": "General reasoning" },
+    { "name": "qwen2.5-coder:32b", "size": "19 GB", "role": "Code generation" }
+  ],
+
+  "storage_tiers": {
+    "tier_0_hot": "/Users/m2ultra/THE-GATHERING",
+    "tier_1_warm": "/Users/m2ultra/rideshare",
+    "tier_2_cloud": [
+      "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com",
+      "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rsplowman@icloud.com"
+    ],
+    "tier_3_cold": [
+      "/Volumes/12TB",
+      "/Volumes/4TB Lacie/GitHub/THE-GATHERING",
+      "/Volumes/2TB_SGW/FISH_MUSIC"
+    ]
+  }
+}

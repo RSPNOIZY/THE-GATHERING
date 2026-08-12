@@ -3,9 +3,9 @@ main = "src/index.ts"
 compatibility_date = "2026-08-01"
 compatibility_flags = ["nodejs_compat"]
 
-[routes]
-pattern = "mcp.noizyfish.com/*"
-custom_domain = true
+routes = [
+  { pattern = "mcp.noizyfish.com", custom_domain = true }
+]
 
 [vars]
 ENVIRONMENT = "production"
@@ -17,3 +17,9 @@ SERVER_VERSION = "4.0.0"
 # [[kv_namespaces]]
 # binding = "MCP_SESSIONS"
 # id = "noizy_mcp_sessions_kv"
+
+# Production D1 must be wired with the exact approved Harmony database before deploy.
+# [[d1_databases]]
+# binding = "DB_HARMONY"
+# database_name = "REPLACE_WITH_APPROVED_HARMONY_DATABASE"
+# database_id = "REPLACE_WITH_APPROVED_HARMONY_DATABASE_ID"

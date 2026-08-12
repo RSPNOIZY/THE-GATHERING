@@ -7,7 +7,33 @@ Verifies: parse_google_duration, normalize_route_result, get_traffic_aware_route
 import sys
 import os
 import uuid
-import pytest
+
+try:
+    import pytest
+except ModuleNotFoundError:
+    class _Raises:
+        def __init__(self, exc_type, match=None):
+            self.exc_type = exc_type
+            self.match = match
+
+        def __enter__(self):
+            return self
+
+        def __exit__(self, exc_type, exc, _traceback):
+            if exc_type is None:
+                raise AssertionError(f"Expected {self.exc_type.__name__} to be raised")
+            if not issubclass(exc_type, self.exc_type):
+                return False
+            if self.match and self.match not in str(exc):
+                raise AssertionError(f"Expected error containing {self.match!r}, got {exc!r}")
+            return True
+
+    class _PytestFallback:
+        @staticmethod
+        def raises(exc_type, match=None):
+            return _Raises(exc_type, match)
+
+    pytest = _PytestFallback()
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
@@ -160,4 +186,3 @@ if __name__ == "__main__":
     test_should_warn_about_delay()
     print("✅ test_should_warn_about_delay passed.")
     print("\n🏆 ALL GOOGLE ROUTES SERVICE TESTS PASSED 100%!")
-

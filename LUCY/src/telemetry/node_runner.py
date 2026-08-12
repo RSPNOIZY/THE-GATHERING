@@ -1,15 +1,20 @@
 #!/usr/bin/env python3
 """
-node_runner.py - NOIZY Dispatcher Client & Routing Supervisor (v2.4.0-PROD)
+node_runner.py - NOIZY Dispatcher Client & Routing Supervisor (v2.5.0-PROD)
 Host Platform: Apple Mac Studio M2 Ultra (192GB Unified Memory)
 Complies with: Google Routes API v2, MCP Stdio Protocol 2024-11-05, Universal Waze Handoff
 """
 
 import asyncio
+import base64
+import hashlib
+import hmac
 import json
 import logging
 import uuid
 import re
+import os
+from datetime import datetime, timedelta, timezone
 from urllib.parse import urlencode
 from typing import Dict, Any, Optional
 
@@ -38,6 +43,47 @@ def make_waze_universal_link(lat: float, lon: float) -> str:
         "utm_source": "noizy",
     })
     return f"https://waze.com/ul?{params}"
+
+
+def make_signed_handoff_token(claims: Dict[str, Any], ttl_seconds: int = 60) -> Dict[str, Any]:
+    """Build a short-lived HMAC handoff token for user-visible Shortcut execution."""
+    issued_at = datetime.now(timezone.utc)
+    expires_at = issued_at + timedelta(seconds=ttl_seconds)
+    secret = os.getenv("PUSHCUT_HANDOFF_SECRET")
+
+    token_claims = {
+        **claims,
+        "issued_at": issued_at.isoformat(),
+        "expires_at": expires_at.isoformat(),
+        "ttl_seconds": ttl_seconds,
+    }
+
+    if not secret:
+        return {
+            "status": "PENDING_HANDOFF_SECRET",
+            "token": None,
+            "issued_at": issued_at.isoformat(),
+            "expires_at": expires_at.isoformat(),
+            "ttl_seconds": ttl_seconds,
+        }
+
+    encoded_claims = base64.urlsafe_b64encode(
+        json.dumps(token_claims, separators=(",", ":"), sort_keys=True).encode("utf-8")
+    ).decode("ascii").rstrip("=")
+    signature = hmac.new(
+        secret.encode("utf-8"),
+        encoded_claims.encode("ascii"),
+        hashlib.sha256,
+    ).digest()
+    encoded_signature = base64.urlsafe_b64encode(signature).decode("ascii").rstrip("=")
+
+    return {
+        "status": "SIGNED_60S",
+        "token": f"{encoded_claims}.{encoded_signature}",
+        "issued_at": issued_at.isoformat(),
+        "expires_at": expires_at.isoformat(),
+        "ttl_seconds": ttl_seconds,
+    }
 
 
 class GabrielDispatchClient:
@@ -141,7 +187,7 @@ class GabrielDispatchClient:
             "idempotency_key": idempotency_key
         }
 
-        route_result = await self.call_mcp_tool("compute_traffic_route", tool_args)
+        route_result = await self.call_mcp_tool("gabriel_compute_traffic_route", tool_args)
         actual_duration = parse_google_duration(route_result["duration_seconds"])
         static_duration = parse_google_duration(route_result.get("static_duration_seconds", actual_duration))
         delay_delta = max(0, actual_duration - baseline_eta_seconds)
@@ -149,6 +195,15 @@ class GabrielDispatchClient:
         is_congested = delay_pct > max_acceptable_delay_pct
 
         waze_url = make_waze_universal_link(destination["latitude"], destination["longitude"])
+        handoff_id = f"HND_{uuid.uuid4().hex[:8].upper()}"
+        waybill_id = f"WB-{uuid.uuid4().hex[:6].upper()}"
+        handoff = make_signed_handoff_token({
+            "handoff_id": handoff_id,
+            "waybill_id": waybill_id,
+            "destination": destination,
+            "universal_url": waze_url,
+            "harmony_receipt_hash": route_result["harmony_receipt_hash"],
+        })
 
         return {
             "idempotency_key": idempotency_key,
@@ -157,21 +212,26 @@ class GabrielDispatchClient:
             "duration_seconds": actual_duration,
             "static_duration_seconds": static_duration,
             "distance_meters": route_result["distance_meters"],
-            "eta_minutes": +(actual_duration / 60).toFixed(2) if hasattr(actual_duration, 'toFixed') else round(actual_duration / 60, 2),
+            "eta_minutes": round(actual_duration / 60, 2),
             "delay_seconds": delay_delta,
             "delay_percentage": round(delay_pct * 100, 1),
             "is_congested": is_congested,
             "status": "HOLD_DISPATCH" if is_congested else "READY_FOR_VEHICLE",
             "waze_universal_link": waze_url,
             "pushcut_handoff_payload": {
-                "title": "NOIZY Dispatch: Route Approved",
-                "text": f"ETA: {round(actual_duration / 60, 1)} min. Tap to launch navigation.",
+                "title": "NOIZY Dispatch: Route Ready",
+                "text": f"ETA: {round(actual_duration / 60, 1)} min. Tap to review navigation handoff.",
                 "input": json.dumps({
-                    "handoff_id": f"HND_{uuid.uuid4().hex[:8].upper()}",
-                    "waybill_id": f"WB-{uuid.uuid4().hex[:6].upper()}",
+                    "handoff_id": handoff_id,
+                    "waybill_id": waybill_id,
                     "destination": destination,
                     "universal_url": waze_url,
-                    "harmony_receipt_hash": route_result["harmony_receipt_hash"]
+                    "harmony_receipt_hash": route_result["harmony_receipt_hash"],
+                    "handoff_status": handoff["status"],
+                    "handoff_token": handoff["token"],
+                    "issued_at": handoff["issued_at"],
+                    "expires_at": handoff["expires_at"],
+                    "ttl_seconds": handoff["ttl_seconds"]
                 }),
                 "defaultAction": {
                     "name": "NOIZY-CarPlay-Handoff",

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🜂 NOIZY Empire — Command Center</title>
+  <meta name="description" content="MC96ECOUNIVERSE Command Center — 10 brands, 9 agents, one sovereign consent kernel. Built by RSP_001.">
+  <link rel="stylesheet" href="styles/empire.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🜂</text></svg>">
+</head>
+<body>
+  <div class="empire-shell">
+    <!-- ═══ Top Bar ═══ -->
+    <header class="empire-topbar">
+      <div class="empire-logo">
+        <span class="sigil">🜂</span>
+        <div>
+          <h1>NOIZY Empire</h1>
+          <span class="version" id="version-tag">v5.0.0</span>
+        </div>
+      </div>
+      <div class="empire-search">
+        <span class="search-icon">⌘</span>
+        <input type="text" id="global-search" placeholder="Search brands, agents, tools, services..." aria-label="Search empire">
+      </div>
+      <div class="topbar-meta">
+        <span class="machine" id="machine-tag">GOD.local · M2 Ultra · 192GB</span>
+        <span class="frequency">396 Hz</span>
+      </div>
+    </header>
+
+    <!-- ═══ Navigation ═══ -->
+    <nav class="empire-nav" id="main-nav">
+      <button class="nav-tab active" data-panel="overview">Overview</button>
+      <button class="nav-tab" data-panel="brands">Brands (10)</button>
+      <button class="nav-tab" data-panel="agents">Agent Fleet (9)</button>
+      <button class="nav-tab" data-panel="heaven">Heaven Kernel</button>
+      <button class="nav-tab" data-panel="infrastructure">Infrastructure</button>
+      <button class="nav-tab" data-panel="tools">Tools (82+)</button>
+      <button class="nav-tab" data-panel="dreamchamber">DreamChamber</button>
+      <button class="nav-tab" data-panel="projects">Projects</button>
+      <button class="nav-tab" data-panel="bridge">Unified Bridge</button>
+      <button class="nav-tab" data-panel="schemas">Schemas</button>
+      <button class="nav-tab" data-panel="roadmap">Roadmap</button>
+    </nav>
+
+    <!-- ═══ Main Content ═══ -->
+    <main class="empire-content">
+
+      <!-- ── OVERVIEW PANEL ── -->
+      <section class="panel active" id="panel-overview">
+        <div class="covenant-block">
+          <h3>THE FOUNDING COVENANT</h3>
+          <blockquote>"Consent as executable code. Provenance as default. Revocation as sacred. Compensation as automatic."</blockquote>
+          <p class="mt-lg" style="font-size: 0.8rem; color: var(--text-muted);">
+            Robert Stephen Plowman (RSP_001) · rsp@noizy.ai · Canada · 
+            <span class="text-gold">GORUNFREE — the technology restores the hands.</span>
+          </p>
+        </div>
+
+        <div class="stats-row" id="stats-overview"></div>
+
+        <div class="section-header">
+          <h2>Empire at a Glance</h2>
+        </div>
+
+        <div class="card-grid" id="overview-brands"></div>
+
+        <div class="section-header mt-lg">
+          <h2>The 4 Sacred Doctrines</h2>
+        </div>
+        <div class="card-grid" id="doctrines-grid">
+          <div class="card">
+            <div class="card-header"><span class="card-title">1. Consent as Executable Code</span></div>
+            <div class="card-body">No synthesis without an explicit, scoped, revocable, territory-bound NCP token. Verbal agreement is not consent. No token → NO.</div>
+          </div>
+          <div class="card">
+            <div class="card-header"><span class="card-title">2. Provenance as Default</span></div>
+            <div class="card-body">Every sample, synthesis, token, transaction carries an immutable chain of origin. C2PA at creation. Watermarks at synthesis.</div>
+          </div>
+          <div class="card">
+            <div class="card-header"><span class="card-title">3. Revocation as Sacred</span></div>
+            <div class="card-body">Any actor revokes any token at any time. No appeals. No delay. Kill Switch is absolute. 1-hour SLA.</div>
+          </div>
+          <div class="card">
+            <div class="card-header"><span class="card-title">4. Compensation as Automatic</span></div>
+            <div class="card-body">Ledger is append-only. Royalties are law, not courtesy. 75/25 Plowman Standard. No manual override.</div>
+          </div>
+        </div>
+
+        <div class="section-header mt-lg">
+          <h2>The 9 Never Clauses</h2>
+          <span class="count">IMMOVABLE</span>
+        </div>
+        <div id="never-clauses-list"></div>
+      </section>
+
+      <!-- ── BRANDS PANEL ── -->
+      <section class="panel" id="panel-brands">
+        <div class="section-header">
+          <h2>The 10 Brands</h2>
+          <span class="count" id="brand-count"></span>
+        </div>
+        <div class="card-grid" id="brands-grid"></div>
+      </section>
+
+      <!-- ── AGENTS PANEL ── -->
+      <section class="panel" id="panel-agents">
+        <div class="section-header">
+          <h2>Agent Fleet</h2>
+          <span class="count" id="agent-count"></span>
+        </div>
+        <div class="covenant-block" style="margin-bottom: var(--gap-xl);">
+          <h3>Decision Hierarchy</h3>
+          <div class="card-body">
+            <ol style="padding-left: 1.2rem; color: var(--text-secondary);">
+              <li><strong class="text-gold">Never Clauses</strong> — absolute, never override</li>
+              <li><strong class="text-gold">NCP token validation</strong> — must pass before any synthesis</li>
+              <li><strong class="text-gold">RSP_001 directives</strong> — can override anything except Never Clauses</li>
+              <li><strong class="text-gold">Guild of Artists governance</strong> — democratic policy</li>
+              <li><strong class="text-gold">GABRIEL judgment</strong> — only when 1-4 are silent</li>
+            </ol>
+          </div>
+        </div>
+        <div class="card-grid card-grid-3" id="agents-grid"></div>
+      </section>
+
+      <!-- ── HEAVEN PANEL ── -->
+      <section class="panel" id="panel-heaven">
+        <div class="section-header">
+          <h2>Heaven Consent Kernel</h2>
+          <span class="count">SOVEREIGN</span>
+        </div>
+        <div id="heaven-content"></div>
+      </section>
+
+      <!-- ── INFRASTRUCTURE PANEL ── -->
+      <section class="panel" id="panel-infrastructure">
+        <div class="section-header">
+          <h2>Infrastructure</h2>
+          <span class="count" id="service-count"></span>
+        </div>
+        <div id="infra-content"></div>
+      </section>
+
+      <!-- ── TOOLS PANEL ── -->
+      <section class="panel" id="panel-tools">
+        <div class="section-header">
+          <h2>Tools Arsenal</h2>
+          <span class="count" id="tools-count"></span>
+        </div>
+        <div id="tools-content"></div>
+      </section>
+
+      <!-- ── DREAMCHAMBER PANEL ── -->
+      <section class="panel" id="panel-dreamchamber">
+        <div class="section-header">
+          <h2>🜂 DreamChamber</h2>
+          <span class="count">THE SACRED SPACE</span>
+        </div>
+        <div id="dreamchamber-content"></div>
+      </section>
+
+      <!-- ── PROJECTS PANEL ── -->
+      <section class="panel" id="panel-projects">
+        <div class="section-header">
+          <h2>Projects</h2>
+          <span class="count" id="project-count"></span>
+        </div>
+        <div class="card-grid" id="projects-grid"></div>
+      </section>
+
+      <!-- ── BRIDGE PANEL ── -->
+      <section class="panel" id="panel-bridge">
+        <div class="section-header">
+          <h2>Unified Bridge</h2>
+          <span class="count">HOT-ROD</span>
+        </div>
+        <div id="bridge-content"></div>
+      </section>
+
+      <!-- ── SCHEMAS PANEL ── -->
+      <section class="panel" id="panel-schemas">
+        <div class="section-header">
+          <h2>Database & Schemas</h2>
+          <span class="count" id="schema-count"></span>
+        </div>
+        <div id="schemas-content"></div>
+      </section>
+
+      <!-- ── ROADMAP PANEL ── -->
+      <section class="panel" id="panel-roadmap">
+        <div class="section-header">
+          <h2>Roadmap & Mission</h2>
+          <span class="count">2026 → 2036</span>
+        </div>
+        <div id="roadmap-content"></div>
+      </section>
+
+    </main>
+
+    <!-- ═══ Footer ═══ -->
+    <footer style="text-align: center; padding: var(--gap-xl); color: var(--text-muted); font-size: 0.75rem; border-top: 1px solid var(--border-subtle);">
+      <p>🜂 NOIZY Empire Command Center · MC96ECOUNIVERSE v5.0.0 · Built on GOD.local</p>
+      <p style="margin-top: 4px; color: var(--hz-gold); font-style: italic;">"We are the new punk rockers: capitalist free thinkers who believe in peace, love, and understanding."</p>
+    </footer>
+  </div>
+
+  <script src="js/empire-core.js"></script>
+</body>
+</html>
