@@ -1,0 +1,179 @@
+{
+  "info": {
+    "_postman_id": "8f92bc1a-2026-4cf1-a992-noizy001",
+    "name": "NOIZY Sovereign Runtime v2.4.0-PROD",
+    "description": "Postman Collection for NOIZY Sovereign Operating System across all 13 Parallel Lanes:\n- Google Routes API v2 (Traffic-Aware Routing)\n- Cloudflare D1 Harmony Ledger (2-Phase Receipts)\n- Consent Oracle (Law 25 / NC-01-10-v2)\n- Pushcut Dispatcher (Universal CarPlay Handoff)\n- Sonic Passport (Durable Object Asset Correlation)\n- Telemetry & Fleet Mesh",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1. Consent Oracle (Law 25 / NC-01-10-v2)",
+      "item": [
+        {
+          "name": "Verify Driver Consent",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "x-noizy-key", "value": "{{NOIZY_INTERNAL_KEY}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"subject_id\": \"{{DRIVER_ID}}\",\n  \"policy_code\": \"NC-01-10-v2\",\n  \"token_hash\": \"{{SESSION_TOKEN_HASH}}\",\n  \"allowed_purpose\": \"traffic_eta\"\n}"
+            },
+            "url": {
+              "raw": "{{HARMONY_LEDGER_URL}}/api/v1/consent/verify",
+              "host": ["{{HARMONY_LEDGER_URL}}"],
+              "path": ["api", "v1", "consent", "verify"]
+            }
+          }
+        },
+        {
+          "name": "Revoke Consent (Fail-Closed Trigger)",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "x-noizy-key", "value": "{{NOIZY_INTERNAL_KEY}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"subject_id\": \"{{DRIVER_ID}}\",\n  \"policy_code\": \"NC-01-10-v2\",\n  \"status\": \"REVOKED\"\n}"
+            },
+            "url": {
+              "raw": "{{HARMONY_LEDGER_URL}}/api/v1/consent/revoke",
+              "host": ["{{HARMONY_LEDGER_URL}}"],
+              "path": ["api", "v1", "consent", "revoke"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "2. Google Routes API v2 (Traffic-Aware)",
+      "item": [
+        {
+          "name": "Compute Traffic-Aware Route (POST computeRoutes)",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "X-Goog-Api-Key", "value": "{{GOOGLE_MAPS_API_KEY}}" },
+              { "key": "X-Goog-FieldMask", "value": "routes.duration,routes.staticDuration,routes.distanceMeters,routes.polyline.encodedPolyline,routes.description" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"origin\": {\n    \"location\": { \"latLng\": { \"latitude\": 45.4215, \"longitude\": -75.6972 } }\n  },\n  \"destination\": {\n    \"location\": { \"latLng\": { \"latitude\": 45.3225, \"longitude\": -75.6692 } }\n  },\n  \"travelMode\": \"DRIVE\",\n  \"routingPreference\": \"TRAFFIC_AWARE\",\n  \"computeAlternativeRoutes\": false\n}"
+            },
+            "url": {
+              "raw": "https://routes.googleapis.com/directions/v2:computeRoutes",
+              "protocol": "https",
+              "host": ["routes", "googleapis", "com"],
+              "path": ["directions", "v2:computeRoutes"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "3. Cloudflare D1 Harmony Ledger",
+      "item": [
+        {
+          "name": "Commit Harmony Receipt (2-Phase State Machine)",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "x-noizy-key", "value": "{{NOIZY_INTERNAL_KEY}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"receipt_id\": \"REC-POSTMAN-001\",\n  \"data_hash\": \"a4f89d3c2e1b6f5a7e8d9c0b1a2f3e4d5c6b7a8f9e0d1c2b3a4f5e6d7c8b9a0\",\n  \"payload\": \"{\\\"mission_id\\\":\\\"MIS-001\\\",\\\"covenant_split\\\":\\\"75.00%\\\"}\",\n  \"status\": \"SUCCEEDED\",\n  \"tier_gate\": \"TIER-1\"\n}"
+            },
+            "url": {
+              "raw": "{{HARMONY_LEDGER_URL}}/api/v1/ledger/commit",
+              "host": ["{{HARMONY_LEDGER_URL}}"],
+              "path": ["api", "v1", "ledger", "commit"]
+            }
+          }
+        },
+        {
+          "name": "Query Receipt by ID / Hash",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "x-noizy-key", "value": "{{NOIZY_INTERNAL_KEY}}" }
+            ],
+            "url": {
+              "raw": "{{HARMONY_LEDGER_URL}}/api/v1/ledger/receipts/REC-POSTMAN-001",
+              "host": ["{{HARMONY_LEDGER_URL}}"],
+              "path": ["api", "v1", "ledger", "receipts", "REC-POSTMAN-001"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "4. Pushcut CarPlay Handoff",
+      "item": [
+        {
+          "name": "Trigger Dispatch Notification (iPhone / CarPlay)",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "API-Key", "value": "{{PUSHCUT_API_KEY}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"NOIZY Dispatch: Route Approved\",\n  \"text\": \"ETA: 21.4 min via Primary Highway. Tap to initialize navigation.\",\n  \"input\": \"{\\\"handoff_id\\\":\\\"HND_8F92BC1A\\\",\\\"universal_url\\\":\\\"https://waze.com/ul?ll=45.3225%2C-75.6692&navigate=yes&utm_source=noizy\\\"}\",\n  \"defaultAction\": {\n    \"name\": \"NOIZY-CarPlay-Handoff\",\n    \"shortcut\": \"NOIZY-CarPlay-Handoff\",\n    \"runOnServer\": false\n  },\n  \"isTimeSensitive\": true\n}"
+            },
+            "url": {
+              "raw": "https://api.pushcut.io/v1/notifications/DispatchReady",
+              "protocol": "https",
+              "host": ["api", "pushcut", "io"],
+              "path": ["v1", "notifications", "DispatchReady"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "5. Sonic Passport Durable Object",
+      "item": [
+        {
+          "name": "Register Sonic Passport Asset Node",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"assetId\": \"NOIZY-AUDIO-POSTMAN01\",\n  \"title\": \"Sovereign Departure Master 396Hz\",\n  \"derivativeType\": \"MASTER\",\n  \"exactHash\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\n  \"perceptualId\": \"CHR_8F92BC1A42\",\n  \"provenanceClaim\": { \"c2pa_version\": \"2.2-PROD\", \"signed_by\": \"RSP_001\" },\n  \"rightsClaim\": { \"covenantSplit\": \"75.00%\", \"primaryAuthority\": \"RSP_001\" },\n  \"watermarkSignal\": { \"provider\": \"audioseal\", \"result\": \"DETECTED\" },\n  \"parentAssetIds\": []\n}"
+            },
+            "url": {
+              "raw": "{{HARMONY_WORKER_URL}}/register-asset",
+              "host": ["{{HARMONY_WORKER_URL}}"],
+              "path": ["register-asset"]
+            }
+          }
+        },
+        {
+          "name": "Correlate Fingerprint across Nodes",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{HARMONY_WORKER_URL}}/correlate-fingerprint?perceptual_id=CHR_8F92BC1A42",
+              "host": ["{{HARMONY_WORKER_URL}}"],
+              "path": ["correlate-fingerprint"],
+              "query": [
+                { "key": "perceptual_id", "value": "CHR_8F92BC1A42" }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
