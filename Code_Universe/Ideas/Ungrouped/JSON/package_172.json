@@ -1,0 +1,30 @@
+{
+  "name": "@noizy/lucy",
+  "version": "0.2.0",
+  "description": "LUCY — Nightly Deep Analysis Engine for NOIZY.AI. Thinks deeply, surfaces human insight through compassion-gated opportunity recognition.",
+  "author": "Robert Stephen Plowman <rsplowman@icloud.com>",
+  "license": "UNLICENSED",
+  "private": true,
+  "type": "module",
+  "main": "src/index.ts",
+  "scripts": {
+    "build": "tsc --noEmit",
+    "test": "npx tsx src/smoke-test.ts",
+    "nightly": "npx tsx src/engine/run-nightly.ts",
+    "nightly:analysis-only": "npx tsx src/engine/nightly-analysis.ts",
+    "nightly:bridge-only": "npx tsx src/engine/n8n-bridge.ts"
+  },
+  "dependencies": {
+    "zod": "^3.23.0",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.0",
+    "tsx": "^4.7.0",
+    "@types/uuid": "^9.0.0",
+    "@types/node": "^20.11.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

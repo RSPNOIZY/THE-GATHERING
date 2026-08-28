@@ -1,0 +1,38 @@
+{
+  "query": "binaural beats anxiety heart rate variability",
+  "generated_at": "2026-03-12T18:51:01.520840+00:00",
+  "source": "PubMed E-utilities",
+  "article_count": 2,
+  "articles": [
+    {
+      "pmid": "29297265",
+      "title": "Short-Term Effects of Binaural Beats on EEG Power, Functional Connectivity, Cognition, Gait and Anxiety in Parkinson's Disease.",
+      "journal": "International journal of neural systems",
+      "pubdate": "2018 Jun",
+      "authors": [
+        "G\u00e1lvez G",
+        "Recuero M",
+        "Canuet L",
+        "Del-Pozo F"
+      ],
+      "doi": "doi: 10.1142/S0129065717500551",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/29297265/"
+    },
+    {
+      "pmid": "40483455",
+      "title": "Effects of binaural beat therapy with different frequencies on autonomic nervous system regulation among college students.",
+      "journal": "BMC complementary medicine and therapies",
+      "pubdate": "2025 Jun 7",
+      "authors": [
+        "Yang SY",
+        "Wang JY",
+        "Liu C",
+        "Lin PH"
+      ],
+      "doi": "doi: 10.1186/s12906-025-04922-x",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/40483455/"
+    }
+  ],
+  "claude_summary": null,
+  "safety_note": "Research support output only. Not medical advice. Validate clinically before deployment."
+}

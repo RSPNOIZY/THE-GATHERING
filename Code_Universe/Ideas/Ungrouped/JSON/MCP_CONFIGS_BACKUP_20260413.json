@@ -1,0 +1,124 @@
+{
+  "_meta": {
+    "captured": "2026-04-13T14:47:00Z",
+    "machine": "GOD.local (M2 Ultra Mac Studio)",
+    "captured_by": "Claude Opus via noizy-gemma3 MCP"
+  },
+  "claude_desktop_config": {
+    "source": "~/Library/Application Support/Claude/claude_desktop_config.json",
+    "mcpServers": {
+      "noizy-gemma3": {
+        "command": "node",
+        "args": ["/Users/m2ultra/NOIZYLAB/mcp-gemma3/server.js"],
+        "env": {
+          "OLLAMA_URL": "http://localhost:11434",
+          "GEMMA_MODEL": "gemma3:latest",
+          "NOIZYLAB_DIR": "/Users/m2ultra/NOIZYLAB",
+          "CLOUDFLARE_ACCOUNT_ID": "5ba03939f87a498d0bbed185ee123946"
+        },
+        "file_exists": true
+      },
+      "GitKraken": {
+        "command": "/Users/m2ultra/Library/Application Support/Code - Insiders/User/globalStorage/eamodio.gitlens/gk",
+        "args": ["mcp", "--host=claude", "--source=gitlens", "--scheme=vscode-insiders"]
+      }
+    }
+  },
+  "noizy_mcp_config": {
+    "source": "~/NOIZYANTHROPIC/.claude/mcp-config-godlocal.json",
+    "mcpServers": {
+      "gabriel-mcp": {
+        "command": "node",
+        "args": ["mcp/gabriel-mcp/index.js"],
+        "cwd": "/Users/m2ultra/NOIZYLAB",
+        "env": { "DREAMCHAMBER_URL": "http://localhost:7777", "NOIZY_PROJECT_ROOT": "/Users/m2ultra/NOIZYLAB" },
+        "file_exists": true
+      },
+      "lucy-mcp": {
+        "command": "node",
+        "args": ["mcp/lucy-mcp/index.js"],
+        "cwd": "/Users/m2ultra/NOIZYLAB",
+        "env": { "HEAVEN_URL": "https://heaven.noizylab.workers.dev", "NOIZY_PROJECT_ROOT": "/Users/m2ultra/NOIZYLAB" },
+        "file_exists": true
+      },
+      "heaven-mcp": {
+        "command": "node",
+        "args": ["mcp/heaven-mcp/index.js"],
+        "cwd": "/Users/m2ultra/NOIZYLAB",
+        "env": { "HEAVEN_URL": "https://heaven.noizylab.workers.dev" },
+        "file_exists": true
+      },
+      "engr-keith-mcp": {
+        "command": "node",
+        "args": ["mcp/engr-keith-mcp/index.js"],
+        "cwd": "/Users/m2ultra/NOIZYLAB",
+        "env": { "HEAVEN_URL": "https://heaven.noizylab.workers.dev", "NOIZY_PROJECT_ROOT": "/Users/m2ultra/NOIZYLAB" },
+        "file_exists": true
+      },
+      "dream-mcp": {
+        "command": "node",
+        "args": ["mcp/dream-mcp/index.js"],
+        "cwd": "/Users/m2ultra/NOIZYLAB",
+        "env": { "NOIZY_PROJECT_ROOT": "/Users/m2ultra/NOIZYLAB" },
+        "file_exists": true
+      },
+      "cb01-mcp": {
+        "command": "node",
+        "args": ["mcp/cb01-mcp/index.js"],
+        "cwd": "/Users/m2ultra/NOIZYLAB",
+        "env": { "HEAVEN_URL": "https://heaven.noizylab.workers.dev", "NOIZY_PROJECT_ROOT": "/Users/m2ultra/NOIZYLAB" },
+        "file_exists": true
+      },
+      "shirley-mcp": {
+        "command": "node",
+        "args": ["mcp/shirley-mcp/index.js"],
+        "cwd": "/Users/m2ultra/NOIZYLAB",
+        "env": { "NOIZY_PROJECT_ROOT": "/Users/m2ultra/NOIZYLAB" },
+        "file_exists": true
+      },
+      "family-mcp": {
+        "command": "node",
+        "args": ["mcp/family-mcp/index.js"],
+        "cwd": "/Users/m2ultra/NOIZYLAB",
+        "env": { "NOIZY_PROJECT_ROOT": "/Users/m2ultra/NOIZYLAB" },
+        "file_exists": true
+      },
+      "dreamchamber-audio-mcp": {
+        "command": "python3",
+        "args": ["-m", "dreamchamber_audio_mcp.server"],
+        "cwd": "/Users/m2ultra/NOIZYLAB/dreamchamber-audio-mcp",
+        "env": { "NOIZY_PROJECT_ROOT": "/Users/m2ultra/NOIZYLAB" },
+        "file_exists": true,
+        "note": "index.js MISSING — has server.py instead"
+      }
+    }
+  },
+  "gemini_antigravity_config": {
+    "source": "~/.gemini/antigravity/mcp_config.json",
+    "mcpServers": {
+      "cloudrun": {
+        "command": "/opt/homebrew/bin/npx",
+        "args": ["-y", "@google-cloud/cloud-run-mcp"],
+        "env": { "PATH": "/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin", "GOOGLE_CLOUD_PROJECT": "noizy-ai" }
+      },
+      "cloudflare": {
+        "command": "/opt/homebrew/bin/node",
+        "args": ["/Users/m2ultra/.npm-global/lib/node_modules/@cloudflare/mcp-server-cloudflare/dist/index.js", "run"],
+        "env": { "CLOUDFLARE_ACCOUNT_ID": "5f36aa9795348ea681d0b21910dfc82a" }
+      },
+      "azure": {
+        "command": "/Users/m2ultra/.npm-global/lib/node_modules/@azure/mcp/node_modules/@azure/mcp-darwin-arm64/dist/azmcp",
+        "args": ["server", "start"]
+      }
+    }
+  },
+  "copilot_config": {
+    "source": "~/.copilot/mcp-config.json",
+    "mcpServers": {
+      "GitKraken": {
+        "command": "/Users/m2ultra/Library/Application Support/Code - Insiders/User/globalStorage/eamodio.gitlens/gk",
+        "args": ["mcp", "--host=copilot", "--source=gitlens", "--scheme=vscode-insiders"]
+      }
+    }
+  }
+}

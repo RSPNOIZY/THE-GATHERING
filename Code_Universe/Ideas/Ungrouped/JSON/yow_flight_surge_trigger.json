@@ -1,0 +1,161 @@
+{
+  "name": "RSP YOW Flight Surge Trigger",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes",
+              "value": 15
+            }
+          ]
+        }
+      },
+      "id": "7a3b3a62-421d-45db-912c-47b2ea18ab22",
+      "name": "Schedule Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        380,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://opensky-network.org/api/states/all?lamin=45.28&lamax=45.38&lomin=-75.72&lomax=-75.62",
+        "options": {}
+      },
+      "id": "8b9e69c1-420a-471a-8c3b-d58e388ff8ea",
+      "name": "Fetch YOW OpenSky",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        580,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const states = $json.states || [];\nlet arrivals = 0;\nlet departures = 0;\n\nfor (const s of states) {\n  const verticalRate = s[11];\n  if (verticalRate < -1) {\n    arrivals++;\n  } else if (verticalRate > 1) {\n    departures++;\n  }\n}\n\nreturn {\n  timestamp: new Date().toISOString(),\n  total_aircraft: states.length,\n  arrivals: arrivals,\n  departures: departures,\n  surge_multiplier: arrivals >= 3 ? 2.1 : (arrivals >= 1 ? 1.6 : 1.0),\n  alert_required: arrivals >= 2\n};"
+      },
+      "id": "e2a3b38c-851f-4ef0-9d2c-806d69e120f2",
+      "name": "Calculate Surge Score",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        780,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $json.alert_required }}",
+              "value2": true
+            }
+          ]
+        }
+      },
+      "id": "9d6b2c2a-df0c-482a-a71c-30bfeea82cb0",
+      "name": "Is Alert Needed?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        980,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://localhost:8767/push/surge",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"zone\": \"YOW Airport\",\n  \"mult\": {{ $json.surge_multiplier }},\n  \"message\": \"N8N Detected flight arrivals cluster! {{ $json.arrivals }} aircraft descending to YOW. Position near arrivals platform.\"\n}",
+        "options": {}
+      },
+      "id": "49b51f08-8e62-4b2a-a9c3-1d85dfa10ab5",
+      "name": "Trigger CarPlay Push Alert",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1220,
+        180
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "return { message: 'Nominal traffic, no push alert required.' };"
+      },
+      "id": "c7a8b6ef-9f0a-471a-8c3b-581efaa2c0f2",
+      "name": "Log Nominal Traffic",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1220,
+        340
+      ]
+    }
+  ],
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Fetch YOW OpenSky",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch YOW OpenSky": {
+      "main": [
+        [
+          {
+            "node": "Calculate Surge Score",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Calculate Surge Score": {
+      "main": [
+        [
+          {
+            "node": "Is Alert Needed?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Is Alert Needed?": {
+      "main": [
+        [
+          {
+            "node": "Trigger CarPlay Push Alert",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Log Nominal Traffic",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "active": false,
+  "pinData": {}
+}

@@ -1,0 +1,13 @@
+{
+	"bALG_BACH_CONFIG" : true,
+	"effect" : 
+	{
+		"Link" : [],
+		"model_names":
+        {
+            "matting":["saliency_script_for_cc", "saliency_matting"]
+        }
+	},
+	"name" : "ai_matting_saliency",
+	"version" : "16.5.0"
+}

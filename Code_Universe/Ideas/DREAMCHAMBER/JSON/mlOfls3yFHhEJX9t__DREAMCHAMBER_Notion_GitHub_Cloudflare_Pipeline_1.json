@@ -1,0 +1,342 @@
+{
+  "name": "DREAMCHAMBER \u2014 Notion \u2192 GitHub \u2192 Cloudflare Pipeline",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "dreamchamber-notion",
+        "responseMode": "lastNode",
+        "options": {
+          "rawBody": true
+        }
+      },
+      "id": "notion-webhook",
+      "name": "Notion Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ],
+      "webhookId": "dreamchamber-notion-watcher"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Parse Notion webhook payload and route to correct pipeline\nconst body = $input.first().json;\nconst eventType = body.type || 'page_changed';\nconst pageId = body.page_id || body.entity?.id || '';\nconst title = body.title || body.entity?.title || 'unknown';\n\n// Map Notion databases to repos\nconst DB_TO_REPO = {\n  'domain-portfolio': 'noizy-docs',\n  'agent-family': 'noizy-gabriel',\n  'echo-moments': 'noizy-docs',\n  'command-center': 'noizy-infra'\n};\n\n// Detect which database changed\nconst source = body.database_name || body.source || 'unknown';\nconst targetRepo = DB_TO_REPO[source] || 'noizy-docs';\n\n// Determine action\nlet action = 'log';\nif (title.toLowerCase().includes('deploy') || title.toLowerCase().includes('heaven')) {\n  action = 'deploy_heaven';\n} else if (title.toLowerCase().includes('gabriel')) {\n  action = 'restart_gabriel';\n} else if (title.toLowerCase().includes('consent') || title.toLowerCase().includes('ncp')) {\n  action = 'update_consent';\n} else if (eventType === 'page_created' || eventType === 'page_changed') {\n  action = 'sync_to_github';\n}\n\nreturn [{\n  json: {\n    ...body,\n    action,\n    target_repo: targetRepo,\n    page_id: pageId,\n    title,\n    source,\n    timestamp: new Date().toISOString(),\n    pipeline: 'DREAMCHAMBER_AUTOMATION'\n  }\n}];"
+      },
+      "id": "router",
+      "name": "DreamChamber Router",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        420,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.action }}",
+              "operation": "equals",
+              "value2": "deploy_heaven"
+            }
+          ]
+        }
+      },
+      "id": "switch-deploy",
+      "name": "Deploy HEAVEN?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        640,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.action }}",
+              "operation": "equals",
+              "value2": "restart_gabriel"
+            }
+          ]
+        }
+      },
+      "id": "switch-gabriel",
+      "name": "Restart GABRIEL?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        640,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.action }}",
+              "operation": "equals",
+              "value2": "sync_to_github"
+            }
+          ]
+        }
+      },
+      "id": "switch-sync",
+      "name": "Sync to GitHub?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        640,
+        600
+      ]
+    },
+    {
+      "parameters": {
+        "command": "cd /Users/m2ultra/Desktop/HEAVEN && npx wrangler deploy 2>&1 | tail -20"
+      },
+      "id": "deploy-heaven",
+      "name": "Deploy HEAVEN Worker",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        880,
+        120
+      ]
+    },
+    {
+      "parameters": {
+        "command": "curl -s http://localhost:7777/health 2>/dev/null || (cd /Users/m2ultra/NOIZYLAB && bun run repos/noizy-gabriel/src/daemon.ts &)"
+      },
+      "id": "restart-gabriel",
+      "name": "Restart GABRIEL",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        880,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Log the sync event to GABRIEL\nconst data = $input.first().json;\nconst logEntry = {\n  event: 'notion_sync',\n  page_id: data.page_id,\n  title: data.title,\n  target_repo: data.target_repo,\n  action: data.action,\n  timestamp: data.timestamp\n};\n\nreturn [{ json: logEntry }];"
+      },
+      "id": "prep-sync",
+      "name": "Prep GitHub Sync",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        880,
+        520
+      ]
+    },
+    {
+      "parameters": {
+        "url": "http://localhost:7777/learn",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ category: 'notion_sync', lesson: $json.title + ' \u2192 ' + $json.target_repo, source: 'dreamchamber_automation', confidence: 0.95 }) }}"
+      },
+      "id": "log-to-gabriel",
+      "name": "Log to GABRIEL",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [
+        1100,
+        520
+      ]
+    },
+    {
+      "parameters": {
+        "url": "http://localhost:7777/learn",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ category: 'deploy', lesson: 'HEAVEN deployed via DreamChamber automation', source: 'n8n_pipeline', confidence: 1.0 }) }}"
+      },
+      "id": "log-deploy-gabriel",
+      "name": "Log Deploy to GABRIEL",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [
+        1100,
+        120
+      ]
+    },
+    {
+      "parameters": {
+        "url": "http://localhost:7777/learn",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ category: 'system', lesson: 'GABRIEL restarted via DreamChamber automation', source: 'n8n_pipeline', confidence: 1.0 }) }}"
+      },
+      "id": "log-restart-gabriel",
+      "name": "Log Restart to GABRIEL",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [
+        1100,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Final response\nconst data = $input.first().json;\nreturn [{\n  json: {\n    status: 'ok',\n    pipeline: 'DREAMCHAMBER_AUTOMATION',\n    action_taken: data.category || 'logged',\n    timestamp: new Date().toISOString()\n  }\n}];"
+      },
+      "id": "response",
+      "name": "Respond OK",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1320,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Notion Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "DreamChamber Router",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "DreamChamber Router": {
+      "main": [
+        [
+          {
+            "node": "Deploy HEAVEN?",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Restart GABRIEL?",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Sync to GitHub?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Deploy HEAVEN?": {
+      "main": [
+        [
+          {
+            "node": "Deploy HEAVEN Worker",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        []
+      ]
+    },
+    "Restart GABRIEL?": {
+      "main": [
+        [
+          {
+            "node": "Restart GABRIEL",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        []
+      ]
+    },
+    "Sync to GitHub?": {
+      "main": [
+        [
+          {
+            "node": "Prep GitHub Sync",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        []
+      ]
+    },
+    "Deploy HEAVEN Worker": {
+      "main": [
+        [
+          {
+            "node": "Log Deploy to GABRIEL",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Restart GABRIEL": {
+      "main": [
+        [
+          {
+            "node": "Log Restart to GABRIEL",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prep GitHub Sync": {
+      "main": [
+        [
+          {
+            "node": "Log to GABRIEL",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Log to GABRIEL": {
+      "main": [
+        [
+          {
+            "node": "Respond OK",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Log Deploy to GABRIEL": {
+      "main": [
+        [
+          {
+            "node": "Respond OK",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Log Restart to GABRIEL": {
+      "main": [
+        [
+          {
+            "node": "Respond OK",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  }
+}

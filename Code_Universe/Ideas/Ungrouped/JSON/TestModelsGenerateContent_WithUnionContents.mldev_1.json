@@ -1,0 +1,1 @@
+{"contents":[{"parts":[{"text":"You are a chatbot"}],"role":"user"},{"parts":[{"text":"What's in the picture?"}],"role":"user"},{"parts":[{"fileData":{"fileUri":"https://storage.googleapis.com/cloud-samples-data/generative-ai/image/scones.jpg","mimeType":"image/jpeg"}}],"role":"user"}]}

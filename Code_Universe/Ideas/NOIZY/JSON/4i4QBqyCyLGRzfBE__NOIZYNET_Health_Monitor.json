@@ -1,0 +1,183 @@
+{
+  "name": "NOIZYNET Health Monitor",
+  "nodes": [
+    {
+      "id": "trigger-1",
+      "name": "Every 5 Minutes",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        0
+      ],
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes",
+              "minutesInterval": 5
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "http-1",
+      "name": "Probe NOIZYNET",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        240,
+        0
+      ],
+      "parameters": {
+        "url": "http://localhost:9699/status",
+        "method": "GET",
+        "options": {}
+      }
+    },
+    {
+      "id": "if-1",
+      "name": "Any Offline?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        480,
+        0
+      ],
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "cond-1",
+              "leftValue": "={{ $json.summary.offline }}",
+              "rightValue": 0,
+              "operator": {
+                "type": "number",
+                "operation": "gt"
+              }
+            }
+          ],
+          "combinator": "and"
+        }
+      }
+    },
+    {
+      "id": "set-1",
+      "name": "Log Alert",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        720,
+        -100
+      ],
+      "parameters": {
+        "mode": "manual",
+        "fields": {
+          "values": [
+            {
+              "name": "alert",
+              "type": "stringValue",
+              "string": "={{ 'NOIZYNET ALERT: ' + $json.summary.offline + ' services offline on GABRIEL.local' }}"
+            },
+            {
+              "name": "timestamp",
+              "type": "stringValue",
+              "string": "={{ $now.toISO() }}"
+            },
+            {
+              "name": "status",
+              "type": "stringValue",
+              "string": "={{ JSON.stringify($json.summary) }}"
+            }
+          ]
+        },
+        "includeOtherFields": false
+      }
+    },
+    {
+      "id": "set-2",
+      "name": "Log Healthy",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        720,
+        100
+      ],
+      "parameters": {
+        "mode": "manual",
+        "fields": {
+          "values": [
+            {
+              "name": "status",
+              "type": "stringValue",
+              "string": "ALL CLEAR"
+            },
+            {
+              "name": "live",
+              "type": "numberValue",
+              "number": "={{ $json.summary.live }}"
+            },
+            {
+              "name": "timestamp",
+              "type": "stringValue",
+              "string": "={{ $now.toISO() }}"
+            }
+          ]
+        },
+        "includeOtherFields": false
+      }
+    }
+  ],
+  "connections": {
+    "Every 5 Minutes": {
+      "main": [
+        [
+          {
+            "node": "Probe NOIZYNET",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Probe NOIZYNET": {
+      "main": [
+        [
+          {
+            "node": "Any Offline?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Any Offline?": {
+      "main": [
+        [
+          {
+            "node": "Log Alert",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Log Healthy",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

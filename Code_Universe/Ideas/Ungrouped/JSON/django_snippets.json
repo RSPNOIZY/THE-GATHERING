@@ -1,0 +1,63 @@
+{
+    "Django View": {
+        "prefix": "django-view",
+        "body": [
+            "class $1(View):",
+            "\tdef get(self, request: HttpRequest):",
+            "\t\t$2\n",
+            "\tdef post(self, request: HttpRequest):",
+            "\t\t$3"
+        ],
+        "description": "Class based view for django"
+    },
+    "Django Template View": {
+        "prefix": "django-template-view",
+        "body": [
+            "class $1(TemplateView):",
+            "\ttemplate_name = $2\n",
+            "\tdef post(self, request: HttpRequest):",
+            "\t\t$3"
+        ]
+    },
+    "Django Auth View": {
+        "prefix": "django-auth-view",
+        "body": [
+            "class $1(LoginRequiredMixin, View):",
+            "\ttemplate_name: str = \"$2\"",
+            "\tlogin_url = ${3|reverse,reverse_lazy|}(\"$4\")"
+        ]
+    },
+    "Django Urls Template": {
+        "prefix": "django-urls",
+        "body": [
+            "from django.urls import path",
+            "from . import views\n",
+            "app_name = \"$1\"",
+            "urlpatterns = [",
+            "\t$2",
+            "]"
+        ]
+    },
+    "Django Url Path": {
+        "prefix": "django-url-path",
+        "body": ["path(\"$1\", views.$2, name=\"$3\"),"],
+        "description": "Django path in urls.py"
+    },
+    "Django Model": {
+        "prefix": "django-model",
+        "body": [
+            "class $1(model.Model):",
+            "\t$2\n",
+            "\tdef __str__(self):",
+            "\t\t# view of the model in admin pannel",
+            "\t\treturn $3\n",
+            "\tdef save(self, *args, **kwargs):",
+            "\t\t# logic before you save you model object",
+            "\t\t$4",
+            "\t\tsuper().save(*args, **kwargs)\n",
+            "\tclass Meta:",
+            "\t\t# for naming you table",
+            "\t\tdb_table = \"$5\""
+        ]
+    }
+}

@@ -1,0 +1,86 @@
+{
+  "receipt": {
+    "receipt_id": "aaf55ff8-fcc2-4b35-8e9a-996a7b7c0c11",
+    "workstream": "RIDESHARE",
+    "project_ref": "GABRIEL",
+    "account": "rspdrives@gmail.com",
+    "vehicle": "2026-HONDA-CRV-HYBRID",
+    "timestamp_utc": "2026-07-07T02:07:11.825518+00:00",
+    "session_id": "369847ca-3fbe-43f1-a223-b368fd407f07",
+    "action": {
+      "type": "FLIGHT_SCHEDULE",
+      "source": "COPILOT",
+      "description": "YOW flight schedule ingested \u2014 ?",
+      "payload": {
+        "flight_number": "PVL7777",
+        "airline": "PV",
+        "direction": "ARRIVAL",
+        "scheduled_time": "2026-07-07T02:07:11.797922+00:00",
+        "actual_time": "2026-07-07T02:07:11.797937+00:00",
+        "terminal": "MAIN",
+        "origin_destination": "Canada",
+        "status": "IN_FLIGHT",
+        "passenger_count": 150,
+        "altitude_m": 251.46,
+        "velocity_ms": 65.66,
+        "lat": 45.2964,
+        "lng": -75.7091,
+        "on_ground": false,
+        "surge_impact_score": 0.5
+      }
+    },
+    "data": {
+      "trip_id": null,
+      "platform": null,
+      "earnings_gross": null,
+      "earnings_net": null,
+      "surge_multiplier": null,
+      "miles": null,
+      "duration_minutes": null,
+      "pickup_geo": null,
+      "dropoff_geo": null,
+      "ottawa_context": {
+        "flight_schedule": {
+          "flight_number": "PVL7777",
+          "airline": "PV",
+          "direction": "ARRIVAL",
+          "scheduled_time": "2026-07-07T02:07:11.797922+00:00",
+          "actual_time": "2026-07-07T02:07:11.797937+00:00",
+          "terminal": "MAIN",
+          "origin_destination": "Canada",
+          "status": "IN_FLIGHT",
+          "passenger_count": 150,
+          "altitude_m": 251.46,
+          "velocity_ms": 65.66,
+          "lat": 45.2964,
+          "lng": -75.7091,
+          "on_ground": false,
+          "surge_impact_score": 0.5
+        },
+        "airport_code": "YOW"
+      }
+    },
+    "consent": {
+      "driver_consented": true,
+      "consent_version": "1.0",
+      "consent_timestamp": "2026-07-07T02:07:11.825518+00:00"
+    },
+    "audit": {
+      "rule_zero": true,
+      "logged_by": "THE-GATHERING",
+      "immutable": true,
+      "hash": "6d9831ea9136546979f4eaa0ca553e95901cd91ca63a69e0131007a7ce23e23a",
+      "prev_receipt_id": null
+    },
+    "meta": {
+      "environment": "PRODUCTION",
+      "pipeline_version": "1.0.0",
+      "tags": [
+        "rideshare",
+        "ottawa",
+        "yow",
+        "flight_schedule"
+      ]
+    }
+  }
+}

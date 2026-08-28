@@ -1,0 +1,133 @@
+═══════════════════════════════════════════════════════════════════
+MC96 FULL DIAGNOSTIC — RSP_001 / GOD.local (M2 Ultra Mac Studio)
+Generated: 2026-04-13
+═══════════════════════════════════════════════════════════════════
+
+══════════════════════════
+PHASE 1: MCP SERVER CONFIGS
+══════════════════════════
+
+--- SOURCE 1: Claude Desktop (canonical, ACTIVE) ---
+~/Library/Application Support/Claude/claude_desktop_config.json
+
+SERVERS FOUND:
+  1. noizy-gemma3
+     command: node
+     args:    /Users/m2ultra/NOIZYLAB/mcp-gemma3/server.js
+     env:
+       OLLAMA_URL:            http://localhost:11434
+       GEMMA_MODEL:           gemma3:latest
+       NOIZYLAB_DIR:          /Users/m2ultra/NOIZYLAB
+       CLOUDFLARE_ACCOUNT_ID: 5ba03939f87a498d0bbed185ee123946  ⚠ WRONG ACCOUNT — use 5f36aa9795348ea681d0b21910dfc82a
+  2. GitKraken
+     command: /Users/m2ultra/Library/.../gk
+     args:    mcp --host=claude --source=gitlens --scheme=vscode-insiders
+
+--- SOURCE 2: NOIZYANTHROPIC/.claude/mcp-config-godlocal.json (AI FAMILY) ---
+SERVERS FOUND:
+  3. gabriel-mcp      node mcp/gabriel-mcp/index.js  cwd:/Users/m2ultra/NOIZYLAB
+     env: DREAMCHAMBER_URL=http://localhost:7777
+  4. lucy-mcp         node mcp/lucy-mcp/index.js     cwd:/Users/m2ultra/NOIZYLAB
+     env: HEAVEN_URL=https://heaven.noizylab.workers.dev
+  5. heaven-mcp       node mcp/heaven-mcp/index.js   cwd:/Users/m2ultra/NOIZYLAB
+     env: HEAVEN_URL=https://heaven.noizylab.workers.dev
+  6. engr-keith-mcp   node mcp/engr-keith-mcp/index.js cwd:/Users/m2ultra/NOIZYLAB
+     env: HEAVEN_URL=https://heaven.noizylab.workers.dev
+  7. dream-mcp        node mcp/dream-mcp/index.js    cwd:/Users/m2ultra/NOIZYLAB
+  8. cb01-mcp         node mcp/cb01-mcp/index.js     cwd:/Users/m2ultra/NOIZYLAB
+     env: HEAVEN_URL=https://heaven.noizylab.workers.dev
+  9. shirley-mcp      node mcp/shirley-mcp/index.js  cwd:/Users/m2ultra/NOIZYLAB
+  10. family-mcp      node mcp/family-mcp/index.js   cwd:/Users/m2ultra/NOIZYLAB
+  11. dreamchamber-audio-mcp
+      python3 -m dreamchamber_audio_mcp.server
+      cwd: /Users/m2ultra/NOIZYLAB/dreamchamber-audio-mcp
+
+--- SOURCE 3: NOIZYANTHROPIC/.mcp.json ---
+  shortcuts  node /Users/m2ultra/NOIZYLAB/mcp/shortcuts-mcp/dist/index.js
+  n8n-mcp    npx n8n-mcp@latest
+     env: N8N_API_URL=http://localhost:5678
+          N8N_API_KEY=${N8N_API_KEY}  ← pull from .env
+
+--- SOURCE 4: ~/.copilot/mcp-config.json ---
+  GitKraken  (GitHub Copilot variant)
+
+MISSING FROM ALL CONFIGS (need to add):
+  ❌ noizy-voice-bridge  (port 9700, Whisper large-v3 + XTTS v2)
+
+══════════════════════════════════
+PHASE 2: MC96 AUDIO CHAIN DIAGNOSTICS
+══════════════════════════════════
+
+--- 2A: UAD/Apollo Driver Status ---
+kextstat:          No UAD kexts (expected — UAD uses system extensions on macOS 12+)
+systemextensionsctl: No UAD sysexts found in this shell (may need TCC auth)
+UAD Console app:   /Applications/Universal Audio/UAD Console.app  v1.2.9
+UAD Meter Panel:   /Applications/Universal Audio/UAD Meter & Control Panel.app  v1.2.9
+UA Connect:        /Applications/UA Connect.app  v11.8.1
+UA App:            vscode-ext claude config (UA Connect.app) v1.9.2
+
+--- 2B: Thunderbolt Bus Status ---
+Bus 0: Device CONNECTED  @ 10 Gb/s  (Receptacle 1) — likely Apollo
+Bus 1-5: No device connected @ 40 Gb/s each (Receptacles 2-6) — OPEN
+
+🚨 CRITICAL: Apollo shows as 10 Gb/s (TB3 or USB3 mode) not 40 Gb/s TB4
+   This means Apollo is plugged into a USB-C port, not a TB4 port.
+   TO FIX: Move Apollo cable to the rear TB4 port for lower latency.
+
+--- 2C: AU Plugin Check ---
+AU Net Send/Receive: ❌ NOT FOUND in /Library/Audio/Plug-Ins/Components/
+   (These ship with Logic Pro — must have Logic installed)
+
+Total AU components: 251 (all UAD)
+
+Non-UAD AU components:
+  AppleAES3Audio.component
+  Console Recall.component
+  LANDR Sampler.component
+  LANDR Sessions.component
+  SonoBus.component        ← ✅ Good for NOIZYNET audio bridging
+  Splice INSTRUMENT.component
+  [plus 24 uaudio_ variants of UA Spark/Topline plugins]
+
+HAL Drivers:
+  ARK.driver
+  DanteViaAudioPlugIn.driver    ← ✅ Dante networking available!
+  LANDR Sessions.driver
+  MSTeamsAudioDevice.driver
+  OculusRemoteDesktopASP.driver
+  TVRemoteAudio.driver
+
+--- 2D: Network Status ---
+Micky-P (10.90.90.40): ❌ UNREACHABLE — 100% packet loss
+   Machine likely offline or IP changed
+
+══════════════════════
+PHASE 3: APPLE DEV RESOURCES
+══════════════════════
+Browser URLs to open (requires manual action):
+  https://developer.apple.com/documentation/coreaudio
+  https://developer.apple.com/documentation/audiotoolbox
+  https://developer.apple.com/documentation/avfaudio
+  https://developer.apple.com/documentation/audiounit
+
+══════════════════════
+PHASE 4: MICKY-P SSH
+══════════════════════
+Status: ❌ BLOCKED — Micky-P unreachable at 10.90.90.40
+Action required:
+  1. Power on / wake Micky-P
+  2. Verify its IP: arp -a | grep -i "mac-address-of-micky"
+  3. Re-run: ssh fish@10.90.90.40 ...
+
+══════════════════════
+ISSUES FOUND — PRIORITY ORDER
+══════════════════════
+🔴 P1: noizy-voice-bridge MCP server NOT in ANY config file (port 9700)
+🔴 P1: Micky-P offline (10.90.90.40) — audio bridge to Logic broken
+🔴 P1: AU Net Send/Receive NOT installed (Logic Pro required)
+🔴 P1: CLOUDFLARE_ACCOUNT_ID in noizy-gemma3 is WRONG (old account)
+🟡 P2: Apollo running at 10 Gb/s — move to TB4 port for 40 Gb/s
+🟡 P2: n8n-mcp uses ${N8N_API_KEY} placeholder — needs real key in env
+🟢 P3: DanteViaAudioPlugIn.driver IS installed — Dante network audio available
+🟢 P3: SonoBus.component IS installed — low-latency LAN audio available
+

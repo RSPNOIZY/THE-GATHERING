@@ -1,0 +1,17 @@
+{
+  "name": "heaven17",
+  "version": "1.0.0",
+  "description": "GABRIEL's Edge Brain — MC96ECO Universe Master Router",
+  "main": "worker.js",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "tail": "wrangler tail"
+  },
+  "author": "Robert Stephen Plowman",
+  "license": "UNLICENSED",
+  "private": true,
+  "devDependencies": {
+    "wrangler": "^3.0.0"
+  }
+}

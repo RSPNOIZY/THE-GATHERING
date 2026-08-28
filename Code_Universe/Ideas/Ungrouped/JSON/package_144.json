@@ -1,0 +1,22 @@
+{
+  "name": "noizyfish",
+  "version": "0.1.0",
+  "description": "NOISY FISH — Living Legacy Vault + Creative Services Hub",
+  "main": "src/index.ts",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "build": "tsc",
+    "db:init": "wrangler d1 execute noizyfish --file=./schema.sql",
+    "db:init:local": "wrangler d1 execute noizyfish --local --file=./schema.sql",
+    "test": "node test-harness.mjs"
+  },
+  "dependencies": {
+    "hono": "^3.12.0"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20240117.0",
+    "typescript": "^5.3.3",
+    "wrangler": "^4.76.0"
+  }
+}

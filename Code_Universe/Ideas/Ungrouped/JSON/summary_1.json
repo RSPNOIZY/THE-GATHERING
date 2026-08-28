@@ -1,0 +1,25 @@
+{
+  "volume": "/Volumes/RSP’s Public Folder",
+  "slug": "RSP___s_Public_Folder_",
+  "timestamp": "20260420T093906Z",
+  "size": " 24K",
+  "top_level_entries": 0,
+  "code": {
+    "git_dirs": 0,
+    "package_json": 0,
+    "pyproject": 0,
+    "cargo": 0,
+    "gemfile": 0,
+    "go_mod": 0
+  },
+  "secrets_pattern_count": 0,
+  "media": {
+    "wav": 0,
+    "aif": 0,
+    "flac": 0,
+    "logicx": 0,
+    "ptx": 0
+  },
+  "audit_path": "/Users/m2ultra/NOIZYANTHROPIC/infra/scans/scan-reports/RSP___s_Public_Folder_/20260420T093906Z/audit.md",
+  "inventory_path": "/Users/m2ultra/NOIZYANTHROPIC/infra/scans/scan-reports/RSP___s_Public_Folder_/20260420T093906Z/inventory.txt"
+}

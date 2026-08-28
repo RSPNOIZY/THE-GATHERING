@@ -1,0 +1,16 @@
+{
+  "name": "voice-bridge-remote",
+  "version": "1.0.0",
+  "description": "NOIZY Edge Bridge Worker — authenticates MCP traffic at voice-mcp.noizy.ai and forwards to the M2 Ultra Dreamchamber tunnel",
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "tail": "wrangler tail",
+    "secret:token": "wrangler secret put NOIZY_MCP_AUTH_TOKEN"
+  },
+  "devDependencies": {
+    "wrangler": "^3.0.0"
+  }
+}

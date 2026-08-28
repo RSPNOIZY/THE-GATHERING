@@ -1,0 +1,67 @@
+{
+	"ae_tool": "AmazingEditor",
+	"bALG_BACH_CONFIG": true,
+	"effect": {
+		"Link": [
+			{
+				"exclusiveScene": [
+					{
+						"sceneKey": "FaceBeauty/Clear",
+						"tagName": [
+							"AmazingFeature/"
+						],
+						"composerKey": [
+							"Clear_ALL"
+						],
+						"priority": 1000
+					},
+					{
+						"sceneKey": "FaceBeauty/Foundation",
+						"tagName": [
+							"AmazingFeature/"
+						],
+						"composerKey": [
+							"Foundation_ALL"
+						],
+						"priority": 1000
+					}
+				],
+				"extra": {
+					"composer_param": [
+                        {
+                            "name": "clear",
+                            "key": "Clear_ALL",
+                            "default_value": 0.0,
+                            "min_value": 0.0,
+                            "max_value": 1.0,
+                            "allow_negative": false
+                        },
+						{
+                            "name": "foundation",
+                            "key": "Foundation_ALL",
+                            "default_value": 0.0,
+                            "max_value": 1.0,
+                            "allow_negative": false
+                        }
+					]
+				},
+				"path": "AmazingFeature/",
+				"type": "AmazingFeature",
+				"zorder": 1200,
+                "rtShare": true
+			}
+		],
+		"model_names": {
+			"alg_model": [
+				"tt_fsnew_base_jianying"
+			]
+		},
+		"coexistScene": {
+            "allowList": [
+                "*"
+            ]
+        }
+	},
+	"name": "Editor_Sticker_Config_TAG_Aweme_ClarityItem_and_FoundationItem",
+	"version": "12.8.0"
+}

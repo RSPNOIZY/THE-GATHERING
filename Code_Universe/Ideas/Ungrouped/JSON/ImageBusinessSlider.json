@@ -1,0 +1,62 @@
+{
+	"ImageBusinessSlider" : 
+	{
+		"LV" : 
+		{
+			"blur" : 
+			{
+				"materialValue" : null,
+				"sliderIntensity" : 50.0
+			},
+			"filter" : 
+			{
+				"materialValue" : null,
+				"sliderIntensity" : 100.0
+			},
+			"horizontal_chromatic" : 
+			{
+				"materialValue" : null,
+				"sliderIntensity" : 60.000003814697266
+			},
+			"noise" : 
+			{
+				"materialValue" : null,
+				"sliderIntensity" : 50.0
+			},
+			"range" : 
+			{
+				"materialValue" : null,
+				"sliderIntensity" : 50.0
+			},
+			"speed" : 
+			{
+				"materialValue" : null,
+				"sliderIntensity" : 33.0
+			},
+			"vertical_chromatic" : 
+			{
+				"materialValue" : null,
+				"sliderIntensity" : 60.000003814697266
+			}
+		},
+		"retouch" : 
+		{
+			"Noise" : 
+			{
+				"materialValue" : 
+				{
+					"7873504780669431594,15052584992586054314" : 
+					{
+						"ins" : 
+						{
+							"entityName" : "Pass0",
+							"maxValue" : 1.0,
+							"minValue" : 0.0
+						}
+					}
+				},
+				"sliderIntensity" : 50.540000915527344
+			}
+		}
+	}
+}

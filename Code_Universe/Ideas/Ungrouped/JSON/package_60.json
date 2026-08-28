@@ -1,0 +1,9 @@
+{
+  "name": "the-codex",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "codex.js",
+  "scripts": {
+    "start": "node codex.js"
+  }
+}

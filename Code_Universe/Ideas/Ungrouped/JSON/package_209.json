@@ -1,0 +1,160 @@
+{
+  "name": "vscode-bosh",
+  "displayName": "Bosh Editor",
+  "description": "Provides validation and content assist for various Bosh configuration files",
+  "icon": "icon.png",
+  "version": "2.0.0",
+  "publisher": "vmware",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/spring-projects/sts4.git"
+  },
+  "license": "EPL-1.0",
+  "engines": {
+    "npm": ">=6.0.0",
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Linters"
+  ],
+  "keywords": [
+    "yaml",
+    "bosh"
+  ],
+  "activationEvents": [
+    "onLanguage:bosh-deployment-manifest",
+    "onLanguage:bosh-cloud-config"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "bosh-cloud-config",
+        "aliases": [
+          "Bosh Cloud Config"
+        ],
+        "filenamePatterns": [
+          "*cloud-config*.yml"
+        ],
+        "configuration": "./yaml-support/language-configuration.json"
+      },
+      {
+        "id": "bosh-deployment-manifest",
+        "aliases": [
+          "Bosh Deployment Manifest"
+        ],
+        "filenamePatterns": [
+          "*deployment*.yml"
+        ],
+        "configuration": "./yaml-support/language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "bosh-deployment-manifest",
+        "scopeName": "source.bosh-yaml",
+        "path": "./yaml-support/bosh-yaml.tmLanguage.json"
+      },
+      {
+        "language": "bosh-cloud-config",
+        "scopeName": "source.bosh-yaml",
+        "path": "./yaml-support/bosh-yaml.tmLanguage.json"
+      }
+    ],
+    "configuration": {
+      "type": "object",
+      "title": "Bosh CLI Configuration",
+      "properties": {
+        "bosh.ls.logfile": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "The path of a file to write language server logs. If not set or null, then logs are discarded."
+        },
+        "bosh.ls.java.heap": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Passed as an `-Xmx` argument to the language server JVM process"
+        },
+        "bosh.ls.java.home": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Overrides JAVA_HOME used for launching the language server JVM process",
+          "scope": "machine-overridable"
+        },
+        "bosh.ls.java.vmargs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Additional 'user defined' VM args to pass to the language server process.",
+          "scope": "machine-overridable"
+        },
+        "bosh.ls.logLevel": {
+          "type": "string",
+          "enum": [
+            "error",
+            "warn",
+            "info",
+            "debug",
+            "trace",
+            "off"
+          ],
+          "default": "error",
+          "description": "Log level for the Bosh Language Server"
+        },
+        "bosh.cli.command": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "default": "bosh",
+          "description": "Path to an executable to launch the bosh cli V2. A V2 cli is required! Set this to null to completely disable all editor features that require access to the bosh director"
+        },
+        "bosh.cli.target": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "default": null,
+          "description": "Specifies the director/environment to target when executing bosh cli commands. I.e. this value is passed to the CLI via `-e` parameter."
+        },
+        "bosh.cli.timeout": {
+          "type": "integer",
+          "default": 3,
+          "description": "Number of seconds before CLI commands are terminated with a timeout"
+        }
+      }
+    }
+  },
+  "main": "./dist/extension",
+  "scripts": {
+    "vscode:prepublish": "npm run check-types && npm run lint && npm run package",
+    "package": "node esbuild.js --production",
+    "check-types": "tsc --noEmit",
+    "compile": "node esbuild.js",
+    "watch": "node esbuild.js --watch",
+    "lint": "eslint lib",
+    "clean": "rm -fr node_modules out dist *.vsix package-lock.json",
+    "vsce-package": "vsce package",
+    "vsce-pre-release-package": "vsce package --pre-release"
+  },
+  "dependencies": {
+    "@pivotal-tools/commons-vscode": "file:../commons-vscode/pivotal-tools-commons-vscode-0.2.4.tgz",
+    "vscode-languageclient": "^9.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/vscode": "1.75.0",
+    "@vscode/vsce": "^3.7.1",
+    "esbuild": "^0.27.3",
+    "eslint": "^10.0.1",
+    "typescript": "^5.8.0",
+    "typescript-eslint": "^8.56.0"
+  }
+}

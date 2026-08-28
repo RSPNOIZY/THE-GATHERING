@@ -1,0 +1,19 @@
+{
+  "effect": {
+    "Link": [
+      {
+        "defaultEnable": true,
+        "path": "",
+        "type": "AmazingFilter",
+        "zorder": 2000
+      }
+    ],
+    "model_names": {
+      "skinseg": [
+        "tt_skin_seg"
+      ]
+    }
+  },
+  "bALG_BACH_CONFIG": false,
+  "version": "10.2.0"
+}

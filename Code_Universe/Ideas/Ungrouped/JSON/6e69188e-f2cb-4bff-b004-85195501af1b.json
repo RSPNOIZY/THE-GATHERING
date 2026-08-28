@@ -1,0 +1,54 @@
+{
+  "receipt": {
+    "receipt_id": "6e69188e-f2cb-4bff-b004-85195501af1b",
+    "workstream": "RIDESHARE",
+    "project_ref": "GABRIEL",
+    "account": "rspdrives@gmail.com",
+    "vehicle": "2026-HONDA-CRV-HYBRID",
+    "timestamp_utc": "2026-07-07T01:51:36.937681+00:00",
+    "session_id": "c341fa30-96cb-41c6-a44a-b029e29a8913",
+    "action": {
+      "type": "PIPELINE",
+      "source": "GABRIEL",
+      "description": "Fuel: 45.00L @ $1.789 = $80.50",
+      "payload": {
+        "liters": 45.0,
+        "ppl": 1.789,
+        "total": 80.5
+      }
+    },
+    "data": {
+      "trip_id": null,
+      "platform": null,
+      "earnings_gross": null,
+      "earnings_net": null,
+      "surge_multiplier": null,
+      "miles": null,
+      "duration_minutes": null,
+      "pickup_geo": null,
+      "dropoff_geo": null,
+      "ottawa_context": null
+    },
+    "consent": {
+      "driver_consented": true,
+      "consent_version": "1.0",
+      "consent_timestamp": "2026-07-07T01:51:36.937681+00:00"
+    },
+    "audit": {
+      "rule_zero": true,
+      "logged_by": "THE-GATHERING",
+      "immutable": true,
+      "hash": "be7c9a7421c0e8efbfa4fb63a62b2ffc522aabcbf077a0045db293febd45fbce",
+      "prev_receipt_id": null
+    },
+    "meta": {
+      "environment": "PRODUCTION",
+      "pipeline_version": "1.0.0",
+      "tags": [
+        "rideshare",
+        "gabriel",
+        "rspdrives"
+      ]
+    }
+  }
+}

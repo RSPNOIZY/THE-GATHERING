@@ -1,0 +1,86 @@
+{
+  "generated_at": "2026-03-29T15:10:00Z",
+  "operator": "ops@noizy.ai",
+  "archive_root": "/Volumes/FISH/NOIZY_MIGRATION_20260329",
+  "migration_strategy": "multi-repo",
+  "github_org": "noizy-ai",
+  "projects": [
+    {
+      "id": "proj-001",
+      "name": "dreamchamber-audio-mcp",
+      "type": "MCP Server",
+      "source_path": "~/NOIZYLAB/dreamchamber-audio-mcp",
+      "default_branch": "main",
+      "target_repo": "dreamchamber-audio-mcp",
+      "owner": "gabriel@noizy.ai",
+      "priority": "HIGH",
+      "notes": "Audio processing MCP; feeds GABRIEL"
+    },
+    {
+      "id": "proj-002",
+      "name": "mcp-gemma3",
+      "type": "MCP Server",
+      "source_path": "~/NOIZYLAB/mcp-gemma3",
+      "default_branch": "main",
+      "target_repo": "mcp-gemma3",
+      "owner": "gabriel@noizy.ai",
+      "priority": "HIGH",
+      "notes": "Gemma 3 LLM MCP wrapper"
+    },
+    {
+      "id": "proj-003",
+      "name": "mcp",
+      "type": "Framework",
+      "source_path": "~/NOIZYLAB/mcp",
+      "default_branch": "main",
+      "target_repo": "mcp-framework",
+      "owner": "gabriel@noizy.ai",
+      "priority": "HIGH",
+      "notes": "Core MCP protocol framework"
+    },
+    {
+      "id": "proj-004",
+      "name": "dreamchamber",
+      "type": "Agent Framework",
+      "source_path": "~/NOIZYLAB/dreamchamber",
+      "default_branch": "main",
+      "target_repo": "dreamchamber",
+      "owner": "claude@noizy.ai",
+      "priority": "HIGH",
+      "notes": "Multi-agent orchestration for CLAUDE"
+    },
+    {
+      "id": "proj-005",
+      "name": "noizybeast",
+      "type": "Specialized Agent",
+      "source_path": "~/NOIZYLAB/noizybeast",
+      "default_branch": "main",
+      "target_repo": "noizybeast",
+      "owner": "claude@noizy.ai",
+      "priority": "HIGH",
+      "notes": "Audio/media intelligence agent"
+    },
+    {
+      "id": "proj-006",
+      "name": "swift-library",
+      "type": "Library",
+      "source_path": "~/swift-library",
+      "default_branch": "main",
+      "target_repo": "swift-library",
+      "owner": "gabriel@noizy.ai",
+      "priority": "MEDIUM",
+      "notes": "Native Swift utilities library"
+    },
+    {
+      "id": "proj-007",
+      "name": "noizyempire-claude",
+      "type": "Claude Prompt Toolkit",
+      "source_path": "~/NOIZYLAB/noizyempire-claude",
+      "default_branch": "main",
+      "target_repo": "noizyempire-claude",
+      "owner": "claude@noizy.ai",
+      "priority": "MEDIUM",
+      "notes": "DreamChamber prompt library and CLI"
+    }
+  ]
+}

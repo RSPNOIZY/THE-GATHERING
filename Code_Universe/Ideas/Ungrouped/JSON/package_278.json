@@ -1,0 +1,21 @@
+{
+  "name": "noizy-local-intelligence",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Local-first MCP server for NOIZY file intelligence, service status, and telemetry capture.",
+  "bin": {
+    "noizy-local-intelligence": "./index.mjs"
+  },
+  "scripts": {
+    "start": "node index.mjs",
+    "check": "node --check index.mjs"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "zod": "^3.24.0"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}

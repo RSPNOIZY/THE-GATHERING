@@ -1,0 +1,135 @@
+{
+	"ae_tool" : "AmazingEditor",
+	"bALG_BACH_CONFIG" : true,
+	"effect" : 
+	{
+        "Link" : [
+            {
+                "path": "AmazingFeature_blit/",
+                "type": "AmazingFeature",
+                "zorder": 1000
+            },
+            {
+                "defaultEnable": true,
+                "path": "AmazingFilter_lut/",
+                "type": "AmazingFilter",
+                "zorder": 2000
+            },
+            {
+                "path": "AmazingFeature_colorCorrection/",
+                "type": "AmazingFeature",
+                "zorder": 5000,
+                "preRenderAlgorithmTex" : true
+            },
+            {
+                "path": "AmazingFeature_colorMigration/",
+                "type": "AmazingFeature",
+                "zorder": 5010,
+                "preRenderAlgorithmTex" : true
+            },
+			{
+                "path": "AmazingFeature_smartColorAdjustment/",
+                "type": "AmazingFeature",
+                "zorder": 5013,
+				"preRenderAlgorithmTex" : true
+            },
+            {
+                "path": "AmazingFeature_hsl/",
+                "type": "AmazingFeature",
+                "zorder": 5016
+            },
+            {
+                "path": "AmazingFeature_curves/",
+                "type": "AmazingFeature",
+                "zorder": 5017
+            },
+            {
+                "path": "AmazingFeature_primaryWheel/",
+                "type": "AmazingFeature",
+                "zorder": 5018
+            },
+            {
+                "path": "AmazingFeature_logWheel/",
+                "type": "AmazingFeature",
+                "zorder": 5019
+            },
+			{
+                "path": "AmazingFeature_adjustColor/",
+                "type": "AmazingFeature",
+                "zorder": 8004
+            },
+            {
+                "path": "AmazingFeature_sharpen/",
+                "type": "AmazingFeature",
+                "zorder": 8005
+            },
+            {
+                "path": "AmazingFeature_clear/",
+                "type": "AmazingFeature",
+                "zorder": 8006
+            },
+            {
+                "path": "AmazingFeature_particle/",
+                "type": "AmazingFeature",
+                "zorder": 8007
+            },
+            {
+                "path": "AmazingFeature_vignetting/",
+                "type": "AmazingFeature",
+                "zorder": 8008
+            },
+			{
+                "path": "AmazingFeature_dehazing/",
+                "type": "AmazingFeature",
+                "zorder": 8009
+            },
+            {
+                "path": "AmazingFeature_backlight/",
+                "type": "AmazingFeature",
+                "zorder": 8010
+            },
+            {
+                "path": "AmazingFeature_desharpe/",
+                "type": "AmazingFeature",
+                "zorder": 8011
+            },
+            {
+                "path": "AmazingFeature_detailLevel/",
+                "type": "AmazingFeature",
+                "zorder": 8012
+            },
+            {
+                "path": "AmazingFeature_splendor/",
+                "type": "AmazingFeature",
+                "zorder": 8013
+            },
+            {
+                "path": "AmazingFeature_blit_color/",
+                "type": "AmazingFeature",
+                "zorder": 10000
+            },
+            {
+                "path": "AmazingFeature_blend/",
+                "type": "AmazingFeature",
+                "zorder": 10010
+            }
+        ],
+        "forceRender": true,
+		"model_names": {
+            "lens_ii": [
+                "lens_ii_auto_color_map",
+                "lens_ii_auto_color_ros_kernel"
+            ],
+            "skin_seg": [
+                "tt_skin_seg",
+                "tt_skin_seg_hypic_backlight"
+            ]
+        }
+	},
+	"js_path" : "Feature.js",
+    "bALG_SUPPORT_10BIT": true,
+    "alphaState": 2,
+    "moduleAlphaState": 2,
+	"name" : "76D57C3E-2613-4F50-9D36-jbIbldBdCc5mbKbIc5cld3bEcmcznts-noskin",
+	"version" : "16.4.0"
+}

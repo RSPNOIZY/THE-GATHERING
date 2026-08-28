@@ -1,0 +1,364 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+
+  // ═══════════════════════════════════════════════════════════
+  // NOIZY.AI — OpenCode Configuration
+  // Author: Robert Stephen Plowman
+  // Stack: Cloudflare runtime + Claude brain + Apple local
+  // ═══════════════════════════════════════════════════════════
+
+  "model": "anthropic/claude-sonnet-4-6",
+  "small_model": "anthropic/claude-haiku-4-5",
+  "default_agent": "noizy-build",
+
+  // ─────────────────────────────────────────────────────────
+  // PROVIDERS
+  // ─────────────────────────────────────────────────────────
+
+  "provider": {
+    "anthropic": {
+      "options": {
+        "apiKey": "{env:ANTHROPIC_API_KEY}",
+        "timeout": 300000,
+        "chunkTimeout": 30000,
+        "setCacheKey": true
+      }
+    },
+    "ollama": {
+      "options": {
+        "baseURL": "http://localhost:11434/v1"
+      }
+    }
+  },
+
+  // ─────────────────────────────────────────────────────────
+  // AGENTS — The NOIZY AI Family
+  // ─────────────────────────────────────────────────────────
+
+  "agent": {
+
+    "noizy-build": {
+      "mode": "primary",
+      "description": "NOIZY core builder — Cloudflare Workers, HEAVEN, Integration Hub, full stack",
+      "model": "anthropic/claude-sonnet-4-6",
+      "prompt": "{file:.opencode/agents/noizy-build.md}",
+      "temperature": 0.1,
+      "color": "#FF6B35",
+      "permission": {
+        "edit": "allow",
+        "write": "allow",
+        "bash": {
+          "*": "ask",
+          "wrangler *": "allow",
+          "npm *": "allow",
+          "npx *": "allow",
+          "git *": "allow",
+          "docker *": "allow",
+          "curl *": "ask",
+          "rm -rf *": "deny"
+        },
+        "webfetch": "ask"
+      }
+    },
+
+    "noizy-plan": {
+      "mode": "primary",
+      "description": "Architecture planning — read-only analysis, gap detection, specs",
+      "model": "anthropic/claude-sonnet-4-6",
+      "prompt": "{file:.opencode/agents/noizy-plan.md}",
+      "temperature": 0.2,
+      "color": "#4ECDC4",
+      "permission": {
+        "edit": "deny",
+        "write": "deny",
+        "bash": {
+          "cat *": "allow",
+          "ls *": "allow",
+          "find *": "allow",
+          "grep *": "allow",
+          "rg *": "allow",
+          "wc *": "allow",
+          "git log *": "allow",
+          "git diff *": "allow",
+          "git status": "allow",
+          "*": "deny"
+        },
+        "webfetch": "allow"
+      }
+    },
+
+    "gabriel": {
+      "mode": "primary",
+      "description": "GABRIEL — NOIZY voice agent, consent-aware, session-persistent",
+      "model": "anthropic/claude-sonnet-4-6",
+      "prompt": "{file:.opencode/agents/gabriel.md}",
+      "temperature": 0.3,
+      "color": "#9B59B6",
+      "permission": {
+        "edit": "ask",
+        "write": "ask",
+        "bash": {
+          "ollama *": "allow",
+          "curl http://localhost:*": "allow",
+          "curl https://heaven.rsp-5f3.workers.dev/*": "allow",
+          "say *": "allow",
+          "*": "ask"
+        }
+      }
+    },
+
+    "consent-guardian": {
+      "mode": "subagent",
+      "description": "Consent & compliance checker — PIPEDA, GDPR, CCPA, HVS enforcement",
+      "model": "anthropic/claude-sonnet-4-6",
+      "prompt": "{file:.opencode/agents/consent-guardian.md}",
+      "temperature": 0.0,
+      "color": "#E74C3C",
+      "permission": {
+        "edit": "deny",
+        "write": "deny",
+        "bash": {
+          "cat *": "allow",
+          "grep *": "allow",
+          "rg *": "allow",
+          "curl https://heaven.rsp-5f3.workers.dev/*": "allow",
+          "*": "deny"
+        }
+      }
+    },
+
+    "dream-weaver": {
+      "mode": "subagent",
+      "description": "DreamChamber creative — audio, voice design, Logic Pro workflows",
+      "model": "ollama/noizy-dream-weaver",
+      "prompt": "{file:.opencode/agents/dream-weaver.md}",
+      "temperature": 0.7,
+      "color": "#F39C12",
+      "permission": {
+        "edit": "ask",
+        "write": "allow",
+        "bash": {
+          "say *": "allow",
+          "afplay *": "allow",
+          "ffmpeg *": "allow",
+          "whisper *": "allow",
+          "ollama *": "allow",
+          "*": "ask"
+        }
+      }
+    },
+
+    "ops-runner": {
+      "mode": "subagent",
+      "description": "Infrastructure ops — Docker, Cloudflare, Terraform, CI/CD",
+      "model": "anthropic/claude-haiku-4-5",
+      "prompt": "{file:.opencode/agents/ops-runner.md}",
+      "temperature": 0.0,
+      "color": "#2ECC71",
+      "permission": {
+        "edit": "allow",
+        "write": "allow",
+        "bash": {
+          "docker *": "allow",
+          "wrangler *": "allow",
+          "terraform *": "ask",
+          "gh *": "allow",
+          "npm *": "allow",
+          "curl *": "ask",
+          "rm -rf *": "deny",
+          "*": "ask"
+        }
+      }
+    }
+  },
+
+  // ─────────────────────────────────────────────────────────
+  // COMMANDS — Quick-fire operations
+  // ─────────────────────────────────────────────────────────
+
+  "command": {
+    "heaven-status": {
+      "template": "Check HEAVEN v18 health: curl -s https://heaven.rsp-5f3.workers.dev/health | jq. Then check /v1/actors, /v1/never-clauses, and report status of all endpoints.",
+      "description": "HEAVEN consent kernel health check",
+      "agent": "ops-runner"
+    },
+    "deploy-hub": {
+      "template": "Deploy the Integration Hub worker to Cloudflare. cd cloudflare/workers/hub && wrangler deploy. Verify with curl.",
+      "description": "Deploy Integration Hub to Cloudflare",
+      "agent": "ops-runner"
+    },
+    "gabriel-speak": {
+      "template": "Generate a response as GABRIEL and speak it: $ARGUMENTS",
+      "description": "Have Gabriel speak a response via TTS",
+      "agent": "gabriel"
+    },
+    "consent-audit": {
+      "template": "Run a full consent compliance audit on the current codebase. Check for PII exposure, missing consent flows, PIPEDA/GDPR gaps.",
+      "description": "Full compliance audit",
+      "agent": "consent-guardian"
+    },
+    "empire-status": {
+      "template": "Check the full NOIZY empire: HEAVEN health, Docker services, Ollama models, n8n status, Cloudflare resources. Report everything.",
+      "description": "Full empire status report",
+      "agent": "ops-runner"
+    },
+    "dreamchamber-recover": {
+      "template": "Recover DreamChamber session. Read the last session state from .opencode/sessions/dreamchamber-latest.json, restore context, and resume where we left off.",
+      "description": "Recover last DreamChamber session",
+      "agent": "dream-weaver"
+    },
+    "fix-everything": {
+      "template": "Run the fix-everything diagnostics: check Docker, CoreAudio, Apollo Twin, Ollama, n8n, voice pipeline. Fix what you can, report what needs physical action.",
+      "description": "Fix all broken services on GOD.local",
+      "agent": "ops-runner"
+    },
+    "newman-test": {
+      "template": "Run Newman against HEAVEN production: npx newman run postman/NOIZY-HEAVEN.postman_collection.json -e postman/env.prod.json --reporters cli,json",
+      "description": "Run HEAVEN API contract tests",
+      "agent": "ops-runner"
+    }
+  },
+
+  // ─────────────────────────────────────────────────────────
+  // MCP SERVERS — The NOIZY nervous system
+  // ─────────────────────────────────────────────────────────
+
+  "mcp": {
+
+    "noizy-gemma3": {
+      "type": "local",
+      "command": ["node", "mcp-gemma3/index.js"],
+      "environment": {
+        "OLLAMA_HOST": "http://localhost:11434",
+        "CLOUDFLARE_ACCOUNT_ID": "{env:CF_ACCOUNT_ID}",
+        "CLOUDFLARE_API_TOKEN": "{env:CF_API_TOKEN}"
+      },
+      "enabled": true,
+      "timeout": 30000
+    },
+
+    "gabriel-voice": {
+      "type": "local",
+      "command": ["node", "GABRIEL/mcp-server/index.js"],
+      "environment": {
+        "GABRIEL_SESSION_DIR": ".opencode/sessions",
+        "OLLAMA_MODEL": "noizy-gabriel-mind",
+        "HEAVEN_URL": "https://heaven.rsp-5f3.workers.dev",
+        "TTS_ENGINE": "macos",
+        "VOICE_PIPELINE_DIR": "voice-pipeline"
+      },
+      "enabled": true,
+      "timeout": 60000
+    },
+
+    "heaven-api": {
+      "type": "remote",
+      "url": "https://heaven.rsp-5f3.workers.dev/mcp",
+      "headers": {
+        "Authorization": "Bearer {env:HEAVEN_API_KEY}"
+      },
+      "enabled": false,
+      "timeout": 10000
+    },
+
+    "cloudflare": {
+      "type": "local",
+      "command": ["npx", "-y", "@anthropic-ai/mcp-cloudflare"],
+      "environment": {
+        "CLOUDFLARE_API_TOKEN": "{env:CF_API_TOKEN}",
+        "CLOUDFLARE_ACCOUNT_ID": "{env:CF_ACCOUNT_ID}"
+      },
+      "enabled": true,
+      "timeout": 15000
+    },
+
+    "context7": {
+      "type": "remote",
+      "url": "https://mcp.context7.com/mcp",
+      "enabled": true,
+      "timeout": 5000
+    }
+  },
+
+  // ─────────────────────────────────────────────────────────
+  // TOOLS & PERMISSIONS
+  // ─────────────────────────────────────────────────────────
+
+  "tools": {
+    "write": true,
+    "edit": true,
+    "bash": true
+  },
+
+  "permission": {
+    "edit": "allow",
+    "write": "allow",
+    "bash": {
+      "*": "ask",
+      "ls *": "allow",
+      "cat *": "allow",
+      "find *": "allow",
+      "grep *": "allow",
+      "rg *": "allow",
+      "git *": "allow",
+      "npm *": "allow",
+      "npx *": "allow",
+      "wrangler *": "allow",
+      "docker *": "allow",
+      "ollama *": "allow",
+      "say *": "allow",
+      "rm -rf *": "deny",
+      "sudo *": "deny"
+    },
+    "webfetch": "ask"
+  },
+
+  // ─────────────────────────────────────────────────────────
+  // FORMATTING & BEHAVIOR
+  // ─────────────────────────────────────────────────────────
+
+  "formatter": {
+    "prettier": {
+      "command": ["npx", "prettier", "--write", "$FILE"],
+      "extensions": [".ts", ".js", ".jsx", ".tsx", ".json", ".md", ".css"]
+    }
+  },
+
+  "compaction": {
+    "auto": true,
+    "prune": true,
+    "reserved": 12000
+  },
+
+  "snapshot": true,
+  "autoupdate": true,
+
+  "watcher": {
+    "ignore": [
+      "node_modules/**",
+      "dist/**",
+      ".wrangler/**",
+      ".git/**",
+      "*.db",
+      "*.sqlite",
+      "voice-pipeline/uploads/**"
+    ]
+  },
+
+  "instructions": [
+    "CLAUDE.md",
+    "ARCHITECTURE.md",
+    "docs/ANTHROPIC-USAGE-POLICY.md"
+  ],
+
+  // ─────────────────────────────────────────────────────────
+  // SERVER — For remote/mobile access
+  // ─────────────────────────────────────────────────────────
+
+  "server": {
+    "port": 4096,
+    "hostname": "0.0.0.0",
+    "mdns": true,
+    "mdnsDomain": "noizy-opencode.local"
+  }
+}

@@ -1,0 +1,163 @@
+{
+    "version": "1.0",
+    "mode": 2,
+    "nodes": [
+        {
+            "name": "blit_0",
+            "type": "texture_blit",
+            "config": {
+                "keymaps": {
+                    "intParam": {},
+                    "floatParam": {},
+                    "stringParam": {}
+                },
+                "size": {
+                    "width": 720,
+                    "height": 720
+                }
+            }
+        },
+        {
+            "name": "smart_motion_1",
+            "type": "general_lens",
+            "enable": true,
+            "config": {
+                "keyMaps": {
+                    "intParam": {
+                        "type": 60,
+                        "lens_max_width": 1080,
+                        "lens_max_height": 1920,
+                        "lens_vsm_process_type": 1,
+                        "lens_vsm_mt_is_multi_scene": 0,
+                        "lens_vsm_mt_invert_motion": 0,
+                        "lens_vsm_mt_fill_inactive": 1,
+                        "lens_vsm_mt_smooth_size": 3,
+                        "lens_vsm_mt_move_type": 3
+                    },
+                    "floatParam": {
+                        "lens_vsm_video_time": 30.0,
+                        "lens_vsm_fps": 30.0,
+                        "lens_vsm_af_conf_th": 0.2,
+                        "lens_vsm_af_param0": 0.2,
+                        "lens_vsm_af_param1": 0.75,
+                        "lens_vsm_af_param2": 0.35,
+                        "lens_vsm_af_param_slow0": 0.25,
+                        "lens_vsm_af_param_slow1": 0.95,
+                        "lens_vsm_af_param_slow2": 0.4,
+                        "lens_vsm_mt_horizon_strength": 0.2,
+                        "lens_vsm_mt_vertical_strength": 0.6,
+                        "lens_vsm_mt_base_crop": 0.8,
+                        "lens_vsm_mt_protect_ratio": 0.85,
+                        "lens_vsm_mt_speed_ratio": 1.0,
+                        "lens_vsm_mt_amp_shift": 1.0,
+                        "lens_vsm_mt_amp_rot": 1.0,
+                        "lens_vsm_mt_amp_scale": 1.0,
+                        "lens_vsm_mt_amp_doudi": 1.0,
+                        "lens_vsm_mt_trans_dur": 0.8
+                    },
+                    "stringParam": {
+                        "general_lens_alg_name": "lens_general",
+                        "name": "video smart motion",
+                        "lens_vsm_mt_posfix": "default",
+                        "lens_vsm_af_mode": "default",
+                        "lens_video_cache_path": "./",
+                        "lens_vsm_mfkp": ""
+                    },
+                    "pathParam": {}
+                }
+            }
+        }
+    ],
+    "links": [
+    ],
+    "extra": {
+        "input": [
+        ],
+        "output": [
+            {
+                "name": "smart_motion_1",
+                "algorithmType": "general_lens",
+                "outputIndex": 1,
+                "usage": "xxx"
+            }
+        ],
+        "param": [
+            {
+                "name": "display_width",
+                "node": "smart_motion_1",
+                "key": "lens_max_width",
+                "type": 0
+            },
+            {
+                "name": "display_height",
+                "node": "smart_motion_1",
+                "key": "lens_max_height",
+                "type": 0
+            },
+            {
+                "name": "video_time",
+                "node": "smart_motion_1",
+                "key": "lens_vsm_video_time",
+                "type": 1
+            },
+            {
+                "name": "video_fps",
+                "node": "smart_motion_1",
+                "key": "lens_vsm_fps",
+                "type": 1
+            },
+            {
+                "name": "lens_vsm_mfkp",
+                "node": "smart_motion_1",
+                "key": "lens_vsm_mfkp",
+                "type": 2
+            },
+            {
+                "name": "vsm_af_beat_freq",
+                "node": "smart_motion_1",
+                "key": "lens_vsm_af_beat_freq",
+                "type": 0
+            },
+            {
+                "name": "vsm_mt_horizon_strength",
+                "node": "smart_motion_1",
+                "key": "lens_vsm_mt_horizon_strength",
+                "type": 1
+            },
+            {
+                "name": "vsm_mt_vertical_strength",
+                "node": "smart_motion_1",
+                "key": "lens_vsm_mt_vertical_strength",
+                "type": 1
+            },
+            {
+                "name": "vsm_mt_move_type",
+                "node": "smart_motion_1",
+                "key": "lens_vsm_mt_move_type",
+                "type": 0
+            },
+            {
+                "name": "video_cache_path",
+                "node": "smart_motion_1",
+                "key": "lens_video_cache_path",
+                "type": 2
+            },
+            {
+                "name": "execParam",
+                "node": "smart_motion_1",
+                "key": "execParam",
+                "type": 2
+            }
+        ]
+    },
+  "VEConfig": {
+    "executeMode": 4,
+    "noGraphExeConfig": {
+      "output": {
+        "PassAllResultToClient": {
+          "handleTime": 4
+        }
+      }
+    }
+  }
+}

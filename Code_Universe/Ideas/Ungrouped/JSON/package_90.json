@@ -1,0 +1,21 @@
+{
+  "name": "@noizy/session-proof",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "NOIZY session export + tamper-evident SHA-256 sealing. Build: notes.ndjson, markers.ndjson, manifest.json, seal.sha256",
+  "bin": {
+    "session-proof": "./cli.mjs"
+  },
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./cli": "./cli.mjs"
+  },
+  "scripts": {
+    "test": "node test/verify.test.mjs"
+  },
+  "dependencies": {},
+  "engines": {
+    "node": ">=20"
+  }
+}

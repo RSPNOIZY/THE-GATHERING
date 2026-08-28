@@ -1,0 +1,13 @@
+{
+  "name": "mc96",
+  "version": "1.0.0",
+  "description": "NOIZY Empire Control Stack — Diagnostic Engine",
+  "type": "module",
+  "scripts": {
+    "start":  "node opus-4.6-diagnostic-engine.js",
+    "quick":  "node opus-4.6-diagnostic-engine.js --quick",
+    "ai":     "node opus-4.6-diagnostic-engine.js --ai",
+    "fix":    "node opus-4.6-diagnostic-engine.js --fix",
+    "full":   "node opus-4.6-diagnostic-engine.js --ai --fix"
+  }
+}

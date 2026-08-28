@@ -1,0 +1,272 @@
+{
+    "name": "Final Cut Pro X",
+    "sequence": {
+        "activeSpeedControl": [
+            "Ctrl+R"
+        ],
+        "addBasicKeyframe": [
+            "Shift+Alt+K"
+        ],
+        "addKeyframe": [
+            "Shift+LeftMouseButton"
+        ],
+        "adsorb": [
+            "N"
+        ],
+        "autoWrap": [
+            "Alt+LeftMouseButton"
+        ],
+        "backwardSelect": [
+            "]",
+            "】"
+        ],
+        "batchCut": [
+            "Ctrl+Shift+B"
+        ],
+        "cancelRangeSelect": [
+            "Alt+X"
+        ],
+        "closeDialog": [
+            "Escape"
+        ],
+        "closeWindow": [
+            "Ctrl+W"
+        ],
+        "copy": [
+            "Ctrl+C"
+        ],
+        "copySegAttribute": [
+            "Ctrl+Shift+C"
+        ],
+        "customMattingSwitchAiEraser": [
+            "Alt"
+        ],
+        "cut": [
+            "Ctrl+X"
+        ],
+        "cutLeft": [
+            "Q"
+        ],
+        "cutRight": [
+            "W"
+        ],
+        "cutoff": [
+            "Ctrl+B"
+        ],
+        "del": [
+            "Backspace",
+            "Del"
+        ],
+        "disableAlignment": [
+            "Ctrl_hold"
+        ],
+        "divideSpeedSegment": [
+            "Shift+B"
+        ],
+        "expandKeyframePanel": [
+            "Alt+K"
+        ],
+        "exportVideo": [
+            "Ctrl+E"
+        ],
+        "fastAdjustSpinBox": [
+            "Shift+LeftMouseButton"
+        ],
+        "forwardSelect": [
+            "[",
+            "【"
+        ],
+        "hidePlayerRuler": [
+            "Ctrl+Alt+R"
+        ],
+        "hideReferenceLine": [
+            "Ctrl+;",
+            "Ctrl+；"
+        ],
+        "importMedia": [
+            "Ctrl+I"
+        ],
+        "largeNextFrame": [
+            "Shift+Right"
+        ],
+        "largePreFrame": [
+            "Shift+Left"
+        ],
+        "linkage": [
+            "`",
+            "·"
+        ],
+        "locateFirstFrame": [
+            "Home"
+        ],
+        "locateLastFrame": [
+            "End"
+        ],
+        "mainTrackAdsorb": [
+            "P"
+        ],
+        "mark": [
+            "M"
+        ],
+        "markBeat": [
+            "Ctrl+J"
+        ],
+        "markWithAnotherColor": [
+            "Alt+M"
+        ],
+        "newProject": [
+            "Ctrl+N"
+        ],
+        "nextCutPoint": [
+            "Down"
+        ],
+        "nextFrame": [
+            "Right"
+        ],
+        "nextTimeMark": [
+            "Shift+M"
+        ],
+        "paste": [
+            "Ctrl+V"
+        ],
+        "pasteSegAttribute": [
+            "Ctrl+Shift+V"
+        ],
+        "playerZoomFit": [
+            "Alt+Shift+Z"
+        ],
+        "playerZoomIn": [
+            "Alt+Shift++",
+            "Alt+Shift+="
+        ],
+        "playerZoomOut": [
+            "Alt+Shift+-"
+        ],
+        "prerenderSelectArea": [
+            "Shift+Return"
+        ],
+        "prevCutPoint": [
+            "Up"
+        ],
+        "prevFrame": [
+            "Left"
+        ],
+        "prevTimeMark": [
+            "Alt+Shift+M"
+        ],
+        "preview": [
+            "S"
+        ],
+        "quicklyAdjustZoomFit": [
+            "Shift+Z"
+        ],
+        "quit": [
+            "Ctrl+Q"
+        ],
+        "redo": [
+            "Ctrl+Shift+Z"
+        ],
+        "refreshCloudDraft": [
+            "Ctrl+R"
+        ],
+        "returnDraftPage": [
+            "Ctrl+Alt+Q"
+        ],
+        "scrollTrackH": [
+            "Alt+Wheel"
+        ],
+        "scrollTrackScale": [
+            "Ctrl+Wheel"
+        ],
+        "scrollTrackV": [
+            "Wheel"
+        ],
+        "segmentCombination": [
+            "Alt+G"
+        ],
+        "segmentMakeGroup": [
+            "Ctrl+G"
+        ],
+        "segmentRemoveCombination": [
+            "Alt+Shift+G"
+        ],
+        "segmentRemoveGroup": [
+            "Ctrl+Shift+G"
+        ],
+        "selectAll": [
+            "Ctrl+A"
+        ],
+        "selectRangeBySegment": [
+            "Shift+X"
+        ],
+        "selectRangeEnd": [
+            "O"
+        ],
+        "selectRangeStart": [
+            "I"
+        ],
+        "showFullscreen": [
+            "Ctrl+Meta+F"
+        ],
+        "speedPlayBackward": [
+            "J"
+        ],
+        "speedPlayForward": [
+            "L"
+        ],
+        "speedPlayPause": [
+            "K"
+        ],
+        "storeSingelFrame": [
+            ""
+        ],
+        "subtitleNewLine": [
+            "Ctrl+Return"
+        ],
+        "subtitleSplit": [
+            "Return"
+        ],
+        "switchTab": [
+            "Tab"
+        ],
+        "switchToCut": [
+            "B"
+        ],
+        "switchToSelect": [
+            "A"
+        ],
+        "toggleFullscreen": [
+            "Ctrl+Shift+F"
+        ],
+        "togglePlay": [
+            "Space"
+        ],
+        "toggleSegmentVisibe": [
+            "V"
+        ],
+        "toggleVideoAudio": [
+            "Shift+Meta+S"
+        ],
+        "undo": [
+            "Ctrl+Z"
+        ],
+        "videoRecord": [
+            "Ctrl+Alt+P"
+        ],
+        "voiceDown": [
+            "Ctrl+,",
+            "Ctrl+，"
+        ],
+        "voiceUp": [
+            "Ctrl+.",
+            "Ctrl+。"
+        ],
+        "zoomIn": [
+            "Ctrl++",
+            "Ctrl+="
+        ],
+        "zoomOut": [
+            "Ctrl+-"
+        ]
+    }
+}

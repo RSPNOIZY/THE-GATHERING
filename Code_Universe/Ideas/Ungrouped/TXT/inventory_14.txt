@@ -1,0 +1,12 @@
+ 60G	/Volumes/RSP/iCloud Drive (Archive) - 1
+ 22G	/Volumes/RSP/Library
+5.6G	/Volumes/RSP/M2Ultra_Data
+3.4M	/Volumes/RSP/iCloud Drive (Archive)
+564K	/Volumes/RSP/Music
+280K	/Volumes/RSP/NOIZYLAB
+248K	/Volumes/RSP/Movies
+ 32K	/Volumes/RSP/Pictures
+ 24K	/Volumes/RSP/Public
+ 16K	/Volumes/RSP/Downloads
+ 16K	/Volumes/RSP/Documents
+ 16K	/Volumes/RSP/Desktop

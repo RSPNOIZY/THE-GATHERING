@@ -1,0 +1,160 @@
+{
+  "name": "RSP Private Booking Notifications & Google Calendar Sync",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "rsp-booking-status",
+        "options": {}
+      },
+      "id": "1b9e82c1-209a-412d-8e3b-d58ea82cfdfa",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        260,
+        280
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.body.status }}",
+              "value2": "APPROVED"
+            }
+          ]
+        }
+      },
+      "id": "9b6c2d1b-df0c-482a-a71c-30bfeea82cb1",
+      "name": "Is Booking Approved?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        480,
+        280
+      ]
+    },
+    {
+      "parameters": {
+        "calendar": {
+          "__rl": true,
+          "value": "={{ $env.GOOGLE_CALENDAR_ID || 'primary' }}",
+          "mode": "id"
+        },
+        "start": "={{ $json.body.booking.pickup_datetime }}",
+        "end": "={{ new Date(new Date($json.body.booking.pickup_datetime).getTime() + ($json.body.booking.duration_est_min || 30) * 60000).toISOString() }}",
+        "additionalFields": {
+          "description": "=Client Name: {{ $json.body.booking.client_name }}\nPhone: {{ $json.body.booking.client_phone }}\nFrom: {{ $json.body.booking.pickup_address }}\nTo: {{ $json.body.booking.dropoff_address }}\nPassengers: {{ $json.body.booking.passengers }}\nFare Estimate: ${{ $json.body.booking.fare_estimate }} CAD\nNotes: {{ $json.body.booking.notes }}",
+          "location": "={{ $json.body.booking.pickup_address }}",
+          "summary": "=RSP Ride: {{ $json.body.booking.client_name }}"
+        }
+      },
+      "id": "e2a3b38c-851f-4ef0-9d2c-806d69e120f3",
+      "name": "Create Google Calendar Event",
+      "type": "n8n-nodes-base.googleCalendar",
+      "typeVersion": 1.1,
+      "position": [
+        720,
+        180
+      ],
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "demo-credentials-id"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $json.body.booking.client_email || 'rspdrives@gmail.com' }}",
+        "subject": "🚗 RSP Private Ride Confirmed!",
+        "messageType": "html",
+        "html": "=<h3>Your Private Ride is Confirmed!</h3>\n<p>Hello {{ $json.body.booking.client_name }},</p>\n<p>Your booking request has been accepted by the driver. Trip details:</p>\n<ul>\n  <li><strong>Pickup Time:</strong> {{ $json.body.booking.pickup_datetime }}</li>\n  <li><strong>Pickup Address:</strong> {{ $json.body.booking.pickup_address }}</li>\n  <li><strong>Drop-off Address:</strong> {{ $json.body.booking.dropoff_address }}</li>\n  <li><strong>Estimated Fare:</strong> ${{ $json.body.booking.fare_estimate }} CAD</li>\n</ul>\n<p>Thank you for choosing RSP Private Driving. Safe travels!</p>",
+        "options": {}
+      },
+      "id": "49b51f08-8e62-4b2a-a9c3-1d85dfa10ab6",
+      "name": "Send Confirmation Email",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        960,
+        180
+      ],
+      "credentials": {
+        "gmailOAuth2Api": {
+          "id": "demo-credentials-id"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $json.body.booking.client_email || 'rspdrives@gmail.com' }}",
+        "subject": "❌ RSP Private Ride Request Declined",
+        "messageType": "html",
+        "html": "=<h3>Private Booking Update</h3>\n<p>Hello {{ $json.body.booking.client_name }},</p>\n<p>We are sorry, but the driver was unable to accept your booking request for <strong>{{ $json.body.booking.pickup_datetime }}</strong>.</p>\n<p>No charges have been applied. Please try requesting a different time on our booking portal.</p>",
+        "options": {}
+      },
+      "id": "c7a8b6ef-9f0a-471a-8c3b-581efaa2c0f3",
+      "name": "Send Decline Email",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        720,
+        360
+      ],
+      "credentials": {
+        "gmailOAuth2Api": {
+          "id": "demo-credentials-id"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Is Booking Approved?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Is Booking Approved?": {
+      "main": [
+        [
+          {
+            "node": "Create Google Calendar Event",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send Decline Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create Google Calendar Event": {
+      "main": [
+        [
+          {
+            "node": "Send Confirmation Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "active": false,
+  "pinData": {}
+}

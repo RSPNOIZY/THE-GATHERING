@@ -1,0 +1,11 @@
+{
+    "date": "2026-04-07 04:47:54 +0000",
+    "author": "BitsAdmin",
+    "source": "release/21.2.0",
+    "branch": "release/21.3.0",
+    "commit": {
+        "id": "b728c9d53e428773b289682bded18b9566085dec",
+        "message": "Merge branch 'b/kangfang/21.2.0/cube_rotate' into 'release/21.2.0'"
+    },
+    "buildingTime": "2026-04-07 13:17:17"
+}

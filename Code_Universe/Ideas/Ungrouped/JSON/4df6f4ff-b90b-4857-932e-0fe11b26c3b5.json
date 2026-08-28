@@ -1,0 +1,57 @@
+{
+  "receipt": {
+    "receipt_id": "4df6f4ff-b90b-4857-932e-0fe11b26c3b5",
+    "workstream": "RIDESHARE",
+    "project_ref": "GABRIEL",
+    "account": "rspdrives@gmail.com",
+    "vehicle": "2026-HONDA-CRV-HYBRID",
+    "timestamp_utc": "2026-07-07T01:51:34.366856+00:00",
+    "session_id": "e0fb932b-2e13-4c04-8a4a-d9383a3c3baf",
+    "action": {
+      "type": "EARNING",
+      "source": "PRIVATE",
+      "description": "PRIVATE income \u2014 Gross: $80.00 | Net: $80.00 | Tips: $10.00",
+      "payload": {
+        "gross": 80.0,
+        "net": 80.0,
+        "tips": 10.0,
+        "zone": "YOW"
+      }
+    },
+    "data": {
+      "trip_id": null,
+      "platform": null,
+      "earnings_gross": 80.0,
+      "earnings_net": 80.0,
+      "surge_multiplier": 1.0,
+      "miles": 15.534275000000001,
+      "duration_minutes": 45,
+      "pickup_geo": null,
+      "dropoff_geo": null,
+      "ottawa_context": {
+        "surge_zone": "YOW"
+      }
+    },
+    "consent": {
+      "driver_consented": true,
+      "consent_version": "1.0",
+      "consent_timestamp": "2026-07-07T01:51:34.366856+00:00"
+    },
+    "audit": {
+      "rule_zero": true,
+      "logged_by": "THE-GATHERING",
+      "immutable": true,
+      "hash": "dc2ae6d7029797c22a02d55a90a3b43731c95a0bb9de7561cc8fd4e7dcaced99",
+      "prev_receipt_id": null
+    },
+    "meta": {
+      "environment": "PRODUCTION",
+      "pipeline_version": "1.0.0",
+      "tags": [
+        "rideshare",
+        "gabriel",
+        "rspdrives"
+      ]
+    }
+  }
+}

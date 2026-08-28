@@ -1,0 +1,26 @@
+# DNS Records for noizyfish.com - Exported Sun Mar 29 15:47:03 EDT 2026
+# Source: GoDaddy (requires manual export from dashboard)
+
+## Nameservers
+noizyfish.com	nameserver = adam.ns.cloudflare.com.
+noizyfish.com	nameserver = sandy.ns.cloudflare.com.
+
+## A Records
+104.26.2.106
+104.26.3.106
+172.67.69.56
+
+## AAAA Records (IPv6)
+2606:4700:20::681a:26a
+2606:4700:20::681a:36a
+2606:4700:20::ac43:4538
+
+## CNAME Records
+
+## MX Records (Mail)
+
+## TXT Records (SPF, DKIM, DMARC)
+
+## SOA Record
+adam.ns.cloudflare.com. dns.cloudflare.com. 2399638222 10000 2400 604800 1800
+

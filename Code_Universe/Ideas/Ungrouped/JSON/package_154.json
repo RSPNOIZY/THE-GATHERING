@@ -1,0 +1,20 @@
+{
+  "name": "gabriel-mcp",
+  "version": "1.0.0",
+  "description": "GABRIEL — NOIZY durable session memory MCP server.",
+  "type": "module",
+  "main": "server.mjs",
+  "scripts": {
+    "start": "node server.mjs",
+    "test": "node --input-type=module <<< 'import \"./server.mjs\"' && echo OK",
+    "seal": "node seal.mjs",
+    "export": "node export.mjs"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "zod": "^3.23.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

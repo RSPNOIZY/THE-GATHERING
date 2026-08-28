@@ -1,0 +1,123 @@
+{
+  "name": "vscode-manifest-yaml",
+  "displayName": "Cloudfoundry Manifest YML Support",
+  "description": "Adds linting, content assist and hoverinfo's for Cloudfoundry Deployment Manifests (a.k.a. `manifest.yml`) files.",
+  "icon": "icon.png",
+  "version": "2.0.0",
+  "publisher": "vmware",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/spring-projects/spring-tools.git"
+  },
+  "license": "EPL-1.0",
+  "engines": {
+    "npm": ">=6.0.0",
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Linters"
+  ],
+  "keywords": [
+    "yaml",
+    "cloudfoundry",
+    "manifest.yml"
+  ],
+  "activationEvents": [
+    "onLanguage:manifest-yaml"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "manifest-yaml",
+        "aliases": [
+          "cloudfoundry-manifest"
+        ],
+        "filenamePatterns": [
+          "*manifest*.yml"
+        ],
+        "configuration": "./yaml-support/language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "manifest-yaml",
+        "scopeName": "source.manifest-yaml",
+        "path": "./yaml-support/manifest-yaml.tmLanguage.json"
+      }
+    ],
+    "configuration": {
+      "title": "Cloudfoundry Manifest Language Server Configuration",
+      "properties": {
+        "cloudfoundry-manifest.ls.logfile": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "The path of a file to write language server logs. If not set or null, then logs are discarded."
+        },
+        "cloudfoundry-manifest.ls.java.heap": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Passed as an `-Xmx` argument to the language server JVM process"
+        },
+        "cloudfoundry-manifest.ls.java.home": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Overrides JAVA_HOME used for launching the language server JVM process",
+          "scope": "machine-overridable"
+        },
+        "cloudfoundry-manifest.ls.java.vmargs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Additional 'user defined' VM args to pass to the language server process.",
+          "scope": "machine-overridable"
+        },
+        "cloudfoundry-manifest.ls.logLevel": {
+          "type": "string",
+          "enum": [
+            "error",
+            "warn",
+            "info",
+            "debug",
+            "trace",
+            "off"
+          ],
+          "default": "error",
+          "description": "Log level for the Cloundfoundry Manifest Language Server"
+        }
+      }
+    }
+  },
+  "main": "./dist/extension",
+  "scripts": {
+    "vscode:prepublish": "npm run check-types && npm run lint && npm run package",
+    "package": "node esbuild.js --production",
+    "check-types": "tsc --noEmit",
+    "compile": "node esbuild.js",
+    "watch": "node esbuild.js --watch",
+    "lint": "eslint lib",
+    "clean": "rm -fr node_modules out dist *.vsix package-lock.json",
+    "vsce-package": "vsce package",
+    "vsce-pre-release-package": "vsce package --pre-release"
+  },
+  "dependencies": {
+    "@pivotal-tools/commons-vscode": "file:../commons-vscode/pivotal-tools-commons-vscode-0.2.4.tgz",
+    "vscode-languageclient": "^9.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/vscode": "1.75.0",
+    "@vscode/vsce": "^3.7.1",
+    "esbuild": "^0.27.3",
+    "eslint": "^10.0.1",
+    "typescript": "^5.8.0",
+    "typescript-eslint": "^8.56.0"
+  }
+}

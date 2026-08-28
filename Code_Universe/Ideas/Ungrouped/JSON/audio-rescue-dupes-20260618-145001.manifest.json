@@ -1,0 +1,12 @@
+{
+  "generated_at": "2026-06-18T14:50:01",
+  "config_name": "audio-rescue-cloudstorage-dedupe",
+  "root": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE",
+  "min_size_mb": 10,
+  "hash_algorithm": "sha256",
+  "candidate_files_indexed": 0,
+  "duplicate_group_count": 0,
+  "potential_reclaim_bytes": 0,
+  "potential_reclaim_human": "0 B",
+  "groups": []
+}

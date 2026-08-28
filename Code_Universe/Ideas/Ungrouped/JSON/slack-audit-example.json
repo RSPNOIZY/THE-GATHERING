@@ -1,0 +1,39 @@
+{
+  "channel": "#audit-noizylab",
+  "username": "NOIZY Governance",
+  "icon_emoji": ":shield:",
+  "blocks": [
+    {
+      "type": "header",
+      "text": {
+        "type": "plain_text",
+        "text": "✅ Commit Validated"
+      }
+    },
+    {
+      "type": "section",
+      "fields": [
+        { "type": "mrkdwn", "text": "*Execution ID:*\n`nf-2026-04-08-00001`" },
+        { "type": "mrkdwn", "text": "*Service:*\nNOIZYANTHROPIC" },
+        { "type": "mrkdwn", "text": "*Environment:*\nlocal" },
+        { "type": "mrkdwn", "text": "*Operator:*\nRSP_001" }
+      ]
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*Commit:* `abc123def456` on `main`\n*Message:* feat: add governance loop for commit validation"
+      }
+    },
+    {
+      "type": "context",
+      "elements": [
+        {
+          "type": "mrkdwn",
+          "text": "🕐 2026-04-08T10:00:00.000Z | Validated by n8n workflow `ai-commit-validation`"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "volume": "/Volumes/4TB Lacie",
+  "slug": "4TB_Lacie_",
+  "timestamp": "20260420T072620Z",
+  "size": "624G",
+  "top_level_entries": 10,
+  "code": {
+    "git_dirs": 11,
+    "package_json": 212,
+    "pyproject": 5,
+    "cargo": 0,
+    "gemfile": 0,
+    "go_mod": 0
+  },
+  "secrets_pattern_count": 14,
+  "media": {
+    "wav": 25739,
+    "aif": 25513,
+    "flac": 0,
+    "logicx": 91,
+    "ptx": 0
+  },
+  "audit_path": "/Users/m2ultra/NOIZYANTHROPIC/infra/scans/scan-reports/4TB_Lacie_/20260420T072620Z/audit.md",
+  "inventory_path": "/Users/m2ultra/NOIZYANTHROPIC/infra/scans/scan-reports/4TB_Lacie_/20260420T072620Z/inventory.txt"
+}

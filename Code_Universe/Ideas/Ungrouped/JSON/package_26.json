@@ -1,0 +1,16 @@
+{
+  "name": "noizy-mcp",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Remote MCP Server at mcp.noizy.ai — Streamable HTTP JSON-RPC 2.0",
+  "scripts": {
+    "deploy": "wrangler deploy",
+    "dev": "wrangler dev",
+    "tail": "wrangler tail"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20240718.0",
+    "typescript": "^5.4.0",
+    "wrangler": "^4.83.0"
+  }
+}

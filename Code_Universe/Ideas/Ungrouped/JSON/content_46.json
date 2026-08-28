@@ -1,0 +1,11 @@
+{
+	"ae_tool" : "AmazingEditor",
+	"content" : {},
+	"filemap" : 
+	{
+		"prefab" : "prefabs/rectangleMaskProcess.prefab"
+	},
+	"needblend" : false,
+	"tag" : "AMG_3621058861359862028965156081340682664",
+	"version" : "1.0"
+}

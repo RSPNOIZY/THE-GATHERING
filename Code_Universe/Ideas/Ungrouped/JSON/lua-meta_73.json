@@ -1,0 +1,302 @@
+[
+    {
+        "ClassName": "SeekModeScript",
+        "Super": "ScriptComponent",
+        "FilePath": "lua/SeekModeScript.lua",
+        "FileAbsPath": "/Volumes/D/EffectCapacity/manual_acne_removal/FinalVersion/AmazingFeature/lua/SeekModeScript.lua",
+        "Properties": [
+            {
+                "VarName": "blitMesh",
+                "VarType": "Mesh",
+                "Comment": "",
+                "AnnoItems": [
+                    {
+                        "ItemType": "UI",
+                        "Attributes": [
+                            {
+                                "AttrType": "Order",
+                                "RawValue": "",
+                                "Values": [
+                                    0.0
+                                ]
+                            },
+                            {
+                                "AttrType": "Display",
+                                "RawValue": "",
+                                "Values": [
+                                    "blit Mesh"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "VarName": "blitWithBlendMaterial",
+                "VarType": "Material",
+                "Comment": "",
+                "AnnoItems": [
+                    {
+                        "ItemType": "UI",
+                        "Attributes": [
+                            {
+                                "AttrType": "Order",
+                                "RawValue": "",
+                                "Values": [
+                                    1.0
+                                ]
+                            },
+                            {
+                                "AttrType": "Display",
+                                "RawValue": "",
+                                "Values": [
+                                    "blit With Blend Material"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "VarName": "emptyTexture",
+                "VarType": "Texture",
+                "Comment": "",
+                "AnnoItems": [
+                    {
+                        "ItemType": "UI",
+                        "Attributes": [
+                            {
+                                "AttrType": "Order",
+                                "RawValue": "",
+                                "Values": [
+                                    2.0
+                                ]
+                            },
+                            {
+                                "AttrType": "Display",
+                                "RawValue": "",
+                                "Values": [
+                                    "empty Texture"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "Methods": [
+            {
+                "FuncName": "new",
+                "Params": [],
+                "Comment": ""
+            },
+            {
+                "FuncName": "push",
+                "Params": [],
+                "Comment": ""
+            },
+            {
+                "FuncName": "pop",
+                "Params": [],
+                "Comment": ""
+            },
+            {
+                "FuncName": "peek",
+                "Params": [],
+                "Comment": ""
+            },
+            {
+                "FuncName": "isEmpty",
+                "Params": [],
+                "Comment": ""
+            },
+            {
+                "FuncName": "size",
+                "Params": [],
+                "Comment": ""
+            },
+            {
+                "FuncName": "clear",
+                "Params": [],
+                "Comment": ""
+            },
+            {
+                "FuncName": "iterate",
+                "Params": [],
+                "Comment": ""
+            },
+            {
+                "FuncName": "new",
+                "Params": [],
+                "Comment": ""
+            },
+            {
+                "FuncName": "onStart",
+                "Params": [],
+                "Comment": ""
+            },
+            {
+                "FuncName": "onUpdate",
+                "Params": [],
+                "Comment": ""
+            },
+            {
+                "FuncName": "findFaceByTrackId",
+                "Params": [],
+                "Comment": ""
+            },
+            {
+                "FuncName": "caculateBrushLayerSize",
+                "Params": [],
+                "Comment": ""
+            },
+            {
+                "FuncName": "updateBrushCanvas",
+                "Params": [],
+                "Comment": ""
+            },
+            {
+                "FuncName": "fileExist",
+                "Params": [],
+                "Comment": ""
+            },
+            {
+                "FuncName": "updateMesh",
+                "Params": [],
+                "Comment": ""
+            },
+            {
+                "FuncName": "updateMatrix",
+                "Params": [],
+                "Comment": ""
+            },
+            {
+                "FuncName": "ReadFromJson",
+                "Params": [],
+                "Comment": ""
+            },
+            {
+                "FuncName": "loadManualRetouchCache",
+                "Params": [],
+                "Comment": ""
+            },
+            {
+                "FuncName": "onTouchEvent",
+                "Params": [],
+                "Comment": ""
+            },
+            {
+                "FuncName": "updateProperties",
+                "Params": [],
+                "Comment": ""
+            },
+            {
+                "FuncName": "onEvent",
+                "Params": [],
+                "Comment": ""
+            },
+            {
+                "FuncName": "handleIntensityEvent",
+                "Params": [],
+                "Comment": ""
+            },
+            {
+                "FuncName": "undo",
+                "Params": [],
+                "Comment": ""
+            },
+            {
+                "FuncName": "redo",
+                "Params": [],
+                "Comment": ""
+            },
+            {
+                "FuncName": "clear",
+                "Params": [],
+                "Comment": ""
+            },
+            {
+                "FuncName": "findLastImageByTrackId",
+                "Params": [],
+                "Comment": ""
+            },
+            {
+                "FuncName": "loadExternalTexture",
+                "Params": [],
+                "Comment": ""
+            },
+            {
+                "FuncName": "generateFileName",
+                "Params": [],
+                "Comment": ""
+            },
+            {
+                "FuncName": "getBeautyListType",
+                "Params": [],
+                "Comment": ""
+            },
+            {
+                "FuncName": "cmdBufExec1",
+                "Params": [],
+                "Comment": ""
+            },
+            {
+                "FuncName": "cmdBufAfterExec1",
+                "Params": [],
+                "Comment": ""
+            },
+            {
+                "FuncName": "cmdBufExec2",
+                "Params": [],
+                "Comment": ""
+            },
+            {
+                "FuncName": "updateTexture",
+                "Params": [],
+                "Comment": ""
+            },
+            {
+                "FuncName": "cmdBufAfterExec2",
+                "Params": [],
+                "Comment": ""
+            },
+            {
+                "FuncName": "saveTextureNextFrame",
+                "Params": [],
+                "Comment": ""
+            },
+            {
+                "FuncName": "createTexture",
+                "Params": [],
+                "Comment": ""
+            },
+            {
+                "FuncName": "getFaceBBox",
+                "Params": [],
+                "Comment": ""
+            },
+            {
+                "FuncName": "findTouchBeginFaceInfo",
+                "Params": [],
+                "Comment": ""
+            },
+            {
+                "FuncName": "findFaceInfoByTrackId",
+                "Params": [],
+                "Comment": ""
+            },
+            {
+                "FuncName": "updateFaceInfoBySize",
+                "Params": [],
+                "Comment": ""
+            },
+            {
+                "FuncName": "initFaceEntities",
+                "Params": [],
+                "Comment": ""
+            }
+        ],
+        "Comment": "",
+        "ExportFiles": []
+    }
+]

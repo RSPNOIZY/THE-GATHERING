@@ -1,0 +1,25 @@
+{
+  "name": "@noizy/supersonic",
+  "version": "1.1.0",
+  "description": "SUPERSONIC MCP — The unified NOIZY Empire AI command center. 70 tools. One server. Zero compromise.",
+  "author": "Robert Stephen Plowman <rsp@noizy.ai>",
+  "license": "UNLICENSED",
+  "type": "module",
+  "main": "src/index.js",
+  "bin": {
+    "supersonic": "src/index.js"
+  },
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js",
+    "health": "node src/health-check.js",
+    "test": "node --test src/__tests__/"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "zod": "^3.25.0"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}

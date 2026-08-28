@@ -1,0 +1,15 @@
+{
+	"content" : {},
+	"requirement" :
+	{
+		"3dFaceMeshPerspective" : false,
+        "FaceAttributes" : false,
+        "faceDetect" : true,
+        "faceVerify" : false,
+        "hairColor" : false,
+        "handDetect" : false,
+        "matting" : false
+	},
+	"tag" : "2020-03-11-19-00-14-FaceReshapeV3",
+	"version" : "1.0"
+}

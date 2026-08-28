@@ -1,0 +1,116 @@
+{
+  "name": "NOIZY Empire Doc Sync [Weekly + On-Demand]",
+  "description": "The Archivist: vacuum all docs from Drive/GOD/GitHub, classify by project, route to canonical homes. Runs weekly + callable via webhook from GABRIEL.",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerUnit": "week",
+              "triggerValue": 1,
+              "triggerDays": ["monday"],
+              "triggerTime": "03:00"
+            }
+          ]
+        }
+      },
+      "id": "schedule-weekly",
+      "name": "Weekly Schedule (Mondays 3 AM)",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1,
+      "position": [100, 100]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "noizy/docs/sync",
+        "authentication": "headerAuth",
+        "headerParametersUi": {
+          "parameter": [
+            {
+              "name": "Authorization",
+              "value": "Bearer {{ $env.GABRIEL_WEBHOOK_SECRET }}"
+            }
+          ]
+        }
+      },
+      "id": "webhook-trigger",
+      "name": "Webhook: On-Demand Sync from GABRIEL",
+      "type": "n8n-nodes-base.webhookTrigger",
+      "typeVersion": 1,
+      "position": [100, 250],
+      "webhookId": "noizy_docs_sync_webhook"
+    },
+    {
+      "parameters": {
+        "command": "cd {{ $env.HOME }}/NOIZYLAB/tools && python3 archivist.py --report --output {{ $env.HOME }}/NOIZY_EMPIRE/.archivist_catalog.json --empire-root {{ $env.EMPIRE_ROOT }}"
+      },
+      "id": "run-archivist-scan",
+      "name": "Execute Archivist Scan",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [400, 150]
+    },
+    {
+      "parameters": {
+        "filePath": "{{ $env.HOME }}/NOIZY_EMPIRE/.archivist_catalog.json"
+      },
+      "id": "read-catalog",
+      "name": "Read Catalog JSON",
+      "type": "n8n-nodes-base.readBinaryFile",
+      "typeVersion": 1,
+      "position": [700, 150]
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "https://10.90.90.20:8443/api/gabriel/state",
+        "authentication": "bearerAuth",
+        "options": {}
+      },
+      "id": "notify-gabriel",
+      "name": "Notify GABRIEL: Catalog Ready",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [1000, 150]
+    },
+    {
+      "parameters": {
+        "json": {
+          "status": "success",
+          "catalog": "{{ $json.catalog }}",
+          "enterprise_doc_root": "{{ $env.EMPIRE_ROOT }}"
+        }
+      },
+      "id": "respond",
+      "name": "Return Success",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [1200, 150]
+    }
+  ],
+  "connections": {
+    "schedule-weekly": {
+      "main": [[{ "node": "run-archivist-scan", "branch": 0, "type": "main" }]]
+    },
+    "webhook-trigger": {
+      "main": [[{ "node": "run-archivist-scan", "branch": 0, "type": "main" }]]
+    },
+    "run-archivist-scan": {
+      "main": [[{ "node": "read-catalog", "branch": 0, "type": "main" }]]
+    },
+    "read-catalog": {
+      "main": [[{ "node": "notify-gabriel", "branch": 0, "type": "main" }]]
+    },
+    "notify-gabriel": {
+      "main": [[{ "node": "respond", "branch": 0, "type": "main" }]]
+    }
+  },
+  "settings": {
+    "saveDataErrorExecution": "all",
+    "saveExecutionProgress": "all",
+    "saveManualExecutions": true,
+    "timezone": "America/Toronto"
+  }
+}

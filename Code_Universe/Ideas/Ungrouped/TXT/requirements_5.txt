@@ -1,0 +1,115 @@
+# 🎙️ NOIZYVOX / HERO VOICE FORGE - Python Dependencies
+# =====================================================
+# Install with: pip install -r requirements.txt
+# Last Updated: December 2025
+
+# ═══════════════════════════════════════════════════════
+# CORE AI PROVIDERS
+# ═══════════════════════════════════════════════════════
+
+# Claude API (text generation, persona design)
+anthropic>=0.40.0
+
+# ElevenLabs TTS (premium voice synthesis)
+elevenlabs>=1.0.0
+
+# OpenAI API (fallback TTS, GPT integration)
+openai>=1.0.0
+
+# Azure TTS (optional enterprise TTS)
+# azure-cognitiveservices-speech>=1.31.0
+
+# ═══════════════════════════════════════════════════════
+# AUDIO PROCESSING
+# ═══════════════════════════════════════════════════════
+
+# Numerical computing
+numpy>=1.24.0
+
+# Signal processing
+scipy>=1.11.0
+
+# Audio manipulation (requires ffmpeg)
+pydub>=0.25.0
+
+# Audio file I/O
+soundfile>=0.12.0
+
+# ═══════════════════════════════════════════════════════
+# REAL-TIME & STREAMING
+# ═══════════════════════════════════════════════════════
+
+# WebSocket client/server
+websockets>=12.0
+
+# Async HTTP
+aiohttp>=3.9.0
+httpx>=0.25.0
+
+# ═══════════════════════════════════════════════════════
+# DATA & REPORTS
+# ═══════════════════════════════════════════════════════
+
+# Data manipulation
+pandas>=2.0.0
+
+# Excel export
+openpyxl>=3.1.0
+
+# Date handling
+python-dateutil>=2.8.0
+
+# ═══════════════════════════════════════════════════════
+# CLI & DISPLAY
+# ═══════════════════════════════════════════════════════
+
+# Beautiful terminal output
+rich>=13.0.0
+
+# Interactive prompts
+prompt-toolkit>=3.0.0
+
+# Progress bars
+tqdm>=4.65.0
+
+# ═══════════════════════════════════════════════════════
+# UTILITIES
+# ═══════════════════════════════════════════════════════
+
+# Environment variables
+python-dotenv>=1.0.0
+
+# Type hints
+typing-extensions>=4.8.0
+
+# HTTP client
+requests>=2.31.0
+
+# ═══════════════════════════════════════════════════════
+# DEVELOPMENT (optional)
+# ═══════════════════════════════════════════════════════
+
+# Testing
+pytest>=7.4.0
+
+# Code formatting
+black>=23.0.0
+
+# Type checking
+mypy>=1.6.0
+
+# Linting
+ruff>=0.1.0
+
+# ═══════════════════════════════════════════════════════
+# SYSTEM REQUIREMENTS
+# ═══════════════════════════════════════════════════════
+# Install via Homebrew on macOS:
+#   brew install ffmpeg sox
+#
+# macOS built-in:
+#   - say (TTS command)
+#   - afplay (audio player)
+#
+# For GPU acceleration (optional):
+#   pip install torch torchaudio

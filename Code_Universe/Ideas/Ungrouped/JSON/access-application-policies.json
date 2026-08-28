@@ -1,0 +1,325 @@
+{
+  "_meta": {
+    "title": "NOIZY DreamChamber — Cloudflare Access Application Policies",
+    "author": "Robert Stephen Plowman (RSP_001)",
+    "generated": "2026-04-10",
+    "purpose": "One Cloudflare Access Application per internal service. Identity = perimeter.",
+    "tunnel": "god-local",
+    "identity_providers": ["Google OAuth (rspplowman@gmail.com)", "One-time PIN (rsplowman@icloud.com, rsp@noizy.ai)"]
+  },
+
+  "applications": [
+
+    {
+      "id": 1,
+      "name": "DreamChamber",
+      "subdomain": "dreamchamber.noizy.ai",
+      "local_origin": "http://localhost:7777",
+      "layer": "L1 — Creative Production",
+      "status": "RUNNING",
+      "description": "Multi-model AI command center. 11 providers, streaming, Three.js Contact Sequence, 9 agent personalities, C2PA credentials.",
+      "access_policy": {
+        "type": "self_hosted",
+        "session_duration": "24h",
+        "allowed_emails": ["rspplowman@gmail.com", "rsplowman@icloud.com", "rsp@noizy.ai"],
+        "allowed_methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+        "cors_enabled": true,
+        "websocket": true,
+        "purpose_justification": false,
+        "device_posture": "none"
+      },
+      "accessibility_notes": "Primary creative interface. Must support Voice Control + VoiceOver. 24h session non-negotiable — re-auth breaks creative flow for paralyzed operator.",
+      "priority": "P0 — CRITICAL"
+    },
+
+    {
+      "id": 2,
+      "name": "Voice Bridge",
+      "subdomain": "voice.noizy.ai",
+      "local_origin": "http://localhost:8080",
+      "layer": "L1 — Creative Production",
+      "status": "NOT RUNNING — needs voice-bridge-server.js start",
+      "description": "Phone → Siri/Google Assistant → Power Automate → GOD.local. Voice commands from anywhere trigger actions on production machine.",
+      "access_policy": {
+        "type": "self_hosted",
+        "session_duration": "24h",
+        "allowed_emails": ["rspplowman@gmail.com", "rsplowman@icloud.com", "rsp@noizy.ai"],
+        "service_token_bypass": true,
+        "webhook_bypass": true,
+        "cors_enabled": true,
+        "device_posture": "none"
+      },
+      "accessibility_notes": "CRITICAL accessibility endpoint. Webhook bypass required — Power Automate relays from phone/Siri cannot do interactive auth. Service token for automated voice commands.",
+      "priority": "P0 — CRITICAL"
+    },
+
+    {
+      "id": 3,
+      "name": "Open WebUI (Ollama Chat)",
+      "subdomain": "ollama.noizy.ai",
+      "local_origin": "http://localhost:3080",
+      "layer": "L1 — Creative Production",
+      "status": "RUNNING",
+      "description": "Web interface to 16 Ollama models including 10 custom NOIZY agents + gemma3. Chat from any browser.",
+      "access_policy": {
+        "type": "self_hosted",
+        "session_duration": "24h",
+        "allowed_emails": ["rspplowman@gmail.com", "rsplowman@icloud.com", "rsp@noizy.ai"],
+        "websocket": true,
+        "cors_enabled": true,
+        "device_posture": "none"
+      },
+      "accessibility_notes": "Browser-based AI chat. Works with VoiceOver. 16 models including all custom NOIZY agents.",
+      "priority": "P0 — CRITICAL"
+    },
+
+    {
+      "id": 4,
+      "name": "Ollama API (Direct)",
+      "subdomain": "ollama-api.noizy.ai",
+      "local_origin": "http://localhost:11434",
+      "layer": "L2 — AI Infrastructure",
+      "status": "RUNNING",
+      "description": "Direct Ollama REST API. Model inference, embeddings, generation. Used by DreamChamber, n8n workflows, and external tools.",
+      "access_policy": {
+        "type": "self_hosted",
+        "session_duration": "24h",
+        "allowed_emails": ["rspplowman@gmail.com", "rsplowman@icloud.com", "rsp@noizy.ai"],
+        "service_token_bypass": true,
+        "cors_enabled": true,
+        "device_posture": "none"
+      },
+      "accessibility_notes": "API-only endpoint. Service token enables DreamChamber → Ollama calls without browser auth.",
+      "priority": "P1 — HIGH"
+    },
+
+    {
+      "id": 5,
+      "name": "n8n Automation",
+      "subdomain": "n8n.noizy.ai",
+      "local_origin": "http://localhost:5678",
+      "layer": "L2 — AI Infrastructure",
+      "status": "RUNNING",
+      "description": "18 automation workflows: GitHub→Gabriel, Stripe→Ledger, Voice→DreamChamber, health monitoring, consent kill switch, Notion sync, Linear sync.",
+      "access_policy": {
+        "type": "self_hosted",
+        "session_duration": "24h",
+        "allowed_emails": ["rspplowman@gmail.com", "rsplowman@icloud.com", "rsp@noizy.ai"],
+        "webhook_bypass": true,
+        "cors_enabled": true,
+        "device_posture": "none"
+      },
+      "accessibility_notes": "Webhook bypass required for inbound automation triggers (GitHub, Stripe, external services). n8n has its own auth layer.",
+      "priority": "P1 — HIGH"
+    },
+
+    {
+      "id": 6,
+      "name": "Grafana Monitoring",
+      "subdomain": "grafana.noizy.ai",
+      "local_origin": "http://localhost:3000",
+      "layer": "L2 — AI Infrastructure",
+      "status": "RUNNING",
+      "description": "Empire monitoring dashboards. Worker health, D1 query performance, consent token metrics, voice pipeline status, error budgets.",
+      "access_policy": {
+        "type": "self_hosted",
+        "session_duration": "24h",
+        "allowed_emails": ["rspplowman@gmail.com", "rsplowman@icloud.com", "rsp@noizy.ai"],
+        "cors_enabled": false,
+        "device_posture": "none"
+      },
+      "accessibility_notes": "Dashboard UI. Configure accessible theme with 44px minimum touch targets for iPad/iPhone viewing.",
+      "priority": "P1 — HIGH"
+    },
+
+    {
+      "id": 7,
+      "name": "Neo4j Knowledge Graph",
+      "subdomain": "graph.noizy.ai",
+      "local_origin": "http://localhost:7474",
+      "layer": "L2 — AI Infrastructure",
+      "status": "RUNNING",
+      "description": "Knowledge graph database. Gabriel's memory, entity relationships, empire connected intelligence.",
+      "access_policy": {
+        "type": "self_hosted",
+        "session_duration": "24h",
+        "allowed_emails": ["rspplowman@gmail.com", "rsplowman@icloud.com", "rsp@noizy.ai"],
+        "cors_enabled": false,
+        "device_posture": "none"
+      },
+      "accessibility_notes": "Neo4j Browser is web-based. Works in any browser with VoiceOver.",
+      "priority": "P2 — MEDIUM"
+    },
+
+    {
+      "id": 8,
+      "name": "Qdrant Vector Database",
+      "subdomain": "vectors.noizy.ai",
+      "local_origin": "http://localhost:6333",
+      "layer": "L2 — AI Infrastructure",
+      "status": "RUNNING",
+      "description": "Vector database for embeddings. Voice fingerprint similarity search, semantic document matching, neural voice DNA comparison.",
+      "access_policy": {
+        "type": "self_hosted",
+        "session_duration": "24h",
+        "allowed_emails": ["rspplowman@gmail.com", "rsplowman@icloud.com", "rsp@noizy.ai"],
+        "service_token_bypass": true,
+        "cors_enabled": true,
+        "device_posture": "none"
+      },
+      "accessibility_notes": "API + Dashboard. Service token for programmatic access from DreamChamber and voice pipeline.",
+      "priority": "P2 — MEDIUM"
+    },
+
+    {
+      "id": 9,
+      "name": "RabbitMQ Message Queue",
+      "subdomain": "mq.noizy.ai",
+      "local_origin": "http://localhost:15672",
+      "layer": "L2 — AI Infrastructure",
+      "status": "RUNNING",
+      "description": "Message queue for async operations. Voice synthesis jobs, consent validation queues, webhook delivery.",
+      "access_policy": {
+        "type": "self_hosted",
+        "session_duration": "24h",
+        "allowed_emails": ["rspplowman@gmail.com", "rsplowman@icloud.com", "rsp@noizy.ai"],
+        "cors_enabled": false,
+        "device_posture": "none"
+      },
+      "accessibility_notes": "Management UI is web-based. Standard browser access.",
+      "priority": "P2 — MEDIUM"
+    },
+
+    {
+      "id": 10,
+      "name": "Meilisearch",
+      "subdomain": "search.noizy.ai",
+      "local_origin": "http://localhost:7700",
+      "layer": "L2 — AI Infrastructure",
+      "status": "RUNNING",
+      "description": "Full-text search engine. Fast semantic search across empire documents, transcripts, and creative assets.",
+      "access_policy": {
+        "type": "self_hosted",
+        "session_duration": "24h",
+        "allowed_emails": ["rspplowman@gmail.com", "rsplowman@icloud.com", "rsp@noizy.ai"],
+        "service_token_bypass": true,
+        "cors_enabled": true,
+        "device_posture": "none"
+      },
+      "accessibility_notes": "API + mini dashboard. Service token for DreamChamber search integration.",
+      "priority": "P2 — MEDIUM"
+    },
+
+    {
+      "id": 11,
+      "name": "HEAVEN Dev",
+      "subdomain": "heaven-dev.noizy.ai",
+      "local_origin": "http://localhost:8787",
+      "layer": "L3 — Development",
+      "status": "NOT RUNNING — start with wrangler dev",
+      "description": "Local development instance of consent kernel API. Test new routes and migrations before production.",
+      "access_policy": {
+        "type": "self_hosted",
+        "session_duration": "24h",
+        "allowed_emails": ["rspplowman@gmail.com", "rsplowman@icloud.com", "rsp@noizy.ai"],
+        "cors_enabled": true,
+        "device_posture": "none"
+      },
+      "accessibility_notes": "Dev instance. Only runs when actively developing HEAVEN.",
+      "priority": "P3 — LOW"
+    },
+
+    {
+      "id": 12,
+      "name": "Kubernetes Dashboard",
+      "subdomain": "k8s.noizy.ai",
+      "local_origin": "https://localhost:54335",
+      "layer": "L3 — Development",
+      "status": "RUNNING",
+      "description": "Kind cluster dashboard. Container orchestration for DreamChamber, audio pipeline, batch processing.",
+      "access_policy": {
+        "type": "self_hosted",
+        "session_duration": "24h",
+        "allowed_emails": ["rspplowman@gmail.com", "rsplowman@icloud.com", "rsp@noizy.ai"],
+        "tls_verify": false,
+        "cors_enabled": false,
+        "device_posture": "none"
+      },
+      "accessibility_notes": "HTTPS origin (self-signed cert). Cloudflare handles TLS termination, noTLSVerify for backend.",
+      "priority": "P3 — LOW"
+    },
+
+    {
+      "id": 13,
+      "name": "SSH Terminal",
+      "subdomain": "ssh.noizy.ai",
+      "local_origin": "ssh://localhost:22",
+      "layer": "L3 — Development",
+      "status": "AVAILABLE",
+      "description": "Browser-rendered SSH terminal to GOD.local. Full command line from any device. Cloudflare renders — no SSH client needed.",
+      "access_policy": {
+        "type": "ssh",
+        "session_duration": "24h",
+        "allowed_emails": ["rspplowman@gmail.com", "rsplowman@icloud.com", "rsp@noizy.ai"],
+        "browser_rendering": true,
+        "device_posture": "none"
+      },
+      "accessibility_notes": "Browser-based SSH terminal. VoiceOver compatible. Critical fallback when VS Code isn't available.",
+      "priority": "P1 — HIGH"
+    }
+  ],
+
+  "internal_only_services": [
+    {
+      "name": "PostgreSQL",
+      "port": 5432,
+      "reason": "Database — never exposed. Access through application layer only."
+    },
+    {
+      "name": "Redis",
+      "port": 6379,
+      "reason": "Cache — never exposed. Internal to application stack."
+    },
+    {
+      "name": "RabbitMQ AMQP",
+      "port": 5672,
+      "reason": "AMQP protocol port — management UI (15672) is exposed instead."
+    },
+    {
+      "name": "Neo4j Bolt",
+      "port": 7687,
+      "reason": "Bolt protocol — Neo4j Browser (7474) is exposed instead."
+    }
+  ],
+
+  "production_edge_services": [
+    {
+      "name": "HEAVEN Production",
+      "url": "https://heaven.rsp-5f3.workers.dev",
+      "status": "LIVE v17.8.0",
+      "note": "Cloudflare Worker — already at the edge. No tunnel needed."
+    },
+    {
+      "name": "noizy.ai Landing",
+      "url": "https://noizy-landing.rsp-5f3.workers.dev",
+      "status": "LIVE (200)",
+      "note": "Cloudflare Worker — already at the edge. No tunnel needed."
+    }
+  ],
+
+  "global_policy": {
+    "identity_providers": ["Google OAuth", "One-time PIN"],
+    "allowed_identities": [
+      "rspplowman@gmail.com",
+      "rsplowman@icloud.com",
+      "rsp@noizy.ai"
+    ],
+    "default_session_duration": "24h",
+    "device_posture": "disabled",
+    "reason": "Accessibility hardware varies. Partial paralysis means adaptive devices that don't report standard posture. No lockouts.",
+    "warp_required": false,
+    "warp_recommended": true,
+    "geo_restriction": "none",
+    "rate_limiting": "per-application"
+  }
+}

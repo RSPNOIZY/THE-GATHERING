@@ -1,0 +1,16 @@
+{
+  "name": "@noizy-ms/mcp-worker",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Cloudflare Worker remote MCP for Microsoft Graph — mounts at ms.mcp.noizy.ai",
+  "main": "src/worker.mjs",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "tail": "wrangler tail"
+  },
+  "devDependencies": {
+    "wrangler": "^3.80.0"
+  }
+}

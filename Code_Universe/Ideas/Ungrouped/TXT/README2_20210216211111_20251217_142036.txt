@@ -1,0 +1,14 @@
+# SVG Previewer
+![Workflow](media/preview.gif)
+
+
+---
+
+Second focus:
+Show and describe preview editor feature
+
+---
+
+Commands
+Settings
+Shortcuts

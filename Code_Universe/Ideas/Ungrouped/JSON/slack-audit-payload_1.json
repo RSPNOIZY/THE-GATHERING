@@ -1,0 +1,102 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "NOIZY Governance — Slack Audit Payload",
+  "description": "Canonical schema for machine-generated audit messages posted to #audit-noizylab. All fields required. Never sent by humans — only by n8n or GABRIEL.",
+  "type": "object",
+  "required": ["execution_id", "event", "service", "environment", "operator", "timestamp", "detail"],
+  "properties": {
+    "execution_id": {
+      "type": "string",
+      "pattern": "^nf-\\d{4}-\\d{2}-\\d{2}-\\d{5}$",
+      "description": "Immutable ID assigned by n8n at workflow start. Format: nf-YYYY-MM-DD-NNNNN",
+      "examples": ["nf-2026-04-08-00123"]
+    },
+    "event": {
+      "type": "string",
+      "enum": [
+        "commit_validated",
+        "commit_rejected",
+        "deploy_started",
+        "deploy_complete",
+        "deploy_failed",
+        "deploy_rollback",
+        "canary_promoted",
+        "canary_failed",
+        "health_degraded",
+        "health_restored",
+        "ethics_gate_passed",
+        "ethics_gate_blocked"
+      ],
+      "description": "Event type from controlled vocabulary. No free-text events."
+    },
+    "service": {
+      "type": "string",
+      "enum": ["NOIZYANTHROPIC", "GABRIEL", "HEAVEN", "NOIZYBEAST", "NOIZYVOX", "CODEMASTER"],
+      "description": "Which empire service produced this event."
+    },
+    "environment": {
+      "type": "string",
+      "enum": ["local", "staging", "production"],
+      "description": "Deployment target."
+    },
+    "operator": {
+      "type": "string",
+      "const": "RSP_001",
+      "description": "Always RSP_001. No other operators exist."
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 UTC timestamp of when the event occurred."
+    },
+    "detail": {
+      "type": "object",
+      "description": "Event-specific payload. Structure varies by event type.",
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": false,
+  "examples": [
+    {
+      "execution_id": "nf-2026-04-08-00001",
+      "event": "commit_validated",
+      "service": "NOIZYANTHROPIC",
+      "environment": "local",
+      "operator": "RSP_001",
+      "timestamp": "2026-04-08T10:00:00.000Z",
+      "detail": {
+        "commit_sha": "abc123def456",
+        "branch": "main",
+        "message": "feat: add governance loop for commit validation",
+        "author": "RSP_001"
+      }
+    },
+    {
+      "execution_id": "nf-2026-04-08-00002",
+      "event": "deploy_complete",
+      "service": "HEAVEN",
+      "environment": "production",
+      "operator": "RSP_001",
+      "timestamp": "2026-04-08T14:30:00.000Z",
+      "detail": {
+        "version": "1.2.3",
+        "worker": "heaven.rsp-5f3.workers.dev",
+        "ledger_events": 847,
+        "deploy_duration_s": 12
+      }
+    },
+    {
+      "execution_id": "nf-2026-04-08-00003",
+      "event": "ethics_gate_blocked",
+      "service": "NOIZYBEAST",
+      "environment": "local",
+      "operator": "RSP_001",
+      "timestamp": "2026-04-08T09:15:00.000Z",
+      "detail": {
+        "action": "auto_publish_content",
+        "reason": "Requires human review before public content publication",
+        "required_acknowledgment": "consent_membrane_v2"
+      }
+    }
+  ]
+}

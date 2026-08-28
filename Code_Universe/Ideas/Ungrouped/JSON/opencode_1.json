@@ -1,0 +1,94 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+
+  // ─── Core runtime ────────────────────────────────────────────────────────────
+  "autoupdate": true,
+  "model": "anthropic/claude-sonnet-4-5",
+
+  // Stable port for opencode web / serve modes.
+  // Must match OPENCODE_PORT in .env.example.
+  "server": {
+    "port": 4096
+  },
+
+  // ─── MCP Servers ─────────────────────────────────────────────────────────────
+  // Header env interpolation uses the documented {env:VAR_NAME} form.
+  // Toggle `enabled` to switch lanes — never remove an entry.
+  // Only the local stdio lanes are enabled by default to control token usage.
+  "mcp": {
+    // ── LANE 1: Local stdio (primary, zero-latency) ───────────────────────────
+    "noizy-voice-bridge-local": {
+      "type": "local",
+      "command": ["node", "apps/voice-bridge-local/server.mjs"],
+      "enabled": true,
+      "environment": {
+        "NODE_ENV": "production"
+      }
+    },
+
+    // ── LANE 2: Local HTTP MCP bridge (disabled until docker service is up) ───
+    "noizy-voice-bridge-http": {
+      "type": "remote",
+      "url": "http://127.0.0.1:8080/mcp",
+      "enabled": false,
+      "headers": {
+        "Authorization": "Bearer {env:NOIZY_VOICE_AUTH_TOKEN}"
+      }
+    },
+
+    // ── LANE 3: Cloudflare Remote MCP (public edge, failover only) ────────────
+    "noizy-voice-mcp-cloudflare": {
+      "type": "remote",
+      "url": "https://voice-mcp.noizy.ai/mcp",
+      "enabled": false,
+      "headers": {
+        "Authorization": "Bearer {env:NOIZY_MCP_AUTH_TOKEN}"
+      }
+    },
+    // ── LANE 4: Cloud Run HTTP mirror (Phase 4) ─────────────────────────────────
+    // Exact replica of Lane 1. Stateless, authenticated Cloud Run service.
+    // Deploy:   cd apps/voice-bridge-http && npm run deploy
+    // Activate: set enabled=true (one boolean flip per spec).
+    //
+    // Cold-start note: Cloud Run scales to zero by default.
+    // For a warm mirror lane (sub-second response), set min-instances=1
+    // at deploy time — the package.json deploy script already includes it.
+    // If you want scale-to-zero, use: npm run deploy-zero instead.
+    // Keep disabled here until the service URL is confirmed live.
+    "noizy-voice-mcp-cloudrun": {
+      "type": "remote",
+      "url": "https://noizy-mcp-xxx.run.app/mcp",
+      "enabled": false,
+      "headers": {
+        "Authorization": "Bearer {env:NOIZY_CLOUDRUN_AUTH_TOKEN}"
+      }
+    },
+    // ── GABRIEL: durable session memory (local stdio) ─────────────────────────
+    // Notes and markers are keyed by OpenCode session ID and survive
+    // disconnects because they live on disk, not in the live connection.
+    //
+    // NOTE: The gabriel_* tools are MCP tools and are confirmed available to
+    // OpenCode sessions. Resource-surfacing (notes://<session_id> URIs) is
+    // implemented in server.mjs as a target behavior; verify with your MCP SDK
+    // version — it is not explicitly detailed in current OpenCode docs.
+    "noizy-gabriel": {
+      "type": "local",
+      "command": ["node", "apps/gabriel-mcp/server.mjs"],
+      "enabled": true
+    }
+  },
+
+  // ─── Phase activation flags (one boolean flip each) ──────────────────────────────────
+  // Phase 4 — Remote Mirror:   set "noizy-voice-mcp-cloudrun".enabled = true
+  // Phase 5 — Session Seal:    run: make seal ID=<session-id>
+  // Phase 6 — Cross Recall:    run: make recall [QUERY="<term>"]
+
+  // ─── Tool permissions ─────────────────────────────────────────────────────────
+  // Wildcards are supported per OpenCode's tools/permission docs.
+  // GABRIEL writes to disk on every call — pre-approve its tools.
+  // Voice bridge tools prompt the operator before executing (ask).
+  "permission": {
+    "noizy-gabriel_*": "allow",
+    "noizy-voice-bridge-*": "ask"
+  }
+}

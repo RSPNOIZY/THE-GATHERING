@@ -1,0 +1,65 @@
+{
+  "receipt": {
+    "receipt_id": "21227be2-9260-4285-b946-af24370fab57",
+    "workstream": "RIDESHARE",
+    "project_ref": "GABRIEL",
+    "account": "rspdrives@gmail.com",
+    "vehicle": "2026-HONDA-CRV-HYBRID",
+    "timestamp_utc": "2026-07-07T01:51:47.731624+00:00",
+    "session_id": "193613cc-3d06-44a7-a9e4-e269b700cc0e",
+    "action": {
+      "type": "OTTAWA_EVENT",
+      "source": "COPILOT",
+      "description": "Ottawa event logged \u2014 Canadian Tire Centre \u2014 NHL / Concert Post-Show",
+      "payload": {
+        "event_name": "Canadian Tire Centre \u2014 NHL / Concert Post-Show",
+        "event_type": "SPORTS",
+        "venue": "Canadian Tire Centre",
+        "zone": "KANATA",
+        "event_date": "2026-07-07",
+        "start_time": "21:30",
+        "end_time": "23:30",
+        "expected_attendance": 18500,
+        "surge_impact_score": 0.95,
+        "notes": "Park 30\u201345 min before end. 9:30\u201311:30pm spike."
+      }
+    },
+    "data": {
+      "trip_id": null,
+      "platform": null,
+      "earnings_gross": null,
+      "earnings_net": null,
+      "surge_multiplier": null,
+      "miles": null,
+      "duration_minutes": null,
+      "pickup_geo": null,
+      "dropoff_geo": null,
+      "ottawa_context": {
+        "event": "Canadian Tire Centre \u2014 NHL / Concert Post-Show",
+        "surge_zone": "KANATA"
+      }
+    },
+    "consent": {
+      "driver_consented": true,
+      "consent_version": "1.0",
+      "consent_timestamp": "2026-07-07T01:51:47.731624+00:00"
+    },
+    "audit": {
+      "rule_zero": true,
+      "logged_by": "THE-GATHERING",
+      "immutable": true,
+      "hash": "df24ff816565a4f9accd691794d46617624c29c0338e3400b74c8648f67b7357",
+      "prev_receipt_id": null
+    },
+    "meta": {
+      "environment": "PRODUCTION",
+      "pipeline_version": "1.0.0",
+      "tags": [
+        "rideshare",
+        "ottawa",
+        "event",
+        "surge_schedule"
+      ]
+    }
+  }
+}

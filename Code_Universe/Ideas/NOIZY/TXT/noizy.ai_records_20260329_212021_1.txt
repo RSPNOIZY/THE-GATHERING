@@ -1,0 +1,17 @@
+# DNS Records for noizy.ai - Exported Sun Mar 29 21:20:21 EDT 2026
+# Source: GoDaddy (requires manual export from dashboard)
+
+## Nameservers
+
+## A Records
+
+## AAAA Records (IPv6)
+
+## CNAME Records
+
+## MX Records (Mail)
+
+## TXT Records (SPF, DKIM, DMARC)
+
+## SOA Record
+

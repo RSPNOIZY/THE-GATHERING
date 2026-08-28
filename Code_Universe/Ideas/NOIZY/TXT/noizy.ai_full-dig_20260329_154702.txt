@@ -1,0 +1,4 @@
+
+; <<>> DiG 9.10.6 <<>> noizy.ai @8.8.8.8 +noall +answer
+;; global options: +cmd
+noizy.ai.		282	IN	A	172.64.80.1

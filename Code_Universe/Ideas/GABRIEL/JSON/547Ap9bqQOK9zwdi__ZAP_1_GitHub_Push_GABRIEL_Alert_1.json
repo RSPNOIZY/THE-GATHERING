@@ -1,0 +1,119 @@
+{
+  "name": "ZAP 1: GitHub Push \u2192 GABRIEL Alert",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "github-push",
+        "options": {}
+      },
+      "id": "wh1",
+      "name": "GitHub Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        240,
+        300
+      ],
+      "webhookId": "df5abe1f-f778-465f-bf1f-78302d1f0b6a"
+    },
+    {
+      "parameters": {
+        "jsCode": "const body = $input.first().json.body || $input.first().json;\nconst event = body.headers?.['x-github-event'] || 'push';\nconst pusher = body.pusher?.name || 'unknown';\nconst branch = (body.ref || '').replace('refs/heads/', '');\nconst commits = body.commits?.length || 0;\nconst repo = body.repository?.full_name || 'unknown';\nconst summary = `${pusher} pushed ${commits} commit(s) to ${repo}/${branch}`;\nreturn [{ json: { event, pusher, branch, commits, repo, summary, ts: new Date().toISOString() } }];"
+      },
+      "id": "parse1",
+      "name": "Parse GitHub Event",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        460,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "url": "http://localhost:7777/memcell/github:push:{{ $now.toMillis() }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ value: $json }) }}"
+      },
+      "id": "gabriel1",
+      "name": "Store in GABRIEL",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [
+        680,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "url": "http://localhost:7777/speak",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ text: $json.summary }) }}"
+      },
+      "id": "speak1",
+      "name": "GABRIEL Speak Alert",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [
+        680,
+        400
+      ]
+    }
+  ],
+  "connections": {
+    "GitHub Webhook": {
+      "main": [
+        [
+          {
+            "node": "Parse GitHub Event",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse GitHub Event": {
+      "main": [
+        [
+          {
+            "node": "Store in GABRIEL",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "GABRIEL Speak Alert",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  }
+}

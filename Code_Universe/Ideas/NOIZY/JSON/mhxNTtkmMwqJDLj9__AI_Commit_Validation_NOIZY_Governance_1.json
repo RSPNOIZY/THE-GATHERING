@@ -1,0 +1,310 @@
+{
+  "name": "AI Commit Validation \u2014 NOIZY Governance",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "ai-commit-validation",
+        "httpMethod": "POST",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "webhook-entry",
+      "name": "Webhook: Commit Event",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        240,
+        300
+      ],
+      "webhookId": "911f39be-e1cc-4812-9f28-ac0e6580d378"
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "execution_id",
+              "value": "=nf-{{ $now.format('yyyy-MM-dd') }}-{{ Math.random().toString(36).substring(2,8) }}"
+            },
+            {
+              "name": "received_at",
+              "value": "={{ $now.toISO() }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "set-execution-id",
+      "name": "Set Execution ID",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        460,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true
+          },
+          "conditions": [
+            {
+              "id": "repo-check",
+              "leftValue": "={{ $json.body.repo }}",
+              "rightValue": "RSPNOIZY/NOIZYANTHROPIC",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            },
+            {
+              "id": "ref-check",
+              "leftValue": "={{ $json.body.ref }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists"
+              }
+            },
+            {
+              "id": "author-check",
+              "leftValue": "={{ $json.body.author }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists"
+              }
+            }
+          ],
+          "combinator": "and"
+        }
+      },
+      "id": "schema-gate",
+      "name": "IF: Schema Valid?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        680,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": false
+          },
+          "conditions": [
+            {
+              "id": "gabriel-path",
+              "leftValue": "={{ JSON.stringify($json.body.paths_changed || []) }}",
+              "rightValue": "GABRIEL",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            },
+            {
+              "id": "codemaster-path",
+              "leftValue": "={{ JSON.stringify($json.body.paths_changed || []) }}",
+              "rightValue": "CODEMASTER",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            },
+            {
+              "id": "governance-path",
+              "leftValue": "={{ JSON.stringify($json.body.paths_changed || []) }}",
+              "rightValue": "governance",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            },
+            {
+              "id": "wireguard-path",
+              "leftValue": "={{ JSON.stringify($json.body.paths_changed || []) }}",
+              "rightValue": "privatekey",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            }
+          ],
+          "combinator": "or"
+        }
+      },
+      "id": "sensitive-path-check",
+      "name": "IF: Sensitive Path?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        900,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "url": "http://localhost:7777/speak",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={ \"text\": \"Governance alert. Sensitive commit detected by {{ $json.body.author }} touching {{ $json.body.paths_changed ? $json.body.paths_changed.join(' and ') : 'unknown paths' }}. Execution ID: {{ $('Set Execution ID').item.json.execution_id }}\" }",
+        "options": {
+          "timeout": 5000
+        }
+      },
+      "id": "gabriel-speak",
+      "name": "GABRIEL: Speak Alert",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1120,
+        80
+      ]
+    },
+    {
+      "parameters": {
+        "url": "http://localhost:7777/memcell/governance:commit-audit",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={ \"value\": { \"execution_id\": \"{{ $('Set Execution ID').item.json.execution_id }}\", \"repo\": \"{{ $json.body.repo }}\", \"ref\": \"{{ $json.body.ref }}\", \"author\": \"{{ $json.body.author }}\", \"paths\": {{ JSON.stringify($json.body.paths_changed || []) }}, \"message\": \"{{ $json.body.commit_message }}\", \"verdict\": \"requires_review\", \"ts\": \"{{ $now.toISO() }}\" } }",
+        "options": {
+          "timeout": 5000
+        }
+      },
+      "id": "gabriel-memcell",
+      "name": "GABRIEL: Store Audit",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1120,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={ \"status\": \"flagged\", \"execution_id\": \"{{ $('Set Execution ID').item.json.execution_id }}\", \"sensitive\": true, \"verdict\": \"requires_review\", \"ts\": \"{{ $now.toISO() }}\" }"
+      },
+      "id": "respond-flagged",
+      "name": "Respond: Flagged",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        1340,
+        160
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={ \"status\": \"validated\", \"execution_id\": \"{{ $('Set Execution ID').item.json.execution_id }}\", \"sensitive\": false, \"ts\": \"{{ $now.toISO() }}\" }"
+      },
+      "id": "respond-clean",
+      "name": "Respond: Clean",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        1120,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={ \"status\": \"rejected\", \"error\": \"Invalid payload: missing repo, ref, or author\", \"ts\": \"{{ $now.toISO() }}\" }",
+        "options": {
+          "responseCode": 400
+        }
+      },
+      "id": "respond-invalid",
+      "name": "Respond: Invalid",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        900,
+        460
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook: Commit Event": {
+      "main": [
+        [
+          {
+            "node": "Set Execution ID",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Execution ID": {
+      "main": [
+        [
+          {
+            "node": "IF: Schema Valid?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF: Schema Valid?": {
+      "main": [
+        [
+          {
+            "node": "IF: Sensitive Path?",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Respond: Invalid",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF: Sensitive Path?": {
+      "main": [
+        [
+          {
+            "node": "GABRIEL: Speak Alert",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "GABRIEL: Store Audit",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Respond: Flagged",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Respond: Clean",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  }
+}

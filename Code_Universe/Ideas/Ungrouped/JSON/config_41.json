@@ -1,0 +1,28 @@
+{
+	"ae_tool" : "AmazingEditor",
+	"bALG_BACH_CONFIG" : true,
+	"effect" : 
+	{
+		"Link" : 
+		[
+			{
+				"path" : "AmazingFeature/",
+				"type" : "AmazingFeature",
+				"zorder" : 8011
+			}
+		],
+		"forceRender" : true,
+		"model_names" : 
+		{
+			"bytenn" : 
+			[
+				"tt_fsnew_base_jianying",
+				"tt_freid",
+				"glass_skin",
+				"cc_auto_beauty_siso_script"
+			]
+		}
+	},
+	"name" : "05d5e017-bcff-11eb-a04a-acde480011220",
+	"version" : "18.5.0"
+}

@@ -1,0 +1,53 @@
+{
+  "name": "ZAP 6: Consent Revoke → Kill Switch → Alert Chain",
+  "nodes": [
+    {
+      "parameters": { "httpMethod": "POST", "path": "consent-revoke", "options": {} },
+      "id": "wh6", "name": "Revoke Webhook", "type": "n8n-nodes-base.webhook", "typeVersion": 2, "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "const body = $input.first().json.body || $input.first().json;\nconst creator_id = body.creator_id || 'unknown';\nconst consent_id = body.consent_id || body.token_id || 'unknown';\nconst reason = body.reason || 'Creator requested revocation';\nconst severity = 'CRITICAL';\nreturn [{ json: { event: 'consent.revoke', creator_id, consent_id, reason, severity, kill_switch: true, ts: new Date().toISOString() } }];"
+      },
+      "id": "parse6", "name": "Parse Revocation", "type": "n8n-nodes-base.code", "typeVersion": 2, "position": [460, 300]
+    },
+    {
+      "parameters": {
+        "url": "https://heaven.rsp-5f3.workers.dev/api/v1/consent-tokens/{{ $json.consent_id }}/revoke",
+        "sendHeaders": true,
+        "headerParameters": { "parameters": [{ "name": "Content-Type", "value": "application/json" }, { "name": "X-NOIZY-Key", "value": "={{ $env.NOIZY_API_KEY }}" }] },
+        "sendBody": true, "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ reason: $json.reason, requested_by: $json.creator_id }) }}"
+      },
+      "id": "revoke6", "name": "Execute Kill Switch (Heaven)", "type": "n8n-nodes-base.httpRequest", "typeVersion": 4, "position": [680, 200]
+    },
+    {
+      "parameters": {
+        "url": "http://localhost:7777/speak",
+        "sendHeaders": true,
+        "headerParameters": { "parameters": [{ "name": "Content-Type", "value": "application/json" }] },
+        "sendBody": true, "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ text: `CRITICAL. Consent revocation executed. Creator ${$json.creator_id}. Token ${$json.consent_id}. Kill switch active. Revocation is sacred.` }) }}"
+      },
+      "id": "speak6", "name": "GABRIEL Critical Alert", "type": "n8n-nodes-base.httpRequest", "typeVersion": 4, "position": [680, 400]
+    },
+    {
+      "parameters": {
+        "url": "http://localhost:7777/memcell/consent:revoke:{{ $now.toMillis() }}",
+        "sendHeaders": true,
+        "headerParameters": { "parameters": [{ "name": "Content-Type", "value": "application/json" }] },
+        "sendBody": true, "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ value: { ...$json, proof: 'revocation_is_sacred', never_clause: 7 } }) }}"
+      },
+      "id": "proof6", "name": "Write Proof to GABRIEL", "type": "n8n-nodes-base.httpRequest", "typeVersion": 4, "position": [900, 300]
+    }
+  ],
+  "connections": {
+    "Revoke Webhook": { "main": [[{ "node": "Parse Revocation", "type": "main", "index": 0 }]] },
+    "Parse Revocation": { "main": [[{ "node": "Execute Kill Switch (Heaven)", "type": "main", "index": 0 }, { "node": "GABRIEL Critical Alert", "type": "main", "index": 0 }]] },
+    "Execute Kill Switch (Heaven)": { "main": [[{ "node": "Write Proof to GABRIEL", "type": "main", "index": 0 }]] },
+    "GABRIEL Critical Alert": { "main": [[{ "node": "Write Proof to GABRIEL", "type": "main", "index": 0 }]] }
+  },
+  "settings": { "executionOrder": "v1" },
+  "tags": ["noizy", "consent", "kill-switch", "critical", "never-clause-7", "zap-mirror-6"]
+}

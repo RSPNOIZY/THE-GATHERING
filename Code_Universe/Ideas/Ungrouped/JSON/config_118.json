@@ -1,0 +1,72 @@
+{
+    "version": "10.1.0", 
+    "ae_tool": "AmazingEditor", 
+    "effect": {
+        "requirement": {
+            "faceDetect": true
+        }, 
+        "Link": [
+            {
+                "extra": {
+                    "composer_param": [
+                        {
+                            "default_value": 0.0, 
+                            "name": "eyelight", 
+                            "allow_negative": false, 
+                            "min_value": 0.0, 
+                            "key": "EyeLight_ALL", 
+                            "max_value": 1.0
+                        }, 
+                        {
+                            "default_value": 0.0, 
+                            "name": "undereye", 
+                            "allow_negative": false, 
+                            "min_value": 0.0, 
+                            "key": "Pouch_ALL", 
+                            "max_value": 1.0
+                        }, 
+                        {
+                            "default_value": 0.0, 
+                            "name": "degree", 
+                            "allow_negative": false, 
+                            "min_value": 0.0, 
+                            "key": "NasolabialFolds_ALL", 
+                            "max_value": 1.0
+                        }
+                    ]
+                }, 
+                "zorder": 1000, 
+                "rtShare": true, 
+                "path": "AmazingFeature/", 
+                "type": "AmazingFeature", 
+                "exclusiveScene": [
+                    {
+                        "composerKey": [
+                            "EyeLight_ALL", 
+                            "Pouch_ALL", 
+                            "NasolabialFolds_ALL"
+                        ], 
+                        "priority": 1000, 
+                        "sceneKey": "FaceBeauty/Smooth", 
+                        "tagName": [
+                            "AmazingFeature/"
+                        ]
+                    }
+                ]
+            }
+        ], 
+        "coexistScene": {
+            "allowList": [
+                "*"
+            ]
+        }, 
+        "model_names": {
+            "alg_model": [
+                "tt_freid", 
+                "tt_fsnew_base_jianying"
+            ]
+        }
+    }, 
+    "bALG_BACH_CONFIG": true, 
+    "name": "2022_08_15_20_10_22_3cd7b2cc1c9311edbbedacde48001122"
+}

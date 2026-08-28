@@ -1,0 +1,17 @@
+{
+  "name": "noizy-azure-ingest",
+  "version": "1.0.0",
+  "description": "NOIZY Enterprise Azure Function — Content Sanitization + Claude Enrichment",
+  "main": "index.js",
+  "scripts": {
+    "start": "func start",
+    "build": "echo 'No build step required'"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.27.0",
+    "@azure/functions": "^4.3.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

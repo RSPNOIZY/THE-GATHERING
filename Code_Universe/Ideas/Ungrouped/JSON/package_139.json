@@ -1,0 +1,196 @@
+{
+  "name": "dreamchamber",
+  "displayName": "DreamChamber — NOIZY Voice AI",
+  "description": "Real mic capture, Whisper transcription, Claude Opus 4.6 streaming, TTS output — the NOIZY voice loop.",
+  "version": "1.0.0",
+  "publisher": "noizylab",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": ["Other"],
+  "activationEvents": ["onStartupFinished"],
+  "main": "./out/extension.js",
+  "repository": { "type": "git", "url": "https://github.com/noizy-ai/dreamchamber" },
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "dreamchamber-sidebar",
+          "title": "DreamChamber",
+          "icon": "media/dreamchamber-icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "dreamchamber-sidebar": [
+        {
+          "type": "webview",
+          "id": "dreamchamber.panel",
+          "name": "NOIZY Voice AI",
+          "retainContextWhenHidden": true
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "dreamchamber.toggle",
+        "title": "DreamChamber: Toggle Recording",
+        "category": "DreamChamber"
+      },
+      {
+        "command": "dreamchamber.open",
+        "title": "DreamChamber: Open Panel",
+        "category": "DreamChamber"
+      },
+      {
+        "command": "dreamchamber.clearHistory",
+        "title": "DreamChamber: Clear Conversation",
+        "category": "DreamChamber"
+      },
+      {
+        "command": "dreamchamber.setMode",
+        "title": "DreamChamber: Set Voice Mode",
+        "category": "DreamChamber"
+      },
+      {
+        "command": "dreamchamber.stop",
+        "title": "DreamChamber: Stop",
+        "category": "DreamChamber"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "dreamchamber.toggle",
+        "key": "ctrl+shift+space",
+        "mac": "ctrl+shift+space",
+        "when": "!dreamchamber.recording"
+      },
+      {
+        "command": "dreamchamber.stop",
+        "key": "escape",
+        "when": "dreamchamber.recording"
+      }
+    ],
+    "configuration": {
+      "title": "DreamChamber",
+      "properties": {
+        "dreamchamber.anthropicApiKey": {
+          "type": "string",
+          "default": "",
+          "description": "Anthropic API key (leave blank to use ANTHROPIC_API_KEY env var)"
+        },
+        "dreamchamber.openaiApiKey": {
+          "type": "string",
+          "default": "",
+          "description": "OpenAI API key for Whisper (leave blank to use OPENAI_API_KEY env var)"
+        },
+        "dreamchamber.transcriptionEngine": {
+          "type": "string",
+          "default": "whisper-local",
+          "enum": ["whisper-local", "moonshine", "whisper-api"],
+          "enumDescriptions": [
+            "Local Whisper (free, offline — no API key needed)",
+            "Moonshine HTTP endpoint (requires local Moonshine server at localhost:8765)",
+            "OpenAI Whisper API (requires OPENAI_API_KEY — paid)"
+          ],
+          "description": "Speech-to-text engine"
+        },
+        "dreamchamber.moonshineUrl": {
+          "type": "string",
+          "default": "http://localhost:8765",
+          "description": "Moonshine server URL (used when transcriptionEngine is 'moonshine')"
+        },
+        "dreamchamber.ttsEngine": {
+          "type": "string",
+          "default": "say",
+          "enum": ["say", "kokoro", "disabled"],
+          "enumDescriptions": [
+            "macOS say command (built-in)",
+            "Kokoro TTS HTTP endpoint",
+            "Disable TTS output"
+          ],
+          "description": "Text-to-speech engine"
+        },
+        "dreamchamber.kokoroUrl": {
+          "type": "string",
+          "default": "http://localhost:8880",
+          "description": "Kokoro TTS server URL"
+        },
+        "dreamchamber.sayVoice": {
+          "type": "string",
+          "default": "Samantha",
+          "description": "macOS say voice name"
+        },
+        "dreamchamber.defaultMode": {
+          "type": "string",
+          "default": "command",
+          "enum": ["dictate", "intake", "command", "capture"],
+          "description": "Default voice mode on activation"
+        },
+        "dreamchamber.inboxPath": {
+          "type": "string",
+          "default": "ideas/inbox.md",
+          "description": "Relative path for intake mode (relative to workspace root)"
+        },
+        "dreamchamber.recordingSampleRate": {
+          "type": "number",
+          "default": 48000,
+          "enum": [16000, 44100, 48000],
+          "enumDescriptions": [
+            "16 kHz — speech/transcription quality",
+            "44.1 kHz — CD quality",
+            "48 kHz — professional studio quality (recommended)"
+          ],
+          "description": "Audio recording sample rate in Hz"
+        },
+        "dreamchamber.inputDevice": {
+          "type": "string",
+          "default": "",
+          "description": "Audio input device name (macOS CoreAudio device name — leave blank for system default). Examples: 'Unknown USB Audio Device', 'SAMSUNG', 'LANDR Sessions'"
+        },
+        "dreamchamber.inputChannels": {
+          "type": "number",
+          "default": 1,
+          "enum": [1, 2],
+          "enumDescriptions": [
+            "Mono — recommended for voice acting and transcription",
+            "Stereo — for stereo mic setups"
+          ],
+          "description": "Number of input channels (1=mono, 2=stereo)"
+        },
+        "dreamchamber.gabrielSystemPrompt": {
+          "type": "string",
+          "default": "",
+          "description": "Override the GABRIEL system prompt (leave blank for default)"
+        },
+        "dreamchamber.maxHistoryMessages": {
+          "type": "number",
+          "default": 20,
+          "description": "Maximum conversation turns to keep in memory"
+        },
+        "dreamchamber.vaultPath": {
+          "type": "string",
+          "default": "/Volumes/4TBSG/_NOIZYFISH - THE AQUARIUM/RSP_001/vault",
+          "description": "Absolute path to the NOIZYVOX vault (requires /Volumes/4TBSG mounted). MUST be an external drive — never the M2 Ultra internal."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "package": "npx @vscode/vsce package --no-dependencies"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.36.3",
+    "node-record-lpcm16": "^1.0.1",
+    "openai": "^4.77.0",
+    "form-data": "^4.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/vscode": "^1.85.0",
+    "@vscode/vsce": "^3.0.0",
+    "typescript": "^5.3.0"
+  }
+}

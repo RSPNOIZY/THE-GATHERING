@@ -1,0 +1,171 @@
+{
+  "info": {
+    "name": "Lucy Stack — API Collection",
+    "description": "All API endpoints for Lucy's dedicated network: LANDR, Airfoil, WireGuard, n8n, Notion",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "base_vpn", "value": "10.0.0.1" },
+    { "key": "iphone_ip", "value": "10.0.0.2" },
+    { "key": "ipad_ip", "value": "10.0.0.3" },
+    { "key": "n8n_url", "value": "http://localhost:5678" },
+    { "key": "airfoil_port", "value": "49284" },
+    { "key": "notion_version", "value": "2022-06-28" }
+  ],
+  "item": [
+    {
+      "name": "🎵 LANDR",
+      "item": [
+        {
+          "name": "Get Sessions",
+          "request": {
+            "method": "GET",
+            "url": "https://api.landr.com/v1/sessions",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{LANDR_API_KEY}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ]
+          }
+        },
+        {
+          "name": "Create Session",
+          "request": {
+            "method": "POST",
+            "url": "https://api.landr.com/v1/sessions",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{LANDR_API_KEY}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Lucy Session\",\n  \"participants\": []\n}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "📡 Airfoil",
+      "item": [
+        {
+          "name": "Get Speakers",
+          "request": {
+            "method": "GET",
+            "url": "http://{{base_vpn}}:{{airfoil_port}}/speakers"
+          }
+        },
+        {
+          "name": "Connect iPhone Speaker",
+          "request": {
+            "method": "POST",
+            "url": "http://{{base_vpn}}:{{airfoil_port}}/speakers/connect",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"speaker_id\": \"{{iphone_ip}}\",\n  \"volume\": 1.0\n}"
+            }
+          }
+        },
+        {
+          "name": "Connect iPad Speaker",
+          "request": {
+            "method": "POST",
+            "url": "http://{{base_vpn}}:{{airfoil_port}}/speakers/connect",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"speaker_id\": \"{{ipad_ip}}\",\n  \"volume\": 1.0\n}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "⚡ n8n",
+      "item": [
+        {
+          "name": "Health Check",
+          "request": {
+            "method": "GET",
+            "url": "{{n8n_url}}/healthz"
+          }
+        },
+        {
+          "name": "List Workflows",
+          "request": {
+            "method": "GET",
+            "url": "{{n8n_url}}/api/v1/workflows",
+            "header": [
+              { "key": "X-N8N-API-KEY", "value": "{{N8N_API_KEY}}" }
+            ]
+          }
+        },
+        {
+          "name": "Trigger Webhook",
+          "request": {
+            "method": "POST",
+            "url": "{{n8n_url}}/webhook/lucy-trigger",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"event\": \"device_connected\",\n  \"device\": \"iPhone15ProMax\",\n  \"ip\": \"{{iphone_ip}}\"\n}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "📝 Notion",
+      "item": [
+        {
+          "name": "Search Workspace",
+          "request": {
+            "method": "POST",
+            "url": "https://api.notion.com/v1/search",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{NOTION_API_KEY}}" },
+              { "key": "Notion-Version", "value": "{{notion_version}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"query\": \"Lucy\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Create Page",
+          "request": {
+            "method": "POST",
+            "url": "https://api.notion.com/v1/pages",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{NOTION_API_KEY}}" },
+              { "key": "Notion-Version", "value": "{{notion_version}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"parent\": { \"database_id\": \"{{NOTION_DATABASE_ID}}\" },\n  \"properties\": {\n    \"Name\": { \"title\": [{ \"text\": { \"content\": \"New Lucy Entry\" } }] }\n  }\n}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "🔒 WireGuard VPN",
+      "item": [
+        {
+          "name": "Ping iPhone",
+          "request": {
+            "method": "GET",
+            "url": "http://{{iphone_ip}}/ping"
+          }
+        },
+        {
+          "name": "Ping iPad",
+          "request": {
+            "method": "GET",
+            "url": "http://{{ipad_ip}}/ping"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+	"bALG_BACH_CONFIG" : true,
+	"effect" : 
+	{
+		"Link" : [
+			{
+                "type": "matting"
+            }
+		],
+		"model_names":
+        {
+            "matting":[
+				"tt_matting_video",
+				"tt_matting_video_gru",
+				"saliency_script_for_cc", 
+				"saliency_matting"
+			]
+        }
+	},
+	"name" : "matting",
+	"version" : "16.5.0"
+}

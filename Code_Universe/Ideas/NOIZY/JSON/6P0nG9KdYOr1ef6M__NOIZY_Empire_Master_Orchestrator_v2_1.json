@@ -1,0 +1,689 @@
+{
+  "name": "NOIZY Empire \u2014 Master Orchestrator v2",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "master-ingest",
+        "responseMode": "responseNode",
+        "options": {
+          "rawBody": true
+        }
+      },
+      "id": "master-ingest",
+      "name": "Universal Ingest",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        200,
+        400
+      ],
+      "webhookId": "master-ingest"
+    },
+    {
+      "parameters": {
+        "jsCode": "// \u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\n// NOIZY Master Orchestrator v2 \u2014 Source Detection & Normalization\n// Unified pipeline entry point for ALL external events\n// \u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\n\nconst body = $input.first().json.body || $input.first().json;\nconst headers = $input.first().json.headers || {};\n\n// \u2500\u2500 Source Detection \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\nlet source = 'unknown';\nlet eventType = 'unknown';\nlet confidence = 0;\n\n// GitHub\nif (headers['x-github-event'] || headers['x-github-delivery']) {\n  source = 'github';\n  eventType = headers['x-github-event'] || 'push';\n  confidence = 1.0;\n}\n// Linear\nelse if (headers['x-linear-delivery'] || headers['linear-signature'] || body.type === 'Issue') {\n  source = 'linear';\n  eventType = `${body.action || 'update'}_${body.type || 'issue'}`;\n  confidence = 1.0;\n}\n// Zapier\nelse if (headers['x-zapier-zap-id'] || body.zap_name || body.zapName) {\n  source = 'zapier';\n  eventType = body.zap_name || body.zapName || 'zap_event';\n  confidence = 0.95;\n}\n// Notion (via polling or internal)\nelse if (body.source === 'notion' || body.source === 'notion-poll') {\n  source = 'notion';\n  eventType = body.action || 'update';\n  confidence = 0.9;\n}\n// Lucy nightly\nelse if (headers['x-lucy-source'] || body.source === 'lucy-nightly') {\n  source = 'lucy';\n  eventType = body.action_type || 'nightly_action';\n  confidence = 1.0;\n}\n// Stripe\nelse if (headers['stripe-signature'] || body.type?.startsWith('checkout.') || body.type?.startsWith('payment_intent.')) {\n  source = 'stripe';\n  eventType = body.type || 'payment_event';\n  confidence = 1.0;\n}\n// Consent\nelse if (body.consent_type || body.action === 'revoke' || body.kill_switch) {\n  source = 'consent';\n  eventType = body.action || 'consent_event';\n  confidence = 0.9;\n}\n// Voice\nelse if (body.voice_id || body.audio_url || body.transcript) {\n  source = 'voice';\n  eventType = 'voice_command';\n  confidence = 0.85;\n}\n// Webhook proxy drain\nelse if (body.source === 'webhook-proxy' || Array.isArray(body.events)) {\n  source = 'proxy-drain';\n  eventType = 'batch_ingest';\n  confidence = 1.0;\n}\n// GitHub Actions\nelse if (body.source === 'github-actions' || headers['x-noizy-pipeline'] === 'github-actions') {\n  source = 'github-actions';\n  eventType = body.event || 'ci_event';\n  confidence = 1.0;\n}\n\n// \u2500\u2500 Governance Check \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\nconst governanceCleared = source !== 'unknown';\nconst isEmergency = source === 'consent' && (body.action === 'revoke' || body.kill_switch);\n\nconst event = {\n  _id: crypto.randomUUID ? crypto.randomUUID() : Date.now().toString(36),\n  source,\n  event_type: eventType,\n  confidence,\n  raw_payload: body,\n  headers_snapshot: {\n    'x-github-event': headers['x-github-event'] || null,\n    'x-linear-delivery': headers['x-linear-delivery'] || null,\n    'x-lucy-source': headers['x-lucy-source'] || null,\n    'user-agent': headers['user-agent'] || null,\n  },\n  governance: {\n    cleared: governanceCleared,\n    is_emergency: isEmergency,\n    source_verified: confidence >= 0.9,\n    processed_at: new Date().toISOString(),\n  },\n  routing: {\n    target: isEmergency ? 'emergency' : source,\n    priority: isEmergency ? 0 : (body.priority || 3),\n  },\n  received_at: new Date().toISOString(),\n};\n\nreturn [{ json: event }];"
+      },
+      "id": "detect-source",
+      "name": "Detect Source & Normalize",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        440,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "rules": {
+          "rules": [
+            {
+              "outputIndex": 0,
+              "conditions": {
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.governance.is_emergency }}",
+                    "rightValue": true,
+                    "operator": {
+                      "type": "boolean",
+                      "operation": "equals"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "outputIndex": 1,
+              "conditions": {
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.source }}",
+                    "rightValue": "github",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "outputIndex": 2,
+              "conditions": {
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.source }}",
+                    "rightValue": "github-actions",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "outputIndex": 3,
+              "conditions": {
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.source }}",
+                    "rightValue": "linear",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "outputIndex": 4,
+              "conditions": {
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.source }}",
+                    "rightValue": "notion",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "outputIndex": 5,
+              "conditions": {
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.source }}",
+                    "rightValue": "zapier",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "outputIndex": 6,
+              "conditions": {
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.source }}",
+                    "rightValue": "lucy",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "outputIndex": 7,
+              "conditions": {
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.source }}",
+                    "rightValue": "stripe",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "fallbackOutput": 8
+        }
+      },
+      "id": "master-router",
+      "name": "Route by Source",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3,
+      "position": [
+        700,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// \ud83d\udea8 EMERGENCY: Consent revoke / Kill Switch\n// PRIORITY 0 \u2014 bypass all normal routing\nconst event = $input.first().json;\n\nreturn [{\n  json: {\n    ...event,\n    emergency: {\n      type: event.raw_payload.kill_switch ? 'kill_switch' : 'consent_revoke',\n      voice_id: event.raw_payload.voice_id || 'ALL',\n      reason: event.raw_payload.reason || 'Emergency revocation',\n      initiated_at: new Date().toISOString(),\n      action: 'HALT_ALL_PROCESSING'\n    }\n  }\n}];"
+      },
+      "id": "emergency-handler",
+      "name": "\ud83d\udea8 Emergency Handler",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        960,
+        60
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// GitHub push/PR events \u2192 GABRIEL alert\nconst event = $input.first().json;\nconst payload = event.raw_payload;\n\nreturn [{\n  json: {\n    ...event,\n    gabriel_alert: {\n      type: `github_${event.event_type}`,\n      summary: `GitHub ${event.event_type}: ${payload.ref || payload.pull_request?.title || 'event'} by ${payload.sender?.login || payload.actor || 'unknown'}`,\n      repo: payload.repository?.full_name || payload.repository || '',\n      severity: event.event_type === 'push' && (payload.ref === 'refs/heads/main') ? 'high' : 'low'\n    }\n  }\n}];"
+      },
+      "id": "github-handler",
+      "name": "GitHub Events",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        960,
+        180
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// GitHub Actions CI results \u2192 track build status\nconst event = $input.first().json;\nconst payload = event.raw_payload;\n\nreturn [{\n  json: {\n    ...event,\n    ci_event: {\n      type: 'ci_result',\n      workflow: payload.workflow || 'unknown',\n      result: payload.result || 'unknown',\n      ref: payload.ref || '',\n      sha: payload.sha || '',\n      actor: payload.actor || '',\n      run_id: payload.run_id || 0\n    }\n  }\n}];"
+      },
+      "id": "gh-actions-handler",
+      "name": "GitHub Actions CI",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        960,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Linear events \u2192 forward to ZAP 9 Linear Sync\nconst event = $input.first().json;\nreturn [{ json: { ...event, _forward_to: 'linear-webhook' } }];"
+      },
+      "id": "linear-handler",
+      "name": "Linear \u2192 ZAP 9",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        960,
+        420
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Notion events \u2192 forward to ZAP 11 Dashboard\nconst event = $input.first().json;\nreturn [{ json: { ...event, _forward_to: 'notion-dashboard' } }];"
+      },
+      "id": "notion-handler",
+      "name": "Notion \u2192 ZAP 11",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        960,
+        540
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Zapier events \u2192 forward to ZAP 10 Bridge\nconst event = $input.first().json;\nreturn [{ json: { ...event, _forward_to: 'zapier-bridge' } }];"
+      },
+      "id": "zapier-handler",
+      "name": "Zapier \u2192 ZAP 10",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        960,
+        660
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Lucy nightly actions \u2192 execute or queue\nconst event = $input.first().json;\nconst payload = event.raw_payload;\n\nreturn [{\n  json: {\n    ...event,\n    lucy_action: {\n      type: 'nightly_result',\n      total_actions: payload.total_actions || 0,\n      actions_summary: payload.actions_summary || {},\n      top_opportunities: payload.top_opportunities || [],\n      risks: payload.risks || [],\n      delivery_stats: payload.delivery_stats || {}\n    }\n  }\n}];"
+      },
+      "id": "lucy-handler",
+      "name": "Lucy Nightly",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        960,
+        780
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Stripe payment events \u2192 consent ledger\nconst event = $input.first().json;\nconst payload = event.raw_payload;\n\nreturn [{\n  json: {\n    ...event,\n    ledger_entry: {\n      type: 'stripe_payment',\n      event_type: payload.type || 'payment',\n      amount: payload.data?.object?.amount || 0,\n      currency: payload.data?.object?.currency || 'cad',\n      customer: payload.data?.object?.customer || '',\n      timestamp: new Date().toISOString()\n    }\n  }\n}];"
+      },
+      "id": "stripe-handler",
+      "name": "Stripe \u2192 Ledger",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        960,
+        900
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Unknown/other source \u2014 log and alert\nconst event = $input.first().json;\n\nreturn [{\n  json: {\n    ...event,\n    alert: {\n      type: 'unknown_source',\n      message: `Unknown webhook source detected (confidence: ${event.confidence})`,\n      severity: 'medium'\n    }\n  }\n}];"
+      },
+      "id": "fallback-handler",
+      "name": "Unknown \u2192 Alert",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        960,
+        1020
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $env.HEAVEN_URL }}/api/events",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "X-Noizy-Key",
+              "value": "={{ $env.NOIZY_API_KEY }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ event_type: $json.source + '_' + $json.event_type, actor_id: $json.source.toUpperCase(), payload: $json.gabriel_alert || $json.ci_event || $json.lucy_action || $json.ledger_entry || $json.emergency || $json.alert || { type: $json.event_type }, sovereignty_check: $json.governance }) }}",
+        "options": {
+          "response": {
+            "response": {
+              "neverError": true
+            }
+          }
+        }
+      },
+      "id": "gabriel-log",
+      "name": "Log to GABRIEL",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [
+        1240,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.notion.com/v1/pages",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $env.NOTION_API_KEY }}"
+            },
+            {
+              "name": "Notion-Version",
+              "value": "2022-06-28"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"parent\": { \"database_id\": \"{{ $env.NOTION_EVENTS_DB_ID }}\" },\n  \"properties\": {\n    \"Event\": { \"title\": [{ \"text\": { \"content\": \"[\" + $json.source + \"] \" + $json.event_type } }] },\n    \"Source\": { \"select\": { \"name\": $json.source } },\n    \"Summary\": { \"rich_text\": [{ \"text\": { \"content\": JSON.stringify($json.gabriel_alert || $json.ci_event || $json.lucy_action || $json.alert || {}).substring(0, 2000) } }] },\n    \"Severity\": { \"select\": { \"name\": $json.governance?.is_emergency ? \"Critical\" : ($json.routing?.priority <= 1 ? \"High\" : \"Medium\") } },\n    \"Timestamp\": { \"date\": { \"start\": $json.received_at } }\n  }\n}",
+        "options": {
+          "response": {
+            "response": {
+              "neverError": true
+            }
+          }
+        }
+      },
+      "id": "notion-event-log",
+      "name": "Log to Notion",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [
+        1240,
+        600
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ ok: true, source: $json.source, event_type: $json.event_type, governance: $json.governance?.cleared, id: $json._id, timestamp: new Date().toISOString() }) }}"
+      },
+      "id": "master-respond",
+      "name": "Respond OK",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        1480,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes",
+              "minutesInterval": 3
+            }
+          ]
+        }
+      },
+      "id": "proxy-drain-schedule",
+      "name": "Every 3 Minutes",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        200,
+        800
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://webhook-proxy.rsp-5f3.workers.dev/api/drain",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "X-Noizy-Key",
+              "value": "={{ $env.NOIZY_API_KEY }}"
+            }
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "neverError": true
+            }
+          }
+        }
+      },
+      "id": "drain-proxy",
+      "name": "Drain Webhook Proxy",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [
+        440,
+        800
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Process drained webhooks from the CF proxy\nconst response = $input.first().json;\nconst events = response.events || [];\n\nif (events.length === 0) {\n  return [{ json: { _skip: true, message: 'No queued webhooks' } }];\n}\n\n// Convert each queued webhook into a normalized event\nconst normalized = events.map(evt => {\n  let body;\n  try { body = JSON.parse(evt.body); } catch { body = { raw: evt.body }; }\n  return {\n    json: {\n      body: body,\n      headers: evt.headers,\n      source: evt.source,\n      proxy_id: evt.id,\n      proxy_path: evt.path,\n      received_at: evt.received_at\n    }\n  };\n});\n\nreturn normalized;"
+      },
+      "id": "process-drained",
+      "name": "Process Drained Events",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        660,
+        800
+      ]
+    }
+  ],
+  "connections": {
+    "Universal Ingest": {
+      "main": [
+        [
+          {
+            "node": "Detect Source & Normalize",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Detect Source & Normalize": {
+      "main": [
+        [
+          {
+            "node": "Route by Source",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Route by Source": {
+      "main": [
+        [
+          {
+            "node": "\ud83d\udea8 Emergency Handler",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "GitHub Events",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "GitHub Actions CI",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Linear \u2192 ZAP 9",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Notion \u2192 ZAP 11",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Zapier \u2192 ZAP 10",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Lucy Nightly",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Stripe \u2192 Ledger",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Unknown \u2192 Alert",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "\ud83d\udea8 Emergency Handler": {
+      "main": [
+        [
+          {
+            "node": "Log to GABRIEL",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GitHub Events": {
+      "main": [
+        [
+          {
+            "node": "Log to GABRIEL",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GitHub Actions CI": {
+      "main": [
+        [
+          {
+            "node": "Log to GABRIEL",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Linear \u2192 ZAP 9": {
+      "main": [
+        [
+          {
+            "node": "Log to GABRIEL",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Notion \u2192 ZAP 11": {
+      "main": [
+        [
+          {
+            "node": "Log to GABRIEL",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Zapier \u2192 ZAP 10": {
+      "main": [
+        [
+          {
+            "node": "Log to GABRIEL",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Lucy Nightly": {
+      "main": [
+        [
+          {
+            "node": "Log to GABRIEL",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Stripe \u2192 Ledger": {
+      "main": [
+        [
+          {
+            "node": "Log to GABRIEL",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Unknown \u2192 Alert": {
+      "main": [
+        [
+          {
+            "node": "Log to GABRIEL",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Log to GABRIEL": {
+      "main": [
+        [
+          {
+            "node": "Log to Notion",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Log to Notion": {
+      "main": [
+        [
+          {
+            "node": "Respond OK",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Every 3 Minutes": {
+      "main": [
+        [
+          {
+            "node": "Drain Webhook Proxy",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Drain Webhook Proxy": {
+      "main": [
+        [
+          {
+            "node": "Process Drained Events",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Process Drained Events": {
+      "main": [
+        [
+          {
+            "node": "Detect Source & Normalize",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  }
+}

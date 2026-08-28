@@ -1,0 +1,55 @@
+================================================================
+NOIZY NAMING LAW (HARD)
+Effective: 2026-04-16  |  Author: NOIZY.AI Master OS
+================================================================
+
+CORE RULE
+---------
+NOIZY is always spelled  N-O-I-Z-Y.
+Never spell NOIZY with an S.
+
+CANONICAL BRAND TOKENS (only legal spellings)
+---------------------------------------------
+  NOIZY.AI
+  NOIZYFISH
+  NOIZYVOX
+  NOIZYKIDZ
+  NOIZYLAB
+
+CANONICAL ONEDRIVE FOLDER NAMES
+---------------------------------
+  NOIZY.AI/
+  NOIZYFISH/
+  NOIZYVOX/
+  NOIZYKIDZ/
+  NOIZYLAB/
+
+VIOLATIONS (never publish these as brand tokens)
+-------------------------------------------------
+  ❌  Noisy.ai  /  noisy.ai
+  ❌  NoisyVox  /  noisyvox
+  ❌  NoisyFish / noisyfish
+  ❌  NoisyKids / noisykids
+  ❌  NoisyLab  / noisylab
+  ❌  NOISY BOX / NOISYBOX / NoisyBox
+  ❌  noisy-box / noise-box
+
+EXCEPTION — PLAIN ENGLISH
+--------------------------
+The ordinary English adjective "noisy" (meaning loud/disruptive)
+is NOT covered by this rule and may appear in prose. 
+Example: "keep alerts high-signal, not noisy."
+
+LEGACY ASSETS
+-------------
+If existing files contain NOISY as a brand token, preserve them
+verbatim only when quoting history / showing a before-after.
+All NEW assets must use NOIZY.
+
+ENFORCEMENT
+-----------
+1. Pre-commit hook   → .githooks/pre-commit  (local)
+2. GitHub Actions CI → .github/workflows/noizy-spelling-guard.yml
+3. This document     → ops/NOIZY-NAMING-LAW.txt
+
+================================================================

@@ -1,0 +1,56 @@
+{
+	"version":	"1.0",
+	"mode":	2,
+	"name":	"AlgorithmGraph_9bpck63bYbqbZAcfdUcmcAbNdWcf",
+	"size":	{
+		"width":	360,
+		"height":	640
+	},
+	"nodes":	[{
+			"name":	"matting_0",
+			"type":	"matting",
+			"config":	{
+				"keyMaps":	{
+					"intParam":	{
+						"matting_mp_modeltype": 4,
+						"matting_mp_forwardtype": -1,
+						"matting_mp_frashevery": 15,
+						"matting_mp_edgemode": 1,
+						"matting_proc_border": 1
+					},
+					"floatParam":	{
+					},
+					"stringParam":	{
+						"model_name": "tt_matting_video_gru"
+					},
+					"pathParam":	{
+					}
+				}
+			}
+		}, {
+			"name":	"texture_blit_0",
+			"type":	"texture_blit",
+			"config":	{
+				"size":	{
+					"width":	360,
+					"height":	640
+				},
+				"keyMaps":	{
+					"intParam":	{
+					},
+					"floatParam":	{
+					},
+					"stringParam":	{
+					},
+					"pathParam":	{
+					}
+				}
+			}
+		}],
+	"links":	[{
+			"fromNode":	"texture_blit_0",
+			"fromIndex":	0,
+			"toNode":	"matting_0",
+			"toIndex":	0
+		}]
+}

@@ -1,0 +1,29 @@
+{
+  "name": "the-gathering-sovereign-node",
+  "version": "2.4.0-PROD",
+  "description": "MC96 Sovereign In-Vehicle Orchestration, Audio DSP & GABRIEL Multi-Agent Platform",
+  "main": "control-plane/index.ts",
+  "type": "module",
+  "scripts": {
+    "build": "tsc --noEmit",
+    "test": "npx -y ts-node tests/test-stack-integration.ts",
+    "test:media": "npx -y ts-node tests/test_media_control_plane.ts",
+    "test:mcp": "npx -y ts-node tests/test_mcp_stdio_evidence.ts",
+    "verify": "/Users/m2ultra/THE-GATHERING/scripts/verify-mc96-noizyworld.sh"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.4",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^22.5.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.4"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "author": "Robert Stephen Plowman (RSP_001)",
+  "license": "UNLICENSED - PROPRIETARY & CONFIDENTIAL",
+  "private": true
+}

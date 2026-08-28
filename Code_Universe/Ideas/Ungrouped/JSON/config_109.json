@@ -1,0 +1,87 @@
+{
+	"ae_tool" : "AmazingEditor",
+	"bALG_BACH_CONFIG" : true,
+	"effect" : 
+	{
+		"Link" : 
+		[
+			{
+				"exclusiveScene" : 
+				[
+					{
+						"composerKey" : 
+						[
+							"EyeLight_ALL",
+							"Pouch_ALL",
+							"NasolabialFolds_ALL"
+						],
+						"priority" : 1000,
+						"sceneKey" : "FaceBeauty/Smooth",
+						"tagName" : 
+						[
+							"AmazingFeature/"
+						]
+					}
+				],
+				"extra" : 
+				{
+					"composer_param" : 
+					[
+						{
+							"allow_negative" : false,
+							"default_value" : 0.0,
+							"key" : "EyeLight_ALL",
+							"max_value" : 1.0,
+							"min_value" : 0.0,
+							"name" : "eyelight"
+						},
+						{
+							"allow_negative" : false,
+							"default_value" : 0.0,
+							"key" : "Pouch_ALL",
+							"max_value" : 1.0,
+							"min_value" : 0.0,
+							"name" : "undereye"
+						},
+						{
+							"allow_negative" : false,
+							"default_value" : 0.0,
+							"key" : "NasolabialFolds_ALL",
+							"max_value" : 1.0,
+							"min_value" : 0.0,
+							"name" : "degree"
+						}
+					]
+				},
+				"path" : "AmazingFeature/",
+				"rtShare" : true,
+				"type" : "AmazingFeature",
+				"zorder" : 1000
+			}
+		],
+		"coexistScene" : 
+		{
+			"allowList" : 
+			[
+				"*"
+			]
+		},
+		"model_names" : 
+		{
+			"alg_model" : 
+			[
+				"tt_face",
+				"tt_face_extra",
+				"tt_fsnew_base_jianying",
+				"tt_freid"
+			]
+		},
+		"requirement" : 
+		{
+			"faceDetect" : true
+		}
+	},
+	"name" : "2022_08_15_20_10_22_3cd7b2cc1c9311edbbedacde48001122",
+	"needblend" : false,
+	"version" : "12.2.0"
+}

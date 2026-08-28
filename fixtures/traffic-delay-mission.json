@@ -1,0 +1,35 @@
+{
+  "mission_id": "MIS-20260828-SIM01",
+  "actor_id": "DRV-RSP-001",
+  "policy_version": "RSP-CF-v1",
+  "consent_id": "CON-2026-LAW25-01",
+  "decision": {
+    "decision_id": "DEC-8F92BC1A",
+    "intent": "prepare_traffic_aware_route",
+    "purpose": "dispatch_eta",
+    "authority": "RSP",
+    "outcome": "ALLOW_WITH_RSP_APPROVAL",
+    "risk": {
+      "urgency": 0.72,
+      "consequence": 0.81,
+      "reversibility": "REVERSIBLE",
+      "evidence_quality": 0.94,
+      "confidence": 0.86
+    },
+    "alternatives": ["defer", "use_static_eta", "abstain"]
+  },
+  "capability": {
+    "capability_id": "route.compute_traffic",
+    "provider": "google_routes",
+    "transport": "mcp_stdio",
+    "risk_class": "LOCATION_OPERATION",
+    "timeout_ms": 15000
+  },
+  "execution_payload": {
+    "origin": { "latitude": 45.4215, "longitude": -75.6972 },
+    "destination": { "latitude": 45.3225, "longitude": -75.6692 },
+    "travel_mode": "DRIVE",
+    "routing_preference": "TRAFFIC_AWARE"
+  },
+  "expected_outcome": "SUCCEEDED"
+}

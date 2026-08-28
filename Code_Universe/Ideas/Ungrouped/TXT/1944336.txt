@@ -1,0 +1,57 @@
+<root>
+    <CtrlPanelStyle name="ChanStripStyle_Performer" noDefaultDrawing="true" imBackground="mixer_fader_base_simple.tga" colBorder="[r:0 g:0 b:0 a:0]" colBorderAlt="[r:0 g:0 b:0 a:0]" colFill="[r:0 g:0 b:0 a:255]" intSmartTileEdgeSize="5" intRoundedRectRadius="0" intBorderWidth="1">
+        <VFont name="font" vSize="11" fontName="Arial" />
+    </CtrlPanelStyle>
+    <CtrlButtonStyle name="MixerStripEffect1Style" noDefaultDrawing="true" optMomentary="false" imDown="effect_1_on.tga">
+        <VFont name="font" vSize="11" fontName="Arial" />
+    </CtrlButtonStyle>
+    <CtrlButtonStyle name="MixerStripEffect2Style" noDefaultDrawing="true" optMomentary="false" imDown="effect_2_on.tga">
+        <VFont name="font" vSize="11" fontName="Arial" />
+    </CtrlButtonStyle>
+    <CtrlButtonStyle name="MixerStripLoadStyle">
+        <VFont name="font" vSize="11" fontName="Arial" />
+    </CtrlButtonStyle>
+    <CtrlButtonStyle name="MixerStripClearStyle">
+        <VFont name="font" vSize="11" fontName="Arial" />
+    </CtrlButtonStyle>
+    <CtrlFaderStyle name="ChanStripFaderStyle_Large" noDefaultDrawing="true" optFlipDirection="true" optNoClickOutsideKnobMove="true" activeAreaRect="[x:0 y:0 w:20 h:165]" imKnobOff="mixer_fader_head_large.tga" colFill="[r:255 g:255 b:255 a:0]" snapSteps="0" fineScale="0.05" intRoundedRectRadiusFrame="0" intRoundedRectRadiusKnob="0" knobOffset="2" incDecButtonMode="off" faderHeadSize="0">
+        <VFont name="font" vSize="11" fontName="Arial" />
+    </CtrlFaderStyle>
+    <CtrlButtonStyle name="PhaseInvertStyle" optMomentary="false">
+        <VFont name="font" vSize="11" fontName="Arial" />
+    </CtrlButtonStyle>
+    <CtrlPanelStyle name="FaderPanelStyle_Simple" colBorder="[r:0 g:0 b:0 a:0]" colBorderAlt="[r:0 g:0 b:0 a:0]" colFill="[r:180 g:180 b:180 a:0]" intSmartTileEdgeSize="5" intRoundedRectRadius="0" intBorderWidth="1">
+        <VFont name="font" vSize="11" fontName="Arial" />
+    </CtrlPanelStyle>
+    <CtrlPanelStyle name="LevelMeterStereoBack" imBackground="..\levelLED_stereo_off.tga" colBorder="[r:0 g:0 b:0 a:0]" colBorderAlt="[r:0 g:0 b:0 a:0]" colFill="[r:180 g:180 b:180 a:0]" intSmartTileEdgeSize="5" intRoundedRectRadius="0" intBorderWidth="1">
+        <VFont name="font" vSize="11" fontName="Arial" />
+    </CtrlPanelStyle>
+    <CtrlPanSliderStyle name="MixerChan_Pan_Style" noDefaultDrawing="true" activeAreaRect="[x:2 y:3 w:48 h:6]" imKnobOff="mixer_pan_knob.tga" imKnobOn="mixer_pan_knob.tga" imBackingStrip="mixer_pan_base.tga" imAltBackingStrip="mixer_pan_base_alt.tga" snapSteps="0" fineScale="0.05" intRoundedRectRadiusFrame="0" intRoundedRectRadiusKnob="0" knobOffset="2" incDecButtonMode="off" faderHeadSize="10">
+        <VFont name="font" vSize="11" fontName="Arial" />
+    </CtrlPanSliderStyle>
+    <CtrlTextBoxStyle name="Mixer_Text_Style" optEditable="true" optSmartTile="true" intRoundedRectRadius="0" textOffset="[x:0 y:0]" colBackground="[r:161 g:171 b:172 a:255]">
+        <VFont name="font" vSize="11" fontName="Arial" />
+    </CtrlTextBoxStyle>
+    <CtrlImageViewStyle name="MixerStripKitPiecePhotoStyle" optBorder="false" optMouseHandle="true" optHQResizing="true" colBackground="[r:0 g:0 b:0 a:255]" intRoundedRectRadius="0">
+        <VFont name="font" vSize="12" fontName="Arial" />
+    </CtrlImageViewStyle>
+    <CtrlImageViewStyle name="MixerStripPerfImageStyle" noDefaultDrawing="true" optBorder="false" optBackground="false" optMouseHandle="true" optHQResizing="true" intRoundedRectRadius="0" />
+    <CtrlPanel name="MixerStrip" style="ChanStripStyle_Performer" rect="[x:0 y:0 w:55 h:284]" id="0">
+        <CtrlImageView name="KitPiecePhoto" style="MixerStripPerfImageStyle" rect="[x:4 y:22 w:47 h:42]" id="100000" displayName="Kit Piece photo" />
+        <CtrlImageView name="DemoImage" style="BrowserDemoImageStyle" rect="[x:6 y:48 w:43 h:15]" id="100000" displayName="Kit Piece photo [Alt-click to preview]" />
+        <CtrlPanel name="faderPanel" style="FaderPanelStyle_Simple" rect="[x:0 y:67 w:55 h:200]" id="0">
+            <CtrlButton name="FXPower1" style="MixerStripEffect1Style" rect="[x:4 y:6 w:21 h:16]" id="100000" displayName="Effect 1 Power" text="FX1" />
+            <CtrlButton name="FXPower2" style="MixerStripEffect2Style" rect="[x:29 y:6 w:21 h:16]" id="100000" displayName="Effect 2 Power" text="FX2" />
+            <CtrlPanSlider name="pan" style="MixerChan_Pan_Style" rect="[x:1 y:27 w:53 h:12]" id="100000" displayName="Pan" />
+            <CtrlButton name="mute" style="MixerStripMuteStyle" rect="[x:-3 y:36 w:36 h:35]" id="0" displayName="Mute" />
+            <CtrlButton name="solo" style="MixerStripSoloStyle" rect="[x:22 y:36 w:36 h:35]" id="0" displayName="Solo" />
+            <CtrlLevelStrip name="levelMeterMono" style="MixerLevelMeterStyle" rect="[x:42 y:80 w:6 h:105]" id="100000" />
+            <CtrlFader name="fader" style="ChanStripFaderStyle_Large" rect="[x:8 y:67 w:30 h:144]" id="0" displayName="Fader" zorder="3" />
+            <CtrlPanel name="LevelMeterStereoPanel" style="LevelMeterStereoBack" rect="[x:40 y:80 w:10 h:105]" id="100000" zorder="5" />
+            <CtrlLevelStrip name="levelMeterLeft" style="MixerFXLevelMeterNoBackground" rect="[x:40 y:80 w:6 h:105]" id="100000" zorder="6" />
+            <CtrlLevelStrip name="levelMeterRight" style="MixerFXLevelMeterNoBackground" rect="[x:44 y:80 w:6 h:105]" id="100000" zorder="6" />
+        </CtrlPanel>
+        <CtrlTextBox name="nameBox" style="MixerStripTextBox" rect="[x:0 y:0 w:55 h:17]" id="100002" displayName="Channel name" zorder="2" />
+        <CtrlComboBox name="output" style="MixerStripTextBox_NotEditable" rect="[x:0 y:267 w:55 h:17]" id="0" displayName="Output selector" zorder="5" />
+    </CtrlPanel>
+</root>

@@ -1,0 +1,72 @@
+{
+  "version": "1.0",
+  "mode": 2,
+  "nodes": [
+    {
+      "name": "blit_0",
+      "type": "texture_blit",
+      "config": {
+        "keymaps": {
+          "intParam": {},
+          "floatParam": {},
+          "stringParam": {}
+        },
+        "size": {
+            "width":720,
+            "height":720
+         
+        }
+      }
+    },
+    {
+      "name": "object_detection2_0",
+      "type": "object_detection2",
+      "config": {
+        "keymaps": {
+          "stringParam": {
+            "object_detection2_model_name": "tt_body_detection_lockon"
+          },
+          "intParam": {
+            "object_detection2_param_type": 1
+          }
+        }
+      }
+    },
+    {
+      "name": "nh_script_0",
+      "type": "script",
+      "enable": true,
+      "config": {
+        "keyMaps": {
+          "intParam": {},
+          "floatParam": {},
+          "stringParam": {
+            "packed_model_group_key": "script",
+            "model_name": "lock_obj_det.model"
+          },
+          "pathParam": {}
+        }
+      }
+    }
+  ],
+  "links": [
+    {
+      "fromNode": "blit_0",
+      "fromIndex": 0,
+      "toNode": "object_detection2_0",
+      "toIndex": 0
+    },
+    {
+      "fromNode": "blit_0",
+      "fromIndex": 0,
+      "toNode": "nh_script_0",
+      "toIndex": 0
+    },
+    {
+      "fromNode": "object_detection2_0",
+      "fromIndex": 0,
+      "toNode": "nh_script_0",
+      "toIndex": 1
+    }
+  ]
+}

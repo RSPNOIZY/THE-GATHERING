@@ -1,0 +1,98 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "THE-GATHERING Rideshare Receipt",
+  "version": "1.0.0",
+  "type": "object",
+  "required": ["receipt"],
+  "properties": {
+    "receipt": {
+      "type": "object",
+      "required": [
+        "receipt_id",
+        "workstream",
+        "project_ref",
+        "account",
+        "vehicle",
+        "timestamp_utc",
+        "session_id",
+        "action",
+        "audit"
+      ],
+      "properties": {
+        "receipt_id": { "type": "string", "format": "uuid" },
+        "workstream": { "type": "string", "enum": ["RIDESHARE"] },
+        "project_ref": { "type": "string", "enum": ["GABRIEL", "LUCY"] },
+        "account": { "type": "string", "format": "email" },
+        "vehicle": { "type": "string" },
+        "timestamp_utc": { "type": "string", "format": "date-time" },
+        "session_id": { "type": "string", "format": "uuid" },
+        "action": {
+          "type": "object",
+          "required": ["type", "source", "description"],
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": ["TRIP","EARNING","SURGE","CONSENT","SYSTEM","PIPELINE","FLIGHT_SCHEDULE","SURGE_SCHEDULE","OTTAWA_EVENT"]
+            },
+            "source": {
+              "type": "string",
+              "enum": ["UBER","LYFT","N8N","PYTHON","LUCY","GABRIEL","MANUAL","CRV","COPILOT","OTTAWA_YOW"]
+            },
+            "description": { "type": "string" },
+            "payload": { "type": "object" }
+          }
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "trip_id": { "type": ["string","null"] },
+            "platform": { "type": ["string","null"], "enum": ["UBER","LYFT",null] },
+            "earnings_gross": { "type": ["number","null"] },
+            "earnings_net": { "type": ["number","null"] },
+            "surge_multiplier": { "type": ["number","null"] },
+            "miles": { "type": ["number","null"] },
+            "duration_minutes": { "type": ["integer","null"] },
+            "pickup_geo": { "type": ["object","null"] },
+            "dropoff_geo": { "type": ["object","null"] },
+            "ottawa_context": {
+              "type": ["object","null"],
+              "properties": {
+                "flight_schedule": { "type": ["object","null"] },
+                "surge_zone": { "type": ["string","null"] },
+                "event": { "type": ["string","null"] },
+                "airport_code": { "type": "string", "enum": ["YOW"] }
+              }
+            }
+          }
+        },
+        "consent": {
+          "type": "object",
+          "properties": {
+            "driver_consented": { "type": "boolean", "default": true },
+            "consent_version": { "type": "string", "default": "1.0" },
+            "consent_timestamp": { "type": "string", "format": "date-time" }
+          }
+        },
+        "audit": {
+          "type": "object",
+          "required": ["rule_zero","logged_by","immutable"],
+          "properties": {
+            "rule_zero": { "type": "boolean", "const": true },
+            "logged_by": { "type": "string", "const": "THE-GATHERING" },
+            "immutable": { "type": "boolean", "const": true },
+            "hash": { "type": "string" },
+            "prev_receipt_id": { "type": ["string","null"] }
+          }
+        },
+        "meta": {
+          "type": "object",
+          "properties": {
+            "environment": { "type": "string", "enum": ["PRODUCTION","STAGING","DEV"], "default": "PRODUCTION" },
+            "pipeline_version": { "type": "string", "default": "1.0.0" },
+            "tags": { "type": "array", "items": { "type": "string" } }
+          }
+        }
+      }
+    }
+  }
+}

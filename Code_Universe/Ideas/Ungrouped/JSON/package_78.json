@@ -1,0 +1,50 @@
+{
+    "name": "com.noizyvox.unity-sdk",
+    "version": "1.0.0",
+    "displayName": "NOIZYVOX Unity SDK",
+    "description": "Professional AI voice synthesis SDK for Unity. Create dynamic character voices with lip-sync, streaming audio, and dialogue system integration.",
+    "unity": "2021.3",
+    "unityRelease": "0f1",
+    "documentationUrl": "https://docs.noizyvox.ai/unity",
+    "changelogUrl": "https://docs.noizyvox.ai/unity/changelog",
+    "licensesUrl": "https://noizyvox.ai/licenses",
+    "dependencies": {},
+    "keywords": [
+        "voice",
+        "tts",
+        "text-to-speech",
+        "ai",
+        "synthesis",
+        "lip-sync",
+        "dialogue",
+        "audio",
+        "character",
+        "npc"
+    ],
+    "author": {
+        "name": "NOIZYVOX",
+        "email": "support@noizyvox.ai",
+        "url": "https://noizyvox.ai"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Noizyfish/NOIZYLAB.git"
+    },
+    "samples": [
+        {
+            "displayName": "Basic Voice Sample",
+            "description": "Simple example of voice synthesis with a single character.",
+            "path": "Samples~/BasicVoice"
+        },
+        {
+            "displayName": "Dialogue System",
+            "description": "Complete dialogue system with multiple characters and lip-sync.",
+            "path": "Samples~/DialogueSystem"
+        },
+        {
+            "displayName": "Streaming Demo",
+            "description": "Real-time streaming synthesis for low-latency voice output.",
+            "path": "Samples~/Streaming"
+        }
+    ]
+}

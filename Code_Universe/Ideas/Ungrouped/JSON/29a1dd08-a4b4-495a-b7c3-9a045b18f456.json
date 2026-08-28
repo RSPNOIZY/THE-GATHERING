@@ -1,0 +1,56 @@
+{
+  "receipt": {
+    "receipt_id": "29a1dd08-a4b4-495a-b7c3-9a045b18f456",
+    "workstream": "RIDESHARE",
+    "project_ref": "GABRIEL",
+    "account": "rspdrives@gmail.com",
+    "vehicle": "2026-HONDA-CRV-HYBRID",
+    "timestamp_utc": "2026-07-07T01:51:38.496668+00:00",
+    "session_id": "f2ea49df-d6d7-434d-a020-cfda12505077",
+    "action": {
+      "type": "PIPELINE",
+      "source": "GABRIEL",
+      "description": "Expense: CAR_WASH \u2014 $18.00 (100% deductible = $18.00)",
+      "payload": {
+        "category": "CAR_WASH",
+        "amount": 18.0,
+        "vendor": null,
+        "cra_deductible": true,
+        "deductible_amount": 18.0
+      }
+    },
+    "data": {
+      "trip_id": null,
+      "platform": null,
+      "earnings_gross": null,
+      "earnings_net": null,
+      "surge_multiplier": null,
+      "miles": null,
+      "duration_minutes": null,
+      "pickup_geo": null,
+      "dropoff_geo": null,
+      "ottawa_context": null
+    },
+    "consent": {
+      "driver_consented": true,
+      "consent_version": "1.0",
+      "consent_timestamp": "2026-07-07T01:51:38.496668+00:00"
+    },
+    "audit": {
+      "rule_zero": true,
+      "logged_by": "THE-GATHERING",
+      "immutable": true,
+      "hash": "56dfd9183d8091b2442ca7e7f77a1040048089137871b4fe5d37f67cf597d03b",
+      "prev_receipt_id": null
+    },
+    "meta": {
+      "environment": "PRODUCTION",
+      "pipeline_version": "1.0.0",
+      "tags": [
+        "rideshare",
+        "gabriel",
+        "rspdrives"
+      ]
+    }
+  }
+}

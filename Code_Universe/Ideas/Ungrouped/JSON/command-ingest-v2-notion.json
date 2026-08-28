@@ -1,0 +1,398 @@
+{
+  "name": "NOIZY — Command Ingest v2 (Notion Living Memory)",
+  "nodes": [
+
+    {
+      "parameters": {
+        "path": "command-ingest",
+        "responseMode": "responseNode",
+        "options": {
+          "rawBody": true,
+          "allowedOrigins": "*"
+        }
+      },
+      "id": "n1-webhook",
+      "name": "N1 · Webhook Receiver",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [120, 400],
+      "webhookId": "command-ingest-v2"
+    },
+
+    {
+      "parameters": {
+        "jsCode": "// ═══════════════════════════════════════════════════\n// N2 · AUTH GUARD + PARSE + CLASSIFY\n// Input:  { source, agent, command, payload, auth_token }\n// Output: enriched command object with intent + urgency\n// ═══════════════════════════════════════════════════\n\nconst body = $input.first().json.body || $input.first().json;\nconst { source, agent, command, payload, auth_token } = body;\n\n// ── Auth guard ──────────────────────────────────────\nconst expected = $env.NOIZY_INGEST_TOKEN || 'noizy-ingest-dev';\nif (auth_token !== expected) {\n  return [{ json: { _auth_failed: true, error: 'Unauthorized', code: 401 } }];\n}\n\n// ── Normalize ───────────────────────────────────────\nconst cmd = (command || '').trim();\nconst cmdUpper = cmd.toUpperCase();\n\n// ── Route detection ─────────────────────────────────\nlet route = 'BROADCAST';\nconst prefixMap = ['GOD', 'LUCY', 'GABRIEL', 'MC96', 'N8N', 'GREP', 'DREAM'];\nfor (const p of prefixMap) {\n  if (cmdUpper.startsWith(p + ':') || agent === p) { route = p; break; }\n}\n\n// ── Intent classification (Dyslexic Brain Flow) ─────\n// One spotlight. One label. No ambiguity.\nconst intentPatterns = [\n  { intent: 'BUILD',   re: /\\b(build|create|make|scaffold|init|start|launch|deploy|ship)\\b/i },\n  { intent: 'FIX',     re: /\\b(fix|repair|debug|patch|broken|error|fail|crash|issue)\\b/i },\n  { intent: 'REVIEW',  re: /\\b(review|check|audit|scan|verify|test|confirm|look)\\b/i },\n  { intent: 'ASK',     re: /\\b(what|how|why|when|where|who|explain|tell|show|help|\\?)\\b/i },\n  { intent: 'ROUTE',   re: /\\b(send|route|forward|pass|move|dispatch|relay)\\b/i },\n  { intent: 'ARCHIVE', re: /\\b(archive|store|save|log|record|remember|note)\\b/i },\n];\nlet intent = 'GENERAL';\nfor (const { intent: i, re } of intentPatterns) {\n  if (re.test(cmd)) { intent = i; break; }\n}\n\n// ── Urgency detection ────────────────────────────────\nconst highUrgency = /\\b(urgent|NOW|ASAP|critical|GOD:|emergency|immediate|block|blocked)\\b/i;\nconst lowUrgency  = /\\b(later|someday|idea|maybe|consider|backlog|low|archive)\\b/i;\nlet urgency = 'MEDIUM';\nif (highUrgency.test(cmd) || route === 'GOD') urgency = 'HIGH';\nelse if (lowUrgency.test(cmd))                urgency = 'LOW';\n\n// ── Short title for Notion (max 80 chars) ───────────\nconst title = cmd.length > 80 ? cmd.slice(0, 77) + '...' : cmd;\n\nreturn [{\n  json: {\n    // Routing\n    route,\n    // Notion fields\n    title,\n    command: cmd,\n    intent,\n    urgency,\n    source:  source || 'unknown',\n    agent:   agent  || route,\n    payload: payload || {},\n    // Metadata\n    ts:      new Date().toISOString(),\n    version: '2.0.0',\n    // Flags\n    _promote_to_linear: urgency === 'HIGH',\n    _auth_failed: false\n  }\n}];\n"
+      },
+      "id": "n2-parse",
+      "name": "N2 · Auth + Parse + Classify",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [380, 400]
+    },
+
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $json._auth_failed }}",
+              "value2": true
+            }
+          ]
+        }
+      },
+      "id": "n3-auth-check",
+      "name": "N3 · Auth Failed?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [620, 400]
+    },
+
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "{\"ok\": false, \"error\": \"Unauthorized\"}",
+        "options": { "responseCode": 401 }
+      },
+      "id": "n3b-reject",
+      "name": "N3b · Reject 401",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [860, 240]
+    },
+
+    {
+      "parameters": {
+        "resource": "page",
+        "operation": "create",
+        "databaseId": {
+          "__rl": true,
+          "value": "={{ $env.NOTION_COMMAND_INBOX_DB_ID }}",
+          "mode": "id"
+        },
+        "title": "={{ $json.title }}",
+        "propertiesUi": {
+          "propertyValues": [
+            {
+              "key": "Status",
+              "type": "select",
+              "selectValue": "📥 Inbox"
+            },
+            {
+              "key": "Intent",
+              "type": "select",
+              "selectValue": "={{ $json.intent }}"
+            },
+            {
+              "key": "Urgency",
+              "type": "select",
+              "selectValue": "={{ $json.urgency === 'HIGH' ? '🔴 HIGH' : $json.urgency === 'LOW' ? '🟢 LOW' : '🟡 MEDIUM' }}"
+            },
+            {
+              "key": "Agent",
+              "type": "select",
+              "selectValue": "={{ $json.agent }}"
+            },
+            {
+              "key": "Source",
+              "type": "richText",
+              "textContent": "={{ $json.source }}"
+            },
+            {
+              "key": "Full Command",
+              "type": "richText",
+              "textContent": "={{ $json.command }}"
+            },
+            {
+              "key": "Payload JSON",
+              "type": "richText",
+              "textContent": "={{ JSON.stringify($json.payload, null, 2) }}"
+            },
+            {
+              "key": "Created At",
+              "type": "date",
+              "dateValue": "={{ $json.ts }}"
+            },
+            {
+              "key": "Promoted to Linear",
+              "type": "checkbox",
+              "checkboxValue": false
+            }
+          ]
+        }
+      },
+      "id": "n4-notion",
+      "name": "N4 · Notion → Command Inbox",
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2,
+      "position": [860, 480],
+      "credentials": {
+        "notionApi": {
+          "id": "notion-integration",
+          "name": "Notion (RSP_001)"
+        }
+      },
+      "continueOnFail": true
+    },
+
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://heaven.rsp-5f3.workers.dev/api/v1/ledger",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "X-NOIZY-Key", "value": "={{ $env.NOIZY_API_KEY }}" },
+            { "name": "Content-Type", "value": "application/json" }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ event: 'command_ingest_v2', route: $json.route, intent: $json.intent, urgency: $json.urgency, source: $json.source, command: $json.command, notion_page_id: $('N4 · Notion → Command Inbox').item.json.id || null, ts: $json.ts }) }}"
+      },
+      "id": "n5-ledger",
+      "name": "N5 · HEAVEN Ledger Log",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1100, 360],
+      "continueOnFail": true
+    },
+
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $json._promote_to_linear }}",
+              "value2": true
+            }
+          ]
+        }
+      },
+      "id": "n6-urgent-check",
+      "name": "N6 · Urgency HIGH?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [1100, 560]
+    },
+
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.linear.app/graphql",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "Authorization", "value": "={{ $env.LINEAR_API_KEY }}" },
+            { "name": "Content-Type", "value": "application/json" }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ query: 'mutation IssueCreate($input: IssueCreateInput!) { issueCreate(input: $input) { success issue { id identifier url title } } }', variables: { input: { teamId: $env.LINEAR_TEAM_ID || 'NOI', title: '[URGENT] ' + $json.title, description: '**Command:** ' + $json.command + '\\n\\n**Source:** ' + $json.source + '\\n**Agent:** ' + $json.agent + '\\n**Intent:** ' + $json.intent + '\\n\\n**Payload:**\\n```json\\n' + JSON.stringify($json.payload, null, 2) + '\\n```\\n\\n_Auto-promoted from Notion Command Inbox via n8n at ' + $json.ts + '_', priority: 1 } } }) }}"
+      },
+      "id": "n7-linear",
+      "name": "N7 · Promote → Linear (HIGH only)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1340, 460],
+      "continueOnFail": true
+    },
+
+    {
+      "parameters": {
+        "resource": "page",
+        "operation": "update",
+        "pageId": {
+          "__rl": true,
+          "value": "={{ $('N4 · Notion → Command Inbox').item.json.id }}",
+          "mode": "id"
+        },
+        "propertiesUi": {
+          "propertyValues": [
+            {
+              "key": "Promoted to Linear",
+              "type": "checkbox",
+              "checkboxValue": true
+            },
+            {
+              "key": "Linear URL",
+              "type": "url",
+              "urlValue": "={{ $json.data.issueCreate.issue.url }}"
+            }
+          ]
+        }
+      },
+      "id": "n7b-notion-update",
+      "name": "N7b · Update Notion (Linear linked)",
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2,
+      "position": [1580, 380],
+      "credentials": {
+        "notionApi": {
+          "id": "notion-integration",
+          "name": "Notion (RSP_001)"
+        }
+      },
+      "continueOnFail": true
+    },
+
+    {
+      "parameters": {
+        "dataType": "string",
+        "value1": "={{ $json.route }}",
+        "rules": {
+          "rules": [
+            { "value2": "GOD",     "output": 0 },
+            { "value2": "LUCY",    "output": 1 },
+            { "value2": "GABRIEL", "output": 2 },
+            { "value2": "MC96",    "output": 3 },
+            { "value2": "GREP",    "output": 4 },
+            { "value2": "DREAM",   "output": 5 }
+          ]
+        },
+        "fallbackOutput": 6
+      },
+      "id": "n8-switch",
+      "name": "N8 · Route Switch",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3,
+      "position": [1340, 680]
+    },
+
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $env.LUCY_WEBHOOK_URL || 'http://localhost:7778/command' }}",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ route: $json.route, command: $json.command, intent: $json.intent, urgency: $json.urgency, payload: $json.payload, ts: $json.ts }) }}"
+      },
+      "id": "n9a-lucy",
+      "name": "N9a · Forward → LUCY",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1580, 580],
+      "continueOnFail": true
+    },
+
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $env.GABRIEL_WEBHOOK_URL || 'http://localhost:7779/command' }}",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ route: $json.route, command: $json.command, intent: $json.intent, urgency: $json.urgency, payload: $json.payload, ts: $json.ts }) }}"
+      },
+      "id": "n9b-gabriel",
+      "name": "N9b · Forward → GABRIEL",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1580, 700],
+      "continueOnFail": true
+    },
+
+    {
+      "parameters": {
+        "jsCode": "const { command, payload } = $json;\nreturn [{ json: { handled: true, agent: 'MC96', command, payload, ts: new Date().toISOString() } }];\n"
+      },
+      "id": "n9c-mc96",
+      "name": "N9c · MC96 Handler",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1580, 820],
+      "continueOnFail": true
+    },
+
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ ok: true, route: $('N2 · Auth + Parse + Classify').item.json.route, intent: $('N2 · Auth + Parse + Classify').item.json.intent, urgency: $('N2 · Auth + Parse + Classify').item.json.urgency, notion_id: $('N4 · Notion → Command Inbox').item.json.id || null, ts: $('N2 · Auth + Parse + Classify').item.json.ts }) }}",
+        "options": { "responseCode": 200 }
+      },
+      "id": "n10-respond",
+      "name": "N10 · Respond 200",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [1820, 600]
+    }
+
+  ],
+
+  "connections": {
+    "N1 · Webhook Receiver": {
+      "main": [[{ "node": "N2 · Auth + Parse + Classify", "type": "main", "index": 0 }]]
+    },
+    "N2 · Auth + Parse + Classify": {
+      "main": [[{ "node": "N3 · Auth Failed?", "type": "main", "index": 0 }]]
+    },
+    "N3 · Auth Failed?": {
+      "main": [
+        [{ "node": "N3b · Reject 401", "type": "main", "index": 0 }],
+        [{ "node": "N4 · Notion → Command Inbox", "type": "main", "index": 0 }]
+      ]
+    },
+    "N4 · Notion → Command Inbox": {
+      "main": [[
+        { "node": "N5 · HEAVEN Ledger Log", "type": "main", "index": 0 },
+        { "node": "N6 · Urgency HIGH?", "type": "main", "index": 0 },
+        { "node": "N8 · Route Switch", "type": "main", "index": 0 }
+      ]]
+    },
+    "N5 · HEAVEN Ledger Log": {
+      "main": [[{ "node": "N10 · Respond 200", "type": "main", "index": 0 }]]
+    },
+    "N6 · Urgency HIGH?": {
+      "main": [
+        [{ "node": "N7 · Promote → Linear (HIGH only)", "type": "main", "index": 0 }],
+        []
+      ]
+    },
+    "N7 · Promote → Linear (HIGH only)": {
+      "main": [[{ "node": "N7b · Update Notion (Linear linked)", "type": "main", "index": 0 }]]
+    },
+    "N8 · Route Switch": {
+      "main": [
+        [],
+        [{ "node": "N9a · Forward → LUCY", "type": "main", "index": 0 }],
+        [{ "node": "N9b · Forward → GABRIEL", "type": "main", "index": 0 }],
+        [{ "node": "N9c · MC96 Handler", "type": "main", "index": 0 }],
+        [],
+        [],
+        []
+      ]
+    },
+    "N9a · Forward → LUCY": {
+      "main": [[{ "node": "N10 · Respond 200", "type": "main", "index": 0 }]]
+    },
+    "N9b · Forward → GABRIEL": {
+      "main": [[{ "node": "N10 · Respond 200", "type": "main", "index": 0 }]]
+    },
+    "N9c · MC96 Handler": {
+      "main": [[{ "node": "N10 · Respond 200", "type": "main", "index": 0 }]]
+    }
+  },
+
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "callerPolicy": "workflowsFromSameOwner"
+  },
+  "versionId": "command-ingest-v2-notion",
+  "meta": {
+    "instanceId": "noizy-n8n",
+    "description": "v2: Every command lands in Notion Command Inbox. HIGH urgency auto-promotes to Linear. Routes to LUCY/GABRIEL/MC96. Logs to HEAVEN ledger."
+  },
+  "tags": [
+    { "name": "god-channel" },
+    { "name": "command-ingest" },
+    { "name": "notion" },
+    { "name": "living-memory" },
+    { "name": "v2" }
+  ]
+}

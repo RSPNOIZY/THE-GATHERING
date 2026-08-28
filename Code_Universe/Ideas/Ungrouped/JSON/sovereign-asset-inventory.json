@@ -1,0 +1,315 @@
+{
+  "schema_version": "1.0",
+  "scanned_at": "2026-05-01T00:00:00Z",
+  "operator": "RSP_001",
+  "machine": "GOD.local (M2 Ultra)",
+  "mission_frequency_hz": 396,
+  "security_alerts": [
+    {
+      "severity": "CRITICAL",
+      "type": "CREDENTIALS_IN_NON_SOVEREIGN_STORAGE",
+      "path": "GoogleDrive-rsplowman@icloud.com/My Drive/Claude Archive/n8n-credentials.txt",
+      "action_required": "ROTATE_AND_REMOVE_IMMEDIATELY",
+      "reason": "n8n credentials stored in Google Drive — subject to Google TOS, content scanning, and AI training claims. Not consent-native. Must be migrated to GABRIEL/secretstore or Cloudflare secrets."
+    },
+    {
+      "severity": "HIGH",
+      "type": "SAMPLE_MASTER_FULL",
+      "path": "/Volumes/SAMPLE_MASTER",
+      "action_required": "EVACUATE_OR_EXPAND",
+      "reason": "SAMPLE_MASTER is 100% full (1.8TB/1.8TB). No write space. Risk of data loss on next write operation."
+    },
+    {
+      "severity": "HIGH",
+      "type": "4TB_BLK_FULL",
+      "path": "/Volumes/4TB BLK",
+      "action_required": "EVACUATE_OR_EXPAND",
+      "reason": "4TB BLK is 100% full (3.6TB/3.6TB). Same risk."
+    }
+  ],
+  "cloud_storage": {
+    "sovereign_status": "NON_SOVEREIGN — migrate-priority",
+    "providers": [
+      {
+        "id": "OneDrive-Personal",
+        "account": "personal (rspplowman@icloud.com or Fish Music)",
+        "mount": "~/Library/CloudStorage/OneDrive-Personal",
+        "size_synced": "9.1MB",
+        "migrate_priority": "MEDIUM",
+        "top_level": [
+          "Documents",
+          "Fish_Taxes",
+          "Kooler Than U!.docx",
+          "Microsoft Copilot Chat Files",
+          "Music Support",
+          "New Movie Ideas 2020",
+          "NOIZY",
+          "TO DO LIST.docx",
+          "Videos",
+          "Welcome to Fish Music.docx"
+        ],
+        "notes": "Fish Music admin docs, music support, early NOIZY files. Low volume but contains NOIZY brand IP."
+      },
+      {
+        "id": "OneDrive-Personal-2",
+        "account": "personal (secondary or NOIZY business)",
+        "mount": "~/Library/CloudStorage/OneDrive-Personal(2)",
+        "migrate_priority": "HIGH",
+        "top_level": [
+          "_Archives",
+          "_Documents",
+          "_Projects",
+          "Attachments",
+          "Documents",
+          "GitHub",
+          "NOIZYVAULT"
+        ],
+        "noizyvault": {
+          "marker": "2026-04-29T03:45:05Z · NOIZYVAULT root marker · 1.7TB ROCKETFUEL destination",
+          "structure": {
+            "fishmusicinc": ["music", "sfx", "voice"]
+          },
+          "status": "VAULT INITIALIZED — Cloudflare R2 is the sovereign destination"
+        },
+        "github_mirror": ["NOIZYLAB"],
+        "projects": ["client", "Gabriel", "Loop", "NOIZY_2026", "rwkvmusic"],
+        "notes": "CRITICAL — NOIZYVAULT root is here. 1.7TB ROCKETFUEL ingest planned. GitHub mirror of NOIZYLAB. Active project work."
+      },
+      {
+        "id": "GoogleDrive-fishmusicinc",
+        "account": "rp@fishmusicinc.com",
+        "mount": "~/Library/CloudStorage/GoogleDrive-rp@fishmusicinc.com (2026-01-19 3:55 AM)",
+        "migrate_priority": "MEDIUM",
+        "top_level": ["My Drive"],
+        "my_drive": [],
+        "notes": "Fish Music Inc business Google account. My Drive appears sparse or files not yet synced locally."
+      },
+      {
+        "id": "GoogleDrive-rsplowman",
+        "account": "rsplowman@icloud.com",
+        "mount": "~/Library/CloudStorage/GoogleDrive-rsplowman@icloud.com",
+        "migrate_priority": "CRITICAL",
+        "top_level": ["My Drive", "Other computers"],
+        "my_drive": {
+          "Claude Archive": {
+            "nightly_sessions": [
+              "claude-sessions-20260409.tar.gz through claude-sessions-20260428.tar.gz"
+            ],
+            "repo_snapshots": ["CLAUDE-TODAY-snapshot.patch", "MC96ECO-snapshot.patch"],
+            "SECURITY_ALERT": "n8n-credentials.txt — ROTATE IMMEDIATELY"
+          },
+          "NOIZYLAB_WORKSPACES": {
+            "00.CODE & DOCS": true,
+            "01.MUSIC": ["MCDONALODS", "MONOPOLY"],
+            "02.SOUND DESIGN & SFX": true,
+            "03.VOICES": true,
+            "04.VIDEO": true,
+            "GABRIEL": true,
+            "INSTALLERS": true,
+            "NOIZYEMPIRE": true,
+            "Shared": true,
+            "THE-GATHERING": true,
+            "WISDOM_PROJECT.code-workspace": true
+          }
+        },
+        "notes": "RSP personal Google Drive. Contains Claude session archives (20 daily tarballs), NOIZYLAB organized workspace, GABRIEL folder, and CRITICAL: n8n-credentials.txt exposed."
+      }
+    ]
+  },
+  "physical_drives": [
+    {
+      "label": "12TB",
+      "device": "/dev/disk13s2",
+      "size": "11TB",
+      "used": "9.5TB",
+      "avail": "1.4TB",
+      "capacity_pct": 87,
+      "contents": [
+        "_01.AUDIO FROM ALL", "_02.Instruments", "_03.Plug-Ins", "_04.Utilities",
+        "_D0C MASTER", "_FEB_2026_DUPES", "_NOIZY.AI", "_NOIZYLAB", "_ORGANIZED",
+        "_Spectrasonics_3rd_Party", "_WAVE", "2025 FISH WDC",
+        "Audio_Evacuation_M2Ultra", "AUDIO_SFX_LIBRARY", "CODEMASTER",
+        "Fat_Relocation_M2Ultra", "GitHub", "Installers", "MissionControl96"
+      ],
+      "vault_priority": "HIGH — Audio evacuation + NOIZY.AI + NOIZYLAB"
+    },
+    {
+      "label": "2TB_SGW",
+      "device": "/dev/disk9s1",
+      "size": "1.8TB",
+      "used": "1.2TB",
+      "avail": "646GB",
+      "capacity_pct": 66,
+      "contents": [
+        "2025 HEALTH", "Music 2023", "__2025 GROUPED BY ARTIST", "_2026_IMAGES",
+        "Current Screenshots", "FISHMUSIC_2026_MASTER", "iChats", "Music",
+        "RapidCopy", "rsp_deux", "VoiceTrigger"
+      ],
+      "vault_priority": "HIGH — FISHMUSIC_2026_MASTER + rsp_deux original work"
+    },
+    {
+      "label": "SOUND_DESIGN",
+      "device": "/dev/disk18s1",
+      "size": "1.8TB",
+      "used": "815GB",
+      "avail": "1.0TB",
+      "capacity_pct": 45,
+      "contents": [
+        "_2026_MASTER", "_FISH_PIX", "EM_BACKUP_2026",
+        "FEB2026_DOWNLOADS", "RSP_media_move"
+      ],
+      "vault_priority": "MEDIUM — Sound design master"
+    },
+    {
+      "label": "SAMPLE_MASTER",
+      "device": "/dev/disk19s1",
+      "size": "1.8TB",
+      "used": "1.8TB",
+      "avail": "38MB",
+      "capacity_pct": 100,
+      "alert": "FULL",
+      "contents": [
+        "_01.AUDIO FROM ALL", "_02.Instruments", "_D0C MASTER", "_ORGANIZED",
+        "AUDIO_SFX_LIBRARY", "FXPANSION", "KH ORCHESTRAL COLLECTION",
+        "NOIZYFISH_THE_AQAURIUM", "NOIZYLAB_ARCHIVES", "Samples To Sort 2022"
+      ],
+      "vault_priority": "HIGH — Sample libraries + NOIZYFISH"
+    },
+    {
+      "label": "6TB",
+      "device": "/dev/disk10",
+      "size": "5.5TB",
+      "used": "4.8TB",
+      "avail": "705GB",
+      "capacity_pct": 88,
+      "contents": [
+        "_ORGANIZED", "ARCHIVE", "ARCHIVES", "AV_SYSTEM_DRIVE_RELOCATIONS",
+        "backups", "noizy", "NOIZY_MODELS", "NOIZYLAB_ARCHIVES",
+        "NOIZYLAB_AUDIO_ARCHIVE", "Sample_Libraries", "Superior_Drummer_TCI"
+      ],
+      "vault_priority": "CRITICAL — NOIZY_MODELS + NOIZYLAB_AUDIO_ARCHIVE"
+    },
+    {
+      "label": "4TB Lacie",
+      "device": "/dev/disk6s2",
+      "size": "3.6TB",
+      "used": "1.4TB",
+      "avail": "2.3TB",
+      "capacity_pct": 38,
+      "contents": [
+        "_archive", "_MASTER_2026", "_MP4", "00_COLLECTED_AUDIO",
+        "01_DESIGN_REUNION", "02_FISH_DEMOS", "03_PROJECTS", "04_AUDIO",
+        "05_ARCHIVES", "06_INSTALLERS", "GitHub", "Installers",
+        "M2ULTRA_BACKUP_20260417", "MissionControl96", "NOIZYLAB", "reports"
+      ],
+      "vault_priority": "HIGH — FISH_DEMOS + PROJECTS + M2ULTRA backup"
+    },
+    {
+      "label": "4TB_02",
+      "device": "/dev/disk17s2",
+      "size": "3.6TB",
+      "used": "2.1TB",
+      "avail": "1.5TB",
+      "capacity_pct": 59,
+      "contents": [
+        "_ORGANIZED", "01_ROB_ORIGINAL_WORK", "02_SAMPLE_LIBRARIES",
+        "03_DRUM_LIBRARIES", "04_VIDEO", "05_CODE_PROJECTS",
+        "06_APP_DATA", "07_BACKUPS", "08_SPOTIFY_MEDIA", "99_TO_SORT",
+        "M2Ultra_Data"
+      ],
+      "vault_priority": "CRITICAL — ROB_ORIGINAL_WORK + VIDEO + CODE_PROJECTS"
+    },
+    {
+      "label": "4TB BLK",
+      "device": "/dev/disk15s2",
+      "size": "3.6TB",
+      "used": "3.6TB",
+      "avail": "17GB",
+      "capacity_pct": 100,
+      "alert": "FULL",
+      "contents": [
+        "02_Factory_Libraries", "Avid", "EXPANSIONS", "FXpansion",
+        "INSTRUMENTS", "PLUGINS", "PRESETS", "REX2_Loops",
+        "SAMPLES", "Steven_Slate", "Toontrack_EZDrummer"
+      ],
+      "vault_priority": "MEDIUM — Plugin libraries (can be reinstalled from licenses)"
+    },
+    {
+      "label": "MAG 4TB",
+      "device": "/dev/disk11s2",
+      "size": "3.6TB",
+      "used": "2.9TB",
+      "avail": "773GB",
+      "capacity_pct": 80,
+      "contents": [
+        "01_Drums", "02_EastWest", "Creative Cloud Files", "NOIZYFISH_THE_AQAURIUM"
+      ],
+      "vault_priority": "HIGH — NOIZYFISH + EastWest orchestral"
+    },
+    {
+      "label": "JOE",
+      "device": "/dev/disk14s2",
+      "size": "3.6TB",
+      "used": "3.0TB",
+      "avail": "612GB",
+      "capacity_pct": 84,
+      "contents": [
+        "_01.AUDIO FROM ALL", "_02.Instruments", "_03.Plug-Ins", "_04.Utilities",
+        "_2025 MOVIES", "_D0C MASTER", "_FEB_2026_DUPES", "_NOIZY.AI",
+        "_NOIZYLAB", "_ORGANIZED"
+      ],
+      "vault_priority": "HIGH — NOIZY.AI + 2025 MOVIES + NOIZYLAB mirror"
+    },
+    {
+      "label": "M2ULTRA",
+      "device": "/dev/disk (boot)",
+      "notes": "Boot/system volume — /Users/m2ultra is the sovereign home",
+      "vault_priority": "MANAGED — Time Machine + local repos"
+    },
+    {
+      "label": "NOIZYWIN",
+      "device": "/dev/disk7s2",
+      "size": "234GB",
+      "used": "166GB",
+      "avail": "67GB",
+      "capacity_pct": 72,
+      "contents": ["$RECYCLE.BIN", "System Volume Information", "Windows"],
+      "vault_priority": "LOW — Windows volume, likely legacy"
+    },
+    {
+      "label": "gorunfree test",
+      "device": "/dev/disk12s2",
+      "size": "2.7TB",
+      "used": "1.3GB",
+      "avail": "2.7TB",
+      "capacity_pct": 1,
+      "contents": ["MVS"],
+      "vault_priority": "STAGING — Nearly empty, ideal VAULT staging zone"
+    }
+  ],
+  "claude_session_state": {
+    "today": "2026-05-01",
+    "audit_artifacts": [
+      "maintenance-repair-closeout-2026-04-28",
+      "maintenance-repair-test-2026-04-28",
+      "noizykidz-proof-backup-2026-04-28",
+      "openclaw-36-2026-04-28",
+      "pre-copilot-audit-2026-04-28"
+    ],
+    "gd_archive_latest": "claude-sessions-20260428.tar.gz",
+    "gd_archive_count": 20,
+    "gd_archive_range": "2026-04-09 through 2026-04-28",
+    "notes": "Daily Claude session archives stored in non-sovereign GDrive. Migrate nightly export to GABRIEL/VAULT."
+  },
+  "vault_migration_plan": {
+    "phase_1_priority": "CRITICAL — rotate n8n-credentials.txt out of GDrive",
+    "phase_2_ingest": "4TB_02/01_ROB_ORIGINAL_WORK → R2/NOIZYVAULT/fishmusicinc/originals",
+    "phase_3_ingest": "6TB/NOIZY_MODELS + NOIZYLAB_AUDIO_ARCHIVE → R2/NOIZYVAULT/models",
+    "phase_4_cloud_migration": "GDrive NOIZYLAB_WORKSPACES → R2 with NOIZY PROOF wrapper",
+    "phase_5_full": "All 60TB+ physical → R2 + local mirror + C2PA manifests",
+    "staging_zone": "/Volumes/gorunfree test (2.7TB free — ideal VAULT staging)",
+    "vault_destination": "Cloudflare R2 — heaven.rsp-5f3.workers.dev",
+    "total_physical_estimated": "~38TB mounted, ~60TB total across all drives",
+    "total_cloud_nonSovereign": "OneDrive (2 accounts) + GDrive (2 accounts)"
+  }
+}

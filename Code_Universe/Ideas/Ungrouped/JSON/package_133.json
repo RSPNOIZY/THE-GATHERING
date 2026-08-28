@@ -1,0 +1,29 @@
+{
+  "name": "heaven",
+  "version": "18.0.0",
+  "description": "HEAVEN — The NOIZY.AI Consent Kernel. Routes all requests. Enforces all rules.",
+  "author": "Robert Stephen Plowman <rsp@noizyfish.com>",
+  "license": "UNLICENSED",
+  "private": true,
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "eslint src/",
+    "typecheck": "tsc --noEmit",
+    "migrate:local": "wrangler d1 migrations apply agent-memory --local && wrangler d1 migrations apply gabriel_db --local",
+    "migrate:prod": "wrangler d1 migrations apply agent-memory --remote && wrangler d1 migrations apply gabriel_db --remote"
+  },
+  "dependencies": {
+    "hono": "^4.4.0"
+  },
+  "devDependencies": {
+    "@cloudflare/vitest-pool-workers": "^0.4.0",
+    "@cloudflare/workers-types": "^4.20260401.0",
+    "typescript": "^5.5.0",
+    "vitest": "^1.6.0",
+    "wrangler": "^3.60.0",
+    "eslint": "^9.0.0"
+  }
+}

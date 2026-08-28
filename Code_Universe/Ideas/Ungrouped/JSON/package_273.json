@@ -1,0 +1,14 @@
+{
+  "name": "gabriel-local-diag",
+  "version": "1.0.0",
+  "description": "GABRIEL diagnostic + control server — phone-accessible via cloudflared tunnel",
+  "type": "module",
+  "main": "server.mjs",
+  "scripts": {
+    "start": "node server.mjs",
+    "dev": "NOIZY_API_KEY=dev123 node server.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

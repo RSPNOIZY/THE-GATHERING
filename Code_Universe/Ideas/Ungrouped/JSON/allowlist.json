@@ -1,0 +1,38 @@
+{
+  "policy": "read-mostly local automation; writes are restricted to the configured output folder",
+  "workspace_root": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive",
+  "output_root": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/output/lucy-foss-mcp/generated",
+  "safe_actions": {
+    "git_status": "Read git working tree status.",
+    "git_log": "Read recent git commit summaries.",
+    "docker_ps": "List running containers.",
+    "docker_images": "List local Docker images.",
+    "ollama_list": "List local Ollama models.",
+    "ollama_ps": "List running Ollama models.",
+    "disk_usage": "Read workspace disk usage.",
+    "sqlite_readonly": "Run SELECT, PRAGMA, or EXPLAIN against SQLite using sqlite3 -readonly."
+  },
+  "dedicated_tools": {
+    "inventory": "Detect installed apps and CLI tools.",
+    "list_directory": "List workspace files.",
+    "search_files": "Find files by name with fd.",
+    "search_text": "Search file contents with ripgrep.",
+    "organize_preview": "Preview grouping files by extension without moving anything.",
+    "media_probe": "Read image/audio/video metadata.",
+    "convert_image_to_output": "Convert images only into the output folder."
+  },
+  "blocked_by_default": [
+    "rm",
+    "mv",
+    "cp",
+    "rsync",
+    "chmod",
+    "chown",
+    "docker rm",
+    "docker stop",
+    "git reset",
+    "git checkout",
+    "ffmpeg transcodes outside output",
+    "arbitrary shell"
+  ]
+}

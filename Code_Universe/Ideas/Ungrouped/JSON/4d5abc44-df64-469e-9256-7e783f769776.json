@@ -1,0 +1,65 @@
+{
+  "receipt": {
+    "receipt_id": "4d5abc44-df64-469e-9256-7e783f769776",
+    "workstream": "RIDESHARE",
+    "project_ref": "GABRIEL",
+    "account": "rspdrives@gmail.com",
+    "vehicle": "2026-HONDA-CRV-HYBRID",
+    "timestamp_utc": "2026-07-06T21:32:20.388541+00:00",
+    "session_id": "f60770be-1714-4ac9-a7c8-9518ff8d051c",
+    "action": {
+      "type": "OTTAWA_EVENT",
+      "source": "COPILOT",
+      "description": "Ottawa event logged \u2014 Bluesfest / Canada Day / Winterlude Festival",
+      "payload": {
+        "event_name": "Bluesfest / Canada Day / Winterlude Festival",
+        "event_type": "FESTIVAL",
+        "venue": "Downtown Ottawa / Major's Hill Park / Rideau Canal",
+        "zone": "DOWNTOWN",
+        "event_date": "2026-07-07",
+        "start_time": "18:00",
+        "end_time": "23:00",
+        "expected_attendance": 25000,
+        "surge_impact_score": 0.98,
+        "notes": "Heaviest demand before/after shows. Best surge of the year."
+      }
+    },
+    "data": {
+      "trip_id": null,
+      "platform": null,
+      "earnings_gross": null,
+      "earnings_net": null,
+      "surge_multiplier": null,
+      "miles": null,
+      "duration_minutes": null,
+      "pickup_geo": null,
+      "dropoff_geo": null,
+      "ottawa_context": {
+        "event": "Bluesfest / Canada Day / Winterlude Festival",
+        "surge_zone": "DOWNTOWN"
+      }
+    },
+    "consent": {
+      "driver_consented": true,
+      "consent_version": "1.0",
+      "consent_timestamp": "2026-07-06T21:32:20.388541+00:00"
+    },
+    "audit": {
+      "rule_zero": true,
+      "logged_by": "THE-GATHERING",
+      "immutable": true,
+      "hash": "5c78a6133f8864ae0640ad60e4337935ee45af5865bbd58032cd2338cfb7f22c",
+      "prev_receipt_id": null
+    },
+    "meta": {
+      "environment": "PRODUCTION",
+      "pipeline_version": "1.0.0",
+      "tags": [
+        "rideshare",
+        "ottawa",
+        "event",
+        "surge_schedule"
+      ]
+    }
+  }
+}

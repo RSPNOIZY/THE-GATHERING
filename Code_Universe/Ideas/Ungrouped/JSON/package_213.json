@@ -1,0 +1,40 @@
+{
+  "name": "@pivotal-tools/commons-vscode",
+  "version": "0.2.4",
+  "description": "commons-vscode",
+  "license": "MIT",
+  "repository": "",
+  "author": "Kris De Volder <kdevolder@pivotal.io>",
+  "engines": {
+    "npm": ">=3.0.0",
+    "vscode": "^1.75.0"
+  },
+  "keywords": [],
+  "files": [
+    "src",
+    "lib",
+    "icons"
+  ],
+  "main": "lib/index.js",
+  "typings": "lib/index.d.ts",
+  "scripts": {
+    "clean": "rm -rf lib node_modules package-lock.json",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "lint": "eslint src",
+    "prepack": "tsc -p ./ && npm run lint"
+  },
+  "dependencies": {
+    "@pivotal-tools/jvm-launch-utils": "0.0.23",
+    "deep-equal": "^2.2.3",
+    "portfinder": "^1.0.38"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/vscode": "1.75.0",
+    "eslint": "^10.0.1",
+    "typescript": "^5.8.0",
+    "typescript-eslint": "^8.56.0",
+    "vscode-languageclient": "^9.0.1"
+  }
+}

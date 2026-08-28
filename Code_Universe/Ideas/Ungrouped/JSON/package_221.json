@@ -1,0 +1,14 @@
+{
+  "name": "noizy-slack",
+  "version": "1.0.0",
+  "description": "NOIZY.AI Slack Bot (Socket Mode)",
+  "main": "bot.js",
+  "scripts": {
+    "start": "node bot.js"
+  },
+  "dependencies": {
+    "@slack/bolt": "^3.16.0",
+    "dotenv": "^16.4.5",
+    "axios": "^1.6.7"
+  }
+}

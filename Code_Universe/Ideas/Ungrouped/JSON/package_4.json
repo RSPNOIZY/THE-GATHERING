@@ -1,0 +1,21 @@
+{
+  "name": "noizy-ms",
+  "version": "0.1.0",
+  "private": true,
+  "description": "NOIZY Microsoft Graph MCP servers — master identity rspnoizy@outlook.com",
+  "type": "module",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "auth": "node packages/graph-client/src/cli-auth.mjs",
+    "mcp:stdio": "node apps/mcp-stdio/src/server.mjs",
+    "mcp:worker:dev": "npm run dev -w @noizy-ms/mcp-worker",
+    "mcp:worker:deploy": "npm run deploy -w @noizy-ms/mcp-worker",
+    "smoke": "node scripts/smoke.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

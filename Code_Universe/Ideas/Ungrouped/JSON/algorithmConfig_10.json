@@ -1,0 +1,77 @@
+{
+	"version": "1.0",
+	"mode": 2,
+	"nodes": [
+		{
+				"name": "input_0",
+				"type": "imageProducer",
+				"config":   {
+					"keyMaps":  {
+						"intParam": {
+							"input_channel": 0
+						}
+					}
+				}
+		},
+		{
+				"name": "input_1",
+				"type": "imageProducer",
+				"config":   {
+					"keyMaps":  {
+						"intParam": {
+							"input_channel": 1
+						}
+					}
+				}
+		},
+		{
+				"name": "input_2",
+				"type": "imageProducer",
+				"config":   {
+					"keyMaps":  {
+						"intParam": {
+							"input_channel": 2
+						}
+					}
+				}
+		},
+		{
+				"name":  "interactive_matting_0",
+				"type": "interactive_matting",
+				"config":   {
+					"keyMaps":  {
+						"intParam": {
+							"interactive_matting_method": 1,
+							"interactive_matting_insidemem": 1
+						},
+						"floatParam":   {
+						},
+						"stringParam":  {
+							"model_name": "tt_interactive_matting"
+						}
+					}
+				}
+		}
+
+	],
+	"links": [
+		{
+			"fromNode": "input_0",
+			"fromIndex": 0,
+			"toNode": "interactive_matting_0",
+			"toIndex": 0
+		},
+		{
+			"fromNode": "input_1",
+			"fromIndex": 0,
+			"toNode": "interactive_matting_0",
+			"toIndex": 1
+		},
+		{
+			"fromNode": "input_2",
+			"fromIndex": 0,
+			"toNode": "interactive_matting_0",
+			"toIndex": 2
+		}
+	]
+}

@@ -1,0 +1,28 @@
+{
+	"ae_tool" : "AmazingEditor",
+	"bALG_BACH_CONFIG" : true,
+	"effect" : 
+	{
+		"Link" : 
+		[
+			{
+				"path" : "AmazingFeature/",
+				"type" : "AmazingFeature",
+				"zorder" : 8011
+			}
+		],
+		"model_names" : 
+		{
+			"alg_model" : 
+			[
+				"tt_facefitting1220",
+				"tt_face",
+				"tt_face_extra",
+				"tt_fsnew_base_jianying",
+				"tt_freid"
+			]
+		}
+	},
+	"name" : "5.0.0MACB0227610DA794B739028E1D46F042E01",
+	"version" : "10.1.0"
+}

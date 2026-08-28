@@ -1,0 +1,45 @@
+{
+	"version":	"1.0",
+	"mode":	2,
+	"name":	"AlgorithmGraph_Hotumn",
+	"nodes":	[{
+			"name":	"blit_0",
+			"type":	"blit",
+			"config":	{
+				"keyMaps":	{
+					"intParam":	{
+					},
+					"floatParam":	{
+					},
+					"stringParam":	{
+					},
+					"pathParam":	{
+					}
+				},
+				"size":	{
+					"width":	360,
+					"height":	640
+				}
+			}
+		}, {
+			"name":	"skin_seg_0",
+			"type":	"skin_seg",
+			"config":	{
+				"keyMaps":	{
+					"intParam":	{
+					},
+					"floatParam":	{
+					},
+					"stringParam":	{
+						"skin_seg_model_key":	"tt_skin_seg_hypic_backlight"
+					}
+				}
+			}
+		}],
+	"links":	[{
+			"fromNode":	"blit_0",
+			"fromIndex":	0,
+			"toNode":	"skin_seg_0",
+			"toIndex":	0
+		}]
+}

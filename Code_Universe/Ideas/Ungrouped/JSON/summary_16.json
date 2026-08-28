@@ -1,0 +1,25 @@
+{
+  "volume": "/Volumes/4TB Big Fish",
+  "slug": "4TB_Big_Fish_",
+  "timestamp": "20260420T055443Z",
+  "size": "1.7T",
+  "top_level_entries": 4,
+  "code": {
+    "git_dirs": 0,
+    "package_json": 0,
+    "pyproject": 0,
+    "cargo": 0,
+    "gemfile": 0,
+    "go_mod": 0
+  },
+  "secrets_pattern_count": 0,
+  "media": {
+    "wav": 82018,
+    "aif": 501,
+    "flac": 0,
+    "logicx": 0,
+    "ptx": 0
+  },
+  "audit_path": "/Users/m2ultra/NOIZYANTHROPIC/infra/scans/scan-reports/4TB_Big_Fish_/20260420T055443Z/audit.md",
+  "inventory_path": "/Users/m2ultra/NOIZYANTHROPIC/infra/scans/scan-reports/4TB_Big_Fish_/20260420T055443Z/inventory.txt"
+}

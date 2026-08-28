@@ -1,0 +1,13 @@
+{
+	"bALG_BACH_CONFIG" : true,
+	"effect" : 
+	{
+		"Link" : [],
+		"model_names":
+        {
+            "matting":["tt_matting_video"]
+        }
+	},
+	"name" : "ai_matting",
+	"version" : "16.5.0"
+}

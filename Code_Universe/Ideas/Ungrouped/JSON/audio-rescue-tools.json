@@ -1,0 +1,40 @@
+{
+  "target": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE",
+  "config": "/Users/m2ultra/duplicate-scans/audio-rescue-cleanup.config.json",
+  "tool": "/Users/m2ultra/duplicate-scans/audio_rescue_cleanup_tool.py",
+  "workflow": [
+    {
+      "name": "scan",
+      "purpose": "Read local files, group exact byte-identical duplicates, and write a manifest JSON.",
+      "destructive": false,
+      "command": "/Users/m2ultra/duplicate-scans/audio_rescue_cleanup_tool.py scan 2> /Users/m2ultra/duplicate-scans/audio-rescue-scan.errors.log"
+    },
+    {
+      "name": "plan",
+      "purpose": "Build a quarantine plan from a manifest. All actions start with approved=false.",
+      "destructive": false,
+      "command_template": "/Users/m2ultra/duplicate-scans/audio_rescue_cleanup_tool.py plan --manifest MANIFEST_JSON"
+    },
+    {
+      "name": "dry_run_quarantine",
+      "purpose": "Preview approved moves from a plan without moving files.",
+      "destructive": false,
+      "command_template": "/Users/m2ultra/duplicate-scans/audio_rescue_cleanup_tool.py quarantine --plan PLAN_JSON"
+    },
+    {
+      "name": "execute_quarantine",
+      "purpose": "Move only approved=true plan entries into the quarantine folder.",
+      "destructive": true,
+      "command_template": "/Users/m2ultra/duplicate-scans/audio_rescue_cleanup_tool.py quarantine --plan PLAN_JSON --execute"
+    }
+  ],
+  "latest_scan": {
+    "manifest": "/Users/m2ultra/duplicate-scans/audio-rescue/audio-rescue-dupes-20260618-145001.manifest.json",
+    "result": "No locally readable files >= 10 MB were exposed by the target path during the scan.",
+    "candidate_files_indexed": 0,
+    "duplicate_group_count": 0,
+    "potential_reclaim": "0 B",
+    "filesystem_note": "A direct ls of the target returned Interrupted system call, indicating the Google Drive path is not reliably materialized locally."
+  },
+  "next_required_condition": "Make the _AUDIO_RESCUE folder available offline/local in Google Drive or copy it to a fully local disk path, then rerun the scan command."
+}

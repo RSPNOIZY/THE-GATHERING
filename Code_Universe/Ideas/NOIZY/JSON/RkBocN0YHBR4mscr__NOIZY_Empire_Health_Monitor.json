@@ -1,0 +1,249 @@
+{
+  "name": "NOIZY Empire Health Monitor",
+  "nodes": [
+    {
+      "id": "trigger",
+      "name": "Every 5 Minutes",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        0
+      ],
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes",
+              "minutesInterval": 5
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "gabriel",
+      "name": "Check GABRIEL",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        300,
+        -200
+      ],
+      "parameters": {
+        "url": "http://localhost:7777/health",
+        "method": "GET",
+        "options": {
+          "timeout": 5000
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "id": "n8n_self",
+      "name": "Check n8n",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        300,
+        -50
+      ],
+      "parameters": {
+        "url": "http://localhost:5678/healthz",
+        "method": "GET",
+        "options": {
+          "timeout": 5000
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "id": "noizy_ai",
+      "name": "Check NOIZY.AI",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        300,
+        100
+      ],
+      "parameters": {
+        "url": "http://localhost:7778/health",
+        "method": "GET",
+        "options": {
+          "timeout": 5000
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "id": "voice_bridge",
+      "name": "Check Voice Bridge",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        300,
+        250
+      ],
+      "parameters": {
+        "url": "http://localhost:8080/health",
+        "method": "GET",
+        "options": {
+          "timeout": 5000
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "id": "ollama",
+      "name": "Check Ollama",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        300,
+        400
+      ],
+      "parameters": {
+        "url": "http://localhost:11434/api/tags",
+        "method": "GET",
+        "options": {
+          "timeout": 5000
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "id": "check_failures",
+      "name": "Check for Failures",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        600,
+        100
+      ],
+      "parameters": {
+        "jsCode": "const services = [\n  {name: \"GABRIEL\", url: \"http://localhost:7777/health\"},\n  {name: \"n8n\", url: \"http://localhost:5678/healthz\"},\n  {name: \"NOIZY.AI\", url: \"http://localhost:7778/health\"},\n  {name: \"Voice Bridge\", url: \"http://localhost:8080/health\"},\n  {name: \"Ollama\", url: \"http://localhost:11434/api/tags\"}\n];\n\nconst items = $input.all();\nconst results = [];\n\nfor (let i = 0; i < services.length; i++) {\n  const item = items[i];\n  const hasError = !item || item.json.error || (item.json.statusCode && item.json.statusCode >= 400);\n  results.push({\n    service: services[i].name,\n    status: hasError ? \"DOWN\" : \"UP\",\n    timestamp: new Date().toISOString(),\n    details: item ? JSON.stringify(item.json).substring(0, 200) : \"No response\"\n  });\n}\n\nconst downServices = results.filter(r => r.status === \"DOWN\");\n\nreturn [{\n  json: {\n    allHealthy: downServices.length === 0,\n    totalChecked: services.length,\n    downCount: downServices.length,\n    downServices: downServices.map(s => s.service),\n    results: results,\n    timestamp: new Date().toISOString()\n  }\n}];"
+      }
+    },
+    {
+      "id": "alert_log",
+      "name": "Alert Log",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        900,
+        100
+      ],
+      "parameters": {
+        "jsCode": "const data = $input.first().json;\n\nif (!data.allHealthy) {\n  console.log(\"[ALERT] \" + data.downCount + \" service(s) DOWN: \" + data.downServices.join(\", \"));\n  return [{ json: { alert: true, message: \"NOIZY EMPIRE ALERT: \" + data.downServices.join(\", \") + \" DOWN\", ...data } }];\n} else {\n  console.log(\"[OK] All \" + data.totalChecked + \" services healthy at \" + data.timestamp);\n  return [{ json: { alert: false, message: \"All services healthy\", ...data } }];\n}"
+      }
+    }
+  ],
+  "connections": {
+    "Every 5 Minutes": {
+      "main": [
+        [
+          {
+            "node": "Check GABRIEL",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Check n8n",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Check NOIZY.AI",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Check Voice Bridge",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Check Ollama",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check GABRIEL": {
+      "main": [
+        [
+          {
+            "node": "Check for Failures",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check n8n": {
+      "main": [
+        [
+          {
+            "node": "Check for Failures",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check NOIZY.AI": {
+      "main": [
+        [
+          {
+            "node": "Check for Failures",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check Voice Bridge": {
+      "main": [
+        [
+          {
+            "node": "Check for Failures",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check Ollama": {
+      "main": [
+        [
+          {
+            "node": "Check for Failures",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check for Failures": {
+      "main": [
+        [
+          {
+            "node": "Alert Log",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "America/Toronto",
+    "saveDataErrorExecution": "all",
+    "saveDataSuccessExecution": "all",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  }
+}

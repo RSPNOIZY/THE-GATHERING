@@ -1,0 +1,59 @@
+{
+  "receipt": {
+    "receipt_id": "7b5428b5-fb0e-4768-9d5d-2b8d6acf8dc9",
+    "workstream": "RIDESHARE",
+    "project_ref": "GABRIEL",
+    "account": "rspdrives@gmail.com",
+    "vehicle": "2026-HONDA-CRV-HYBRID",
+    "timestamp_utc": "2026-07-06T21:32:20.557095+00:00",
+    "session_id": "f60770be-1714-4ac9-a7c8-9518ff8d051c",
+    "action": {
+      "type": "SURGE",
+      "source": "PYTHON",
+      "description": "Surge event \u2014 2.4x in KANATA",
+      "payload": {
+        "zone": "KANATA",
+        "multiplier": 2.4,
+        "trigger": "EVENT",
+        "event_ref": "Canadian Tire Centre \u2014 NHL / Concert Post-Show",
+        "start_time": "2026-07-07 21:30",
+        "predicted": true
+      }
+    },
+    "data": {
+      "trip_id": null,
+      "platform": null,
+      "earnings_gross": null,
+      "earnings_net": null,
+      "surge_multiplier": 2.4,
+      "miles": null,
+      "duration_minutes": null,
+      "pickup_geo": null,
+      "dropoff_geo": null,
+      "ottawa_context": {
+        "surge_zone": "KANATA"
+      }
+    },
+    "consent": {
+      "driver_consented": true,
+      "consent_version": "1.0",
+      "consent_timestamp": "2026-07-06T21:32:20.557095+00:00"
+    },
+    "audit": {
+      "rule_zero": true,
+      "logged_by": "THE-GATHERING",
+      "immutable": true,
+      "hash": "6a524433fb19df07afe8c32ac7d0f6ba05027ab350123804519d141431db2d1b",
+      "prev_receipt_id": null
+    },
+    "meta": {
+      "environment": "PRODUCTION",
+      "pipeline_version": "1.0.0",
+      "tags": [
+        "rideshare",
+        "gabriel",
+        "rspdrives"
+      ]
+    }
+  }
+}

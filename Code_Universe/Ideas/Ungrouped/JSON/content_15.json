@@ -1,0 +1,10 @@
+{
+    "filemap" : {
+        "prefab": "prefabs/LumiRoot.prefab"
+    },
+	"ae_tool" : "AmazingEditor",
+	"content" : {},
+	"needblend" : false,
+	"tag" : "AMG_1774787056595151094110252587489435443351",
+	"version" : "1.0"
+}

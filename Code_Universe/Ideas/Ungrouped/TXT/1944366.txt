@@ -1,0 +1,21 @@
+<root>
+    <CtrlPanel helpURL="MixerFXRingMod.html" style="MixerFXPanel" rect="[x:0 y:0 w:228 h:228]" id="0">
+        <CtrlPanel name="MixerFXTitlePanel" rect="[x:0 y:0 w:228 h:50]" id="0" />
+        <CtrlComboBox name="RingMod_Mode" style="MixerFXCombo" rect="[x:90 y:64 w:50 h:16]" id="1001" />
+        <CtrlLabel style="MixerFXLabelDark" rect="[x:62 y:65 w:24 h:15]" id="2001" text="Mode" />
+        <CtrlLabel name="CtrlLabel" style="MixerFXUnitsLabel" rect="[x:166 y:92 w:9 h:10]" id="100000" text="0" />
+        <CtrlPanel name="CtrlPanel" style="MixerFXIndicatorPanel" rect="[x:24 y:100 w:66 h:58]" id="100000" />
+        <CtrlLabel name="CtrlLabel" style="MixerFXUnitsLabel" rect="[x:29 y:100 w:8 h:10]" id="100000" text="0" />
+        <CtrlPanel name="CtrlPanel" style="MixerFXIndicatorPanel" rect="[x:136 y:100 w:66 h:58]" id="100000" />
+        <CtrlKnob name="RingMod_Drive" style="MixerFXKnobLarge" rect="[x:37 y:113 w:53 h:53]" id="1000" />
+        <CtrlKnob name="RingMod_Pitch" style="MixerFXKnobLarge" rect="[x:149 y:113 w:53 h:53]" id="1002" />
+        <CtrlLabel name="CtrlLabel" style="MixerFXUnitsLabel" rect="[x:138 y:152 w:10 h:10]" id="100000" text="-6" />
+        <CtrlLabel name="CtrlLabel" style="MixerFXUnitsLabel" rect="[x:23 y:153 w:13 h:10]" id="100000" text="-oo" />
+        <CtrlLabel name="CtrlLabel" style="MixerFXUnitsLabel" rect="[x:76 y:153 w:24 h:10]" id="100000" text="+28.6" />
+        <CtrlLabel name="CtrlLabel" style="MixerFXUnitsLabel" rect="[x:189 y:153 w:12 h:10]" id="100000" text="+6" />
+        <CtrlLabel name="CtrlLabel" style="MixerFXUnitsLabel" rect="[x:50 y:154 w:13 h:10]" id="100000" text="dB" />
+        <CtrlLabel name="CtrlLabel" style="MixerFXUnitsLabel" rect="[x:161 y:154 w:13 h:10]" id="100000" text="Oct" />
+        <CtrlLabel style="MixerFXLabelDark" rect="[x:45 y:162 w:26 h:15]" id="2000" text="Drive" />
+        <CtrlLabel style="MixerFXLabelDark" rect="[x:157 y:162 w:26 h:15]" id="2002" text="Pitch" />
+    </CtrlPanel>
+</root>

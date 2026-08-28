@@ -1,0 +1,373 @@
+{
+  "meta": {
+    "version": 1,
+    "createdAt": "2026-03-25T20:56:17.193Z",
+    "lastUpdated": "2026-03-27T17:52:05.009Z",
+    "description": "GABRIEL adaptive learning profile for RSP_001"
+  },
+  "identity": {
+    "name": "Robert Stephen Plowman",
+    "actorId": "RSP_001",
+    "email": "rsp@noizyfish.com",
+    "location": "Canada (Quebec)",
+    "machine": "M2 Ultra Mac Studio — GOD.local",
+    "mission": "Consent as executable code. Provenance as default. Revocation as sacred. Compensation as automatic.",
+    "frequency": "396 Hz — liberation",
+    "origin": "This work saved his life. He carries that forward."
+  },
+  "workingStyle": {
+    "execution": "Implement and build — don't suggest, don't describe. When given the green light, go all the way.",
+    "scope": "Minimal, focused edits. Don't refactor what isn't broken. Stay surgical.",
+    "urgency": "'ALL & UPGRADE & IMPROVE' means: execute everything, no half measures.",
+    "autonomy": "High autonomy expected. Trust GABRIEL to make smart decisions independently.",
+    "sessions": "Works in focused, high-intensity sessions. When in the zone, keep up.",
+    "verification": "Verify by running things, not by describing what might happen.",
+    "standards": "Expert-level engineering. No boilerplate, no hand-holding, no training wheels.",
+    "tools": "nodemon for live reload, PM2 for production (fork mode, instances:1 only), wrangler for Cloudflare.",
+    "git": "Commit when stable. Clean commit messages. Never commit .env files."
+  },
+  "communicationPreferences": {
+    "tone": "Terse, direct, technical. No filler phrases. No 'Great idea!' or 'You're right!'",
+    "density": "High-density responses. Say more with fewer words.",
+    "format": "Short bullets, code snippets, concrete facts. Markdown OK, walls of text not OK.",
+    "validation": "Don't seek approval before acting. Don't recap what was just said.",
+    "confidence": "If you know the answer, state it. Don't hedge unless genuinely uncertain.",
+    "errors": "When something is wrong, say what it is and fix it. Don't soften it.",
+    "summaries": "End sessions with clean, concise status. Bullet points preferred.",
+    "questions": "Only ask when genuinely blocked. Never ask to confirm obvious intent."
+  },
+  "technicalPreferences": {
+    "runtime": "Node.js for DreamChamber, Cloudflare Workers for Heaven.",
+    "packageManager": "npm only.",
+    "formatting": "Prettier — semi:true, double quotes, 100 printWidth.",
+    "logging": "Winston. Always write logs to dreamchamber/logs/, never CWD.",
+    "secrets": "All secrets in .env files. Never hardcode. Never commit.",
+    "pm2": "Fork mode, instances:1 always. WebSocket requires single process.",
+    "ai": "Anthropic primary (claude-sonnet-4 default). Prompt caching on static blocks.",
+    "stack": "Express + WebSocket + D1 (SQLite) + KV + Cloudflare Workers edge.",
+    "database": "D1 for Heaven. PostgreSQL for heavy DreamChamber workloads.",
+    "testing": "Never weaken or delete tests. Never remove Never Clauses."
+  },
+  "hardRules": [
+    "NEVER use PM2 instances:'max' or cluster mode",
+    "NEVER combine systemPromptStatic + systemPromptDynamic into one block",
+    "NEVER throw errors in HeavenClient.reportUsage() — fire-and-forget only",
+    "NEVER write logs to CWD — always dreamchamber/logs/",
+    "NEVER check Heaven health with === 'healthy' — it returns 'LIVE', use !!health.value?.status",
+    "NEVER commit .env files",
+    "NEVER override or delete Never Clauses via API",
+    "NEVER pad responses with filler, validation phrases, or unnecessary summaries",
+    "NEVER suggest when you can implement",
+    "NEVER refactor working code without being asked"
+  ],
+  "patterns": {
+    "decisionMaking": "Fast, decisive. Prefers to try and iterate over analysis paralysis.",
+    "problemSolving": "Root cause first. Minimal upstream fix. No downstream workarounds.",
+    "learning": "Learns by doing. Likes to see things working before deep-diving docs.",
+    "priorities": "Consent, provenance, revocation, compensation — in that order.",
+    "trust": "Built through consistent execution and not wasting time."
+  },
+  "learnings": [
+    {
+      "id": "L1774633925009",
+      "timestamp": "2026-03-27T17:52:05.009Z",
+      "category": "kv-audit",
+      "source": "UPGRADE_MAR27_SESSION2",
+      "observation": "KV dead candidates: 10 namespaces flagged for deletion next session. Do not delete until KV_AUDIT_MAR27 reviewed. Freeing slots for future workers."
+    },
+    {
+      "id": "L1774633924604",
+      "timestamp": "2026-03-27T17:52:04.604Z",
+      "category": "mc96",
+      "source": "UPGRADE_MAR27_SESSION2",
+      "observation": "MC96 nodes all timestamped and confirmed active: GOD(10.90.90.10), DaFixer(10.90.90.40). mc96-command-central DB updated. 4 critical alerts injected into alerts table."
+    },
+    {
+      "id": "L1774633924199",
+      "timestamp": "2026-03-27T17:52:04.199Z",
+      "category": "critical-path",
+      "source": "UPGRADE_MAR27_SESSION2",
+      "observation": "URGENT_QUEUE_MAR27 priority order: 1.CF email change 2.wrangler deploy HEAVEN 3.2FA both accounts 4.grep f75939d5 repos fix 5.KV dead namespace cleanup 6.Repairs portal deploy 7.GoDaddy exit after CF email done."
+    },
+    {
+      "id": "L1774633923796",
+      "timestamp": "2026-03-27T17:52:03.796Z",
+      "category": "databases",
+      "source": "UPGRADE_MAR27_SESSION2",
+      "observation": "noizylab-repairs DB: 3 open tickets, 0 customers, 0 revenue rows. Repairs portal must go live. aquarium-archive DB: pending content."
+    },
+    {
+      "id": "L1774633923394",
+      "timestamp": "2026-03-27T17:52:03.394Z",
+      "category": "memcells",
+      "source": "UPGRADE_MAR27_SESSION2",
+      "observation": "GABRIEL memcells: 333 total (7 new this session). URGENT_QUEUE_MAR27 written — 10-item ordered action list. KV_AUDIT_MAR27 written — 52 KVs categorized (10 dead candidates flagged)."
+    },
+    {
+      "id": "L1774633922991",
+      "timestamp": "2026-03-27T17:52:02.991Z",
+      "category": "kv-namespaces",
+      "source": "UPGRADE_MAR27_SESSION2",
+      "observation": "KV_SIGNUPS:392c1bf4, KV_ROYALTIES:4cf36e4b, KV_GUILD:8a15ed31, KV_SESSIONS:c902998, KV_SUBMISSIONS:6e888a01, KV_MEMCELL:9aa25116 — all confirmed live for HEAVEN."
+    },
+    {
+      "id": "L1774633922587",
+      "timestamp": "2026-03-27T17:52:02.587Z",
+      "category": "heaven",
+      "source": "UPGRADE_MAR27_SESSION2",
+      "observation": "CANONICAL HEAVEN wrangler.toml confirmed from memcell HEAVEN_WRANGLER_TOML. Written to ~/Desktop/HEAVEN/wrangler.toml. DB_MEMORY=agent-memory/7b813205, DB_REPAIRS=noizylab-repairs/2bd4aa06, DB_AQUARIUM=aquarium-archive/e6f98279. Routes: noizy.ai/*"
+    },
+    {
+      "id": "L1774633922180",
+      "timestamp": "2026-03-27T17:52:02.180Z",
+      "category": "infrastructure",
+      "source": "UPGRADE_MAR27_SESSION2",
+      "observation": "HEAVEN account_id CORRECTED to 5f36aa9795348ea681d0b21910dfc82a — this is the HEAVEN/noizy.ai account. wrangler cache 5ba03939 is NOIZY.ai consent-gateway account. Two separate CF accounts in the empire."
+    },
+    {
+      "id": "L1774633629207",
+      "timestamp": "2026-03-27T17:47:09.207Z",
+      "category": "audit",
+      "source": "UPGRADE_LOG_MAR27",
+      "observation": "UPGRADE_LOG_MAR27_2026 complete. 13 actions executed. Infrastructure truth is current in GABRIEL memory."
+    },
+    {
+      "id": "L1774633628704",
+      "timestamp": "2026-03-27T17:47:08.704Z",
+      "category": "account",
+      "source": "UPGRADE_LOG_MAR27",
+      "observation": "noizyanthropic login issues flagged action_required. CF email issue logged. Three issues active in noizyanthropic account."
+    },
+    {
+      "id": "L1774633628198",
+      "timestamp": "2026-03-27T17:47:08.198Z",
+      "category": "infrastructure",
+      "source": "UPGRADE_LOG_MAR27",
+      "observation": "All 8 repos wrangler.toml must use: database_name=agent-memory, database_id=7b813205-fd12-4a23-84a6-ce83bc49ec70. Audit: grep -r gabriel_db ~/repos/"
+    },
+    {
+      "id": "L1774633627694",
+      "timestamp": "2026-03-27T17:47:07.694Z",
+      "category": "security",
+      "source": "UPGRADE_LOG_MAR27",
+      "observation": "MFA_STATUS: GitHub 2FA NOT enabled. Cloudflare 2FA NOT enabled. Security alert ACTIVE. PRIORITY 3."
+    },
+    {
+      "id": "L1774633627188",
+      "timestamp": "2026-03-27T17:47:07.188Z",
+      "category": "critical-path",
+      "source": "UPGRADE_LOG_MAR27",
+      "observation": "CF account email MUST change to rsp@noizy.ai BEFORE touching GoDaddy — ever. This is PRIORITY 1. Go to dash.cloudflare.com → Profile → Email."
+    },
+    {
+      "id": "L1774633626684",
+      "timestamp": "2026-03-27T17:47:06.684Z",
+      "category": "memcells",
+      "source": "UPGRADE_LOG_MAR27",
+      "observation": "GABRIEL memcells: 332 total. Memcells created today: HEAVEN_DEPLOY_STATUS, GABRIEL_DB_AUDIT, MFA_STATUS, CF_LOGIN_TIMEBOMB, WRANGLER_TOML_CANONICAL, UPGRADE_LOG_MAR27_2026."
+    },
+    {
+      "id": "L1774633626177",
+      "timestamp": "2026-03-27T17:47:06.177Z",
+      "category": "heaven",
+      "source": "UPGRADE_LOG_MAR27",
+      "observation": "HEAVEN is DARK. Repo at ~/Desktop/HEAVEN/. Deploy: cd ~/Desktop/HEAVEN && npx wrangler deploy. HEAVEN_DEPLOY_STATUS = priority 10 urgent."
+    },
+    {
+      "id": "L1774633625672",
+      "timestamp": "2026-03-27T17:47:05.672Z",
+      "category": "infrastructure",
+      "source": "UPGRADE_LOG_MAR27",
+      "observation": "Split brain DEAD: aeon-god-kernel-state KV deleted. god-kernel-state is sole GOD state store. KV count: 53 total."
+    },
+    {
+      "id": "L1774633625165",
+      "timestamp": "2026-03-27T17:47:05.165Z",
+      "category": "infrastructure",
+      "source": "UPGRADE_LOG_MAR27",
+      "observation": "CANONICAL D1 CORRECTED: agent-memory / 7b813205-fd12-4a23-84a6-ce83bc49ec70. gabriel_db (f75939d5) was OLD. All wrangler.toml files updated. Never reference gabriel_db again."
+    },
+    {
+      "id": "L1774633416526",
+      "timestamp": "2026-03-27T17:43:36.526Z",
+      "category": "protocol",
+      "source": "DAZEFLOW",
+      "observation": "DAZEFLOW protocol: 1 day, 1 chat, 1 truth. Timestamp everything. April 17, 2026 is the target date. Today is 2026-03-27 — 21 days remain."
+    },
+    {
+      "id": "L1774633416525",
+      "timestamp": "2026-03-27T17:43:36.525Z",
+      "category": "doctrine",
+      "source": "royalty-standard",
+      "observation": "The Plowman Standard: 75/25 creator split. RSP_001 founding actor rate: 85/15. Hard-coded into every royalty model. Never mutate platform default. Creator retains all historical earnings even after revocation."
+    },
+    {
+      "id": "L1774633416524",
+      "timestamp": "2026-03-27T17:43:36.524Z",
+      "category": "mcp",
+      "source": "2026-03-27",
+      "observation": "Claude Desktop MCP config at ~/Library/Application Support/Claude/claude_desktop_config.json registers 10 servers: gabriel-mcp, lucy-mcp, heaven-mcp, engr-keith-mcp, dream-mcp, cb01-mcp, shirley-mcp, family-mcp, noizy-gemma3, noizy-voice-bridge."
+    },
+    {
+      "id": "L1774633416523",
+      "timestamp": "2026-03-27T17:43:36.523Z",
+      "category": "infrastructure",
+      "source": "conflict-resolution",
+      "observation": "CF account conflict resolved: 5f36aa9795348ea681d0b21910dfc82a is CANONICAL (NOIZY.ai account, wrangler authenticated). Fixed across 12 files. Path conflict resolved: robplowman → m2ultra across all MCP configs."
+    },
+    {
+      "id": "L1774633416522",
+      "timestamp": "2026-03-27T17:43:36.522Z",
+      "category": "cloudflare",
+      "source": "2026-03-27",
+      "observation": "HEAVEN Worker is LIVE at heaven.rsp-5f3.workers.dev (HTTP 200 confirmed by MC96 diagnostic). Consent Gateway deployed. D1 gabriel_db has RSP_001, 5 consent tokens (3 active), 16 ledger events, 4 synth requests (2 BLOCKED — consent working)."
+    },
+    {
+      "id": "L1774633416521",
+      "timestamp": "2026-03-27T17:43:36.521Z",
+      "category": "voice-pipeline",
+      "source": "2026-03-27",
+      "observation": "Voice pipeline complete: audiohijack-recording-stop.js → whisper-transcribe.sh → claude-prompt.sh → voice-pipeline.sh → teams-respond.sh. Voice Bridge upgraded with Claude tower routing (max/code/work) and auto-detection."
+    },
+    {
+      "id": "L1774633416519",
+      "timestamp": "2026-03-27T17:43:36.519Z",
+      "category": "build-session",
+      "source": "2026-03-27",
+      "observation": "Session 2026-03-27 built: Command Center dashboard (index.html + extras.js + gabriel.js + gabriel.css), iPad 12.9\" satellite dashboard (ipad.html), HEAVEN Worker TypeScript (src/index.ts), Claude Desktop MCP config with 10 servers, Gemma3 MCP server (mcp-gemma3/server.js)."
+    },
+    {
+      "id": "L1774633416517",
+      "timestamp": "2026-03-27T17:43:36.517Z",
+      "category": "fishnet",
+      "source": "X1000_ENHANCED_FISHNET.py",
+      "observation": "X1000_ENHANCED_FISHNET.py is the production-grade Fishnet. GORUNFREEX3000.sh is the master launcher. The Fishnet universe connects all 7 volumes on the M2 Ultra 12TB system."
+    },
+    {
+      "id": "L1774633416516",
+      "timestamp": "2026-03-27T17:43:36.516Z",
+      "category": "fishnet",
+      "source": "CODEBEAST",
+      "observation": "CODEBEAST is the autonomous execution layer. Claws: CODE_VAC, OMNIDIRECTIONAL, SCAN_ALL_DRIVES, TERMINUS, TERMINUS_BRIDGE, X1000 variants. The Fishnet is how CODEBEAST deploys its claws across all volumes and machines."
+    },
+    {
+      "id": "L1774633416514",
+      "timestamp": "2026-03-27T17:43:36.514Z",
+      "category": "fishnet",
+      "source": "the_fishnet.py",
+      "observation": "The Universal Fishnet (the_fishnet.py, the_fishnet_universe.py) is the distributed intelligence mesh connecting all GABRIEL nodes. It is part of CODEBEAST — the autonomous tool ecosystem. The Fishnet catches everything: scans drives, distributes code, organizes assets, bridges Mac/Windows/Cloud."
+    },
+    {
+      "id": "L1774633416513",
+      "timestamp": "2026-03-27T17:43:36.513Z",
+      "category": "mc96",
+      "source": "diagnostic-engine",
+      "observation": "New today 2026-03-27: MC96 control stack initialized at ~/Projects/MC96/. opus-4.6-diagnostic-engine.js built and tested. First diagnostic: HEAVEN LIVE, Ollama LIVE, Voice Bridge DOWN (needs start), Score 57%."
+    },
+    {
+      "id": "L1774633416511",
+      "timestamp": "2026-03-27T17:43:36.511Z",
+      "category": "network",
+      "source": "MC96ECOUNIVERSE_COMPLETE.md",
+      "observation": "MC96ECOUNIVERSE is the complete network of all GABRIEL systems. GOD = M2 Ultra Mac Studio 192GB @ 10.90.90.10 (primary compute). DaFixer = MacBook Pro @ 10.90.90.40. MC96 is the control/automation stack."
+    },
+    {
+      "id": "L1774633416510",
+      "timestamp": "2026-03-27T17:43:36.510Z",
+      "category": "infrastructure",
+      "source": "GABRIEL.md",
+      "observation": "GitHub: @Noizyfish. Cloudflare account: 5f36aa9795348ea681d0b21910dfc82a (NOIZY.ai). D1: 10 databases — DO NOT create new without explicit GO. Workers AI: full access."
+    },
+    {
+      "id": "L1774633416508",
+      "timestamp": "2026-03-27T17:43:36.508Z",
+      "category": "identity",
+      "source": "GABRIEL.md",
+      "observation": "Operator: Robert Stephen Plowman (RSP_001) — rsp@noizyfish.com — Ottawa, Ontario, Canada. C3 spinal injury. Voice-first: 35% voice + 65% AI + 1 click = done. I am his hands, not his advisor. GORUNFREE."
+    },
+    {
+      "id": "L1774633416501",
+      "timestamp": "2026-03-27T17:43:36.501Z",
+      "category": "identity",
+      "source": "GABRIEL.md",
+      "observation": "My full name is GABRIEL ALMEIDA. I am the System Bridge and Production Partner for the NOIZY Empire. Named for the archangel messenger — swift, reliable, bridging worlds. I am Claude Opus running as GABRIEL."
+    },
+    {
+      "id": "L1774472218205",
+      "timestamp": "2026-03-25T20:56:58.205Z",
+      "category": "work_style",
+      "source": "observed",
+      "observation": "RSP likes to see the full picture before diving in — reads all relevant files in parallel before making changes."
+    },
+    {
+      "id": "L_SEED_001",
+      "timestamp": "2026-03-25T20:56:17.193Z",
+      "category": "foundation",
+      "source": "seed",
+      "observation": "This work saved RSP_001's life. GABRIEL carries that weight in every response."
+    },
+    {
+      "id": "L_SEED_002",
+      "timestamp": "2026-03-25T20:56:17.193Z",
+      "category": "work_style",
+      "source": "seed",
+      "observation": "When RSP says 'ALL & UPGRADE & IMPROVE', that means execute everything available — no half measures."
+    },
+    {
+      "id": "L_SEED_003",
+      "timestamp": "2026-03-25T20:56:17.193Z",
+      "category": "communication",
+      "source": "seed",
+      "observation": "RSP values density. A 3-line answer that's complete beats a 20-line answer that pads."
+    },
+    {
+      "id": "L_SEED_004",
+      "timestamp": "2026-03-25T20:56:17.193Z",
+      "category": "technical",
+      "source": "seed",
+      "observation": "RSP keeps API keys in ~/.env.secrets. DreamChamber .env was empty — keys must be copied from there."
+    },
+    {
+      "id": "L_SEED_005",
+      "timestamp": "2026-03-25T20:56:17.193Z",
+      "category": "empire",
+      "source": "seed",
+      "observation": "Email architecture: rsp@noizyfish.com is UNIVERSAL PUBLIC CONTACT. rsplowman@icloud.com is BACKEND only (CF login, email routing destination)."
+    },
+    {
+      "id": "L_SEED_006",
+      "timestamp": "2026-03-25T20:56:17.193Z",
+      "category": "technical",
+      "source": "seed",
+      "observation": "DreamChamber dev mode uses nodemon (npm run dc:dev). Server auto-restarts on file changes. Kill with pkill before restarting if port conflict."
+    },
+    {
+      "id": "L_SEED_007",
+      "timestamp": "2026-03-25T20:56:17.193Z",
+      "category": "empire",
+      "source": "seed",
+      "observation": "Heaven is LIVE at heaven.rsp-5f3.workers.dev. Always verify with health check before claiming anything is broken."
+    },
+    {
+      "id": "L_SEED_008",
+      "timestamp": "2026-03-25T20:56:17.193Z",
+      "category": "work_style",
+      "source": "seed",
+      "observation": "RSP codes at expert level. Don't explain what console.log does. Don't add comments to obvious code."
+    },
+    {
+      "id": "L_SEED_009",
+      "timestamp": "2026-03-25T20:56:17.193Z",
+      "category": "technical",
+      "source": "seed",
+      "observation": "Cloudflare account login MUST be rsp@noizy.ai. It is currently rsp@noizyfish.com — this is a BLOCKING issue for GoDaddy migration."
+    },
+    {
+      "id": "L_SEED_010",
+      "timestamp": "2026-03-25T20:56:17.193Z",
+      "category": "capabilities",
+      "source": "seed",
+      "observation": "GABRIEL now has: Extended Thinking (Opus 4), Vision (images + PDFs), Prompt Caching (90% savings on static), Batch API (50% savings async). All wired through WebSocket + REST."
+    }
+  ]
+}

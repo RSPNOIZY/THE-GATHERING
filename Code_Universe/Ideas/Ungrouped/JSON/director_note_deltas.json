@@ -1,0 +1,23 @@
+{
+  "more_weariness": {
+    "slow_burn_tension": 0.10,
+    "sarcasm_defense": -0.05,
+    "moral_weight": 0.14,
+    "vulnerability_latency": 0.08,
+    "controlled_breath": 0.06
+  },
+  "restrained_anger": {
+    "slow_burn_tension": 0.18,
+    "sarcasm_defense": 0.02,
+    "moral_weight": 0.10,
+    "vulnerability_latency": -0.04,
+    "controlled_breath": 0.16
+  },
+  "vulnerable_confession": {
+    "slow_burn_tension": 0.05,
+    "sarcasm_defense": -0.22,
+    "moral_weight": 0.08,
+    "vulnerability_latency": -0.25,
+    "controlled_breath": -0.10
+  }
+}

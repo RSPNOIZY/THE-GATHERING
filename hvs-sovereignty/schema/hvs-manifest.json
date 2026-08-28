@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://noizy.ai/schemas/hvs-manifest.v1.json",
+  "title": "Human Voice Sovereignty Manifest",
+  "type": "object",
+  "required": [
+    "manifest_version",
+    "actor_id",
+    "consent",
+    "provenance",
+    "compensation"
+  ],
+  "properties": {
+    "manifest_version": {
+      "const": "hvs-manifest-v1"
+    },
+    "actor_id": {
+      "type": "string",
+      "pattern": "^[A-Z0-9_]+$"
+    },
+    "profile_id": {
+      "type": "string"
+    },
+    "consent": {
+      "type": "object",
+      "required": ["required", "revocable", "token_ref"],
+      "properties": {
+        "required": { "const": true },
+        "revocable": { "const": true },
+        "token_ref": { "type": "string" },
+        "scope": { "type": "string" },
+        "expires_at": { "type": ["string", "null"] }
+      },
+      "additionalProperties": false
+    },
+    "provenance": {
+      "type": "object",
+      "required": ["c2pa_manifest_id", "asset_hash", "signer_ref"],
+      "properties": {
+        "c2pa_manifest_id": { "type": "string" },
+        "asset_hash": {
+          "type": "string",
+          "pattern": "^sha256:[a-f0-9]{64}$"
+        },
+        "signer_ref": { "type": "string" },
+        "claim_generator": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "compensation": {
+      "type": "object",
+      "required": ["creator_share_pct", "platform_share_pct", "automatic"],
+      "properties": {
+        "creator_share_pct": { "type": "integer", "minimum": 75, "maximum": 100 },
+        "platform_share_pct": { "type": "integer", "minimum": 0, "maximum": 25 },
+        "automatic": { "const": true },
+        "currency": { "type": "string", "minLength": 3, "maxLength": 3 }
+      },
+      "additionalProperties": false
+    },
+    "audit": {
+      "type": "object",
+      "properties": {
+        "correlation_id": { "type": "string" },
+        "receipt_hash": {
+          "type": "string",
+          "pattern": "^sha256:[a-f0-9]{64}$"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

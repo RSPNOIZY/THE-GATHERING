@@ -1,0 +1,100 @@
+{
+	"version":	"1.0",
+	"mode":	2,
+	"name":	"5.0.0MACB0227610DA794B739028E1D46F042E01",
+	"nodes":	[{
+			"name":	"blit_0",
+			"type":	"blit",
+			"config":	{
+				"size":	{
+					"width":	128,
+					"height":	224
+				},
+				"keyMaps":	{
+					"intParam":	{
+					},
+					"floatParam":	{
+					},
+					"stringParam":	{
+					},
+					"pathParam":	{
+					}
+				}
+			}
+		}, {
+			"name":	"face_0",
+			"type":	"face",
+			"config":	{
+				"keyMaps":	{
+					"intParam":	{
+						"face_max_num":	5
+					},
+					"floatParam":	{
+					},
+					"stringParam":	{
+						"face_base_model_key":	"tt_fsnew_base_jianying"
+					},
+					"pathParam":	{
+					}
+				}
+			}
+		}, {
+			"name":	"facefitting_0",
+			"type":	"face_fitting",
+			"config":	{
+				"keyMaps":	{
+					"intParam":	{
+						"ff_max_face_num":	5
+					},
+					"floatParam":	{
+						"ff_solver_smooth":	3
+					},
+					"stringParam":	{
+					},
+					"pathParam":	{
+					}
+				}
+			}
+		}, {
+			"name":	"freid_0",
+			"type":	"freid",
+			"config":	{
+				"keyMaps":	{
+					"intParam":	{
+					},
+					"floatParam":	{
+					},
+					"stringParam":	{
+					},
+					"pathParam":	{
+					}
+				}
+			}
+		}],
+	"links":	[{
+			"fromNode":	"blit_0",
+			"fromIndex":	0,
+			"toNode":	"face_0",
+			"toIndex":	0
+		}, {
+			"fromNode":	"blit_0",
+			"fromIndex":	0,
+			"toNode":	"facefitting_0",
+			"toIndex":	0
+		}, {
+			"fromNode":	"blit_0",
+			"fromIndex":	0,
+			"toNode":	"freid_0",
+			"toIndex":	0
+		}, {
+			"fromNode":	"face_0",
+			"fromIndex":	0,
+			"toNode":	"facefitting_0",
+			"toIndex":	1
+		}, {
+			"fromNode":	"face_0",
+			"fromIndex":	0,
+			"toNode":	"freid_0",
+			"toIndex":	1
+		}]
+}

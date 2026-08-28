@@ -1,0 +1,16 @@
+{
+  "name": "aeon-god-kernel",
+  "version": "1.0.0",
+  "description": "THE OMNIPOTENT - Multi-AI Orchestration + Reality Interface + Infinite Battery",
+  "main": "src/index.js",
+  "scripts": {
+    "dev": "npx wrangler dev",
+    "deploy": "npx wrangler deploy",
+    "deploy:prod": "npx wrangler deploy --env production",
+    "tail": "npx wrangler tail",
+    "god": "curl -X POST http://localhost:8787/god -H 'Content-Type: application/json' -d '{\"intent\": \"test\"}'"
+  },
+  "keywords": ["cloudflare", "workers", "ai", "god-kernel", "gorunfree", "omnipotent"],
+  "author": "RSP",
+  "license": "MIT"
+}

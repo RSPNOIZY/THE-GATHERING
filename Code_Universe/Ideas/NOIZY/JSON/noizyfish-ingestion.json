@@ -1,0 +1,251 @@
+{
+  "name": "NOIZYFISH Audio Ingestion Pipeline",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "noizyfish/ingest",
+        "responseMode": "responseNode",
+        "options": {
+          "rawBody": true
+        }
+      },
+      "id": "webhook-trigger",
+      "name": "Audio Upload Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1.1,
+      "position": [240, 300],
+      "webhookId": "noizyfish-ingest"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.cyanite.ai/graphql",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer {{ $env.CYANITE_API_KEY }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "query",
+              "value": "mutation AnalyzeAudio($input: AudioAnalysisInput!) { analyzeAudio(input: $input) { id status bpm key { value } mood { primary } tags { name confidence } } }"
+            },
+            {
+              "name": "variables",
+              "value": "={{ JSON.stringify({ input: { audioUrl: $json.audioUrl } }) }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "cyanite-analysis",
+      "name": "Cyanite Audio Analysis",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [460, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "{{ $env.ZK_VERIFIER_URL }}/prove",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "X-NOIZY-Key",
+              "value": "{{ $env.NOIZY_API_KEY }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "policy",
+              "value": "REAL_HUMAN_ORIGIN"
+            },
+            {
+              "name": "sample_fingerprint",
+              "value": "={{ $json.contentHash }}"
+            },
+            {
+              "name": "signer_public_key",
+              "value": "={{ $json.signerKey }}"
+            },
+            {
+              "name": "origin_registry_hash",
+              "value": "={{ $json.registryHash }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "zk-proof-generation",
+      "name": "ZK Proof Generation",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [680, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Sign the proof receipt\nconst crypto = require('crypto');\n\nconst receipt = {\n  asset_id: $input.first().json.assetId,\n  policy: 'REAL_HUMAN_ORIGIN',\n  proof_valid: $input.first().json.proofResult.valid,\n  proof_hash: $input.first().json.proofResult.proofHash,\n  cyanite: {\n    bpm: $input.first().json.cyaniteResult.bpm,\n    key: $input.first().json.cyaniteResult.key,\n    mood: $input.first().json.cyaniteResult.mood\n  },\n  timestamp: new Date().toISOString()\n};\n\n// Generate receipt hash\nconst receiptString = JSON.stringify(receipt);\nconst receiptHash = crypto\n  .createHash('sha256')\n  .update(receiptString)\n  .digest('hex');\n\nreturn {\n  json: {\n    ...receipt,\n    receiptHash,\n    receiptData: receiptString\n  }\n};"
+      },
+      "id": "sign-receipt",
+      "name": "Sign Receipt",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [900, 300]
+    },
+    {
+      "parameters": {
+        "method": "PUT",
+        "url": "https://{{ $env.CLOUDFLARE_ACCOUNT_ID }}.r2.cloudflarestorage.com/noizyfish-audio/{{ $json.assetId }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer {{ $env.R2_ACCESS_TOKEN }}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "audio/wav"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyContentType": "raw",
+        "rawContentType": "audio/wav",
+        "body": "={{ $binary.data }}",
+        "options": {}
+      },
+      "id": "r2-upload",
+      "name": "Upload to R2",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [1120, 200]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.cloudflare.com/client/v4/accounts/{{ $env.CLOUDFLARE_ACCOUNT_ID }}/d1/database/{{ $env.NOIZYFISH_AUDIT_DB_ID }}/query",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer {{ $env.CLOUDFLARE_API_TOKEN }}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ sql: `INSERT INTO audit_events (id, event_type, asset_id, policy, event_payload, previous_hash, event_hash) VALUES (?, 'INGEST', ?, 'REAL_HUMAN_ORIGIN', ?, ?, ?)`, params: [$json.eventId, $json.assetId, $json.receiptData, $json.previousHash, $json.receiptHash] }) }}",
+        "options": {}
+      },
+      "id": "d1-insert",
+      "name": "Insert Audit Event",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [1120, 400]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ success: true, assetId: $json.assetId, proofId: $json.proofHash, receiptHash: $json.receiptHash }) }}"
+      },
+      "id": "response",
+      "name": "Success Response",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [1340, 300]
+    }
+  ],
+  "connections": {
+    "Audio Upload Webhook": {
+      "main": [
+        [
+          {
+            "node": "Cyanite Audio Analysis",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Cyanite Audio Analysis": {
+      "main": [
+        [
+          {
+            "node": "ZK Proof Generation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ZK Proof Generation": {
+      "main": [
+        [
+          {
+            "node": "Sign Receipt",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Sign Receipt": {
+      "main": [
+        [
+          {
+            "node": "Upload to R2",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Insert Audit Event",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upload to R2": {
+      "main": [
+        [
+          {
+            "node": "Success Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Insert Audit Event": {
+      "main": [
+        [
+          {
+            "node": "Success Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

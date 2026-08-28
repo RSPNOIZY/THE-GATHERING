@@ -1,0 +1,58 @@
+{
+  "receipt": {
+    "receipt_id": "3b47b107-25ee-4165-95c0-0331ef608d3a",
+    "workstream": "RIDESHARE",
+    "project_ref": "GABRIEL",
+    "account": "rspdrives@gmail.com",
+    "vehicle": "2026-HONDA-CRV-HYBRID",
+    "timestamp_utc": "2026-07-06T21:27:26.290048+00:00",
+    "session_id": "335cd0a2-7178-4a40-ab7d-752b1c4d07ac",
+    "action": {
+      "type": "SYSTEM",
+      "source": "GABRIEL",
+      "description": "THE-GATHERING scaffold initialised \u2014 rsp_rideshare_db build sequence started",
+      "payload": {
+        "phases": [
+          "THE-GATHERING scaffold",
+          "rsp_rideshare_db D1 schema",
+          "N8N + Python pipelines",
+          "Honda Google system / LUCY integration"
+        ],
+        "copilot_task": "Research Ottawa YOW flight & surge schedules"
+      }
+    },
+    "data": {
+      "trip_id": null,
+      "platform": null,
+      "earnings_gross": null,
+      "earnings_net": null,
+      "surge_multiplier": null,
+      "miles": null,
+      "duration_minutes": null,
+      "pickup_geo": null,
+      "dropoff_geo": null,
+      "ottawa_context": null
+    },
+    "consent": {
+      "driver_consented": true,
+      "consent_version": "1.0",
+      "consent_timestamp": "2026-07-06T21:27:26.290048+00:00"
+    },
+    "audit": {
+      "rule_zero": true,
+      "logged_by": "THE-GATHERING",
+      "immutable": true,
+      "hash": "76b5c4eff6c3fe9dc29a5a978a292a68ac947e001999c282750904bc21023984",
+      "prev_receipt_id": null
+    },
+    "meta": {
+      "environment": "PRODUCTION",
+      "pipeline_version": "1.0.0",
+      "tags": [
+        "rideshare",
+        "gabriel",
+        "rspdrives"
+      ]
+    }
+  }
+}

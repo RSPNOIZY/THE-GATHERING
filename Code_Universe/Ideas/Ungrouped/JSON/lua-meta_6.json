@@ -1,0 +1,59 @@
+[
+    {
+        "ClassName": "SeekModeScript",
+        "Super": "ScriptComponent",
+        "FilePath": "lua/SeekModeScript.lua",
+        "FileAbsPath": "/Users/bytedance/Movies/JianyingPro/User Data/Cache/effect/57947006/393225e92fe558f1b350b4cd408f5258/AmazingFeature_clear/lua/SeekModeScript.lua",
+        "Properties": [
+            {
+                "VarName": "fact",
+                "VarType": "Double",
+                "Comment": ""
+            },
+            {
+                "VarName": "sat_ratio",
+                "VarType": "Double",
+                "Comment": ""
+            },
+            {
+                "VarName": "intensity",
+                "VarType": "Double",
+                "Comment": ""
+            },
+            {
+                "VarName": "resOffset",
+                "VarType": "Double",
+                "Comment": ""
+            }
+        ],
+        "Methods": [
+            {
+                "FuncName": "new",
+                "Params": [],
+                "Comment": ""
+            },
+            {
+                "FuncName": "constructor",
+                "Params": [],
+                "Comment": ""
+            },
+            {
+                "FuncName": "onStart",
+                "Params": [],
+                "Comment": ""
+            },
+            {
+                "FuncName": "onUpdate",
+                "Params": [],
+                "Comment": ""
+            },
+            {
+                "FuncName": "onEvent",
+                "Params": [],
+                "Comment": ""
+            }
+        ],
+        "Comment": "",
+        "ExportFiles": []
+    }
+]

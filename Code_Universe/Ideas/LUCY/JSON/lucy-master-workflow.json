@@ -1,0 +1,87 @@
+{
+  "name": "Lucy Master Workflow",
+  "nodes": [
+    {
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "position": [250, 300],
+      "parameters": {
+        "path": "lucy-trigger",
+        "responseMode": "onReceived",
+        "responseData": "allEntries"
+      }
+    },
+    {
+      "name": "Route by Event",
+      "type": "n8n-nodes-base.switch",
+      "position": [450, 300],
+      "parameters": {
+        "dataPropertyName": "event",
+        "rules": {
+          "rules": [
+            { "value": "device_connected" },
+            { "value": "audio_started" },
+            { "value": "liner_highlight" },
+            { "value": "vpn_status" }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Log to Notion",
+      "type": "n8n-nodes-base.notion",
+      "position": [650, 200],
+      "parameters": {
+        "operation": "create",
+        "resource": "databasePage",
+        "databaseId": "={{$env.NOTION_DATABASE_ID}}",
+        "title": "=Lucy Event: {{$json.event}}",
+        "properties": {}
+      }
+    },
+    {
+      "name": "Notify Zapier",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [650, 400],
+      "parameters": {
+        "method": "POST",
+        "url": "={{$env.ZAPIER_WEBHOOK_URL}}",
+        "bodyParametersUi": {
+          "parameter": [
+            { "name": "event", "value": "={{$json.event}}" },
+            { "name": "device", "value": "={{$json.device}}" },
+            { "name": "timestamp", "value": "={{$now}}" }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Airfoil Connect",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [650, 500],
+      "parameters": {
+        "method": "POST",
+        "url": "=http://{{$env.AIRFOIL_HOST}}:{{$env.AIRFOIL_PORT}}/speakers/connect",
+        "bodyParametersUi": {
+          "parameter": [
+            { "name": "speaker_id", "value": "={{$json.device_ip}}" },
+            { "name": "volume", "value": "1.0" }
+          ]
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [[{ "node": "Route by Event", "type": "main", "index": 0 }]]
+    },
+    "Route by Event": {
+      "main": [
+        [{ "node": "Log to Notion", "type": "main", "index": 0 }],
+        [{ "node": "Airfoil Connect", "type": "main", "index": 0 }],
+        [{ "node": "Notify Zapier", "type": "main", "index": 0 }],
+        [{ "node": "Log to Notion", "type": "main", "index": 0 }]
+      ]
+    }
+  }
+}

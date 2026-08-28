@@ -1,0 +1,83 @@
+{
+	"version":	"1.0",
+	"mode":	2,
+	"name":	"AlgorithmGraph_RcibVqdrdlbabQc5tdNd5Od3czd",
+	"nodes":	[{
+			"name":	"extTextureProducer",
+			"type":	"ext_texture_producer",
+			"config":	{
+				"keyMaps":	{
+					"intParam":	{
+					},
+					"floatParam":	{
+					},
+					"stringParam":	{
+					}
+				}
+			}
+		}, {
+			"name":	"skin_seg_0",
+			"type":	"skin_seg",
+			"config":	{
+				"keyMaps":	{
+					"intParam":	{
+					},
+					"floatParam":	{
+					},
+					"stringParam":	{
+					}
+				}
+			}
+		}, {
+			"name":	"face_0",
+			"type":	"face",
+			"config":	{
+				"keyMaps":	{
+					"intParam":	{
+					},
+					"floatParam":	{
+					},
+					"stringParam":	{
+					}
+				}
+			}
+		}, {
+			"name":	"textureBlitter",
+			"type":	"texture_blit",
+			"config":	{
+				"size":	{
+					"width":	360,
+					"height":	640
+				},
+				"keyMaps":	{
+					"intParam":	{
+					},
+					"floatParam":	{
+					},
+					"stringParam":	{
+					}
+				}
+			}
+		}],
+	"links":	[{
+			"fromNode":	"extTextureProducer",
+			"fromIndex":	0,
+			"toNode":	"textureBlitter",
+			"toIndex":	0
+		}, {
+			"fromNode":	"face_0",
+			"fromIndex":	0,
+			"toNode":	"skin_seg_0",
+			"toIndex":	1
+		}, {
+			"fromNode":	"textureBlitter",
+			"fromIndex":	0,
+			"toNode":	"skin_seg_0",
+			"toIndex":	0
+		}, {
+			"fromNode":	"textureBlitter",
+			"fromIndex":	0,
+			"toNode":	"face_0",
+			"toIndex":	0
+		}]
+}

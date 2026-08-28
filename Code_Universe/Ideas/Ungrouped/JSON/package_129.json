@@ -1,0 +1,17 @@
+{
+  "name": "@noizy/admin-gateway",
+  "version": "0.1.0",
+  "description": "NOIZY admin gateway for webhook ingestion and event normalization",
+  "author": "Robert Stephen Plowman",
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js"
+  },
+  "dependencies": {
+    "hono": "^4.0.0",
+    "nanoid": "^5.0.0"
+  },
+  "devDependencies": {}
+}

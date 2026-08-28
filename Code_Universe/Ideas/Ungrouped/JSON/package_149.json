@@ -1,0 +1,30 @@
+{
+  "name": "noizy-family-portal",
+  "version": "0.1.0",
+  "description": "NOIZY Family Legacy Portal — Voice archive, estate management, therapeutic arrangements. GORUNFREE.",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -p 3100",
+    "build": "next build",
+    "start": "next start -p 3100",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "next": "^14.2.0",
+    "react": "^18.3.0",
+    "react-dom": "^18.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/react": "^18.3.0",
+    "@types/react-dom": "^18.3.0",
+    "typescript": "^5.3.0"
+  },
+  "noizy": {
+    "constitutional": true,
+    "gorunfree": true,
+    "royalty_floor": 0.75,
+    "noizykidz_tithe": 0.01,
+    "gabriel_url": "http://10.90.90.10:7777"
+  }
+}

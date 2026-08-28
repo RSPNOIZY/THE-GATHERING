@@ -1,0 +1,17 @@
+{
+  "name": "noizy-voice-bridge-remote",
+  "version": "1.0.0",
+  "description": "NOIZY Voice Bridge — Cloud Run mirror of local MCP server",
+  "type": "module",
+  "main": "cloud-run-mcp.mjs",
+  "scripts": {
+    "start": "node cloud-run-mcp.mjs"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "zod": "^3.23.0"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

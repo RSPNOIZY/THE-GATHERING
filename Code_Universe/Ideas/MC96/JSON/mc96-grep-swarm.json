@@ -1,0 +1,224 @@
+{
+  "name": "MC96ECO — Grep Swarm (Parallel Brand Verticals)",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [{ "field": "minutes", "minutesInterval": 30 }]
+        }
+      },
+      "id": "trigger-cron",
+      "name": "Every 30 min",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "path": "mc96-grep",
+        "responseMode": "lastNode",
+        "options": {}
+      },
+      "id": "trigger-webhook",
+      "name": "Manual trigger (webhook)",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [240, 460]
+    },
+    {
+      "parameters": {
+        "batchSize": 1,
+        "options": {}
+      },
+      "id": "split-brands",
+      "name": "Split by brand",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [460, 380]
+    },
+    {
+      "parameters": {
+        "values": {
+          "values": [
+            { "name": "brand", "value": "NOIZY.AI" },
+            {
+              "name": "path",
+              "value": "/Users/m2ultra/NOIZYANTHROPIC/apps/noizy-ai /Users/m2ultra/NOIZYANTHROPIC/landing/noizy"
+            },
+            { "name": "owner", "value": "GABRIEL" }
+          ]
+        }
+      },
+      "id": "brand-noizyai",
+      "name": "NOIZY.AI",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3,
+      "position": [700, 100]
+    },
+    {
+      "parameters": {
+        "values": {
+          "values": [
+            { "name": "brand", "value": "NOIZYLAB" },
+            {
+              "name": "path",
+              "value": "/Users/m2ultra/NOIZYLAB /Users/m2ultra/NOIZYANTHROPIC/NOIZYLAB"
+            },
+            { "name": "owner", "value": "GABRIEL" }
+          ]
+        }
+      },
+      "id": "brand-noizylab",
+      "name": "NOIZYLAB",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3,
+      "position": [700, 200]
+    },
+    {
+      "parameters": {
+        "values": {
+          "values": [
+            { "name": "brand", "value": "DREAMCHAMBER" },
+            {
+              "name": "path",
+              "value": "/Users/m2ultra/NOIZYANTHROPIC/dreamchamber /Users/m2ultra/NOIZYANTHROPIC/_consolidation/THE-GATHERING/DREAMCHAMBER"
+            },
+            { "name": "owner", "value": "GABRIEL" }
+          ]
+        }
+      },
+      "id": "brand-dreamchamber",
+      "name": "DREAMCHAMBER",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3,
+      "position": [700, 300]
+    },
+    {
+      "parameters": {
+        "values": {
+          "values": [
+            { "name": "brand", "value": "NOIZYVOX" },
+            { "name": "path", "value": "/Users/m2ultra/NOIZYANTHROPIC/apps/noizyvox" },
+            { "name": "owner", "value": "LUCY" }
+          ]
+        }
+      },
+      "id": "brand-noizyvox",
+      "name": "NOIZYVOX",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3,
+      "position": [700, 400]
+    },
+    {
+      "parameters": {
+        "values": {
+          "values": [
+            { "name": "brand", "value": "FISHMUSICINC" },
+            { "name": "path", "value": "/Users/m2ultra/NOIZYANTHROPIC/apps/fishmusicinc" },
+            { "name": "owner", "value": "LUCY" }
+          ]
+        }
+      },
+      "id": "brand-fishmusicinc",
+      "name": "FISHMUSICINC",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3,
+      "position": [700, 500]
+    },
+    {
+      "parameters": {
+        "values": {
+          "values": [
+            { "name": "brand", "value": "NOIZYKIDZ" },
+            { "name": "path", "value": "/Users/m2ultra/NOIZYANTHROPIC/apps/noizykidz" },
+            { "name": "owner", "value": "LUCY" }
+          ]
+        }
+      },
+      "id": "brand-noizykidz",
+      "name": "NOIZYKIDZ",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3,
+      "position": [700, 600]
+    },
+    {
+      "parameters": {
+        "command": "={{$env.GREP_SWARM_CMD || 'rg --json --type-add \"web:*.{html,js,ts,tsx,jsx,css}\" \"TODO|FIXME|HACK|NEVER CLAUSE|consent|kill switch\" ' + $json.path + ' | head -200'}}",
+        "options": {}
+      },
+      "id": "grep-exec",
+      "name": "Execute grep",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [940, 350]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Aggregate grep results, tag by brand, route to owner agent\nconst items = $input.all();\nconst byOwner = {};\nfor (const i of items) {\n  const brand = i.json.brand;\n  const owner = i.json.owner;\n  const raw = i.json.stdout || '';\n  const lines = raw.split('\\n').filter(Boolean);\n  byOwner[owner] = byOwner[owner] || {};\n  byOwner[owner][brand] = { count: lines.length, lines: lines.slice(0, 50) };\n}\nreturn [\n  { json: { route: 'GABRIEL', payload: byOwner.GABRIEL || {} } },\n  { json: { route: 'LUCY',    payload: byOwner.LUCY || {} } }\n];\n"
+      },
+      "id": "aggregate-route",
+      "name": "Aggregate + route to GABRIEL/LUCY",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1200, 350]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://heaven.rsp-5f3.workers.dev/api/v1/ledger",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "X-NOIZY-Key", "value": "={{$env.NOIZY_API_KEY}}" },
+            { "name": "Content-Type", "value": "application/json" }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\"event\":\"mc96_grep_swarm\",\"route\":\"{{$json.route}}\",\"ts\":\"{{$now.toISOString()}}\",\"summary\":{{JSON.stringify($json.payload)}}}"
+      },
+      "id": "ledger-log",
+      "name": "Log to HEAVEN ledger",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1460, 350]
+    }
+  ],
+  "connections": {
+    "Every 30 min": { "main": [[{ "node": "Split by brand", "type": "main", "index": 0 }]] },
+    "Manual trigger (webhook)": {
+      "main": [[{ "node": "Split by brand", "type": "main", "index": 0 }]]
+    },
+    "Split by brand": {
+      "main": [
+        [
+          { "node": "NOIZY.AI", "type": "main", "index": 0 },
+          { "node": "NOIZYLAB", "type": "main", "index": 0 },
+          { "node": "DREAMCHAMBER", "type": "main", "index": 0 },
+          { "node": "NOIZYVOX", "type": "main", "index": 0 },
+          { "node": "FISHMUSICINC", "type": "main", "index": 0 },
+          { "node": "NOIZYKIDZ", "type": "main", "index": 0 }
+        ]
+      ]
+    },
+    "NOIZY.AI": { "main": [[{ "node": "Execute grep", "type": "main", "index": 0 }]] },
+    "NOIZYLAB": { "main": [[{ "node": "Execute grep", "type": "main", "index": 0 }]] },
+    "DREAMCHAMBER": { "main": [[{ "node": "Execute grep", "type": "main", "index": 0 }]] },
+    "NOIZYVOX": { "main": [[{ "node": "Execute grep", "type": "main", "index": 0 }]] },
+    "FISHMUSICINC": { "main": [[{ "node": "Execute grep", "type": "main", "index": 0 }]] },
+    "NOIZYKIDZ": { "main": [[{ "node": "Execute grep", "type": "main", "index": 0 }]] },
+    "Execute grep": {
+      "main": [[{ "node": "Aggregate + route to GABRIEL/LUCY", "type": "main", "index": 0 }]]
+    },
+    "Aggregate + route to GABRIEL/LUCY": {
+      "main": [[{ "node": "Log to HEAVEN ledger", "type": "main", "index": 0 }]]
+    }
+  },
+  "active": false,
+  "settings": { "executionOrder": "v1" },
+  "versionId": "mc96-grep-swarm-v1",
+  "meta": { "instanceId": "mc96ecouniverse" },
+  "tags": [{ "name": "mc96" }, { "name": "grep-swarm" }]
+}

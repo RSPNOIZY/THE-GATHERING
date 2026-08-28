@@ -1,0 +1,21 @@
+{
+  "name": "@noizy/session-recall",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "NOIZY cross-session recall — post-session, read-only, operator-invoked. Never injects into live sessions.",
+  "bin": {
+    "session-recall": "./cli.mjs"
+  },
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./cli": "./cli.mjs"
+  },
+  "scripts": {
+    "test": "node test/recall.test.mjs"
+  },
+  "dependencies": {},
+  "engines": {
+    "node": ">=20"
+  }
+}

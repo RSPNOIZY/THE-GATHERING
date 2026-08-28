@@ -1,0 +1,182 @@
+{
+  "name": "NCP Consent Audit",
+  "nodes": [
+    {
+      "id": "webhook",
+      "name": "Consent Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        0,
+        0
+      ],
+      "parameters": {
+        "path": "ncp-consent-audit",
+        "httpMethod": "POST",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "webhookId": "ncp-consent-audit"
+    },
+    {
+      "id": "validate",
+      "name": "Validate & Classify",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        300,
+        0
+      ],
+      "parameters": {
+        "jsCode": "const body = $input.first().json.body || $input.first().json;\n\nconst required = [\"actorId\", \"targetId\", \"resourceType\", \"action\", \"allowed\"];\nconst missing = required.filter(f => body[f] === undefined);\n\nif (missing.length > 0) {\n  return [{ json: { error: true, message: \"Missing fields: \" + missing.join(\", \"), statusCode: 400 } }];\n}\n\nconst entry = {\n  timestamp: new Date().toISOString(),\n  actorId: body.actorId,\n  targetId: body.targetId,\n  resourceType: body.resourceType,\n  action: body.action,\n  allowed: body.allowed,\n  reason: body.reason || \"none\",\n  neverClauseViolation: body.neverClauseViolation || false,\n  severity: (!body.allowed && body.neverClauseViolation) ? \"CRITICAL\" : (!body.allowed ? \"WARNING\" : \"INFO\"),\n  auditId: \"NCP-\" + Date.now() + \"-\" + Math.random().toString(36).substr(2, 6)\n};\n\nreturn [{ json: entry }];"
+      }
+    },
+    {
+      "id": "route",
+      "name": "Route by Severity",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        600,
+        0
+      ],
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "combinator": "and",
+          "conditions": [
+            {
+              "id": "severity-check",
+              "leftValue": "={{ $json.severity }}",
+              "rightValue": "CRITICAL",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "critical_log",
+      "name": "Critical Alert",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        900,
+        -100
+      ],
+      "parameters": {
+        "jsCode": "const entry = $input.first().json;\nconsole.log(\"[CRITICAL NCP VIOLATION] Never Clause breached!\");\nconsole.log(\"Actor: \" + entry.actorId + \" -> Target: \" + entry.targetId);\nconsole.log(\"Action: \" + entry.action + \" on \" + entry.resourceType);\nconsole.log(\"Reason: \" + entry.reason);\nconsole.log(\"Audit ID: \" + entry.auditId);\n// Future: Send to Slack #ncp-violations channel\n// Future: Write to D1 agent-memory database\nreturn [{ json: { ...entry, logged: true, alertSent: false, channel: \"#ncp-violations (pending Slack integration)\" } }];"
+      }
+    },
+    {
+      "id": "normal_log",
+      "name": "Normal Audit Log",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        900,
+        100
+      ],
+      "parameters": {
+        "jsCode": "const entry = $input.first().json;\nconsole.log(\"[NCP AUDIT] \" + entry.severity + \" | \" + entry.actorId + \" -> \" + entry.targetId + \" | \" + entry.action + \" | allowed=\" + entry.allowed);\n// Future: Batch write to D1 aquarium-archive database\nreturn [{ json: { ...entry, logged: true } }];"
+      }
+    },
+    {
+      "id": "respond",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        1200,
+        0
+      ],
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ success: true, auditId: $json.auditId, severity: $json.severity, logged: true }) }}",
+        "options": {
+          "responseCode": 200
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Consent Webhook": {
+      "main": [
+        [
+          {
+            "node": "Validate & Classify",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Validate & Classify": {
+      "main": [
+        [
+          {
+            "node": "Route by Severity",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Route by Severity": {
+      "main": [
+        [
+          {
+            "node": "Critical Alert",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Normal Audit Log",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Critical Alert": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Normal Audit Log": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "America/Toronto",
+    "saveDataErrorExecution": "all",
+    "saveDataSuccessExecution": "all",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  }
+}

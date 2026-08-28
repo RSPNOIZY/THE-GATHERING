@@ -1,0 +1,217 @@
+{
+  "name": "NOIZY — Command Ingest (GOD Channel)",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "command-ingest",
+        "responseMode": "responseNode",
+        "options": {
+          "rawBody": true,
+          "allowedOrigins": "*"
+        }
+      },
+      "id": "webhook-ingest",
+      "name": "POST /webhook/command-ingest",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [240, 300],
+      "webhookId": "command-ingest-001"
+    },
+    {
+      "parameters": {
+        "jsCode": "// ── COMMAND INGEST ROUTER\n// Accepts: { source, agent, command, payload, auth_token }\n// Routes by: command prefix or explicit agent field\n\nconst body = $input.first().json.body || $input.first().json;\nconst { source, agent, command, payload, auth_token } = body;\n\n// Basic auth guard\nconst expected = $env.NOIZY_INGEST_TOKEN || 'noizy-ingest-dev';\nif (auth_token !== expected) {\n  return [{ json: { error: 'Unauthorized', code: 401 } }];\n}\n\n// Normalize command string\nconst cmd = (command || '').trim().toUpperCase();\n\n// Route map\nlet route = 'UNKNOWN';\nif (cmd.startsWith('GOD:') || agent === 'GOD') route = 'GOD';\nelse if (cmd.startsWith('LUCY:') || agent === 'LUCY') route = 'LUCY';\nelse if (cmd.startsWith('GABRIEL:') || agent === 'GABRIEL') route = 'GABRIEL';\nelse if (cmd.startsWith('MC96:') || agent === 'MC96') route = 'MC96';\nelse if (cmd.startsWith('N8N:') || agent === 'N8N') route = 'N8N';\nelse if (cmd.startsWith('GREP:') || agent === 'GREP') route = 'GREP';\nelse route = 'BROADCAST';\n\nconst ts = new Date().toISOString();\n\nreturn [{\n  json: {\n    route,\n    source: source || 'unknown',\n    agent: agent || route,\n    command: cmd,\n    payload: payload || {},\n    ts,\n    meta: { ingestVersion: '1.0.0', instanceId: 'noizy-n8n' }\n  }\n}];\n"
+      },
+      "id": "route-logic",
+      "name": "Route + Auth Guard",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [520, 300]
+    },
+    {
+      "parameters": {
+        "dataType": "string",
+        "value1": "={{ $json.route }}",
+        "rules": {
+          "rules": [
+            { "value2": "GOD", "output": 0 },
+            { "value2": "LUCY", "output": 1 },
+            { "value2": "GABRIEL", "output": 2 },
+            { "value2": "MC96", "output": 3 },
+            { "value2": "GREP", "output": 4 },
+            { "value2": "BROADCAST", "output": 5 }
+          ]
+        },
+        "fallbackOutput": 6
+      },
+      "id": "switch-agent",
+      "name": "Switch on Agent",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3,
+      "position": [780, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://heaven.rsp-5f3.workers.dev/api/v1/ledger",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "X-NOIZY-Key", "value": "={{ $env.NOIZY_API_KEY }}" },
+            { "name": "Content-Type", "value": "application/json" }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ event: 'command_ingest', route: $json.route, source: $json.source, command: $json.command, ts: $json.ts }) }}"
+      },
+      "id": "ledger-log",
+      "name": "Log to HEAVEN Ledger",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1060, 100]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $env.LUCY_WEBHOOK_URL || 'http://localhost:7778/command' }}",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify($json) }}"
+      },
+      "id": "forward-lucy",
+      "name": "Forward → LUCY",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1060, 220],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $env.GABRIEL_WEBHOOK_URL || 'http://localhost:7779/command' }}",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify($json) }}"
+      },
+      "id": "forward-gabriel",
+      "name": "Forward → GABRIEL",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1060, 340],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "jsCode": "// MC96 handler — trigger grep-swarm sub-workflow or inline action\nconst { command, payload } = $json;\nreturn [{ json: { handled: true, agent: 'MC96', command, payload, ts: new Date().toISOString() } }];\n"
+      },
+      "id": "handle-mc96",
+      "name": "MC96 Handler",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1060, 460]
+    },
+    {
+      "parameters": {
+        "command": "={{ 'rg --json \"' + ($json.payload.pattern || 'TODO|FIXME') + '\" /noizylab | head -100' }}",
+        "options": {}
+      },
+      "id": "grep-exec",
+      "name": "Grep Handler",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [1060, 580]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Broadcast to all registered agents\nconst payload = $json;\nreturn [\n  { json: { ...payload, broadcast_target: 'ALL' } }\n];\n"
+      },
+      "id": "broadcast",
+      "name": "Broadcast Handler",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1060, 700]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Unknown route — log and return error\nreturn [{ json: { error: 'Unknown route', route: $json.route, ts: new Date().toISOString() } }];\n"
+      },
+      "id": "fallback",
+      "name": "Unknown Route",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1060, 840]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ ok: true, route: $json.route || $json.error || 'processed', ts: $json.ts || new Date().toISOString() }) }}",
+        "options": {
+          "responseCode": 200
+        }
+      },
+      "id": "respond-ok",
+      "name": "Respond 200 OK",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [1340, 460]
+    }
+  ],
+  "connections": {
+    "POST /webhook/command-ingest": {
+      "main": [[{ "node": "Route + Auth Guard", "type": "main", "index": 0 }]]
+    },
+    "Route + Auth Guard": {
+      "main": [[{ "node": "Switch on Agent", "type": "main", "index": 0 }]]
+    },
+    "Switch on Agent": {
+      "main": [
+        [{ "node": "Log to HEAVEN Ledger", "type": "main", "index": 0 }],
+        [{ "node": "Forward → LUCY", "type": "main", "index": 0 }],
+        [{ "node": "Forward → GABRIEL", "type": "main", "index": 0 }],
+        [{ "node": "MC96 Handler", "type": "main", "index": 0 }],
+        [{ "node": "Grep Handler", "type": "main", "index": 0 }],
+        [{ "node": "Broadcast Handler", "type": "main", "index": 0 }],
+        [{ "node": "Unknown Route", "type": "main", "index": 0 }]
+      ]
+    },
+    "Log to HEAVEN Ledger": {
+      "main": [[{ "node": "Respond 200 OK", "type": "main", "index": 0 }]]
+    },
+    "Forward → LUCY": {
+      "main": [[{ "node": "Respond 200 OK", "type": "main", "index": 0 }]]
+    },
+    "Forward → GABRIEL": {
+      "main": [[{ "node": "Respond 200 OK", "type": "main", "index": 0 }]]
+    },
+    "MC96 Handler": {
+      "main": [[{ "node": "Respond 200 OK", "type": "main", "index": 0 }]]
+    },
+    "Grep Handler": {
+      "main": [[{ "node": "Respond 200 OK", "type": "main", "index": 0 }]]
+    },
+    "Broadcast Handler": {
+      "main": [[{ "node": "Respond 200 OK", "type": "main", "index": 0 }]]
+    },
+    "Unknown Route": {
+      "main": [[{ "node": "Respond 200 OK", "type": "main", "index": 0 }]]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "callerPolicy": "workflowsFromSameOwner"
+  },
+  "versionId": "command-ingest-v1",
+  "meta": {
+    "instanceId": "noizy-n8n",
+    "description": "GOD channel command router — routes inbound commands to LUCY, GABRIEL, MC96, GREP, or broadcasts"
+  },
+  "tags": [
+    { "name": "god-channel" },
+    { "name": "command-ingest" },
+    { "name": "router" }
+  ]
+}

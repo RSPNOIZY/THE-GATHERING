@@ -1,0 +1,39 @@
+{
+  "result": [
+    {
+      "startLine": 0,
+      "endLine": 9,
+      "kind": "region"
+    },
+    {
+      "startLine": 0,
+      "endLine": 8,
+      "kind": "region"
+    },
+    {
+      "startLine": 0,
+      "endLine": 7,
+      "kind": "region"
+    },
+    {
+      "startLine": 0,
+      "endLine": 6,
+      "kind": "region"
+    },
+    {
+      "startLine": 1,
+      "endLine": 6,
+      "kind": "region"
+    },
+    {
+      "startLine": 2,
+      "endLine": 3,
+      "kind": "region"
+    },
+    {
+      "startLine": 4,
+      "endLine": 5,
+      "kind": "region"
+    }
+  ]
+}

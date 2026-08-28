@@ -1,0 +1,51 @@
+{
+	"version":	"1.0",
+	"mode":	2,
+	"name":	"AlgorithmGraph_9bpck63bYbqbZAcfdUcmcAbNdWcf",
+	"size":	{
+		"width":	640,
+		"height":	640
+	},
+	"nodes":	[
+		{
+			"name": "nh_script_0",
+			"type": "script",
+			"config": {
+				"keyMaps": {
+					"intParam": {
+						"return_crop": 0,
+						"return_mask": 1
+					},
+					"stringParam": {
+						"model_name": "saliency_script_for_cc",
+						"packed_model_group_key": "script"
+					}
+				}
+			}
+		}, {
+			"name":	"texture_blit_0",
+			"type":	"texture_blit",
+			"config":	{
+				"size":	{
+					"width":	640,
+					"height":	640
+				},
+				"keyMaps":	{
+					"intParam":	{
+					},
+					"floatParam":	{
+					},
+					"stringParam":	{
+					},
+					"pathParam":	{
+					}
+				}
+			}
+		}],
+	"links":	[{
+			"fromNode":	"texture_blit_0",
+			"fromIndex":	0,
+			"toNode":	"nh_script_0",
+			"toIndex":	0
+		}]
+}

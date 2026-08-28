@@ -1,0 +1,41 @@
+{
+  "collaboration_id": "collab_3f2a73cc",
+  "ava_owner": "persona_123",
+  "partner_ava": "persona_456",
+  "allowed_languages": [
+    "en-US",
+    "fr-FR"
+  ],
+  "max_interaction_minutes": 60,
+  "prohibited_topics": [
+    "politics",
+    "NSFW",
+    "medical advice"
+  ],
+  "consent_required": true,
+  "royalty_split": {
+    "ava_owner": 0.75,
+    "partner": 0.25
+  },
+  "nda_enforced": true,
+  "session_logging": true,
+  "audit_trail": [
+    {
+      "timestamp_utc": "2026-03-12T00:00:00Z",
+      "event_type": "contract_created",
+      "actor_id": "persona_123",
+      "summary": "Collaboration contract created.",
+      "details": {
+        "channel": "portal"
+      }
+    }
+  ],
+  "never_clauses": [
+    "No export without consent key",
+    "No override of collaboration rules",
+    "No sub-licensing without explicit approval"
+  ],
+  "created_at": "2026-03-12T00:00:00Z",
+  "updated_at": "2026-03-12T00:00:00Z",
+  "status": "active"
+}

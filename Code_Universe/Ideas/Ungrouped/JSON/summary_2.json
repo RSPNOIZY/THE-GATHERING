@@ -1,0 +1,25 @@
+{
+  "volume": "/Volumes/2TB_SGW",
+  "slug": "2TB_SGW_",
+  "timestamp": "20260420T055216Z",
+  "size": "1.2T",
+  "top_level_entries": 12,
+  "code": {
+    "git_dirs": 0,
+    "package_json": 0,
+    "pyproject": 0,
+    "cargo": 0,
+    "gemfile": 0,
+    "go_mod": 0
+  },
+  "secrets_pattern_count": 7,
+  "media": {
+    "wav": 7272,
+    "aif": 259,
+    "flac": 0,
+    "logicx": 2,
+    "ptx": 0
+  },
+  "audit_path": "/Users/m2ultra/NOIZYANTHROPIC/infra/scans/scan-reports/2TB_SGW_/20260420T055216Z/audit.md",
+  "inventory_path": "/Users/m2ultra/NOIZYANTHROPIC/infra/scans/scan-reports/2TB_SGW_/20260420T055216Z/inventory.txt"
+}

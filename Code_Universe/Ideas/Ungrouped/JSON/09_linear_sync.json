@@ -1,0 +1,401 @@
+{
+  "name": "ZAP 9: Linear ↔ NOIZY Sync",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "linear-webhook",
+        "responseMode": "responseNode",
+        "options": {
+          "rawBody": true
+        }
+      },
+      "id": "linear-webhook-trigger",
+      "name": "Linear Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [220, 300],
+      "webhookId": "linear-webhook"
+    },
+    {
+      "parameters": {
+        "jsCode": "// ═══════════════════════════════════════════════════\n// Linear Webhook Signature Verification & Parsing\n// RSP_001 | NOIZY Empire | Linear Integration\n// ═══════════════════════════════════════════════════\nconst crypto = require('crypto');\n\nconst body = $input.first().json;\nconst rawBody = $input.first().json.body || JSON.stringify(body);\nconst signature = $input.first().json.headers?.['linear-signature'] || '';\nconst secret = $env.LINEAR_WEBHOOK_SECRET || '';\n\n// Verify webhook signature if secret is configured\nif (secret && signature) {\n  const hmac = crypto.createHmac('sha256', secret);\n  hmac.update(typeof rawBody === 'string' ? rawBody : JSON.stringify(rawBody));\n  const expected = hmac.digest('hex');\n  if (signature !== expected) {\n    return [{ json: { error: 'Invalid signature', _reject: true } }];\n  }\n}\n\n// Parse Linear webhook payload\nconst action = body.action; // 'create', 'update', 'remove'\nconst type = body.type;     // 'Issue', 'Comment', 'Project', etc.\nconst data = body.data || {};\n\nconst event = {\n  source: 'linear',\n  action: action,\n  type: type,\n  issue_id: data.id,\n  issue_title: data.title || '',\n  issue_description: data.description || '',\n  issue_state: data.state?.name || '',\n  issue_priority: data.priority || 0,\n  issue_labels: (data.labels || []).map(l => l.name),\n  assignee: data.assignee?.name || '',\n  project: data.project?.name || '',\n  team: data.team?.name || '',\n  url: data.url || '',\n  created_at: data.createdAt || '',\n  updated_at: data.updatedAt || new Date().toISOString(),\n  // NOIZY governance fields\n  governance_cleared: true,\n  processed_at: new Date().toISOString()\n};\n\nreturn [{ json: event }];"
+      },
+      "id": "linear-parse",
+      "name": "Parse Linear Event",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [440, 300]
+    },
+    {
+      "parameters": {
+        "rules": {
+          "rules": [
+            {
+              "outputIndex": 0,
+              "conditions": {
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.type }}",
+                    "rightValue": "Issue",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  },
+                  {
+                    "leftValue": "={{ $json.action }}",
+                    "rightValue": "create",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "outputIndex": 1,
+              "conditions": {
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.type }}",
+                    "rightValue": "Issue",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  },
+                  {
+                    "leftValue": "={{ $json.action }}",
+                    "rightValue": "update",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "outputIndex": 2,
+              "conditions": {
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.issue_state }}",
+                    "rightValue": "Done",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "id": "linear-router",
+      "name": "Route by Event",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3,
+      "position": [660, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "// ═══════════════════════════════════════════════════\n// New Issue → Create GitHub Branch + Notion Task\n// ═══════════════════════════════════════════════════\nconst event = $input.first().json;\n\n// Generate branch name from Linear issue\nconst branchName = `linear/${event.issue_id?.substring(0,8) || 'unknown'}/${(event.issue_title || 'task').toLowerCase().replace(/[^a-z0-9]+/g, '-').substring(0, 40)}`;\n\nreturn [{\n  json: {\n    ...event,\n    branch_name: branchName,\n    // Notion page properties\n    notion_page: {\n      'Task': { title: [{ text: { content: `[Linear] ${event.issue_title}` } }] },\n      'Status': { select: { name: 'To Do' } },\n      'Source': { select: { name: 'Linear' } },\n      'Priority': { select: { name: event.issue_priority <= 1 ? 'Urgent' : event.issue_priority <= 2 ? 'High' : 'Medium' } },\n      'Linear URL': { url: event.url },\n      'Assignee': { rich_text: [{ text: { content: event.assignee } }] },\n      'Created': { date: { start: event.created_at || new Date().toISOString() } }\n    }\n  }\n}];"
+      },
+      "id": "new-issue-handler",
+      "name": "New Issue → Branch + Notion",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [900, 160]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.github.com/repos/{{ $env.GITHUB_OWNER }}/{{ $json.project || 'noizy-main' }}/git/refs",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $env.GITHUB_TOKEN }}"
+            },
+            {
+              "name": "Accept",
+              "value": "application/vnd.github.v3+json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "ref",
+              "value": "=refs/heads/{{ $json.branch_name }}"
+            },
+            {
+              "name": "sha",
+              "value": "main"
+            }
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "neverError": true
+            }
+          }
+        }
+      },
+      "id": "github-create-branch",
+      "name": "Create GitHub Branch",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [1140, 100]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.notion.com/v1/pages",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $env.NOTION_API_KEY }}"
+            },
+            {
+              "name": "Notion-Version",
+              "value": "2022-06-28"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"parent\": { \"database_id\": \"{{ $env.NOTION_TASKS_DB_ID }}\" },\n  \"properties\": {{ JSON.stringify($json.notion_page) }}\n}",
+        "options": {
+          "response": {
+            "response": {
+              "neverError": true
+            }
+          }
+        }
+      },
+      "id": "notion-create-task",
+      "name": "Create Notion Task",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [1140, 220]
+    },
+    {
+      "parameters": {
+        "jsCode": "// ═══════════════════════════════════════════════════\n// Issue Updated → Sync state to Notion + notify GABRIEL\n// ═══════════════════════════════════════════════════\nconst event = $input.first().json;\n\n// Map Linear states to Notion statuses\nconst stateMap = {\n  'Backlog': 'Backlog',\n  'Todo': 'To Do',\n  'In Progress': 'In Progress',\n  'In Review': 'In Review',\n  'Done': 'Done',\n  'Canceled': 'Archived'\n};\n\nconst notionStatus = stateMap[event.issue_state] || event.issue_state;\n\nreturn [{\n  json: {\n    ...event,\n    notion_status: notionStatus,\n    gabriel_alert: {\n      type: 'linear_update',\n      summary: `Linear issue \"${event.issue_title}\" moved to ${event.issue_state}`,\n      severity: event.issue_priority <= 1 ? 'high' : 'low',\n      source: 'linear',\n      timestamp: new Date().toISOString()\n    }\n  }\n}];"
+      },
+      "id": "update-issue-handler",
+      "name": "Issue Updated → Sync",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [900, 340]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $env.HEAVEN_URL }}/api/events",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $env.NOIZY_API_KEY }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify($json.gabriel_alert) }}",
+        "options": {
+          "response": {
+            "response": {
+              "neverError": true
+            }
+          }
+        }
+      },
+      "id": "gabriel-notify",
+      "name": "Alert GABRIEL",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [1140, 340]
+    },
+    {
+      "parameters": {
+        "jsCode": "// ═══════════════════════════════════════════════════\n// Issue Done → Close loop, update Notion, log to ledger\n// ═══════════════════════════════════════════════════\nconst event = $input.first().json;\n\nreturn [{\n  json: {\n    ...event,\n    completion: {\n      issue_title: event.issue_title,\n      completed_at: new Date().toISOString(),\n      assignee: event.assignee,\n      // Ledger entry for consent/governance tracking\n      ledger_entry: {\n        action: 'task_completed',\n        source: 'linear',\n        actor: event.assignee,\n        subject: event.issue_title,\n        timestamp: new Date().toISOString(),\n        governance_status: 'cleared'\n      }\n    }\n  }\n}];"
+      },
+      "id": "done-handler",
+      "name": "Issue Done → Close Loop",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [900, 500]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $env.HEAVEN_URL }}/api/ledger",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $env.NOIZY_API_KEY }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify($json.completion.ledger_entry) }}",
+        "options": {
+          "response": {
+            "response": {
+              "neverError": true
+            }
+          }
+        }
+      },
+      "id": "ledger-write",
+      "name": "Write to Consent Ledger",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [1140, 500]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ ok: true, processed: $json.type + '/' + $json.action, timestamp: new Date().toISOString() }) }}"
+      },
+      "id": "linear-respond",
+      "name": "Respond OK",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [1380, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.linear.app/graphql",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "={{ $env.LINEAR_API_KEY }}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n  \"query\": \"query { issues(filter: { updatedAt: { gte: \\\"{{ $now.minus(5, 'minutes').toISO() }}\\\" } }) { nodes { id title description state { name } priority assignee { name } project { name } url createdAt updatedAt labels { nodes { name } } } } }\"\n}",
+        "options": {}
+      },
+      "id": "linear-poll",
+      "name": "Poll Linear Issues",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [220, 600]
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes",
+              "minutesInterval": 5
+            }
+          ]
+        }
+      },
+      "id": "linear-schedule",
+      "name": "Every 5 Minutes",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [0, 600]
+    },
+    {
+      "parameters": {
+        "jsCode": "// ═══════════════════════════════════════════════════\n// Transform Linear poll results into GABRIEL events\n// ═══════════════════════════════════════════════════\nconst response = $input.first().json;\nconst issues = response.data?.issues?.nodes || [];\n\nif (issues.length === 0) {\n  return [{ json: { _skip: true, message: 'No recent updates' } }];\n}\n\nconst events = issues.map(issue => ({\n  source: 'linear-poll',\n  type: 'Issue',\n  action: 'sync',\n  issue_id: issue.id,\n  issue_title: issue.title,\n  issue_state: issue.state?.name || '',\n  issue_priority: issue.priority || 0,\n  assignee: issue.assignee?.name || '',\n  project: issue.project?.name || '',\n  url: issue.url,\n  labels: (issue.labels?.nodes || []).map(l => l.name),\n  updated_at: issue.updatedAt\n}));\n\nreturn events.map(e => ({ json: e }));"
+      },
+      "id": "linear-poll-parse",
+      "name": "Parse Poll Results",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [440, 600]
+    }
+  ],
+  "connections": {
+    "Linear Webhook": {
+      "main": [[{ "node": "Parse Linear Event", "type": "main", "index": 0 }]]
+    },
+    "Parse Linear Event": {
+      "main": [[{ "node": "Route by Event", "type": "main", "index": 0 }]]
+    },
+    "Route by Event": {
+      "main": [
+        [{ "node": "New Issue → Branch + Notion", "type": "main", "index": 0 }],
+        [{ "node": "Issue Updated → Sync", "type": "main", "index": 0 }],
+        [{ "node": "Issue Done → Close Loop", "type": "main", "index": 0 }]
+      ]
+    },
+    "New Issue → Branch + Notion": {
+      "main": [
+        [
+          { "node": "Create GitHub Branch", "type": "main", "index": 0 },
+          { "node": "Create Notion Task", "type": "main", "index": 0 }
+        ]
+      ]
+    },
+    "Create GitHub Branch": {
+      "main": [[{ "node": "Respond OK", "type": "main", "index": 0 }]]
+    },
+    "Create Notion Task": {
+      "main": [[{ "node": "Respond OK", "type": "main", "index": 0 }]]
+    },
+    "Issue Updated → Sync": {
+      "main": [[{ "node": "Alert GABRIEL", "type": "main", "index": 0 }]]
+    },
+    "Alert GABRIEL": {
+      "main": [[{ "node": "Respond OK", "type": "main", "index": 0 }]]
+    },
+    "Issue Done → Close Loop": {
+      "main": [[{ "node": "Write to Consent Ledger", "type": "main", "index": 0 }]]
+    },
+    "Write to Consent Ledger": {
+      "main": [[{ "node": "Respond OK", "type": "main", "index": 0 }]]
+    },
+    "Every 5 Minutes": {
+      "main": [[{ "node": "Poll Linear Issues", "type": "main", "index": 0 }]]
+    },
+    "Poll Linear Issues": {
+      "main": [[{ "node": "Parse Poll Results", "type": "main", "index": 0 }]]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "meta": {
+    "instanceId": "noizy-empire-linear-sync"
+  },
+  "tags": [
+    { "name": "linear" },
+    { "name": "integration" },
+    { "name": "noizy-empire" }
+  ]
+}

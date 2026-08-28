@@ -1,0 +1,861 @@
+Opera Privacy Statement
+───────────────────────
+
+Last updated: June 24, 2026
+
+
+Introduction
+────────────
+
+This privacy statement describes how we use data in our browsers, websites, and services. Some of the data we use is considered “personal data” under applicable law. However, even when we use personal data, we have no practical way of actually identifying you as an individual. This means that our users are essentially anonymous to us.
+
+The specific categories of data that we collect, use, or otherwise process can vary from product to product, from one purpose to another, and in some cases based on your location. This Privacy Statement gives you detailed information about when, how, and why we process your data (including but not limited to personal data), as well as your rights under applicable law.
+
+
+Definitions
+───────────
+
+First, let’s define some key terms. Many of these definitions are adapted from the General Data Protection Regulation (or “GDPR”), the data privacy law which applies in the European Union as well as in Norway. We use the GDPR as a guidepost because it applies directly to us as a European company and because we believe it sets the highest legal standards for our users’ privacy. In some cases we have simplified definitions here in order to make them easier to understand.
+
+Personal data: Any information relating to an identified or identified natural person, as outlined in the GDPR. This includes data such as your IP address, device IDs, advertising IDs. Important: This is just an example of what the GDPR considers personal data. We do not collect all this data at all times. You can check below, under each service to see what data we do collect. There we also explain how we process personal data, and list our specific purposes and legal basis for processing under the GDPR.
+
+Data controller: The person or company that decides whether and how to process personal data. For the purposes of this Privacy Statement, this is Opera Norway AS.
+
+Data processor: Someone who processes personal data on behalf of a data controller.
+
+Legal basis: The specific legal reason that allows us to process personal data. The GDPR sets out six specific grounds for processing personal data. The ones most relevant to our Applications are as follows:
+
+Consent: When we process personal data based on your consent, that means we have asked for your permission to do so and you’ve expressly given it to us.
+
+Contractual grounds: When we process personal data because it is necessary to perform a contract, for example to provide you with a service as described in our Terms of Service or some other agreement.
+
+Legitimate interest: When we process personal data based on legitimate interest, that means we have a legitimate reason to use the personal data (such as ensuring that products work properly, or alerting users about promotions and updates), which is in balance with your right to privacy.
+
+Legal compliance: In some instances it is necessary for us to process personal data in order to fulfill other obligations under the law, for example detecting fraud, making sure you are who you say you are, etc.
+
+Applications: The specific apps we offer, as mentioned below, including our desktop and mobile browsers.
+
+Monetization: Making money. Nearly all of our Applications are free to download and use. Therefore we monetize our products in various ways, primarily by selling advertising within the Applications themselves. The money we make helps us keep the lights on, pay the salaries of our staff, and continue developing the most innovative, independent browsers on the market. We do not sell users’ personal data to anyone, either to monetize or to provide advertising.
+
+Purpose: The specific reason or reasons we have for processing data, including personal data.
+
+Process or processing: Collecting or using personal data. As defined in the GDPR, the word “processing” can mean doing almost anything with personal data. However, it never means selling such data or making it available to anyone in ways that are not covered by the GDPR. Below we have used it in this general sense when we have a general meaning in mind, and used more specific terms (like “store” or “share”) where appropriate.
+
+Retention / retain: The time period for which we will continue to store data. In general, we do not process or store personal data longer than needed and therefore delete it after a certain period of time. Below we have included some more specific details on retention periods, which vary depending on the type of personal data at issue and the purpose for which it is processed.
+
+Transfer: Personal data is “transferred” when it is sent or made available to someone or some other company outside the European Economic Area (or EEA - that is the European Union plus Norway, Iceland, and Liechtenstein).
+
+Opera Group: Our affiliated group of companies, including Opera Norway AS (a Norwegian company) which develops and publishes the Opera browsers, as well as other subsidiaries and affiliated companies around the world. For more information, see below.
+
+
+Applications
+────────────
+
+The kinds of data (including personal data) that we process may vary depending on which applications you use. You can read more about how each of our products processes data below.
+
+
+Desktop Browsers
+────────────────
+
+
+The following sections describe how we process data (including, but not limited to personal data) in our desktop applications – Opera browser for Computers (on Windows, Mac, and Linux) and Opera GX desktop (on Windows and Mac).
+
+
+Opera Account
+─────────────
+
+Our browsers do not require you to sign in to start using them for regular browsing activities, such as browsing the web. However, you have the option to create an Opera account (https://auth.opera.com/) to use certain services (like commenting on our Forum or blogs, subscribing to VPN Pro, accessing Cashback, etc.). Note that even if you create an Opera account, your account and its associated data is not associated with the random ID of your browser installation, which remains separate.
+
+If you choose to create an Opera account (https://auth.opera.com/), we ask for a preferred username and an email address. The email address will be used to identify you as a user and for password recovery. Alternatively, you can use your Google, Facebook, Twitter, or VK account to sign in to an Opera account and access our services with the same profile. If you use these social networks to sign in, we may collect information such as your name, profile picture, and email address from them. If you use your Opera account in conjunction with a service like VPN Pro or Cashback, the data we process in connection with those services will be associated with your Opera account.
+
+You can modify your Opera account, delete it, or request a copy of your data using your profile page (https://auth.opera.com/account/edit-profile). We retain your data for seven days after you’ve decided to discontinue your Opera account in case you choose to change your mind. After this seven-day period, your account and data are permanently deleted. Your Opera account with a verified email address will be deleted automatically if you don’t sign in for two years. Accounts with unverified email addresses will be deleted after six months of inactivity.
+
+Note also that Opera allows you to sync your browser data, such as Speed Dial entries and bookmarks, between devices that have another Opera browser installed on them. The synced data is retained until your Opera account is deleted, and it is never associated with your browser installation’s randomly generated ID.
+
+Purpose: To allow you to access certain services.
+
+Legal basis: Contractual grounds (e.g., providing you the services).
+
+
+Personalized Content
+────────────────────
+
+Our browsers may include personalized content features, such as a native News Feed, or specialty content features such as Shopping Corner. When you interact with these features, we collect some information, such as the articles you read in the News Feed, and your general location (your city or country). We use this information to build a profile of your interests, which we use only to select more relevant content for you. This information is only linked to your browser installation’s randomly generated ID and may be stored on our servers for up to three months - after this three-month period, this data is automatically deleted. We process this data based on your consent. If you would like to withdraw your consent, you can go to the Settings menu under ‘Privacy and security’ and ‘Privacy consent settings’, and disable ‘Personalized content’.
+
+Purpose: Providing a more personalized experience and encouraging user engagement; monetization.
+
+Legal basis: Consent.
+
+
+Browser Extensions
+──────────────────
+
+You can install browser extensions or add-ons, which can be downloaded from the Opera add-ons (https://addons.opera.com/) website. Most of these extensions are developed by third parties and are subject to their own privacy terms. Please carefully review the terms before installing extensions. Please note that, as described in our Terms of Service, the sidebar messaging services (such as WhatsApp, Telegram, Facebook Messenger, etc.) offered within Opera are provided by third parties. These services will not collect any data from you through the sidebar tool unless you specifically sign into them and use them. Opera does not collect any data when you use these services.
+
+
+Free VPN
+────────
+
+Our free, built-in browser VPN is a no-log service. This means we do not log any personal data, or any other data, related to your browsing and originating network address on our servers while you use the VPN. When the VPN is active, all browser traffic is encrypted using strong, industry-standard AES-256 encryption.
+
+
+VPN Pro
+───────
+
+Depending on where you live, you may be able to purchase a premium VPN service called ‘VPN Pro’ through a subscription.
+
+
+  • VPN Pro is provided by a third-party service provider which owns, operates, and maintains the infrastructure which provides the Service. Data communicated through VPN Pro will be encrypted and routed through one of thousands of servers around the world. However, we do not promise that the service is absolutely secure.
+
+  • VPN Pro is a no-log service. Neither we nor our third-party service provider collect or store records of web pages you visit or links you click on in the servers dedicated for this Service.
+
+  • In some cases, to use VPN Pro you need to create and sign in to an Opera account. We use your Opera account to identify you as a valid subscriber to the VPN Pro service. We will share only information required to identify you as a subscriber with our third-party service provider, including a random ID number that is not associated with any of your real-life personal information. We do not share other data or personal data such as your email or name with our third-party service provider.
+Purpose: To provide the service.
+
+Legal basis: Contractual grounds.
+
+
+AI Chat
+───────
+
+Depending on which version of the browser you are using, you may be able to access an AI-powered chat assistant (‘AI Chat’). AI Chat is powered by OpenAI and Google (both US-based companies).
+
+To access AI Chat, you do not need to sign into your Opera account, however if you do log in, you’ll get access to additional/extended features of AI Chat. We do not share your Opera account data with anyone, including OpenAI or Google. For more information on how we use and retain Opera account data, see the section on Opera account above.
+
+In order to provide you with its functionalities, AI Chat engine processes data from (i) your input - which means anything that you choose to type into or attach to AI Chat chatbox, including any personal data you choose to include; (ii) opened websites/tabs or groups of websites/tabs, where you operate while using AI Chat. To learn more about specific functionalities of AI Chat, please read ourFAQ (https://help.opera.com/en/browser-ai-faq/).
+
+Your input is first processed by AI Chat to understand how to build the best possible answer. Based on your prompt, AI Chat selects and shares it with either OpenAI or Google to generate a response, depending on which model is best suited for your request. This helps ensure you receive more accurate and relevant answers. Moreover, based on your input, AI Chat may identify prompts with potential for further exploration—either through AI Chat itself or by searching for something relevant on Google. In such cases, your input may be shared with Google to generate Search Suggestions that enrich the response. You can always opt out of the Google Search Suggestions feature in AI Chat “Settings”.
+
+Additionally, AI Chat also identifies prompts related to shopping, and may enrich its responses with relevant product suggestions from our partners. If AI Chat’s response to your input includes information about specific products, AI Chat will share relevant keywords, plus your country, language, and a partial IP address (with the last octet removed, to prevent precise identification), with our third-party partners, and return a shopping suggestion if possible. We will ask for your consent for such data processing when our service detects for the first time that it may include shopping suggestions in the response(s) while you’re using AI Chat. These shopping suggestions are advertisements, and Opera may earn a commission from them. AI Chat does not share your prompts with our advertising partners (or anyone else) for this purpose, nor does AI Chat use your prompts to build a profile of you or your interests. You can opt out of this feature in the “Settings” menu at any time.
+
+After your session is complete, your chats, URLs of sites you visited, and tab names will be stored on Opera servers but will not be retained by OpenAI or Google. This is needed to allow you to continue your conversations with AI Chat.
+
+The aforementioned data is stored, fully encrypted, on Opera’s servers, and will be automatically deleted after 365 days if you use AI Chat while logged into your Opera Account. If you use AI Chat without being logged into your Opera account, the data will be deleted after 30 days. At any time, you can delete your chats (both stored locally and on Opera servers) by using a provided option.
+
+Opera provides an option for you to connect AI Chat to selected third party AI-powered tools of your own, in order to support and enhance your browsing activities. If you choose to enable this feature, aforesaid third party AI tool will need access to certain browser data (like tabs or page content). You can control which browser data is shared with your third party AI tools using the provided option in Settings. Opera only needs to access this data for a short period of time, in order to authorise and enable the connection to the third party AI tool. We do not store or process the data. Please note, that any data made available to your own third party AI tools connected to AI Chat (including personal data - if any) will be processed subject to the tool’s own privacy policy. Please make sure to read it.
+
+Purpose: To provide and manage the service, and to support monetization through shopping suggestions for the enhanced convenience of the user.
+
+Legal basis: Legitimate interest (for Opera account data), Consent (for any data you input to AI Chat, and shopping suggestions, and connection of third party AI tools), Contractual grounds (other data).
+
+
+Cashback
+────────
+
+Cashback is an incentive program where you can earn rewards when purchasing goods or services from participating online merchants. If you choose to use the Cashback program and visit supported websites, we will collect merchant URLs, a list of your purchased items, transaction amounts, and IP address. This data is required for the Cashback service to function, and we also use it to provide more relevant partner deals, and to detect fraud and misuse of the service. To enable payouts, your Opera account (https://auth.opera.com/) will be linked with a payment service provider, which will receive your customer ID, and relevant payment related data with Opera. Your payment data may be stored for up to five years due to regulatory requirements. You can modify your Opera account, delete it, or request a copy of your data using your profile page (https://auth.opera.com/account/edit-profile). Your Cashback data will be automatically deleted after two years of inactivity. You may choose to delete your Cashback account, which will erase your personal data from the system, through the Account Setting menus in Cashback account.
+
+Purpose: To provide and improve the service.
+
+Legal basis: Contractual grounds, legal compliance.
+
+
+GX Cloud
+────────
+
+GX Cloud is a set of online services, and a community for gamers, consisting of the following websites: GX Games, GX Store,, GX Dev and GX Me.These give you access to games, and other content as well as the option to play, compete in, and create video games, mods, and so on. Certain content available on the GX Cloud feature needs to be purchased (“Paid Content”). You may also use GX Cloud as a publisher to publish and distribute content and Paid Content.
+
+You do not need an account to play most games; however, to get access to certain content (including Paid Content), participate in OPyramid rewards program and other challenges, publish, distribute or create content, you need anOpera account (https://auth.opera.com/). Opera Account dedicated to GX Cloud feature is further referred to as “GX Me Account“. After signing up for the first time, you will be prompted to provide your date of birth and an optional avatar. We use your date of birth to ensure you are eligible to use the service. You can modify your GX Me Account, delete it, or request a copy of your data using yourprofile page (https://auth.opera.com/account/edit-profile). For more information on how we use and retain GX Me Account data, see the section on Opera Account above.
+
+You need to have an active payment account established with a payment service provider, bank, and/or other partner who cooperates with Opera for purposes of purchasing or distributing Paid Content. The payment service provider may process additional data, including your name, email address, full address, phone number and card ID. The payment service provider will share your customer ID, email address, and relevant payment-related data with Opera. Your payment data may be stored for up to five years due to regulatory requirements.
+
+Within the OPyramid rewards program we give you an option to participate in certain qualifying activities and earn rewards. Such activities might be organized and offered by Opera or third parties. For the purposes of OPyramid organization we may process your GX Me Account data (to contact you if needed e.g. for the purpose of redeeming reward). In some cases OPyramid quest may require linking your GX Me Account with your account that you registered with a third party - then we will share and receive some of your data (like your user ID and data related to quest progress). If some additional data would be required we will inform you about it in OPyramid specific terms.
+
+Purpose: To provide the service.
+
+Legal basis: Contractual grounds.
+
+
+GameMaker
+─────────
+
+Depending on where you live, it may be possible to purchase a license to the proprietary computer software program known as ‘GameMaker’, as well as to access platforms and websites that we operate, where you may use our content, or publish your content.
+
+To access and use GameMaker, you will need to sign into your Opera account. We do not share your Opera account data with anyone. For more information on how we use and retain Opera account data, see the section on Opera account above. We may process your Opera account data (including email, user ID, location, device ID), as well as your other personal data such as first name and last name, only to identify you as a valid subscriber to GameMaker. If you use a legacy GameMaker account (meaning an account created before September 21st, 2022) we process additional data, such as: your home address, phone number, security questions answers, VAT number.
+
+To enable payments (both making and receiving), your Opera account will be linked with a payment service provider. The payment service provider may process additional data, including your full address and card ID. The payment service provider will share your customer ID, and relevant payment-related data with Opera. Your payment data may be stored for up to five years due to regulatory requirements.
+
+If you use GameMaker Forum, we will additionally collect and process your date of birth. This is to ensure that you are over the required age limit.
+
+Various educational subscriptions for GameMaker are available to schools and other institutions of learning, licensed under applicable law to teach (‘Educational Institutions’). We do not collect and/or process any personal data or any personally identifiable data from Educational Institutions’ students, pursuant to or in connection with educational subscriptions, and thus students remain entirely anonymous to us. We do collect and process personal data from Authorised Representatives of Education Institutions (e.g. teachers) in the course of opening an account. For more information, please see our GameMaker Feature Terms of Service (https://www.opera.com/legal/terms).
+
+Please note that with reference to your data processed in scope of GameMaker service, you may make inquiries or requests (including a request to access or delete any of your personal data that we might possess) by sending an email to datacontroller@yoyogames.com (mailto:datacontroller@yoyogames.com).
+
+Purpose: To provide the service.
+
+Legal basis: Contractual grounds.
+
+
+My Flow
+───────
+
+If you use the “My Flow” function, a random ID is generated by the Flow server and assigned to each client device. These IDs are used solely to enable pairing functionality between Opera desktop and mobile applications and persist only while your devices are connected to My Flow. Your data is protected with end-to-end encryption and we retain it only as long as you continue to use the feature. You can disconnect your devices from My Flow, and delete your data through the application’s Settings (https://help.opera.com/touch/my-flow/) menu.
+
+
+Usage Statistics
+────────────────
+
+When you install an Opera application, a random installation ID is generated. We collect this identifier, as well as Machine ID, hardware specifications (model, release date, etc.), operating system, environment configuration, and feature usage data to improve our products and services. For example, we may use it to analyze how our users interact with our applications, or to determine the effectiveness of promotional campaigns, or to detect and debug problems. We have no practical way of using any of this data to identify you personally. We retain this usage data for up to three years. You can opt out of reporting extended statistics through the Settings menu under ‘Privacy and Security’, by disabling ‘Help improve Opera by sending feature usage information’.
+
+Purpose: Improving our products.
+
+Legal basis: Legitimate interest (debugging and improving products and services).
+
+
+Crash Reports and Logs
+──────────────────────
+
+If an Opera application crashes, we collect a log that includes some information about your browser’s version, your operating system, platform and some memory data related to the crash. We collect this data with the sole purpose of improving our products and services. Crash logs are kept for up to five months. You can opt out of reporting this data to us through the Settings menu under ‘Privacy and security’, by disabling “Automatically send crash reports to Opera” .
+
+If you visit our websites, we may collect your IP address to help diagnose problems with our servers and to administer our websites. We use IP addresses of website visitors solely for this purpose and may keep these website access logs for up to six months.
+
+
+Browser Assistant
+─────────────────
+
+Opera for computers on Windows includes a component called Browser Assistant that displays notifications promoting the browser’s features or the browser itself. Browser Assistant checks if any notifications are pending on a scheduled basis and may report occurrences of certain system events (such as low battery, low hard disk space, new Wi-Fi network connected, another browser installed). Browser Assistant collects this data, as well as a randomly generated Opera ID so that we can determine and evaluate the effectiveness and performance of the notifications that we display to users. We may retain this data for up to four years. You can opt out of this data collection through the Settings menu under ‘Privacy and Security’, by disabling ‘Display promotional notifications’.
+
+Purpose: Improving our products.
+
+Legal basis: Legitimate interest (improving our products by understanding effectiveness of notifications of users).
+
+
+Malicious-site Check
+────────────────────
+
+We use a fraud prevention framework (which includes Google Safe Browsing) to check the primary domain name of the website you visit against lists of known, malicious websites to protect you online. We do not collect full URLs of pages you visit for this purpose. We do not process any personal data in this context. You can disable this feature by heading to your browser Settings under ‘Privacy and security’, ‘Security’, and disabling ‘Protect me from malicious sites’.
+
+
+Search Providers
+────────────────
+
+Opera browsers allow you to customize the search engine used in the browser address bar. In most cases Google is the default provider, but other providers (such as Bing) might be set as default based on which version of the Application you are using. You can always change your default provider in the settings menu. Opera does not share personal data with search engine providers to enable search within Opera browsers.
+
+Just like any other third-party website you might access, use of any search engine is subject to the terms of service and privacy policy offered by the specific search engine provider. Some of the web search services available in the Application may be provided by partners of CodeFuel Ltd. including, for example, bing.com. For information on the web search services data collection, please visit the search provider’s privacy policy.
+
+
+Personalized Ads & Profiling
+────────────────────────────
+
+Based on data such as IP address, hashed user ID, and your general location (your country or city), some of our Applications serve targeted ads. These ads are provided by our monetization partners. You can always adjust your personalized ad choices in the application’s Settings menu or through your operating system’s settings.
+
+As noted in our End User License Agreements for computers (https://www.opera.com/legal/eula-computers), mobiles (https://www.opera.com/legal/eula-mobile), and the Terms of Service (https://www.opera.com/legal/terms), our applications are generally provided for free and are therefore ad-supported. You can choose to share this data with us to help us provide a more personalized experience for you and offset the costs of our business. You can consent to sharing this data when you first install our applications or at any point through the settings.
+
+We may also combine this data with other elements – including categories of websites you search and visit, device information (model, release date, device IDs, hardware specifications, operating system, etc.), and categories of ads you have clicked on in our products. We use this to build a better understanding of what our users are interested in.
+
+We do not log or store your entire browsing history for this purpose. Instead we make a simple record of whether you have visited certain categories of websites based on the primary domains of pages you visit and mix it with other data (which might depend on which application you use, and may include page loads, number of Speed Dial clicks, whether you have ad blocker enabled or not, etc.) to make an informed guess about whether you are interested in broad categories of interests (such as sports, gaming, news, etc.). We then add this basic profile to other data, such as your general location (country or city) in order to enable our advertising partners to target their ads to groups of users who might be interested in their products and services.
+
+We do not share your personal interests or browsing history with anyone. We retain this data for up to one year, after which it is deleted automatically.
+
+We only process this data based on your consent. If you would like to view your options, or to withdraw your consent, please visit the settings menu of the application you are using.
+
+Purpose: Improving our products and services, monetization.
+
+Legal basis: Consent.
+
+
+Speed Dials
+───────────
+
+Our browsers include visual bookmarks on the home screen which we call Speed Dials. You can customize the Speed Dials through the Application’s settings menu. Some Speed Dials are ads provided by our advertising partners. If you choose to use Opera’s default Speed Dials, you may be redirected through Opera’s partners or other third parties. These partners and third parties may collect data from you independently of Opera. This data may include third party cookies, device IDs, and session statistics. If you wish to opt out of such data collection, you can block third-party cookies through your browser’s Cookie Settings. You may also choose not to receive Speed Dial suggestions, or to adjust your Speed Dials by deleting preset options based on your own preference.
+
+
+Promotion & Marketing
+─────────────────────
+
+We process some data in order to promote and market our products and services. Some of this data comes directly from you when you submit it to us for some specific purpose. For example, if you decide to provide feedback to Opera, or participate in a promotional campaign, contest, or survey, organized by Opera or our partners on behalf of Opera, we may ask for information such as your name, age, phone number, email, or postal address. Depending on the nature of the campaign or contest, it may be necessary to share your data with third parties. When that applies, we will make it clear in the terms applicable to the campaign.
+
+If you agree to receive marketing information from Opera via email, SMS, or push notifications, we may use third party technology providers to deliver such messages to you. You can opt out from marketing communications at any time in your Opera account profile settings or directly from a marketing email you received.
+
+If you submit your phone number or email address on an application download page, we may send you a download link via SMS or email for your convenience.
+
+In Opera for Windows computers, we may use the Browser Assistant component to promote the browser and its features to you. Browser Assistant comes as part of the Opera Browser for Windows, and may be manually removed from the system’s startup list, or via the browser settings. To learn more about Browser Assistant, please read our dedicated section on it in this statement.
+
+In general when we process data in the context of a promotional campaign, contest, or survey, we process your personal data on the basis that doing so is necessary to enable you to participate in the campaign. In some cases we process data for marketing purposes based on your consent. In any case we will not retain your data for longer than necessary to fulfill the specific purpose for which it was initially collected. You can always control your preferences via the settings menu or through your account, and if you have other concerns you can reach out to us through this form (https://security.opera.com/privacy-inquiry).
+
+Purpose: To promote our products and services.
+
+Legal basis: Varies by context as explained above - may include contractual grounds, legitimate interest, or consent (in some cases).
+
+
+Third Party Technologies
+────────────────────────
+
+Our applications and services include third-party technology or code, some of which may use your data in different ways. When such third-party technologies use previously collected data, they typically act as data processors for us. When they collect data on their own, they typically act as independent data controllers. For convenience, we have included links to their privacy policies below. Data controllers are marked with an asterisk.
+
+
+  • Third-party features:
+
+    ◦ Google Geolocation API (https://www.google.com/policies/privacy) (Windows only)*
+
+    ◦ Google Safe Browsing (https://policies.google.com/privacy)
+
+    ◦ Google Ads (https://policies.google.com/privacy)
+
+    ◦ Firebase Analytics (https://policies.google.com/privacy)
+
+  • Payment service providers:
+
+    ◦ Paypal (https://www.paypal.com/webapps/mpp/ua/privacy-full)*
+
+    ◦ PayU (https://corporate.payu.com/global-privacy-statement/)*
+
+    ◦ Google Billing Services (https://policies.google.com/privacy)
+
+    ◦ Cypix (https://cypix.io/)
+
+    ◦ Rapyd (https://www.rapyd.net/privacypolicy)
+
+    ◦ Xsolla (https://xsolla.com/privacypolicy)
+
+    ◦ NexWay SAS (https://corporatev4.nexway.com/legal-notice-privacy/)
+
+    ◦ Stripe (https://stripe.com/en-pl/privacy)
+
+  • Technology providers:
+
+    ◦ Brevo (https://www.brevo.com/legal/privacypolicy/)
+
+    ◦ Sendinblue (https://www.sendinblue.com/legal/privacypolicy/)
+
+    ◦ Freshdesk (https://www.freshworks.com/privacy/)
+
+    ◦ OpenAI (https://openai.com/policies/privacy-policy)
+
+    ◦ Google (https://policies.google.com/privacy?hl=en-US)
+
+    ◦ Zendesk (https://www.zendesk.com/company/agreements-and-terms/privacy-notice/)
+
+    ◦ Mixpanel (https://mixpanel.com/legal/privacy-policy/)
+
+    ◦ Xenforo (https://xenforo.com/privacy-policy/)
+Please note that this list of third-party entities applies only to the currently supported versions of our applications and services.
+
+
+Mobile Browsers
+───────────────
+
+
+The following sections describe how we process data (including, but not limited to personal data) in our mobile applications – Opera for Android, Opera Mini, Opera for iOS, and Opera GX Mobile.
+
+
+Opera Account
+─────────────
+
+Our browsers do not require you to sign in to start using them for regular browsing activities, such as browsing the web. However, you have the option to create anOpera account (https://auth.opera.com/) to use certain services (like commenting on our Forum or blogs, subscribing to VPN Pro, accessing Cashback, etc.). Note that even if you create an Opera account, your account and its associated data is not associated with the random ID of your browser installation, which remains separate.
+
+If you choose to create an Opera account (https://auth.opera.com/), we ask for a preferred username and an email address. The email address will be used to identify you as a user and for password recovery. Alternatively, you can use your Google, Facebook, Twitter, or VK account to sign in to an Opera account and access our services with the same profile. If you use these social networks to sign in, we may collect information such as your name, profile picture, and email address from them. If you use your Opera account in conjunction with a service like VPN Pro or Cashback, the data we process in connection with those services will be associated with your Opera account.
+
+You can modify your Opera account, delete it, or request a copy of your data using your profile page (https://auth.opera.com/account/edit-profile). We retain your data for seven days after you’ve decided to discontinue your Opera account in case you choose to change your mind. After this seven-day period, your account and data are permanently deleted. Your Opera account with a verified email address will be deleted automatically if you don’t sign in for two years. Accounts with unverified email addresses will be deleted after six months of inactivity.
+
+Note also that Opera allows you to sync your browser data, such as Speed Dial entries and bookmarks, between devices that have another Opera browser installed on them. The synced data is retained until your Opera account is deleted, and it is never associated with your browser installation’s randomly generated ID.
+
+Purpose: To allow you to access certain services.
+
+Legal basis: Contractual grounds (e.g., providing you the services).
+
+
+Personalized news
+─────────────────
+
+Certain applications include a native News Feed feature. To provide you with more relevant news content in certain countries and languages, we collect some information about the articles you read in the application’s native News Feed, and your general location (your city or country). We use this information to build a profile of your interests, which we use to show you more relevant articles. This information is linked to a randomly generated News ID and stored on our servers for up to four years. We process this data based on your consent. If you would like to withdraw your consent, you can go to the settings menu and disable ‘Personalized news’.
+
+News applications like Apex News and Apex Football are offered by our affiliate, Opera Technology Singapore Pte. Ltd.
+
+Purpose: Providing a more personalized experience and encouraging user engagement; monetization.
+
+Legal basis: Consent.
+
+
+Free VPN
+────────
+
+Our free, built-in browser VPN is a no-log service. This means we do not log any personal data, or any other data, related to your browsing and originating network address on our servers while you use the VPN. When the VPN is active, all browser traffic is encrypted using strong, industry-standard AES-256 encryption.
+
+
+VPN Pro
+───────
+
+Depending on where you live, you may be able to purchase a premium VPN service called ‘VPN Pro’ through a subscription.
+
+
+  • VPN Pro is provided by a third-party service provider which owns, operates, and maintains the infrastructure which provides the Service. Data communicated through VPN Pro will be encrypted and routed through one of thousands of servers around the world. However, we do not promise that the service is absolutely secure.
+
+  • VPN Pro is a no-log service. Neither we nor our third-party service provider collect or store records of web pages you visit or links you click on in the servers dedicated for this Service.
+
+  • In some cases, to use VPN Pro you need to create and sign in to an Opera account. We use your Opera account to identify you as a valid subscriber to the VPN Pro service. We will share only information required to identify you as a subscriber with our third-party service provider, including a random ID number that is not associated with any of your real-life personal information. We do not share other data or personal data such as your email or name with our third-party service provider.
+Purpose: To provide the service.
+
+Legal basis: Contractual grounds.
+
+
+Aria
+────
+
+Depending on which version of the browser you are using, you may be able to access an AI-powered chat assistant (‘Aria’ or ‘AI Chat’). Aria is powered by OpenAI and Google (both US-based companies).
+
+To access Aria, you do not need to sign into your Opera account, however if you do log in, you’ll get access to additional/extended features of Aria. We do not share your Opera account data with anyone, including OpenAI or Google. For more information on how we use and retain Opera account data, see the section on Opera account above.
+
+Your input (which means anything that you choose to type into Aria’s chatbox, including any personal data you choose to include) is first processed by Aria to understand how to build the best possible answer. Based on your prompt, Aria selects and shares it with either OpenAI or Google to generate a response, depending on which model is best suited for your request. This helps ensure you receive more accurate and relevant answers. Moreover, based on your input, Aria may identify prompts with potential for further exploration—either through Aria itself or by searching for something relevant on Google. In such cases, your input may be shared with Google to generate Search Suggestions that enrich the response. You can always opt out of the Google Search Suggestions feature in Aria Settings.
+
+Aria has several additional features, which you may choose to use (e.g. context mode, image generation, voice output, image understanding, tabs management). Aforesaid features may require collecting and processing additional data, i.e. URL and tab names. To learn more, please read our FAQ (https://help.opera.com/en/browser-ai-faq/).
+
+After your session is complete, your chats, URLs of sites you visited, and chat tab names will be stored locally on your device and on Opera servers but will not be retained by OpenAI or Google. This is needed to allow you to continue your conversations with Aria.
+
+The aforementioned data will be automatically removed after 30 days from Opera’s servers but will still be available on your device. At any time, you can delete your chats (both stored locally and on Opera servers), by going to the chats list by tapping the timeline icon on the top bar of the chat. There you can either delete them one at a time by swiping, or you can select multiple chats and delete them all at once by clicking the bin icon.
+
+Purpose: To provide and manage the service
+
+Legal basis: Legitimate interest (for Opera account data), Consent (for any data you input to Aria), Contractual grounds (other data).
+
+
+Crypto Wallet
+─────────────
+
+Depending on your location, some Opera browsers may allow you to access a non-custodial crypto “wallet” offered by our affiliate, Blueboard Limited (an Opera Group company). Blueboard is the data controller for this feature, and you can read Blueboard Privacy Statement here (https://minipay.to/privacy-statement). Opera does not act as a data controller for this feature, but may process some data in order to help the wallet to function in our apps.
+
+
+Opera Rewards Points
+────────────────────
+
+Opera Rewards Points is a rewards program where you can earn Opera Points when participating in multiple activities throughout Opera Mini, Opera News, or Opera for Android.
+
+In order to redeem Opera Points you need to use the functionality of Opera Mini, Opera News, or Opera for Android. The processing of your data while using the aforesaid Opera products, will happen in accordance with sections of this document applicable to Opera Mini, Opera News, and Opera for Android.
+
+ We may share or make your data available (including personal data) to the other members of the Opera Group for the purpose of providing you with programs related to Opera Rewards Point.
+
+Purpose: To provide and improve the service.
+
+Legal basis: Contractual grounds.
+
+
+Data Compression
+────────────────
+
+Extreme-savings mode in Opera Mini renders web pages on our servers before sending a compressed version of the content to the application on your device. High-savings mode (Opera Turbo) does not render content, but our servers look through your requests to see if any elements on the page can be compressed before sending them to your device. If you use extreme-savings mode or Opera Turbo in Opera Mini, we log your IP address, a randomly generated ID, advertising ID, and URLs of your requests that are sent through our servers, but not the content. We may also log a phone number and IMEI, if they were provided by your mobile operator. If you use Opera Turbo in Opera for Android, we log your IP address ,a randomly generated ID, advertising ID, and URLs of your requests that are sent through our servers, but not the content. We use this data to debug and improve our services, and we store it in our server logs for up to forty-five days, after which it is deleted automatically.
+
+Purpose: To provide the service; improving our products and services.
+
+Legal basis: Contractual grounds.
+
+
+Cashback
+────────
+
+Cashback is an incentive program where you can earn rewards when purchasing goods or services from participating online merchants. If you choose to use the Cashback program and visit supported websites, we will collect merchant URLs, a list of your purchased items, transaction amounts, and IP address. This data is required for the Cashback service to function, and we also use it to provide more relevant partner deals, and to detect fraud and misuse of the service. To enable payouts, your Opera account (https://auth.opera.com/) will be linked with a payment service provider, which will receive your customer ID, and relevant payment related data with Opera. Your payment data may be stored for up to five years due to regulatory requirements. You can modify your Opera account, delete it, or request a copy of your data using your profile page (https://auth.opera.com/account/edit-profile). Your Cashback data will be automatically deleted after two years of inactivity. You may choose to delete your Cashback account, which will erase your personal data from the system, through the Account Setting menus in Cashback account.
+
+Purpose: To provide and improve the service.
+
+Legal basis: Contractual grounds, legal compliance.
+
+
+Malicious-site Check
+────────────────────
+
+We use a fraud prevention framework and check the URLs you visit against lists of known, malicious websites to protect you online. We do not process any personal data in this context. You can disable this feature by heading to your browser Settings under ‘Privacy and security’ and disabling ‘Safe Browsing’.
+
+
+Search Providers
+────────────────
+
+Opera browsers allow you to customize the search engine used in the browser address bar. In most cases Google is the default provider, but other providers (such as Bing) might be set as default based on which version of the Application you are using. You can always change your default provider in the settings menu. Opera does not share personal data with search engine providers to enable search within Opera browsers.
+
+Just like any other third-party website you might access, use of any search engine is subject to the terms of service and privacy policy offered by the specific search engine provider. Some of the web search services available in the Application may be provided by partners of CodeFuel Ltd. including, for example, bing.com. For information on the web search services data collection, please visit the search provider’s privacy policy.
+
+
+Usage Statistics
+────────────────
+
+When you install an Opera application, a random installation ID is generated. We collect this identifier, as well as Machine ID, hardware specifications (model, release date, etc.), operating system, environment configuration, and feature usage data to improve our products and services. For example, we may use it to analyze how our users interact with our applications, or to determine the effectiveness of promotional campaigns, or to detect and debug problems. We have no practical way of using any of this data to identify you personally. We retain this usage data linked to installation ID for up to three years.
+
+We use aggregated and anonymized statistics to understand website popularity in different regions and to improve our product strategy, overall quality, and site compatibility. To generate these statistics, the browser may send the domains you access, your region, and a random identifier. Any collected domain data is kept for no more than seven days before it is fully aggregated and anonymized.
+
+You can opt out of reporting extended statistics through the Settings menu under ‘Privacy and Security’, then going to the ‘Data collection’ section, and disabling ‘Send usage reports’.
+
+Purpose: Improving our products.
+
+Legal basis: Legitimate interest (debugging and improving products and services).
+
+
+Personalized Ads & Profiling
+────────────────────────────
+
+Based on data such as IP address, hashed user ID, and your general location (your country or city), some of our Applications serve targeted ads. We may share IP addresses with our partners, such as Google, to help improve targeted advertising. In those cases, the sharing is done in accordance with the IAB’s TCF Framework (https://iabeurope.eu/transparency-consent-framework/), and shared only if you have targeted advertising enabled. Targeted advertising is enabled or disabled during onboarding, depending on your region. These ads are provided by our monetization partners. You can always adjust your personalized ad choices in the application’s Settings menu or through your operating system’s settings.
+
+As noted in our End User License Agreements for computers (https://www.opera.com/legal/eula-computers) and mobiles (https://www.opera.com/legal/eula-mobile), and Terms of Service (https://www.opera.com/legal/terms), our applications are generally provided for free and are therefore ad-supported. You can choose to share this data with us to help us provide a more personalized experience for you and offset the costs of our business. You can consent to sharing this data when you first install our applications or at any point through the settings.
+
+We may also combine this data with other elements – including categories of websites you search and visit, device information (model, release date, device IDs, hardware specifications, operating system, etc.), and categories of ads you have clicked on in our products. We use this to build a better understanding of what our users are interested in.
+
+We do not log or store your entire browsing history for this purpose. Instead we make a simple record of whether you have visited certain categories of websites based on the primary domains of pages you visit and mix it with other data (which might depend on which application you use, and may include page loads, number of Speed Dial clicks, whether you have ad blocker enabled or not, etc.) to make an informed guess about whether you are interested in broad categories of interests (such as sports, gaming, news, etc.). We then add this basic profile to other data, such as your general location (country or city) in order to enable our advertising partners to target their ads to groups of users who might be interested in their products and services.
+
+We do not share your personal interests or browsing history with anyone. We retain this data for up to one year, after which it is deleted automatically.
+
+We only process this data based on your consent. If you would like to view your options, or to withdraw your consent, please visit the settings menu of the application you are using.
+
+Purpose: Improving our products and services, monetization.
+
+Legal basis: Consent.
+
+
+Speed Dials
+───────────
+
+Our browsers include visual bookmarks on the home screen which we call Speed Dials. You can customize the Speed Dials through the Application’s settings menu. Some Speed Dials are ads provided by our advertising partners. If you choose to use Opera’s default Speed Dials, you may be redirected through Opera’s partners or other third parties. These partners and third parties may collect data from you independently of Opera. This data may include third party cookies, device IDs, and session statistics. If you wish to opt out of such data collection, you can block third-party cookies through your browser’s Cookie Settings. You may also choose not to receive Speed Dial suggestions, or to adjust your Speed Dials by deleting preset options based on your own preference.
+
+
+Promotion & Marketing
+─────────────────────
+
+We process some data in order to promote and market our products and services. Some of this data comes directly from you when you submit it to us for some specific purpose. For example, if you decide to provide feedback to Opera, or participate in a promotional campaign, contest, or survey, organized by Opera or our partners on behalf of Opera, we may ask for information such as your name, age, phone number, email, or postal address. Depending on the nature of the campaign or contest, it may be necessary to share your data with third parties. When that applies, we will make it clear in the terms applicable to the campaign.
+
+If you agree to receive marketing information from Opera via email, SMS, or push notifications, we may use third party technology providers to deliver such messages to you. You can opt out from marketing communications at any time in your Opera account profile settings or directly from a marketing email you received.
+
+If you submit your phone number or email address on an application download page, we may send you a download link via SMS or email for your convenience.
+
+In Opera for Windows computers, we may use the Browser Assistant component to promote the browser and its features to you. Browser Assistant comes as part of the Opera Browser for Windows, and may be manually removed from the system’s startup list, or via the browser settings. To learn more about Browser Assistant, please read our dedicated section on it in this statement.
+
+In general when we process data in the context of a promotional campaign, contest, or survey, we process your personal data on the basis that doing so is necessary to enable you to participate in the campaign. In some cases we process data for marketing purposes based on your consent. In any case we will not retain your data for longer than necessary to fulfill the specific purpose for which it was initially collected. You can always control your preferences via the settings menu or through your account, and if you have other concerns you can reach out to us through this form (https://security.opera.com/privacy-inquiry).
+
+Purpose: To promote our products and services.
+
+Legal Basis: Varies by context as explained above - includes contractual grounds, or consent (in some cases).
+
+
+Third Party Technologies
+────────────────────────
+
+Our applications and services include third-party technology or code, some of which may use your data in different ways. When such third-party technologies use previously collected data, they typically act as data processors for us. When they collect data on their own, they typically act as independent data controllers. For convenience, we have included links to their privacy policies below. Data controllers are marked with an asterisk.
+
+
+  • All mobile applications
+
+    ◦ Google Geolocation API (https://www.google.com/policies/privacy)*
+
+  • Opera for Android
+
+    ◦ AppsFlyer (https://www.appsflyer.com/privacy-policy/)
+
+    ◦ Facebook SDK (https://www.facebook.com/about/privacy/)*
+
+    ◦ Firebase Analytics (https://policies.google.com/privacy)
+
+    ◦ Firebase Cloud Messaging (https://firebase.google.com/terms/)
+
+    ◦ Google AdMob (https://policies.google.com/technologies/partner-sites)*
+
+    ◦ Infura (https://infura.io/privacy)
+
+    ◦ Outbrain (https://www.outbrain.com/legal/privacy)*
+
+    ◦ Amazon Assistant (https://www.amazon.com/aa/privacy)
+
+    ◦ Gateway (https://gateway.fm/privacy-policy/)
+
+    ◦ Polygon (https://polygonscan.com/privacyPolicy)
+
+    ◦ Ronin (https://wallet.roninchain.com/)
+
+    ◦ Solana (https://solana.com/privacy-policy)
+
+    ◦ Near (https://near.org/privacy/)
+
+  • Opera for iOS
+
+    ◦ AppsFlyer (https://www.appsflyer.com/privacy-policy/)
+
+    ◦ Firebase Analytics (https://policies.google.com/privacy)
+
+    ◦ Firebase Cloud Messaging (https://firebase.google.com/terms/)
+
+    ◦ Firebase Crashlytics (https://firebase.google.com/terms/)
+
+    ◦ Google AdMob (https://policies.google.com/technologies/partner-sites)*
+
+  • Opera Mini for Android
+
+    ◦ AppsFlyer (https://www.appsflyer.com/privacy-policy/)
+
+    ◦ Facebook SDK (https://www.facebook.com/about/privacy/)*
+
+    ◦ Firebase Analytics (https://policies.google.com/privacy)
+
+    ◦ Firebase Cloud Messaging (https://firebase.google.com/terms/)
+
+    ◦ Google AdMob (https://policies.google.com/technologies/partner-sites)*
+
+    ◦ Outbrain (https://www.outbrain.com/legal/privacy)*
+
+    ◦ Pangle Ad SDK (https://www.pangleglobal.com/zh/privacy/enduser-en)
+
+    ◦ Mobpower Ad SDK (https://home.mobpowertech.com/index/privacy_policy.html)
+
+    ◦ MobVista SDK (https://www.mobvista.com/en/privacy)
+
+  • Opera Mini for iOS
+
+    ◦ AppsFlyer (https://www.appsflyer.com/privacy-policy/)
+
+    ◦ Facebook SDK (https://www.facebook.com/about/privacy/)*
+
+    ◦ Firebase Analytics (https://policies.google.com/privacy)
+
+    ◦ Google AdMob (https://policies.google.com/technologies/partner-sites)*
+
+  • Opera GX for Android
+
+    ◦ Facebook SDK (https://www.facebook.com/about/privacy/)*
+
+    ◦ Firebase Analytics (https://policies.google.com/privacy)
+
+    ◦ Firebase Cloud Messaging (https://firebase.google.com/terms/)
+
+    ◦ Google AdMob (https://policies.google.com/technologies/partner-sites)*
+
+    ◦ Infura (https://infura.io/privacy)
+
+    ◦ Outbrain (https://www.outbrain.com/legal/privacy)*
+
+  • Opera GX for iOS
+
+    ◦ Firebase Analytics (https://policies.google.com/privacy)
+
+    ◦ Firebase Cloud Messaging (https://firebase.google.com/terms/)
+
+    ◦ Firebase Crashlytics (https://firebase.google.com/terms/)
+
+  • Opera Touch
+
+    ◦ AppsFlyer (https://www.appsflyer.com/privacy-policy/)
+
+    ◦ Firebase Analytics (https://policies.google.com/privacy)
+
+    ◦ Firebase Cloud Messaging (https://firebase.google.com/terms/)
+
+    ◦ Firebase Crashlytics (https://firebase.google.com/terms/)
+
+  • Payment service providers
+
+    ◦ Paypal (https://www.paypal.com/webapps/mpp/ua/privacy-full)*
+
+    ◦ PayU (https://corporate.payu.com/global-privacy-statement/)*
+
+    ◦ Google Billing Services (https://policies.google.com/privacy)
+
+    ◦ Cypix (https://cypix.io/)
+
+    ◦ Rapyd (https://www.rapyd.net/privacypolicy/)
+
+    ◦ Xsolla (https://xsolla.com/privacypolicy)
+
+  • Technology providers
+
+    ◦ Sendinblue (https://www.sendinblue.com/legal/privacypolicy/)
+
+    ◦ Freshdesk (https://www.freshworks.com/privacy/)
+
+    ◦ OpenAI (https://openai.com/policies/privacy-policy)
+Please note that this list of third party entities applies only to the currently supported versions of our applications and services.
+
+
+Websites
+────────
+
+
+The following sections describe how we process data (including, but not limited to personal data) when you visit or use our websites - including opera.com, and more.
+
+
+Promotion & Marketing
+─────────────────────
+
+We process some data in order to promote and market our products and services. Some of this data comes directly from you when you submit it to us for some specific purpose. For example, if you decide to provide feedback to Opera, or participate in a promotional campaign, contest, or survey, organized by Opera or our partners on behalf of Opera, we may ask for information such as your name, age, phone number, email, or postal address. Depending on the nature of the campaign or contest, it may be necessary to share your data with third parties. When that applies, we will make it clear in the terms applicable to the campaign.
+
+If you agree to receive marketing information from Opera via email, SMS, or push notifications, we may use third party technology providers to deliver such messages to you. You can opt out from marketing communications at any time in your Opera account profile settings or directly from a marketing email you received.
+
+If you submit your phone number or email address on an application download page, we may send you a download link via SMS or email for your convenience.
+
+In Opera for Windows computers, we may use the Browser Assistant component to promote the browser and its features to you. Browser Assistant comes as part of the Opera Browser for Windows, and may be manually removed from the system’s startup list, or via the browser settings. To learn more about Browser Assistant, please read our dedicated section on it in this statement.
+
+In general when we process data in the context of a promotional campaign, contest, or survey, we process your personal data on the basis that doing so is necessary to enable you to participate in the campaign. In some cases we process data for marketing purposes based on your consent. In any case we will not retain your data for longer than necessary to fulfill the specific purpose for which it was initially collected. You can always control your preferences via the settings menu or through your account, and if you have other concerns you can reach out to us through this form (https://security.opera.com/privacy-inquiry).
+
+Purpose: To promote our products and services.
+
+Legal basis: Varies by context as explained above - may include contractual grounds, legitimate interest, or consent (in some cases).
+
+
+Cashback
+────────
+
+Cashback is an incentive program where you can earn rewards when purchasing goods or services from participating online merchants. If you choose to use the Cashback program and visit supported websites, we will collect merchant URLs, a list of your purchased items, transaction amounts, and IP address. This data is required for the Cashback service to function, and we also use it to provide more relevant partner deals, and to detect fraud and misuse of the service. To enable payouts, your Opera account (https://auth.opera.com/) will be linked with a payment service provider, which will receive your customer ID, and relevant payment related data with Opera. Your payment data may be stored for up to five years due to regulatory requirements. You can modify your Opera account, delete it, or request a copy of your data using your profile page (https://auth.opera.com/account/edit-profile). Your Cashback data will be automatically deleted after two years of inactivity. You may choose to delete your Cashback account, which will erase your personal data from the system, through the Account Setting menus in Cashback account.
+
+Purpose: To provide and improve the service.
+
+Legal basis: Contractual grounds, legal compliance.
+
+
+Opera Account
+─────────────
+
+Our browsers do not require you to sign in to start using them for regular browsing activities, such as browsing the web. However, you have the option to create anOpera account (https://auth.opera.com/) to use certain services (like commenting on our Forum or blogs, subscribing to VPN Pro, accessing Cashback, etc.). Note that even if you create an Opera account, your account and its associated data is not associated with the random ID of your browser installation, which remains separate.
+
+If you choose to create an Opera account (https://auth.opera.com/), we ask for a preferred username and an email address. The email address will be used to identify you as a user and for password recovery. Alternatively, you can use your Google, Facebook, Twitter, or VK account to sign in to an Opera account and access our services with the same profile. If you use these social networks to sign in, we may collect information such as your name, profile picture, and email address from them. If you use your Opera account in conjunction with a service like VPN Pro or Cashback, the data we process in connection with those services will be associated with your Opera account.
+
+You can modify your Opera account, delete it, or request a copy of your data using your profile page (https://auth.opera.com/account/edit-profile). We retain your data for seven days after you’ve decided to discontinue your Opera account in case you choose to change your mind. After this seven-day period, your account and data are permanently deleted. Your Opera account with a verified email address will be deleted automatically if you don’t sign in for two years. Accounts with unverified email addresses will be deleted after six months of inactivity.
+
+Note also that Opera allows you to sync your browser data, such as Speed Dial entries and bookmarks, between devices that have another Opera browser installed on them. The synced data is retained until your Opera account is deleted, and it is never associated with your browser installation’s randomly generated ID.
+
+Purpose: to allow you to access certain services.
+
+Legal basis: Contractual grounds.
+
+
+GX Cloud
+────────
+
+GX Cloud is a set of online services, and a community for gamers, consisting of the following websites: GX Games, GX Store,, GX Dev and GX Me.These give you access to games, and other content as well as the option to play, compete in, and create video games, mods, and so on. Certain content available on the GX Cloud feature needs to be purchased (“Paid Content”). You may also use GX Cloud as a publisher to publish and distribute content and Paid Content.
+
+You do not need an account to play most games; however, to get access to certain content (including Paid Content), participate in OPyramid rewards program and other challenges, publish, distribute or create content, you need anOpera account (https://auth.opera.com/). Opera Account dedicated to GX Cloud feature is further referred to as “GX Me Account“. After signing up for the first time, you will be prompted to provide your date of birth and an optional avatar. We use your date of birth to ensure you are eligible to use the service. You can modify your GX Me Account, delete it, or request a copy of your data using yourprofile page (https://auth.opera.com/account/edit-profile). For more information on how we use and retain GX Me Account data, see the section on Opera Account above.
+
+You need to have an active payment account established with a payment service provider, bank, and/or other partner who cooperates with Opera for purposes of purchasing or distributing Paid Content. The payment service provider may process additional data, including your name, email address, full address, phone number and card ID. The payment service provider will share your customer ID, email address, and relevant payment-related data with Opera. Your payment data may be stored for up to five years due to regulatory requirements.
+
+Within the OPyramid rewards program we give you an option to participate in certain qualifying activities and earn rewards. Such activities might be organized and offered by Opera or third parties. For the purposes of OPyramid organization we may process your GX Me Account data (to contact you if needed e.g. for the purpose of redeeming reward). In some cases OPyramid quest may require linking your GX Me Account with your account that you registered with a third party - then we will share and receive some of your data (like your user ID and data related to quest progress). If some additional data would be required we will inform you about it in OPyramid specific terms.
+
+Purpose: To provide the service.
+
+Legal basis: Contractual grounds.
+
+
+GameMaker
+─────────
+
+Depending on where you live, it may be possible to purchase a license to the proprietary computer software program known as ‘GameMaker’, as well as to access platforms and websites that we operate, where you may use our content, or publish your content.
+
+To access and use GameMaker, you will need to sign into your Opera account. We do not share your Opera account data with anyone. For more information on how we use and retain Opera account data, see the section on Opera account above. We may process your Opera account data (including email, user ID, location, device ID), as well as your other personal data such as first name and last name, only to identify you as a valid subscriber to GameMaker. If you use a legacy GameMaker account (meaning an account created before September 21st, 2022) we process additional data, such as: your home address, phone number, security questions answers, VAT number.
+
+To enable payments (both making and receiving), your Opera account will be linked with a payment service provider. The payment service provider may process additional data, including your full address and card ID. The payment service provider will share your customer ID, and relevant payment-related data with Opera. Your payment data may be stored for up to five years due to regulatory requirements.
+
+If you use GameMaker Forum, we will additionally collect and process your date of birth. This is to ensure that you are over the required age limit.
+
+Various educational subscriptions for GameMaker are available to schools and other institutions of learning, licensed under applicable law to teach (‘Educational Institutions’). We do not collect and/or process any personal data or any personally identifiable data from Educational Institutions’ students, pursuant to or in connection with educational subscriptions, and thus students remain entirely anonymous to us. We do collect and process personal data from Authorised Representatives of Education Institutions (e.g. teachers) in the course of opening an account. For more information, please see our GameMaker Feature Terms of Service (https://legal.opera.com/terms/).
+
+Please note that with reference to your data processed in scope of GameMaker service, you may make inquiries or requests (including a request to access or delete any of your personal data that we might possess) by sending an email to datacontroller@yoyogames.com (mailto:datacontroller@yoyogames.com).
+
+Purpose: To provide the service.
+
+Legal basis: Contractual grounds.
+
+
+GX.gear
+───────
+
+Depending on where you live, the GX.gear online shop may allow you to purchase goods offered by entities within the Opera Group. Our shop is hosted by Shopify Inc. who provide the online e-commerce platform we use to sell our products to you. Therefore we will share some data with them to facilitate your use of the service, such as if you choose to make a purchase or an account. To use GX.gear you do not need to create or sign in to a customer account. However, if you decide to do so, you will be asked for your email address and to set up a password.
+
+When submitting your order, you will have to provide us with information necessary for delivery and potential complaints purposes, including data such as: your name, surname, postal address and phone number (optional). We will only share this information with our third-party fulfilment service provider (who may further share it with subcontractors e.g. couriers to deliver your order to you). If you reside in the United States, this information will be collected by our Merchant of Record - OpenBorder, Inc., (who may further share it with subcontractors e.g. payment providers and couriers to deliver your order to you).
+
+Your payment for the order will be processed by a payment service provider, who may collect and process additional data, including: card number, card expiration date and security code. The payment service provider will share your customer ID and relevant payment-related data with us or OpenBorder in the US. Your payment data may be stored for at least five years due to regulatory requirements. We will retain your data for as long as necessary for the purposes named herein, unless you request their deletion or close your customer account – then we will only keep the data that is necessary to fulfil our legal obligations.
+
+If you decide to sign up to our newsletter, we will ask you for a separate consent and process your data in accordance with the ‘Promotion & Marketing’ section.
+
+Purpose: To provide the service. To comply with legal obligations.
+
+Legal basis: Contractual grounds, Consent (newsletter)
+
+
+Use of Cookies
+──────────────
+
+We use cookies on our websites for session management and retaining your settings or preferences. We may also use third-party cookies to collect visitor statistics and measure our marketing campaigns. If you would like to reject third-party cookies, please configure your browser’s settings accordingly. Please refer to our Cookie Policy (https://www.opera.com/legal/cookie-policy) for more information.
+
+
+Third Party Technologies
+────────────────────────
+
+Our web services include third-party technology or code, some of which may use your data in different ways. When such third-party technologies use previously collected data, they typically act as data processors for us. When they collect data on their own, they typically act as independent data controllers. For convenience, we have included links to their privacy policies below. Data controllers are marked with an asterisk.
+
+
+  • GX Games, GameBites
+
+    ◦ Google Analytics (https://policies.google.com/privacy)
+
+  • Technology Providers
+
+    ◦ Brevo (https://www.brevo.com/legal/privacypolicy/)
+
+    ◦ OpenAI (https://openai.com/policies/privacy-policy)
+
+    ◦ Google (https://policies.google.com/privacy?hl=en-US)
+
+    ◦ Zendesk (https://www.zendesk.com/company/agreements-and-terms/privacy-notice/)
+
+    ◦ Mixpanel (https://mixpanel.com/legal/privacy-policy/)
+
+    ◦ Xenforo (https://xenforo.com/privacy-policy/)
+
+    ◦ Fulfilio Sp.z o.o. (https://fulfilio.com/en/privacy-policy/)
+
+  • Payment Service Providers
+
+    ◦ Paypal (https://www.paypal.com/webapps/mpp/ua/privacy-full)*
+
+    ◦ PayU (https://corporate.payu.com/global-privacy-statement/)*
+
+    ◦ Google Billing Services (https://policies.google.com/privacy)
+
+    ◦ Cypix (https://cypix.io/)
+
+    ◦ Rapyd (https://www.rapyd.net/privacypolicy/)
+
+    ◦ Xsolla (https://xsolla.com/privacypolicy)
+
+    ◦ Stripe (https://stripe.com/en-pl/privacy)
+
+
+General Topics
+──────────────
+
+
+Data Controller & Internal Processing
+─────────────────────────────────────
+
+Opera browsers are developed and published by Opera Norway AS, a company registered under the laws of Norway. Therefore Opera Norway AS acts as the primary data controller for Opera browsers and services.
+
+The Opera Group companies work together to develop our apps, and to market, distribute, and monetize them around the world. In general, the other companies of the Opera Group that may have access to personal data act as data processors for Opera Norway AS. As a matter of company policy, we apply the GDPR to our internal processing in general, even in contexts where it might not apply directly to our affiliated companies outside of Europe.
+
+
+Use of Cookies
+──────────────
+
+We use cookies on our websites for session management and retaining your settings or preferences. We may also use third-party cookies to collect visitor statistics and measure our marketing campaigns. If you would like to reject third-party cookies, please configure your browser’s settings accordingly. Please refer to our Cookie Policy (https://www.opera.com/legal/cookie-policy) for more information.
+
+
+Children’s Privacy
+──────────────────
+
+There are no guarantees that children cannot enter our websites or use our applications without parental consent or notification. Therefore, and as provided in our End User License Agreements for computers (https://www.opera.com/legal/eula-computers) and mobiles (https://www.opera.com/legal/eula-mobile), we require children to include their parents in the download process, and we encourage parents to read this privacy statement before allowing their children to use our applications and services.
+
+
+International Data Transfers
+────────────────────────────
+
+As noted above, in different contexts we may share or make data available (including personal data) to other members of the Opera Group, and in some cases, with third-parties such as our marketing and monetization partners. Where applicable, we insist that a valid legal mechanism is used to protect such transfer, including for example the European Union’s model contracts for the transfer of personal data to third countries (also known as the “standard contractual clauses”) to ensure adequate protection of your personal data.
+
+
+Your Rights And Statement Updates
+─────────────────────────────────
+
+You have the right to make a request to access or delete any of your personal data that we might possess. You can make a request via this online request form (https://security.opera.com/privacy-inquiry) or by contacting our Data Protection Officer at the address below. You may be required to provide additional information to authenticate your request. You also have the right to lodge a complaint with Datatilsynet, the Norwegian Data Protection Authority, which can be contacted through their webpage (https://www.datatilsynet.no/).
+
+When we post changes to this privacy statement, we will include the date when the statement was last updated. If we significantly change this statement, we will notify you about the upcoming change via our website or using in-app notifications. We encourage you to review this statement periodically.
+
+
+Contacts
+────────
+
+If you have any questions about this statement or any privacy issues in our applications or services, feel free to contact our Data Protection Officer via this online request form (https://security.opera.com/privacy-inquiry) or by post:
+
+Opera Norway AS
+ P.O. Box 4214,
+ Nydalen 0401,
+ Oslo,
+ Norway
+
+────────────────────────────────────────────────────────────
+Published at: June 24, 2026 at 02:20 PM UTC

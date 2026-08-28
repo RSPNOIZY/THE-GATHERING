@@ -1,0 +1,285 @@
+{
+  "info": {
+    "name": "HEAVEN API v17.6.0",
+    "description": "NOIZY HVS Consent Kernel API — heaven.rsp-5f3.workers.dev\n\nConstitutional infrastructure for human creativity.\n75/25 perpetual. Gabriel watching. GORUNFREE.\n\nAuth: Set X-NOIZY-Key header or Authorization: Bearer <key>",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "noizy-empire"
+  },
+  "variable": [
+    { "key": "base_url", "value": "https://heaven.rsp-5f3.workers.dev", "type": "string" },
+    { "key": "noizy_key", "value": "{{NOIZY_API_KEY}}", "type": "string" },
+    { "key": "local_url", "value": "http://localhost:8787", "type": "string" }
+  ],
+  "item": [
+    {
+      "name": "🏥 Health & Status",
+      "item": [
+        {
+          "name": "Health Check",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/health",
+            "description": "Live status, version, ledger count"
+          }
+        },
+        {
+          "name": "Gabriel Status",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/gabriel",
+            "description": "Full empire status — all 6 portals, 18 days countdown"
+          }
+        },
+        {
+          "name": "API Root (endpoint list)",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/",
+            "header": [{ "key": "Accept", "value": "application/json" }]
+          }
+        },
+        {
+          "name": "Stats",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/api/v1/stats",
+            "header": [{ "key": "X-NOIZY-Key", "value": "{{noizy_key}}" }]
+          }
+        }
+      ]
+    },
+    {
+      "name": "🎭 Actors (HVS)",
+      "item": [
+        {
+          "name": "List Actors",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/api/v1/actors",
+            "header": [{ "key": "X-NOIZY-Key", "value": "{{noizy_key}}" }]
+          }
+        },
+        {
+          "name": "Create Actor",
+          "request": {
+            "method": "POST",
+            "url": "{{base_url}}/api/v1/actors",
+            "header": [
+              { "key": "X-NOIZY-Key", "value": "{{noizy_key}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"actor_id\": \"RSP_001\",\n  \"display_name\": \"Robert Stephen Plowman\",\n  \"legal_name\": \"Robert Stephen Plowman\",\n  \"email\": \"rsp@noizyfish.com\",\n  \"country\": \"CA\",\n  \"is_founding\": true,\n  \"union_member\": false\n}"
+            }
+          }
+        },
+        {
+          "name": "Get Actor by ID",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/api/v1/actors/RSP_001",
+            "header": [{ "key": "X-NOIZY-Key", "value": "{{noizy_key}}" }]
+          }
+        },
+        {
+          "name": "Get Actor Never Clauses",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/api/v1/actors/RSP_001/never-clauses",
+            "header": [{ "key": "X-NOIZY-Key", "value": "{{noizy_key}}" }]
+          }
+        }
+      ]
+    },
+    {
+      "name": "🔐 Consent Tokens",
+      "item": [
+        {
+          "name": "Create Consent Token",
+          "request": {
+            "method": "POST",
+            "url": "{{base_url}}/api/v1/consent-tokens",
+            "header": [
+              { "key": "X-NOIZY-Key", "value": "{{noizy_key}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"actor_id\": \"RSP_001\",\n  \"use_categories\": [\"educational\"],\n  \"territories\": [\"CA\", \"US\"],\n  \"languages\": [\"en\"]\n}"
+            }
+          }
+        },
+        {
+          "name": "🔴 Kill Switch (Revoke Token)",
+          "request": {
+            "method": "POST",
+            "url": "{{base_url}}/api/v1/consent-tokens/TOKEN_ID/revoke",
+            "header": [
+              { "key": "X-NOIZY-Key", "value": "{{noizy_key}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"reason\": \"revoked via kill switch\"\n}"
+            },
+            "description": "Instant sovereignty revocation — the kill switch"
+          }
+        }
+      ]
+    },
+    {
+      "name": "🎤 Synthesis",
+      "item": [
+        {
+          "name": "Synthesis Request (Never Clause enforced)",
+          "request": {
+            "method": "POST",
+            "url": "{{base_url}}/api/v1/synth-requests",
+            "header": [
+              { "key": "X-NOIZY-Key", "value": "{{noizy_key}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"actor_id\": \"RSP_001\",\n  \"descendant_id\": null,\n  \"licensee_id\": null,\n  \"use_category\": \"educational\",\n  \"text_input\": \"This is a test synthesis request.\",\n  \"consent_token_id\": \"TOKEN_ID\"\n}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "👨‍👩‍👧 myFamily.AI",
+      "item": [
+        {
+          "name": "Register Family Member",
+          "request": {
+            "method": "POST",
+            "url": "{{base_url}}/api/v1/family/members",
+            "header": [
+              { "key": "X-NOIZY-Key", "value": "{{noizy_key}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"family@noizy.ai\",\n  \"display_name\": \"Family Member\"\n}"
+            }
+          }
+        },
+        {
+          "name": "List Family Members",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/api/v1/family/members",
+            "header": [{ "key": "X-NOIZY-Key", "value": "{{noizy_key}}" }]
+          }
+        },
+        {
+          "name": "Store Consent Matrix",
+          "request": {
+            "method": "POST",
+            "url": "{{base_url}}/api/v1/family/consent",
+            "header": [
+              { "key": "X-NOIZY-Key", "value": "{{noizy_key}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"member_id\": \"MEMBER_ID\",\n  \"use_cases\": [\"elder_care\", \"grief_support\"],\n  \"beneficiary_ids\": [\"BENEFICIARY_ID\"],\n  \"restrictions\": { \"biometric_trigger_only\": true }\n}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "🌊 NOIZYLAB Healing",
+      "item": [
+        {
+          "name": "Log Healing Session",
+          "request": {
+            "method": "POST",
+            "url": "{{base_url}}/api/v1/heal/session",
+            "header": [
+              { "key": "X-NOIZY-Key", "value": "{{noizy_key}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"beneficiary_member_id\": \"MEMBER_ID\",\n  \"protocol_type\": \"binaural_theta\",\n  \"frequency_hz\": 6.0,\n  \"duration_seconds\": 1800,\n  \"biometric_before\": { \"heart_rate\": 88, \"hrv\": 42 },\n  \"biometric_after\": { \"heart_rate\": 65, \"hrv\": 58 },\n  \"outcome\": \"improved\",\n  \"consent_verified\": true\n}"
+            }
+          }
+        },
+        {
+          "name": "Healing Outcomes (Research Data)",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/api/v1/heal/outcomes",
+            "header": [{ "key": "X-NOIZY-Key", "value": "{{noizy_key}}" }]
+          }
+        }
+      ]
+    },
+    {
+      "name": "📒 Ledger",
+      "item": [
+        {
+          "name": "Get Ledger",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/api/v1/ledger",
+            "header": [{ "key": "X-NOIZY-Key", "value": "{{noizy_key}}" }]
+          }
+        },
+        {
+          "name": "Append to Ledger",
+          "request": {
+            "method": "POST",
+            "url": "{{base_url}}/api/v1/ledger/append",
+            "header": [
+              { "key": "X-NOIZY-Key", "value": "{{noizy_key}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"event_type\": \"ai.usage\",\n  \"payload\": { \"model\": \"claude-opus-4-6\", \"tokens\": 1000 },\n  \"amount_cad\": 0\n}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "🔌 WebSocket",
+      "item": [
+        {
+          "name": "WSS Endpoint Info",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/ws",
+            "description": "Returns WSS endpoint info. Connect via: wss://heaven.rsp-5f3.workers.dev/ws\n\nMessage types: ping, empire.status, consent.check, heal.trigger, voice"
+          }
+        }
+      ]
+    },
+    {
+      "name": "📊 KPIs",
+      "item": [
+        {
+          "name": "KPI Trust",
+          "request": { "method": "GET", "url": "{{base_url}}/api/v1/kpi/trust", "header": [{ "key": "X-NOIZY-Key", "value": "{{noizy_key}}" }] }
+        },
+        {
+          "name": "KPI Safety",
+          "request": { "method": "GET", "url": "{{base_url}}/api/v1/kpi/safety", "header": [{ "key": "X-NOIZY-Key", "value": "{{noizy_key}}" }] }
+        },
+        {
+          "name": "KPI Revenue",
+          "request": { "method": "GET", "url": "{{base_url}}/api/v1/kpi/revenue", "header": [{ "key": "X-NOIZY-Key", "value": "{{noizy_key}}" }] }
+        },
+        {
+          "name": "KPI Risk",
+          "request": { "method": "GET", "url": "{{base_url}}/api/v1/kpi/risk", "header": [{ "key": "X-NOIZY-Key", "value": "{{noizy_key}}" }] }
+        }
+      ]
+    }
+  ]
+}

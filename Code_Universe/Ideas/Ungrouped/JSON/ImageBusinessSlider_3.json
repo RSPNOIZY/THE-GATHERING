@@ -1,0 +1,28 @@
+{
+	"ImageBusinessSlider" : 
+	{
+		"LV" : 
+		{
+			"gration_reset" : 
+			{
+				"materialValue" : null,
+				"sliderIntensity" : 85.0
+			},
+			"gration_source_path" : 
+			{
+				"materialValue" : null,
+				"sliderIntensity" : 85.0
+			},
+			"gration_target_path" : 
+			{
+				"materialValue" : null,
+				"sliderIntensity" : 85.0
+			},
+			"intensity" : 
+			{
+				"materialValue" : null,
+				"sliderIntensity" : 90.0
+			}
+		}
+	}
+}

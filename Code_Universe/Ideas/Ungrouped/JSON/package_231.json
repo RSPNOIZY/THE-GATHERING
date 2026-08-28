@@ -1,0 +1,40 @@
+{
+  "name": "@tagspaces/url-viewer",
+  "version": "1.0.254",
+  "description": "A TagSpaces extension allowing you to open url files created from web-browsers or bookmark manangers.",
+  "homepage": "https://www.tagspaces.org",
+  "main": "main.js",
+  "author": {
+    "name": "TagSpaces GmbH",
+    "email": "info@tagspaces.org",
+    "url": "https://www.tagspaces.org"
+  },
+  "license": "MIT",
+  "dependencies": {},
+  "tsextension": {
+    "name": "URL Editor",
+    "types": [
+      "viewer",
+      "editor"
+    ],
+    "color": "",
+    "fileTypes": [
+      {
+        "ext": "desktop",
+        "color": "#8095A8"
+      },
+      {
+        "ext": "url",
+        "color": "#8095A8"
+      },
+      {
+        "ext": "website",
+        "color": "#8095A8"
+      },
+      {
+        "ext": "webloc",
+        "color": "#8095A8"
+      }
+    ]
+  }
+}

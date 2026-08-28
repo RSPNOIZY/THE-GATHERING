@@ -1,0 +1,65 @@
+{
+  "receipt": {
+    "receipt_id": "b9bc2284-c5e5-4cdc-aba8-a55bd1639456",
+    "workstream": "RIDESHARE",
+    "project_ref": "GABRIEL",
+    "account": "rspdrives@gmail.com",
+    "vehicle": "2026-HONDA-CRV-HYBRID",
+    "timestamp_utc": "2026-07-06T21:32:20.379548+00:00",
+    "session_id": "f60770be-1714-4ac9-a7c8-9518ff8d051c",
+    "action": {
+      "type": "OTTAWA_EVENT",
+      "source": "COPILOT",
+      "description": "Ottawa event logged \u2014 Weekday Morning Rush",
+      "payload": {
+        "event_name": "Weekday Morning Rush",
+        "event_type": "PEAK_HOUR",
+        "venue": "Downtown Ottawa / OC Transpo Network",
+        "zone": "DOWNTOWN",
+        "event_date": "2026-07-07",
+        "start_time": "06:30",
+        "end_time": "09:00",
+        "expected_attendance": 8000,
+        "surge_impact_score": 0.75,
+        "notes": "Downtown to suburbs. Position downtown."
+      }
+    },
+    "data": {
+      "trip_id": null,
+      "platform": null,
+      "earnings_gross": null,
+      "earnings_net": null,
+      "surge_multiplier": null,
+      "miles": null,
+      "duration_minutes": null,
+      "pickup_geo": null,
+      "dropoff_geo": null,
+      "ottawa_context": {
+        "event": "Weekday Morning Rush",
+        "surge_zone": "DOWNTOWN"
+      }
+    },
+    "consent": {
+      "driver_consented": true,
+      "consent_version": "1.0",
+      "consent_timestamp": "2026-07-06T21:32:20.379548+00:00"
+    },
+    "audit": {
+      "rule_zero": true,
+      "logged_by": "THE-GATHERING",
+      "immutable": true,
+      "hash": "7581ba0d4733299ab62af443868e899fda994ec981c8fb219b5c87ac5852c91e",
+      "prev_receipt_id": null
+    },
+    "meta": {
+      "environment": "PRODUCTION",
+      "pipeline_version": "1.0.0",
+      "tags": [
+        "rideshare",
+        "ottawa",
+        "event",
+        "surge_schedule"
+      ]
+    }
+  }
+}

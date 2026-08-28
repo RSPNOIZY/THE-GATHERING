@@ -1,0 +1,32 @@
+{
+  "actor_id": "RSP_001",
+  "display_name": "Rob Plowman",
+  "personas": [
+    "hero",
+    "villain",
+    "narrator"
+  ],
+  "emotions": [
+    "neutral",
+    "heroic",
+    "commanding",
+    "villainous",
+    "weary",
+    "whisper",
+    "angry"
+  ],
+  "languages": [
+    "en",
+    "es",
+    "fr",
+    "de",
+    "ja",
+    "pt"
+  ],
+  "capture_spec": {
+    "sample_rate_hz": 48000,
+    "bit_depth": "32f",
+    "booth": "dry",
+    "fx_chain": "none"
+  }
+}

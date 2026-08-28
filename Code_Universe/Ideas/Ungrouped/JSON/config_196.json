@@ -1,0 +1,98 @@
+{
+	"ae_tool" : "AmazingEditor",
+	"bALG_BACH_CONFIG" : true,
+	"effect" : 
+	{
+		"Link" : 
+		[
+			{
+				"extra" : 
+				{
+					"composer_param" : 
+					[
+						{
+							"allow_negative" : false,
+							"default_value" : 0.0,
+							"key" : "SmallHead",
+							"name" : "SmallHead"
+						},
+						{
+							"allow_negative" : false,
+							"default_value" : 0.0,
+							"key" : "LongLeg",
+							"name" : "LongLeg"
+						},
+						{
+							"allow_negative" : false,
+							"default_value" : 0.0,
+							"key" : "SlimWaist",
+							"name" : "SlimWaist"
+						},
+						{
+							"allow_negative" : true,
+							"default_value" : 0.0,
+							"key" : "SlimBreast",
+							"name" : "SlimBreast"
+						},
+						{
+							"allow_negative" : false,
+							"default_value" : 0.0,
+							"key" : "SlimLeg",
+							"name" : "SlimLeg"
+						},
+						{
+							"allow_negative" : true,
+							"default_value" : 0.0,
+							"key" : "SlimHip",
+							"name" : "SlimHip"
+						},
+						{
+							"allow_negative" : false,
+							"default_value" : 0.0,
+							"key" : "SlimArm",
+							"name" : "SlimArm"
+						},
+						{
+							"allow_negative" : false,
+							"default_value" : 0.0,
+							"key" : "SwanNeck",
+							"name" : "SwanNeck"
+						},
+						{
+							"allow_negative" : false,
+							"default_value" : 0.0,
+							"key" : "SlimBody",
+							"name" : "SlimBody"
+						},
+						{
+							"allow_negative" : true,
+							"default_value" : 0.0,
+							"key" : "WidenShoulder",
+							"name" : "WidenShoulder"
+						},
+						{
+							"allow_negative" : false,
+							"default_value" : 0.0,
+							"key" : "OrthoShoulder",
+							"name" : "OrthoShoulder"
+						}
+					]
+				},
+				"path" : "AmazingFeature/",
+				"type" : "AmazingFeature",
+				"zorder" : 8011
+			}
+		],
+		"model_names" : 
+		{
+			"alg_model" : 
+			[
+				"tt_fsnew_base_jianying",
+				"tt_face_extra",
+				"tt_skeletonsquat"
+			]
+		}
+	},
+	"name" : "Editor_Sticker_Config_TAG_wdOcebHdeucbbkbAcWdLdnblboLJckk",
+	"version" : "13.2.0"
+}

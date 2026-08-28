@@ -1,0 +1,145 @@
+{
+	"version":	"1.0",
+	"mode":	2,
+	"name":	"05d5e017-bcff-11eb-a04a-acde480011220",
+	"model_names":	{
+		"alg_model":	["tt_face_extra", "tt_freid", "tt_fsnew_base_jianying"]
+	},
+	"nodes":	[{
+			"name":	"FaceAlign",
+			"type":	"nh_face_align",
+			"config":	{
+				"keyMaps":	{
+					"intParam":	{
+						"num_faces":	5,
+						"affine_mode":	2
+					},
+					"floatParam":	{
+					},
+					"stringParam":	{
+						"model_name":	"wrinkle_removal",
+						"packed_model_group_key":	"face_align"
+					},
+					"pathParam":	{
+					}
+				}
+			}
+		}, {
+			"name":	"blit_0",
+			"type":	"blit",
+			"config":	{
+				"size":	{
+					"width":	360,
+					"height":	640
+				},
+				"keyMaps":	{
+					"intParam":	{
+					},
+					"floatParam":	{
+					},
+					"stringParam":	{
+					},
+					"pathParam":	{
+					}
+				}
+			}
+		}, {
+			"name":	"face_0",
+			"type":	"face",
+			"config":	{
+				"keyMaps":	{
+					"intParam":	{
+						"face_detect_ability":	1,
+						"face_max_num":	10
+					},
+					"floatParam":	{
+					},
+					"stringParam":	{
+						"face_base_model_key":	"tt_fsnew_base_jianying"
+					},
+					"pathParam":	{
+					}
+				}
+			}
+		}, {
+			"name":	"freid_0",
+			"type":	"freid",
+			"config":	{
+				"keyMaps":	{
+					"intParam":	{
+						"freid_buffer_immediate_mode":	1
+					},
+					"floatParam":	{
+					},
+					"stringParam":	{
+					},
+					"pathParam":	{
+					}
+				}
+			}
+		}, {
+			"name":	"script_0",
+			"type":	"script",
+			"config":	{
+				"keyMaps":	{
+					"intParam":	{
+						"use_full_gpu_link":	1,
+						"face_count":	5
+					},
+					"floatParam":	{
+					},
+					"stringParam":	{
+						"model_key":	"wrinkle_removal",
+						"packed_model_group_key":	"script",
+						"blit_node":	"blit_0",
+						"input_texture_node":	"src_data_0",
+						"model_name":	"cc_auto_beauty_siso_script",
+						"face_align_node":	"FaceAlign"
+					},
+					"pathParam":	{
+					}
+				}
+			}
+		}],
+	"links":	[{
+			"fromNode":	"FaceAlign",
+			"fromIndex":	1,
+			"toNode":	"script_0",
+			"toIndex":	0
+		}, {
+			"fromNode":	"blit_0",
+			"fromIndex":	0,
+			"toNode":	"FaceAlign",
+			"toIndex":	0
+		}, {
+			"fromNode":	"blit_0",
+			"fromIndex":	0,
+			"toNode":	"face_0",
+			"toIndex":	0
+		}, {
+			"fromNode":	"blit_0",
+			"fromIndex":	0,
+			"toNode":	"freid_0",
+			"toIndex":	0
+		}, {
+			"fromNode":	"blit_0",
+			"fromIndex":	0,
+			"toNode":	"script_0",
+			"toIndex":	1
+		}, {
+			"fromNode":	"face_0",
+			"fromIndex":	0,
+			"toNode":	"FaceAlign",
+			"toIndex":	2
+		}, {
+			"fromNode":	"face_0",
+			"fromIndex":	0,
+			"toNode":	"freid_0",
+			"toIndex":	1
+		}, {
+			"fromNode":	"freid_0",
+			"fromIndex":	0,
+			"toNode":	"script_0",
+			"toIndex":	2
+		}]
+}

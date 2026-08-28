@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0.0",
+  "persona_id": "RSP_001_WIZARD",
+  "actor_id": "RSP_001",
+  "sample_file": "RSP_001.wav",
+  "sample_duration_sec": 0,
+  "sample_status": "placeholder_awaiting_capture",
+
+  "capture_spec": {
+    "sample_rate_hz": 48000,
+    "bit_depth": "32f",
+    "channels": 1,
+    "booth": "dry",
+    "fx_chain": "none",
+    "mic": "TBD",
+    "preamp": "TBD"
+  },
+
+  "ipfs": {
+    "cid": null,
+    "pinned": false,
+    "pin_service": "web3.storage",
+    "status": "pending_upload"
+  },
+
+  "provenance": {
+    "created_by": "RSP_001",
+    "creation_timestamp": "2026-03-13T00:00:00Z",
+    "registered_on": "NOIZYVOX_VAULT",
+    "chain": "offchain_sha256_pending_onchain",
+    "ncp_version": "1.0"
+  },
+
+  "tags": ["wizard", "ancient", "sage", "fantasy", "gravitas", "english", "male"],
+
+  "licensing": {
+    "license_type": "NOIZYVOX_NCP_1.0",
+    "commercial_use": "split_required",
+    "derivative_works": "consent_required",
+    "attribution_required": true
+  }
+}

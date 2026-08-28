@@ -1,0 +1,32 @@
+# DNS Records for noizy.ai - Exported Sun Mar 29 15:47:02 EDT 2026
+# Source: GoDaddy (requires manual export from dashboard)
+
+## Nameservers
+noizy.ai	nameserver = naomi.ns.cloudflare.com.
+noizy.ai	nameserver = renan.ns.cloudflare.com.
+
+## A Records
+104.21.91.188
+172.67.177.214
+
+## AAAA Records (IPv6)
+2606:4700:3033::ac43:b1d6
+2606:4700:3030::6815:5bbc
+
+## CNAME Records
+
+## MX Records (Mail)
+1 aspmx.l.google.com.
+10 alt3.aspmx.l.google.com.
+10 alt4.aspmx.l.google.com.
+5 alt1.aspmx.l.google.com.
+5 alt2.aspmx.l.google.com.
+
+## TXT Records (SPF, DKIM, DMARC)
+"apple-domain=y8e0wSN8xuKR80KJ"
+"google-site-verification=n3y8MfWUy15y8oO0wb5qzH48as38vCUsXvYIYn-91dM"
+"v=spf1 include:icloud.com include:_spf.google.com ~all"
+
+## SOA Record
+naomi.ns.cloudflare.com. dns.cloudflare.com. 2398646689 10000 2400 604800 1800
+

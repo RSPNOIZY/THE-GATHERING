@@ -1,0 +1,168 @@
+Text Found
+MC96 ECO-UNIVERSE
+Validated Sovereign Agent Governance
+NOISYBEAST
+Alma
+LangGraph
+ARCHITECTURE
+Haskell • Agents • Alma • Immutable Docker
+Engine
+SOVEREIGN BY DESIGN
+Lean • Clean • Secure • Auditable • Sovereign
+RUNTIME SECURITY & GOVERNANCE
+Al ACCOUNTABILITY & AUDIT
+ALMA AGENTIC ARCHITECTURE
+Open Source Audit Toolkit
+Microsoft Agent Governance Toolkit
+PLANNER
+AUDITOR
+OBSERVER
+EXECUTOR
+REASONER
+(Open Source)
+Agents
+Agents
+Agents
+Agents
+Agents
+Complete Traceability for Agentic Systems
+Zero-Trust Execution for Autonomous Agents
+Immutable Event Logging
+Enforces OWASP Agentic Top 10
+Append-only logs (WORM)
+with cryptographic integrity
+LANGGRAPH / Llamalndex ORCHESTRATION LAYER
+Mitigates the Top 10 risks for
+LLM and agentic systems
+Full Traceability
+End-to-end traces across agents,
+Zero-Trust Identity
+AGENT GOVERNANCE ENFORCEMENT (Microsoft Agent Governance Toolkit)
+tools, and external calls
+Strong agent identity, key rotation,
+and attestation
+Evidence Store
+IDENTITY & ATTESTATION
+POLICY ENGINE
+RUNTIME ENFORCER
+Tamper-evident storage for
+Execution Sandboxing
+decisions, actions, and artifacts
+Isolated runtime with syscall
+Sandbox / eBPF
+SPIFFE / SPIRE
+密
+filtering, FS/network controls
+Policy & Decision Audit
+Policy Decisions
+Workload Identities
+Runtime Controls
+Who/what/why/when for every
+品
+Policy-as-Code
+agentic decision
+Rego-based policies for agents,
+Export & Verification
+PRIVILEGE RINGS (Zero-Trust Isolation)
+tools, and workflows
+Open formats (JSONL, OpenTelemetry,
+Privilege Rings
+RING 4
+RING 1
+RING 2
+RING 3
+RING O
+OCSF) for independent verification
+Isolated rings with least privilege
+Dashboards & Queries
+Planner
+Tool
+Executor
+Core
+and scoped capabilities
+Explore, visualize, and audit
+Access
+System
+Agents
+Agents
+Runtime Monitoring
+with precision
+Detects anomalies, policy violations,
+and harmful behaviors in real time
+OpenTelemetry • OCSF • Apache 2.0
+RUNTIME TELEMETRY & ENFORCEMENT
+CNCF Sandbox Project • Apache 2.0
+Automated
+Behavior
+AUDIT & TRACE PIPELINE
+Forensic
+Policy Violation
+Anomaly
+Containment
+Capture
+Response
+Detection
+Monitoring
+Agent Event
+TECHNOLOGY STACK
+(Action / Decision / Call)
+Language: Haskell
+Telemetry Collector
+SERVICE MESH (optional)
+Concurrency: Polysemy / STM / Async
+K3s / MicroK8s CLUSTER
+mTLS • Network Policies
+VERIFIABLE
+Effect Systems: Polysemy / mtl
+ACCOUNTABILITY
+Audit Processor
+Agent Model: Actuarial / Custom (Purescript-style)
+®
+(Enrich / Normalize / Sign)
+IMMUTABLE INFRASTRUCTURE
+Cryptographic
+Serialization: Aeson / CBOR
+菌
+Integrity
+Immutable
+Immutable Store
+Read-Only
+SBOM & Image
+Reproducible Builds
+Crypto: libsodium / cryptonite
+(WORM / Content Addressed)
+(Nix / Stack)
+Signing
+Docker Images
+Filesystems
+Independent
+Verification
+Telemetry: OpenTelemetry (Haskell)
+Query & Verify
+(Dashboards / CLI / API)
+100% Free & Open Source
+- VERIFIABLE • ACCOUNTABLE
+SOVEREIGN • DECENTRALIZED
+KEY BENEFITS
+SOVEREIGN PRINCIPLES
+COMPLIANCE & STANDARDS
+100% FREE & OPEN SOURCE
+You own your agents
+Lean & Clean
+OWASP Agentic Top 10
+Zero-Trust Security
+@
+You own your data
+Precise Control
+No Vendor Lock-in
+NIST AI RMF (Aligned)
+区
+FOSS
+You define your policies
+CNCF Best Practices
+No Licenses • No Fees • No Lock-in
+Sovereign by Design
+& SLSA / Supply Chain Security
+Full Auditability
+⑦
+You control your stack

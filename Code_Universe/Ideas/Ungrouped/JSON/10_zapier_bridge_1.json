@@ -1,0 +1,254 @@
+{
+  "name": "ZAP 10: Zapier Bridge — External Hooks → NOIZY",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "zapier-bridge",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "zapier-inbound",
+      "name": "Zapier Inbound Hook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [220, 300],
+      "webhookId": "zapier-bridge"
+    },
+    {
+      "parameters": {
+        "jsCode": "// ═══════════════════════════════════════════════════\n// Zapier Bridge — Normalize incoming Zapier webhooks\n// into NOIZY empire event format\n// ═══════════════════════════════════════════════════\nconst body = $input.first().json.body || $input.first().json;\nconst headers = $input.first().json.headers || {};\n\n// Detect Zapier source from payload\nconst zapName = body.zap_name || body.zapName || headers['x-zapier-zap-name'] || 'unknown';\nconst zapId = body.zap_id || body.zapId || headers['x-zapier-zap-id'] || '';\n\n// Categorize the Zapier event\nconst categories = {\n  'email': /email|gmail|outlook|mail/i,\n  'calendar': /calendar|event|meeting|schedule/i,\n  'social': /twitter|instagram|facebook|linkedin|social/i,\n  'payment': /stripe|paypal|payment|invoice/i,\n  'form': /typeform|google.?form|jotform|form/i,\n  'crm': /hubspot|salesforce|pipedrive|crm/i,\n  'notification': /slack|discord|teams|notification/i,\n  'storage': /drive|dropbox|s3|storage|file/i\n};\n\nlet category = 'general';\nfor (const [cat, pattern] of Object.entries(categories)) {\n  if (pattern.test(zapName) || pattern.test(JSON.stringify(body).substring(0, 500))) {\n    category = cat;\n    break;\n  }\n}\n\nconst event = {\n  source: 'zapier',\n  zap_name: zapName,\n  zap_id: zapId,\n  category: category,\n  payload: body,\n  received_at: new Date().toISOString(),\n  // Governance\n  governance_cleared: true,\n  consent_check: 'pass'\n};\n\nreturn [{ json: event }];"
+      },
+      "id": "zapier-normalize",
+      "name": "Normalize Zapier Event",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [440, 300]
+    },
+    {
+      "parameters": {
+        "rules": {
+          "rules": [
+            {
+              "outputIndex": 0,
+              "conditions": {
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.category }}",
+                    "rightValue": "email",
+                    "operator": { "type": "string", "operation": "equals" }
+                  }
+                ]
+              }
+            },
+            {
+              "outputIndex": 1,
+              "conditions": {
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.category }}",
+                    "rightValue": "payment",
+                    "operator": { "type": "string", "operation": "equals" }
+                  }
+                ]
+              }
+            },
+            {
+              "outputIndex": 2,
+              "conditions": {
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.category }}",
+                    "rightValue": "notification",
+                    "operator": { "type": "string", "operation": "equals" }
+                  }
+                ]
+              }
+            }
+          ],
+          "fallbackOutput": 3
+        }
+      },
+      "id": "zapier-router",
+      "name": "Route by Category",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3,
+      "position": [660, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Email events from Zapier → forward to GABRIEL for processing\nconst event = $input.first().json;\n\nreturn [{\n  json: {\n    ...event,\n    gabriel_action: {\n      type: 'zapier_email',\n      summary: `Email event from Zapier: ${event.zap_name}`,\n      payload: event.payload,\n      priority: 'medium'\n    }\n  }\n}];"
+      },
+      "id": "email-handler",
+      "name": "Email → GABRIEL",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [900, 140]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Payment events from Zapier → forward to consent ledger\nconst event = $input.first().json;\n\nreturn [{\n  json: {\n    ...event,\n    ledger_entry: {\n      action: 'zapier_payment',\n      source: event.zap_name,\n      amount: event.payload?.amount || event.payload?.total || 0,\n      currency: event.payload?.currency || 'CAD',\n      timestamp: new Date().toISOString(),\n      governance_status: 'cleared'\n    }\n  }\n}];"
+      },
+      "id": "payment-handler",
+      "name": "Payment → Ledger",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [900, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Notification events → forward to notification pipeline\nconst event = $input.first().json;\n\nreturn [{\n  json: {\n    ...event,\n    notification: {\n      channel: event.payload?.channel || 'general',\n      message: event.payload?.message || event.payload?.text || `Zapier notification: ${event.zap_name}`,\n      source: 'zapier',\n      timestamp: new Date().toISOString()\n    }\n  }\n}];"
+      },
+      "id": "notification-handler",
+      "name": "Notification → Pipeline",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [900, 460]
+    },
+    {
+      "parameters": {
+        "jsCode": "// General/uncategorized Zapier events → log to Notion\nconst event = $input.first().json;\n\nreturn [{\n  json: {\n    ...event,\n    notion_log: {\n      'Event': { title: [{ text: { content: `[Zapier] ${event.zap_name}` } }] },\n      'Source': { select: { name: 'Zapier' } },\n      'Category': { select: { name: event.category } },\n      'Summary': { rich_text: [{ text: { content: JSON.stringify(event.payload).substring(0, 2000) } }] },\n      'Timestamp': { date: { start: event.received_at } }\n    }\n  }\n}];"
+      },
+      "id": "general-handler",
+      "name": "General → Notion Log",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [900, 620]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $env.HEAVEN_URL }}/api/events",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $env.NOIZY_API_KEY }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify($json.gabriel_action || $json.ledger_entry || $json.notification || { type: 'zapier_general', payload: $json }) }}",
+        "options": {
+          "response": { "response": { "neverError": true } }
+        }
+      },
+      "id": "heaven-forward",
+      "name": "Forward to Heaven17",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [1140, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.notion.com/v1/pages",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $env.NOTION_API_KEY }}"
+            },
+            {
+              "name": "Notion-Version",
+              "value": "2022-06-28"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"parent\": { \"database_id\": \"{{ $env.NOTION_EVENTS_DB_ID }}\" },\n  \"properties\": {{ JSON.stringify($json.notion_log || { 'Event': { title: [{ text: { content: '[Zapier] ' + ($json.zap_name || 'event') } }] } }) }}\n}",
+        "options": {
+          "response": { "response": { "neverError": true } }
+        }
+      },
+      "id": "notion-log",
+      "name": "Log to Notion",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [1140, 620]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ ok: true, source: 'zapier', category: $json.category || 'processed', timestamp: new Date().toISOString() }) }}"
+      },
+      "id": "zapier-respond",
+      "name": "Respond to Zapier",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [1380, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $env.ZAPIER_NOTIFICATION_HOOK }}",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ event: 'noizy_outbound', type: $json.type || 'notification', data: $json, timestamp: new Date().toISOString() }) }}",
+        "options": {
+          "response": { "response": { "neverError": true } }
+        }
+      },
+      "id": "zapier-outbound",
+      "name": "n8n → Zapier Outbound",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [220, 800],
+      "disabled": true
+    }
+  ],
+  "connections": {
+    "Zapier Inbound Hook": {
+      "main": [[{ "node": "Normalize Zapier Event", "type": "main", "index": 0 }]]
+    },
+    "Normalize Zapier Event": {
+      "main": [[{ "node": "Route by Category", "type": "main", "index": 0 }]]
+    },
+    "Route by Category": {
+      "main": [
+        [{ "node": "Email → GABRIEL", "type": "main", "index": 0 }],
+        [{ "node": "Payment → Ledger", "type": "main", "index": 0 }],
+        [{ "node": "Notification → Pipeline", "type": "main", "index": 0 }],
+        [{ "node": "General → Notion Log", "type": "main", "index": 0 }]
+      ]
+    },
+    "Email → GABRIEL": {
+      "main": [[{ "node": "Forward to Heaven17", "type": "main", "index": 0 }]]
+    },
+    "Payment → Ledger": {
+      "main": [[{ "node": "Forward to Heaven17", "type": "main", "index": 0 }]]
+    },
+    "Notification → Pipeline": {
+      "main": [[{ "node": "Forward to Heaven17", "type": "main", "index": 0 }]]
+    },
+    "General → Notion Log": {
+      "main": [
+        [
+          { "node": "Log to Notion", "type": "main", "index": 0 },
+          { "node": "Forward to Heaven17", "type": "main", "index": 0 }
+        ]
+      ]
+    },
+    "Forward to Heaven17": {
+      "main": [[{ "node": "Respond to Zapier", "type": "main", "index": 0 }]]
+    },
+    "Log to Notion": {
+      "main": [[{ "node": "Respond to Zapier", "type": "main", "index": 0 }]]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "meta": {
+    "instanceId": "noizy-empire-zapier-bridge"
+  },
+  "tags": [
+    { "name": "zapier" },
+    { "name": "integration" },
+    { "name": "noizy-empire" }
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "scope": "speech_to_text",
+  "requires_auth": true,
+  "requires_creator_scope": true,
+  "derivatives_allowed": false,
+  "retention": "creator_controlled",
+  "visibility": ["private", "shared"]
+}

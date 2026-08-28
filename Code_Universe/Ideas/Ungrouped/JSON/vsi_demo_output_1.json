@@ -1,0 +1,80 @@
+{
+  "character": "Detective Morrison",
+  "note_key": "restrained_anger",
+  "base_line": "I've seen enough bodies to know when someone is lying.",
+  "emotional_signature": "c018a0b27267",
+  "dna_after_note": {
+    "slow_burn_tension": 0.94,
+    "sarcasm_defense": 0.73,
+    "moral_weight": 0.94,
+    "vulnerability_latency": 0.64,
+    "controlled_breath": 0.89
+  },
+  "performances": [
+    {
+      "locale": "en-US",
+      "region": "English (Brooklyn)",
+      "character": "Detective Morrison",
+      "director_note": "restrained_anger",
+      "emotional_signature": "c018a0b27267",
+      "rendered_line": "I've seen enough bodies to know when someone is lying. [hard-edged cynicism; pressure held under calm surface; markers: sharp sarcasm, clipped phrases, working-class grit]",
+      "execution_markers": [
+        "sharp sarcasm",
+        "clipped phrases",
+        "working-class grit"
+      ]
+    },
+    {
+      "locale": "ja-JP",
+      "region": "Japanese (Tokyo)",
+      "character": "Detective Morrison",
+      "director_note": "restrained_anger",
+      "emotional_signature": "c018a0b27267",
+      "rendered_line": "I've seen enough bodies to know when someone is lying. [dangerous calm; pressure held under calm surface; markers: weighted pauses, controlled restraint, quiet bitterness]",
+      "execution_markers": [
+        "weighted pauses",
+        "controlled restraint",
+        "quiet bitterness"
+      ]
+    },
+    {
+      "locale": "fr-FR",
+      "region": "French (Paris)",
+      "character": "Detective Morrison",
+      "director_note": "restrained_anger",
+      "emotional_signature": "c018a0b27267",
+      "rendered_line": "I've seen enough bodies to know when someone is lying. [philosophical noir; pressure held under calm surface; markers: existential tone, cold precision, bitter poetics]",
+      "execution_markers": [
+        "existential tone",
+        "cold precision",
+        "bitter poetics"
+      ]
+    },
+    {
+      "locale": "ar-EG",
+      "region": "Arabic (Cairo)",
+      "character": "Detective Morrison",
+      "director_note": "restrained_anger",
+      "emotional_signature": "c018a0b27267",
+      "rendered_line": "I've seen enough bodies to know when someone is lying. [prophetic realism; pressure held under calm surface; markers: fatalistic wisdom, street-smart wariness, moral warning cadence]",
+      "execution_markers": [
+        "fatalistic wisdom",
+        "street-smart wariness",
+        "moral warning cadence"
+      ]
+    },
+    {
+      "locale": "es-ES",
+      "region": "Spanish (Madrid)",
+      "character": "Detective Morrison",
+      "director_note": "restrained_anger",
+      "emotional_signature": "c018a0b27267",
+      "rendered_line": "I've seen enough bodies to know when someone is lying. [streetwise resolve; pressure held under calm surface; markers: direct candor, dry irony, urban urgency]",
+      "execution_markers": [
+        "direct candor",
+        "dry irony",
+        "urban urgency"
+      ]
+    }
+  ]
+}

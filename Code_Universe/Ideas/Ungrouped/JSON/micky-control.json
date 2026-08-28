@@ -1,0 +1,19 @@
+{
+  "ID": "micky-control",
+  "Name": "micky-control",
+  "Port": 9798,
+  "Tags": ["device", "mickyp", "control-plane", "audio-gateway", "mesh-peer"],
+  "Meta": {
+    "owner": "RSP_001",
+    "role": "MICKY-P control agent — metrics, audio state, allowlisted command dispatch",
+    "doctrine": "device-control-plane",
+    "upstream": "god.noizynet"
+  },
+  "Check": {
+    "Name": "control-agent-http",
+    "HTTP": "http://localhost:9798/health",
+    "Interval": "30s",
+    "Timeout": "5s",
+    "DeregisterCriticalServiceAfter": "30m"
+  }
+}

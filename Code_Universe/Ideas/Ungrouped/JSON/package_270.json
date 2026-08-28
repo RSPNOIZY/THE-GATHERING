@@ -1,0 +1,367 @@
+{
+  "name": "antigravity-cockpit",
+  "displayName": "Antigravity Cockpit",
+  "icon": "assets/icon.png",
+  "description": "A premium, dashboard-style quota monitor for Antigravity AI.",
+  "version": "2.1.52",
+  "publisher": "jlcodes",
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": [
+    "Other",
+    "Visualization"
+  ],
+  "keywords": [
+    "antigravity",
+    "ai",
+    "quota",
+    "dashboard",
+    "monitor"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jlcodes99/vscode-antigravity-cockpit.git"
+  },
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "extensionKind": [
+    "workspace"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "agCockpit.open",
+        "title": "Open Antigravity Cockpit",
+        "category": "Antigravity",
+        "icon": "$(rocket)"
+      },
+      {
+        "command": "agCockpit.refresh",
+        "title": "Refresh Quota Data",
+        "category": "Antigravity",
+        "icon": "$(sync)"
+      },
+      {
+        "command": "agCockpit.refreshModelCache",
+        "title": "Refresh Available Models Cache",
+        "category": "Antigravity",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "agCockpit.showLogs",
+        "title": "Show Logs",
+        "category": "Antigravity",
+        "icon": "$(output)"
+      },
+      {
+        "command": "agCockpit.retry",
+        "title": "Retry Connection",
+        "category": "Antigravity",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "agCockpit.openFeedback",
+        "title": "Report Issue / Feedback",
+        "category": "Antigravity",
+        "icon": "$(feedback)"
+      },
+      {
+        "command": "agCockpit.setWarningThreshold",
+        "title": "Set Warning Threshold",
+        "category": "Antigravity"
+      },
+      {
+        "command": "agCockpit.setCriticalThreshold",
+        "title": "Set Critical Threshold",
+        "category": "Antigravity"
+      },
+      {
+        "command": "agCockpit.setAccountSwitchMode",
+        "title": "Set Account Switch Mode",
+        "category": "Antigravity"
+      },
+      {
+        "command": "agCockpit.refreshAnnouncements",
+        "title": "Refresh Announcements",
+        "category": "Antigravity",
+        "icon": "$(bell)"
+      },
+      {
+        "command": "agCockpit.accountTree.refresh",
+        "title": "Refresh Account List",
+        "category": "Antigravity",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "agCockpit.accountTree.switch",
+        "title": "Switch to This Account",
+        "category": "Antigravity",
+        "icon": "$(arrow-swap)"
+      },
+      {
+        "command": "agCockpit.accountTree.openManager",
+        "title": "Open Cockpit Tools",
+        "category": "Antigravity",
+        "icon": "$(link-external)"
+      },
+      {
+        "command": "agCockpit.accountTree.loadAccountQuota",
+        "title": "Load Account Quota",
+        "category": "Antigravity",
+        "icon": "$(cloud-download)"
+      },
+      {
+        "command": "agCockpit.debugLocalAccount",
+        "title": "Debug Local Account (state.vscdb)",
+        "category": "Antigravity",
+        "icon": "$(bug)"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "agCockpit.open",
+        "key": "ctrl+shift+q",
+        "mac": "cmd+shift+q"
+      },
+      {
+        "command": "agCockpit.refresh",
+        "key": "ctrl+shift+r",
+        "mac": "cmd+shift+r",
+        "when": "activeWebviewPanelId == 'antigravity.cockpit'"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "agCockpit",
+          "title": "Antigravity Cockpit",
+          "icon": "$(rocket)"
+        }
+      ]
+    },
+    "views": {
+      "agCockpit": [
+        {
+          "id": "agCockpit.accountTree",
+          "name": "Accounts",
+          "icon": "$(account)",
+          "contextualTitle": "Antigravity Accounts"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Antigravity Cockpit",
+      "properties": {
+        "agCockpit.refreshInterval": {
+          "type": "number",
+          "default": 120,
+          "minimum": 10,
+          "maximum": 3600,
+          "description": "Interval in seconds to refresh quota data (10-3600)."
+        },
+        "agCockpit.logLevel": {
+          "type": "string",
+          "default": "info",
+          "enum": [
+            "debug",
+            "info",
+            "warn",
+            "error"
+          ],
+          "enumDescriptions": [
+            "Show all logs including debug information",
+            "Show info, warnings and errors",
+            "Show warnings and errors only",
+            "Show errors only"
+          ],
+          "description": "Log level for the output channel."
+        },
+        "agCockpit.notificationEnabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show notifications when quota is exhausted or running low."
+        },
+        "agCockpit.statusBarFormat": {
+          "type": "string",
+          "default": "standard",
+          "enum": [
+            "icon",
+            "dot",
+            "percent",
+            "compact",
+            "namePercent",
+            "standard"
+          ],
+          "enumDescriptions": [
+            "Icon only - just 🚀",
+            "Status dot only - 🟢/🟡/🔴",
+            "Percentage only - 95%",
+            "Dot + percentage - 🟢 95%",
+            "Name + percentage - Sonnet: 95%",
+            "Dot + model name + percentage - 🟢 Sonnet: 95% (default)"
+          ],
+          "description": "Format of the status bar display."
+        },
+        "agCockpit.groupingEnabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable quota grouping feature. Models sharing the same quota pool will be grouped together."
+        },
+        "agCockpit.groupingShowInStatusBar": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show quota groups in the status bar instead of individual models."
+        },
+        "agCockpit.warningThreshold": {
+          "type": "number",
+          "default": 30,
+          "minimum": 5,
+          "maximum": 80,
+          "description": "Warning threshold percentage. Quota below this value will show yellow warning. (5-80)"
+        },
+        "agCockpit.criticalThreshold": {
+          "type": "number",
+          "default": 10,
+          "minimum": 1,
+          "maximum": 50,
+          "description": "Critical threshold percentage. Quota below this value will show red danger alert. (1-50)"
+        },
+        "agCockpit.quotaSource": {
+          "type": "string",
+          "default": "authorized",
+          "enum": [
+            "local",
+            "authorized"
+          ],
+          "enumDescriptions": [
+            "Local process",
+            "Authorized account (default)"
+          ],
+          "description": "Quota source. Use authorized account to fetch quota without local process."
+        },
+        "agCockpit.displayMode": {
+          "type": "string",
+          "default": "webview",
+          "enum": [
+            "webview",
+            "quickpick"
+          ],
+          "enumDescriptions": [
+            "Full dashboard with Webview (default)",
+            "Lightweight QuickPick menu (better compatibility)"
+          ],
+          "description": "Display mode for quota information. Use 'quickpick' if Webview doesn't work on your system."
+        },
+        "agCockpit.profileHidden": {
+          "type": "boolean",
+          "default": false,
+          "description": "Hide the Plan Details panel in the dashboard."
+        },
+        "agCockpit.dataMasked": {
+          "type": "boolean",
+          "default": false,
+          "description": "Mask sensitive data (email, etc.) in the Plan Details panel."
+        }
+      }
+    },
+    "menus": {
+      "commandPalette": [
+        {
+          "command": "agCockpit.open",
+          "when": "true"
+        },
+        {
+          "command": "agCockpit.refresh",
+          "when": "true"
+        },
+        {
+          "command": "agCockpit.refreshModelCache",
+          "when": "true"
+        },
+        {
+          "command": "agCockpit.showLogs",
+          "when": "true"
+        },
+        {
+          "command": "agCockpit.retry",
+          "when": "true"
+        },
+        {
+          "command": "agCockpit.setAccountSwitchMode",
+          "when": "false"
+        },
+        {
+          "command": "agCockpit.accountTree.switch",
+          "when": "false"
+        },
+        {
+          "command": "agCockpit.accountTree.loadAccountQuota",
+          "when": "false"
+        }
+      ],
+      "view/title": [
+        {
+          "command": "agCockpit.accountTree.refresh",
+          "when": "view == agCockpit.accountTree",
+          "group": "navigation@1"
+        },
+        {
+          "command": "agCockpit.accountTree.openManager",
+          "when": "view == agCockpit.accountTree",
+          "group": "navigation@2"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "agCockpit.accountTree.switch",
+          "when": "view == agCockpit.accountTree && viewItem == account",
+          "group": "inline@1"
+        },
+        {
+          "command": "agCockpit.accountTree.switch",
+          "when": "view == agCockpit.accountTree && viewItem == account",
+          "group": "1_actions@1"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run lint && npm run build:prod",
+    "compile": "npm run lint:webview && npm run build",
+    "build": "node scripts/build.js",
+    "build:prod": "node scripts/build.js --production",
+    "watch": "npm run watch:esbuild",
+    "watch:esbuild": "node scripts/build.js --watch",
+    "copy-webview": "shx mkdir -p out/view/webview && shx cp src/view/webview/*.css src/view/webview/*.js out/view/webview/",
+    "lint": "eslint src --ext ts,js",
+    "lint:fix": "eslint src --ext ts,js --fix",
+    "lint:webview": "eslint src/view/webview/*.js",
+    "package": "npx vsce package",
+    "test": "jest",
+    "pretest": "npm run compile",
+    "postinstall": "bash scripts/install-hooks.sh",
+    "release": "bash scripts/release.sh"
+  },
+  "devDependencies": {
+    "@types/jest": "^30.0.0",
+    "@types/node": "^20.0.0",
+    "@types/sql.js": "^1.4.9",
+    "@types/vscode": "^1.90.0",
+    "@typescript-eslint/eslint-plugin": "^7.0.0",
+    "@typescript-eslint/parser": "^7.0.0",
+    "esbuild": "^0.27.2",
+    "eslint": "^8.57.0",
+    "jest": "^30.2.0",
+    "shx": "^0.4.0",
+    "ts-jest": "^29.4.6",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.0"
+  },
+  "dependencies": {
+    "cron-parser": "^5.4.0",
+    "sql.js": "^1.13.0"
+  }
+}

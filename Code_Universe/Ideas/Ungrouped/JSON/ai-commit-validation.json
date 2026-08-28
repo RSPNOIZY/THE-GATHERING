@@ -1,0 +1,237 @@
+{
+  "name": "AI Commit Validation",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "ai-commit-validate",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "webhook-trigger",
+      "name": "Webhook: Commit Event",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [220, 300]
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "={{ {\n  \"execution_id\": \"nf-\" + $now.format('yyyy-MM-dd') + \"-\" + $runIndex.toString().padStart(5, '0'),\n  \"received_at\": $now.toISO(),\n  \"operator\": \"RSP_001\",\n  \"source\": $json.body?.source ?? \"unknown\",\n  \"commit_sha\": $json.body?.commit_sha ?? \"\",\n  \"repo\": $json.body?.repo ?? \"\",\n  \"branch\": $json.body?.branch ?? \"\",\n  \"author\": $json.body?.author ?? \"\",\n  \"message\": $json.body?.message ?? \"\"\n} }}",
+        "options": {}
+      },
+      "id": "set-execution-id",
+      "name": "Set: Execution ID",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [440, 300]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "schema-check-sha",
+              "leftValue": "={{ $json.commit_sha }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "isNotEmpty"
+              }
+            },
+            {
+              "id": "schema-check-repo",
+              "leftValue": "={{ $json.repo }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "isNotEmpty"
+              }
+            },
+            {
+              "id": "schema-check-message",
+              "leftValue": "={{ $json.message }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "isNotEmpty"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "schema-gate",
+      "name": "IF: Schema Valid?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [660, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://localhost:7777/memcell/governance:commit:{{ $json.execution_id }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "value",
+              "value": "={{ {\n  \"execution_id\": $json.execution_id,\n  \"repo\": $json.repo,\n  \"branch\": $json.branch,\n  \"commit_sha\": $json.commit_sha,\n  \"author\": $json.author,\n  \"message\": $json.message,\n  \"validated_at\": $now.toISO(),\n  \"status\": \"validated\"\n} }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "log-to-gabriel",
+      "name": "GABRIEL: Log Commit",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [880, 200]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://localhost:7777/speak",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "text",
+              "value": "={{ \"Commit validated: \" + $json.message.substring(0, 60) + \" on \" + $json.repo }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "speak-valid",
+      "name": "GABRIEL: Speak OK",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1100, 200]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ {\n  \"status\": \"validated\",\n  \"execution_id\": $('Set: Execution ID').item.json.execution_id,\n  \"commit_sha\": $('Set: Execution ID').item.json.commit_sha\n} }}",
+        "options": {}
+      },
+      "id": "respond-ok",
+      "name": "Respond: OK",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [1320, 200]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://localhost:7777/memcell/governance:rejected:{{ $json.execution_id }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "value",
+              "value": "={{ {\n  \"execution_id\": $json.execution_id,\n  \"reason\": \"schema_validation_failed\",\n  \"received_fields\": Object.keys($json),\n  \"rejected_at\": $now.toISO(),\n  \"status\": \"rejected\"\n} }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "log-rejection",
+      "name": "GABRIEL: Log Rejection",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [880, 440]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ {\n  \"status\": \"rejected\",\n  \"execution_id\": $('Set: Execution ID').item.json.execution_id,\n  \"reason\": \"Missing required fields: commit_sha, repo, or message\"\n} }}",
+        "options": {
+          "responseCode": 422
+        }
+      },
+      "id": "respond-reject",
+      "name": "Respond: Rejected",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [1100, 440]
+    }
+  ],
+  "connections": {
+    "Webhook: Commit Event": {
+      "main": [
+        [{ "node": "Set: Execution ID", "type": "main", "index": 0 }]
+      ]
+    },
+    "Set: Execution ID": {
+      "main": [
+        [{ "node": "IF: Schema Valid?", "type": "main", "index": 0 }]
+      ]
+    },
+    "IF: Schema Valid?": {
+      "main": [
+        [{ "node": "GABRIEL: Log Commit", "type": "main", "index": 0 }],
+        [{ "node": "GABRIEL: Log Rejection", "type": "main", "index": 0 }]
+      ]
+    },
+    "GABRIEL: Log Commit": {
+      "main": [
+        [{ "node": "GABRIEL: Speak OK", "type": "main", "index": 0 }]
+      ]
+    },
+    "GABRIEL: Speak OK": {
+      "main": [
+        [{ "node": "Respond: OK", "type": "main", "index": 0 }]
+      ]
+    },
+    "GABRIEL: Log Rejection": {
+      "main": [
+        [{ "node": "Respond: Rejected", "type": "main", "index": 0 }]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "tags": [
+    { "name": "governance" },
+    { "name": "commits" },
+    { "name": "RSP_001" }
+  ]
+}

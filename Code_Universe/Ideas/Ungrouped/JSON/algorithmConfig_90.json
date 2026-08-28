@@ -1,0 +1,166 @@
+{
+	"version":	"1.0",
+	"mode":	2,
+	"name":	"BCE-DEMO-3FAAA9BA-D2A0-47B9-88EC-C839056A8C23",
+	"model_names":	{
+		"alg_model":	["tt_face_extra", "tt_freid", "tt_fsnew_base_jianying"]
+	},
+	"nodes":	[{
+			"name":	"FaceAlign",
+			"type":	"nh_face_align",
+			"config":	{
+				"keyMaps":	{
+					"intParam":	{
+						"num_faces":	5,
+						"affine_mode":	2
+					},
+					"floatParam":	{
+					},
+					"stringParam":	{
+						"model_name":	"capcut_lifting_asian",
+						"packed_model_group_key":	"face_align"
+					},
+					"pathParam":	{
+					}
+				}
+			}
+		}, {
+			"name":	"blit_0",
+			"type":	"blit",
+			"config":	{
+				"size":	{
+					"width":	360,
+					"height":	640
+				},
+				"keyMaps":	{
+					"intParam":	{
+					},
+					"floatParam":	{
+					},
+					"stringParam":	{
+					},
+					"pathParam":	{
+					}
+				}
+			}
+		}, {
+			"name":	"face_0",
+			"type":	"face",
+			"config":	{
+				"keyMaps":	{
+					"intParam":	{
+						"face_max_num":	10,
+						"face_detect_ability":	1
+					},
+					"floatParam":	{
+					},
+					"stringParam":	{
+						"face_base_model_key":	"tt_fsnew_base_jianying"
+					},
+					"pathParam":	{
+					}
+				}
+			}
+		}, {
+			"name":	"face_select_0",
+			"type":	"nh_face_select",
+			"config":	{
+				"keyMaps":	{
+					"intParam":	{
+					},
+					"floatParam":	{
+					},
+					"stringParam":	{
+					},
+					"pathParam":	{
+					}
+				}
+			}
+		}, {
+			"name":	"freid_0",
+			"type":	"freid",
+			"config":	{
+				"keyMaps":	{
+					"intParam":	{
+						"freid_buffer_immediate_mode":	1
+					},
+					"floatParam":	{
+					},
+					"stringParam":	{
+					},
+					"pathParam":	{
+					}
+				}
+			}
+		}, {
+			"name":	"script_0",
+			"type":	"script",
+			"config":	{
+				"keyMaps":	{
+					"intParam":	{
+						"face_count":	5,
+						"use_full_gpu_link":	1,
+						"async_load":	0
+					},
+					"floatParam":	{
+					},
+					"stringParam":	{
+						"packed_model_group_key":	"script",
+						"input_texture_node":	"src_data_0",
+						"blit_node":	"blit_0",
+						"model_key":	"capcut_lifting_asian",
+						"face_align_node":	"FaceAlign",
+						"model_name":	"cc_auto_beauty_simo_script"
+					},
+					"pathParam":	{
+					}
+				}
+			}
+		}],
+	"links":	[{
+			"fromNode":	"FaceAlign",
+			"fromIndex":	1,
+			"toNode":	"script_0",
+			"toIndex":	1
+		}, {
+			"fromNode":	"blit_0",
+			"fromIndex":	0,
+			"toNode":	"FaceAlign",
+			"toIndex":	0
+		}, {
+			"fromNode":	"blit_0",
+			"fromIndex":	0,
+			"toNode":	"face_0",
+			"toIndex":	0
+		}, {
+			"fromNode":	"blit_0",
+			"fromIndex":	0,
+			"toNode":	"freid_0",
+			"toIndex":	0
+		}, {
+			"fromNode":	"blit_0",
+			"fromIndex":	0,
+			"toNode":	"script_0",
+			"toIndex":	0
+		}, {
+			"fromNode":	"face_0",
+			"fromIndex":	0,
+			"toNode":	"face_select_0",
+			"toIndex":	0
+		}, {
+			"fromNode":	"face_0",
+			"fromIndex":	0,
+			"toNode":	"freid_0",
+			"toIndex":	1
+		}, {
+			"fromNode":	"face_select_0",
+			"fromIndex":	0,
+			"toNode":	"FaceAlign",
+			"toIndex":	2
+		}, {
+			"fromNode":	"freid_0",
+			"fromIndex":	0,
+			"toNode":	"face_select_0",
+			"toIndex":	3
+		}]
+}

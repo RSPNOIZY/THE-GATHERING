@@ -1,0 +1,176 @@
+{
+  "name": "Notion Sync Watcher \u2014 Polling Mode",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes",
+              "minutesInterval": 5
+            }
+          ]
+        }
+      },
+      "id": "schedule",
+      "name": "Every 5 Minutes",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://api.notion.com/v1/search",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Notion-Version",
+              "value": "2022-06-28"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\"filter\":{\"property\":\"object\",\"value\":\"page\"},\"sort\":{\"direction\":\"descending\",\"timestamp\":\"last_edited_time\"},\"page_size\":10}"
+      },
+      "id": "notion-search",
+      "name": "Fetch Recent Notion Changes",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [
+        420,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Filter to pages edited in last 5 minutes\nconst results = $input.first().json.results || [];\nconst fiveMinAgo = new Date(Date.now() - 5 * 60 * 1000).toISOString();\n\nconst recent = results.filter(p => p.last_edited_time > fiveMinAgo);\n\nif (recent.length === 0) {\n  return [{ json: { changes: 0, message: 'No recent changes' } }];\n}\n\nconst changes = recent.map(p => ({\n  id: p.id,\n  title: p.properties?.title?.title?.[0]?.plain_text || p.properties?.['Domain Name']?.title?.[0]?.plain_text || 'Untitled',\n  last_edited: p.last_edited_time,\n  url: p.url,\n  object: p.object,\n  parent_type: p.parent?.type\n}));\n\nreturn changes.map(c => ({ json: c }));"
+      },
+      "id": "filter-recent",
+      "name": "Filter Recent Changes",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        640,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "number": [
+            {
+              "value1": "={{ $json.changes }}",
+              "operation": "notEqual",
+              "value2": 0
+            }
+          ]
+        }
+      },
+      "id": "has-changes",
+      "name": "Any Changes?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        860,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "url": "http://localhost:7777/learn",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ category: 'notion_sync', lesson: 'Page updated: ' + ($json.title || 'unknown') + ' at ' + ($json.last_edited || 'unknown'), source: 'notion_watcher', confidence: 0.9 }) }}"
+      },
+      "id": "log-change",
+      "name": "Log Change to GABRIEL",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [
+        1080,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "url": "http://localhost:5678/webhook/dreamchamber-notion",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ type: 'page_changed', page_id: $json.id, title: $json.title, source: 'notion_watcher', timestamp: new Date().toISOString() }) }}"
+      },
+      "id": "trigger-dreamchamber",
+      "name": "Trigger DreamChamber Pipeline",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [
+        1080,
+        380
+      ]
+    }
+  ],
+  "connections": {
+    "Every 5 Minutes": {
+      "main": [
+        [
+          {
+            "node": "Fetch Recent Notion Changes",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch Recent Notion Changes": {
+      "main": [
+        [
+          {
+            "node": "Filter Recent Changes",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter Recent Changes": {
+      "main": [
+        [
+          {
+            "node": "Any Changes?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Any Changes?": {
+      "main": [
+        [
+          {
+            "node": "Log Change to GABRIEL",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Trigger DreamChamber Pipeline",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        []
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  }
+}

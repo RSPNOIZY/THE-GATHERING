@@ -1,0 +1,19 @@
+{
+    "version": "10.2.0", 
+    "effect": {
+        "Link": [
+            {
+                "type": "AmazingFeature", 
+                "zorder": 7000, 
+                "path": "AmazingFeature_3/"
+            }
+        ],
+        "model_names": {
+            "faceDetect": ["tt_face"],
+            "skinseg": ["tt_skin_seg"]
+        }
+
+    }, 
+    "bALG_BACH_CONFIG": true, 
+    "name": "2021_08_19_12_02_25_438db50200a211ec9626acde48001122"
+}

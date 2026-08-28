@@ -1,0 +1,167 @@
+version: '2'
+rules:
+- id: use-braces
+  description: Use block braces for ifs, whiles, etc.
+  explanation: |
+    It is recommended to always use braces and create explicit statement blocks.
+
+    Using the allowed syntax to just write a single statement can lead to very confusing
+    situations, especially where subsequently a developer might add another statement
+    while forgetting to add the braces (meaning that this wouldn't be included in the condition).
+  # Disable for now
+  language: []
+  # - javascript
+  # - typescript
+  tags:
+  - default
+  any:
+  - pattern: |
+      if (...)
+        ${single_statement}
+    replacement: |
+      if (...) {
+        ${single_statement}
+      }
+    condition: not single_statement.is_kind("statement_block")
+  - pattern: |
+      if (...)
+        ${single_statement}
+      else ...
+    replacement: |
+      if (...) {
+        ${single_statement}
+      } else ...
+    condition: not single_statement.is_kind("statement_block")
+  - pattern: |
+      if (...) {
+        ...
+      } else
+        ${single_statement}
+    replacement: |
+      if (...) {
+        ...
+      } else {
+        ${single_statement}
+      }
+    condition: not single_statement.is_kind("statement_block") and not single_statement.is_kind("if_statement")
+  - pattern: |
+      while (...)
+          ${single_statement}
+    replacement: |
+      while (...) {
+          ${single_statement}
+      }
+    condition: not single_statement.is_kind("statement_block")
+  - pattern: |
+      do
+          ${single_statement}
+      while (...)
+    replacement: |
+      do {
+          ${single_statement}
+      } while (...)
+    condition: not single_statement.is_kind("statement_block")
+# TODO Currently would need a separate pattern for let/var/const
+#  - pattern: |
+#      for (... of ...)
+#          ${single_statement}
+#    replacement: |
+#      for (... of ...) {
+#          ${single_statement}
+#      }
+#    condition: not single_statement.is_kind("statement_block")
+#  - pattern: |
+#      for await (... of ...)
+#          ${single_statement}
+#    replacement: |
+#      for await (... of ...) {
+#          ${single_statement}
+#      }
+#    condition: not single_statement.is_kind("statement_block")
+#  - pattern: |
+#      for (... in ...)
+#          ${single_statement}
+#    replacement: |
+#      for (... in ...) {
+#          ${single_statement}
+#      }
+#    condition: not single_statement.is_kind("statement_block")
+  tests:
+  - match: |
+      if (true)
+        do_something()
+    expect: |
+      if (true) {
+        do_something()
+      }
+  - match: |
+      if (true) {
+        do_something()
+      } else
+        do_something_else()
+    expect: |
+      if (true) {
+        do_something()
+      } else {
+        do_something_else()
+      }
+  - match: |
+      if (true) {
+        do_something()
+      } else if (true)
+        do_something_else()
+    expect: |
+      if (true) {
+        do_something()
+      } else if (true) {
+        do_something_else()
+      }
+  - match: if (foo) foo++;
+    expect: |
+      if (foo) {
+        foo++;
+      }
+  - match: |
+      if (condition) doSomething();
+      else doSomethingElse();
+    expect: |
+      if (condition) {
+        doSomething();
+      } else doSomethingElse();
+  - match: while (foo) foo++;
+    expect: |
+      while (foo) {
+        foo++;
+      }
+  - match: |
+      do
+          thing()
+      while (cond)
+    expect: |
+      do {
+          thing()
+      } while (cond)
+#  - match: |
+#      for (let value of iterable)
+#          console.log(value);
+#    expect: |
+#      for (let value of iterable) {
+#          console.log(value);
+#      }
+#  - match: |
+#      for (var i in iterable)
+#          console.log(i);
+#    expect: |
+#      for (var i in iterable) {
+#          console.log(i);
+#      }
+  - no-match: |
+      if (true) {
+        do_something()
+      }
+  - no-match: |
+      if (true) {
+        do_something();
+      } else if (true) {
+        do_other_thing();
+      }

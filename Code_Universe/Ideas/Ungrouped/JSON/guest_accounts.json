@@ -1,0 +1,80 @@
+{
+  "generated_week": 28,
+  "generated_at": "2026-07-06T22:02:49.142920+00:00",
+  "slots": [
+    {
+      "slot": 1,
+      "wifi_ssid": "rspguest01",
+      "wifi_pass": "HMJV-T7DV",
+      "color": "#f59e0b",
+      "label": "Front Passenger",
+      "emoji": "\ud83d\udfe1",
+      "streaming": {
+        "Spotify": {
+          "icon": "\ud83c\udfb5",
+          "url": "https://spotify.com",
+          "note": "Guest playlist \u2014 ask driver to unlock"
+        },
+        "YouTube": {
+          "icon": "\u25b6\ufe0f",
+          "url": "https://youtube.com",
+          "note": "YouTube Premium \u2014 no ads"
+        }
+      }
+    },
+    {
+      "slot": 2,
+      "wifi_ssid": "rspguest02",
+      "wifi_pass": "Y9E2-TJGW",
+      "color": "#10b981",
+      "label": "Rear Left",
+      "emoji": "\ud83d\udfe2",
+      "streaming": {
+        "Spotify": {
+          "icon": "\ud83c\udfb5",
+          "url": "https://spotify.com",
+          "note": "Guest playlist \u2014 ask driver to unlock"
+        },
+        "Netflix": {
+          "icon": "\ud83c\udfac",
+          "url": "https://netflix.com",
+          "note": "Download mode for ride"
+        }
+      }
+    },
+    {
+      "slot": 3,
+      "wifi_ssid": "rspguest03",
+      "wifi_pass": "PQQP-DQP5",
+      "color": "#6366f1",
+      "label": "Rear Right",
+      "emoji": "\ud83d\udfe3",
+      "streaming": {
+        "Spotify": {
+          "icon": "\ud83c\udfb5",
+          "url": "https://spotify.com",
+          "note": "Guest playlist \u2014 ask driver to unlock"
+        },
+        "Apple Music": {
+          "icon": "\ud83c\udf4e",
+          "url": "https://music.apple.com",
+          "note": "Passenger control enabled"
+        }
+      }
+    }
+  ],
+  "hotspot": {
+    "iphone_ssid": "RSP-DRIVE",
+    "iphone_pass": "ZHVY-YG8E",
+    "provider": "iPhone Personal Hotspot \u2192 Honda CRV relay",
+    "max_devices": 9,
+    "data_cap_gb": 5
+  },
+  "rules": [
+    "\u2705 Available for trip duration only",
+    "\u2705 Streaming HD (auto-adaptive quality)",
+    "\u2705 5 GB data cap per seat",
+    "\u274c No torrenting or illegal content",
+    "\u274c No VoIP calls on guest Wi-Fi"
+  ]
+}

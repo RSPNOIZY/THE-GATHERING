@@ -1,0 +1,87 @@
+{
+  "name": "vscode-boot-dev-pack",
+  "version": "0.2.2",
+  "publisher": "vmware",
+  "displayName": "Spring Boot Extension Pack",
+  "description": "A collection of extensions for developing Spring Boot applications",
+  "license": "EPL-1.0",
+  "galleryBanner": {
+    "color": "#0F3D5F",
+    "theme": "dark"
+  },
+  "icon": "SpringTools-256x256.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/spring-projects/spring-tools.git"
+  },
+  "homepage": "https://github.com/spring-projects/spring-tools",
+  "bugs": {
+    "url": "https://github.com/spring-projects/spring-tools/issues"
+  },
+  "keywords": [
+    "spring-boot",
+    "java",
+    "yaml"
+  ],
+  "categories": [
+    "Programming Languages",
+    "Linters",
+    "Extension Packs"
+  ],
+  "engines": {
+    "vscode": "^1.26.0"
+  },
+  "extensionPack": [
+    "vmware.vscode-spring-boot",
+    "vscjava.vscode-spring-initializr",
+    "vscjava.vscode-spring-boot-dashboard"
+  ],
+  "contributes": {
+    "walkthroughs": [
+      {
+        "id": "springBootWelcome",
+        "title": "Getting Started with Spring Boot in VS Code",
+        "description": "An Overview of the Spring Tools in VS Code to get started and to work with existing Spring Boot projects in VS Code",
+        "primary": true,
+        "steps": [
+          {
+            "id": "new-project-using-initializr",
+            "title": "Start with a Spring Boot project",
+            "description": "The easiest way to create new Spring Boot projects in VS Code is to use the Spring Initializr integration. Open the command palette, search for __Spring Initializr__ and create a new project from there.\n[Create New Project](command:spring.initializr.maven-project)\nYou can also start with a sample project to try the full features. Below button helps you try the [Spring PetClinic](https://github.com/spring-projects/spring-petclinic) sample project with one-click.\n[Open Sample Project](command:git.clone?%5B%22https%3A%2F%2Fgithub.com%2Fspring-projects%2Fspring-petclinic%22%5D)",
+            "media": {
+              "svg": "walkthroughs/spring-initializr-integration.svg",
+              "altText": "Create a new Maven-based Spring Boot project"
+            }
+          },
+          {
+            "id": "explore-your-spring-projects",
+            "title": "Explore your projects",
+            "description": "The Spring Tools in your VS Code installation contribute Spring-specific symbols to help you navigate your projects. All the symbols start with `@`.\nYou can navigate to the symbols using the [Outline View](command:outline.focus) of the current file, or globally via [Go to Symbol in Workspace...](command:workbench.action.quickOpen?%5B%22%23%40%22%5D).\nSome of the symbols are also shown as part of the Spring Boot Dashboard perspective, like all your Spring bean definitions and Spring MVC request mappings.\n[Reveal in Spring Boot Dashboard](command:spring.apps.focus)",
+            "media": {
+              "svg": "walkthroughs/spring-symbols-navigation.svg",
+              "altText": "Go to Symbol in Workspace..."
+            }
+          },
+          {
+            "id": "run-your-spring-projects",
+            "title": "Run your projects",
+            "description": "Running your projects by clicking $(play) button in Spring Boot dashboard. Or you can open any Java source file from your project and press F5.\nFor advanced configurations, you can [switch to Run and Debug view](command:workbench.view.debug) of VS Code and start the app there.\n[Run Your Project](command:workbench.action.debug.start)",
+            "media": {
+              "svg": "walkthroughs/spring-run-app.svg",
+              "altText": "Run your Spring Boot app"
+            }
+          },
+          {
+            "id": "live-information-for-your-running-spring-app",
+            "title": "View live information from your running application",
+            "description": "A unique feature of the Spring Tools is the ability to vizualize live data from your running app inplace with the source code of the **running** application.\nTo view the live information, start your project from the [dashboard](command:spring.apps.focus) first.\n[Show Live Beans](command:spring.beans.focus)\n[Show Live Mappings](command:spring.mappings.focus)",
+            "media": {
+              "svg": "walkthroughs/live-information.svg",
+              "altText": "Show Live Information"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

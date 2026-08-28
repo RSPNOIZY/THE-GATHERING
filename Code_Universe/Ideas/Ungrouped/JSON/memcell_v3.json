@@ -1,0 +1,190 @@
+{
+  "neural_state": {
+    "short_term": [
+      {
+        "a": "status_report",
+        "s": "self",
+        "ctx": {},
+        "ts": "2026-04-09T13:36:23"
+      },
+      {
+        "a": "build_session",
+        "s": "gabriel_lightweight",
+        "ctx": {},
+        "ts": "2026-04-09T13:36:32"
+      },
+      {
+        "a": "vitals_check",
+        "s": "system",
+        "ctx": {},
+        "ts": "2026-04-09T13:36:32"
+      },
+      {
+        "a": "omega_boot_test",
+        "s": "gabriel",
+        "ctx": {
+          "note": "sibling import verification"
+        },
+        "ts": "2026-04-09T13:37:29"
+      },
+      {
+        "a": "backend_start",
+        "s": "gabriel_serve",
+        "ctx": {
+          "port": 9090
+        },
+        "ts": "2026-04-09T14:01:21"
+      },
+      {
+        "a": "backend_test",
+        "s": "smoke",
+        "ctx": {},
+        "ts": "2026-04-09T14:01:22"
+      },
+      {
+        "a": "status_report",
+        "s": "self",
+        "ctx": {},
+        "ts": "2026-04-09T14:49:48"
+      },
+      {
+        "a": "backend_start",
+        "s": "gabriel_serve",
+        "ctx": {
+          "port": 9090
+        },
+        "ts": "2026-04-09T14:49:48"
+      },
+      {
+        "a": "backend_start",
+        "s": "gabriel_serve",
+        "ctx": {
+          "port": 9090
+        },
+        "ts": "2026-04-09T14:54:06"
+      },
+      {
+        "a": "deploy_test",
+        "s": "heaven",
+        "ctx": {
+          "source": "n8n",
+          "payload": {
+            "action": "deploy_test",
+            "subject": "heaven",
+            "status": "green"
+          }
+        },
+        "ts": "2026-04-09T14:54:07"
+      },
+      {
+        "a": "github_push",
+        "s": "noizy-infra",
+        "ctx": {
+          "source": "generic",
+          "payload": {
+            "action": "github_push",
+            "subject": "noizy-infra"
+          }
+        },
+        "ts": "2026-04-09T14:54:07"
+      },
+      {
+        "a": "backend_start",
+        "s": "gabriel_serve",
+        "ctx": {
+          "port": 9090
+        },
+        "ts": "2026-04-09T15:06:40"
+      },
+      {
+        "a": "hub_built",
+        "s": "integrations",
+        "ctx": {
+          "docs": [
+            "HUB.md",
+            "postman",
+            "linear/critical_path.md"
+          ]
+        },
+        "ts": "2026-04-09T15:06:42"
+      },
+      {
+        "a": "backend_start",
+        "s": "gabriel_serve",
+        "ctx": {
+          "port": 9090
+        },
+        "ts": "2026-04-09T15:21:26"
+      },
+      {
+        "a": "backend_start",
+        "s": "gabriel_serve",
+        "ctx": {
+          "port": 9090
+        },
+        "ts": "2026-04-09T15:30:08"
+      },
+      {
+        "a": "backend_start",
+        "s": "gabriel_serve",
+        "ctx": {
+          "port": 9090
+        },
+        "ts": "2026-04-09T15:32:23"
+      },
+      {
+        "a": "backend_start",
+        "s": "gabriel_serve",
+        "ctx": {
+          "port": 9090
+        },
+        "ts": "2026-04-09T15:47:33"
+      },
+      {
+        "a": "backend_start",
+        "s": "gabriel_serve",
+        "ctx": {
+          "port": 9090
+        },
+        "ts": "2026-04-09T22:12:14"
+      },
+      {
+        "a": "backend_start",
+        "s": "gabriel_serve",
+        "ctx": {
+          "port": 9090
+        },
+        "ts": "2026-04-12T13:53:45"
+      },
+      {
+        "a": "backend_start",
+        "s": "gabriel_serve",
+        "ctx": {
+          "port": 9090
+        },
+        "ts": "2026-04-14T00:42:48"
+      },
+      {
+        "a": "backend_start",
+        "s": "gabriel_serve",
+        "ctx": {
+          "port": 9090
+        },
+        "ts": "2026-04-14T18:39:10"
+      },
+      {
+        "a": "backend_start",
+        "s": "gabriel_serve",
+        "ctx": {
+          "port": 9090
+        },
+        "ts": "2026-04-14T21:40:04"
+      }
+    ],
+    "patterns": [
+      "backend_start:gabriel_serve=13"
+    ],
+    "vibe": "focused"
+  },
+  "long_term": {}
+}

@@ -1,0 +1,16 @@
+{
+  "name": "noizy-gabriel",
+  "version": "3.0.0",
+  "description": "GABRIEL V3 — NOIZY Empire Orchestration Engine",
+  "author": "Robert Stephen Plowman <rsp@noizyfish.com>",
+  "license": "UNLICENSED",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "bun run src/daemon.ts",
+    "dev": "bun --watch src/daemon.ts"
+  },
+  "engines": {
+    "bun": ">=1.0.0"
+  }
+}

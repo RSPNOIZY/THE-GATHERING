@@ -1,0 +1,20 @@
+{
+  "name": "gabriel-worker",
+  "version": "0.1.0",
+  "private": true,
+  "description": "GABRIEL — Warrior Orchestrator Worker for gabriel.noizy.ai",
+  "main": "src/index.ts",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "deploy:dry": "wrangler deploy --dry-run",
+    "tail": "wrangler tail",
+    "types": "wrangler types",
+    "smoke": "bash smoke-test.sh"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20260101.0",
+    "typescript": "^5.4.0",
+    "wrangler": "^3.80.0"
+  }
+}

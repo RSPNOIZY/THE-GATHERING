@@ -1,0 +1,4 @@
+numpy>=1.26
+sqlite-vec>=0.1.0
+torch>=2.2
+transformers>=4.41

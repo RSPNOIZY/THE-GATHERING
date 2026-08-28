@@ -1,0 +1,147 @@
+{
+  "info": {
+    "name": "NOIZY Empire API",
+    "description": "Complete API test suite for Heaven Consent Kernel + Admin",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Health",
+      "item": [
+        {
+          "name": "Heaven Health Check",
+          "request": {
+            "method": "GET",
+            "url": "{{heaven_url}}/health"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 200', () => pm.response.to.have.status(200));",
+                  "pm.test('Success true', () => {",
+                  "  const json = pm.response.json();",
+                  "  pm.expect(json.success).to.be.true;",
+                  "});"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Actors",
+      "item": [
+        {
+          "name": "List Actors",
+          "request": {
+            "method": "GET",
+            "url": "{{heaven_url}}/api/v1/actors",
+            "header": [
+              {
+                "key": "X-NOIZY-Key",
+                "value": "{{api_key}}"
+              }
+            ]
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 200', () => pm.response.to.have.status(200));",
+                  "pm.test('Has actors', () => {",
+                  "  const json = pm.response.json();",
+                  "  pm.expect(json.success).to.be.true;",
+                  "  pm.expect(json.data).to.be.an('array');",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Get RSP_001",
+          "request": {
+            "method": "GET",
+            "url": "{{heaven_url}}/api/v1/actors/RSP_001",
+            "header": [
+              {
+                "key": "X-NOIZY-Key",
+                "value": "{{api_key}}"
+              }
+            ]
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 200', () => pm.response.to.have.status(200));",
+                  "pm.test('RSP_001 found', () => {",
+                  "  const json = pm.response.json();",
+                  "  pm.expect(json.data.actor_id).to.equal('RSP_001');",
+                  "});"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Never Clauses",
+      "item": [
+        {
+          "name": "List Never Clauses",
+          "request": {
+            "method": "GET",
+            "url": "{{heaven_url}}/api/v1/never-clauses",
+            "header": [
+              {
+                "key": "X-NOIZY-Key",
+                "value": "{{api_key}}"
+              }
+            ]
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 200', () => pm.response.to.have.status(200));",
+                  "pm.test('9 clauses', () => {",
+                  "  const json = pm.response.json();",
+                  "  pm.expect(json.data.length).to.equal(9);",
+                  "});"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Unauthorized (no key)",
+          "request": {
+            "method": "GET",
+            "url": "{{heaven_url}}/api/v1/actors"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": ["pm.test('Status 401', () => pm.response.to.have.status(401));"]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

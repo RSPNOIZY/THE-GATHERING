@@ -1,0 +1,30 @@
+{
+  "cached_policy": {
+    "compress_config": {
+      "frame_per_second": 1,
+      "gif_compress_type": 0,
+      "short_side_width": 224
+    },
+    "extra_audio": false,
+    "preload_time": 2,
+    "preload_tracks": 1,
+    "upload_clean_time": 0
+  },
+  "cleanup": {
+    "delete_artifacts_after_commit": true
+  },
+  "concurrency": {
+    "commit_threads": 1,
+    "transcode_threads": 1,
+    "upload_threads": 1
+  },
+  "feature_key": {
+    "wait_timeout_ms": 120000
+  },
+  "mock_server": {
+    "commit_fail": false,
+    "enabled": false,
+    "preload_time": 1,
+    "preload_tracks": 0
+  }
+}

@@ -1,0 +1,680 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NOIZYBEAST 2.0 — SUPERSONIC IDE</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:#040509;--surface:#08090f;--surface2:#0d0f1a;--surface3:#111422;
+      --border:#181b2e;--border2:#1f2340;
+      --cyan:#00d4ff;--green:#00ff88;--red:#ff3355;--purple:#9b5cf6;
+      --amber:#f5a623;--gold:#d4a017;--magenta:#ec4899;--blue:#3b82f6;
+      --text:#c8cad8;--muted:#4a4c60;--muted2:#6a6c82;--white:#f0f1ff;
+      --font:'Inter',-apple-system,sans-serif;--mono:'JetBrains Mono','SF Mono',monospace;
+      --sidebar-w:240px;--header-h:52px;
+    }
+    *{margin:0;padding:0;box-sizing:border-box;}
+    html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);font-family:var(--font);}
+    body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+      background:radial-gradient(ellipse at 15% 40%,rgba(0,212,255,.055) 0%,transparent 55%),
+      radial-gradient(ellipse at 85% 20%,rgba(155,92,246,.045) 0%,transparent 50%),
+      radial-gradient(ellipse at 50% 90%,rgba(245,166,35,.03) 0%,transparent 45%);}
+    #stars{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden;}
+    .star{position:absolute;border-radius:50%;background:#fff;animation:twinkle var(--dur,4s) var(--dl,0s) infinite alternate ease-in-out;}
+    @keyframes twinkle{from{opacity:var(--lo,.02);}to{opacity:var(--hi,.5);}}
+    #root{position:relative;z-index:1;display:flex;flex-direction:column;height:100vh;}
+
+    /* HEADER */
+    header{height:var(--header-h);display:flex;align-items:center;justify-content:space-between;padding:0 1rem;background:rgba(4,5,9,.94);border-bottom:1px solid var(--border);backdrop-filter:blur(16px);flex-shrink:0;z-index:100;}
+    .brand{display:flex;align-items:center;gap:.6rem;font-size:.88rem;font-weight:900;letter-spacing:.18em;color:var(--white);}
+    .brand-orb{width:26px;height:26px;border-radius:50%;background:conic-gradient(var(--cyan),var(--purple),var(--amber),var(--red),var(--cyan));animation:spin 6s linear infinite;box-shadow:0 0 14px rgba(0,212,255,.5);}
+    @keyframes spin{to{transform:rotate(360deg);}}
+    .brand-name span{color:var(--cyan);}
+    .header-status{display:flex;align-items:center;gap:.75rem;font-size:.68rem;}
+    .spill{display:flex;align-items:center;gap:.3rem;padding:.2rem .55rem;border-radius:20px;background:rgba(255,255,255,.04);border:1px solid var(--border2);}
+    .sdot{width:6px;height:6px;border-radius:50%;animation:pdot 2s ease-in-out infinite;}
+    .sdot.g{background:var(--green);box-shadow:0 0 6px var(--green);}
+    .sdot.a{background:var(--amber);box-shadow:0 0 6px var(--amber);}
+    .sdot.r{background:var(--red);box-shadow:0 0 6px var(--red);}
+    .sdot.x{background:var(--muted);}
+    @keyframes pdot{0%,100%{opacity:1;}50%{opacity:.4;}}
+    .hbtn{padding:.3rem .7rem;border-radius:6px;font-size:.7rem;font-weight:600;border:1px solid var(--border2);background:rgba(255,255,255,.04);color:var(--text);cursor:pointer;transition:all .15s;font-family:var(--mono);}
+    .hbtn:hover{background:rgba(255,255,255,.08);color:var(--white);}
+    .hbtn.p{background:rgba(0,212,255,.12);border-color:rgba(0,212,255,.3);color:var(--cyan);}
+    .hbtn.p:hover{background:rgba(0,212,255,.2);}
+    .hdr-acts{display:flex;gap:.4rem;align-items:center;}
+
+    /* WORKSPACE */
+    .workspace{display:flex;flex:1;overflow:hidden;}
+
+    /* SIDEBAR */
+    aside{width:var(--sidebar-w);flex-shrink:0;background:rgba(8,9,15,.8);border-right:1px solid var(--border);display:flex;flex-direction:column;overflow:hidden;}
+    .nav-sec{padding:.4rem 0;border-bottom:1px solid var(--border);}
+    .nav-lbl{font-size:.57rem;font-weight:700;letter-spacing:.13em;color:var(--muted);padding:.45rem 1rem .2rem;text-transform:uppercase;}
+    .nv{display:flex;align-items:center;gap:.55rem;padding:.48rem 1rem;font-size:.77rem;font-weight:500;color:var(--muted2);cursor:pointer;transition:all .12s;border-left:2px solid transparent;}
+    .nv:hover{color:var(--text);background:rgba(255,255,255,.03);}
+    .nv.on{color:var(--white);background:rgba(0,212,255,.07);border-left-color:var(--cyan);}
+    .nv .ic{font-size:.84rem;width:18px;text-align:center;flex-shrink:0;}
+    .nbadge{margin-left:auto;font-size:.57rem;padding:.1rem .38rem;border-radius:10px;background:rgba(255,255,255,.08);color:var(--muted2);}
+    .nbadge.live{background:rgba(0,255,136,.15);color:var(--green);}
+
+    /* CREW MINI */
+    .crew-mini{padding:.35rem .65rem;overflow-y:auto;flex:1;}
+    .cm-item{display:flex;align-items:center;gap:.45rem;padding:.28rem .2rem;font-size:.67rem;color:var(--muted2);border-radius:4px;cursor:pointer;}
+    .cm-item:hover{background:rgba(255,255,255,.03);color:var(--text);}
+    .cm-em{width:18px;text-align:center;}
+    .cm-name{flex:1;font-weight:500;}
+    .cm-st{font-size:.59rem;color:var(--muted);}
+    .cm-st.working{color:var(--amber);animation:pdot 1.5s infinite;}
+    .cm-st.ready{color:var(--green);}
+
+    /* CONTENT */
+    .content{flex:1;display:flex;flex-direction:column;overflow:hidden;}
+    .panel{display:none;flex:1;flex-direction:column;overflow:hidden;}
+    .panel.active{display:flex;}
+    .sec-head{padding:.8rem 1.25rem;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:.55rem;flex-shrink:0;}
+    .sec-head h2{font-size:.84rem;font-weight:800;color:var(--white);}
+    .sec-head p{font-size:.67rem;color:var(--muted2);margin-top:.08rem;}
+
+    /* MISSION */
+    #panel-mission{flex-direction:column;}
+    .ml{display:grid;grid-template-columns:1fr 320px;gap:0;flex:1;overflow:hidden;}
+    .mm{display:flex;flex-direction:column;overflow:hidden;border-right:1px solid var(--border);}
+    .ms{display:flex;flex-direction:column;overflow:hidden;}
+    .feed{flex:1;overflow-y:auto;padding:1rem;display:flex;flex-direction:column;gap:.7rem;}
+    .feed::-webkit-scrollbar{width:3px;}
+    .feed::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px;}
+    .mcard{background:var(--surface2);border:1px solid var(--border);border-radius:9px;padding:.8rem;animation:si .3s ease;}
+    @keyframes si{from{opacity:0;transform:translateY(7px);}to{opacity:1;transform:none;}}
+    .mcard.user{border-left:3px solid var(--cyan);}
+    .mcard.gabriel{border-left:3px solid var(--purple);}
+    .mcard.lucy{border-left:3px solid #f48fb1;}
+    .mcard.cb01{border-left:3px solid #4fc3f7;}
+    .mcard.dream{border-left:3px solid #ce93d8;}
+    .mcard.shirley{border-left:3px solid var(--gold);}
+    .mcard.engr_keith{border-left:3px solid #80cbc4;}
+    .mcard.family{border-left:3px solid #a5d6a7;}
+    .mcard.heaven{border-left:3px solid var(--amber);}
+    .mcard.system{border-left:3px solid var(--border2);opacity:.75;}
+    .mcard.error{border-left:3px solid var(--red);background:rgba(255,51,85,.05);}
+    .ch{display:flex;align-items:center;gap:.45rem;margin-bottom:.45rem;font-size:.67rem;color:var(--muted2);}
+    .abadge{padding:.1rem .45rem;border-radius:10px;font-size:.61rem;font-weight:700;background:rgba(255,255,255,.06);color:var(--muted);}
+    .cprov{font-size:.59rem;color:var(--muted);margin-left:auto;}
+    .ct{font-size:.79rem;line-height:1.55;color:var(--text);white-space:pre-wrap;word-break:break-word;}
+    .thinker{display:flex;align-items:center;gap:.4rem;font-size:.71rem;color:var(--amber);padding:.55rem 1rem;}
+    .tdots span{display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--amber);animation:th 1.2s ease-in-out infinite;}
+    .tdots span:nth-child(2){animation-delay:.2s;}.tdots span:nth-child(3){animation-delay:.4s;}
+    @keyframes th{0%,60%,100%{transform:translateY(0);opacity:.3;}30%{transform:translateY(-4px);opacity:1;}}
+
+    /* INPUT */
+    .mia{border-top:1px solid var(--border);padding:.7rem 1rem;background:rgba(4,5,9,.6);}
+    .irow{display:flex;align-items:flex-end;gap:.45rem;}
+    .mta{flex:1;min-height:42px;max-height:160px;background:var(--surface2);border:1px solid var(--border2);border-radius:9px;padding:.55rem .75rem;color:var(--white);font-family:var(--font);font-size:.81rem;resize:none;outline:none;transition:border-color .15s;line-height:1.5;}
+    .mta:focus{border-color:rgba(0,212,255,.4);}
+    .mta::placeholder{color:var(--muted);}
+    .sbtn,.vbtn{width:42px;height:42px;border-radius:9px;flex-shrink:0;cursor:pointer;font-size:1rem;transition:all .15s;display:flex;align-items:center;justify-content:center;border:none;}
+    .sbtn{background:linear-gradient(135deg,rgba(0,212,255,.2),rgba(155,92,246,.2));border:1px solid rgba(0,212,255,.3);color:var(--cyan);}
+    .sbtn:hover{background:rgba(0,212,255,.25);transform:scale(1.04);}
+    .sbtn:disabled{opacity:.4;cursor:not-allowed;transform:none;}
+    .vbtn{background:rgba(255,255,255,.04);border:1px solid var(--border2);color:var(--muted2);}
+    .vbtn.rec{background:rgba(255,51,85,.15);border-color:var(--red);color:var(--red);animation:vrec 1s ease-in-out infinite;}
+    @keyframes vrec{0%,100%{box-shadow:0 0 0 0 rgba(255,51,85,.4);}50%{box-shadow:0 0 0 8px rgba(255,51,85,0);}}
+    .imeta{display:flex;align-items:center;gap:.7rem;margin-top:.35rem;padding:0 .2rem;font-size:.63rem;color:var(--muted);}
+    .asel{background:var(--surface2);border:1px solid var(--border2);border-radius:5px;color:var(--text);font-size:.67rem;padding:.18rem .38rem;cursor:pointer;outline:none;}
+
+    /* MISSION SIDEBAR */
+    .mst{padding:.7rem .8rem;font-size:.64rem;font-weight:700;letter-spacing:.1em;color:var(--muted);text-transform:uppercase;border-bottom:1px solid var(--border);}
+    .cascade{padding:.45rem .55rem;margin:.2rem .45rem;background:var(--surface);border:1px solid var(--border);border-radius:7px;}
+    .casc-t{font-size:.59rem;color:var(--muted);margin-bottom:.3rem;font-weight:600;text-transform:uppercase;letter-spacing:.07em;}
+    .ci{display:flex;align-items:center;gap:.32rem;font-size:.63rem;padding:.18rem 0;}
+    .cd{width:5px;height:5px;border-radius:50%;flex-shrink:0;}
+    .cd.ok{background:var(--green);}.cd.w{background:var(--amber);}.cd.off{background:var(--muted);}
+    .cn{flex:1;color:var(--text);}
+    .ctag{font-size:.57rem;color:var(--muted);font-family:var(--mono);}
+    .crew-cards{padding:.4rem;display:flex;flex-direction:column;gap:.35rem;overflow-y:auto;flex:1;}
+    .cc{border:1px solid var(--border);border-radius:7px;padding:.55rem .65rem;background:var(--surface2);cursor:pointer;transition:all .15s;}
+    .cc:hover{border-color:var(--border2);background:var(--surface3);}
+    .cc.working{border-color:rgba(245,166,35,.3);background:rgba(245,166,35,.04);}
+    .cch{display:flex;align-items:center;gap:.45rem;margin-bottom:.25rem;}
+    .cce{font-size:1rem;}.ccn{font-size:.71rem;font-weight:700;color:var(--white);flex:1;}
+    .ccs{font-size:.59rem;padding:.08rem .38rem;border-radius:7px;background:rgba(0,255,136,.1);color:var(--green);font-weight:600;}
+    .ccs.working{background:rgba(245,166,35,.15);color:var(--amber);}
+    .ccs.offline{background:rgba(255,255,255,.05);color:var(--muted);}
+    .ccr{font-size:.61rem;color:var(--muted2);}
+    .ccm{font-size:.57rem;color:var(--muted);font-family:var(--mono);margin-top:.2rem;}
+
+    /* EMPIRE */
+    #panel-empire{overflow-y:auto;}
+    .eg{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:.9rem;padding:1.25rem;}
+    .ec{background:var(--surface2);border:1px solid var(--border);border-radius:11px;padding:.9rem;cursor:pointer;transition:all .2s;}
+    .ec:hover{border-color:var(--border2);transform:translateY(-2px);}
+    .ec.live{border-top:2px solid var(--green);}
+    .ec.build{border-top:2px solid var(--amber);}
+    .ec.plan{border-top:2px solid var(--muted);}
+    .ec.local{border-top:2px solid var(--cyan);}
+    .ech{display:flex;align-items:flex-start;gap:.55rem;margin-bottom:.55rem;}
+    .eci{font-size:1.45rem;}
+    .ecn{font-size:.88rem;font-weight:800;color:var(--white);margin-bottom:.12rem;}
+    .ecst{font-size:.61rem;padding:.12rem .45rem;border-radius:9px;font-weight:700;display:inline-block;}
+    .ecst.live{background:rgba(0,255,136,.12);color:var(--green);}
+    .ecst.build{background:rgba(245,166,35,.12);color:var(--amber);}
+    .ecst.plan{background:rgba(255,255,255,.06);color:var(--muted2);}
+    .ecst.local{background:rgba(0,212,255,.1);color:var(--cyan);}
+    .ecr{font-size:.71rem;color:var(--muted2);line-height:1.4;margin-bottom:.45rem;}
+    .ecu{font-size:.64rem;color:var(--muted);font-family:var(--mono);}
+    .ecms{display:flex;gap:.4rem;margin-top:.55rem;flex-wrap:wrap;}
+    .ecm{font-size:.59rem;padding:.12rem .4rem;border-radius:5px;background:rgba(255,255,255,.05);color:var(--muted2);font-family:var(--mono);}
+
+    /* MODELS */
+    #panel-ollama{overflow-y:auto;}
+    .mg{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:.8rem;padding:1.25rem;}
+    .mt{background:var(--surface2);border:1px solid var(--border);border-radius:9px;padding:.8rem;cursor:pointer;transition:all .15s;}
+    .mt:hover{border-color:var(--border2);background:var(--surface3);}
+    .mt.gb{border-top:2px solid var(--cyan);}
+    .mt.lb{border-top:2px solid #f48fb1;}
+    .mth{display:flex;align-items:center;gap:.45rem;margin-bottom:.35rem;}
+    .mtic{font-size:1.05rem;}
+    .mtn{font-size:.79rem;font-weight:700;color:var(--white);flex:1;font-family:var(--mono);}
+    .mtbadge{font-size:.57rem;padding:.08rem .38rem;border-radius:7px;font-weight:700;}
+    .mtbadge.local{background:rgba(0,255,136,.1);color:var(--green);}
+    .mtbadge.vision{background:rgba(245,166,35,.1);color:var(--amber);}
+    .mtbadge.embed{background:rgba(59,130,246,.1);color:var(--blue);}
+    .mtsz{font-size:.67rem;color:var(--muted2);margin-bottom:.28rem;font-family:var(--mono);}
+    .mtfam{font-size:.61rem;color:var(--muted);}
+
+    /* VOICE */
+    #panel-voice{align-items:center;justify-content:center;gap:1.75rem;}
+    .vow{position:relative;width:180px;height:180px;display:flex;align-items:center;justify-content:center;}
+    .vo{width:120px;height:120px;border-radius:50%;background:radial-gradient(ellipse at 35% 35%,rgba(0,212,255,.7) 0%,rgba(0,100,180,.4) 60%,rgba(0,30,80,.3) 100%);box-shadow:0 0 30px rgba(0,212,255,.3);cursor:pointer;transition:all .3s;display:flex;align-items:center;justify-content:center;font-size:2rem;position:relative;z-index:2;}
+    .vo:hover{transform:scale(1.06);box-shadow:0 0 40px rgba(0,212,255,.45);}
+    .vo.listening{background:radial-gradient(ellipse at 35% 35%,rgba(255,51,85,.8) 0%,rgba(180,20,50,.5) 60%,rgba(80,0,20,.3) 100%);box-shadow:0 0 30px rgba(255,51,85,.4);animation:ob 1.5s ease-in-out infinite;}
+    @keyframes ob{0%,100%{transform:scale(1);}50%{transform:scale(1.08);}}
+    .vring{position:absolute;border-radius:50%;border:1px solid rgba(0,212,255,.15);animation:re 2s ease-out infinite;}
+    .vring:nth-child(1){width:140px;height:140px;animation-delay:0s;}
+    .vring:nth-child(2){width:165px;height:165px;animation-delay:.5s;}
+    .vring:nth-child(3){width:180px;height:180px;animation-delay:1s;}
+    @keyframes re{0%{opacity:.5;transform:scale(.9);}100%{opacity:0;transform:scale(1.1);}}
+    .vst{font-size:.81rem;color:var(--muted2);text-align:center;}
+    .vtxt{max-width:560px;width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:11px;padding:.9rem;font-size:.81rem;color:var(--text);min-height:75px;font-family:var(--mono);line-height:1.5;}
+    .vsets{display:flex;gap:.7rem;flex-wrap:wrap;justify-content:center;}
+    .vsit{display:flex;align-items:center;gap:.38rem;font-size:.71rem;color:var(--muted2);}
+
+    /* TERMINAL */
+    #panel-terminal{flex-direction:column;}
+    .tout{flex:1;overflow-y:auto;padding:.9rem;font-family:var(--mono);font-size:.77rem;line-height:1.6;background:rgba(0,0,0,.3);}
+    .tout::-webkit-scrollbar{width:3px;}
+    .tout::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px;}
+    .tl{margin-bottom:.13rem;}
+    .tl .tp{color:var(--purple);}
+    .tl .tc{color:var(--white);}
+    .tl .to{color:var(--text);}
+    .tl .te{color:var(--red);}
+    .tl .ta{color:var(--cyan);}
+    .tl .tok{color:var(--green);}
+    .tl .tw{color:var(--amber);}
+    .tir{display:flex;align-items:center;gap:.45rem;padding:.45rem .9rem;border-top:1px solid var(--border);background:rgba(0,0,0,.4);}
+    .tpl{color:var(--purple);font-family:var(--mono);font-size:.77rem;flex-shrink:0;}
+    .tinput{flex:1;background:none;border:none;outline:none;color:var(--white);font-family:var(--mono);font-size:.77rem;}
+    .tinput::placeholder{color:var(--muted);}
+
+    /* FILES */
+    #panel-files{flex-direction:row !important;}
+    .fl{width:270px;flex-shrink:0;border-right:1px solid var(--border);display:flex;flex-direction:column;overflow:hidden;}
+    .fsw{padding:.45rem;border-bottom:1px solid var(--border);}
+    .fsi{width:100%;background:var(--surface2);border:1px solid var(--border2);border-radius:5px;padding:.3rem .55rem;color:var(--text);font-size:.73rem;outline:none;}
+    .ftree{flex:1;overflow-y:auto;padding:.4rem 0;font-family:var(--mono);font-size:.71rem;}
+    .ftree::-webkit-scrollbar{width:3px;}
+    .ftd{display:flex;align-items:center;gap:.38rem;padding:.28rem .7rem;color:var(--text);cursor:pointer;}
+    .ftd:hover{background:rgba(255,255,255,.03);}
+    .ftd .ftic{color:var(--amber);}
+    .ftf{display:flex;align-items:center;gap:.38rem;padding:.22rem .7rem .22rem 2rem;color:var(--muted2);cursor:pointer;}
+    .ftf:hover{background:rgba(255,255,255,.03);color:var(--text);}
+    .ftf.md .ftic{color:var(--blue);}
+    .ftf.json .ftic{color:var(--gold);}
+    .ftf.py .ftic{color:var(--green);}
+    .ftf.js .ftic{color:var(--amber);}
+    .fr{flex:1;display:flex;flex-direction:column;overflow:hidden;}
+    .fprev{flex:1;overflow-y:auto;padding:.9rem;font-family:var(--mono);font-size:.75rem;line-height:1.6;white-space:pre-wrap;color:var(--text);}
+
+    /* FOOTER */
+    footer{height:52px;flex-shrink:0;display:flex;align-items:center;justify-content:space-between;padding:0 1rem;background:rgba(4,5,9,.94);border-top:1px solid var(--border);backdrop-filter:blur(12px);z-index:100;}
+    .fl2,.fr2{display:flex;align-items:center;gap:1rem;}
+    .fst{font-size:.64rem;color:var(--muted2);display:flex;align-items:center;gap:.32rem;}
+    .fst strong{color:var(--text);}
+    .wf{display:flex;align-items:center;gap:2px;height:20px;}
+    .ww{width:3px;border-radius:2px;background:var(--cyan);opacity:.4;animation:wv var(--spd,.8s) var(--dl2,0s) ease-in-out infinite alternate;}
+    @keyframes wv{from{height:4px;opacity:.3;}to{height:var(--h,16px);opacity:.8;}}
+
+    /* TOASTS */
+    #tl{position:fixed;bottom:60px;right:1rem;z-index:999;display:flex;flex-direction:column;gap:.45rem;}
+    .toast{background:var(--surface2);border:1px solid var(--border2);border-radius:7px;padding:.55rem .8rem;font-size:.74rem;color:var(--text);animation:tin .25s ease;min-width:190px;display:flex;align-items:center;gap:.45rem;}
+    .toast.ok{border-left:3px solid var(--green);}
+    .toast.warn{border-left:3px solid var(--amber);}
+    .toast.err{border-left:3px solid var(--red);}
+    .toast.info{border-left:3px solid var(--cyan);}
+    @keyframes tin{from{opacity:0;transform:translateX(18px);}to{opacity:1;transform:none;}}
+
+    @media(max-width:850px){
+      aside{width:50px;}
+      .nav-lbl,.nv>span:not(.ic),.nbadge,.crew-mini{display:none;}
+      .nv{padding:.55rem;justify-content:center;}
+      .ml{grid-template-columns:1fr;}
+      .ms{display:none;}
+    }
+  </style>
+</head>
+<body>
+<div id="stars"></div>
+<div id="root">
+  <!-- HEADER -->
+  <header>
+    <div class="brand">
+      <div class="brand-orb"></div>
+      <div class="brand-name">NOIZY<span>BEAST</span> <span style="font-size:.6rem;opacity:.5;letter-spacing:.08em;">2.0</span></div>
+    </div>
+    <div class="header-status">
+      <div class="spill"><div class="sdot x" id="dot-dc"></div><span id="lbl-dc">DreamChamber :7777</span></div>
+      <div class="spill"><div class="sdot x" id="dot-ol"></div><span id="lbl-ol">Ollama</span></div>
+      <div class="spill"><div class="sdot x" id="dot-hv"></div><span id="lbl-hv">Heaven17</span></div>
+    </div>
+    <div class="hdr-acts">
+      <button class="hbtn" onclick="navTo('voice')">🎙️</button>
+      <button class="hbtn" onclick="navTo('terminal')">⚡ Terminal</button>
+      <button class="hbtn p" onclick="navTo('mission')">◈ Mission</button>
+      <a href="/?skip=1" class="hbtn">DC ↗</a>
+    </div>
+  </header>
+
+  <div class="workspace">
+    <!-- SIDEBAR -->
+    <aside>
+      <div class="nav-sec">
+        <div class="nav-lbl">Command</div>
+        <div class="nv on" onclick="navTo('mission')" id="nav-mission"><span class="ic">◈</span><span>Mission Control</span><span class="nbadge live" id="bm">LIVE</span></div>
+        <div class="nv" onclick="navTo('empire')" id="nav-empire"><span class="ic">🌐</span><span>Empire Map</span></div>
+        <div class="nv" onclick="navTo('voice')" id="nav-voice"><span class="ic">🎙️</span><span>Voice OS</span></div>
+      </div>
+      <div class="nav-sec">
+        <div class="nav-lbl">System</div>
+        <div class="nv" onclick="navTo('ollama')" id="nav-ollama"><span class="ic">🧠</span><span>Local Models</span><span class="nbadge" id="bol">—</span></div>
+        <div class="nv" onclick="navTo('files')" id="nav-files"><span class="ic">📁</span><span>File Brain</span></div>
+        <div class="nv" onclick="navTo('terminal')" id="nav-terminal"><span class="ic">⚡</span><span>Beast Terminal</span></div>
+      </div>
+      <div class="nav-sec" style="flex:1;overflow:hidden;display:flex;flex-direction:column;min-height:0;">
+        <div class="nav-lbl">Crew Live</div>
+        <div class="crew-mini" id="crew-mini"></div>
+      </div>
+    </aside>
+
+    <!-- CONTENT -->
+    <div class="content">
+
+      <!-- MISSION -->
+      <div class="panel active" id="panel-mission">
+        <div class="sec-head"><span>◈</span><div><h2>Mission Control</h2><p>Dispatch to GABRIEL crew — Anthropic → OpenAI → Google → gabriel-brain (72B local)</p></div></div>
+        <div class="ml">
+          <div class="mm">
+            <div class="feed" id="feed">
+              <div class="mcard system">
+                <div class="ch"><span class="abadge">SYSTEM</span><span style="color:var(--muted);font-size:.63rem;" id="btime"></span></div>
+                <div class="ct">🌟 NOIZYBEAST 2.0 — SUPERSONIC IDE ONLINE
+
+GABRIEL crew: 8 agents ready. Multi-provider cascade active.
+Local: gabriel-brain (72B) · lucy-brain (32B) · gemma4 (26B/12B)
+26 months of empire knowledge injected. GorunFree. RSP_001.</div>
+              </div>
+            </div>
+            <div id="thinker" class="thinker" style="display:none;">
+              <span id="tagt">GABRIEL</span> is thinking
+              <div class="tdots"><span></span><span></span><span></span></div>
+            </div>
+            <div class="mia">
+              <div class="irow">
+                <button class="vbtn" id="vbtn-m" onclick="toggleVM()" title="Voice">🎙️</button>
+                <textarea class="mta" id="mi" placeholder="Dispatch a mission… e.g. 'CB01 check Cloudflare status' · 'LUCY recall empire priorities'" rows="2" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();send();}"></textarea>
+                <button class="sbtn" id="sbtn" onclick="send()">▶</button>
+              </div>
+              <div class="imeta">
+                <span>Agent:</span>
+                <select class="asel" id="asel">
+                  <option value="GABRIEL">🌟 GABRIEL</option>
+                  <option value="CB01">⚙️ CB01</option>
+                  <option value="LUCY">📚 LUCY</option>
+                  <option value="DREAM">🎨 DREAM</option>
+                  <option value="SHIRLEY">⚖️ SHIRLEY</option>
+                  <option value="ENGR_KEITH">🔧 ENGR_KEITH</option>
+                  <option value="FAMILY">🏠 FAMILY</option>
+                  <option value="HEAVEN">💫 HEAVEN</option>
+                </select>
+                <span id="pi" style="color:var(--muted);">provider: —</span>
+                <span style="margin-left:auto;color:var(--muted);">Enter send · Shift+Enter newline</span>
+              </div>
+            </div>
+          </div>
+          <div class="ms">
+            <div class="mst">Crew Status</div>
+            <div class="cascade">
+              <div class="casc-t">Provider Cascade</div>
+              <div class="ci"><div class="cd w" id="cd-a"></div><span class="cn">Anthropic</span><span class="ctag">claude-sonnet</span></div>
+              <div class="ci"><div class="cd w" id="cd-o"></div><span class="cn">OpenAI</span><span class="ctag">gpt-4o</span></div>
+              <div class="ci"><div class="cd w" id="cd-g"></div><span class="cn">Google</span><span class="ctag">gemini-2.0-flash</span></div>
+              <div class="ci"><div class="cd w" id="cd-l"></div><span class="cn">Ollama Local</span><span class="ctag">gabriel-brain 72B</span></div>
+            </div>
+            <div class="crew-cards" id="ccards"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- EMPIRE -->
+      <div class="panel" id="panel-empire">
+        <div class="sec-head"><span>🌐</span><div><h2>Empire Map</h2><p>All NOIZY properties, infrastructure & workers</p></div></div>
+        <div style="flex:1;overflow-y:auto;"><div class="eg" id="eg"></div></div>
+      </div>
+
+      <!-- MODELS -->
+      <div class="panel" id="panel-ollama">
+        <div class="sec-head"><span>🧠</span><div><h2>Local Models</h2><p>Ollama :11434 — M2 Ultra 192GB — all models running locally</p></div></div>
+        <div style="flex:1;overflow-y:auto;"><div class="mg" id="mg"></div></div>
+      </div>
+
+      <!-- VOICE -->
+      <div class="panel" id="panel-voice">
+        <div class="vow">
+          <div class="vring"></div><div class="vring"></div><div class="vring"></div>
+          <div class="vo" id="vo" onclick="toggleVO()">🎙️</div>
+        </div>
+        <div class="vst" id="vst">Click the orb — speak your mission to GABRIEL</div>
+        <div class="vtxt" id="vtxt">Transcript appears here…</div>
+        <div class="vsets">
+          <div class="vsit"><input type="checkbox" id="vas" checked/><label for="vas">Auto-send</label></div>
+          <div class="vsit"><input type="checkbox" id="vtts" checked/><label for="vtts">TTS response</label></div>
+          <div class="vsit"><label>Voice: </label>
+            <select class="asel" id="vv">
+              <option>Daniel</option><option>Samantha</option><option>Karen</option><option>Moira</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- TERMINAL -->
+      <div class="panel" id="panel-terminal">
+        <div class="sec-head"><span>⚡</span><div><h2>Beast Terminal</h2><p>beast · ollama · wrangler — AI-routed commands</p></div></div>
+        <div class="tout" id="tout">
+          <div class="tl"><span class="ta">NOIZYBEAST v2.0 Terminal — GOD.local M2 Ultra 192GB</span></div>
+          <div class="tl"><span class="tok">✓ DreamChamber :7777 — crew active</span></div>
+          <div class="tl"><span class="tok">✓ Ollama :11434 — local models ready</span></div>
+          <div class="tl"><span class="tw">⚠ Anthropic credits low — cascade: OpenAI → Google → gabriel-brain (72B) active</span></div>
+          <div class="tl"><span class="tp">beast@GOD.local</span> <span class="to">type: help · beast status · beast crew GABRIEL</span></div>
+          <div class="tl"> </div>
+        </div>
+        <div class="tir">
+          <span class="tpl">beast@GOD.local $</span>
+          <input class="tinput" id="ti" placeholder="beast status" autocomplete="off" spellcheck="false" onkeydown="if(event.key==='Enter')runT();" />
+        </div>
+      </div>
+
+      <!-- FILES -->
+      <div class="panel" id="panel-files">
+        <div class="fl" style="display:flex;flex-direction:column;">
+          <div class="sec-head" style="flex-shrink:0;"><span>📁</span><div><h2>File Brain</h2><p>83,096 files indexed</p></div></div>
+          <div class="fsw"><input class="fsi" placeholder="Search files…" oninput="filterF(this.value)"/></div>
+          <div class="ftree" id="ftree"></div>
+        </div>
+        <div class="fr">
+          <div class="fprev" id="fprev">← Select a file to preview</div>
+        </div>
+      </div>
+
+    </div><!-- .content -->
+  </div><!-- .workspace -->
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="fl2">
+      <div class="fst"><div class="wf" id="wf"></div><span id="wss">connecting…</span></div>
+      <div class="fst">Model: <strong id="fmod">—</strong></div>
+      <div class="fst">Provider: <strong id="fprov" style="color:var(--cyan)">—</strong></div>
+    </div>
+    <div class="fr2">
+      <div class="fst">GOD.local · M2 Ultra 192GB</div>
+      <div class="fst">RSP_001 · <strong style="color:var(--amber)">GORUNFREE</strong></div>
+      <div class="fst" id="fclk" style="font-family:var(--mono);"></div>
+    </div>
+  </footer>
+</div>
+<div id="tl"></div>
+
+<script>
+'use strict';
+// STARS
+(()=>{const c=document.getElementById('stars');for(let i=0;i<110;i++){const s=document.createElement('div');s.className='star';const sz=Math.random()*2.5+.5;s.style.cssText=`width:${sz}px;height:${sz}px;top:${Math.random()*100}%;left:${Math.random()*100}%;--dur:${(Math.random()*5+2).toFixed(1)}s;--dl:${(Math.random()*4).toFixed(1)}s;--lo:${(Math.random()*.04).toFixed(3)};--hi:${(Math.random()*.5+.1).toFixed(2)};`;c.appendChild(s);}})();
+
+// WAVEFORM
+(()=>{const w=document.getElementById('wf');for(let i=0;i<8;i++){const b=document.createElement('div');b.className='ww';const h=Math.random()*14+4;b.style.cssText=`--spd:${(Math.random()*.6+.5).toFixed(2)}s;--dl2:${(Math.random()*.5).toFixed(2)}s;--h:${h}px;`;w.appendChild(b);}})();
+
+// CLOCK
+setInterval(()=>{document.getElementById('fclk').textContent=new Date().toLocaleTimeString('en-US',{hour12:false});},1000);
+document.getElementById('btime').textContent=new Date().toLocaleString();
+
+// CREW
+const CREW=[
+  {key:'GABRIEL',emoji:'🌟',col:'#b39ddb',role:'Mission Orchestrator',local:'gabriel-brain:latest'},
+  {key:'CB01',emoji:'⚙️',col:'#4fc3f7',role:'Ops & Infrastructure',local:'gabriel-brain:latest'},
+  {key:'LUCY',emoji:'📚',col:'#f48fb1',role:'Memory Archivist',local:'lucy-brain:latest'},
+  {key:'DREAM',emoji:'🎨',col:'#ce93d8',role:'Creative Director',local:'gemma4:26b'},
+  {key:'SHIRLEY',emoji:'⚖️',col:'#ffcc02',role:'Legal & Compliance',local:'gabriel-brain:latest'},
+  {key:'ENGR_KEITH',emoji:'🔧',col:'#80cbc4',role:'Senior Engineer',local:'lucy-brain:latest'},
+  {key:'FAMILY',emoji:'🏠',col:'#a5d6a7',role:'Community',local:'gemma4:12b'},
+  {key:'HEAVEN',emoji:'💫',col:'#ffab40',role:'Revenue Intelligence',local:'gabriel-brain:latest'},
+];
+const CS={};CREW.forEach(c=>CS[c.key]='ready');
+
+function renderMini(){
+  const el=document.getElementById('crew-mini');
+  el.innerHTML=CREW.map(c=>`<div class="cm-item" onclick="setAg('${c.key}')"><span class="cm-em">${c.emoji}</span><span class="cm-name">${c.key}</span><span class="cm-st ${CS[c.key]}" id="cms-${c.key}">${CS[c.key]}</span></div>`).join('');
+}
+function renderCards(){
+  const el=document.getElementById('ccards');
+  el.innerHTML=CREW.map(c=>`<div class="cc ${CS[c.key]==='working'?'working':''}" onclick="setAg('${c.key}')" style="border-left:2px solid ${c.col}20;"><div class="cch"><span class="cce">${c.emoji}</span><span class="ccn">${c.key}</span><span class="ccs ${CS[c.key]}" id="ccs-${c.key}">${CS[c.key]}</span></div><div class="ccr">${c.role}</div><div class="ccm">${c.local}</div></div>`).join('');
+}
+function setCS(key,st){
+  CS[key]=st;
+  const e1=document.getElementById(`ccs-${key}`);if(e1){e1.textContent=st;e1.className=`ccs ${st}`;}
+  const e2=document.getElementById(`cms-${key}`);if(e2){e2.textContent=st;e2.className=`cm-st ${st}`;}
+}
+function setAg(key){document.getElementById('asel').value=key;navTo('mission');document.getElementById('mi').focus();}
+
+// NAV
+const PANELS=['mission','empire','ollama','voice','terminal','files'];
+function navTo(id){
+  PANELS.forEach(p=>{document.getElementById(`panel-${p}`)?.classList.remove('active');document.getElementById(`nav-${p}`)?.classList.remove('on');});
+  document.getElementById(`panel-${id}`)?.classList.add('active');
+  document.getElementById(`nav-${id}`)?.classList.add('on');
+  if(id==='ollama')loadModels();
+  if(id==='files')loadFT();
+  if(id==='empire')loadEmpire();
+}
+
+// TOAST
+function toast(msg,type='info',dur=4000){
+  const l=document.getElementById('tl');const t=document.createElement('div');
+  t.className=`toast ${type}`;t.innerHTML=`<span>${{ok:'✓',warn:'⚠',err:'✗',info:'◈'}[type]}</span>${msg}`;
+  l.appendChild(t);setTimeout(()=>t.remove(),dur);
+}
+
+// HTML escape
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+
+// WS
+let ws,wsOk=false;
+function connectWS(){
+  const proto=location.protocol==='https:'?'wss':'ws';
+  const host=location.hostname||'localhost';
+  ws=new WebSocket(`${proto}://${host}:7777/ws`);
+  ws.onopen=()=>{wsOk=true;document.getElementById('wss').textContent='WS live';document.getElementById('dot-dc').className='sdot g';toast('DreamChamber live','ok');};
+  ws.onclose=()=>{wsOk=false;document.getElementById('wss').textContent='WS offline';document.getElementById('dot-dc').className='sdot r';setTimeout(connectWS,3000);};
+  ws.onmessage=(e)=>{try{handleWS(JSON.parse(e.data));}catch{}};
+}
+function handleWS(m){
+  if(!m.type)return;
+  const sub=m.type.replace('gabriel:','');
+  if(sub==='thinking'){showTh(m.agent);}
+  if(sub==='response'||sub==='agent:response'){hideTh();if(m.reply)addCard(m.agent||'GABRIEL',m.reply,'gabriel',m.model,m.provider);setCS(m.agent||'GABRIEL','ready');upFoot(m.model,m.provider);}
+  if(sub==='error'||sub==='agent:error'){hideTh();addCard('SYSTEM',`⚠ ${m.error}`,'error');if(m.agent)setCS(m.agent,'ready');}
+  if(sub==='mission:complete'){hideTh();if(m.synthesis)addCard('GABRIEL',`📋 ${m.synthesis}`,'gabriel');CREW.forEach(c=>setCS(c.key,'ready'));toast('Mission complete','ok');}
+}
+function showTh(ag){document.getElementById('tagt').textContent=ag||'GABRIEL';document.getElementById('thinker').style.display='flex';if(ag)setCS(ag,'working');document.getElementById('sbtn').disabled=true;}
+function hideTh(){document.getElementById('thinker').style.display='none';document.getElementById('sbtn').disabled=false;}
+function upFoot(m,p){document.getElementById('fmod').textContent=m||'—';document.getElementById('fprov').textContent=p||'—';document.getElementById('pi').textContent=`provider: ${p||'—'}`;}
+
+// SEND
+function addCard(agent,text,type='gabriel',model='',provider=''){
+  const feed=document.getElementById('feed');
+  const c=document.createElement('div');
+  c.className=`mcard ${type}`;
+  const em=CREW.find(x=>x.key===agent)?.emoji||'◈';
+  c.innerHTML=`<div class="ch"><span class="abadge">${em} ${agent}</span><span style="color:var(--muted);font-size:.61rem;">${new Date().toLocaleTimeString()}</span>${model?`<span class="cprov">${provider||''} · ${model}</span>`:''}</div><div class="ct">${esc(text)}</div>`;
+  feed.appendChild(c);feed.scrollTop=feed.scrollHeight;
+  if(document.getElementById('vtts')?.checked&&type!=='user'&&type!=='system')speakTxt(text.slice(0,300));
+}
+
+async function send(){
+  const inp=document.getElementById('mi');
+  const txt=inp.value.trim();if(!txt)return;
+  const ag=document.getElementById('asel').value;
+  addCard('RSP_001',txt,'user');inp.value='';showTh(ag);
+  try{
+    const r=await fetch('/api/gabriel/v4/speak',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({text:txt,agent:ag})});
+    const d=await r.json();hideTh();
+    if(d.error){addCard('SYSTEM',`Error: ${d.error}`,'error');}
+    else{addCard(d.agent||ag,d.reply||'','gabriel',d.model,d.provider);upFoot(d.model,d.provider);setCS(ag,'ready');}
+  }catch(e){hideTh();addCard('SYSTEM',`Network: ${e.message}`,'error');}
+}
+
+// HEALTH
+async function health(){
+  try{
+    const r=await fetch('/api/gabriel/v4/health');const d=await r.json();
+    const pc=d.providerCascade||[];
+    pc.forEach(p=>{const map={anthropic:'cd-a',openai:'cd-o',google:'cd-g',ollama:'cd-l'};const el=document.getElementById(map[p.provider]);if(el)el.className=`cd ${p.available?'ok':'off'}`;});
+    if(d.ollama?.length){document.getElementById('dot-ol').className='sdot g';document.getElementById('lbl-ol').textContent=`Ollama (${d.ollama.length})`;document.getElementById('bol').textContent=d.ollama.length;}
+    if(d.heaven&&d.heaven!=='unreachable'){document.getElementById('dot-hv').className='sdot a';document.getElementById('lbl-hv').textContent=`Heaven: ${d.heaven}`;}
+  }catch{}
+}
+
+// EMPIRE
+const EMPIRE=[
+  {name:'DreamChamber',icon:'🌌',st:'local',role:'AI shell — unified intelligence hub',url:'GOD.local:7777',ms:['v2.0','port 7777','WebSocket']},
+  {name:'NOIZYVOX',icon:'🎙️',st:'build',role:'Voice sovereignty & consent capture',url:'noizyvox.com',ms:['XTTS_v2','Voice DNA','NCP v1.1']},
+  {name:'NOIZYFISH',icon:'🐟',st:'live',role:'888-title music catalogue, 75/25',url:'noizyfish.com',ms:['888 titles','C2PA','D1']},
+  {name:'NOIZY.ai',icon:'🤖',st:'build',role:'Consent-native AI infrastructure',url:'noizy.ai',ms:['Heaven17','Workers','CF Edge']},
+  {name:'NOIZYKIDZ',icon:'👶',st:'plan',role:'Rhythm Root — neurodivergent learning',url:'noizykidz.com',ms:['planned','music ed.']},
+  {name:'NOIZYLAB',icon:'🔬',st:'live',role:'Sonic healing, binaural, AirPlay',url:'rsp-5f3.workers.dev',ms:['live','binaural','AirPlay']},
+  {name:'WISDOM',icon:'📖',st:'plan',role:'Elder legacy — 100-year voice archive',url:'noizy.ai/wisdom',ms:['planned','100yr']},
+  {name:'myFAMILY',icon:'💞',st:'live',role:'Love in code — consent-native elder care',url:'noizy.ai/family',ms:['live','consent']},
+  {name:'HEAVEN17',icon:'⚡',st:'live',role:'Consent kernel · royalty ledger · Never Clauses',url:'heaven17.noizylab.workers.dev',ms:['v17.4.0','Workers','D1']},
+  {name:'MC96ECO',icon:'🎼',st:'build',role:'96K audio universe — 7.8TB archive',url:'mc96.local',ms:['7.8TB','96KHz','192GB']},
+];
+function loadEmpire(){
+  const g=document.getElementById('eg');if(!g||g.children.length>0)return;
+  g.innerHTML=EMPIRE.map(p=>`<div class="ec ${p.st}"><div class="ech"><div class="eci">${p.icon}</div><div><div class="ecn">${p.name}</div><span class="ecst ${p.st}">${p.st.toUpperCase()}</span></div></div><div class="ecr">${p.role}</div><div class="ecu">${p.url}</div><div class="ecms">${p.ms.map(m=>`<span class="ecm">${m}</span>`).join('')}</div></div>`).join('');
+}
+
+// MODELS
+async function loadModels(){
+  const g=document.getElementById('mg');if(!g)return;
+  g.innerHTML='<div style="color:var(--muted);font-size:.8rem;padding:1rem;">Loading…</div>';
+  try{
+    const r=await fetch('/api/gabriel/v4/health');const d=await r.json();
+    const models=d.ollama||[];
+    if(!models.length){g.innerHTML='<div style="color:var(--muted);">No models found — is Ollama running?</div>';return;}
+    const IC={'gabriel-brain':'🌟','lucy-brain':'📚','gemma':'✨','qwen':'🔮','llama':'🦙','deepseek':'🔭','llava':'👁️','nomic':'📊'};
+    function ico(n){for(const[k,v]of Object.entries(IC))if(n.includes(k))return v;return'🤖';}
+    function sp(n){if(n.includes('gabriel-brain'))return'gb';if(n.includes('lucy-brain'))return'lb';return'';}
+    function caps(n){const c=[];if(n.includes('vision')||n.includes('vl'))c.push('vision');if(n.includes('embed'))c.push('embed');else c.push('local');return c;}
+    g.innerHTML=models.map(m=>`<div class="mt ${sp(m.name)}" title="${m.name}"><div class="mth"><span class="mtic">${ico(m.name)}</span><span class="mtn">${m.name.split(':')[0]}</span>${caps(m.name).map(c=>`<span class="mtbadge ${c}">${c}</span>`).join('')}</div><div class="mtsz">${m.size||'?'} · ${m.family||'?'}</div><div class="mtfam">${m.name}</div></div>`).join('');
+  }catch(e){g.innerHTML=`<div style="color:var(--red);">${e.message}</div>`;}
+}
+
+// VOICE
+let vrec=null,vact=false;
+function toggleVO(){vact?stopV():startV();}
+function toggleVM(){vact?stopV():(navTo('voice'),startV());}
+function startV(){
+  if(!('webkitSpeechRecognition'in window||'SpeechRecognition'in window)){toast('Speech recognition unavailable','warn');return;}
+  const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+  vrec=new SR();vrec.continuous=false;vrec.interimResults=true;vrec.lang='en-US';
+  vrec.onresult=e=>{const t=Array.from(e.results).map(r=>r[0].transcript).join('');document.getElementById('vtxt').textContent=t;document.getElementById('mi').value=t;};
+  vrec.onend=()=>{vact=false;document.getElementById('vo').classList.remove('listening');document.getElementById('vo').textContent='🎙️';document.getElementById('vst').textContent='Click the orb — speak your mission to GABRIEL';document.getElementById('vbtn-m').classList.remove('rec');if(document.getElementById('vas')?.checked){const t=document.getElementById('mi').value.trim();if(t){navTo('mission');send();}}};
+  vrec.start();vact=true;document.getElementById('vo').classList.add('listening');document.getElementById('vo').textContent='🔴';document.getElementById('vst').textContent='Listening…';document.getElementById('vbtn-m').classList.add('rec');
+}
+function stopV(){vrec?.stop();vact=false;}
+function speakTxt(text){if(!window.speechSynthesis)return;const u=new SpeechSynthesisUtterance(text);const vn=document.getElementById('vv')?.value||'Daniel';const v=speechSynthesis.getVoices().find(x=>x.name===vn);if(v)u.voice=v;u.rate=1.05;speechSynthesis.speak(u);}
+
+// TERMINAL
+let th=[],ti=-1;
+const tInput=document.getElementById('ti');
+if(tInput)tInput.addEventListener('keydown',e=>{if(e.key==='ArrowUp'){e.preventDefault();if(ti<th.length-1)tInput.value=th[++ti];}if(e.key==='ArrowDown'){e.preventDefault();tInput.value=ti>0?th[--ti]:'';}});
+
+function tOut(text,type='to'){const el=document.getElementById('tout');const l=document.createElement('div');l.className='tl';l.innerHTML=`<span class="t${type}">${esc(text)}</span>`;el.appendChild(l);el.scrollTop=el.scrollHeight;}
+async function runT(){
+  const inp=document.getElementById('ti');const cmd=inp.value.trim();if(!cmd)return;
+  th.unshift(cmd);ti=-1;tOut(cmd,'c');inp.value='';
+  if(cmd==='help'){tOut(`beast status  — empire health\nbeast crew X  — dispatch agent (GABRIEL/LUCY/CB01...)\nbeast models  — local models\nbeast empire  — empire map\nbeast voice   — voice OS\nbeast scan    — file index`,'a');return;}
+  if(cmd==='beast status'){await bStatus();return;}
+  if(cmd.startsWith('beast crew ')){const ag=cmd.replace('beast crew ','').toUpperCase();await bCrew(ag);return;}
+  if(cmd==='beast models'){navTo('ollama');tOut('→ Local Models','a');return;}
+  if(cmd==='beast empire'){navTo('empire');tOut('→ Empire Map','a');return;}
+  if(cmd==='beast voice'){navTo('voice');tOut('→ Voice OS','a');return;}
+  // AI route
+  tOut('→ Routing to GABRIEL…','a');
+  try{const r=await fetch('/api/gabriel/v4/speak',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({text:cmd,agent:'GABRIEL'})});const d=await r.json();tOut(d.reply||d.error||'No response','o');}
+  catch(e){tOut(e.message,'e');}
+}
+async function bStatus(){
+  tOut('Running beast status…','a');
+  try{const r=await fetch('/api/gabriel/v4/health');const d=await r.json();
+    tOut(`GABRIEL ${d.gabriel} — ${d.agents?.length||0} agents`,'ok');
+    (d.providerCascade||[]).forEach(p=>tOut(`  ${p.available?'✓':'○'} ${p.provider}`,p.available?'ok':'w'));
+    tOut(`Ollama: ${d.ollama?.length||0} models`,'ok');
+    tOut(`Heaven: ${d.heaven}`,'o');
+  }catch(e){tOut(e.message,'e');}
+}
+async function bCrew(ag){
+  tOut(`→ Dispatching to ${ag}…`,'a');
+  try{const r=await fetch('/api/gabriel/v4/speak',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({text:'Status report — brief.',agent:ag})});const d=await r.json();tOut(`[${ag}] ${d.reply||d.error||'No response'}`,'o');if(d.reply)addCard(ag,d.reply,'gabriel',d.model,d.provider);}
+  catch(e){tOut(e.message,'e');}
+}
+
+// FILES
+const FT=[
+  {dir:'NOIZYANTHROPIC/',files:['ARCHITECTURE.md','GABRIEL_HIVE_STACK.md','master_knowledge.md','EMPIRE_MAP.md','MASTER_REGISTRY.md','NOISY_AI_MASTER_BIBLE.md']},
+  {dir:'apps/dreamchamber/src/',files:['server.js','routes/gabriel-v4.js','routes/voice-v2.js','providers/index.js','core/HeavenClient.js']},
+  {dir:'apps/noizybeast/',files:['CLAUDE.md','beast.config.json','PROJECT_REGISTRY.json']},
+  {dir:'mcp-master/',files:['gabriel-mcp/','lucy-mcp/','cb01-mcp/','dream-mcp/','voice-bridge/','tagspaces-mcp/','devonthink-mcp/','DesktopCommanderMCP/']},
+  {dir:'THE-GATHERING/',files:['EMPIRE_MAP.md','noizyvox/','noizybeast/','noisy-ai/','the-conductor/','heaven/']},
+];
+function loadFT(){
+  const t=document.getElementById('ftree');if(!t||t.children.length)return;
+  const extM={md:'md',json:'json',py:'py',js:'js',ts:'js'};
+  const emoM={md:'📄',json:'🔷',py:'🐍',js:'⚡',ts:'💙'};
+  FT.forEach(d=>{
+    const de=document.createElement('div');de.className='ftd';de.innerHTML=`<span class="ftic">📂</span><span>${d.dir}</span>`;t.appendChild(de);
+    d.files.forEach(f=>{const ext=f.split('.').pop();const fe=document.createElement('div');fe.className=`ftf ${extM[ext]||''}`;fe.innerHTML=`<span class="ftic">${emoM[ext]||'📄'}</span><span>${f}</span>`;fe.onclick=()=>prevFile(d.dir,f);t.appendChild(fe);});
+  });
+}
+function filterF(q){const items=document.getElementById('ftree').querySelectorAll('.ftf');items.forEach(el=>el.style.display=(!q||el.textContent.toLowerCase().includes(q.toLowerCase()))?'':'none');}
+function prevFile(dir,f){document.getElementById('fprev').textContent=`📄 ${dir}${f}\n\nPath: ~/NOIZYANTHROPIC/${dir}${f}\n\nUse Beast Terminal:\n  cat ~/NOIZYANTHROPIC/${dir}${f}\n\nOr: beast crew LUCY recall ${f}`;}
+
+// BOOT
+renderMini();renderCards();connectWS();loadEmpire();health();
+setInterval(health,30000);
+setTimeout(()=>document.getElementById('mi')?.focus(),400);
+toast('NOIZYBEAST 2.0 — SUPERSONIC IDE ONLINE','ok',3000);
+setTimeout(()=>toast('gabriel-brain 72B · lucy-brain 32B — LOCAL MODELS READY','info',4000),1200);
+setTimeout(()=>toast('Multi-provider cascade active: OpenAI → Google → Ollama','info',4500),2500);
+</script>
+</body>
+</html>

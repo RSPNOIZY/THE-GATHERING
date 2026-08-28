@@ -1,0 +1,78 @@
+{
+  "receipt": {
+    "receipt_id": "43a6da24-c2d5-423f-b633-79f197d85b23",
+    "workstream": "RIDESHARE",
+    "project_ref": "GABRIEL",
+    "account": "rspdrives@gmail.com",
+    "vehicle": "2026-HONDA-CRV-HYBRID",
+    "timestamp_utc": "2026-07-07T01:51:46.627771+00:00",
+    "session_id": "193613cc-3d06-44a7-a9e4-e269b700cc0e",
+    "action": {
+      "type": "FLIGHT_SCHEDULE",
+      "source": "COPILOT",
+      "description": "YOW flight schedule ingested \u2014 ?",
+      "payload": {
+        "flight_number": "WINDOW-YOW-LATENIGHT",
+        "airline": "MULTI-CARRIER",
+        "direction": "DEPARTURE",
+        "scheduled_time": "2026-07-07T21:00:00-04:00",
+        "terminal": "MAIN",
+        "origin_destination": "Toronto (YYZ) / Montreal (YUL)",
+        "status": "SCHEDULED",
+        "passenger_count": 190,
+        "window_label": "Late Night 9:00\u201311:30 PM",
+        "demand_type": "GOOD \u2014 last-minute airport transfers",
+        "surge_impact_score": 0.6
+      }
+    },
+    "data": {
+      "trip_id": null,
+      "platform": null,
+      "earnings_gross": null,
+      "earnings_net": null,
+      "surge_multiplier": null,
+      "miles": null,
+      "duration_minutes": null,
+      "pickup_geo": null,
+      "dropoff_geo": null,
+      "ottawa_context": {
+        "flight_schedule": {
+          "flight_number": "WINDOW-YOW-LATENIGHT",
+          "airline": "MULTI-CARRIER",
+          "direction": "DEPARTURE",
+          "scheduled_time": "2026-07-07T21:00:00-04:00",
+          "terminal": "MAIN",
+          "origin_destination": "Toronto (YYZ) / Montreal (YUL)",
+          "status": "SCHEDULED",
+          "passenger_count": 190,
+          "window_label": "Late Night 9:00\u201311:30 PM",
+          "demand_type": "GOOD \u2014 last-minute airport transfers",
+          "surge_impact_score": 0.6
+        },
+        "airport_code": "YOW"
+      }
+    },
+    "consent": {
+      "driver_consented": true,
+      "consent_version": "1.0",
+      "consent_timestamp": "2026-07-07T01:51:46.627771+00:00"
+    },
+    "audit": {
+      "rule_zero": true,
+      "logged_by": "THE-GATHERING",
+      "immutable": true,
+      "hash": "df8f29267c9e6d97eff2d11da67f14f053f7a096ccee4f0f0f5e13a189f4968b",
+      "prev_receipt_id": null
+    },
+    "meta": {
+      "environment": "PRODUCTION",
+      "pipeline_version": "1.0.0",
+      "tags": [
+        "rideshare",
+        "ottawa",
+        "yow",
+        "flight_schedule"
+      ]
+    }
+  }
+}

@@ -1,0 +1,118 @@
+# NOIZY EMPIRE — REPO TREE
+# Generated: 2026-04-22T16:05:00Z (bot-generated — run `npm run tree` to refresh)
+# Root: /Users/m2ultra/NOIZYLAB
+# Structure: npm workspaces monorepo
+
+📁 NOIZYLAB/
+│
+├── 📁 apps/                        ← Brand PWAs + Native apps (21 apps)
+│   ├── 📁 GABRIEL/                   Orchestration app
+│   ├── 📁 auv3/                      Logic Pro AUv3 audio plugin
+│   ├── 📁 dreamchamber/              DreamChamber AI platform
+│   ├── 📁 gabriel-ios/               Gabriel iOS app (Swift)
+│   ├── 📁 heaven-docker/             Heaven local dev container
+│   ├── 📁 heaven-ios/                Heaven iOS consent client
+│   ├── 📁 lucy/                      Lucy / DAZEFLOW app
+│   ├── 📁 lucy-ios/                  Lucy iOS app
+│   ├── 📁 noisyproof/               ⚠️ VIOLATION: git mv pending → apps/noizyproof
+│   ├── 📁 noizy-airplay/             AirPlay streaming app
+│   ├── 📁 noizy-health/              Health monitoring
+│   ├── 📁 noizybeast/                NOIZYBEAST brand app
+│   ├── 📁 noizyfish/                 NOIZYFISH + Aquarium catalog
+│   ├── 📁 noizystream/               NOIZYSTREAM v2 (WebRTC)
+│   ├── 📁 noizyvox/                  NOIZYVOX brand app
+│   ├── 📁 noizyworld/                NOIZYWORLD exhibition app
+│   ├── 📁 operator/                  Operator dashboard
+│   ├── 📁 rob_ava/                   Rob + Ava personal app
+│   ├── 📁 the-aquarium/              Aquarium catalog layer
+│   ├── 📁 the-codex/                 Wisdom codex viewer
+│   └── 📁 voice-bridge-http/         Voice bridge GCP Cloud Run
+│
+├── 📁 workers/                     ← Cloudflare Workers (edge functions)
+│   ├── 📁 heaven/                    Heaven consent kernel (CANONICAL)
+│   ├── 📁 consent-gateway/           Consent enforcement gateway
+│   ├── 📁 cb01-router/               CB01 DNS/routing worker
+│   ├── 📁 claude-proxy/              Claude API proxy worker
+│   ├── 📁 edge-governor/             Edge traffic governor
+│   ├── 📁 webhook-proxy/             n8n webhook proxy
+│   ├── 📁 _cloudflare-legacy/       [LEGACY — do not deploy]
+│   └── 📁 _cloudflare-workers-legacy/ [LEGACY — do not deploy]
+│
+├── 📁 mcp/                         ← MCP servers (14 registered)
+│   ├── 📁 gabriel-mcp/               Lead orchestrator
+│   ├── 📁 lucy-mcp/                  DAZEFLOW + archives
+│   ├── 📁 heaven-mcp/                h17_* query tools
+│   ├── 📁 voice-bridge/              Voice pipeline bridge
+│   ├── 📁 engr-keith-mcp/            Technical lead
+│   ├── 📁 dream-mcp/                 DreamChamber
+│   ├── 📁 cb01-mcp/                  DNS + CF ops
+│   ├── 📁 shirley-mcp/               Gemma 4 / file manager  ← updated 2026-04-22
+│   ├── 📁 family-mcp/                Family care layer
+│   ├── 📁 shortcuts-mcp/             macOS Shortcuts
+│   ├── 📁 consent-oracle/            Never Clause audit
+│   ├── 📁 synthesis-oracle/          Synthesis validator
+│   ├── 📁 audio/                     Audio pipeline (13 tools)
+│   └── 📁 supersonic/                [additional agent]
+│
+├── 📁 GABRIEL/                     ← GABRIEL daemon + orchestration
+│   └── 📁 daemon/                    gabriel-daemon.js (port 9777)
+│
+├── 📁 ops/                         ← Operational scripts (NEW)
+│   ├── 📄 tree-bot.mjs               Repo indexer + violation scanner
+│   ├── 📄 noizy-fix.sh               Brand violation batch fixer
+│   ├── 📄 mcp-health.sh              MCP server health check
+│   ├── 📄 mcp-scaffold.sh            MCP stub generator
+│   ├── 📄 cf-zone-health.sh          Cloudflare zone audit
+│   └── 📄 cf-zone-watch.sh           Zone activation watcher
+│
+├── 📁 _INDEX/                      ← Auto-generated index (gitignored for noise)
+│   ├── 📄 tree.txt                   THIS FILE — full repo tree
+│   ├── 📄 violations.md              Brand violation report
+│   └── 📄 manifest.json             Machine-readable stats
+│
+├── 📁 .github/
+│   └── 📁 workflows/               ← 15 CI workflows
+│       ├── 📄 brand-law.yml          NEW — blocks NOISY spelling
+│       ├── 📄 heaven-deploy.yml      Heaven worker deploy
+│       ├── 📄 noizy-preflight.yml    Pre-deploy gate
+│       ├── 📄 ethics-gate.yml        Ethics enforcement
+│       ├── 📄 consent-gateway-deploy.yml
+│       ├── 📄 deploy.yml
+│       ├── 📄 release-pipeline.yml
+│       ├── 📄 zone-migration-gate.yml
+│       └── ... (7 more)
+│
+├── 📁 .githooks/
+│   └── 📄 pre-commit                 Blocks NOISY commits locally
+│
+├── 📁 .claude/
+│   └── 📁 agents/                  ← 10 Claude agents
+│       ├── gabriel-orchestrator.md
+│       ├── engr-keith.md
+│       ├── consent-auditor.md
+│       ├── voice-specialist.md
+│       └── ... (6 more)
+│
+├── 📁 db/                          ← D1 SQL migrations
+├── 📁 docs/                        ← Architecture docs
+├── 📁 infra/                       ← Terraform / Cloudflare infra
+├── 📁 governance/                  ← Consent governance docs
+├── 📁 scripts/                     ← Deploy + smoke test scripts
+│
+├── 📄 .mcp.json                    MCP server registry (14 servers)
+├── 📄 CLAUDE.md                    Empire constitution (IMMUTABLE)
+├── 📄 ARCHITECTURE.md              System architecture
+├── 📄 NOIZY_AI_MASTER_BIBLE.md     Master reference
+├── 📄 package.json                 Monorepo root (npm workspaces)
+├── 📄 wrangler.toml                Heaven worker config
+└── 📄 manifest.sh                  Sovereign manifest pre-deploy gate
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+MONOREPO STATS
+  Apps:        21 (brand PWAs + Swift native)
+  Workers:     8  (6 active, 2 legacy)
+  MCP Servers: 14 (registered in .mcp.json)
+  CI Workflows: 15
+  Claude Agents: 10
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+REFRESH: npm run tree

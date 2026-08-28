@@ -1,0 +1,201 @@
+{
+  "name": "NOIZY — Command Inbox v1 (Simple Capture)",
+  "nodes": [
+
+    {
+      "parameters": {
+        "path": "command-ingest",
+        "responseMode": "lastNode",
+        "options": {}
+      },
+      "id": "n1",
+      "name": "N1 · Catch Command",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [200, 300],
+      "webhookId": "command-inbox-v1",
+      "notes": "Receives: { text, intent?, urgency?, source? }"
+    },
+
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "f1",
+              "name": "text",
+              "value": "={{ ($json.body?.text || $json.text || $json.command || '').trim() }}",
+              "type": "string"
+            },
+            {
+              "id": "f2",
+              "name": "intent",
+              "value": "={{ $json.body?.intent || $json.intent || 'unsorted' }}",
+              "type": "string"
+            },
+            {
+              "id": "f3",
+              "name": "urgency",
+              "value": "={{ $json.body?.urgency || $json.urgency || 'someday' }}",
+              "type": "string"
+            },
+            {
+              "id": "f4",
+              "name": "source",
+              "value": "={{ $json.body?.source || $json.source || 'unknown' }}",
+              "type": "string"
+            },
+            {
+              "id": "f5",
+              "name": "ts",
+              "value": "={{ $now.toISO() }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "n2",
+      "name": "N2 · Normalize (3 fields)",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [440, 300],
+      "notes": "Schema: text · intent · urgency. That's it."
+    },
+
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": false,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "c1",
+              "leftValue": "={{ $json.text.length }}",
+              "rightValue": 5,
+              "operator": {
+                "type": "number",
+                "operation": "gte"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "n3",
+      "name": "N3 · Real command?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [680, 300],
+      "notes": "Drop anything shorter than 5 chars — stops accidental hits"
+    },
+
+    {
+      "parameters": {
+        "resource": "page",
+        "operation": "create",
+        "databaseId": {
+          "__rl": true,
+          "value": "={{ $env.NOTION_COMMAND_INBOX_DB_ID }}",
+          "mode": "id"
+        },
+        "title": "={{ $json.text.length > 80 ? $json.text.slice(0,77) + '...' : $json.text }}",
+        "propertiesUi": {
+          "propertyValues": [
+            {
+              "key": "Status",
+              "type": "select",
+              "selectValue": "📥 Inbox"
+            },
+            {
+              "key": "Intent",
+              "type": "select",
+              "selectValue": "={{ $json.intent }}"
+            },
+            {
+              "key": "Urgency",
+              "type": "select",
+              "selectValue": "={{ $json.urgency }}"
+            },
+            {
+              "key": "Source",
+              "type": "richText",
+              "textContent": "={{ $json.source }}"
+            },
+            {
+              "key": "Created At",
+              "type": "date",
+              "dateValue": "={{ $json.ts }}"
+            }
+          ]
+        }
+      },
+      "id": "n4",
+      "name": "N4 · Notion → Inbox",
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2,
+      "position": [920, 220],
+      "credentials": {
+        "notionApi": {
+          "id": "notion-integration",
+          "name": "Notion (RSP_001)"
+        }
+      },
+      "continueOnFail": true,
+      "notes": "Drops into Command Inbox database. One row. Done."
+    },
+
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ ok: true, message: 'Command captured', notion_id: $json.id || null, text: $('N2 · Normalize (3 fields)').item.json.text }) }}",
+        "options": { "responseCode": 200 }
+      },
+      "id": "n5",
+      "name": "N5 · Confirm ✓",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [1160, 220],
+      "notes": "Returns: { ok: true, message: 'Command captured', notion_id }"
+    }
+
+  ],
+
+  "connections": {
+    "N1 · Catch Command": {
+      "main": [[{ "node": "N2 · Normalize (3 fields)", "type": "main", "index": 0 }]]
+    },
+    "N2 · Normalize (3 fields)": {
+      "main": [[{ "node": "N3 · Real command?", "type": "main", "index": 0 }]]
+    },
+    "N3 · Real command?": {
+      "main": [
+        [{ "node": "N4 · Notion → Inbox", "type": "main", "index": 0 }],
+        []
+      ]
+    },
+    "N4 · Notion → Inbox": {
+      "main": [[{ "node": "N5 · Confirm ✓", "type": "main", "index": 0 }]]
+    }
+  },
+
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true
+  },
+  "versionId": "command-inbox-v1-simple",
+  "meta": {
+    "instanceId": "noizy-n8n",
+    "description": "One job: catch a command, normalize 3 fields, drop into Notion, confirm. No routing. No routing. No complexity."
+  },
+  "tags": [
+    { "name": "command-inbox" },
+    { "name": "v1-simple" },
+    { "name": "dyslexic-brain-flow" }
+  ]
+}

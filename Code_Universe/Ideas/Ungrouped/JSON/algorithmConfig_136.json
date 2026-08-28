@@ -1,0 +1,103 @@
+{
+    "version": "1.0",
+    "mode": 2,
+    "nodes": [
+        {
+            "name": "blit_0",
+            "type": "texture_blit",
+            "config": {
+                "keymaps": {
+                    "intParam": {},
+                    "floatParam": {},
+                    "stringParam": {}
+                },
+                "size": {
+                    "width": 720,
+                    "height": 720
+                }
+            }
+        },
+       {
+          "name": "algorithm_custom_lockon",
+          "type": "script",
+          "config": {
+            "keymaps": {
+              "stringParam":
+              {
+                "initial_bbox": "0,0,0,0",
+                "object_tracking_model_name": "single_object_tracking",
+                "model_name": "custom_lockon"
+              },
+              "intParam":
+              {
+                "enable_region_track": 1,
+                "do_tracker_reset": 0
+              }
+            }
+          }
+        }
+    ],
+    "links": [
+        {
+            "fromNode": "blit_0",
+            "fromIndex": 0,
+            "toNode": "algorithm_custom_lockon",
+            "toIndex": 0
+        }
+    ],
+    "extra": {
+            "input": [
+                {
+                    "name": "src_data_0",
+                    "inputType": "IMAGE_BUFFER",
+                    "dataSrc": "video_input"
+                }
+            ],
+            "output": [
+                {
+                    "name": "algorithm_custom_lockon",
+                    "algorithmType": "script",
+                    "outputIndex": 0,
+                    "usage": "xxx"
+                }
+            ],
+            "param": [
+                {
+                    "name": "initial_bbox",
+                    "node": "algorithm_custom_lockon",
+                    "key": "initial_bbox",
+                    "type": 2
+                },
+                {
+                    "name": "enable_region_track",
+                    "node": "algorithm_custom_lockon",
+                    "key": "enable_region_track",
+                    "type": 0
+                },
+                {
+                    "name": "object_tracking_model_name",
+                    "node": "algorithm_custom_lockon",
+                    "key": "object_tracking_model_name",
+                    "type": 2
+                },
+                {
+                    "name": "do_tracker_reset",
+                    "node": "algorithm_custom_lockon",
+                    "key": "do_tracker_reset",
+                    "type": 0
+                },
+                {
+                    "name": "fixed_target_size",
+                    "node": "algorithm_custom_lockon",
+                    "key": "fixed_target_size",
+                    "type": 0
+                },
+                {
+                    "name": "border_adaptive",
+                    "node": "algorithm_custom_lockon",
+                    "key": "border_adaptive",
+                    "type": 0
+                }
+            ]
+        }
+}

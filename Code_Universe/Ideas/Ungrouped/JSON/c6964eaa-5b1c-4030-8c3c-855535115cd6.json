@@ -1,0 +1,56 @@
+{
+  "receipt": {
+    "receipt_id": "c6964eaa-5b1c-4030-8c3c-855535115cd6",
+    "workstream": "RIDESHARE",
+    "project_ref": "GABRIEL",
+    "account": "rspdrives@gmail.com",
+    "vehicle": "2026-HONDA-CRV-HYBRID",
+    "timestamp_utc": "2026-07-07T01:51:37.772892+00:00",
+    "session_id": "863c853d-7174-4c3c-a4c4-dad4fa44b0c1",
+    "action": {
+      "type": "PIPELINE",
+      "source": "GABRIEL",
+      "description": "Expense: PHONE \u2014 $65.00 (80% deductible = $52.00)",
+      "payload": {
+        "category": "PHONE",
+        "amount": 65.0,
+        "vendor": null,
+        "cra_deductible": true,
+        "deductible_amount": 52.0
+      }
+    },
+    "data": {
+      "trip_id": null,
+      "platform": null,
+      "earnings_gross": null,
+      "earnings_net": null,
+      "surge_multiplier": null,
+      "miles": null,
+      "duration_minutes": null,
+      "pickup_geo": null,
+      "dropoff_geo": null,
+      "ottawa_context": null
+    },
+    "consent": {
+      "driver_consented": true,
+      "consent_version": "1.0",
+      "consent_timestamp": "2026-07-07T01:51:37.772892+00:00"
+    },
+    "audit": {
+      "rule_zero": true,
+      "logged_by": "THE-GATHERING",
+      "immutable": true,
+      "hash": "d0581d608fb8506d4e32f1aa70742c1b100fa4e2cefea329b2ec55e05f7e0b6f",
+      "prev_receipt_id": null
+    },
+    "meta": {
+      "environment": "PRODUCTION",
+      "pipeline_version": "1.0.0",
+      "tags": [
+        "rideshare",
+        "gabriel",
+        "rspdrives"
+      ]
+    }
+  }
+}

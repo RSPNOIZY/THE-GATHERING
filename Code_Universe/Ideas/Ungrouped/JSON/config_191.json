@@ -1,0 +1,66 @@
+{
+    "ae_tool": "AmazingEditor",
+    "bALG_BACH_CONFIG": true,
+    "effect": {
+        "Link": [
+            {
+                "path": "AmazingFeature/",
+                "type": "AmazingFeature",
+                "zorder": 8011,
+                "extra": {
+                    "composer_param": [
+                        {
+                            "name": "intensity",
+                            "key": "face_adjust_eyeshadow_test",
+                            "default_value": 0.8,
+                            "min_value": 0.0,
+                            "max_value": 1.0,
+                            "allow_negative": false
+                        },
+                        {
+                            "name": "intensity",
+                            "key": "face_adjust_eyelash_test",
+                            "default_value": 0.8,
+                            "min_value": 0.0,
+                            "max_value": 1.0,
+                            "allow_negative": false
+                        },
+                        {
+                            "name": "intensity",
+                            "key": "face_adjust_blusher_test",
+                            "default_value": 0.8,
+                            "min_value": 0.0,
+                            "max_value": 1.0,
+                            "allow_negative": false
+                        },
+                        {
+                            "name": "intensity",
+                            "key": "face_adjust_stereo_pingguoji",
+                            "default_value": 0.8,
+                            "min_value": 0.0,
+                            "max_value": 1.0,
+                            "allow_negative": false
+                        },
+                        {
+                            "name": "intensity",
+                            "key": "face_adjust_lip_test",
+                            "default_value": 0.8,
+                            "min_value": 0.0,
+                            "max_value": 1.0,
+                            "allow_negative": false
+                        }
+                    ]
+                }
+            }
+        ],
+        "model_names": {
+            "alg_model": [
+                "tt_face_extra",
+                "tt_fsnew_base_jianying",
+                "tt_freid"
+            ]
+        }
+    },
+    "name": "new-model-2d",
+    "version": "12.7.0"
+}

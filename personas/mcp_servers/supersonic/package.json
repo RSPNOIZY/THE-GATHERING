@@ -1,0 +1,13 @@
+{
+  "name": "supersonic-mcp",
+  "version": "1.0.0",
+  "description": "Supersonic Audio Enhancing Learning Program MCP",
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "latest"
+  }
+}

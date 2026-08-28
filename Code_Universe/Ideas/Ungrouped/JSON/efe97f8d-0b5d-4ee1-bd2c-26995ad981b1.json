@@ -1,0 +1,59 @@
+{
+  "receipt": {
+    "receipt_id": "efe97f8d-0b5d-4ee1-bd2c-26995ad981b1",
+    "workstream": "RIDESHARE",
+    "project_ref": "GABRIEL",
+    "account": "rspdrives@gmail.com",
+    "vehicle": "2026-HONDA-CRV-HYBRID",
+    "timestamp_utc": "2026-07-06T21:32:20.464611+00:00",
+    "session_id": "f60770be-1714-4ac9-a7c8-9518ff8d051c",
+    "action": {
+      "type": "SURGE",
+      "source": "PYTHON",
+      "description": "Surge event \u2014 2.1x in DOWNTOWN",
+      "payload": {
+        "zone": "DOWNTOWN",
+        "multiplier": 2.1,
+        "trigger": "EVENT",
+        "event_ref": "Weekday Morning Rush",
+        "start_time": "2026-07-07 06:30",
+        "predicted": true
+      }
+    },
+    "data": {
+      "trip_id": null,
+      "platform": null,
+      "earnings_gross": null,
+      "earnings_net": null,
+      "surge_multiplier": 2.1,
+      "miles": null,
+      "duration_minutes": null,
+      "pickup_geo": null,
+      "dropoff_geo": null,
+      "ottawa_context": {
+        "surge_zone": "DOWNTOWN"
+      }
+    },
+    "consent": {
+      "driver_consented": true,
+      "consent_version": "1.0",
+      "consent_timestamp": "2026-07-06T21:32:20.464611+00:00"
+    },
+    "audit": {
+      "rule_zero": true,
+      "logged_by": "THE-GATHERING",
+      "immutable": true,
+      "hash": "af18c3489ec9d98829b10de741b05f53a4c517215f04350e4229e4b49e3b8129",
+      "prev_receipt_id": null
+    },
+    "meta": {
+      "environment": "PRODUCTION",
+      "pipeline_version": "1.0.0",
+      "tags": [
+        "rideshare",
+        "gabriel",
+        "rspdrives"
+      ]
+    }
+  }
+}

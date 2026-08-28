@@ -1,0 +1,10 @@
+1.3T	/Volumes/JOE/_2025 MOVIES
+367G	/Volumes/JOE/NOIZYLAB_WORKSPACES
+304G	/Volumes/JOE/FISHMUSIC_2026_MASTER
+ 13G	/Volumes/JOE/LIVE SHOW 2026
+ 12G	/Volumes/JOE/Samples
+ 11G	/Volumes/JOE/Logic Pro Library.bundle
+9.8G	/Volumes/JOE/00.CODE & DOCS 2026
+2.0G	/Volumes/JOE/MUSIC THEORY
+224K	/Volumes/JOE/NOIZYLAB_WORKSPACES GIT
+168K	/Volumes/JOE/TheVolumeSettingsFolder

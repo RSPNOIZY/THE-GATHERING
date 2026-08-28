@@ -1,0 +1,55 @@
+{
+  "receipt": {
+    "receipt_id": "bfdb36f2-066c-43cb-b6f1-6f71ceb7a253",
+    "workstream": "RIDESHARE",
+    "project_ref": "GABRIEL",
+    "account": "rspdrives@gmail.com",
+    "vehicle": "2026-HONDA-CRV-HYBRID",
+    "timestamp_utc": "2026-07-07T03:00:57.023818+00:00",
+    "session_id": "102d393c-2131-49f6-ac79-b6899138175b",
+    "action": {
+      "type": "SYSTEM",
+      "source": "LUCY",
+      "description": "GPS ping received \u2014 (45.3215, -75.6692) speed 60km/h",
+      "payload": {
+        "lat": 45.3215,
+        "lng": -75.6692,
+        "speed": 60.0,
+        "near_zones": 1
+      }
+    },
+    "data": {
+      "trip_id": null,
+      "platform": null,
+      "earnings_gross": null,
+      "earnings_net": null,
+      "surge_multiplier": null,
+      "miles": null,
+      "duration_minutes": null,
+      "pickup_geo": null,
+      "dropoff_geo": null,
+      "ottawa_context": null
+    },
+    "consent": {
+      "driver_consented": true,
+      "consent_version": "1.0",
+      "consent_timestamp": "2026-07-07T03:00:57.023818+00:00"
+    },
+    "audit": {
+      "rule_zero": true,
+      "logged_by": "THE-GATHERING",
+      "immutable": true,
+      "hash": "9c405478c8730c69946e1fb52c80e7c2cba96597c024bb37f204e5d18ce563c8",
+      "prev_receipt_id": null
+    },
+    "meta": {
+      "environment": "PRODUCTION",
+      "pipeline_version": "1.0.0",
+      "tags": [
+        "gps",
+        "ios",
+        "lucy"
+      ]
+    }
+  }
+}

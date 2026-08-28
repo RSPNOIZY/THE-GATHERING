@@ -1,0 +1,271 @@
+{
+  "name": "ZAP 11: Notion Project Dashboard — Bidirectional Sync",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "notion-dashboard",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "notion-webhook",
+      "name": "Notion Change Hook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [220, 300],
+      "webhookId": "notion-dashboard"
+    },
+    {
+      "parameters": {
+        "jsCode": "// ═══════════════════════════════════════════════════\n// Parse Notion webhook / internal trigger\n// Normalize into NOIZY project event format\n// ═══════════════════════════════════════════════════\nconst body = $input.first().json.body || $input.first().json;\n\nconst event = {\n  source: 'notion',\n  page_id: body.page_id || body.id || '',\n  database_id: body.database_id || '',\n  action: body.action || 'update',\n  properties: body.properties || {},\n  title: '',\n  status: '',\n  priority: '',\n  assignee: '',\n  labels: [],\n  url: body.url || `https://notion.so/${(body.page_id || '').replace(/-/g, '')}`,\n  timestamp: new Date().toISOString()\n};\n\n// Extract common properties\nif (event.properties.Name?.title) {\n  event.title = event.properties.Name.title.map(t => t.plain_text).join('');\n} else if (event.properties.Task?.title) {\n  event.title = event.properties.Task.title.map(t => t.plain_text).join('');\n}\nif (event.properties.Status?.select) {\n  event.status = event.properties.Status.select.name;\n}\nif (event.properties.Priority?.select) {\n  event.priority = event.properties.Priority.select.name;\n}\nif (event.properties.Assignee?.people) {\n  event.assignee = event.properties.Assignee.people.map(p => p.name).join(', ');\n}\n\nreturn [{ json: event }];"
+      },
+      "id": "notion-parse",
+      "name": "Parse Notion Event",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [440, 300]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.status }}",
+              "value2": "Deploy",
+              "operation": "equals"
+            }
+          ]
+        }
+      },
+      "id": "check-deploy",
+      "name": "Deploy Trigger?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [660, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Status = Deploy → trigger GitHub deployment\nconst event = $input.first().json;\n\nreturn [{\n  json: {\n    ...event,\n    deploy_request: {\n      repo: event.properties?.Repository?.select?.name || 'noizy-main',\n      branch: 'main',\n      environment: event.properties?.Environment?.select?.name || 'production',\n      triggered_by: `notion-dashboard/${event.page_id}`,\n      timestamp: new Date().toISOString()\n    }\n  }\n}];"
+      },
+      "id": "deploy-prep",
+      "name": "Prepare Deploy",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [900, 200]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.github.com/repos/{{ $env.GITHUB_OWNER }}/{{ $json.deploy_request.repo }}/dispatches",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $env.GITHUB_TOKEN }}"
+            },
+            {
+              "name": "Accept",
+              "value": "application/vnd.github.v3+json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"event_type\": \"notion-deploy\",\n  \"client_payload\": {{ JSON.stringify($json.deploy_request) }}\n}",
+        "options": {
+          "response": { "response": { "neverError": true } }
+        }
+      },
+      "id": "github-deploy",
+      "name": "Trigger GitHub Deploy",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [1140, 200]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Non-deploy updates → sync to Linear + GABRIEL\nconst event = $input.first().json;\n\n// Map Notion status to Linear state\nconst statusToLinear = {\n  'To Do': 'Todo',\n  'In Progress': 'In Progress',\n  'In Review': 'In Review',\n  'Done': 'Done',\n  'Backlog': 'Backlog',\n  'Blocked': 'In Progress',\n  'Archived': 'Canceled'\n};\n\nconst linearState = statusToLinear[event.status] || null;\n\nreturn [{\n  json: {\n    ...event,\n    linear_sync: linearState ? {\n      title: event.title,\n      state: linearState,\n      priority: event.priority === 'Urgent' ? 1 : event.priority === 'High' ? 2 : 3\n    } : null,\n    gabriel_event: {\n      type: 'notion_update',\n      summary: `Notion: \"${event.title}\" → ${event.status}`,\n      severity: event.priority === 'Urgent' ? 'high' : 'low',\n      source: 'notion',\n      page_id: event.page_id,\n      timestamp: new Date().toISOString()\n    }\n  }\n}];"
+      },
+      "id": "sync-handler",
+      "name": "Sync to Linear + GABRIEL",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [900, 420]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.linear.app/graphql",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "={{ $env.LINEAR_API_KEY }}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"query\": \"mutation { issueCreate(input: { teamId: \\\"{{ $env.LINEAR_TEAM_ID }}\\\", title: \\\"{{ $json.linear_sync?.title || $json.title }}\\\", priority: {{ $json.linear_sync?.priority || 3 }} }) { success issue { id url } } }\"\n}",
+        "options": {
+          "response": { "response": { "neverError": true } }
+        }
+      },
+      "id": "linear-create",
+      "name": "Create/Update Linear Issue",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [1140, 380]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $env.HEAVEN_URL }}/api/events",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $env.NOIZY_API_KEY }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify($json.gabriel_event) }}",
+        "options": {
+          "response": { "response": { "neverError": true } }
+        }
+      },
+      "id": "gabriel-event",
+      "name": "Alert GABRIEL",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [1140, 500]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ ok: true, source: 'notion', action: $json.action, timestamp: new Date().toISOString() }) }}"
+      },
+      "id": "notion-respond",
+      "name": "Respond OK",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [1380, 300]
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes",
+              "minutesInterval": 5
+            }
+          ]
+        }
+      },
+      "id": "notion-schedule",
+      "name": "Every 5 Minutes",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [0, 700]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.notion.com/v1/databases/{{ $env.NOTION_PROJECTS_DB_ID }}/query",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $env.NOTION_API_KEY }}"
+            },
+            {
+              "name": "Notion-Version",
+              "value": "2022-06-28"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n  \"filter\": {\n    \"timestamp\": \"last_edited_time\",\n    \"last_edited_time\": {\n      \"past_week\": {}\n    }\n  },\n  \"sorts\": [\n    {\n      \"timestamp\": \"last_edited_time\",\n      \"direction\": \"descending\"\n    }\n  ],\n  \"page_size\": 20\n}",
+        "options": {}
+      },
+      "id": "notion-poll",
+      "name": "Poll Notion Projects",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [220, 700]
+    },
+    {
+      "parameters": {
+        "jsCode": "// ═══════════════════════════════════════════════════\n// Process Notion poll results into project status summary\n// Feed to GABRIEL as a dashboard update\n// ═══════════════════════════════════════════════════\nconst response = $input.first().json;\nconst pages = response.results || [];\n\nif (pages.length === 0) {\n  return [{ json: { _skip: true, message: 'No recent project updates' } }];\n}\n\nconst projects = pages.map(page => {\n  const props = page.properties || {};\n  return {\n    id: page.id,\n    title: (props.Name?.title || props.Task?.title || []).map(t => t.plain_text).join('') || 'Untitled',\n    status: props.Status?.select?.name || 'Unknown',\n    priority: props.Priority?.select?.name || 'Medium',\n    assignee: (props.Assignee?.people || []).map(p => p.name).join(', '),\n    last_edited: page.last_edited_time,\n    url: page.url\n  };\n});\n\n// Build summary\nconst byStatus = {};\nprojects.forEach(p => {\n  byStatus[p.status] = (byStatus[p.status] || 0) + 1;\n});\n\nreturn [{\n  json: {\n    source: 'notion-poll',\n    project_count: projects.length,\n    status_summary: byStatus,\n    projects: projects,\n    polled_at: new Date().toISOString()\n  }\n}];"
+      },
+      "id": "notion-poll-parse",
+      "name": "Parse Project Status",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [440, 700]
+    }
+  ],
+  "connections": {
+    "Notion Change Hook": {
+      "main": [[{ "node": "Parse Notion Event", "type": "main", "index": 0 }]]
+    },
+    "Parse Notion Event": {
+      "main": [[{ "node": "Deploy Trigger?", "type": "main", "index": 0 }]]
+    },
+    "Deploy Trigger?": {
+      "main": [
+        [{ "node": "Prepare Deploy", "type": "main", "index": 0 }],
+        [{ "node": "Sync to Linear + GABRIEL", "type": "main", "index": 0 }]
+      ]
+    },
+    "Prepare Deploy": {
+      "main": [[{ "node": "Trigger GitHub Deploy", "type": "main", "index": 0 }]]
+    },
+    "Trigger GitHub Deploy": {
+      "main": [[{ "node": "Respond OK", "type": "main", "index": 0 }]]
+    },
+    "Sync to Linear + GABRIEL": {
+      "main": [
+        [
+          { "node": "Create/Update Linear Issue", "type": "main", "index": 0 },
+          { "node": "Alert GABRIEL", "type": "main", "index": 0 }
+        ]
+      ]
+    },
+    "Create/Update Linear Issue": {
+      "main": [[{ "node": "Respond OK", "type": "main", "index": 0 }]]
+    },
+    "Alert GABRIEL": {
+      "main": [[{ "node": "Respond OK", "type": "main", "index": 0 }]]
+    },
+    "Every 5 Minutes": {
+      "main": [[{ "node": "Poll Notion Projects", "type": "main", "index": 0 }]]
+    },
+    "Poll Notion Projects": {
+      "main": [[{ "node": "Parse Project Status", "type": "main", "index": 0 }]]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "meta": {
+    "instanceId": "noizy-empire-notion-dashboard"
+  },
+  "tags": [
+    { "name": "notion" },
+    { "name": "linear" },
+    { "name": "integration" },
+    { "name": "noizy-empire" }
+  ]
+}

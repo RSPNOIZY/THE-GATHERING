@@ -1,0 +1,116 @@
+{
+  "name": "noizybeast",
+  "displayName": "NOIZYBEAST",
+  "description": "NOIZY Empire command surface — deploy, CI, GABRIEL dispatch, system status",
+  "version": "4.0.0",
+  "publisher": "noizy",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": ["Other"],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "noizybeast.activateVoice",
+        "title": "NOIZY: Activate Voice Command"
+      },
+      {
+        "command": "noizybeast.deployWorker",
+        "title": "NOIZY: Deploy to CF Edge"
+      },
+      {
+        "command": "noizybeast.runTurbo",
+        "title": "NOIZY: Run Turbo Script"
+      },
+      {
+        "command": "noizybeast.openCommandCenter",
+        "title": "NOIZY: Open Command Center"
+      },
+      {
+        "command": "noizybeast.sendToGabriel",
+        "title": "NOIZY: Send to GABRIEL"
+      },
+      {
+        "command": "noizybeast.showStatus",
+        "title": "NOIZY: Empire Status"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "noizybeast.activateVoice",
+        "key": "shift+cmd+v",
+        "mac": "shift+cmd+v"
+      },
+      {
+        "command": "noizybeast.runTurbo",
+        "key": "shift+cmd+t",
+        "mac": "shift+cmd+t"
+      },
+      {
+        "command": "noizybeast.sendToGabriel",
+        "key": "shift+cmd+g",
+        "mac": "shift+cmd+g"
+      },
+      {
+        "command": "noizybeast.openCommandCenter",
+        "key": "shift+cmd+n",
+        "mac": "shift+cmd+n"
+      }
+    ],
+    "menus": {
+      "commandPalette": [
+        { "command": "noizybeast.deployWorker" },
+        { "command": "noizybeast.runTurbo" },
+        { "command": "noizybeast.showStatus" },
+        { "command": "noizybeast.sendToGabriel" },
+        { "command": "noizybeast.openCommandCenter" }
+      ],
+      "editor/title": [
+        {
+          "command": "noizybeast.sendToGabriel",
+          "group": "navigation"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "NOIZYBEAST",
+      "properties": {
+        "noizybeast.gabrielUrl": {
+          "type": "string",
+          "default": "http://localhost:7777",
+          "description": "GABRIEL daemon URL (default: localhost:7777)"
+        },
+        "noizybeast.actor": {
+          "type": "string",
+          "default": "RSP001",
+          "description": "Actor identity for command dispatch"
+        },
+        "noizybeast.apiKey": {
+          "type": "string",
+          "default": "",
+          "description": "GABRIEL API key (Bearer token). Set GABRIEL_API_KEY in ~/.zshrc"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "build": "esbuild src/extension.ts --bundle --outfile=out/extension.js --external:vscode --format=cjs --platform=node --sourcemap",
+    "build:watch": "npm run build -- --watch",
+    "typecheck": "tsc -p ./ --noEmit",
+    "package": "npx @vscode/vsce package"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.85.0",
+    "@types/node": "^20.0.0",
+    "typescript": "^5.3.0",
+    "esbuild": "^0.24.0",
+    "@vscode/vsce": "^2.22.0"
+  }
+}

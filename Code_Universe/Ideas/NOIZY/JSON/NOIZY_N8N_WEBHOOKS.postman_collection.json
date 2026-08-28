@@ -1,0 +1,121 @@
+{
+  "info": {
+    "name": "NOIZY n8n Webhooks",
+    "_postman_id": "noizy-n8n-webhooks-2026",
+    "description": "Test collection for all n8n webhook endpoints in the NOIZY Empire stack.\n\nUsage:\n1. Start n8n: docker compose -f ops/docker-compose.yml up -d\n2. Import this collection into Postman\n3. Fire requests to test webhook flows",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "n8n_base",
+      "value": "http://localhost:5678",
+      "type": "string"
+    },
+    {
+      "key": "heaven_base",
+      "value": "https://heaven.rsp-5f3.workers.dev",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "n8n Health",
+      "request": {
+        "method": "GET",
+        "url": "{{n8n_base}}/healthz",
+        "description": "Verify n8n is running"
+      }
+    },
+    {
+      "name": "Monorepo Commit Hook",
+      "request": {
+        "method": "POST",
+        "url": "{{n8n_base}}/webhook/monorepo-commit",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"ref\": \"refs/heads/main\",\n  \"repository\": \"RSPNOIZY/NOIZYANTHROPIC\",\n  \"event\": \"push\",\n  \"sender\": \"RSP_001\",\n  \"timestamp\": \"{{$isoTimestamp}}\"\n}"
+        },
+        "description": "Simulates a GitHub push event for the monorepo"
+      }
+    },
+    {
+      "name": "AI Commit Validation",
+      "request": {
+        "method": "POST",
+        "url": "{{n8n_base}}/webhook/ai-commit-validation",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"repo\": \"RSPNOIZY/NOIZYANTHROPIC\",\n  \"ref\": \"main\",\n  \"paths_changed\": [\"GABRIEL/\", \"NOIZYLAB/\", \"scripts/\"],\n  \"commit_message\": \"feat: add governance gate\",\n  \"author\": \"RSP_001\"\n}"
+        },
+        "description": "Triggers Claude-Code validation for commits touching sensitive paths"
+      }
+    },
+    {
+      "name": "Voice Pipeline Trigger",
+      "request": {
+        "method": "POST",
+        "url": "{{n8n_base}}/webhook/voice-pipeline",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"actor\": \"RSP_001\",\n  \"audio_url\": \"http://localhost:8000/transcribe\",\n  \"format\": \"wav\",\n  \"pipeline\": \"dreamchamber\"\n}"
+        },
+        "description": "Triggers voice processing pipeline via n8n"
+      }
+    },
+    {
+      "name": "Guardian Health Report",
+      "request": {
+        "method": "POST",
+        "url": "{{n8n_base}}/webhook/guardian-report",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"status\": \"ok\",\n  \"disk_pct\": 42,\n  \"mem_pressure\": \"normal\",\n  \"services_down\": [],\n  \"timestamp\": \"{{$isoTimestamp}}\"\n}"
+        },
+        "description": "SystemGuardian posts health status to n8n for routing to Slack/Linear"
+      }
+    },
+    {
+      "name": "Deploy Gate",
+      "request": {
+        "method": "POST",
+        "url": "{{n8n_base}}/webhook/deploy-gate",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"service\": \"heaven\",\n  \"environment\": \"production\",\n  \"smoke_passed\": true,\n  \"deployer\": \"RSP_001\",\n  \"version\": \"17.6.1\"\n}"
+        },
+        "description": "Gate check before deploying to production"
+      }
+    },
+    {
+      "name": "HEAVEN Health Check",
+      "request": {
+        "method": "GET",
+        "url": "{{heaven_base}}/health",
+        "description": "Check HEAVEN consent kernel status"
+      }
+    },
+    {
+      "name": "HEAVEN Stats",
+      "request": {
+        "method": "GET",
+        "url": "{{heaven_base}}/api/v1/stats",
+        "description": "Get HEAVEN empire stats"
+      }
+    }
+  ]
+}

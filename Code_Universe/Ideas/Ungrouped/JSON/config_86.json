@@ -1,0 +1,26 @@
+{
+	"ae_tool" : "AmazingEditor",
+	"bALG_BACH_CONFIG" : true,
+	"effect" : 
+	{
+		"Link" : 
+		[
+			{
+				"path" : "AmazingFeature/",
+				"type" : "AmazingFeature",
+				"zorder" : 9999
+			}
+		],
+		"model_names" : 
+		{
+			"alg_model" : 
+			[
+				"tt_face_extra",
+				"tt_fsnew_base_jianying",
+				"tt_freid"
+			]
+		}
+	},
+	"name" : "Editor_Sticker_Config_TAG_1bNDdsbVMhbxecRbRcAdjbAbQbJb",
+	"version" : "12.2.0"
+}

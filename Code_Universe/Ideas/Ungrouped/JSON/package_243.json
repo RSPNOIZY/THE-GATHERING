@@ -1,0 +1,35 @@
+{
+  "name": "@tagspaces/spreadsheet-viewer",
+  "version": "1.0.254",
+  "description": "A TagSpaces extension allowing you to open plain text files",
+  "homepage": "https://www.tagspaces.org",
+  "main": "main.js",
+  "author": {
+    "name": "TagSpaces GmbH",
+    "email": "info@tagspaces.org",
+    "url": "https://www.tagspaces.org"
+  },
+  "license": "MIT",
+  "dependencies": {},
+  "tsextension": {
+    "name": "Spreadsheet Viewer",
+    "types": [
+      "viewer"
+    ],
+    "color": "#b2f30e",
+    "fileTypes": [
+      {
+        "ext": "xlsx"
+      },
+      {
+        "ext": "xls"
+      },
+      {
+        "ext": "csv"
+      },
+      {
+        "ext": "ods"
+      }
+    ]
+  }
+}

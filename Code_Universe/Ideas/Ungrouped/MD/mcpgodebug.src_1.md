@@ -1,0 +1,67 @@
+# Backwards compatibility and MCPGODEBUG
+
+ According to our compatibility promise, we can't break backward compatibility
+ of the SDK API. However, sometimes we need to change the behavior of the SDK
+ in a backward-incompatible way in order to fix bugs or security issues.
+ In those cases we introduce temporary compatibility parameters, that can be
+ used to opt-out of the new behavior. They are usually maintained for two
+ minor release cycles and then removed.
+
+ The compatibility parameters are provided via the `MCPGODEBUG` environment
+ variable. The value of the variable is a comma-separated list of parameter
+ value assignments, e.g.:
+
+ ```
+ MCPGODEBUG=parameter1=value1,parameter2=value2
+ ```
+
+## `MCPGODEBUG` history
+
+### 1.6.0
+
+Options listed below were added and will be removed in the 1.8.0 version of the SDK.
+
+- `seterroroverwrite` added. If set to `1`, `SetError` will always overwrite
+  `Content` with the error text, restoring the previous behavior. The default
+  behavior was changed to preserve existing `Content` if it has already been
+  populated.
+
+- `enableoriginverification` added. If set to `1`, default (zero-value)
+  cross-origin protection will be applied when
+  `StreamableHTTPOptions.CrossOriginProtection` is nil, restoring the
+  behavior from v1.4.1-v1.5.0. The default behavior was changed to not
+  enable cross-origin protection.
+
+- `disablelocalhostprotection` removal was postponed until 1.8.0, as it is now
+  also used in the SSE transport.
+
+Options below were removed:
+
+- `jsonescaping`, according to plan,
+
+- `disablecrossoriginprotection`, it was replaced by
+  `enableoriginverification` after the default was changed to not enable
+  cross-origin protection.
+
+### 1.4.1
+
+Options listed below will be removed in the 1.6.0 version of the SDK.
+
+- `disablecrossoriginprotection` added. If set to `1`, newly added cross-origin
+  protection will be disabled. The default behavior was changed to enable
+  cross-origin protection.
+
+### 1.4.0
+
+Options listed below will be removed in the 1.6.0 version of the SDK.
+
+- `jsonescaping` added. If set to `1`, JSON marshaling will preserve the previous
+  behavior of escaping HTML characters in JSON strings. The default behavior
+  was changed to not escape HTML characters, to be consistent with other SDKs.
+
+- `disablelocalhostprotection` added. If set to `1`, newly added DNS rebinding
+  protection will be disabled. The default behavior was changed to enable DNS rebinding
+  protection. The protection can also be disabled by setting the
+  `DisableLocalhostProtection` field in the `StreamableHTTPOptions` or
+  `SSEOptions` struct to `true`, which is the recommended way to disable
+  the protection long term. **Removal of this option was postponed until 1.8.0.**

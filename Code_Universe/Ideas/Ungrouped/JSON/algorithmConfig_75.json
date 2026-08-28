@@ -1,0 +1,56 @@
+{
+	"version":	"1.0",
+	"mode":	2,
+	"name":	"colorCorrection_qbbkcvMbOblbVdqcfb8ibKdaeDd5",
+	"nodes":	[{
+			"name":	"blit_0",
+			"type":	"blit",
+			"config":	{
+				"size":	{
+					"width":	224,
+					"height":	224
+				},
+				"keyMaps":	{
+					"intParam":	{
+					},
+					"floatParam":	{
+					},
+					"stringParam":	{
+					},
+					"pathParam":	{
+					}
+				}
+			}
+		},
+		{
+            "name": "lens_ii_auto_color",
+            "type": "general_lens",
+            "config": {
+                "keyMaps": {
+                    "intParam": {
+                        "lens_ii_alg_type": 2,
+                        "power_level": 3,
+                        "backend_type": 0,
+                        "auto_color_type": 1,
+                        "lens_ii_max_w": 1920,
+                        "lens_ii_max_h": 1080
+                    },
+                    "floatParam": {},
+                    "stringParam": {
+                        "lens_ii_alg_name": "general_auto_color",
+                        "general_lens_alg_name": "lensii_general",
+                        "execParam": "rate=1.0 & order=0",
+                        "mapWidthKey": "lens_max_width",
+                        "mapHeightKey": "lens_max_height",
+                        "map_path": "lens_ii_auto_color_map.bin",
+                        "ros_kernel_bin_path": "lens_ii_auto_color_ros_kernel.bin"
+                    },
+                    "pathParam": {
+                        "cache_path": ""
+                    }
+                }
+            }
+        }
+	],
+	"links":	[]
+}

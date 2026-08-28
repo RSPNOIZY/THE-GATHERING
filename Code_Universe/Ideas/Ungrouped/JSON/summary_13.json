@@ -1,0 +1,25 @@
+{
+  "volume": "/Volumes/RSP_GOFISH",
+  "slug": "RSP_GOFISH_",
+  "timestamp": "20260420T091506Z",
+  "size": "132K",
+  "top_level_entries": 0,
+  "code": {
+    "git_dirs": 0,
+    "package_json": 0,
+    "pyproject": 0,
+    "cargo": 0,
+    "gemfile": 0,
+    "go_mod": 0
+  },
+  "secrets_pattern_count": 0,
+  "media": {
+    "wav": 0,
+    "aif": 0,
+    "flac": 0,
+    "logicx": 0,
+    "ptx": 0
+  },
+  "audit_path": "/Users/m2ultra/NOIZYANTHROPIC/infra/scans/scan-reports/RSP_GOFISH_/20260420T091506Z/audit.md",
+  "inventory_path": "/Users/m2ultra/NOIZYANTHROPIC/infra/scans/scan-reports/RSP_GOFISH_/20260420T091506Z/inventory.txt"
+}

@@ -1,0 +1,17 @@
+{
+  "name": "noizy-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.108.2",
+    "dotenv": "^17.4.2",
+    "node-notifier": "^10.0.1",
+    "ollama": "^0.6.3",
+    "pidusage": "^4.0.1"
+  }
+}

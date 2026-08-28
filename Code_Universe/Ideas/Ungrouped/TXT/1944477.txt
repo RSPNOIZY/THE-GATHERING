@@ -1,0 +1,16 @@
+<root>
+    <CtrlButtonStyle name="TP_PrevPresetButtonStyle" noDefaultDrawing="true" imDown="com_prev_down.tga">
+        <VFont name="font" vSize="12" fontName="Arial" />
+    </CtrlButtonStyle>
+    <CtrlButtonStyle name="TP_NextPresetButtonStyle" noDefaultDrawing="true" imDown="com_next_down.tga">
+        <VFont name="font" vSize="12" fontName="Arial" />
+    </CtrlButtonStyle>
+    <CtrlTextBoxStyle name="TP_PresetNameStyle" noDefaultDrawing="true" colText="[r:255 g:255 b:255 a:255]">
+        <VFont name="font" vSize="12" fontName="Arial" />
+    </CtrlTextBoxStyle>
+    <CtrlPanel name="titlePanel" style="BFD2InvisiblePanel" rect="[x:0 y:0 w:127 h:21]" id="0" displayName=" ">
+        <CtrlButton name="Prev Preset" style="TP_PrevPresetButtonStyle" rect="[x:92 y:1 w:17 h:21]" id="100000" />
+        <CtrlButton name="Next Preset" style="TP_NextPresetButtonStyle" rect="[x:109 y:1 w:18 h:21]" id="100000" />
+        <CtrlComboBox name="Preset Name" style="TP_PresetNameStyle" rect="[x:1 y:2 w:90 h:17]" id="100002" displayName="Click to set the name of the current preset" zorder="50" />
+    </CtrlPanel>
+</root>

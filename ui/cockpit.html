@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Lucy Cockpit">
+  <title>🜂 LUCY v4.0 — In-Car Cockpit HUD</title>
+  <link rel="stylesheet" href="tokens.css">
+  <style>
+    :root {
+      --bg: #07090c;
+      --card-bg: rgba(18, 22, 28, 0.85);
+      --border: rgba(255, 255, 255, 0.08);
+      --accent: #4f7cff;
+      --green: #00e676;
+      --gold: #ffd600;
+      --red: #ff5252;
+      --purple: #b388ff;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+    body {
+      background: var(--bg);
+      color: #f0f4f8;
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter', sans-serif;
+      padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 24px;
+      background: rgba(11, 13, 16, 0.9);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+    .brand span.sub {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--color-muted);
+      background: rgba(255, 255, 255, 0.06);
+      padding: 3px 8px;
+      border-radius: 6px;
+    }
+    .status-badge {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      background: rgba(0, 230, 118, 0.12);
+      color: var(--green);
+      padding: 6px 14px;
+      border-radius: 20px;
+      border: 1px solid rgba(0, 230, 118, 0.3);
+    }
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--green);
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--green);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.85); }
+    }
+    .main-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr 1fr;
+      gap: 16px;
+      padding: 16px 24px;
+      flex: 1;
+      overflow-y: auto;
+    }
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px;
+      backdrop-filter: blur(16px);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .card-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--color-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      display: flex;
+      justify-content: space-between;
+    }
+    .zone-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      margin-bottom: 8px;
+    }
+    .zone-name { font-weight: 700; font-size: 15px; }
+    .zone-wait { font-size: 12px; color: var(--color-muted); margin-top: 2px; }
+    .zone-score-badge {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--gold);
+      text-align: right;
+    }
+    .zone-cad { font-size: 12px; color: var(--green); }
+    .gauges-row {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+    .gauge-box {
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 10px;
+      padding: 14px;
+      text-align: center;
+      border: 1px solid var(--border);
+    }
+    .gauge-val { font-size: 26px; font-weight: 800; color: #fff; margin-top: 4px; }
+    .gauge-lbl { font-size: 11px; color: var(--color-muted); text-transform: uppercase; }
+    .spark-box {
+      background: rgba(79, 124, 255, 0.08);
+      border: 1px dashed rgba(79, 124, 255, 0.4);
+      border-radius: 12px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .spark-input {
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 14px;
+      color: #fff;
+      font-size: 14px;
+      outline: none;
+      width: 100%;
+    }
+    .btn {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      padding: 12px 18px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 14px;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      transition: opacity 0.2s;
+    }
+    .btn:active { opacity: 0.7; }
+    .node-list { display: flex; flex-direction: column; gap: 8px; font-size: 13px; }
+    .node-row { display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.04); }
+    .node-ip { font-family: monospace; color: var(--purple); }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="brand">
+      <span>🜂 LUCY v4.0</span>
+      <span class="sub">Personal OS · Cockpit HUD</span>
+    </div>
+    <div class="status-badge">
+      <div class="pulse-dot"></div>
+      <span>PRIVACY SHIELD ACTIVE · SOVEREIGN MESH</span>
+    </div>
+  </header>
+
+  <div class="main-grid">
+
+    <!-- 1. OTTAWA REAL-TIME ZONE SCORER -->
+    <div class="card">
+      <div class="card-title">
+        <span>NOIZY World Model · Ottawa Staging</span>
+        <span style="color: var(--accent)">LIVE</span>
+      </div>
+
+      <div class="zone-item" style="border-left: 4px solid var(--green)">
+        <div>
+          <div class="zone-name">Glebe / Lansdowne</div>
+          <div class="zone-wait">Queen Elizabeth Dr & Bank St</div>
+        </div>
+        <div>
+          <div class="zone-score-badge" style="color: var(--green)">72/100</div>
+          <div class="zone-cad">~$92 CAD/hr</div>
+        </div>
+      </div>
+
+      <div class="zone-item" style="border-left: 4px solid var(--gold)">
+        <div>
+          <div class="zone-name">ByWard Market</div>
+          <div class="zone-wait">York St & Dalhousie staging lane</div>
+        </div>
+        <div>
+          <div class="zone-score-badge">68/100</div>
+          <div class="zone-cad">~$47 CAD/hr</div>
+        </div>
+      </div>
+
+      <div class="zone-item">
+        <div>
+          <div class="zone-name">YOW Airport</div>
+          <div class="zone-wait">Cell Phone Lot / Parkway North</div>
+        </div>
+        <div>
+          <div class="zone-score-badge" style="color: #fff">59/100</div>
+          <div class="zone-cad">~$37 CAD/hr</div>
+        </div>
+      </div>
+
+      <div class="zone-item">
+        <div>
+          <div class="zone-name">Downtown / Centretown</div>
+          <div class="zone-wait">Elgin & Laurier pocket</div>
+        </div>
+        <div>
+          <div class="zone-score-badge" style="color: var(--color-muted)">51/100</div>
+          <div class="zone-cad">~$38 CAD/hr</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. TELEMETRY GAUGES & SPARK CAPTURE -->
+    <div class="card">
+      <div class="card-title">
+        <span>Shift Telemetry & Velocity</span>
+        <span>CAD Standard</span>
+      </div>
+
+      <div class="gauges-row">
+        <div class="gauge-box">
+          <div class="gauge-lbl">Current Pace</div>
+          <div class="gauge-val" style="color: var(--green)">$64.80</div>
+          <div style="font-size: 10px; color: var(--color-muted)">CAD / HR</div>
+        </div>
+        <div class="gauge-box">
+          <div class="gauge-lbl">Surge Index</div>
+          <div class="gauge-val" style="color: var(--gold)">1.75x</div>
+          <div style="font-size: 10px; color: var(--color-muted)">OTTAWA PEAK</div>
+        </div>
+        <div class="gauge-box">
+          <div class="gauge-lbl">Inference Time</div>
+          <div class="gauge-val">185ms</div>
+          <div style="font-size: 10px; color: var(--color-muted)">M2 ULTRA LOCAL</div>
+        </div>
+        <div class="gauge-box">
+          <div class="gauge-lbl">Sparks Logged</div>
+          <div class="gauge-val" style="color: var(--purple)">7</div>
+          <div style="font-size: 10px; color: var(--color-muted)">DREAMCHAMBER</div>
+        </div>
+      </div>
+
+      <div class="spark-box">
+        <div style="font-size: 12px; font-weight: 700; color: var(--accent); text-transform: uppercase;">
+          🎙️ Quick Creative Spark Capture
+        </div>
+        <input class="spark-input" id="sparkInput" placeholder="Enter musical motif, BPM, or lyric concept...">
+        <button class="btn" onclick="captureSpark()">
+          <span>Save to Dreamchamber Graph</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- 3. FLEET TOPOLOGY & SOVEREIGN MESH -->
+    <div class="card">
+      <div class="card-title">
+        <span>Fleet Mesh Topology</span>
+        <span style="color: var(--green)">TAILSCALE ACTIVE</span>
+      </div>
+
+      <div class="node-list">
+        <div class="node-row">
+          <div>
+            <div style="font-weight: 700;">M2 Ultra God Rig (192GB)</div>
+            <div style="font-size: 11px; color: var(--color-muted)">Host · Ollama 72B · Michael Vault</div>
+          </div>
+          <div class="node-ip">100.118.84.40</div>
+        </div>
+
+        <div class="node-row">
+          <div>
+            <div style="font-weight: 700;">iPad Pro 12.9" 2nd Gen</div>
+            <div style="font-size: 11px; color: var(--color-muted)">In-Car HUD Cockpit · Node-RED</div>
+          </div>
+          <div class="node-ip">100.90.133.90</div>
+        </div>
+
+        <div class="node-row">
+          <div>
+            <div style="font-weight: 700;">iPhone 15 Pro Max</div>
+            <div style="font-size: 11px; color: var(--color-muted)">Cellular Gateway · Gabriel Voice</div>
+          </div>
+          <div class="node-ip">100.96.243.95</div>
+        </div>
+
+        <div class="node-row">
+          <div>
+            <div style="font-weight: 700;">MacBook Pro 2012 (Michael)</div>
+            <div style="font-size: 11px; color: var(--color-muted)">macOS Sequoia (OCLP) · ARD Screen</div>
+          </div>
+          <div class="node-ip">100.88.102.10</div>
+        </div>
+      </div>
+
+      <div style="margin-top: auto; padding: 10px; background: rgba(255,255,255,0.02); border-radius: 8px; font-size: 11px; color: var(--color-muted);">
+        🔒 Ephemeral voice streams automatically purge after 72 hours. All creative sparks are sealed into the Michael Merkle Vault.
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    function captureSpark() {
+      const input = document.getElementById('sparkInput');
+      const val = input.value.trim();
+      if (!val) return;
+      alert('✨ Spark captured! Logged as Memory Object and routed to Dreamchamber Knowledge Graph: "' + val + '"');
+      input.value = '';
+    }
+  </script>
+</body>
+</html>

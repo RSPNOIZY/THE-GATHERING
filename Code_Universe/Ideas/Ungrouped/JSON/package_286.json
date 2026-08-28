@@ -1,0 +1,19 @@
+{
+  "name": "obsidian-mcp",
+  "version": "1.0.0",
+  "description": "NOIZY Obsidian Local REST API → MCP bridge. 15 tools. Vault read/write/search/canvas/daily-note.",
+  "type": "module",
+  "main": "index.js",
+  "bin": {
+    "obsidian-mcp": "index.js"
+  },
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

@@ -1,0 +1,38 @@
+{
+	"ae_tool" : "AmazingEditor",
+	"bALG_BACH_CONFIG" : true,
+	"effect" : 
+	{
+		"Link" : 
+		[
+			{
+				"extra" : 
+				{
+					"composer_param" : 
+					[
+						{
+							"allow_negative" : false,
+							"default_value" : 0.0,
+							"key" : "proportion_correct_intensity",
+							"name" : "proportion_correct_intensity"
+						}
+					]
+				},
+				"path" : "AmazingFeature/",
+				"type" : "AmazingFeature",
+				"zorder" : 8022
+			}
+		],
+		"model_names" : 
+		{
+			"alg_model" : 
+			[
+				"tt_fsnew_base_jianying",
+				"tt_face_extra",
+				"tt_skeletonsquat"
+			]
+		}
+	},
+	"name" : "Editor_Sticker_Config_TAG_wdOcebHdeucbbkbAcWdLdnblboLJckk",
+	"version" : "18.6.0"
+}

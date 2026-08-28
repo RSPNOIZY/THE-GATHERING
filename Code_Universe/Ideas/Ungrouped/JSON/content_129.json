@@ -1,0 +1,11 @@
+{
+	"ae_tool" : "AmazingEditor",
+	"content" : {},
+	"filemap" : 
+	{
+		"prefab" : "prefabs/mirrorMaskProcess.prefab"
+	},
+	"needblend" : false,
+	"tag" : "AMG_15368023801758440334577126435513291443",
+	"version" : "1.0"
+}

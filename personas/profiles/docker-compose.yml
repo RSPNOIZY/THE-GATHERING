@@ -1,0 +1,130 @@
+version: "3.9"
+
+services:
+  # Main DreamChamber application
+  dreamchamber:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: runtime
+    container_name: dreamchamber-app
+    ports:
+      - "7777:7777"
+    environment:
+      NODE_ENV: production
+      PORT: 7777
+      # Redis connection
+      REDIS_URL: redis://redis:6379
+      # PostgreSQL connection
+      DATABASE_URL: postgresql://dreamchamber:${DB_PASSWORD:-dreamchamber123}@postgres:5432/dreamchamber
+      # Primary models (Anthropic-first)
+      DEFAULT_MODEL: claude-sonnet-4
+      PREFERRED_SEARCH_MODEL: command-r-plus
+      # Heaven17 Consent Kernel
+      HEAVEN_URL: ${HEAVEN_URL:-https://heaven17.rsp-5f3.workers.dev}
+      NOIZY_API_KEY: ${NOIZY_API_KEY}
+      # Gabriel AI Orchestration Layer
+      GABRIEL_MODEL: ${GABRIEL_MODEL:-claude-sonnet-4}
+      GABRIEL_VOICE_NAME: ${GABRIEL_VOICE_NAME:-Daniel}
+      GABRIEL_SPEECH_RATE: ${GABRIEL_SPEECH_RATE:-180}
+      # JWT Auth
+      JWT_SECRET: ${JWT_SECRET}
+      # Voice Bridge
+      DREAMCHAMBER_URL: ${DREAMCHAMBER_URL:-http://localhost:7777}
+      VOICE_AUTH_TOKEN: ${VOICE_AUTH_TOKEN}
+      # API Keys (from environment or .env file)
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY}
+      OPENAI_API_KEY: ${OPENAI_API_KEY}
+      GOOGLE_API_KEY: ${GOOGLE_API_KEY}
+      COHERE_API_KEY: ${COHERE_API_KEY}
+      TOGETHER_API_KEY: ${TOGETHER_API_KEY}
+      MISTRAL_API_KEY: ${MISTRAL_API_KEY}
+      PERPLEXITY_API_KEY: ${PERPLEXITY_API_KEY}
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    restart: unless-stopped
+    networks:
+      - dreamchamber-network
+    volumes:
+      - ./logs:/app/logs
+
+  # PostgreSQL for persistence
+  postgres:
+    image: postgres:15-alpine
+    container_name: dreamchamber-postgres
+    environment:
+      POSTGRES_DB: dreamchamber
+      POSTGRES_USER: dreamchamber
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-dreamchamber123}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./sql/init.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U dreamchamber"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - dreamchamber-network
+
+  # Redis for caching and sessions
+  redis:
+    image: redis:7-alpine
+    container_name: dreamchamber-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    command: redis-server --appendonly yes
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - dreamchamber-network
+
+  # Nginx reverse proxy
+  nginx:
+    image: nginx:alpine
+    container_name: dreamchamber-nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/ssl:/etc/nginx/ssl:ro
+      - ./public:/usr/share/nginx/html:ro
+    depends_on:
+      - dreamchamber
+    networks:
+      - dreamchamber-network
+
+  # pgAdmin for database management
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: dreamchamber-pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL:-admin@dreamchamber.ai}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD:-admin123}
+    ports:
+      - "8888:80"
+    depends_on:
+      - postgres
+    networks:
+      - dreamchamber-network
+    profiles:
+      - dev
+
+networks:
+  dreamchamber-network:
+    driver: bridge
+
+volumes:
+  postgres-data:
+  redis-data:

@@ -1,0 +1,78 @@
+{
+  "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "voiceBridgeUrl": {
+      "type": "String",
+      "defaultValue": "http://GOD.local:8080"
+    },
+    "authToken": {
+      "type": "SecureString",
+      "defaultValue": "YOUR_AUTH_TOKEN_HERE"
+    }
+  },
+  "triggers": {
+    "manual": {
+      "type": "ManualTriggerWithInputs",
+      "inputs": {
+        "schema": {
+          "type": "object",
+          "properties": {
+            "voiceText": {
+              "type": "string",
+              "description": "Text from voice input"
+            }
+          }
+        }
+      },
+      "kind": "Button"
+    }
+  },
+  "actions": {
+    "Send_to_Voice_Bridge": {
+      "type": "Http",
+      "inputs": {
+        "method": "POST",
+        "uri": "@{parameters('voiceBridgeUrl')}/voice-command",
+        "headers": {
+          "Authorization": "Bearer @{parameters('authToken')}",
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "command": "claude",
+          "text": "@{triggerBody()?['voiceText']}",
+          "userId": "@{workflow().run.name}",
+          "source": "power-automate-mobile"
+        }
+      },
+      "runAfter": {}
+    },
+    "Parse_Response": {
+      "type": "ParseJson",
+      "inputs": {
+        "content": "@body('Send_to_Voice_Bridge')",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "status": { "type": "string" },
+            "result": { "type": "string" }
+          }
+        }
+      },
+      "runAfter": {
+        "Send_to_Voice_Bridge": ["Succeeded"]
+      }
+    },
+    "Send_Push_Notification": {
+      "type": "MobilePushNotification",
+      "inputs": {
+        "title": "Claude Response",
+        "text": "@{body('Parse_Response')?['result']}",
+        "notificationUrl": "cascade://response"
+      },
+      "runAfter": {
+        "Parse_Response": ["Succeeded"]
+      }
+    }
+  }
+}

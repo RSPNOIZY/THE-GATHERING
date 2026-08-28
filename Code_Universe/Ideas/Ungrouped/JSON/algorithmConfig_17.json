@@ -1,0 +1,70 @@
+{
+	"version":	"1.0",
+	"mode":	2,
+	"name":	"2022_01_27_15_33_37_8f783d1e9c2a231ebb393787b8ad47f2a",
+	"model_names":	{
+		"alg_model":	["tt_face", "tt_face_extra", "tt_petface"]
+	},
+	"nodes":	[{
+			"name":	"blit_0",
+			"type":	"blit",
+			"config":	{
+				"size":	{
+					"width":	240,
+					"height":	467
+				},
+				"keyMaps":	{
+					"intParam":	{
+					},
+					"floatParam":	{
+					},
+					"stringParam":	{
+					},
+					"pathParam":	{
+					}
+				}
+			}
+		}, {
+			"name":	"face_0",
+			"type":	"face",
+			"config":	{
+				"keyMaps":	{
+					"intParam":	{
+						"face_detect_ability":	257
+					},
+					"floatParam":	{
+					},
+					"stringParam":	{
+					},
+					"pathParam":	{
+					}
+				}
+			}
+		}, {
+			"name":	"face_pet_detect_0",
+			"type":	"face_pet_detect",
+			"config":	{
+				"keyMaps":	{
+					"intParam":	{
+					},
+					"floatParam":	{
+					},
+					"stringParam":	{
+					},
+					"pathParam":	{
+					}
+				}
+			}
+		}],
+	"links":	[{
+			"fromNode":	"blit_0",
+			"fromIndex":	0,
+			"toNode":	"face_0",
+			"toIndex":	0
+		}, {
+			"fromNode":	"blit_0",
+			"fromIndex":	0,
+			"toNode":	"face_pet_detect_0",
+			"toIndex":	0
+		}]
+}

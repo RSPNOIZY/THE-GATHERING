@@ -1,0 +1,16 @@
+{
+  "effect": {
+    "Link": [
+    ],
+    "model_names": {
+      "alg_model": [
+        "lock_key_point",
+        "tt_fsnew_base_jianying",
+        "tt_skeletonlockon"
+    ]
+    }
+  },
+  "bALG_BACH_CONFIG": true,
+  "name": "76D57C3E-8713-4F50-9D36-94Fzise381A0571B",
+  "version": "14.1.0"
+}

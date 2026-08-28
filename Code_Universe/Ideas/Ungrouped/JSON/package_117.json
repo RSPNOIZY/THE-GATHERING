@@ -1,0 +1,37 @@
+{
+  "name": "noizyarmy",
+  "version": "1.0.0",
+  "description": "NOIZYARMY — Autonomous Build Swarm for the NOIZY Empire. Discord + Gemma + Ollama + Agent Swarm = 100% Always.",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "start": "node orchestrator.js",
+    "discord": "node discord-bot.js",
+    "swarm": "node swarm-engine.js",
+    "dashboard": "node dashboard-server.js",
+    "cli": "node cli.js",
+    "army": "node army-boot.js",
+    "status": "node cli.js status",
+    "deploy": "node cli.js deploy",
+    "heal": "node cli.js heal",
+    "build:all": "node cli.js build-all",
+    "health": "curl -s http://localhost:9333/health | python3 -m json.tool"
+  },
+  "dependencies": {
+    "discord.js": "^14.16.3",
+    "express": "^5.2.1",
+    "ws": "^8.18.0",
+    "chalk": "^5.3.0",
+    "commander": "^12.1.0",
+    "ora": "^8.1.1",
+    "boxen": "^8.0.1",
+    "node-cron": "^3.0.3",
+    "undici": "^7.2.0",
+    "eventsource": "^3.0.5"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "author": "RSP_001 — Robert Stephen Plowman",
+  "license": "UNLICENSED"
+}

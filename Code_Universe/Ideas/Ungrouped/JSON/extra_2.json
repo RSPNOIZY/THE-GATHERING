@@ -1,0 +1,32 @@
+{
+    "setting" : 
+    {
+        "bloom_adjust_params" : 
+        [
+            {
+                "default" : 0.30,
+                "effect_key" : "bloom_adjust_strength",
+                "min" : 0.01,
+                "max" : 1.0
+            },
+            {
+                "default" : 0.20,
+                "effect_key" : "bloom_adjust_range",
+                "max" : 1.0,
+                "min" : 0.01
+            },
+            {
+                "default" : 0.5,
+                "effect_key" : "bloom_adjust_dir_x",
+                "max" : 1.0,
+                "min" : 0.0
+            },
+            {
+                "default" : 0.5,
+                "effect_key" : "bloom_adjust_dir_y",
+                "max" : 1.0,
+                "min" : 0.0
+            }
+        ]
+    }
+}

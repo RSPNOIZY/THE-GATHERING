@@ -1,0 +1,93 @@
+{
+  "name": "cloudflare-deploy",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "cloudflare-deploy",
+        "responseMode": "lastNode",
+        "options": {}
+      },
+      "id": "webhook-trigger",
+      "name": "Webhook (POST /webhook/cloudflare-deploy)",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1.1,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "const body = $input.first().json.body || $input.first().json;\nconst worker = (body.worker || '').trim();\nconst mode = (body.mode || 'single').trim();\nconst allowed = new Set(['single', 'all', 'broken', 'status']);\nif (!allowed.has(mode)) {\n  throw new Error(`invalid mode: ${mode} (expected one of: ${[...allowed].join(', ')})`);\n}\nif (mode === 'single' && !/^[a-z0-9][a-z0-9-]*$/.test(worker)) {\n  throw new Error(`invalid or missing worker name: '${worker}'`);\n}\nconst flag = mode === 'single' ? worker : `--${mode}`;\nreturn [{ json: { worker, mode, flag, requested_at: new Date().toISOString() } }];"
+      },
+      "id": "validate",
+      "name": "Validate request",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [460, 300]
+    },
+    {
+      "parameters": {
+        "command": "=cd /Users/m2ultra/NOIZYANTHROPIC && ops/cloudflare-deploy.sh {{ $json.flag }} 2>&1"
+      },
+      "id": "run-deploy",
+      "name": "Run ops/cloudflare-deploy.sh",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [680, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "const prev = $('Validate request').first().json;\nconst shell = $input.first().json;\nreturn [{\n  json: {\n    ok: shell.exitCode === 0,\n    exit_code: shell.exitCode,\n    mode: prev.mode,\n    worker: prev.worker || null,\n    requested_at: prev.requested_at,\n    completed_at: new Date().toISOString(),\n    stdout_tail: (shell.stdout || '').split('\\n').slice(-30).join('\\n'),\n    stderr_tail: (shell.stderr || '').split('\\n').slice(-30).join('\\n')\n  }\n}];"
+      },
+      "id": "shape-result",
+      "name": "Shape result",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [900, 300]
+    },
+    {
+      "parameters": {
+        "url": "https://heaven.rsp-5f3.workers.dev/api/v1/ledger",
+        "method": "POST",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "X-NOIZY-Key", "value": "={{ $env.NOIZY_API_KEY }}" },
+            { "name": "Content-Type", "value": "application/json" }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"event_type\": \"CLOUDFLARE_DEPLOY\",\n  \"actor_id\": \"RSP_001\",\n  \"details\": {\n    \"mode\": \"{{ $json.mode }}\",\n    \"worker\": \"{{ $json.worker }}\",\n    \"ok\": {{ $json.ok }},\n    \"exit_code\": {{ $json.exit_code }},\n    \"source\": \"n8n cloudflare-deploy\"\n  }\n}",
+        "options": { "timeout": 5000 }
+      },
+      "id": "log-ledger",
+      "name": "Log to Heaven ledger",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1120, 300],
+      "continueOnFail": true
+    }
+  ],
+  "connections": {
+    "Webhook (POST /webhook/cloudflare-deploy)": {
+      "main": [[{ "node": "Validate request", "type": "main", "index": 0 }]]
+    },
+    "Validate request": {
+      "main": [[{ "node": "Run ops/cloudflare-deploy.sh", "type": "main", "index": 0 }]]
+    },
+    "Run ops/cloudflare-deploy.sh": {
+      "main": [[{ "node": "Shape result", "type": "main", "index": 0 }]]
+    },
+    "Shape result": {
+      "main": [[{ "node": "Log to Heaven ledger", "type": "main", "index": 0 }]]
+    }
+  },
+  "settings": { "executionOrder": "v1" },
+  "active": false,
+  "pinData": {},
+  "meta": {
+    "description": "Headless Cloudflare Worker deploy orchestrator. POST { worker, mode } to the webhook; shells to ops/cloudflare-deploy.sh; ledgers result.",
+    "modes": ["single", "all", "broken", "status"],
+    "example_body": { "worker": "noizy-mcp", "mode": "single" }
+  }
+}

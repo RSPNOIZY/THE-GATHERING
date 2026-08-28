@@ -1,0 +1,58 @@
+{
+    "version": "1.0",
+    "mode": 2,
+    "name": "smartColorAdjustment_VVdcRcCbhcmbVcfcCb06cIbccKb5c",
+    "nodes": [
+        {
+            "name": "blit_0",
+            "type": "blit",
+            "config": {
+                "keyMaps": {
+                    "intParam": {},
+                    "floatParam": {},
+                    "stringParam": {}
+                }
+            }
+        },
+        {
+            "name": "vhdr_0",
+            "type": "general_lens",
+            "config": {
+                "keyMaps": {
+                    "intParam": {
+                        "type": 32,
+                        "lens_vhdr_backend": 1,
+                        "lens_vhdr_power_level": 3,
+                        "lens_vhdr_alg_type": 3,
+                        "lens_vhdr_pernum": 6,
+                        "lens_vhdr_is_need_skin_seg": 0,
+                        "lens_vhdr_is_cover": 0
+                    },
+                    "floatParam": {},
+                    "stringParam": {
+                        "name": "Lens Video HDR",
+                        "general_lens_alg_name": "lens_general",
+                        "alg_tag": "replace_render_input",
+                        "execParam": "enhanceStrength=1.0",
+                        "metallib_name": "vhdr",
+                        "mapWidthKey": "lens_max_width",
+                        "mapHeightKey": "lens_max_height"
+                    },
+                    "pathParam": {
+                        "lens_vhdr_image_lut_path": "lens_vhdr_image_lut_rgb.bin",
+                        "lens_vhdr_skin_lut_path": "lens_vhdr_skin_lut_rgb.bin",
+                        "cache_path": ""
+                    }
+                }
+            }
+        }
+    ],
+    "links": [
+        {
+            "fromNode": "vhdr_0",
+            "fromIndex": 0,
+            "toNode": "blit_0",
+            "toIndex": 0
+        }
+    ]
+}

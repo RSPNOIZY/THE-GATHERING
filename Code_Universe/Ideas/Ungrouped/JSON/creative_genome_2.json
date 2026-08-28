@@ -1,0 +1,67 @@
+{
+  "schema_version": "1.0.0",
+  "persona_id": "RSP_002_GANGSTER",
+  "actor_id": "RSP_001",
+  "actor_name": "Rob Plowman",
+  "persona_name": "The Gangster",
+  "persona_archetype": "dangerous_authority",
+  "capture_date": "2026-03-13",
+  "fingerprint_sha256": "pending_capture",
+
+  "voice_dna": {
+    "fundamental_frequency_hz": 108,
+    "formant_profile": {
+      "F1": 480,
+      "F2": 1180,
+      "F3": 2200,
+      "F4": 3200
+    },
+    "breathiness_index": 0.08,
+    "resonance_chamber": "chest_dark",
+    "articulation_style": "clipped_precise",
+    "cadence_signature": "staccato_threat_weighted",
+    "dynamic_range_db": 22,
+    "grain_texture": "compressed_iron",
+    "subharmonic_presence": 0.62
+  },
+
+  "emotional_spectrum": {
+    "primary_states": ["menace", "control", "cold_charm", "explosive_rage", "quiet_dominance"],
+    "emotional_transitions": {
+      "control_to_menace": { "speed": "instant", "dynamic_spike_db": 6 },
+      "cold_charm_to_explosive_rage": { "speed": "snap", "pitch_rise_hz": 14 },
+      "quiet_dominance_to_control": { "speed": "slow", "breathiness_shift": -0.04 }
+    },
+    "forbidden_states": ["vulnerability", "pleading", "warmth"],
+    "signature_pause_ms": 320
+  },
+
+  "stylistic_markers": {
+    "phrasing": "direct_implied_threat",
+    "word_stress_pattern": "front_loaded",
+    "breath_audibility": "suppressed",
+    "consonant_release": "hard_stop",
+    "vowel_elongation": "rare_menacing",
+    "silence_as_instrument": true,
+    "trailing_resonance": false
+  },
+
+  "use_constraints": {
+    "requires_consent": true,
+    "consent_key_required": true,
+    "allowed_genres": ["crime_drama", "game_narrative", "film_noir", "audiobook", "animation"],
+    "prohibited_uses": ["political_speech", "impersonation", "harassment", "commercial_without_split"],
+    "minimum_credit": "Voice: Rob Plowman / RSP_002 GANGSTER — NOIZYVOX Protocol",
+    "nsfw_allowed": false,
+    "clone_allowed": false
+  },
+
+  "royalty_config": {
+    "actor_share": 0.75,
+    "platform_share": 0.25,
+    "activation_delay_days": 30,
+    "micro_split_enabled": true,
+    "lifeluv_token_routing": "legacy_vault_first",
+    "perpetual": true
+  }
+}

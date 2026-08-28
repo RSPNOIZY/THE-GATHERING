@@ -1,0 +1,67 @@
+{
+  "schema_version": "1.0.0",
+  "persona_id": "RSP_001_WIZARD",
+  "actor_id": "RSP_001",
+  "actor_name": "Rob Plowman",
+  "persona_name": "The Wizard",
+  "persona_archetype": "ancient_sage",
+  "capture_date": "2026-03-13",
+  "fingerprint_sha256": "a9f3c12e84b7d6e5f2a1c09b3d4e5f67890a1b2c3d4e5f678901234567890abc",
+
+  "voice_dna": {
+    "fundamental_frequency_hz": 118,
+    "formant_profile": {
+      "F1": 520,
+      "F2": 1340,
+      "F3": 2480,
+      "F4": 3600
+    },
+    "breathiness_index": 0.31,
+    "resonance_chamber": "chest_forward",
+    "articulation_style": "measured_deliberate",
+    "cadence_signature": "long_pause_weighted",
+    "dynamic_range_db": 28,
+    "grain_texture": "warm_graveled",
+    "subharmonic_presence": 0.44
+  },
+
+  "emotional_spectrum": {
+    "primary_states": ["gravitas", "wonder", "knowing", "sorrow", "ancient_warmth"],
+    "emotional_transitions": {
+      "gravitas_to_wonder": { "speed": "slow", "breathiness_shift": 0.12 },
+      "knowing_to_sorrow": { "speed": "medium", "pitch_descent_hz": -8 },
+      "ancient_warmth_to_gravitas": { "speed": "very_slow", "resonance_shift": "chest_deepen" }
+    },
+    "forbidden_states": ["panic", "petulance", "hollow_enthusiasm"],
+    "signature_pause_ms": 680
+  },
+
+  "stylistic_markers": {
+    "phrasing": "elliptic",
+    "word_stress_pattern": "end_weighted",
+    "breath_audibility": "intentional",
+    "consonant_release": "soft_aspirate",
+    "vowel_elongation": "selective_high_meaning",
+    "silence_as_instrument": true,
+    "trailing_resonance": true
+  },
+
+  "use_constraints": {
+    "requires_consent": true,
+    "consent_key_required": true,
+    "allowed_genres": ["fantasy", "documentary", "meditation", "audiobook", "game_narrative"],
+    "prohibited_uses": ["political_speech", "impersonation", "commercial_without_split", "synthetic_training_without_agreement"],
+    "minimum_credit": "Voice: Rob Plowman / RSP_001 WIZARD — NOIZYVOX Protocol",
+    "nsfw_allowed": false,
+    "clone_allowed": false
+  },
+
+  "royalty_config": {
+    "actor_share": 0.75,
+    "platform_share": 0.25,
+    "activation_delay_days": 30,
+    "micro_split_enabled": true,
+    "lifeluv_token_routing": "legacy_vault_first",
+    "perpetual": true
+  }
+}

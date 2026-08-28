@@ -1,0 +1,44 @@
+{
+  "version": "1.0.0",
+  "updated": "2025-12-20",
+  "agents": [
+    {
+      "id": "gabriel",
+      "name": "GABRIEL",
+      "description": "Zero Latency Voice + Control Agent",
+      "entrypoint": "tools/gabriel_control.py",
+      "path": "/Users/m2ultra/NOIZYLAB/GABRIEL",
+      "status": "active",
+      "capabilities": ["voice", "ui", "automation"]
+    },
+    {
+      "id": "mc96",
+      "name": "MC96",
+      "description": "Core Universe Engine",
+      "entrypoint": "vault/organize_code.py",
+      "path": "/Users/m2ultra/NOIZYLAB/MC96",
+      "status": "active",
+      "capabilities": ["code-organization", "vault"]
+    },
+    {
+      "id": "system-guardian",
+      "name": "SystemGuardian",
+      "description": "System Monitoring Agent",
+      "entrypoint": null,
+      "path": "/Users/m2ultra/NOIZYLAB/SystemGuardian",
+      "status": "stub",
+      "capabilities": ["monitoring", "alerts"]
+    }
+  ],
+  "launcher": {
+    "gabriel": "python3 /Users/m2ultra/NOIZYLAB/GABRIEL/tools/gabriel_control.py",
+    "mc96": "python3 /Users/m2ultra/NOIZYLAB/MC96/vault/organize_code.py",
+    "media-push": "/Users/m2ultra/NOIZYLAB/AGENTS/sync-media.sh push",
+    "media-pull": "/Users/m2ultra/NOIZYLAB/AGENTS/sync-media.sh pull",
+    "media-status": "/Users/m2ultra/NOIZYLAB/AGENTS/sync-media.sh status"
+  },
+  "storage": {
+    "code": "https://github.com/NOIZYLAB-io/NOIZYLAB",
+    "media": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rp@fishmusicinc.com/My Drive/NOIZYLAB_MEDIA"
+  }
+}

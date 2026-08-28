@@ -1,0 +1,59 @@
+{
+  "receipt": {
+    "receipt_id": "e997ca70-2d2b-4d96-a89e-d3f8ccd14281",
+    "workstream": "RIDESHARE",
+    "project_ref": "GABRIEL",
+    "account": "rspdrives@gmail.com",
+    "vehicle": "2026-HONDA-CRV-HYBRID",
+    "timestamp_utc": "2026-07-06T21:32:20.393239+00:00",
+    "session_id": "f60770be-1714-4ac9-a7c8-9518ff8d051c",
+    "action": {
+      "type": "SURGE",
+      "source": "PYTHON",
+      "description": "Surge event \u2014 2.2x in YOW",
+      "payload": {
+        "zone": "YOW",
+        "multiplier": 2.2,
+        "trigger": "FLIGHT_WINDOW",
+        "flight_ref": "Early Morning 5:00\u20138:30 AM",
+        "start_time": "2026-07-07T05:00:00-04:00",
+        "predicted": true
+      }
+    },
+    "data": {
+      "trip_id": null,
+      "platform": null,
+      "earnings_gross": null,
+      "earnings_net": null,
+      "surge_multiplier": 2.2,
+      "miles": null,
+      "duration_minutes": null,
+      "pickup_geo": null,
+      "dropoff_geo": null,
+      "ottawa_context": {
+        "surge_zone": "YOW"
+      }
+    },
+    "consent": {
+      "driver_consented": true,
+      "consent_version": "1.0",
+      "consent_timestamp": "2026-07-06T21:32:20.393239+00:00"
+    },
+    "audit": {
+      "rule_zero": true,
+      "logged_by": "THE-GATHERING",
+      "immutable": true,
+      "hash": "f35e741eac34215c92e3fb9db6c4a5f318c4a18e5f6ed3017361962051f74acd",
+      "prev_receipt_id": null
+    },
+    "meta": {
+      "environment": "PRODUCTION",
+      "pipeline_version": "1.0.0",
+      "tags": [
+        "rideshare",
+        "gabriel",
+        "rspdrives"
+      ]
+    }
+  }
+}

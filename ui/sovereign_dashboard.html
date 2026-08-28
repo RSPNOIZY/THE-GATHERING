@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NOIZY Sovereign Runtime — Cockpit & Real-Time Orchestrator</title>
+    <style>
+        :root {
+            --bg: #090d16;
+            --card-bg: #111827;
+            --border: #1f2937;
+            --accent: #3b82f6;
+            --accent-green: #10b981;
+            --accent-yellow: #f59e0b;
+            --accent-purple: #8b5cf6;
+            --text: #f9fafb;
+            --text-dim: #9ca3af;
+        }
+        body {
+            margin: 0;
+            padding: 24px;
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 16px;
+            margin-bottom: 24px;
+        }
+        .badge {
+            background: rgba(59, 130, 246, 0.2);
+            color: var(--accent);
+            padding: 4px 10px;
+            border-radius: 9999px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+            gap: 20px;
+        }
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+        }
+        .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+        }
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .metric-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.9rem;
+        }
+        .mono {
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;
+            color: var(--accent-green);
+        }
+        .flow-step {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 0;
+            border-bottom: 1px dashed var(--border);
+            font-size: 0.85rem;
+        }
+        .step-num {
+            background: var(--accent-purple);
+            color: white;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div>
+            <h1 style="margin: 0; font-size: 1.5rem;">👑 NOIZY SOVEREIGN RUNTIME (v2.4.0-PROD)</h1>
+            <p style="margin: 4px 0 0; color: var(--text-dim); font-size: 0.9rem;">
+                Host: <span class="mono">GOD.local (M2 Ultra 192GB)</span> | Authority: <span class="mono">RSP_001</span>
+            </p>
+        </div>
+        <div>
+            <span class="badge">75/25 COVENANT SPLIT INVARIANT</span>
+            <span class="badge" style="background: rgba(16, 185, 129, 0.2); color: var(--accent-green); margin-left: 8px;">ALL 6 LAYERS CERTIFIED</span>
+        </div>
+    </header>
+
+    <div class="grid">
+        <!-- 1. RSP Cognitive Firewall -->
+        <div class="card">
+            <div class="card-header">
+                <span class="card-title">🛡️ [1] RSP Cognitive Firewall</span>
+                <span class="badge" style="background: rgba(16, 185, 129, 0.15); color: var(--accent-green);">POLICY ACTIVE</span>
+            </div>
+            <div class="metric-row"><span>Human Authority</span><span class="mono">RSP_001 (Sole Decider)</span></div>
+            <div class="metric-row"><span>Evaluated Outcomes</span><span class="mono">ALLOW, APPROVAL, DEFER, ABSTAIN, DENY</span></div>
+            <div class="metric-row"><span>Active Law 25 Policy</span><span class="mono">NC-01-10-v2 (Active Consent)</span></div>
+            <div class="metric-row"><span>Protected Intent Hash</span><span class="mono">INT_7D68BCAF (SHA-256)</span></div>
+        </div>
+
+        <!-- 2. GABRIEL Capability Broker -->
+        <div class="card">
+            <div class="card-header">
+                <span class="card-title">⚡ [2] GABRIEL Capability Broker</span>
+                <span class="badge">ALLOWLISTED</span>
+            </div>
+            <div class="metric-row"><span>Registered Tools</span><span class="mono">6 Verified Capabilities</span></div>
+            <div class="metric-row"><span>Active Tool</span><span class="mono">google_routes.compute (PREPARE)</span></div>
+            <div class="metric-row"><span>Timeout Guard</span><span class="mono">15,000 ms</span></div>
+            <div class="metric-row"><span>Receipt State</span><span class="mono">SUCCEEDED (Hash Chained)</span></div>
+        </div>
+
+        <!-- 3. Vehicular Telemetry & CarPlay -->
+        <div class="card">
+            <div class="card-header">
+                <span class="card-title">🚗 [3] In-Vehicle Telemetry (2026 Honda CR-V)</span>
+                <span class="badge" style="background: rgba(245, 158, 11, 0.2); color: var(--accent-yellow);">1.65x YOW SURGE</span>
+            </div>
+            <div class="metric-row"><span>Powertrain / SOC</span><span class="mono">2.0L Hybrid / 78% SOC</span></div>
+            <div class="metric-row"><span>Estimated Duration</span><span class="mono">21.4 min (Google Routes v2)</span></div>
+            <div class="metric-row"><span>Universal Handoff</span><span class="mono">https://waze.com/ul?ll=...</span></div>
+            <div class="metric-row"><span>CarPlay Video State</span><span class="mono">UNLOCKED (Vehicle in Park)</span></div>
+        </div>
+
+        <!-- 4. Sonic Passport Asset Identity -->
+        <div class="card">
+            <div class="card-header">
+                <span class="card-title">🎵 [4] Sonic Passport Identity Graph</span>
+                <span class="badge">C2PA v2.2</span>
+            </div>
+            <div class="metric-row"><span>Acoustic Fingerprint</span><span class="mono">Chromaprint 1.6.1 (similarity)</span></div>
+            <div class="metric-row"><span>Exact Binary Identity</span><span class="mono">SHA-256 (exact_hash)</span></div>
+            <div class="metric-row"><span>Embedded Watermark</span><span class="mono">AudioSeal L3 Sample-Level</span></div>
+            <div class="metric-row"><span>Hardcoded Creator Split</span><span class="mono">75.00% (The Plowman Standard)</span></div>
+        </div>
+    </div>
+
+    <!-- Real-Time 8-Stage Lifecycle Execution Path -->
+    <div class="card" style="margin-top: 24px;">
+        <div class="card-header">
+            <span class="card-title">🔄 Canonical 8-Stage Sovereign Execution Path</span>
+            <span class="mono" style="font-size: 0.85rem;">Status: PROPOSED → AUTHORIZED → EXECUTING → SUCCEEDED</span>
+        </div>
+        <div class="flow-step"><div class="step-num">1</div><div><strong>AI Output:</strong> Candidate prompt/action generated by GABRIEL agent swarm.</div></div>
+        <div class="flow-step"><div class="step-num">2</div><div><strong>Decision Packet:</strong> Raw voice/prompt redacted; normalized intent hashed into <span class="mono">INT_7D68BCAF</span>.</div></div>
+        <div class="flow-step"><div class="step-num">3</div><div><strong>Cognitive Firewall:</strong> 8-step evaluation emitted <span class="mono">ALLOW_WITH_RSP_APPROVAL</span>.</div></div>
+        <div class="flow-step"><div class="step-num">4</div><div><strong>RSP Authority Check:</strong> Verified Law 25 consent and <span class="mono">RSP_001</span> sole human decider authority.</div></div>
+        <div class="flow-step"><div class="step-num">5</div><div><strong>Signed Approval:</strong> Ed25519 signature validated (<span class="mono">SIG_ED25519_RSP001</span>); status set to <span class="mono">AUTHORIZED</span>.</div></div>
+        <div class="flow-step"><div class="step-num">6</div><div><strong>Capability Broker:</strong> Verified <span class="mono">google_routes.compute</span> against allowlisted registry; status <span class="mono">EXECUTING</span>.</div></div>
+        <div class="flow-step"><div class="step-num">7</div><div><strong>Execution:</strong> Google Routes API v2 returned 21.4 min ETA with polyline and universal Waze link.</div></div>
+        <div class="flow-step"><div class="step-num">8</div><div><strong>Harmony Receipt:</strong> Finalized <span class="mono">REC_HARMONY_85D2DBB2</span> in Cloudflare D1 with hash-chain proof.</div></div>
+    </div>
+</body>
+</html>

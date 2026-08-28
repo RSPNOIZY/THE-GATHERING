@@ -1,0 +1,13 @@
+{
+	"ae_tool" : "AmazingEditor",
+	"content" : {},
+	"em_tool" : "PXARStudio",
+	"needblend" : false,
+	"requirement" : 
+	{
+		"3dFaceMeshPerspective" : true,
+		"faceDetect" : true
+	},
+	"tag" : "AMG_737093231137413996718290537909454047673",
+	"version" : "10.5.0"
+}

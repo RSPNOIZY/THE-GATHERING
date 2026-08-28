@@ -1,0 +1,27 @@
+{
+  "ID": "iphone",
+  "Name": "iphone",
+  "Address": "100.119.178.114",
+  "Tags": ["device", "mobile", "ios", "command-ingress", "mesh-peer"],
+  "Meta": {
+    "owner": "RSP_001",
+    "tailscale_hostname": "iphone-15-pro",
+    "role": "voice/text command ingress → Claude",
+    "doctrine": "command-ingress"
+  },
+  "Check": {
+    "Name": "tailscale-ping",
+    "Args": [
+      "/opt/homebrew/bin/tailscale",
+      "ping",
+      "-c",
+      "1",
+      "--timeout",
+      "3s",
+      "100.119.178.114"
+    ],
+    "Interval": "60s",
+    "Timeout": "10s",
+    "DeregisterCriticalServiceAfter": "30m"
+  }
+}

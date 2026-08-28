@@ -1,0 +1,362 @@
+{
+  "version": "1.0",
+  "announcements": [
+    {
+      "id": "ann-2026-04-author-shop-support",
+      "type": "info",
+      "priority": 999,
+      "title": "🛒 作者自营账号与兑换码渠道上线",
+      "summary": "提供 Gemini Pro 成品号与 Plus 兑换码，购买账号赠送 Antigravity 无感切号方案。",
+      "content": "感谢大家一直以来对项目的支持！\n\n我这边开通了自营购买地址，提供：\n• Gemini Pro 成品号\n• Gemini Plus 兑换码\n• 购买账号赠送 Antigravity 无感切号方案\n\n如果你刚好有这方面需求，欢迎前往选购支持。",
+      "action": {
+        "type": "url",
+        "target": "https://xiangzili.xyz",
+        "label": "前往选购"
+      },
+      "targetVersions": "*",
+      "targetLanguages": [
+        "*"
+      ],
+      "showOnce": true,
+      "popup": true,
+      "createdAt": "2026-04-07T15:28:30Z",
+      "expiresAt": null,
+      "locales": {
+        "zh-CN": {
+          "title": "🛒 作者自营账号与兑换码渠道上线",
+          "summary": "提供 Gemini Pro 成品号与 Plus 兑换码，购买账号赠送 Antigravity 无感切号方案。",
+          "content": "感谢大家一直以来对项目的支持！\n\n我这边开通了自营购买地址，提供：\n• Gemini Pro 成品号\n• Gemini Plus 兑换码\n• 购买账号赠送 Antigravity 无感切号方案\n\n如果你刚好有这方面需求，欢迎前往选购支持。",
+          "actionLabel": "前往选购"
+        },
+        "en-US": {
+          "title": "🛒 作者自营账号与兑换码渠道上线",
+          "summary": "提供 Gemini Pro 成品号与 Plus 兑换码，购买账号赠送 Antigravity 无感切号方案。",
+          "content": "感谢大家一直以来对项目的支持！\n\n我这边开通了自营购买地址，提供：\n• Gemini Pro 成品号\n• Gemini Plus 兑换码\n• 购买账号赠送 Antigravity 无感切号方案\n\n如果你刚好有这方面需求，欢迎前往选购支持。",
+          "actionLabel": "前往选购"
+        },
+        "en": {
+          "title": "🛒 作者自营账号与兑换码渠道上线",
+          "summary": "提供 Gemini Pro 成品号与 Plus 兑换码，购买账号赠送 Antigravity 无感切号方案。",
+          "content": "感谢大家一直以来对项目的支持！\n\n我这边开通了自营购买地址，提供：\n• Gemini Pro 成品号\n• Gemini Plus 兑换码\n• 购买账号赠送 Antigravity 无感切号方案\n\n如果你刚好有这方面需求，欢迎前往选购支持。",
+          "actionLabel": "前往选购"
+        }
+      }
+    },
+    {
+      "id": "ann-2026-02-wakeup-risk-notice-v2",
+      "type": "warning",
+      "priority": 360,
+      "title": "⚠️ Wake-up Feature Risk Notice",
+      "summary": "Plugin wake-up has risk-control risk (Cloud Code direct calls). We recommend switching to Cockpit Tools desktop.",
+      "content": "Plugin wake-up has risk-control risk (Cloud Code direct calls).\nWe recommend using Cockpit Tools desktop first (same link path as the official client).\n\nPlugin wake-up currently uses Cloud Code direct calls for conversation wake-up. Google has recently tightened risk controls for this behavior. In theory, low-frequency wake-up is unlikely to trigger risk control, but you still need to understand and evaluate the risk yourself.\n\nCockpit Tools desktop uses \"Local Gateway + Official Language Server Protocol\" (StartCascade / SendUserCascadeMessage / GetCascadeTrajectory / DeleteCascadeTrajectory). The link is consistent with the official client, with theoretically lower risk and better stability.\nIt also supports batch account verification (such as 403 scenarios), wake-up task management, and the latest Gemini 3.1 Pro related models.\n\nNew wake-up capabilities require Cockpit Tools desktop v0.9.0 or later.\nClick the button below to open the Cockpit Tools download page (latest version recommended).\n\nWe recommend switching to Cockpit Tools desktop.",
+      "locales": {
+        "zh-cn": {
+          "title": "⚠️ 唤醒功能风险提示",
+          "summary": "插件内唤醒有风控风险，建议优先改用 Cockpit Tools 桌面端（链路与官方客户端一致）。",
+          "content": "⚠️ 风险结论\n插件内唤醒有风控风险（Cloud Code 直连）。\n建议优先改用 Cockpit Tools 桌面端（链路与官方客户端一致）。\n\n☁️ 插件内唤醒链路\n插件内唤醒目前使用 Cloud Code 直连请求进行对话唤醒。近期 Google 对该类行为的风控有收紧趋势；理论上低频率唤醒大概率并不会触发风控，但是仍需要您知悉并自行评估风险。\n\n🛡️ 桌面端链路（与官方一致）\nCockpit Tools 桌面端使用「本地网关 + 官方 Language Server 协议」（StartCascade / SendUserCascadeMessage / GetCascadeTrajectory / DeleteCascadeTrajectory）执行唤醒，链路与官方客户端保持一致，理论上风险更低、稳定性更高。\n同时支持账号批量验证（如 403 场景）与唤醒任务管理，并支持唤醒最新的 Gemini 3.1 Pro 相关模型。\n\n🧩 版本要求\n新版本唤醒能力仅支持 Cockpit Tools 桌面端 v0.9.0 及以上。\n点击下方按钮可前往 Cockpit Tools 下载页（推荐使用最新版）。\n\n✅ 建议\n建议优先改用 Cockpit Tools 桌面端。",
+          "actionLabel": "下载最新版"
+        },
+        "zh-tw": {
+          "title": "⚠️ 喚醒功能風險提示",
+          "summary": "插件內喚醒有風控風險，建議優先改用 Cockpit Tools 桌面端（鏈路與官方客戶端一致）。",
+          "content": "插件內喚醒有風控風險（Cloud Code 直連）。\n建議優先改用 Cockpit Tools 桌面端（鏈路與官方客戶端一致）。\n\n插件內喚醒目前使用 Cloud Code 直連請求進行對話喚醒。近期 Google 對該類行為的風控有收緊趨勢；理論上低頻率喚醒大概率並不會觸發風控，但仍需您知悉並自行評估風險。\n\nCockpit Tools 桌面端使用「本地網關 + 官方 Language Server 協議」（StartCascade / SendUserCascadeMessage / GetCascadeTrajectory / DeleteCascadeTrajectory）執行喚醒，鏈路與官方客戶端保持一致，理論上風險更低、穩定性更高。\n同時支援帳號批量驗證（如 403 場景）與喚醒任務管理，並支援喚醒最新的 Gemini 3.1 Pro 相關模型。\n\n新版本喚醒能力僅支援 Cockpit Tools 桌面端 v0.9.0 及以上。\n點擊下方按鈕可前往 Cockpit Tools 下載頁（建議使用最新版）。\n\n建議優先改用 Cockpit Tools 桌面端。",
+          "actionLabel": "下載最新版"
+        },
+        "en": {
+          "title": "⚠️ Wake-up Feature Risk Notice",
+          "summary": "Plugin wake-up has risk-control risk (Cloud Code direct calls). We recommend switching to Cockpit Tools desktop.",
+          "content": "Plugin wake-up has risk-control risk (Cloud Code direct calls).\nWe recommend using Cockpit Tools desktop first (same link path as the official client).\n\nPlugin wake-up currently uses Cloud Code direct calls for conversation wake-up. Google has recently tightened risk controls for this behavior. In theory, low-frequency wake-up is unlikely to trigger risk control, but you still need to understand and evaluate the risk yourself.\n\nCockpit Tools desktop uses \"Local Gateway + Official Language Server Protocol\" (StartCascade / SendUserCascadeMessage / GetCascadeTrajectory / DeleteCascadeTrajectory). The link is consistent with the official client, with theoretically lower risk and better stability.\nIt also supports batch account verification (such as 403 scenarios), wake-up task management, and the latest Gemini 3.1 Pro related models.\n\nNew wake-up capabilities require Cockpit Tools desktop v0.9.0 or later.\nClick the button below to open the Cockpit Tools download page (latest version recommended).\n\nWe recommend switching to Cockpit Tools desktop.",
+          "actionLabel": "Download latest"
+        },
+        "ja": {
+          "title": "⚠️ Wake-up Feature Risk Notice",
+          "summary": "Plugin wake-up has risk-control risk (Cloud Code direct calls). We recommend switching to Cockpit Tools desktop.",
+          "content": "Plugin wake-up has risk-control risk (Cloud Code direct calls).\nWe recommend using Cockpit Tools desktop first (same link path as the official client).\n\nPlugin wake-up currently uses Cloud Code direct calls for conversation wake-up. Google has recently tightened risk controls for this behavior. In theory, low-frequency wake-up is unlikely to trigger risk control, but you still need to understand and evaluate the risk yourself.\n\nCockpit Tools desktop uses \"Local Gateway + Official Language Server Protocol\" (StartCascade / SendUserCascadeMessage / GetCascadeTrajectory / DeleteCascadeTrajectory). The link is consistent with the official client, with theoretically lower risk and better stability.\nIt also supports batch account verification (such as 403 scenarios), wake-up task management, and the latest Gemini 3.1 Pro related models.\n\nNew wake-up capabilities require Cockpit Tools desktop v0.9.0 or later.\nClick the button below to open the Cockpit Tools download page (latest version recommended).\n\nWe recommend switching to Cockpit Tools desktop.",
+          "actionLabel": "Download latest"
+        },
+        "ko": {
+          "title": "⚠️ Wake-up Feature Risk Notice",
+          "summary": "Plugin wake-up has risk-control risk (Cloud Code direct calls). We recommend switching to Cockpit Tools desktop.",
+          "content": "Plugin wake-up has risk-control risk (Cloud Code direct calls).\nWe recommend using Cockpit Tools desktop first (same link path as the official client).\n\nPlugin wake-up currently uses Cloud Code direct calls for conversation wake-up. Google has recently tightened risk controls for this behavior. In theory, low-frequency wake-up is unlikely to trigger risk control, but you still need to understand and evaluate the risk yourself.\n\nCockpit Tools desktop uses \"Local Gateway + Official Language Server Protocol\" (StartCascade / SendUserCascadeMessage / GetCascadeTrajectory / DeleteCascadeTrajectory). The link is consistent with the official client, with theoretically lower risk and better stability.\nIt also supports batch account verification (such as 403 scenarios), wake-up task management, and the latest Gemini 3.1 Pro related models.\n\nNew wake-up capabilities require Cockpit Tools desktop v0.9.0 or later.\nClick the button below to open the Cockpit Tools download page (latest version recommended).\n\nWe recommend switching to Cockpit Tools desktop.",
+          "actionLabel": "Download latest"
+        },
+        "fr": {
+          "title": "⚠️ Wake-up Feature Risk Notice",
+          "summary": "Plugin wake-up has risk-control risk (Cloud Code direct calls). We recommend switching to Cockpit Tools desktop.",
+          "content": "Plugin wake-up has risk-control risk (Cloud Code direct calls).\nWe recommend using Cockpit Tools desktop first (same link path as the official client).\n\nPlugin wake-up currently uses Cloud Code direct calls for conversation wake-up. Google has recently tightened risk controls for this behavior. In theory, low-frequency wake-up is unlikely to trigger risk control, but you still need to understand and evaluate the risk yourself.\n\nCockpit Tools desktop uses \"Local Gateway + Official Language Server Protocol\" (StartCascade / SendUserCascadeMessage / GetCascadeTrajectory / DeleteCascadeTrajectory). The link is consistent with the official client, with theoretically lower risk and better stability.\nIt also supports batch account verification (such as 403 scenarios), wake-up task management, and the latest Gemini 3.1 Pro related models.\n\nNew wake-up capabilities require Cockpit Tools desktop v0.9.0 or later.\nClick the button below to open the Cockpit Tools download page (latest version recommended).\n\nWe recommend switching to Cockpit Tools desktop.",
+          "actionLabel": "Download latest"
+        },
+        "de": {
+          "title": "⚠️ Wake-up Feature Risk Notice",
+          "summary": "Plugin wake-up has risk-control risk (Cloud Code direct calls). We recommend switching to Cockpit Tools desktop.",
+          "content": "Plugin wake-up has risk-control risk (Cloud Code direct calls).\nWe recommend using Cockpit Tools desktop first (same link path as the official client).\n\nPlugin wake-up currently uses Cloud Code direct calls for conversation wake-up. Google has recently tightened risk controls for this behavior. In theory, low-frequency wake-up is unlikely to trigger risk control, but you still need to understand and evaluate the risk yourself.\n\nCockpit Tools desktop uses \"Local Gateway + Official Language Server Protocol\" (StartCascade / SendUserCascadeMessage / GetCascadeTrajectory / DeleteCascadeTrajectory). The link is consistent with the official client, with theoretically lower risk and better stability.\nIt also supports batch account verification (such as 403 scenarios), wake-up task management, and the latest Gemini 3.1 Pro related models.\n\nNew wake-up capabilities require Cockpit Tools desktop v0.9.0 or later.\nClick the button below to open the Cockpit Tools download page (latest version recommended).\n\nWe recommend switching to Cockpit Tools desktop.",
+          "actionLabel": "Download latest"
+        },
+        "es": {
+          "title": "⚠️ Wake-up Feature Risk Notice",
+          "summary": "Plugin wake-up has risk-control risk (Cloud Code direct calls). We recommend switching to Cockpit Tools desktop.",
+          "content": "Plugin wake-up has risk-control risk (Cloud Code direct calls).\nWe recommend using Cockpit Tools desktop first (same link path as the official client).\n\nPlugin wake-up currently uses Cloud Code direct calls for conversation wake-up. Google has recently tightened risk controls for this behavior. In theory, low-frequency wake-up is unlikely to trigger risk control, but you still need to understand and evaluate the risk yourself.\n\nCockpit Tools desktop uses \"Local Gateway + Official Language Server Protocol\" (StartCascade / SendUserCascadeMessage / GetCascadeTrajectory / DeleteCascadeTrajectory). The link is consistent with the official client, with theoretically lower risk and better stability.\nIt also supports batch account verification (such as 403 scenarios), wake-up task management, and the latest Gemini 3.1 Pro related models.\n\nNew wake-up capabilities require Cockpit Tools desktop v0.9.0 or later.\nClick the button below to open the Cockpit Tools download page (latest version recommended).\n\nWe recommend switching to Cockpit Tools desktop.",
+          "actionLabel": "Download latest"
+        },
+        "it": {
+          "title": "⚠️ Wake-up Feature Risk Notice",
+          "summary": "Plugin wake-up has risk-control risk (Cloud Code direct calls). We recommend switching to Cockpit Tools desktop.",
+          "content": "Plugin wake-up has risk-control risk (Cloud Code direct calls).\nWe recommend using Cockpit Tools desktop first (same link path as the official client).\n\nPlugin wake-up currently uses Cloud Code direct calls for conversation wake-up. Google has recently tightened risk controls for this behavior. In theory, low-frequency wake-up is unlikely to trigger risk control, but you still need to understand and evaluate the risk yourself.\n\nCockpit Tools desktop uses \"Local Gateway + Official Language Server Protocol\" (StartCascade / SendUserCascadeMessage / GetCascadeTrajectory / DeleteCascadeTrajectory). The link is consistent with the official client, with theoretically lower risk and better stability.\nIt also supports batch account verification (such as 403 scenarios), wake-up task management, and the latest Gemini 3.1 Pro related models.\n\nNew wake-up capabilities require Cockpit Tools desktop v0.9.0 or later.\nClick the button below to open the Cockpit Tools download page (latest version recommended).\n\nWe recommend switching to Cockpit Tools desktop.",
+          "actionLabel": "Download latest"
+        },
+        "ru": {
+          "title": "⚠️ Wake-up Feature Risk Notice",
+          "summary": "Plugin wake-up has risk-control risk (Cloud Code direct calls). We recommend switching to Cockpit Tools desktop.",
+          "content": "Plugin wake-up has risk-control risk (Cloud Code direct calls).\nWe recommend using Cockpit Tools desktop first (same link path as the official client).\n\nPlugin wake-up currently uses Cloud Code direct calls for conversation wake-up. Google has recently tightened risk controls for this behavior. In theory, low-frequency wake-up is unlikely to trigger risk control, but you still need to understand and evaluate the risk yourself.\n\nCockpit Tools desktop uses \"Local Gateway + Official Language Server Protocol\" (StartCascade / SendUserCascadeMessage / GetCascadeTrajectory / DeleteCascadeTrajectory). The link is consistent with the official client, with theoretically lower risk and better stability.\nIt also supports batch account verification (such as 403 scenarios), wake-up task management, and the latest Gemini 3.1 Pro related models.\n\nNew wake-up capabilities require Cockpit Tools desktop v0.9.0 or later.\nClick the button below to open the Cockpit Tools download page (latest version recommended).\n\nWe recommend switching to Cockpit Tools desktop.",
+          "actionLabel": "Download latest"
+        },
+        "pt-br": {
+          "title": "⚠️ Wake-up Feature Risk Notice",
+          "summary": "Plugin wake-up has risk-control risk (Cloud Code direct calls). We recommend switching to Cockpit Tools desktop.",
+          "content": "Plugin wake-up has risk-control risk (Cloud Code direct calls).\nWe recommend using Cockpit Tools desktop first (same link path as the official client).\n\nPlugin wake-up currently uses Cloud Code direct calls for conversation wake-up. Google has recently tightened risk controls for this behavior. In theory, low-frequency wake-up is unlikely to trigger risk control, but you still need to understand and evaluate the risk yourself.\n\nCockpit Tools desktop uses \"Local Gateway + Official Language Server Protocol\" (StartCascade / SendUserCascadeMessage / GetCascadeTrajectory / DeleteCascadeTrajectory). The link is consistent with the official client, with theoretically lower risk and better stability.\nIt also supports batch account verification (such as 403 scenarios), wake-up task management, and the latest Gemini 3.1 Pro related models.\n\nNew wake-up capabilities require Cockpit Tools desktop v0.9.0 or later.\nClick the button below to open the Cockpit Tools download page (latest version recommended).\n\nWe recommend switching to Cockpit Tools desktop.",
+          "actionLabel": "Download latest"
+        },
+        "tr": {
+          "title": "⚠️ Wake-up Feature Risk Notice",
+          "summary": "Plugin wake-up has risk-control risk (Cloud Code direct calls). We recommend switching to Cockpit Tools desktop.",
+          "content": "Plugin wake-up has risk-control risk (Cloud Code direct calls).\nWe recommend using Cockpit Tools desktop first (same link path as the official client).\n\nPlugin wake-up currently uses Cloud Code direct calls for conversation wake-up. Google has recently tightened risk controls for this behavior. In theory, low-frequency wake-up is unlikely to trigger risk control, but you still need to understand and evaluate the risk yourself.\n\nCockpit Tools desktop uses \"Local Gateway + Official Language Server Protocol\" (StartCascade / SendUserCascadeMessage / GetCascadeTrajectory / DeleteCascadeTrajectory). The link is consistent with the official client, with theoretically lower risk and better stability.\nIt also supports batch account verification (such as 403 scenarios), wake-up task management, and the latest Gemini 3.1 Pro related models.\n\nNew wake-up capabilities require Cockpit Tools desktop v0.9.0 or later.\nClick the button below to open the Cockpit Tools download page (latest version recommended).\n\nWe recommend switching to Cockpit Tools desktop.",
+          "actionLabel": "Download latest"
+        },
+        "pl": {
+          "title": "⚠️ Wake-up Feature Risk Notice",
+          "summary": "Plugin wake-up has risk-control risk (Cloud Code direct calls). We recommend switching to Cockpit Tools desktop.",
+          "content": "Plugin wake-up has risk-control risk (Cloud Code direct calls).\nWe recommend using Cockpit Tools desktop first (same link path as the official client).\n\nPlugin wake-up currently uses Cloud Code direct calls for conversation wake-up. Google has recently tightened risk controls for this behavior. In theory, low-frequency wake-up is unlikely to trigger risk control, but you still need to understand and evaluate the risk yourself.\n\nCockpit Tools desktop uses \"Local Gateway + Official Language Server Protocol\" (StartCascade / SendUserCascadeMessage / GetCascadeTrajectory / DeleteCascadeTrajectory). The link is consistent with the official client, with theoretically lower risk and better stability.\nIt also supports batch account verification (such as 403 scenarios), wake-up task management, and the latest Gemini 3.1 Pro related models.\n\nNew wake-up capabilities require Cockpit Tools desktop v0.9.0 or later.\nClick the button below to open the Cockpit Tools download page (latest version recommended).\n\nWe recommend switching to Cockpit Tools desktop.",
+          "actionLabel": "Download latest"
+        },
+        "cs": {
+          "title": "⚠️ Wake-up Feature Risk Notice",
+          "summary": "Plugin wake-up has risk-control risk (Cloud Code direct calls). We recommend switching to Cockpit Tools desktop.",
+          "content": "Plugin wake-up has risk-control risk (Cloud Code direct calls).\nWe recommend using Cockpit Tools desktop first (same link path as the official client).\n\nPlugin wake-up currently uses Cloud Code direct calls for conversation wake-up. Google has recently tightened risk controls for this behavior. In theory, low-frequency wake-up is unlikely to trigger risk control, but you still need to understand and evaluate the risk yourself.\n\nCockpit Tools desktop uses \"Local Gateway + Official Language Server Protocol\" (StartCascade / SendUserCascadeMessage / GetCascadeTrajectory / DeleteCascadeTrajectory). The link is consistent with the official client, with theoretically lower risk and better stability.\nIt also supports batch account verification (such as 403 scenarios), wake-up task management, and the latest Gemini 3.1 Pro related models.\n\nNew wake-up capabilities require Cockpit Tools desktop v0.9.0 or later.\nClick the button below to open the Cockpit Tools download page (latest version recommended).\n\nWe recommend switching to Cockpit Tools desktop.",
+          "actionLabel": "Download latest"
+        },
+        "vi": {
+          "title": "⚠️ Wake-up Feature Risk Notice",
+          "summary": "Plugin wake-up has risk-control risk (Cloud Code direct calls). We recommend switching to Cockpit Tools desktop.",
+          "content": "Plugin wake-up has risk-control risk (Cloud Code direct calls).\nWe recommend using Cockpit Tools desktop first (same link path as the official client).\n\nPlugin wake-up currently uses Cloud Code direct calls for conversation wake-up. Google has recently tightened risk controls for this behavior. In theory, low-frequency wake-up is unlikely to trigger risk control, but you still need to understand and evaluate the risk yourself.\n\nCockpit Tools desktop uses \"Local Gateway + Official Language Server Protocol\" (StartCascade / SendUserCascadeMessage / GetCascadeTrajectory / DeleteCascadeTrajectory). The link is consistent with the official client, with theoretically lower risk and better stability.\nIt also supports batch account verification (such as 403 scenarios), wake-up task management, and the latest Gemini 3.1 Pro related models.\n\nNew wake-up capabilities require Cockpit Tools desktop v0.9.0 or later.\nClick the button below to open the Cockpit Tools download page (latest version recommended).\n\nWe recommend switching to Cockpit Tools desktop.",
+          "actionLabel": "Download latest"
+        },
+        "ar": {
+          "title": "⚠️ Wake-up Feature Risk Notice",
+          "summary": "Plugin wake-up has risk-control risk (Cloud Code direct calls). We recommend switching to Cockpit Tools desktop.",
+          "content": "Plugin wake-up has risk-control risk (Cloud Code direct calls).\nWe recommend using Cockpit Tools desktop first (same link path as the official client).\n\nPlugin wake-up currently uses Cloud Code direct calls for conversation wake-up. Google has recently tightened risk controls for this behavior. In theory, low-frequency wake-up is unlikely to trigger risk control, but you still need to understand and evaluate the risk yourself.\n\nCockpit Tools desktop uses \"Local Gateway + Official Language Server Protocol\" (StartCascade / SendUserCascadeMessage / GetCascadeTrajectory / DeleteCascadeTrajectory). The link is consistent with the official client, with theoretically lower risk and better stability.\nIt also supports batch account verification (such as 403 scenarios), wake-up task management, and the latest Gemini 3.1 Pro related models.\n\nNew wake-up capabilities require Cockpit Tools desktop v0.9.0 or later.\nClick the button below to open the Cockpit Tools download page (latest version recommended).\n\nWe recommend switching to Cockpit Tools desktop.",
+          "actionLabel": "Download latest"
+        }
+      },
+      "targetVersions": ">=1.6.0",
+      "showOnce": true,
+      "popup": true,
+      "createdAt": "2026-02-26T00:00:00Z",
+      "expiresAt": null,
+      "action": {
+        "type": "url",
+        "target": "https://github.com/jlcodes99/cockpit-tools/releases/latest",
+        "label": "Download latest"
+      }
+    },
+    {
+      "id": "ann-2026-02-cockpit-tools-multiplatform-v084",
+      "type": "info",
+      "priority": 320,
+      "title": "🛠️ Cockpit Tools v0.8.4",
+      "summary": "A multi-platform AI IDE desktop tool. Currently supports Antigravity, Codex, GitHub Copilot, Windsurf, and Kiro. Need another platform? Contact the author.",
+      "content": "🛠️ Cockpit Tools v0.8.4\n\nA multi-platform AI IDE desktop tool.\n\n✅ Currently supported platforms\n· Antigravity\n· Codex\n· GitHub Copilot\n· Windsurf\n· Kiro\n\n📊 Unified dashboard\n· Multi-platform account status overview\n· Quota status / reset time / visual progress\n· Quick refresh and wakeup entry\n\n🧩 Multi-instance workflow\n· Run multiple instances in parallel\n· Bind different accounts per instance\n· Custom instance directory & launch args\n\n💡 Need another platform?\nOpen an issue to contact the author:\nhttps://github.com/jlcodes99/cockpit-tools/issues\n\n🔗 Project: https://github.com/jlcodes99/cockpit-tools\n📥 Download: https://github.com/jlcodes99/cockpit-tools/releases/latest",
+      "action": {
+        "type": "url",
+        "target": "https://github.com/jlcodes99/cockpit-tools/releases/latest",
+        "label": "Download latest"
+      },
+      "locales": {
+        "zh-cn": {
+          "title": "🛠️ Cockpit Tools v0.8.4：多平台支持",
+          "summary": "通用多平台 AI IDE 桌面工具，目前已支持 Antigravity、Codex、GitHub Copilot、Windsurf、Kiro；如需新增平台支持，欢迎联系作者。",
+          "content": "🛠️ Cockpit Tools v0.8.4\n\n一款通用的多平台 AI IDE 桌面工具。\n\n✅ 当前已支持平台\n· Antigravity\n· Codex\n· GitHub Copilot\n· Windsurf\n· Kiro\n\n📊 统一仪表盘\n· 多平台账号状态总览\n· 配额状态 / 重置时间 / 进度可视化\n· 一键刷新与唤醒入口\n\n🧩 多开实例能力\n· 多实例并行运行\n· 实例级账号绑定，互不影响\n· 支持自定义实例目录与启动参数\n\n💡 想支持更多平台？\n欢迎通过 Issue 联系作者：\nhttps://github.com/jlcodes99/cockpit-tools/issues\n\n🔗 项目地址：https://github.com/jlcodes99/cockpit-tools\n📥 下载地址：https://github.com/jlcodes99/cockpit-tools/releases/latest",
+          "actionLabel": "下载最新版"
+        },
+        "zh-tw": {
+          "title": "🛠️ Cockpit Tools v0.8.4：多平台支援",
+          "summary": "通用多平台 AI IDE 桌面工具，目前已支援 Antigravity、Codex、GitHub Copilot、Windsurf、Kiro；如需新增平台支援，歡迎聯絡作者。",
+          "content": "🛠️ Cockpit Tools v0.8.4\n\n一款通用的多平台 AI IDE 桌面工具。\n\n✅ 目前已支援平台\n· Antigravity\n· Codex\n· GitHub Copilot\n· Windsurf\n· Kiro\n\n📊 統一儀表板\n· 多平台帳號狀態總覽\n· 配額狀態 / 重置時間 / 進度視覺化\n· 一鍵重新整理與喚醒入口\n\n🧩 多開實例能力\n· 多實例並行運行\n· 實例級帳號綁定，互不影響\n· 支援自訂實例目錄與啟動參數\n\n💡 想支援更多平台？\n歡迎透過 Issue 聯絡作者：\nhttps://github.com/jlcodes99/cockpit-tools/issues\n\n🔗 專案地址：https://github.com/jlcodes99/cockpit-tools\n📥 下載地址：https://github.com/jlcodes99/cockpit-tools/releases/latest",
+          "actionLabel": "下載最新版"
+        }
+      },
+      "targetVersions": "*",
+      "showOnce": true,
+      "popup": true,
+      "createdAt": "2026-02-19T00:00:00Z",
+      "expiresAt": null
+    },
+    {
+      "id": "ann-2026-01-23-v2-0-0",
+      "type": "feature",
+      "priority": 200,
+      "title": "🚀 2.0.0 重磅更新：账号管理全面升级",
+      "summary": "新增侧边栏账号树、独立账号总览页面，与 Cockpit Tools 深度联动支持快捷切号与批量导入。",
+      "content": "✨ 2.0.0 版本更新亮点\n\n⚓ 账号总览与树视图\n新增独立总览页面与侧边栏三层架构树视图，支持搜索、筛选、批量管理与导出账号。\n\n⚡ Cockpit Tools 双向联动\n实现与 Cockpit Tools 深度集成，支持在插件中联动客户端快速切号，并提供实时强化的批量导入流程。\n\n💾 配额本地缓存\n新增配额文件缓存，显著提升加载速度，支持在离线环境下查看最近的配额状态。\n\n🔄 离线配置同步\n通过共享存储与 Cockpit Tools 自动同步语言、主题等设置，实现配置的无感迁移与统一。",
+      "action": {
+        "type": "command",
+        "target": "workbench.extensions.search",
+        "arguments": [
+          "@id:jlcodes.antigravity-cockpit"
+        ],
+        "label": "Upgrade"
+      },
+      "actionOverrides": [
+        {
+          "targetVersions": ">=2.0.0",
+          "action": null
+        }
+      ],
+      "locales": {
+        "zh-cn": {
+          "title": "🚀 2.0.0 重磅更新：账号管理全面升级",
+          "summary": "新增侧边栏账号树、独立账号总览页面，与 Cockpit Tools 深度联动支持快捷切号与批量导入。",
+          "content": "✨ 2.0.0 版本更新亮点\n\n⚓ 账号总览与树视图\n新增独立总览页面与侧边栏三级架构树视图，支持搜索、筛选、批量管理与导出账号。\n\n⚡ Cockpit Tools 双向联动\n实现与 Cockpit Tools 深度集成，支持在插件中联动客户端快速切号，并提供实时强化的批量导入流程。\n\n💾 配额本地缓存\n新增配额文件缓存，显著提升加载速度，支持在离线环境下查看最近的配额状态。\n\n🔄 离线配置同步\n通过共享存储与 Cockpit Tools 自动同步语言、主题等设置，实现配置的无感迁移与统一。",
+          "actionLabel": "去升级"
+        },
+        "en": {
+          "title": "🚀 2.0.0 Major Update: Account Management Evolved",
+          "summary": "New Account Overview page, Sidebar Tree View, and seamless integration with Cockpit Tools.",
+          "content": "✨ 2.0.0 Update Highlights\n\n⚓ Account Overview & Tree View\nIndependent overview page and 3-level sidebar tree for searching, filtering, batch management, and exporting accounts.\n\n⚡ Cockpit Tools Integration\nDeep integration with Cockpit Tools for one-click account switching and enhanced batch import with real-time progress.\n\n💾 Local Quota Cache\nFile-based caching for lightning-fast loading and offline availability of quota status.\n\n🔄 Offline Config Sync\nAutomatic synchronization of language and theme settings with Cockpit Tools via shared storage.",
+          "actionLabel": "Upgrade"
+        }
+      },
+      "targetVersions": "*",
+      "showOnce": true,
+      "popup": true,
+      "createdAt": "2026-01-23T00:00:00Z",
+      "expiresAt": null
+    },
+    {
+      "id": "ann-2026-01-community-groups-v1",
+      "type": "info",
+      "priority": 130,
+      "title": "💬 加入交流群",
+      "summary": "微信群5个群都扫码上限了，欢迎加入QQ交流群",
+      "content": "📢 近期优化\n建议更新到最新版本：修复账户时序问题 · 账户切换完全跟随本地客户端\n\n💬 技术交流群\n微信群已满员，目前请通过 QQ 群加入交流。\n\n扫码加入 👇",
+      "images": [
+        {
+          "url": "https://raw.githubusercontent.com/jlcodes99/vscode-antigravity-cockpit/main/docs/qq_group_20260404_183718.png",
+          "label": "QQ群"
+        }
+      ],
+      "locales": {
+        "zh-cn": {
+          "title": "💬 加入交流群",
+          "summary": "微信群5个群都扫码上限了，欢迎加入QQ交流群",
+          "content": "📢 近期优化\n建议更新到最新版本：修复账户时序问题 · 账户切换完全跟随本地客户端\n\n💬 技术交流群\n微信群已满员，目前请通过 QQ 群加入交流。\n\n扫码加入 👇"
+        }
+      },
+      "targetVersions": "*",
+      "targetLanguages": [
+        "zh-cn"
+      ],
+      "showOnce": true,
+      "popup": true,
+      "createdAt": "2026-01-07T00:00:00Z",
+      "expiresAt": null
+    },
+    {
+      "id": "ann-2025-12-welcome",
+      "type": "info",
+      "priority": 50,
+      "title": "👋 Welcome to Antigravity Cockpit",
+      "summary": "Thank you for using this extension!",
+      "content": "Thank you for choosing Antigravity Cockpit!\n\nThis extension helps you:\n• Monitor AI model quota usage in real-time\n• Automatically group multiple models\n• Customize model names and ordering\n• Set quota warning notifications\n\nFeedback is always welcome!",
+      "action": {
+        "type": "url",
+        "target": "https://github.com/jlcodes99/vscode-antigravity-cockpit/issues",
+        "label": "Feedback"
+      },
+      "locales": {
+        "zh-cn": {
+          "title": "👋 欢迎使用 Antigravity Cockpit",
+          "summary": "感谢您使用本插件，祝您使用愉快！",
+          "content": "感谢您选择 Antigravity Cockpit！\n\n本插件可以帮助您：\n• 实时监控 AI 模型配额使用情况\n• 自动分组管理多个模型\n• 自定义模型名称和排序\n• 设置配额预警通知\n\n如有任何问题或建议，欢迎反馈！",
+          "actionLabel": "反馈建议"
+        },
+        "zh-tw": {
+          "title": "👋 歡迎使用 Antigravity Cockpit",
+          "summary": "感謝您使用本插件，祝您使用愉快！",
+          "content": "感謝您選擇 Antigravity Cockpit！\n\n本插件可以幫助您：\n• 實時監控 AI 模型配额使用情况\n• 自動分組管理多個模型\n• 自定義模型名稱和排序\n• 設置配額預警通知\n\n如有任何問題或建議，歡迎反饋！",
+          "actionLabel": "反饋建議"
+        },
+        "ja": {
+          "title": "👋 Antigravity Cockpitへようこそ",
+          "summary": "この拡張機能をご利用いただきありがとうございます！",
+          "content": "Antigravity Cockpitをお選びいただきありがとうございます！\n\nこの拡張機能は以下のことに役立ちます：\n• AIモデルのクォータ使用状況をリアルタイムで監視\n• 複数のモデルを自动的にグループ化\n• モデル名と順序のカスタマイズ\n• クォータ警告通知の設定\n\nフィードバックはいつでも大歓迎です！",
+          "actionLabel": "フィードバック"
+        },
+        "ko": {
+          "title": "👋 Antigravity Cockpit에 오신 것을 환영합니다",
+          "summary": "이 확장 프로그램을 사용해 주셔서 감사합니다!",
+          "content": "Antigravity Cockpit을 선택해 주셔서 감사합니다!\n\n이 확장 프로그램은 다음을 도와줍니다:\n• AI 모델 할당량 사용량을 실시간으로 모니터링\n• 여러 모델을 자동으로 그룹화\n• 모델 이름 및 순서 사용자 정의\n• 할당량 경고 알림 설정\n\n피드백은 언제나 환영합니다!",
+          "actionLabel": "피드백"
+        },
+        "fr": {
+          "title": "👋 Bienvenue sur Antigravity Cockpit",
+          "summary": "Merci d'utiliser cette extension !",
+          "content": "Merci d'avoir choisi Antigravity Cockpit !\n\nCette extension vous aide à :\n• Surveiller l'utilisation du quota des modèles IA en temps réel\n• Grouper automatiquement plusieurs modèles\n• Personnaliser les noms et l'ordre des modèles\n• Définir des notifications d'avertissement de quota\n\nLes retours sont toujours les bienvenus !",
+          "actionLabel": "Commentaires"
+        },
+        "de": {
+          "title": "👋 Willkommen bei Antigravity Cockpit",
+          "summary": "Vielen Dank für die Nutzung dieser Erweiterung!",
+          "content": "Vielen Dank, dass Sie sich für Antigravity Cockpit entschieden haben!\n\nDiese Erweiterung hilft Ihnen bei:\n• Echtzeit-Überwachung der Quoten-Nutzung von KI-Modellen\n• Automatischer Gruppierung mehrerer Modelle\n• Anpassung von Modellnamen und Sortierung\n• Einstellung von Quoten-Warnbenachrichtigungen\n\nFeedback ist immer willkommen!",
+          "actionLabel": "Feedback"
+        },
+        "es": {
+          "title": "👋 Bienvenido a Antigravity Cockpit",
+          "summary": "¡Gracias por usar esta extensión!",
+          "content": "¡Gracias por elegir Antigravity Cockpit!\n\nEsta extensión le ayuda a:\n• Monitorear el uso de cuota de modelos de IA en tiempo real\n• Agrupar automáticamente múltiples modelos\n• Personalizar nombres y orden de modelos\n• Configurar notificaciones de advertencia de cuota\n\n¡Sus comentarios son siempre bienvenidos!",
+          "actionLabel": "Comentarios"
+        },
+        "it": {
+          "title": "👋 Benvenuto in Antigravity Cockpit",
+          "summary": "Grazie per aver usato questa estensione!",
+          "content": "Grazie per aver scelto Antigravity Cockpit!\n\nQuesta estensione ti aiuta a:\n• Monitorare l'uso della quota dei modelli IA in tempo reale\n• Raggruppare automaticamente più modelli\n• Personalizzare i nomi e l'ordine dei modelli\n• Impostare notifiche di avviso per la quota\n\nI feedback sono sempre benvenuti!",
+          "actionLabel": "Feedback"
+        },
+        "ru": {
+          "title": "👋 Добро пожаловать в Antigravity Cockpit",
+          "summary": "Спасибо за использование этого расширения!",
+          "content": "Спасибо, что выбрали Antigravity Cockpit!\n\nЭто расширение поможет вам:\n• Отслеживать использование квот ИИ-моделей в реальном времени\n• Автоматически группировать несколько моделей\n• Настраивать названия и порядок моделей\n• Устанавливать уведомления о достижении лимитов квот\n\nМы всегда рады вашим отзывам!",
+          "actionLabel": "Обратная связь"
+        },
+        "pt-br": {
+          "title": "👋 Bem-vindo ao Antigravity Cockpit",
+          "summary": "Obrigado por usar esta extensão!",
+          "content": "Obrigado por escolher o Antigravity Cockpit!\n\nEsta extensão ajuda você a:\n• Monitorar o uso de cota de modelos de IA em tempo real\n• Agrupar automaticamente vários modelos\n• Personalizar nomes e ordenação de modelos\n• Definir notificações de aviso de cota\n\nSeu feedback é sempre bem-vindo!",
+          "actionLabel": "Feedback"
+        },
+        "tr": {
+          "title": "👋 Antigravity Cockpit'e Hoş Geldiniz",
+          "summary": "Bu uzantıyı kullandığınız için teşekkür ederiz!",
+          "content": "Antigravity Cockpit'i seçtiğiniz için teşekkürler!\n\nBu uzantı şunları yapmanıza yardımcı olur:\n• Yapay zeka modeli kota kullanımını gerçek zamanlı izleyin\n• Birden fazla modeli otomatik olarak gruplandırın\n• Model adlarını ve sıralamasını özelleştirin\n• Kota uyarı bildirimlerini ayarlayın\n\nGeri bildirimlerinizi her zaman bekleriz!",
+          "actionLabel": "Geri Bildirim"
+        },
+        "pl": {
+          "title": "👋 Witamy w Antigravity Cockpit",
+          "summary": "Dziękujemy za korzystanie z tego rozszerzenia!",
+          "content": "Dziękujemy za wybranie Antigravity Cockpit!\n\nTo rozszerzenie pomaga Ci:\n• Monitorować zużycie limitów modeli AI w czasie rzeczywistym\n• Automatycznie grupować wiele modeli\n• Dostosowywać nazwy i kolejność modeli\n• Ustawiać powiadomienia o ostrzeżeniach dotyczących limitów\n\nOpinie są zawsze mile widziane!",
+          "actionLabel": "Opinie"
+        },
+        "cs": {
+          "title": "👋 Vítejte v Antigravity Cockpit",
+          "summary": "Děkujeme, že používáte toto rozšíření!",
+          "content": "Děkujeme, že jste si vybrali Antigravity Cockpit!\n\nToto rozšíření vám pomůže:\n• Sledovat využití kvót modelů AI v reálném čase\n• Automaticky seskupovat více modelů\n• Přizpůsobit názvy a pořadí modelů\n• Nastavit upozornění na kvóty\n\nZpětná vazba je vždy vítána!",
+          "actionLabel": "Zpětná vazba"
+        }
+      },
+      "targetVersions": "*",
+      "showOnce": true,
+      "popup": false,
+      "createdAt": "2025-12-01T00:00:00Z",
+      "expiresAt": null
+    }
+  ]
+}

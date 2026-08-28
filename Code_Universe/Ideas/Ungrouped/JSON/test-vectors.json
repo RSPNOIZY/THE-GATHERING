@@ -1,0 +1,324 @@
+{
+  "test_vectors": {
+    "description": "Test vectors for Consent Gateway /check endpoint",
+    "version": "1.1",
+
+    "setup": {
+      "voice_profiles": [
+        {
+          "id": "rsp-001",
+          "creator_id": "creator-001",
+          "display_name": "RSP_001",
+          "enrolled_at": "2024-06-15T00:00:00Z"
+        },
+        {
+          "id": "voice-002",
+          "creator_id": "creator-002",
+          "display_name": "Test Voice",
+          "enrolled_at": "2024-07-01T00:00:00Z"
+        }
+      ],
+      "consents": [
+        {
+          "id": "consent-001",
+          "voice_id": "rsp-001",
+          "consent_type": "recording",
+          "scope": null,
+          "granted_at": "2024-06-16T00:00:00Z",
+          "expires_at": null,
+          "revoked_at": null
+        },
+        {
+          "id": "consent-002",
+          "voice_id": "rsp-001",
+          "consent_type": "model_training",
+          "scope": null,
+          "granted_at": "2024-06-16T00:00:00Z",
+          "expires_at": null,
+          "revoked_at": null
+        },
+        {
+          "id": "consent-003",
+          "voice_id": "rsp-001",
+          "consent_type": "commercial",
+          "scope": {
+            "categories": ["audiobook", "podcast", "documentary", "education"],
+            "territories": ["US", "CA", "GB"]
+          },
+          "granted_at": "2024-06-16T00:00:00Z",
+          "expires_at": "2028-01-15T00:00:00Z",
+          "revoked_at": null
+        },
+        {
+          "id": "consent-004",
+          "voice_id": "voice-002",
+          "consent_type": "recording",
+          "scope": null,
+          "granted_at": "2024-07-01T00:00:00Z",
+          "expires_at": "2024-12-31T23:59:59Z",
+          "revoked_at": null,
+          "comment": "Expired consent for testing"
+        },
+        {
+          "id": "consent-005",
+          "voice_id": "voice-002",
+          "consent_type": "synthesis",
+          "scope": null,
+          "granted_at": "2024-07-01T00:00:00Z",
+          "expires_at": null,
+          "revoked_at": "2025-01-15T00:00:00Z",
+          "revoked_reason": "Creator requested revocation"
+        }
+      ]
+    },
+
+    "tests": [
+      {
+        "name": "1. Active consent - GRANTED",
+        "request": {
+          "method": "POST",
+          "path": "/consent/rsp-001/check",
+          "body": {
+            "consent_type": "recording",
+            "requestor": "test-client"
+          }
+        },
+        "expected": {
+          "result": "GRANTED",
+          "reason_contains": "active"
+        }
+      },
+      {
+        "name": "2. Scope check - category allowed",
+        "request": {
+          "method": "POST",
+          "path": "/consent/rsp-001/check",
+          "body": {
+            "consent_type": "commercial",
+            "category": "audiobook",
+            "territory": "US",
+            "requestor": "test-client"
+          }
+        },
+        "expected": {
+          "result": "GRANTED",
+          "scope": {
+            "categories": ["audiobook", "podcast", "documentary", "education"],
+            "territories": ["US", "CA", "GB"]
+          }
+        }
+      },
+      {
+        "name": "3. Scope check - category NOT allowed",
+        "request": {
+          "method": "POST",
+          "path": "/consent/rsp-001/check",
+          "body": {
+            "consent_type": "commercial",
+            "category": "advertising",
+            "territory": "US",
+            "requestor": "test-client"
+          }
+        },
+        "expected": {
+          "result": "DENIED",
+          "reason_contains": "not in allowed categories"
+        }
+      },
+      {
+        "name": "4. Scope check - territory NOT allowed",
+        "request": {
+          "method": "POST",
+          "path": "/consent/rsp-001/check",
+          "body": {
+            "consent_type": "commercial",
+            "category": "audiobook",
+            "territory": "JP",
+            "requestor": "test-client"
+          }
+        },
+        "expected": {
+          "result": "DENIED",
+          "reason_contains": "not in allowed territories"
+        }
+      },
+      {
+        "name": "5. Expired consent - DENIED",
+        "request": {
+          "method": "POST",
+          "path": "/consent/voice-002/check",
+          "body": {
+            "consent_type": "recording",
+            "requestor": "test-client"
+          }
+        },
+        "expected": {
+          "result": "DENIED",
+          "reason_contains": "expired"
+        },
+        "note": "Test assumes current date is after 2024-12-31"
+      },
+      {
+        "name": "6. Revoked consent - REVOKED",
+        "request": {
+          "method": "POST",
+          "path": "/consent/voice-002/check",
+          "body": {
+            "consent_type": "synthesis",
+            "requestor": "test-client"
+          }
+        },
+        "expected": {
+          "result": "REVOKED",
+          "reason_contains": "revoked"
+        }
+      },
+      {
+        "name": "7. Unknown consent type - NOT_FOUND",
+        "request": {
+          "method": "POST",
+          "path": "/consent/rsp-001/check",
+          "body": {
+            "consent_type": "synthesis",
+            "requestor": "test-client"
+          }
+        },
+        "expected": {
+          "result": "NOT_FOUND",
+          "reason_contains": "No consent record found"
+        }
+      },
+      {
+        "name": "8. Unknown voice - NOT_FOUND",
+        "request": {
+          "method": "POST",
+          "path": "/consent/unknown-voice/check",
+          "body": {
+            "consent_type": "recording",
+            "requestor": "test-client"
+          }
+        },
+        "expected": {
+          "result": "NOT_FOUND"
+        }
+      },
+      {
+        "name": "9. Duplicate grant - should return 409",
+        "request": {
+          "method": "POST",
+          "path": "/consent/rsp-001/grant",
+          "headers": {
+            "X-NOIZY-Key": "{{NOIZY_API_KEY}}"
+          },
+          "body": {
+            "consent_type": "recording"
+          }
+        },
+        "expected": {
+          "status": 409,
+          "error_contains": "already exists"
+        }
+      },
+      {
+        "name": "10. Re-grant after revocation - should succeed",
+        "setup_action": "First revoke consent-002",
+        "request": {
+          "method": "POST",
+          "path": "/consent/rsp-001/grant",
+          "headers": {
+            "X-NOIZY-Key": "{{NOIZY_API_KEY}}"
+          },
+          "body": {
+            "consent_type": "model_training"
+          }
+        },
+        "expected": {
+          "success": true
+        },
+        "note": "Requires consent to be revoked first, then re-granted"
+      },
+      {
+        "name": "11. Revoke already-revoked consent - should return 409",
+        "request": {
+          "method": "POST",
+          "path": "/consent/voice-002/revoke",
+          "body": {
+            "consent_type": "synthesis",
+            "requestor": "test-client"
+          }
+        },
+        "expected": {
+          "status": 409,
+          "error_contains": "already revoked"
+        }
+      },
+      {
+        "name": "12. Check with missing consent_type - should return 400",
+        "request": {
+          "method": "POST",
+          "path": "/consent/rsp-001/check",
+          "body": {
+            "requestor": "test-client"
+          }
+        },
+        "expected": {
+          "status": 400,
+          "error_contains": "consent_type"
+        }
+      },
+      {
+        "name": "13. Grant without auth - should return 401",
+        "request": {
+          "method": "POST",
+          "path": "/consent/rsp-001/grant",
+          "body": {
+            "consent_type": "synthesis"
+          }
+        },
+        "expected": {
+          "status": 401,
+          "error": "Unauthorized"
+        }
+      },
+      {
+        "name": "14. Consent expiry check",
+        "request": {
+          "method": "POST",
+          "path": "/consent/rsp-001/check",
+          "body": {
+            "consent_type": "commercial",
+            "requestor": "test-client"
+          }
+        },
+        "expected": {
+          "result": "GRANTED",
+          "expires_at": "2028-01-15T00:00:00Z"
+        },
+        "note": "Response should include expires_at for time-limited consents"
+      },
+      {
+        "name": "15. Audit log created on every check",
+        "request": {
+          "method": "GET",
+          "path": "/consent/rsp-001/history"
+        },
+        "expected": {
+          "events_count_minimum": 1,
+          "events_contain_type": "QUERY"
+        }
+      }
+    ],
+
+    "invariants": [
+      "Every /check request creates an audit_log entry with event_type='QUERY'",
+      "Every /grant request creates an audit_log entry with event_type='CREATE'",
+      "Every /revoke request creates an audit_log entry with event_type='REVOKE'",
+      "Revocation sets revoked_at on existing row, does not create new consent row",
+      "Re-grant after revocation clears revoked_at and updates granted_at",
+      "Duplicate grant on active consent returns 409",
+      "Duplicate revoke on revoked consent returns 409",
+      "audit_log is append-only (no UPDATE, no DELETE)",
+      "Each audit_log entry chains to previous via previous_hash"
+    ]
+  }
+}

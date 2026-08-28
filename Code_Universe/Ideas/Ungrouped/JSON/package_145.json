@@ -1,0 +1,156 @@
+{
+  "name": "dreamchamber",
+  "displayName": "DreamChamber",
+  "description": "NOIZY.AI DreamChamber — mic input, Moonshine ASR, Claude API, Kokoro TTS, full voice-to-code pipeline",
+  "version": "1.0.0",
+  "publisher": "noizylab",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "dreamchamber",
+          "title": "DreamChamber",
+          "icon": "media/dc-icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "dreamchamber": [
+        {
+          "type": "webview",
+          "id": "dreamchamber.panel",
+          "name": "NOIZY Voice + Claude"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "dreamchamber.toggle",
+        "title": "DreamChamber: Toggle Recording"
+      },
+      {
+        "command": "dreamchamber.open",
+        "title": "DreamChamber: Open Panel"
+      },
+      {
+        "command": "dreamchamber.setMode",
+        "title": "DreamChamber: Set Mode"
+      },
+      {
+        "command": "dreamchamber.askClaude",
+        "title": "DreamChamber: Ask Claude"
+      },
+      {
+        "command": "dreamchamber.startASR",
+        "title": "DreamChamber: Start ASR Server"
+      },
+      {
+        "command": "dreamchamber.startTTS",
+        "title": "DreamChamber: Start TTS Server"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "dreamchamber.toggle",
+        "key": "ctrl+shift+space",
+        "mac": "ctrl+shift+space"
+      },
+      {
+        "command": "dreamchamber.askClaude",
+        "key": "ctrl+shift+a",
+        "mac": "ctrl+shift+a"
+      }
+    ],
+    "configuration": {
+      "title": "DreamChamber",
+      "properties": {
+        "dreamchamber.asrBackend": {
+          "type": "string",
+          "enum": [
+            "moonshine",
+            "whisper",
+            "webspeech"
+          ],
+          "default": "moonshine",
+          "description": "Speech recognition backend"
+        },
+        "dreamchamber.ttsBackend": {
+          "type": "string",
+          "enum": [
+            "kokoro",
+            "dia",
+            "system"
+          ],
+          "default": "kokoro",
+          "description": "Text-to-speech backend"
+        },
+        "dreamchamber.asrPort": {
+          "type": "number",
+          "default": 8099,
+          "description": "Local ASR server port (Moonshine/Whisper)"
+        },
+        "dreamchamber.ttsPort": {
+          "type": "number",
+          "default": 8098,
+          "description": "Local TTS server port (Kokoro/Dia)"
+        },
+        "dreamchamber.claudeModel": {
+          "type": "string",
+          "default": "claude-sonnet-4-6",
+          "description": "Claude model ID"
+        },
+        "dreamchamber.defaultMode": {
+          "type": "string",
+          "enum": [
+            "dictate",
+            "intake",
+            "claude",
+            "cowrite"
+          ],
+          "default": "dictate",
+          "description": "Default voice input mode"
+        },
+        "dreamchamber.inboxPath": {
+          "type": "string",
+          "default": "ideas/inbox.md",
+          "description": "NOIZY ideas inbox path"
+        },
+        "dreamchamber.speakResponses": {
+          "type": "boolean",
+          "default": true,
+          "description": "Speak Claude responses via TTS"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "build": "esbuild src/extension.ts --bundle --outfile=out/extension.js --external:vscode --format=cjs --platform=node --sourcemap",
+    "build:watch": "npm run build -- --watch",
+    "typecheck": "tsc -p ./ --noEmit",
+    "package": "npx @vscode/vsce package"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.36.0",
+    "node-record-lpcm16": "^1.0.1"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.85.0",
+    "@types/node": "^20.0.0",
+    "esbuild": "^0.24.0",
+    "typescript": "^5.3.0",
+    "@vscode/vsce": "^2.22.0"
+  }
+}

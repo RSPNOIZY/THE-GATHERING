@@ -1,0 +1,66 @@
+{
+  "system": "NOIZY",
+  "component": "consent-gateway",
+  "worker_name": "noizy-consent-gateway",
+  "environment": "production",
+  "sprint": "Consent Gateway Hardening + Deploy Certainty",
+  "deployed_at": "2026-03-30T18:15:00Z",
+  "git_sha": "pending-deploy",
+  "schema_version": "2.1",
+  "constitution_version": "2.0",
+  "policy_version": "2.0",
+  "gateway_version": "2.1.0",
+  "routing_contract": {
+    "public": [
+      "GET /health"
+    ],
+    "protected": [
+      "POST /verify",
+      "POST /revoke",
+      "GET /status/:creatorId",
+      "POST /v1/check-eligibility",
+      "POST /v1/revoke",
+      "GET /v1/consent/:id",
+      "GET /v1/audit/:asset_id"
+    ],
+    "auth_scheme": "X-NOIZY-Key header or Bearer token",
+    "unauthenticated_response": 401,
+    "unauthorized_response": 403,
+    "auth_failure_audited": true
+  },
+  "security_hardening": {
+    "auth_enforced": true,
+    "public_surface": ["GET /health"],
+    "protected_surface_count": 7,
+    "auth_failure_audit_trail": true,
+    "status_sanitized": true,
+    "status_exposes": ["consent_posture (counts only)", "governance metadata"],
+    "status_does_not_expose": ["raw consent records", "audit history", "internal IDs", "PII"]
+  },
+  "bindings": {
+    "d1": ["NOIZY_DB (agent-memory / 7b813205)"],
+    "kv": [],
+    "placeholder_bindings": 0
+  },
+  "decision_matrix": {
+    "checks": 12,
+    "outcomes": ["ALLOW", "HOLD", "DENY", "ESCALATE"],
+    "sla_enforcement_hours": 1,
+    "strict_mode": ["tools (deny if empty)", "usage_types (deny if empty)"]
+  },
+  "gorunfree_clauses": {
+    "founding_royalty_floor_pct": 75,
+    "noizykidz_tithe_pct": 1,
+    "consent_audit_trail": "append-only — no UPDATE or DELETE",
+    "kill_switch": "absolute — no override",
+    "revocation_sacred": true
+  },
+  "verification": {
+    "smoke_tests_passed": "18/18",
+    "webhook_infrastructure": "6 endpoints + signature verification",
+    "deploy_config_clean": true,
+    "no_placeholder_bindings": true,
+    "no_backwards_compat_ambiguity": true
+  },
+  "doctrine": "Consent enforcement is infrastructure-native. Authentication is mandatory. Authorization is explicit. Status ≠ audit history. Kill switch is absolute. Access, revocation, and status visibility are governed by protocol and verifiable deployment state, not policy text alone."
+}

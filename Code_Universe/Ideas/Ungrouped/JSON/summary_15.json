@@ -1,0 +1,25 @@
+{
+  "volume": "/Volumes/MAG 4TB",
+  "slug": "MAG_4TB_",
+  "timestamp": "20260420T080835Z",
+  "size": "2.9T",
+  "top_level_entries": 4,
+  "code": {
+    "git_dirs": 1,
+    "package_json": 1,
+    "pyproject": 0,
+    "cargo": 0,
+    "gemfile": 0,
+    "go_mod": 0
+  },
+  "secrets_pattern_count": 0,
+  "media": {
+    "wav": 60841,
+    "aif": 17976,
+    "flac": 0,
+    "logicx": 18,
+    "ptx": 0
+  },
+  "audit_path": "/Users/m2ultra/NOIZYANTHROPIC/infra/scans/scan-reports/MAG_4TB_/20260420T080835Z/audit.md",
+  "inventory_path": "/Users/m2ultra/NOIZYANTHROPIC/infra/scans/scan-reports/MAG_4TB_/20260420T080835Z/inventory.txt"
+}

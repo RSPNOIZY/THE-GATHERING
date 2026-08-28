@@ -1,0 +1,621 @@
+{
+  "name": "NOIZY Empire \u2014 Complete Webhook Orchestrator",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "noizy-empire",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "wh-trigger",
+      "name": "Empire Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        240,
+        400
+      ],
+      "webhookId": "noizy-empire-gateway"
+    },
+    {
+      "parameters": {
+        "jsCode": "const body = $input.first().json.body || $input.first().json;\nconst headers = $input.first().json.headers || {};\n\n// Detect source\nlet source = body.source || body.type?.split('.')[0] || 'unknown';\nif (headers['x-github-event']) source = 'github';\nelse if (headers['stripe-signature']) source = 'stripe';\nelse if (body.zap_name) source = 'zapier';\nelse if (body.workflow) source = 'n8n';\nelse if (body.event_type?.startsWith('consent')) source = 'consent';\nelse if (body.session_id && body.filename) source = 'voice';\nelse if (body.model || body.crew_member) source = 'dreamchamber';\n\nreturn [{ json: { ...body, _source: source, _headers: headers, _ts: new Date().toISOString() } }];"
+      },
+      "id": "router",
+      "name": "Source Detector",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        460,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json._source }}",
+                    "rightValue": "github",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ]
+              },
+              "renameOutput": true,
+              "outputKey": "github"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json._source }}",
+                    "rightValue": "stripe",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ]
+              },
+              "renameOutput": true,
+              "outputKey": "stripe"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json._source }}",
+                    "rightValue": "consent",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ]
+              },
+              "renameOutput": true,
+              "outputKey": "consent"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json._source }}",
+                    "rightValue": "voice",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ]
+              },
+              "renameOutput": true,
+              "outputKey": "voice"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json._source }}",
+                    "rightValue": "dreamchamber",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ]
+              },
+              "renameOutput": true,
+              "outputKey": "dreamchamber"
+            }
+          ]
+        },
+        "options": {
+          "fallbackOutput": "extra"
+        }
+      },
+      "id": "switch",
+      "name": "Route by Source",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3,
+      "position": [
+        680,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const e = $input.first().json;\nconst event = e._headers?.['x-github-event'] || 'unknown';\nconst actions = {\n  push: () => `${e.pusher?.name || 'unknown'} pushed ${e.commits?.length || 0} commit(s) to ${e.ref?.replace('refs/heads/','')}`,\n  pull_request: () => `PR #${e.number} ${e.action}: ${e.pull_request?.title}`,\n  release: () => `Release ${e.action}: ${e.release?.tag_name}`,\n  issues: () => `Issue #${e.issue?.number} ${e.action}: ${e.issue?.title}`,\n  workflow_run: () => `Workflow \"${e.workflow_run?.name}\" ${e.action}`\n};\nconst summary = actions[event]?.() || `GitHub: ${event}`;\nreturn [{ json: { source:'github', event, summary, repo: e.repository?.full_name, ts: e._ts } }];"
+      },
+      "id": "github-handler",
+      "name": "GitHub Handler",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        920,
+        160
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const e = $input.first().json;\nconst eventType = e.type || 'unknown';\nconst data = e.data?.object || {};\nconst summaries = {\n  'payment_intent.succeeded': `Payment: $${((data.amount||0)/100).toFixed(2)}`,\n  'invoice.paid': `Invoice paid: $${((data.amount_paid||0)/100).toFixed(2)}`,\n  'customer.subscription.created': `New sub: ${data.plan?.nickname || data.id}`,\n  'customer.subscription.deleted': `Sub cancelled: ${data.id}`,\n  'checkout.session.completed': `Checkout: $${((data.amount_total||0)/100).toFixed(2)}`\n};\nconst summary = summaries[eventType] || `Stripe: ${eventType}`;\nreturn [{ json: { source:'stripe', event:eventType, summary, livemode:e.livemode, ts:e._ts } }];"
+      },
+      "id": "stripe-handler",
+      "name": "Stripe Handler",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        920,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const e = $input.first().json;\nconst eventType = e.event_type || 'consent.update';\nconst summary = `Consent ${eventType}: actor ${e.actor_id || 'unknown'}`;\nreturn [{ json: { source:'consent', event:eventType, summary, actor_id:e.actor_id, token_id:e.token_id, action:e.action, ts:e._ts } }];"
+      },
+      "id": "consent-handler",
+      "name": "Consent Handler",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        920,
+        440
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const e = $input.first().json;\nconst eventType = e.event || 'recording.complete';\nconst summary = `Voice ${eventType}: ${e.filename || e.session_id || 'session'}`;\nreturn [{ json: { source:'voice', event:eventType, summary, session_id:e.session_id, filename:e.filename, duration:e.duration, ts:e._ts } }];"
+      },
+      "id": "voice-handler",
+      "name": "Voice Handler",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        920,
+        580
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const e = $input.first().json;\nconst eventType = e.event || 'session.update';\nconst summary = `DreamChamber ${eventType}: ${e.model || e.crew_member || 'GABRIEL'}`;\nreturn [{ json: { source:'dreamchamber', event:eventType, summary, model:e.model, crew_member:e.crew_member, session_id:e.session_id, ts:e._ts } }];"
+      },
+      "id": "dream-handler",
+      "name": "DreamChamber Handler",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        920,
+        720
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const e = $input.first().json;\nconst summary = e.summary || `Custom: ${e._source} / ${e.event || 'trigger'}`;\nreturn [{ json: { source: e._source || 'custom', event: e.event || 'trigger', summary, payload: e, ts: e._ts } }];"
+      },
+      "id": "fallback-handler",
+      "name": "Custom/Fallback Handler",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        920,
+        860
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Merge all handler outputs into single enriched event\nconst event = $input.first().json;\nreturn [{ json: {\n  ...event,\n  enriched_at: new Date().toISOString(),\n  empire_version: '17.7.0',\n  dispatch_to: ['heaven_ledger', 'gabriel_memcell']\n} }];"
+      },
+      "id": "merge",
+      "name": "Enrich Event",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1160,
+        500
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://heaven.rsp-5f3.workers.dev/webhooks/{{ $json.source }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "name": "X-N8N-Source",
+              "value": "noizy-empire-orchestrator"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": []
+        },
+        "jsonBody": "={{ JSON.stringify($json) }}",
+        "options": {
+          "timeout": 10000
+        }
+      },
+      "id": "heaven-post",
+      "name": "Post to Heaven",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [
+        1380,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "url": "http://localhost:7777/memcell/n8n:webhook:{{ $json.source }}:{{ $now.toMillis() }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "jsonBody": "={{ JSON.stringify({ value: $json }) }}",
+        "options": {
+          "timeout": 5000
+        }
+      },
+      "id": "gabriel-memcell",
+      "name": "Store in GABRIEL",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [
+        1380,
+        560
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "return [{ json: { received: true, source: $json.source, event: $json.event, summary: $json.summary, ts: $json.ts } }];"
+      },
+      "id": "respond",
+      "name": "Build Response",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1600,
+        480
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "respond-webhook",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        1800,
+        480
+      ]
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "hoursInterval": 1
+            }
+          ]
+        }
+      },
+      "id": "heartbeat-trigger",
+      "name": "Hourly Heartbeat",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1,
+      "position": [
+        240,
+        700
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://heaven.rsp-5f3.workers.dev/health",
+        "options": {
+          "timeout": 8000
+        }
+      },
+      "id": "heaven-ping",
+      "name": "Heaven Health Ping",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [
+        460,
+        700
+      ]
+    },
+    {
+      "parameters": {
+        "url": "http://localhost:7777/health",
+        "options": {
+          "timeout": 5000
+        }
+      },
+      "id": "gabriel-ping",
+      "name": "GABRIEL Health Ping",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [
+        460,
+        840
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const heaven = $input.all()[0]?.json || {};\nconst gabriel = $input.all()[1]?.json || {};\nconst ts = new Date().toISOString();\nconst allOk = heaven.status === 'LIVE' && gabriel.ok === true;\nreturn [{ json: { ts, heaven_status: heaven.status, heaven_version: heaven.version, gabriel_model: gabriel.model, gabriel_uptime: gabriel.uptime, all_ok: allOk } }];"
+      },
+      "id": "heartbeat-log",
+      "name": "Log Heartbeat",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        680,
+        770
+      ]
+    }
+  ],
+  "connections": {
+    "Empire Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Source Detector",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Source Detector": {
+      "main": [
+        [
+          {
+            "node": "Route by Source",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Route by Source": {
+      "main": [
+        [
+          {
+            "node": "GitHub Handler",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Stripe Handler",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Consent Handler",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Voice Handler",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "DreamChamber Handler",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Custom/Fallback Handler",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GitHub Handler": {
+      "main": [
+        [
+          {
+            "node": "Enrich Event",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Stripe Handler": {
+      "main": [
+        [
+          {
+            "node": "Enrich Event",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Consent Handler": {
+      "main": [
+        [
+          {
+            "node": "Enrich Event",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Voice Handler": {
+      "main": [
+        [
+          {
+            "node": "Enrich Event",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "DreamChamber Handler": {
+      "main": [
+        [
+          {
+            "node": "Enrich Event",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Custom/Fallback Handler": {
+      "main": [
+        [
+          {
+            "node": "Enrich Event",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Enrich Event": {
+      "main": [
+        [
+          {
+            "node": "Post to Heaven",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Store in GABRIEL",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Post to Heaven": {
+      "main": [
+        [
+          {
+            "node": "Build Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Store in GABRIEL": {
+      "main": [
+        [
+          {
+            "node": "Build Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build Response": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Hourly Heartbeat": {
+      "main": [
+        [
+          {
+            "node": "Heaven Health Ping",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "GABRIEL Health Ping",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Heaven Health Ping": {
+      "main": [
+        [
+          {
+            "node": "Log Heartbeat",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GABRIEL Health Ping": {
+      "main": [
+        [
+          {
+            "node": "Log Heartbeat",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  }
+}

@@ -1,0 +1,107 @@
+{
+	"version":	"1.0",
+	"mode":	2,
+	"name":	"overseas-model-3d",
+	"model_names":	{
+		"alg_model":	["tt_face_extra", "tt_facefitting1256", "tt_fsnew_base_jianying", "tt_freid"]
+	},
+	"nodes":	[{
+			"name":	"blit_0",
+			"type":	"blit",
+			"config":	{
+				"size":	{
+					"width":	360,
+					"height":	640
+				},
+				"keyMaps":	{
+					"intParam":	{
+					},
+					"floatParam":	{
+					},
+					"stringParam":	{
+					},
+					"pathParam":	{
+					}
+				}
+			}
+		}, {
+			"name":	"face_0",
+			"type":	"face",
+			"config":	{
+				"keyMaps":	{
+					"intParam":	{
+						"face_detect_ability": 3328,
+						"face_max_num":	10
+					},
+					"floatParam":	{
+					},
+					"stringParam":	{
+						"face_base_model_key": "tt_fsnew_base_jianying"
+					},
+					"pathParam":	{
+					}
+				}
+			}
+		}, {
+			"name":	"face_fitting_0",
+			"type":	"face_fitting",
+			"config":	{
+				"keyMaps":	{
+					"intParam":	{
+						"ff_max_face_num": 5,
+						"ff_modeltype":	2,
+						"ff_sort_input_mode": 1
+					},
+					"floatParam":	{
+						"ff_mouth_bs_limit":	2,
+						"ff_use_semantic_lmk":	1
+					},
+					"stringParam":	{
+					},
+					"pathParam":	{
+					}
+				}
+			}
+		}, {
+			"name":	"freid_0",
+			"type":	"freid",
+			"config":	{
+				"keyMaps":	{
+					"intParam":	{
+					},
+					"floatParam":	{
+					},
+					"stringParam":	{
+					},
+					"pathParam":	{
+					}
+				}
+			}
+		}],
+	"links":	[{
+			"fromNode":	"blit_0",
+			"fromIndex":	0,
+			"toNode":	"face_0",
+			"toIndex":	0
+		}, {
+			"fromNode":	"blit_0",
+			"fromIndex":	0,
+			"toNode":	"face_fitting_0",
+			"toIndex":	0
+		}, {
+			"fromNode":	"blit_0",
+			"fromIndex":	0,
+			"toNode":	"freid_0",
+			"toIndex":	0
+		}, {
+			"fromNode":	"face_0",
+			"fromIndex":	0,
+			"toNode":	"face_fitting_0",
+			"toIndex":	1
+		}, {
+			"fromNode":	"face_0",
+			"fromIndex":	0,
+			"toNode":	"freid_0",
+			"toIndex":	1
+		}]
+}

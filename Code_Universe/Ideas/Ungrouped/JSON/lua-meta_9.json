@@ -1,0 +1,99 @@
+[
+    {
+        "ClassName": "SeekModeScript",
+        "Super": "ScriptComponent",
+        "FilePath": "lua/SeekModeScript.lua",
+        "FileAbsPath": "/Users/teoy/Downloads/ca5eb8d453c04d69d631acf09fed09ed (1)/AmazingFeature_dehazing/lua/SeekModeScript.lua",
+        "Properties": [
+            {
+                "VarName": "debug",
+                "VarType": "Bool",
+                "Comment": ""
+            },
+            {
+                "VarName": "dehazeStrength",
+                "VarType": "Double",
+                "Comment": "",
+                "AnnoItems": [
+                    {
+                        "ItemType": "UI",
+                        "Attributes": [
+                            {
+                                "AttrType": "Range",
+                                "RawValue": "",
+                                "Values": [
+                                    0.0,
+                                    1.0
+                                ]
+                            },
+                            {
+                                "AttrType": "Slider",
+                                "RawValue": "",
+                                "Values": []
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "VarName": "inputTexture",
+                "VarType": "Texture",
+                "Comment": ""
+            },
+            {
+                "VarName": "compareImage",
+                "VarType": "Texture",
+                "Comment": ""
+            }
+        ],
+        "Methods": [
+            {
+                "FuncName": "new",
+                "Params": [],
+                "Comment": ""
+            },
+            {
+                "FuncName": "constructor",
+                "Params": [],
+                "Comment": ""
+            },
+            {
+                "FuncName": "onStart",
+                "Params": [],
+                "Comment": ""
+            },
+            {
+                "FuncName": "updateTextureWH",
+                "Params": [],
+                "Comment": ""
+            },
+            {
+                "FuncName": "setAlgoTexture",
+                "Params": [],
+                "Comment": ""
+            },
+            {
+                "FuncName": "getAlgoParams",
+                "Params": [],
+                "Comment": ""
+            },
+            {
+                "FuncName": "seekToTime",
+                "Params": [],
+                "Comment": ""
+            },
+            {
+                "FuncName": "onUpdate",
+                "Params": [],
+                "Comment": ""
+            },
+            {
+                "FuncName": "onEvent",
+                "Params": [],
+                "Comment": ""
+            }
+        ],
+        "Comment": "",
+        "ExportFiles": []
+    }
+]

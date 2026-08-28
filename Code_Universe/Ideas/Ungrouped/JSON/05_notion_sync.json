@@ -1,0 +1,38 @@
+{
+  "name": "ZAP 5: GABRIEL Events → Notion Log",
+  "nodes": [
+    {
+      "parameters": { "httpMethod": "POST", "path": "notion-sync", "options": {} },
+      "id": "wh5", "name": "Event Webhook", "type": "n8n-nodes-base.webhook", "typeVersion": 2, "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "const body = $input.first().json.body || $input.first().json;\nreturn [{ json: { title: body.event || body.title || 'GABRIEL Event', source: body.source || 'system', summary: body.summary || JSON.stringify(body).slice(0, 200), severity: body.severity || 'info', ts: body.ts || new Date().toISOString() } }];"
+      },
+      "id": "parse5", "name": "Format Event", "type": "n8n-nodes-base.code", "typeVersion": 2, "position": [460, 300]
+    },
+    {
+      "parameters": {
+        "resource": "databasePage",
+        "databaseId": "={{ $env.NOTION_EVENTS_DB_ID || '' }}",
+        "title": "={{ $json.title }}",
+        "propertiesUi": {
+          "propertyValues": [
+            { "key": "Source", "type": "richText", "textContent": "={{ $json.source }}" },
+            { "key": "Summary", "type": "richText", "textContent": "={{ $json.summary }}" },
+            { "key": "Severity", "type": "select", "selectValue": "={{ $json.severity }}" },
+            { "key": "Timestamp", "type": "richText", "textContent": "={{ $json.ts }}" }
+          ]
+        }
+      },
+      "id": "notion5", "name": "Create Notion Page", "type": "n8n-nodes-base.notion", "typeVersion": 2, "position": [680, 300],
+      "credentials": { "notionApi": { "id": "notion-cred", "name": "Notion API" } }
+    }
+  ],
+  "connections": {
+    "Event Webhook": { "main": [[{ "node": "Format Event", "type": "main", "index": 0 }]] },
+    "Format Event": { "main": [[{ "node": "Create Notion Page", "type": "main", "index": 0 }]] }
+  },
+  "settings": { "executionOrder": "v1" },
+  "tags": ["noizy", "notion", "events", "zap-mirror-5"]
+}

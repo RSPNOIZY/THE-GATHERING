@@ -1,0 +1,25 @@
+{
+  "volume": "/Volumes/SAMPLE_MASTER",
+  "slug": "SAMPLE_MASTER_",
+  "timestamp": "20260420T093908Z",
+  "size": "1.8T",
+  "top_level_entries": 14,
+  "code": {
+    "git_dirs": 1,
+    "package_json": 0,
+    "pyproject": 0,
+    "cargo": 0,
+    "gemfile": 0,
+    "go_mod": 0
+  },
+  "secrets_pattern_count": 0,
+  "media": {
+    "wav": 137066,
+    "aif": 9732,
+    "flac": 0,
+    "logicx": 36,
+    "ptx": 2
+  },
+  "audit_path": "/Users/m2ultra/NOIZYANTHROPIC/infra/scans/scan-reports/SAMPLE_MASTER_/20260420T093908Z/audit.md",
+  "inventory_path": "/Users/m2ultra/NOIZYANTHROPIC/infra/scans/scan-reports/SAMPLE_MASTER_/20260420T093908Z/inventory.txt"
+}

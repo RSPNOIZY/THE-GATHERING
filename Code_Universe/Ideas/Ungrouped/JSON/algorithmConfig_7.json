@@ -1,0 +1,128 @@
+{
+    "version": "1.0",
+    "mode": 2,
+    "nodes": [
+        {
+            "name": "input_0",
+            "type": "imageProducer",
+            "config":{
+                "keymaps": {
+                    "intParam": {
+                        "input_channel": 0
+                    }
+                }
+            }
+        },
+        {
+            "name": "input_1",
+            "type": "imageProducer",
+            "config":{
+                "keymaps": {
+                    "intParam": {
+                        "input_channel": 1
+                    }
+                }
+            }
+        },
+        {
+            "name": "input_2",
+            "type": "imageProducer",
+            "config":{
+                "keymaps": {
+                    "intParam": {
+                        "input_channel": 2
+                    }
+                }
+            }
+        },
+		{
+			"name": "nh_script_0",
+			"type": "script",
+			"config": {
+				"keyMaps": {
+					"intParam": {},
+					"floatParam": {},
+					"stringParam": {
+                        "packed_model_group_key" : "script_pre",
+                        "model_name": "mobilevos_packed"
+					}
+				}
+			}
+		},
+        {
+			"name":	"mobile_vos_0",
+			"type":	"mobile_vos",
+			"enable": true,
+			"config":	{
+				"keyMaps":	{
+                    "intParam": {
+                        "mobile_vos_input_mask_type": 1
+                    },
+					"stringParam":	{
+                        "packed_model_group_key" : "mobile_vos",
+                        "model_name": "mobilevos_packed"
+					}
+				}
+			}
+		},
+		{
+			"name": "nh_script_1",
+			"type": "script",
+            "enable": true,
+			"config": {
+				"keyMaps": {
+					"intParam": {},
+					"floatParam": {},
+					"stringParam":	{
+                        "packed_model_group_key" : "script_after",
+                        "model_name": "mobilevos_packed"
+					}
+				}
+			}
+		}
+    ],
+    "links": [
+        {
+            "fromNode": "input_1",
+            "fromIndex": 0,
+            "toNode": "nh_script_0",
+            "toIndex": 0
+        },
+        {
+            "fromNode": "input_2",
+            "fromIndex": 0,
+            "toNode": "nh_script_0",
+            "toIndex": 1
+        },
+        {
+            "fromNode": "input_0",
+            "fromIndex": 0,
+            "toNode": "mobile_vos_0",
+            "toIndex": 0
+        },
+        {
+            "fromNode": "nh_script_0",
+            "fromIndex": 0,
+            "toNode": "mobile_vos_0",
+            "toIndex": 1
+        },
+        {
+            "fromNode": "input_1",
+            "fromIndex": 0,
+            "toNode": "nh_script_1",
+            "toIndex": 0
+        },
+        {
+            "fromNode": "mobile_vos_0",
+            "fromIndex": 0,
+            "toNode": "nh_script_1",
+            "toIndex": 1
+        },
+        {
+            "fromNode": "nh_script_0",
+            "fromIndex": 0,
+            "toNode": "nh_script_1",
+            "toIndex": 2
+        }
+    ]
+}

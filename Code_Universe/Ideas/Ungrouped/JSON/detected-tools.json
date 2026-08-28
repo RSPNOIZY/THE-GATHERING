@@ -1,0 +1,57 @@
+{
+  "platform": {
+    "os": "macOS",
+    "version": "15.7.8",
+    "architecture": "arm64",
+    "host": "GABRIEL.local"
+  },
+  "ai_clients_detected": [
+    "Claude",
+    "Codex",
+    "Ollama",
+    "LM Studio",
+    "AnythingLLM",
+    "Cursor-like/IDE candidates: Antigravity, VS Code-compatible tooling not confirmed"
+  ],
+  "file_and_org_apps_detected": [
+    "Finder",
+    "Commander One",
+    "EasyFind",
+    "DEVONthink",
+    "Obsidian",
+    "Goodnotes",
+    "Notes"
+  ],
+  "creative_and_media_apps_detected": [
+    "Audacity",
+    "GIMP",
+    "Inkscape",
+    "krita",
+    "kdenlive",
+    "Final Cut Pro Creator Studio",
+    "Logic Pro",
+    "GarageBand",
+    "Blackmagic Cam"
+  ],
+  "cli_tools_detected": {
+    "rg": "/opt/homebrew/bin/rg",
+    "fd": "/opt/homebrew/bin/fd",
+    "bat": "/opt/homebrew/bin/bat",
+    "eza": "/opt/homebrew/bin/eza",
+    "ffmpeg": "/opt/homebrew/bin/ffmpeg",
+    "magick": "/opt/homebrew/bin/magick",
+    "convert": "/opt/homebrew/bin/convert",
+    "identify": "/opt/homebrew/bin/identify",
+    "sqlite3": "/usr/bin/sqlite3",
+    "meilisearch": "/opt/homebrew/bin/meilisearch",
+    "docker": "/opt/homebrew/bin/docker",
+    "ollama": "/opt/homebrew/bin/ollama",
+    "node": "/opt/homebrew/bin/node",
+    "npm": "/opt/homebrew/bin/npm",
+    "python3": "/opt/homebrew/bin/python3",
+    "uv": "/Users/m2ultra/.local/bin/uv",
+    "uvx": "/Users/m2ultra/.local/bin/uvx",
+    "git": "/opt/homebrew/bin/git",
+    "jq": "/opt/homebrew/bin/jq"
+  }
+}

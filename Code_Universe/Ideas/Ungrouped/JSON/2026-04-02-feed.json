@@ -1,0 +1,201 @@
+{
+  "feed_id": "1aa8d320-ee6b-4b36-b410-742919f03b9b",
+  "generated_at": "2026-04-02T21:02:24.033Z",
+  "report_date": "2026-04-02",
+  "analysis_run_id": "lucy-nightly-2026-04-02-1775163744032",
+  "actions": [
+    {
+      "id": "254461f9-c4f7-42fb-a2a7-3bb1ed9cd6b4",
+      "opportunity_id": "31cadc22-9852-4bbe-828b-d25641207fd4",
+      "action": "Lock voice capture setup for 35 takes",
+      "executor": "claude_code",
+      "priority": 1,
+      "workflow_type": "manual",
+      "payload": {
+        "action_type": "revenue_unlock",
+        "actors": [
+          "RSP_001"
+        ],
+        "brands": [
+          "NOIZYVOX",
+          "NOIZYLAB"
+        ],
+        "details": {
+          "title": "First creator onboarding ready",
+          "description": "RSP_001 actor imprint is locked. Voice capture infrastructure is live. The system is ready for the first 35 voice takes, which will establish the founding catalogue and prove the teaching → student → revenue pipeline.",
+          "confidence": 0.85,
+          "urgency": "immediate",
+          "reasoning": "Actor protocol is live with 32/32 tests passing. RSP_001 imprint locked. → Revenue pipeline has 21/21 tests passing across all three scenarios. → 10 Creative Builder models deployed. Voice synthesis infrastructure ready."
+        },
+        "revenue_impact": {
+          "lower": 0,
+          "upper": 500,
+          "timeframe": "90 days"
+        }
+      },
+      "status": "queued",
+      "requires_human_approval": false,
+      "compassion_cleared": true,
+      "created_at": "2026-04-02T21:02:24.033Z"
+    },
+    {
+      "id": "94a8bad6-d8b7-44de-96de-a17dd3a93478",
+      "opportunity_id": "31cadc22-9852-4bbe-828b-d25641207fd4",
+      "action": "Run first recording session with RSP_001",
+      "executor": "human",
+      "priority": 2,
+      "workflow_type": "manual",
+      "payload": {
+        "action_type": "revenue_unlock",
+        "actors": [
+          "RSP_001"
+        ],
+        "brands": [
+          "NOIZYVOX",
+          "NOIZYLAB"
+        ],
+        "details": {
+          "title": "First creator onboarding ready",
+          "description": "RSP_001 actor imprint is locked. Voice capture infrastructure is live. The system is ready for the first 35 voice takes, which will establish the founding catalogue and prove the teaching → student → revenue pipeline.",
+          "confidence": 0.85,
+          "urgency": "immediate",
+          "reasoning": "Actor protocol is live with 32/32 tests passing. RSP_001 imprint locked. → Revenue pipeline has 21/21 tests passing across all three scenarios. → 10 Creative Builder models deployed. Voice synthesis infrastructure ready."
+        },
+        "revenue_impact": {
+          "lower": 0,
+          "upper": 500,
+          "timeframe": "90 days"
+        }
+      },
+      "status": "queued",
+      "requires_human_approval": true,
+      "compassion_cleared": true,
+      "created_at": "2026-04-02T21:02:24.033Z"
+    },
+    {
+      "id": "c6fd02dc-7e6e-421f-902d-cce8ba7f1b84",
+      "opportunity_id": "ea87712d-6bea-4db5-b11f-7ffa7dd11527",
+      "action": "Design NOIZYKIDZ student registration schema",
+      "executor": "claude_code",
+      "priority": 2,
+      "workflow_type": "manual",
+      "payload": {
+        "action_type": "teaching_opportunity",
+        "actors": [
+          "RSP_001"
+        ],
+        "brands": [
+          "NOIZYKIDZ",
+          "NOIZYVOX"
+        ],
+        "details": {
+          "title": "NOIZYKIDZ teaching pipeline can launch with RSP_001 as founding teacher",
+          "description": "Revenue schema supports teaching relationships with auto-split. RSP_001's voice assets can be made available to students. Teacher royalty (15%) + voice contribution share creates sustainable income for educators.",
+          "confidence": 0.7,
+          "urgency": "this_week",
+          "reasoning": "Teaching scenario tested: student nets $1.78 on $3.00, teacher gets $0.47. Sustainable. → NOIZYKIDZ has no code yet. This creates the first real product for the brand. → Kids learning through a teacher's voice creates deep community bond."
+        }
+      },
+      "status": "queued",
+      "requires_human_approval": true,
+      "compassion_cleared": true,
+      "created_at": "2026-04-02T21:02:24.033Z"
+    },
+    {
+      "id": "3a9c295d-33bf-461e-9fc8-3ab9c17d9fd8",
+      "opportunity_id": "31cadc22-9852-4bbe-828b-d25641207fd4",
+      "action": "Create student onboarding flow for NOIZYKIDZ",
+      "executor": "claude_code",
+      "priority": 3,
+      "workflow_type": "manual",
+      "payload": {
+        "action_type": "revenue_unlock",
+        "actors": [
+          "RSP_001"
+        ],
+        "brands": [
+          "NOIZYVOX",
+          "NOIZYLAB"
+        ],
+        "details": {
+          "title": "First creator onboarding ready",
+          "description": "RSP_001 actor imprint is locked. Voice capture infrastructure is live. The system is ready for the first 35 voice takes, which will establish the founding catalogue and prove the teaching → student → revenue pipeline.",
+          "confidence": 0.85,
+          "urgency": "immediate",
+          "reasoning": "Actor protocol is live with 32/32 tests passing. RSP_001 imprint locked. → Revenue pipeline has 21/21 tests passing across all three scenarios. → 10 Creative Builder models deployed. Voice synthesis infrastructure ready."
+        },
+        "revenue_impact": {
+          "lower": 0,
+          "upper": 500,
+          "timeframe": "90 days"
+        }
+      },
+      "status": "queued",
+      "requires_human_approval": false,
+      "compassion_cleared": true,
+      "created_at": "2026-04-02T21:02:24.033Z"
+    },
+    {
+      "id": "af90be48-6adb-4462-acf8-4d49a41c3587",
+      "opportunity_id": "ea87712d-6bea-4db5-b11f-7ffa7dd11527",
+      "action": "Create first teaching module concept",
+      "executor": "human",
+      "priority": 3,
+      "workflow_type": "manual",
+      "payload": {
+        "action_type": "teaching_opportunity",
+        "actors": [
+          "RSP_001"
+        ],
+        "brands": [
+          "NOIZYKIDZ",
+          "NOIZYVOX"
+        ],
+        "details": {
+          "title": "NOIZYKIDZ teaching pipeline can launch with RSP_001 as founding teacher",
+          "description": "Revenue schema supports teaching relationships with auto-split. RSP_001's voice assets can be made available to students. Teacher royalty (15%) + voice contribution share creates sustainable income for educators.",
+          "confidence": 0.7,
+          "urgency": "this_week",
+          "reasoning": "Teaching scenario tested: student nets $1.78 on $3.00, teacher gets $0.47. Sustainable. → NOIZYKIDZ has no code yet. This creates the first real product for the brand. → Kids learning through a teacher's voice creates deep community bond."
+        }
+      },
+      "status": "queued",
+      "requires_human_approval": true,
+      "compassion_cleared": true,
+      "created_at": "2026-04-02T21:02:24.033Z"
+    },
+    {
+      "id": "9ceef276-e516-4005-b459-944ff05fef74",
+      "opportunity_id": "ea87712d-6bea-4db5-b11f-7ffa7dd11527",
+      "action": "Set up n8n workflow for student → teacher royalty routing",
+      "executor": "claude_code",
+      "priority": 4,
+      "workflow_type": "manual",
+      "payload": {
+        "action_type": "teaching_opportunity",
+        "actors": [
+          "RSP_001"
+        ],
+        "brands": [
+          "NOIZYKIDZ",
+          "NOIZYVOX"
+        ],
+        "details": {
+          "title": "NOIZYKIDZ teaching pipeline can launch with RSP_001 as founding teacher",
+          "description": "Revenue schema supports teaching relationships with auto-split. RSP_001's voice assets can be made available to students. Teacher royalty (15%) + voice contribution share creates sustainable income for educators.",
+          "confidence": 0.7,
+          "urgency": "this_week",
+          "reasoning": "Teaching scenario tested: student nets $1.78 on $3.00, teacher gets $0.47. Sustainable. → NOIZYKIDZ has no code yet. This creates the first real product for the brand. → Kids learning through a teacher's voice creates deep community bond."
+        }
+      },
+      "status": "queued",
+      "requires_human_approval": true,
+      "compassion_cleared": true,
+      "created_at": "2026-04-02T21:02:24.033Z"
+    }
+  ],
+  "total_actions": 6,
+  "n8n_actions": 0,
+  "human_actions": 2,
+  "claude_code_actions": 4
+}

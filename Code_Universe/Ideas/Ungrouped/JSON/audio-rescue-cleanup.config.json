@@ -1,0 +1,61 @@
+{
+  "name": "audio-rescue-cloudstorage-dedupe",
+  "root": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE",
+  "output_dir": "/Users/m2ultra/duplicate-scans/audio-rescue",
+  "min_size_mb": 10,
+  "preflight_timeout_seconds": 20,
+  "hash_timeout_seconds": 8,
+  "hash_algorithm": "sha256",
+  "quarantine_root": "/Users/m2ultra/duplicate-scans/audio-rescue/quarantine",
+  "prune_dir_names": [
+    ".Trash",
+    ".cache",
+    ".git",
+    ".hg",
+    ".svn",
+    ".venv",
+    ".vscode",
+    ".windsurf",
+    "__pycache__",
+    "build",
+    "DerivedData",
+    "dist",
+    "modules",
+    "node_modules",
+    "Pods",
+    "site-packages",
+    "target",
+    "venv"
+  ],
+  "prune_name_contains": [
+    ".dist-info",
+    ".egg-info",
+    "_Spotify Media"
+  ],
+  "keep_path_priority": [
+    "/_AUDIO_RESCUE/RSP_001/NOIZYLAB_ARCHIVES/",
+    "/_AUDIO_RESCUE/RSP_001/",
+    "/_AUDIO_RESCUE/"
+  ],
+  "delete_path_priority": [
+    "/SESSION FILE BACKUPS/",
+    "/UNDO DATA/",
+    "/CRASHED",
+    ".bak",
+    "/M2ULTRA_BACKUP_20260417/",
+    "/Library-selected/",
+    "/local-agent-mode-sessions/"
+  ],
+  "never_delete_path_contains": [
+    "/NOIZYLAB_ARCHIVES/",
+    "/MASTER",
+    "/MASTERS",
+    "/FINAL",
+    "/FINALS"
+  ],
+  "notes": [
+    "Scan and plan are read-only.",
+    "Quarantine is an explicit move into quarantine_root, preserving relative paths.",
+    "Actual permanent deletion should only happen after quarantine review."
+  ]
+}

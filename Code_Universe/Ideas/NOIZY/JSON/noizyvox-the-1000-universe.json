@@ -1,0 +1,84 @@
+{
+  "program": "NOIZYVOX THE 1000",
+  "version": "v1",
+  "targets": {
+    "guild_members": 1000,
+    "core_archetypes": 8,
+    "primary_languages": 17,
+    "cultural_layers": 7
+  },
+  "archetypes": [
+    "Commander",
+    "Broken",
+    "Ancient",
+    "Predator",
+    "Fool",
+    "Lover",
+    "Child",
+    "Ghost"
+  ],
+  "cultural_layers": [
+    "Linguistic",
+    "Prosodic",
+    "Social",
+    "Mythological",
+    "Humour",
+    "Grief",
+    "Sacred"
+  ],
+  "regions": [
+    { "code": "NA", "label": "North America", "target_members": 180 },
+    { "code": "LATAM", "label": "Latin America", "target_members": 140 },
+    { "code": "EU", "label": "Europe", "target_members": 170 },
+    { "code": "MENA", "label": "Middle East & North Africa", "target_members": 120 },
+    { "code": "SSA", "label": "Sub-Saharan Africa", "target_members": 110 },
+    { "code": "APAC", "label": "Asia Pacific", "target_members": 220 },
+    { "code": "INDIG", "label": "Indigenous / Cultural Keepers", "target_members": 60 }
+  ],
+  "members": [
+    {
+      "id": "RSP_001",
+      "display_name": "R.S. Plowman",
+      "region": "NA",
+      "status": "live",
+      "evolution_generation": 2,
+      "archetypes": ["Commander", "Ancient", "Ghost"],
+      "languages": ["en", "es", "fr"],
+      "dialects": ["en-US", "en-UK", "es-MX"],
+      "verticals": ["AAA Games", "Animation", "Narration"]
+    },
+    {
+      "id": "GUILD_002",
+      "display_name": "Candidate 002",
+      "region": "EU",
+      "status": "onboarding",
+      "evolution_generation": 1,
+      "archetypes": ["Broken", "Lover", "Fool"],
+      "languages": ["en", "de", "fr"],
+      "dialects": ["de-DE", "fr-FR"],
+      "verticals": ["Film", "Audiobooks"]
+    },
+    {
+      "id": "GUILD_003",
+      "display_name": "Candidate 003",
+      "region": "APAC",
+      "status": "vetting",
+      "evolution_generation": 0,
+      "archetypes": ["Predator", "Commander"],
+      "languages": ["ja", "ko", "en"],
+      "dialects": ["ja-JP", "ko-KR"],
+      "verticals": ["AAA Games", "Interactive NPC"]
+    },
+    {
+      "id": "GUILD_004",
+      "display_name": "Candidate 004",
+      "region": "LATAM",
+      "status": "training",
+      "evolution_generation": 1,
+      "archetypes": ["Child", "Ghost", "Ancient"],
+      "languages": ["es", "pt"],
+      "dialects": ["es-MX", "es-CO", "pt-BR"],
+      "verticals": ["Education", "Animation"]
+    }
+  ]
+}

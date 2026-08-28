@@ -1,0 +1,52 @@
+{
+	"ae_tool" : "AmazingEditor",
+	"bALG_BACH_CONFIG" : true,
+	"effect" : 
+	{
+		"Link" : 
+		[
+			{
+				"extra" : 
+				{
+					"composer_param" : 
+					[
+						{
+							"allow_negative" : false,
+							"default_value" : 0.0,
+							"key" : "face_adjust_skin_Intensity",
+							"max_value" : 1.0,
+							"min_value" : 0.0,
+							"name" : "intensity"
+						},
+						{
+							"allow_negative" : true,
+							"default_value" : 0.0,
+							"key" : "face_adjust_skin_ColdWarm",
+							"max_value" : 0.5,
+							"min_value" : -0.5,
+							"name" : "coldWarm"
+						}
+					]
+				},
+				"needBlend" : false,
+				"path" : "AmazingFeature/",
+				"type" : "AmazingFeature",
+				"zorder" : 8010
+			}
+		],
+		"SubLink" : null,
+		"exclusiveScene" : [],
+		"model_names" : 
+		{
+			"alg_model" : 
+			[
+				"tt_face",
+				"tt_face_extra",
+				"tt_fsnew_base_jianying",
+				"tt_skin_seg"
+			]
+		}
+	},
+	"name" : "9.2.1MAC22F5A3A911E64CDFB9C54BC3594C891A12345655",
+	"version" : "10.1.0"
+}

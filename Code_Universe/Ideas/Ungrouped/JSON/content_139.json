@@ -1,0 +1,12 @@
+{
+	"ae_tool" : "AmazingEditor",
+	"content" : {},
+	"em_tool" : "PXARStudio",
+	"requirement" : 
+	{
+		"faceDetect" : true,
+		"skinseg" : true
+	},
+	"tag" : "AMG_1342502589273394078810983244174844899488",
+	"version" : "1.0"
+}

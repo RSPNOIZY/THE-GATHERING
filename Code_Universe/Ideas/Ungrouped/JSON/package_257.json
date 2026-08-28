@@ -1,0 +1,22 @@
+{
+  "name": "@noizybeast/beast-core",
+  "version": "2.0.0",
+  "description": "Core orchestration layer for the NOIZYBEAST monorepo. Runs the full consent → synth → royalty → proof pipeline.",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "audit": "node -e \"import('./src/index.js').then(m => new m.BeastCore().audit().then(r => console.log(JSON.stringify(r, null, 2))))\"",
+    "test": "vitest run"
+  },
+  "keywords": ["noizy", "consent", "beast", "pipeline"],
+  "license": "UNLICENSED",
+  "dependencies": {
+    "@noizybeast/consent-sdk": "workspace:*",
+    "@noizybeast/royalty-sdk": "workspace:*",
+    "@noizybeast/proof-sdk": "workspace:*",
+    "@noizybeast/hvs-sdk": "workspace:*"
+  },
+  "devDependencies": {
+    "vitest": "^1.4.0"
+  }
+}

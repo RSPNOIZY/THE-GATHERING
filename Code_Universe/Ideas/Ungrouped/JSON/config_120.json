@@ -1,0 +1,30 @@
+{
+	"ae_tool" : "AmazingEditor",
+	"bALG_BACH_CONFIG" : true,
+	"effect" : 
+	{
+		"Link" : 
+		[
+			{
+				"path" : "AmazingFeature/",
+				"type" : "AmazingFeature",
+				"zorder" : 8011
+			}
+		],
+		"forceRender" : true,
+		"forceUseAlgCache" : true,
+		"model_names" : 
+		{
+			"script" : 
+			[
+				"tt_fsnew_base_jianying",
+				"tt_face_extra",
+				"tt_freid",
+				"capcut_lifting_asian",
+				"cc_auto_beauty_simo_script"
+			]
+		}
+	},
+	"name" : "BCE-DEMO-3FAAA9BA-D2A0-47B9-88EC-C839056A8C23",
+	"version" : "18.5.0"
+}

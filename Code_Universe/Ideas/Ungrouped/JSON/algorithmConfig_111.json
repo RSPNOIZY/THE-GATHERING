@@ -1,0 +1,42 @@
+{
+    "version": "1.0",
+    "mode": 2,
+    "nodes": [
+        {
+            "name": "blit_0",
+            "type": "blit",
+            "config": {
+                "keymaps": {
+                    "intParam": {},
+                    "floatParam": {},
+                    "stringParam": {}
+                },
+                "size": {
+                    "width":720,
+                    "height":1280
+                }
+            }
+        },
+        {
+            "name": "skeleton_0",
+            "type": "skeleton",
+            "config": {
+                "keymaps": {
+                    "intParam": {
+                        "skeleton_force_detect": 1
+                     },
+                    "floatParam": {},
+                    "stringParam": {}
+                    }
+            }
+        }
+    ],
+    "links": [
+        {
+            "fromNode": "blit_0",
+            "fromIndex": 0,
+            "toNode": "skeleton_0",
+            "toIndex": 0
+        }
+    ]
+}

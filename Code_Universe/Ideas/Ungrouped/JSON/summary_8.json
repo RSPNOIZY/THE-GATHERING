@@ -1,0 +1,25 @@
+{
+  "volume": "/Volumes/SOUND_DESIGN",
+  "slug": "SOUND_DESIGN_",
+  "timestamp": "20260420T052104Z",
+  "size": "815G",
+  "top_level_entries": 7,
+  "code": {
+    "git_dirs": 13,
+    "package_json": 97,
+    "pyproject": 2,
+    "cargo": 0,
+    "gemfile": 0,
+    "go_mod": 0
+  },
+  "secrets_pattern_count": 6,
+  "media": {
+    "wav": 22724,
+    "aif": 7991,
+    "flac": 1,
+    "logicx": 0,
+    "ptx": 9
+  },
+  "audit_path": "/Users/m2ultra/NOIZYANTHROPIC/infra/scans/scan-reports/SOUND_DESIGN_/20260420T052104Z/audit.md",
+  "inventory_path": "/Users/m2ultra/NOIZYANTHROPIC/infra/scans/scan-reports/SOUND_DESIGN_/20260420T052104Z/inventory.txt"
+}

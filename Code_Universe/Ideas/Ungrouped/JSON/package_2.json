@@ -1,0 +1,385 @@
+{
+    "name": "pyrefly",
+    "displayName": "Pyrefly - Python Language Tooling",
+    "description": "Python autocomplete, typechecking, code navigation and more! Powered by Pyrefly, an open-source language server",
+    "icon": "images/pyrefly-symbol.png",
+    "extensionKind": [
+        "workspace"
+    ],
+    "author": "Facebook",
+    "license": "MIT",
+    "version": "0.0.1",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/facebook/pyrefly"
+    },
+    "publisher": "meta",
+    "categories": [
+        "Programming Languages",
+        "Linters",
+        "Other"
+    ],
+    "keywords": [
+        "multi-root ready",
+        "python",
+        "type",
+        "typecheck",
+        "typehint",
+        "completion",
+        "lint"
+    ],
+    "engines": {
+        "vscode": "^1.94.0"
+    },
+    "main": "./dist/extension",
+    "activationEvents": [
+        "onLanguage:python",
+        "onNotebook:jupyter-notebook"
+    ],
+    "capabilities": {
+        "untrustedWorkspaces": {
+            "supported": false,
+            "description": "Pyrefly can be configured to execute binaries. A malicious actor could exploit this to run arbitrary code on your machine."
+        }
+    },
+    "contributes": {
+        "languages": [
+            {
+                "id": "python",
+                "aliases": [
+                    "Python"
+                ],
+                "extensions": [
+                    ".py",
+                    ".pyi"
+                ]
+            }
+        ],
+        "commands": [
+            {
+                "title": "Restart Pyrefly Client",
+                "category": "pyrefly",
+                "command": "pyrefly.restartClient"
+            },
+            {
+                "title": "Fold All Docstrings",
+                "category": "pyrefly",
+                "command": "pyrefly.foldAllDocstrings"
+            },
+            {
+                "title": "Unfold All Docstrings",
+                "category": "pyrefly",
+                "command": "pyrefly.unfoldAllDocstrings"
+            },
+            {
+                "title": "Run File",
+                "category": "pyrefly",
+                "command": "pyrefly.runMain"
+            },
+            {
+                "title": "Run Test",
+                "category": "pyrefly",
+                "command": "pyrefly.runTest"
+            }
+        ],
+        "semanticTokenScopes": [
+            {
+                "language": "python",
+                "scopes": {
+                    "variable.readonly": [
+                        "variable.other.constant.python"
+                    ]
+                }
+            }
+        ],
+        "configurationDefaults": {
+            "basedpyright.disableLanguageServices": true,
+            "cursorpyright.disableLanguageServices": true,
+            "editor.semanticTokenColorCustomizations": {
+                "rules": {
+                    "variable.readonly:python": "#4EC9B0"
+                }
+            },
+            "windsurfPyright.disableLanguageServices": true
+        },
+        "configuration": {
+            "properties": {
+                "pyrefly.lspPath": {
+                    "type": "string",
+                    "default": "",
+                    "description": "The path to the binary used for the lsp",
+                    "scope": "machine-overridable"
+                },
+                "pyrefly.lspArguments": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "default": [
+                        "lsp"
+                    ],
+                    "description": "Additional arguments that should be passed to the binary at pyrefly.lspPath",
+                    "scope": "machine-overridable"
+                },
+                "python.pyrefly.disableLanguageServices": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "If true, Pyrefly will not provide other IDE services like completions, hover, definition, etc. To control type errors, see `python.pyrefly.typeCheckingMode` and `python.pyrefly.disableTypeErrors`.",
+                    "scope": "resource"
+                },
+                "python.pyrefly.disableTypeErrors": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "If true, Pyrefly will not provide diagnostics for files in this workspace.",
+                    "scope": "resource"
+                },
+                "python.pyrefly.typeCheckingMode": {
+                    "type": "string",
+                    "markdownDescription": "[Preset](https://pyrefly.org/en/docs/configuration/#preset) to use for files not covered by a `pyrefly.toml`. The default `auto` migrates a nearby mypy/pyright config when present, otherwise uses `basic`.",
+                    "default": "auto",
+                    "enum": [
+                        "auto",
+                        "off",
+                        "basic",
+                        "legacy",
+                        "default",
+                        "strict",
+                        "all"
+                    ],
+                    "scope": "resource"
+                },
+                "python.pyrefly.displayTypeErrors": {
+                    "type": "string",
+                    "deprecationMessage": "Replaced by python.pyrefly.typeCheckingMode and python.pyrefly.disableTypeErrors. This setting still works for backwards compatibility but new configurations should use the replacements.",
+                    "description": "If 'default', Pyrefly will only provide type check squiggles in the IDE if your file is covered by a Pyrefly configuration. If 'force-off', Pyrefly will never provide type check squiggles in the IDE. If 'force-on', Pyrefly will always provide type check squiggles in the IDE. If 'error-missing-imports', Pyrefly will only show errors for missing imports and missing sources (missing-import, missing-source, and missing-source-for-stubs).",
+                    "default": "default",
+                    "enum": [
+                        "default",
+                        "force-on",
+                        "force-off",
+                        "error-missing-imports"
+                    ],
+                    "scope": "resource"
+                },
+                "pyrefly.trace.server": {
+                    "type": "string",
+                    "description": "Set to 'verbose' to enable LSP trace in the console",
+                    "default": "off",
+                    "enum": [
+                        "off",
+                        "verbose"
+                    ]
+                },
+                "python.pyrefly.disabledLanguageServices": {
+                    "type": "object",
+                    "default": {},
+                    "description": "Disable specific language services. Set individual services to true to disable them.",
+                    "scope": "resource",
+                    "properties": {
+                        "hover": {
+                            "type": "boolean",
+                            "default": false
+                        },
+                        "documentSymbol": {
+                            "type": "boolean",
+                            "default": false
+                        },
+                        "workspaceSymbol": {
+                            "type": "boolean",
+                            "default": false
+                        },
+                        "inlayHint": {
+                            "type": "boolean",
+                            "default": false
+                        },
+                        "completion": {
+                            "type": "boolean",
+                            "default": false
+                        },
+                        "codeAction": {
+                            "type": "boolean",
+                            "default": false
+                        },
+                        "definition": {
+                            "type": "boolean",
+                            "default": false
+                        },
+                        "declaration": {
+                            "type": "boolean",
+                            "default": false
+                        },
+                        "typeDefinition": {
+                            "type": "boolean",
+                            "default": false
+                        },
+                        "references": {
+                            "type": "boolean",
+                            "default": false
+                        },
+                        "documentHighlight": {
+                            "type": "boolean",
+                            "default": false
+                        },
+                        "rename": {
+                            "type": "boolean",
+                            "default": false
+                        },
+                        "codeLens": {
+                            "type": "boolean",
+                            "default": false
+                        },
+                        "semanticTokens": {
+                            "type": "boolean",
+                            "default": false
+                        },
+                        "signatureHelp": {
+                            "type": "boolean",
+                            "default": false
+                        },
+                        "implementation": {
+                            "type": "boolean",
+                            "default": false
+                        },
+                        "callHierarchy": {
+                            "type": "boolean",
+                            "default": false,
+                            "description": "Disable call hierarchy feature (Show Incoming/Outgoing Calls)"
+                        }
+                    }
+                },
+                "python.analysis.showHoverGoToLinks": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Controls whether hover tooltips include 'Go to definition' and 'Go to type definition' navigation links.",
+                    "scope": "resource"
+                },
+                "python.analysis.completeFunctionParens": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Automatically insert parentheses when completing a function or method.",
+                    "scope": "resource"
+                },
+                "python.analysis.diagnosticMode": {
+                    "type": "string",
+                    "default": "openFilesOnly",
+                    "enum": [
+                        "openFilesOnly",
+                        "workspace"
+                    ],
+                    "description": "Controls the scope of diagnostic analysis. When set to 'openFilesOnly', diagnostics are only provided for files currently open in the editor. When set to 'workspace', diagnostics are computed and published for all files in the workspace. If `python.pyrefly.diagnosticMode` is set, it takes precedence.",
+                    "scope": "resource"
+                },
+                "python.analysis.importFormat": {
+                    "type": "string",
+                    "default": "absolute",
+                    "enum": [
+                        "absolute",
+                        "relative"
+                    ],
+                    "description": "Format used when Pyrefly auto-inserts an import.",
+                    "scope": "resource"
+                },
+                "python.analysis.inlayHints": {
+                    "type": "object",
+                    "default": {},
+                    "description": "Controls which inlay hints Pyrefly displays.",
+                    "scope": "resource",
+                    "properties": {
+                        "callArgumentNames": {
+                            "type": "string",
+                            "default": "off",
+                            "enum": [
+                                "all",
+                                "off",
+                                "partial"
+                            ],
+                            "description": "Show inlay hints for argument names at call sites. 'partial' shows hints only when the argument is a literal."
+                        },
+                        "functionReturnTypes": {
+                            "type": "boolean",
+                            "default": true,
+                            "description": "Show inferred return type as an inlay hint on function definitions."
+                        },
+                        "pytestParameters": {
+                            "type": "boolean",
+                            "default": false,
+                            "description": "Show inlay hints for pytest fixture parameter types."
+                        },
+                        "variableTypes": {
+                            "type": "boolean",
+                            "default": true,
+                            "description": "Show inferred variable types as inlay hints on assignments."
+                        }
+                    }
+                },
+                "python.pyrefly.syncNotebooks": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "If true, Pyrefly will sync notebook documents with the language server. Set to false to disable notebook support."
+                },
+                "python.pyrefly.runnableCodeLens": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Enable Pyrefly's Run/Test CodeLens actions for Python files.",
+                    "scope": "resource"
+                },
+                "python.pyrefly.streamDiagnostics": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "If true (default), Pyrefly will stream diagnostics as they become available during recheck, providing incremental feedback. Set to false to only publish diagnostics after the full recheck completes.",
+                    "scope": "resource"
+                },
+                "python.pyrefly.diagnosticMode": {
+                    "type": "string",
+                    "default": "openFilesOnly",
+                    "description": "Controls the scope of Pyrefly's diagnostic analysis. When set to 'openFilesOnly', diagnostics are only provided for files that are currently open in the editor. When set to 'workspace', diagnostics are computed and published for all files in the workspace.",
+                    "enum": [
+                        "openFilesOnly",
+                        "workspace"
+                    ],
+                    "scope": "resource"
+                },
+                "pyrefly.commentFoldingRanges": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Controls whether comment section folding ranges are included in the editor. When true, comments following the pattern '# Section Name ----' (with 4+ trailing dashes) create collapsible regions, similar to R's code section convention."
+                },
+                "python.pyrefly.configPath": {
+                    "type": "string",
+                    "default": "",
+                    "description": "Path to a pyrefly.toml or pyproject.toml configuration file. When set, the LSP will use this config for all files in your workspace instead of the default Pyrefly config-finding logic. Prefer to use default logic wherever possible.",
+                    "scope": "resource"
+                }
+            }
+        }
+    },
+    "scripts": {
+        "compile": "npm run check-types && node esbuild.js",
+        "check-types": "tsc --noEmit",
+        "watch": "npm-run-all -p watch:*",
+        "watch:esbuild": "node esbuild.js --watch",
+        "watch:tsc": "tsc --noEmit --watch --project tsconfig.json",
+        "vscode:prepublish": "npm run package",
+        "package": "npm run check-types && node esbuild.js --production",
+        "test": "vscode-test"
+    },
+    "devDependencies": {
+        "@types/mocha": "^10.0.10",
+        "@types/node": "^16.11.7",
+        "@types/vscode": "^1.78.1",
+        "@vscode/test-cli": "^0.0.10",
+        "@vscode/test-electron": "^2.5.2",
+        "@vscode/vsce": "^2.9.2",
+        "esbuild": "^0.25.1",
+        "npm-run-all": "^4.1.5",
+        "typescript": "^4.4.3"
+    },
+    "dependencies": {
+        "@vscode/python-environments": "^1.0.0",
+        "@vscode/python-extension": "^1.0.5",
+        "serialize-javascript": "^7.0.5",
+        "underscore": "^1.13.8",
+        "vsce": "^2.15.0",
+        "vscode-languageclient": "9.0.1"
+    }
+}

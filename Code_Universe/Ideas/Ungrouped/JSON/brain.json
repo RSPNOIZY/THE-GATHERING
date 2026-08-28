@@ -1,0 +1,169 @@
+{
+     "nodes": [
+          {
+               "id": "gabriel",
+               "label": "GABRIEL",
+               "type": "core"
+          },
+          {
+               "id": "mc96",
+               "label": "MC96",
+               "type": "system"
+          },
+          {
+               "id": "omega",
+               "label": "OMEGA",
+               "type": "protocol"
+          },
+          {
+               "id": "ecouniverse",
+               "label": "ECOUNIVERSE",
+               "type": "system"
+          },
+          {
+               "id": "voice",
+               "label": "VOICE",
+               "type": "module"
+          },
+          {
+               "id": "vision",
+               "label": "VISION",
+               "type": "module"
+          },
+          {
+               "id": "memory",
+               "label": "MEMORY",
+               "type": "module"
+          },
+          {
+               "id": "shirl",
+               "label": "SHIRL",
+               "type": "core"
+          },
+          {
+               "id": "keith",
+               "label": "ENGR_KEITH",
+               "type": "core"
+          },
+          {
+               "id": "deepseek",
+               "label": "DEEPSEEK R1",
+               "type": "protocol"
+          },
+          {
+               "id": "sonic",
+               "label": "SONIC-TEMPLATOR",
+               "type": "module"
+          },
+          {
+               "id": "temporal",
+               "label": "TEMPORAL",
+               "type": "protocol"
+          },
+          {
+               "id": "gorunfree",
+               "label": "GORUNFREE",
+               "type": "protocol"
+          },
+          {
+               "id": "voiceforge",
+               "label": "VOICE FORGE",
+               "type": "module"
+          },
+          {
+               "id": "knowledge",
+               "label": "KNOWLEDGE GRAPH",
+               "type": "system"
+          }
+     ],
+     "edges": [
+          {
+               "from": "gabriel",
+               "to": "mc96"
+          },
+          {
+               "from": "gabriel",
+               "to": "omega"
+          },
+          {
+               "from": "gabriel",
+               "to": "ecouniverse"
+          },
+          {
+               "from": "gabriel",
+               "to": "voice"
+          },
+          {
+               "from": "gabriel",
+               "to": "vision"
+          },
+          {
+               "from": "gabriel",
+               "to": "shirl"
+          },
+          {
+               "from": "gabriel",
+               "to": "keith"
+          },
+          {
+               "from": "gabriel",
+               "to": "memory"
+          },
+          {
+               "from": "gabriel",
+               "to": "gorunfree"
+          },
+          {
+               "from": "mc96",
+               "to": "memory"
+          },
+          {
+               "from": "mc96",
+               "to": "temporal"
+          },
+          {
+               "from": "mc96",
+               "to": "knowledge"
+          },
+          {
+               "from": "omega",
+               "to": "deepseek"
+          },
+          {
+               "from": "omega",
+               "to": "temporal"
+          },
+          {
+               "from": "shirl",
+               "to": "voice"
+          },
+          {
+               "from": "shirl",
+               "to": "voiceforge"
+          },
+          {
+               "from": "sonic",
+               "to": "voice"
+          },
+          {
+               "from": "sonic",
+               "to": "voiceforge"
+          },
+          {
+               "from": "keith",
+               "to": "deepseek"
+          },
+          {
+               "from": "keith",
+               "to": "knowledge"
+          },
+          {
+               "from": "ecouniverse",
+               "to": "knowledge"
+          },
+          {
+               "from": "memory",
+               "to": "temporal"
+          }
+     ]
+}

@@ -1,0 +1,349 @@
+{
+  "info": {
+    "name": "NOIZY EMPIRE — Complete API Collection",
+    "description": "Every endpoint across the NOIZY Empire.\niPhone → Postman → Webhooks → ALL services.\n\nGOD.local = 10.90.90.10\nHeaven edge = heaven.rsp-5f3.workers.dev\n\nRSP_001 | GORUNFREE | 2026",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "GOD", "value": "http://10.90.90.10" },
+    { "key": "GOD_LOCAL", "value": "http://localhost" },
+    { "key": "HEAVEN", "value": "https://heaven.rsp-5f3.workers.dev" },
+    { "key": "NOIZY_API_KEY", "value": "{{NOIZY_API_KEY}}" },
+    { "key": "VOICE_AUTH_TOKEN", "value": "{{VOICE_AUTH_TOKEN}}" },
+    { "key": "NOIZYSTREAM_TOKEN", "value": "{{NOIZYSTREAM_TOKEN}}" }
+  ],
+  "item": [
+    {
+      "name": "01 — GABRIEL (:7777)",
+      "item": [
+        {
+          "name": "Health",
+          "request": { "method": "GET", "url": "{{GOD}}:7777/health" }
+        },
+        {
+          "name": "Speak (TTS)",
+          "request": {
+            "method": "POST", "url": "{{GOD}}:7777/speak",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\"text\": \"Hello Rob. GABRIEL is online. GORUNFREE.\"}" }
+          }
+        },
+        {
+          "name": "Brief",
+          "request": {
+            "method": "POST", "url": "{{GOD}}:7777/brief",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\"context\": \"iPhone morning briefing\"}" }
+          }
+        },
+        {
+          "name": "Command",
+          "request": {
+            "method": "POST", "url": "{{GOD}}:7777/command",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\"command\": \"status\", \"args\": {}}" }
+          }
+        },
+        {
+          "name": "Get Memcell",
+          "request": { "method": "GET", "url": "{{GOD}}:7777/memcell/noizy:gospel" }
+        },
+        {
+          "name": "Set Memcell",
+          "request": {
+            "method": "POST", "url": "{{GOD}}:7777/memcell/iphone:ping",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\"value\": {\"source\": \"iPhone 15 Pro Max\", \"ts\": \"{{$timestamp}}\"}}" }
+          }
+        },
+        {
+          "name": "Tasks List",
+          "request": { "method": "GET", "url": "{{GOD}}:7777/tasks" }
+        },
+        {
+          "name": "Create Task",
+          "request": {
+            "method": "POST", "url": "{{GOD}}:7777/task",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\"title\": \"iPhone task\", \"priority\": \"high\", \"assigned\": \"GABRIEL\"}" }
+          }
+        }
+      ]
+    },
+    {
+      "name": "02 — Voice Bridge (:8080)",
+      "item": [
+        {
+          "name": "Health",
+          "request": { "method": "GET", "url": "{{GOD}}:8080/health" }
+        },
+        {
+          "name": "Status",
+          "request": {
+            "method": "GET", "url": "{{GOD}}:8080/status",
+            "header": [{ "key": "Authorization", "value": "Bearer {{VOICE_AUTH_TOKEN}}" }]
+          }
+        },
+        {
+          "name": "Voice Command",
+          "request": {
+            "method": "POST", "url": "{{GOD}}:8080/voice-command",
+            "header": [{ "key": "Authorization", "value": "Bearer {{VOICE_AUTH_TOKEN}}" }, { "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\"command\": \"gabriel\", \"text\": \"What is the empire status?\", \"source\": \"iphone-postman\"}" }
+          }
+        },
+        {
+          "name": "Claude Tower (Max)",
+          "request": {
+            "method": "POST", "url": "{{GOD}}:8080/claude",
+            "header": [{ "key": "Authorization", "value": "Bearer {{VOICE_AUTH_TOKEN}}" }, { "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\"text\": \"What should we build next?\", \"tower\": \"max\"}" }
+          }
+        },
+        {
+          "name": "Claude Tower (Code)",
+          "request": {
+            "method": "POST", "url": "{{GOD}}:8080/claude",
+            "header": [{ "key": "Authorization", "value": "Bearer {{VOICE_AUTH_TOKEN}}" }, { "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\"text\": \"Build a health check script\", \"tower\": \"code\"}" }
+          }
+        },
+        {
+          "name": "Power Automate Webhook",
+          "request": {
+            "method": "POST", "url": "{{GOD}}:8080/power-automate-webhook",
+            "header": [{ "key": "Authorization", "value": "Bearer {{VOICE_AUTH_TOKEN}}" }, { "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\"transcript\": \"Deploy heaven now\", \"source\": \"iphone-siri\"}" }
+          }
+        },
+        {
+          "name": "Webhook: GitHub",
+          "request": {
+            "method": "POST", "url": "{{GOD}}:8080/webhook/github",
+            "header": [{ "key": "Authorization", "value": "Bearer {{VOICE_AUTH_TOKEN}}" }, { "key": "Content-Type", "value": "application/json" }, { "key": "x-github-event", "value": "push" }],
+            "body": { "mode": "raw", "raw": "{\"pusher\":{\"name\":\"RSP_001\"},\"commits\":[{\"id\":\"abc\"}],\"ref\":\"refs/heads/main\",\"repository\":{\"full_name\":\"NOIZY-AI/heaven\"}}" }
+          }
+        },
+        {
+          "name": "Webhook: Stripe",
+          "request": {
+            "method": "POST", "url": "{{GOD}}:8080/webhook/stripe",
+            "header": [{ "key": "Authorization", "value": "Bearer {{VOICE_AUTH_TOKEN}}" }, { "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\"type\":\"payment_intent.succeeded\",\"data\":{\"object\":{\"amount\":7500,\"currency\":\"usd\"}}}" }
+          }
+        },
+        {
+          "name": "Webhook: n8n",
+          "request": {
+            "method": "POST", "url": "{{GOD}}:8080/webhook/n8n",
+            "header": [{ "key": "Authorization", "value": "Bearer {{VOICE_AUTH_TOKEN}}" }, { "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\"workflow\":\"mirror-brief-create\",\"event\":\"complete\",\"data\":{\"brief_id\":\"midnight-aquarium\"}}" }
+          }
+        },
+        {
+          "name": "Webhook: Heaven",
+          "request": {
+            "method": "POST", "url": "{{GOD}}:8080/webhook/heaven",
+            "header": [{ "key": "Authorization", "value": "Bearer {{VOICE_AUTH_TOKEN}}" }, { "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\"source\":\"consent\",\"event\":\"consent.issued\",\"summary\":\"New consent token for RSP_001\"}" }
+          }
+        },
+        {
+          "name": "Webhooks Status",
+          "request": {
+            "method": "GET", "url": "{{GOD}}:8080/webhooks",
+            "header": [{ "key": "Authorization", "value": "Bearer {{VOICE_AUTH_TOKEN}}" }]
+          }
+        }
+      ]
+    },
+    {
+      "name": "03 — Heaven (Edge)",
+      "item": [
+        { "name": "Health", "request": { "method": "GET", "url": "{{HEAVEN}}/health" } },
+        { "name": "Root (API Index)", "request": { "method": "GET", "url": "{{HEAVEN}}/" } },
+        { "name": "Dashboard", "request": { "method": "GET", "url": "{{HEAVEN}}/dashboard" } },
+        { "name": "Gabriel Status", "request": { "method": "GET", "url": "{{HEAVEN}}/gabriel" } },
+        {
+          "name": "Actors List",
+          "request": { "method": "GET", "url": "{{HEAVEN}}/api/v1/actors", "header": [{ "key": "X-NOIZY-Key", "value": "{{NOIZY_API_KEY}}" }] }
+        },
+        {
+          "name": "Stats",
+          "request": { "method": "GET", "url": "{{HEAVEN}}/api/v1/stats", "header": [{ "key": "X-NOIZY-Key", "value": "{{NOIZY_API_KEY}}" }] }
+        },
+        {
+          "name": "Ledger",
+          "request": { "method": "GET", "url": "{{HEAVEN}}/api/v1/ledger", "header": [{ "key": "X-NOIZY-Key", "value": "{{NOIZY_API_KEY}}" }] }
+        },
+        {
+          "name": "KPI Trust",
+          "request": { "method": "GET", "url": "{{HEAVEN}}/api/v1/kpi/trust", "header": [{ "key": "X-NOIZY-Key", "value": "{{NOIZY_API_KEY}}" }] }
+        },
+        {
+          "name": "Consent Tokens",
+          "request": { "method": "GET", "url": "{{HEAVEN}}/api/v1/consent-tokens", "header": [{ "key": "X-NOIZY-Key", "value": "{{NOIZY_API_KEY}}" }] }
+        },
+        {
+          "name": "Rate Table",
+          "request": { "method": "GET", "url": "{{HEAVEN}}/api/v1/rate-table", "header": [{ "key": "X-NOIZY-Key", "value": "{{NOIZY_API_KEY}}" }] }
+        },
+        {
+          "name": "Enterprise Audit",
+          "request": { "method": "GET", "url": "{{HEAVEN}}/api/v1/enterprise/audit", "header": [{ "key": "X-NOIZY-Key", "value": "{{NOIZY_API_KEY}}" }] }
+        },
+        {
+          "name": "Append to Ledger",
+          "request": {
+            "method": "POST", "url": "{{HEAVEN}}/api/v1/ledger/append",
+            "header": [{ "key": "X-NOIZY-Key", "value": "{{NOIZY_API_KEY}}" }, { "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\"event_type\": \"iphone.ping\", \"payload_json\": \"{\\\"source\\\": \\\"postman-iphone\\\"}\", \"source_system\": \"POSTMAN\"}" }
+          }
+        }
+      ]
+    },
+    {
+      "name": "04 — NOIZYSTREAM (:4040)",
+      "item": [
+        { "name": "Health", "request": { "method": "GET", "url": "{{GOD}}:4040/health" } },
+        { "name": "Dashboard", "request": { "method": "GET", "url": "{{GOD}}:4040/" } },
+        {
+          "name": "Get Auth Token",
+          "request": {
+            "method": "POST", "url": "{{GOD}}:4040/auth/token",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\"subject\": \"rsp_001\", \"role\": \"HOST\"}" }
+          }
+        },
+        {
+          "name": "Create Session",
+          "request": {
+            "method": "POST", "url": "{{GOD}}:4040/sessions",
+            "header": [{ "key": "Authorization", "value": "Bearer {{NOIZYSTREAM_TOKEN}}" }, { "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\"name\": \"iPhone Session\", \"template\": \"voice_pipeline\"}" }
+          }
+        },
+        {
+          "name": "List Sessions",
+          "request": {
+            "method": "GET", "url": "{{GOD}}:4040/sessions",
+            "header": [{ "key": "Authorization", "value": "Bearer {{NOIZYSTREAM_TOKEN}}" }]
+          }
+        },
+        {
+          "name": "Route Templates",
+          "request": {
+            "method": "GET", "url": "{{GOD}}:4040/routes/templates",
+            "header": [{ "key": "Authorization", "value": "Bearer {{NOIZYSTREAM_TOKEN}}" }]
+          }
+        },
+        {
+          "name": "Dante Topology",
+          "request": {
+            "method": "GET", "url": "{{GOD}}:4040/dante/topology",
+            "header": [{ "key": "Authorization", "value": "Bearer {{NOIZYSTREAM_TOKEN}}" }]
+          }
+        },
+        {
+          "name": "Proof Chain",
+          "request": {
+            "method": "GET", "url": "{{GOD}}:4040/proof",
+            "header": [{ "key": "Authorization", "value": "Bearer {{NOIZYSTREAM_TOKEN}}" }]
+          }
+        }
+      ]
+    },
+    {
+      "name": "05 — NOIZYVOX (:8421)",
+      "item": [
+        { "name": "Health", "request": { "method": "GET", "url": "{{GOD}}:8421/api/v1/health" } },
+        { "name": "API Docs", "request": { "method": "GET", "url": "{{GOD}}:8421/docs" } }
+      ]
+    },
+    {
+      "name": "06 — AirPlay (:3001)",
+      "item": [
+        { "name": "Health", "request": { "method": "GET", "url": "{{GOD}}:3001/health" } },
+        { "name": "State", "request": { "method": "GET", "url": "{{GOD}}:3001/state" } },
+        { "name": "Devices", "request": { "method": "GET", "url": "{{GOD}}:3001/devices" } },
+        {
+          "name": "Activate Voice Mode",
+          "request": { "method": "POST", "url": "{{GOD}}:3001/voice" }
+        }
+      ]
+    },
+    {
+      "name": "07 — Health Monitor (:9090)",
+      "item": [
+        { "name": "Dashboard", "request": { "method": "GET", "url": "{{GOD}}:9090/" } },
+        { "name": "API Status", "request": { "method": "GET", "url": "{{GOD}}:9090/api/status" } },
+        { "name": "Alerts", "request": { "method": "GET", "url": "{{GOD}}:9090/api/alerts" } }
+      ]
+    },
+    {
+      "name": "08 — Ollama (:11434)",
+      "item": [
+        { "name": "Models List", "request": { "method": "GET", "url": "{{GOD}}:11434/api/tags" } },
+        { "name": "Running Models", "request": { "method": "GET", "url": "{{GOD}}:11434/api/ps" } },
+        {
+          "name": "Generate (Local AI)",
+          "request": {
+            "method": "POST", "url": "{{GOD}}:11434/api/generate",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\"model\": \"llama3.2\", \"prompt\": \"What is NOIZY.AI?\", \"stream\": false}" }
+          }
+        }
+      ]
+    },
+    {
+      "name": "09 — iPhone Quick Actions",
+      "description": "One-tap actions for iPhone Shortcuts + Postman",
+      "item": [
+        {
+          "name": "Morning Briefing",
+          "request": {
+            "method": "POST", "url": "{{GOD}}:7777/brief",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\"context\": \"iPhone morning briefing. Give me: service status, days to April 17, top priorities.\"}" }
+          }
+        },
+        {
+          "name": "Quick Status (All Services)",
+          "request": { "method": "GET", "url": "{{GOD}}:9090/api/status" }
+        },
+        {
+          "name": "Speak to GABRIEL",
+          "request": {
+            "method": "POST", "url": "{{GOD}}:8080/claude",
+            "header": [{ "key": "Authorization", "value": "Bearer {{VOICE_AUTH_TOKEN}}" }, { "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\"text\": \"What are we building today?\", \"tower\": \"max\"}" }
+          }
+        },
+        {
+          "name": "iPhone Ping (register presence)",
+          "request": {
+            "method": "POST", "url": "{{GOD}}:7777/memcell/iphone:presence",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\"value\": {\"device\": \"iPhone 15 Pro Max\", \"action\": \"ping\", \"ts\": \"{{$timestamp}}\"}}" }
+          }
+        },
+        {
+          "name": "Emergency: Consent Revoke",
+          "request": {
+            "method": "POST", "url": "{{GOD}}:8080/webhook/heaven",
+            "header": [{ "key": "Authorization", "value": "Bearer {{VOICE_AUTH_TOKEN}}" }, { "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\"source\": \"consent\", \"event\": \"consent.revoke\", \"summary\": \"Emergency revocation from iPhone\", \"creator_id\": \"RSP_001\"}" }
+          }
+        },
+        {
+          "name": "Deploy Heaven (via Voice Bridge)",
+          "request": {
+            "method": "POST", "url": "{{GOD}}:8080/voice-command",
+            "header": [{ "key": "Authorization", "value": "Bearer {{VOICE_AUTH_TOKEN}}" }, { "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\"command\": \"deploy\", \"text\": \"deploy heaven\", \"source\": \"iphone-postman\"}" }
+          }
+        }
+      ]
+    }
+  ]
+}

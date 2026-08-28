@@ -1,0 +1,1064 @@
+{
+  "generated_at": "2026-06-19T18:25:01",
+  "root": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE",
+  "files_seen": 25308,
+  "apparent_bytes": 93440136746,
+  "apparent_human": "87.0 GB",
+  "allocated_bytes": 425984,
+  "allocated_human": "416.0 KB",
+  "top_local_storage_buckets": [
+    {
+      "bucket": "RSP_001/.DS_Store",
+      "allocated_bytes": 28672,
+      "allocated_human": "28.0 KB"
+    },
+    {
+      "bucket": "RSP_001/_MCDONALD'S MASTER/.DS_Store",
+      "allocated_bytes": 20480,
+      "allocated_human": "20.0 KB"
+    },
+    {
+      "bucket": "RSP_001/_DRAGON MASTER/.DS_Store",
+      "allocated_bytes": 16384,
+      "allocated_human": "16.0 KB"
+    },
+    {
+      "bucket": ".DS_Store",
+      "allocated_bytes": 12288,
+      "allocated_human": "12.0 KB"
+    },
+    {
+      "bucket": "RSP_001/76 DESIGN/.DS_Store",
+      "allocated_bytes": 12288,
+      "allocated_human": "12.0 KB"
+    },
+    {
+      "bucket": "RSP_001/_FRIENDS&ENEMIES/.DS_Store",
+      "allocated_bytes": 12288,
+      "allocated_human": "12.0 KB"
+    },
+    {
+      "bucket": "RSP_001/JAN_6_2018_BENDY_MUSIC_EXPLORATION/.DS_Store",
+      "allocated_bytes": 12288,
+      "allocated_human": "12.0 KB"
+    },
+    {
+      "bucket": "RSP_001/_ALL_GIRL_ARCADE/.DS_Store",
+      "allocated_bytes": 12288,
+      "allocated_human": "12.0 KB"
+    },
+    {
+      "bucket": "RSP_001/_PROJECT BOURDAIN/.DS_Store",
+      "allocated_bytes": 12288,
+      "allocated_human": "12.0 KB"
+    },
+    {
+      "bucket": "RSP_001/GYSD B.u/.DS_Store",
+      "allocated_bytes": 12288,
+      "allocated_human": "12.0 KB"
+    },
+    {
+      "bucket": "RSP_001/_MICROSOFT MASTER/.DS_Store",
+      "allocated_bytes": 12288,
+      "allocated_human": "12.0 KB"
+    },
+    {
+      "bucket": "RSP_001/JUNE2_TEST.bak.BAK/.DS_Store",
+      "allocated_bytes": 12288,
+      "allocated_human": "12.0 KB"
+    },
+    {
+      "bucket": "RSP_001/ORCHESTRAL_2012.bak/.DS_Store",
+      "allocated_bytes": 12288,
+      "allocated_human": "12.0 KB"
+    },
+    {
+      "bucket": "RSP_001/_MONOPOLY MASTER/.DS_Store",
+      "allocated_bytes": 12288,
+      "allocated_human": "12.0 KB"
+    },
+    {
+      "bucket": "RSP_001/MCDONALDS/.DS_Store",
+      "allocated_bytes": 12288,
+      "allocated_human": "12.0 KB"
+    },
+    {
+      "bucket": "RSP_001/DESIGN FINAL WAVs 06.2024/.DS_Store",
+      "allocated_bytes": 8192,
+      "allocated_human": "8.0 KB"
+    },
+    {
+      "bucket": "RSP_001/2 RUNE PROJECTS/.DS_Store",
+      "allocated_bytes": 8192,
+      "allocated_human": "8.0 KB"
+    },
+    {
+      "bucket": "RSP_001/A CRAFTED STORY/.DS_Store",
+      "allocated_bytes": 8192,
+      "allocated_human": "8.0 KB"
+    },
+    {
+      "bucket": "RSP_001/12TB_RESCUE_2026-05-25/.DS_Store",
+      "allocated_bytes": 8192,
+      "allocated_human": "8.0 KB"
+    },
+    {
+      "bucket": "RSP_001/180LA/.DS_Store",
+      "allocated_bytes": 8192,
+      "allocated_human": "8.0 KB"
+    },
+    {
+      "bucket": "RSP_001/JULY_09_2018_BENDY_EPS.4_dewey_decimated/.DS_Store",
+      "allocated_bytes": 8192,
+      "allocated_human": "8.0 KB"
+    },
+    {
+      "bucket": "RSP_001/THE FROZEN_DEMO_01.bak.BAK/.DS_Store",
+      "allocated_bytes": 8192,
+      "allocated_human": "8.0 KB"
+    },
+    {
+      "bucket": "RSP_001/ADOBE PREM.projects/.DS_Store",
+      "allocated_bytes": 8192,
+      "allocated_human": "8.0 KB"
+    },
+    {
+      "bucket": "RSP_001/GitHub/.DS_Store",
+      "allocated_bytes": 8192,
+      "allocated_human": "8.0 KB"
+    },
+    {
+      "bucket": "RSP_001/RP_SONGS_MAST/.DS_Store",
+      "allocated_bytes": 8192,
+      "allocated_human": "8.0 KB"
+    },
+    {
+      "bucket": "RSP_001/M2ULTRA_BACKUP_20260417/.DS_Store",
+      "allocated_bytes": 8192,
+      "allocated_human": "8.0 KB"
+    },
+    {
+      "bucket": "RSP_001/VIRGIN B.U/.DS_Store",
+      "allocated_bytes": 8192,
+      "allocated_human": "8.0 KB"
+    },
+    {
+      "bucket": "RSP_001/_PROJECT BOURDAIN/VTFX_STUDIO_&_SUPPORT",
+      "allocated_bytes": 8192,
+      "allocated_human": "8.0 KB"
+    },
+    {
+      "bucket": "RSP_001/SEZLIK.com/.DS_Store",
+      "allocated_bytes": 8192,
+      "allocated_human": "8.0 KB"
+    },
+    {
+      "bucket": "RSP_001/AARON STONE/.DS_Store",
+      "allocated_bytes": 8192,
+      "allocated_human": "8.0 KB"
+    },
+    {
+      "bucket": "RSP_001/_AARON STONE/.DS_Store",
+      "allocated_bytes": 8192,
+      "allocated_human": "8.0 KB"
+    },
+    {
+      "bucket": "RSP_001/2008_FUELDEMOEDITS/.DS_Store",
+      "allocated_bytes": 8192,
+      "allocated_human": "8.0 KB"
+    },
+    {
+      "bucket": "RSP_001/_AMERICAN_DAD_VS_FAMILY_GUY/.DS_Store",
+      "allocated_bytes": 8192,
+      "allocated_human": "8.0 KB"
+    },
+    {
+      "bucket": "RSP_001/MONTFORT FOUNDATION B.U/.DS_Store",
+      "allocated_bytes": 8192,
+      "allocated_human": "8.0 KB"
+    },
+    {
+      "bucket": "RSP_001/SWOBB PRESENT B.u.U/.DS_Store",
+      "allocated_bytes": 8192,
+      "allocated_human": "8.0 KB"
+    },
+    {
+      "bucket": "RSP_001/_COOK LIKE A CHEF/.DS_Store",
+      "allocated_bytes": 8192,
+      "allocated_human": "8.0 KB"
+    },
+    {
+      "bucket": "RSP_001/03_PROJECTS/.DS_Store",
+      "allocated_bytes": 8192,
+      "allocated_human": "8.0 KB"
+    },
+    {
+      "bucket": "RSP_001/MissionControl96/.DS_Store",
+      "allocated_bytes": 8192,
+      "allocated_human": "8.0 KB"
+    },
+    {
+      "bucket": "RSP_001/FLEXCARE B.u.U/.DS_Store",
+      "allocated_bytes": 8192,
+      "allocated_human": "8.0 KB"
+    },
+    {
+      "bucket": "RSP_001/ VIDEO/.DS_Store",
+      "allocated_bytes": 8192,
+      "allocated_human": "8.0 KB"
+    },
+    {
+      "bucket": "RSP_001/208 Fueldemoedits/.DS_Store",
+      "allocated_bytes": 8192,
+      "allocated_human": "8.0 KB"
+    },
+    {
+      "bucket": "MASTER_DIGITAL_INFRASTRUCTURE_PLAN.md",
+      "allocated_bytes": 0,
+      "allocated_human": "0 B"
+    },
+    {
+      "bucket": "_clone-manifest.csv",
+      "allocated_bytes": 0,
+      "allocated_human": "0 B"
+    },
+    {
+      "bucket": ".gdrive-write-test.txt",
+      "allocated_bytes": 0,
+      "allocated_human": "0 B"
+    },
+    {
+      "bucket": "12TB_FULL_SCAN.txt",
+      "allocated_bytes": 0,
+      "allocated_human": "0 B"
+    },
+    {
+      "bucket": "_AUDIO_RESCUE.code-workspace",
+      "allocated_bytes": 0,
+      "allocated_human": "0 B"
+    },
+    {
+      "bucket": "_PPTX_HARVEST/pptx-manifest.tsv",
+      "allocated_bytes": 0,
+      "allocated_human": "0 B"
+    },
+    {
+      "bucket": "_PPTX_HARVEST/Documents/RSP_BIO_V1.pptx",
+      "allocated_bytes": 0,
+      "allocated_human": "0 B"
+    },
+    {
+      "bucket": "_PPTX_HARVEST/Documents/NOIZYVOX_AIVA.pptx",
+      "allocated_bytes": 0,
+      "allocated_human": "0 B"
+    },
+    {
+      "bucket": "_PPTX_HARVEST/Documents/Claude-by-Anthropic-in-PowerPoint.pptx",
+      "allocated_bytes": 0,
+      "allocated_human": "0 B"
+    }
+  ],
+  "unreadable_count": 1382,
+  "unreadable_sample": [
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/MCDONALDS_DRAGON",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/MCDONALDS_DRAGON\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/OCT8_AUDIO",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/OCT8_AUDIO\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/SIZZLE_AUDIO",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/SIZZLE_AUDIO\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/MAY9_MULTILING_WEBSITE",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/MAY9_MULTILING_WEBSITE\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/SEPT11_SUNFLOWER_DANCE",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/SEPT11_SUNFLOWER_DANCE\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/MYSTERY MAP",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/MYSTERY MAP\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/OCT16_PIB_TRAILER",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/OCT16_PIB_TRAILER\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/GAMES/OCT11_GOLDENEGG",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/GAMES/OCT11_GOLDENEGG\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/GAMES/JULY14_GRAVITYJUMPER",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/GAMES/JULY14_GRAVITYJUMPER\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/GAMES/ADDITIONAL SFX",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/GAMES/ADDITIONAL SFX\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/GAMES/AUG5_MAZEGAME",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/GAMES/AUG5_MAZEGAME\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/GAMES/OCT13_POQ_AMB",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/GAMES/OCT13_POQ_AMB\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/GAMES/OCT10_MYSTERYMAP",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/GAMES/OCT10_MYSTERYMAP\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/GAMES/SEPT28_HS_PARADE",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/GAMES/SEPT28_HS_PARADE\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/GAMES/JUNE28_ROCKET DROPPER",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/GAMES/JUNE28_ROCKET DROPPER\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/GAMES/JULY11_RIVERRAFTING",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/GAMES/JULY11_RIVERRAFTING\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/GAMES/SPACE_GAME",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/GAMES/SPACE_GAME\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/GAMES/JUNE22_HS_SMURF_GAME",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/GAMES/JUNE22_HS_SMURF_GAME\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/GAMES/OCT12_PUSSINBOOTS",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/GAMES/OCT12_PUSSINBOOTS\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/GAMES/SEPT26-HAPPY TETRIS",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/GAMES/SEPT26-HAPPY TETRIS\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/GAMES/OCT9_GOLDEN_EGG",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/GAMES/OCT9_GOLDEN_EGG\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/GAMES/JULY4_FLYING_SQUIRREL",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/GAMES/JULY4_FLYING_SQUIRREL\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/GAMES/OCT9_CANNONADE",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/GAMES/OCT9_CANNONADE\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/GAMES/OCT13_ADDITIONAL_SFX",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/GAMES/OCT13_ADDITIONAL_SFX\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/MUSIC_TEMPLATES",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/MUSIC_TEMPLATES\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/NEW_BUMBLE_MUSIC",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/NEW_BUMBLE_MUSIC\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/SEPT_18",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/SEPT_18\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/SEPT26_AUDIO",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/SEPT26_AUDIO\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/MUSIC FOR STS VID",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/MUSIC FOR STS VID\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/UNIVERSAL FX'S",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/UNIVERSAL FX'S\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/PEABODY",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/PEABODY\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/SEPT13_SFX_REVISIONS",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/SEPT13_SFX_REVISIONS\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/MCDONALDS_SOUNDS",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/MCDONALDS_SOUNDS\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/MARCH5_WEBSITE_EDITS",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/MARCH5_WEBSITE_EDITS\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/MAR4_COMMERCIAL_REV",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/MAR4_COMMERCIAL_REV\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/SEPT25_MIDI",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/SEPT25_MIDI\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/AUG9_MCDONALDS_DRAGON/AUDIO",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/AUG9_MCDONALDS_DRAGON/AUDIO\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/AUG9_MCDONALDS_DRAGON/MIDI",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/AUG9_MCDONALDS_DRAGON/MIDI\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/SMALL_ASSETS",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/SMALL_ASSETS\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/SEPT21_AUDIO",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/SEPT21_AUDIO\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/RISE OF THE GUARDIANS",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/RISE OF THE GUARDIANS\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/TOCA BAND",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/TOCA BAND\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/SEPT19",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/SEPT19\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/HS_STORYBOOK",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/HS_STORYBOOK\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/SEPT25_AUDIO",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/SEPT25_AUDIO\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/VOICE_STUFF",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/VOICE_STUFF\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/FAIRIES & DRAGONS/FAIRIES",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/FAIRIES & DRAGONS/FAIRIES\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/FAIRIES & DRAGONS/DRAGONS",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/FAIRIES & DRAGONS/DRAGONS\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/MUD PUDDLE",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/MUD PUDDLE\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/SEPT27_AUDIO",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/SEPT27_AUDIO\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/MCDONALDS HAPPY STUDIO",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/MCDONALDS HAPPY STUDIO\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/MUSIC MASTERS",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/MUSIC MASTERS\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/LEAFY LANDINGS",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/LEAFY LANDINGS\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/AUG23_BUMBLE_MUSICEDITS/AUDIO",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/AUG23_BUMBLE_MUSICEDITS/AUDIO\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/AUG23_BUMBLE_MUSICEDITS/AUG23_MUSICEDITS.bak",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/AUG23_BUMBLE_MUSICEDITS/AUG23_MUSICEDITS.bak\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/NATURE",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/NATURE\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/AUG17_BUMBLEBEE_ORIGINAL/AUG22_MCD'S_BUMBLEBEE.bak",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/AUG17_BUMBLEBEE_ORIGINAL/AUG22_MCD'S_BUMBLEBEE.bak\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/AUG17_BUMBLEBEE_ORIGINAL/AUG21_MCD'S_TRAILER.bak",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/AUG17_BUMBLEBEE_ORIGINAL/AUG21_MCD'S_TRAILER.bak\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/AUG17_BUMBLEBEE_ORIGINAL/SEPT6_MCD'S_CRYSTALGAME.bak",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/AUG17_BUMBLEBEE_ORIGINAL/SEPT6_MCD'S_CRYSTALGAME.bak\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/AUG17_BUMBLEBEE_ORIGINAL/AUG17_BUMBLEBEE.bak",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/AUG17_BUMBLEBEE_ORIGINAL/AUG17_BUMBLEBEE.bak\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/AUG17_BUMBLEBEE_ORIGINAL/AUG20_BUMBLEBEE.bak",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/AUG17_BUMBLEBEE_ORIGINAL/AUG20_BUMBLEBEE.bak\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/AUG17_BUMBLEBEE_ORIGINAL/AUG22_MCD'S_TRAILERALT.bak",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/AUG17_BUMBLEBEE_ORIGINAL/AUG22_MCD'S_TRAILERALT.bak\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/SEPT20_VIOLET",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/SEPT20_VIOLET\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/APR2012_FRANCE_BOOKS/APR18_FRANCE_BOOKS_01",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/APR2012_FRANCE_BOOKS/APR18_FRANCE_BOOKS_01\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/APR2012_FRANCE_BOOKS/APR16_FRANCE_BOOKS_01",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/APR2012_FRANCE_BOOKS/APR16_FRANCE_BOOKS_01\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/SEPT 18 LILY REVISIONS",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/SEPT 18 LILY REVISIONS\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/OCT1_AUDIO",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/OCT1_AUDIO\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/OCT1_MIDI",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/OCT1_MIDI\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/_AUDIO ONLY",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/_AUDIO ONLY\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/SEPT21_MIDI",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/SEPT21_MIDI\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/FAIRIES&DRAGONS/SITE_MUSIC",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/FAIRIES&DRAGONS/SITE_MUSIC\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/FAIRIES&DRAGONS/ICE_DRAGON_CASTLEBUST",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/FAIRIES&DRAGONS/ICE_DRAGON_CASTLEBUST\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/OCT5_AUDIO",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/OCT5_AUDIO\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/QUICKTIMES",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/QUICKTIMES\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/MY LITTLE PONY",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/MY LITTLE PONY\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/HAPPY STUDIO/MOV",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/HAPPY STUDIO/MOV\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/HAPPY STUDIO/WAVE",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/HAPPY STUDIO/WAVE\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/PETS",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/PETS\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/JEWEL_PETS",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/JEWEL_PETS\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/SEPT5_REVISIONS",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/SEPT5_REVISIONS\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/ HAPPY STUDIO/OCT9_DJ_FURBIE",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/ HAPPY STUDIO/OCT9_DJ_FURBIE\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/ HAPPY STUDIO/DEC.5_happy2_game",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/ HAPPY STUDIO/DEC.5_happy2_game\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/ HAPPY STUDIO/DEC11_YOOHOO",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/ HAPPY STUDIO/DEC11_YOOHOO\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/ HAPPY STUDIO/OCT7_3D_MAGIC",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/ HAPPY STUDIO/OCT7_3D_MAGIC\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/UI ASSETS",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/UI ASSETS\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/MIDI",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/MIDI\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/OCT9_LAST_FIXES",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/OCT9_LAST_FIXES\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/LEAFY_LANDINGS",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/LEAFY_LANDINGS\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/MCDONALDS_SEPT5",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/MCDONALDS_SEPT5\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/MARCH4_WEBSITE_EDITS",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/MARCH4_WEBSITE_EDITS\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/SMALLASSETS",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/SMALLASSETS\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/_MISC",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/_MISC\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/JULY17_TEASERVIDEO",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/JULY17_TEASERVIDEO\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/VIDEO",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/VIDEO\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/UNDO DATA/APR3_SIZZLEVIDEO_6#66.wav",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/UNDO DATA/APR3_SIZZLEVIDEO_6#66.wav\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/UNDO DATA/APR3_SIZZLEVIDEO_6#72.wav",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/UNDO DATA/APR3_SIZZLEVIDEO_6#72.wav\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/UNDO DATA/MARCH29_SIZZLEVIDEO_10#03.wav",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/UNDO DATA/MARCH29_SIZZLEVIDEO_10#03.wav\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/UNDO DATA/APR3_SIZZLEVIDEO_6#109.wav",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/UNDO DATA/APR3_SIZZLEVIDEO_6#109.wav\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/UNDO DATA/APR3_SIZZLEVIDEO_6#11.wav",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/UNDO DATA/APR3_SIZZLEVIDEO_6#11.wav\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/UNDO DATA/MCD_SFX_TOFEB22NDVIDEO.wav",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/UNDO DATA/MCD_SFX_TOFEB22NDVIDEO.wav\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/UNDO DATA/APR3_SIZZLEVIDEO_6#84.wav",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/UNDO DATA/APR3_SIZZLEVIDEO_6#84.wav\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/UNDO DATA/APR3_SIZZLEVIDEO_6#86.wav",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/UNDO DATA/APR3_SIZZLEVIDEO_6#86.wav\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/SFX&VOICE",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/SFX&VOICE\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/ICE_DRAGON_CASTLEBUST",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/ICE_DRAGON_CASTLEBUST\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/SEPT27_MIDI",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/SEPT27_MIDI\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/SIZZLE MASTER",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/SIZZLE MASTER\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/FRANCE BOOKS/AUDIO",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/FRANCE BOOKS/AUDIO\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/FRANCE BOOKS/JPG",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/FRANCE BOOKS/JPG\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/ VIDEO/AUDIO_ASSETS",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/ VIDEO/AUDIO_ASSETS\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/ VIDEO/OCT7_VIDEOCAPTURES",
+      "error": "[Errno 60] Operation timed out: \"/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_MCDONALD'S MASTER/ VIDEO/OCT7_VIDEOCAPTURES\""
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/DESIGN FINAL WAVs 06.2024/LP CD artwork/CD",
+      "error": "[Errno 60] Operation timed out: '/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/DESIGN FINAL WAVs 06.2024/LP CD artwork/CD'"
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/DESIGN FINAL WAVs 06.2024/LP CD artwork/LP",
+      "error": "[Errno 60] Operation timed out: '/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/DESIGN FINAL WAVs 06.2024/LP CD artwork/LP'"
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/DESIGN FINAL WAVs 06.2024/LP CD artwork/resources",
+      "error": "[Errno 60] Operation timed out: '/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/DESIGN FINAL WAVs 06.2024/LP CD artwork/resources'"
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/DESIGN FINAL WAVs 06.2024/MASTERED/V.1",
+      "error": "[Errno 60] Operation timed out: '/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/DESIGN FINAL WAVs 06.2024/MASTERED/V.1'"
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/2 RUNE PROJECTS/RUNE_GMC_CHEVYB/RUNE_REF_MUSIC",
+      "error": "[Errno 60] Operation timed out: '/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/2 RUNE PROJECTS/RUNE_GMC_CHEVYB/RUNE_REF_MUSIC'"
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/2 RUNE PROJECTS/RUNE_GMC_CHEVYB/GMC_CHEVY_MASTER_SESSIONS",
+      "error": "[Errno 60] Operation timed out: '/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/2 RUNE PROJECTS/RUNE_GMC_CHEVYB/GMC_CHEVY_MASTER_SESSIONS'"
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/2 RUNE PROJECTS/RUNE_GMC_CHEVYB/15SEC_SPOTS",
+      "error": "[Errno 60] Operation timed out: '/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/2 RUNE PROJECTS/RUNE_GMC_CHEVYB/15SEC_SPOTS'"
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/2 RUNE PROJECTS/RUNE_GMC_CHEVYB/DOCS",
+      "error": "[Errno 60] Operation timed out: '/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/2 RUNE PROJECTS/RUNE_GMC_CHEVYB/DOCS'"
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/2 RUNE PROJECTS/RUNE_GMC_CHEVYB/GMC SIERRA CLEAN AUDIO",
+      "error": "[Errno 60] Operation timed out: '/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/2 RUNE PROJECTS/RUNE_GMC_CHEVYB/GMC SIERRA CLEAN AUDIO'"
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/2 RUNE PROJECTS/RUNE_GMC_CHEVYA/RUNE_REF_MUSIC",
+      "error": "[Errno 60] Operation timed out: '/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/2 RUNE PROJECTS/RUNE_GMC_CHEVYA/RUNE_REF_MUSIC'"
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/2 RUNE PROJECTS/RUNE_GMC_CHEVYA/GMC_CHEVY_MASTER_SESSIONS",
+      "error": "[Errno 60] Operation timed out: '/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/2 RUNE PROJECTS/RUNE_GMC_CHEVYA/GMC_CHEVY_MASTER_SESSIONS'"
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/2 RUNE PROJECTS/RUNE_GMC_CHEVYA/15SEC_SPOTS",
+      "error": "[Errno 60] Operation timed out: '/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/2 RUNE PROJECTS/RUNE_GMC_CHEVYA/15SEC_SPOTS'"
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/2 RUNE PROJECTS/RUNE_GMC_CHEVYA/DOCS",
+      "error": "[Errno 60] Operation timed out: '/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/2 RUNE PROJECTS/RUNE_GMC_CHEVYA/DOCS'"
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/2 RUNE PROJECTS/RUNE_GMC_CHEVYA/SIERRA_MUSIC_TRACK_DEMO",
+      "error": "[Errno 60] Operation timed out: '/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/2 RUNE PROJECTS/RUNE_GMC_CHEVYA/SIERRA_MUSIC_TRACK_DEMO'"
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/2 RUNE PROJECTS/RUNE_WINTER_TIRES/PROJECT",
+      "error": "[Errno 60] Operation timed out: '/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/2 RUNE PROJECTS/RUNE_WINTER_TIRES/PROJECT'"
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/2 RUNE PROJECTS/RUNE_WINTER_TIRES/RUNE_WINTER_SOURCE",
+      "error": "[Errno 60] Operation timed out: '/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/2 RUNE PROJECTS/RUNE_WINTER_TIRES/RUNE_WINTER_SOURCE'"
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/2 RUNE PROJECTS/NOV20_GMC_BUMPERS/BOUNCES",
+      "error": "[Errno 60] Operation timed out: '/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/2 RUNE PROJECTS/NOV20_GMC_BUMPERS/BOUNCES'"
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/2 RUNE PROJECTS/NOV20_GMC_BUMPERS/AUDIO FILES",
+      "error": "[Errno 60] Operation timed out: '/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/2 RUNE PROJECTS/NOV20_GMC_BUMPERS/AUDIO FILES'"
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/A CRAFTED STORY/REAL LAW/VIDEO_AUDIO",
+      "error": "[Errno 60] Operation timed out: '/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/A CRAFTED STORY/REAL LAW/VIDEO_AUDIO'"
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/A CRAFTED STORY/REAL LAW/AUG28_REAL_LAW_MUSIC",
+      "error": "[Errno 60] Operation timed out: '/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/A CRAFTED STORY/REAL LAW/AUG28_REAL_LAW_MUSIC'"
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/12TB_RESCUE_2026-05-25/NOIZYLAB_ARCHIVES/ABSORBED_NOIZYLAB_COMPLETE",
+      "error": "[Errno 60] Operation timed out: '/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/12TB_RESCUE_2026-05-25/NOIZYLAB_ARCHIVES/ABSORBED_NOIZYLAB_COMPLETE'"
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/12TB_RESCUE_2026-05-25/CODEMASTER/MissionControl96_Support",
+      "error": "[Errno 60] Operation timed out: '/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/12TB_RESCUE_2026-05-25/CODEMASTER/MissionControl96_Support'"
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/12TB_RESCUE_2026-05-25/CODEMASTER/.gemini_data",
+      "error": "[Errno 60] Operation timed out: '/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/12TB_RESCUE_2026-05-25/CODEMASTER/.gemini_data'"
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/12TB_RESCUE_2026-05-25/CODEMASTER/__2025 DOCUMENTS",
+      "error": "[Errno 60] Operation timed out: '/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/12TB_RESCUE_2026-05-25/CODEMASTER/__2025 DOCUMENTS'"
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/12TB_RESCUE_2026-05-25/CODEMASTER/NOIZYLAB_ARCHIVES",
+      "error": "[Errno 60] Operation timed out: '/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/12TB_RESCUE_2026-05-25/CODEMASTER/NOIZYLAB_ARCHIVES'"
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/12TB_RESCUE_2026-05-25/CODEMASTER/_2026 PROJECT MASTER",
+      "error": "[Errno 60] Operation timed out: '/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/12TB_RESCUE_2026-05-25/CODEMASTER/_2026 PROJECT MASTER'"
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/12TB_RESCUE_2026-05-25/CODEMASTER/NOIZYLAB_WORKSPACE",
+      "error": "[Errno 60] Operation timed out: '/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/12TB_RESCUE_2026-05-25/CODEMASTER/NOIZYLAB_WORKSPACE'"
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/12TB_RESCUE_2026-05-25/CODEMASTER/NOIZYLAB",
+      "error": "[Errno 60] Operation timed out: '/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/12TB_RESCUE_2026-05-25/CODEMASTER/NOIZYLAB'"
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/12TB_RESCUE_2026-05-25/CODEMASTER/__2025 PROJECT DUPES",
+      "error": "[Errno 60] Operation timed out: '/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/12TB_RESCUE_2026-05-25/CODEMASTER/__2025 PROJECT DUPES'"
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/12TB_RESCUE_2026-05-25/CODEMASTER/Installers_2026",
+      "error": "[Errno 60] Operation timed out: '/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/12TB_RESCUE_2026-05-25/CODEMASTER/Installers_2026'"
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/12TB_RESCUE_2026-05-25/CODEMASTER/_ORGANIZED",
+      "error": "[Errno 60] Operation timed out: '/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/12TB_RESCUE_2026-05-25/CODEMASTER/_ORGANIZED'"
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/12TB_RESCUE_2026-05-25/CODEMASTER/Fat_Relocation_M2Ultra",
+      "error": "[Errno 60] Operation timed out: '/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/12TB_RESCUE_2026-05-25/CODEMASTER/Fat_Relocation_M2Ultra'"
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/12TB_RESCUE_2026-05-25/_NOIZYLAB/MC96ECOUNIVERSE.workflow",
+      "error": "[Errno 60] Operation timed out: '/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/12TB_RESCUE_2026-05-25/_NOIZYLAB/MC96ECOUNIVERSE.workflow'"
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/12TB_RESCUE_2026-05-25/_NOIZYLAB/USER SCRIPTS",
+      "error": "[Errno 60] Operation timed out: '/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/12TB_RESCUE_2026-05-25/_NOIZYLAB/USER SCRIPTS'"
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/180LA/7THGEN_180LA_BOUNCES/UIS",
+      "error": "[Errno 60] Operation timed out: '/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/180LA/7THGEN_180LA_BOUNCES/UIS'"
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/180LA/7THGEN_180LA_BOUNCES/UIS_FOR_CLIENT_APPROVAL",
+      "error": "[Errno 60] Operation timed out: '/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/180LA/7THGEN_180LA_BOUNCES/UIS_FOR_CLIENT_APPROVAL'"
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/180LA/7THGEN_180LA_BOUNCES/AMBIENCES",
+      "error": "[Errno 60] Operation timed out: '/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/180LA/7THGEN_180LA_BOUNCES/AMBIENCES'"
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/76 DESIGN/L3 MIDI/L3 MUSIC EDIT.bak",
+      "error": "[Errno 60] Operation timed out: '/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/76 DESIGN/L3 MIDI/L3 MUSIC EDIT.bak'"
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/76 DESIGN/L3 MIDI/VOICEOVER.bak",
+      "error": "[Errno 60] Operation timed out: '/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/76 DESIGN/L3 MIDI/VOICEOVER.bak'"
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/76 DESIGN/VERIFIED BY VISA (MULTI LANG.)/VBV PORTUGESE.bak",
+      "error": "[Errno 60] Operation timed out: '/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/76 DESIGN/VERIFIED BY VISA (MULTI LANG.)/VBV PORTUGESE.bak'"
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/76 DESIGN/VERIFIED BY VISA (MULTI LANG.)/VBV SPANISH.bak",
+      "error": "[Errno 60] Operation timed out: '/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/76 DESIGN/VERIFIED BY VISA (MULTI LANG.)/VBV SPANISH.bak'"
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/76 DESIGN/L3 AUDIO/AMIE VOICE TRACKS",
+      "error": "[Errno 60] Operation timed out: '/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/76 DESIGN/L3 AUDIO/AMIE VOICE TRACKS'"
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/76 DESIGN/NEWL3VOICE/BOUNCES",
+      "error": "[Errno 60] Operation timed out: '/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/76 DESIGN/NEWL3VOICE/BOUNCES'"
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/76 DESIGN/VISA MIDI/VERIFIED BY VISA (MULTI LANG.)",
+      "error": "[Errno 60] Operation timed out: '/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/76 DESIGN/VISA MIDI/VERIFIED BY VISA (MULTI LANG.)'"
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/76 DESIGN/VISA MIDI/76VISA MUSIC EDIT.bak",
+      "error": "[Errno 60] Operation timed out: '/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/76 DESIGN/VISA MIDI/76VISA MUSIC EDIT.bak'"
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/76 DESIGN/VISA MIDI/VERIFIED BY VISA MULTI LANG.",
+      "error": "[Errno 60] Operation timed out: '/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/76 DESIGN/VISA MIDI/VERIFIED BY VISA MULTI LANG.'"
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_FRIENDS&ENEMIES/HEINZ_PROJECT/HBN_BOARDS",
+      "error": "[Errno 60] Operation timed out: '/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_FRIENDS&ENEMIES/HEINZ_PROJECT/HBN_BOARDS'"
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_FRIENDS&ENEMIES/HEINZ_PROJECT/MUSIC OPTIONS",
+      "error": "[Errno 60] Operation timed out: '/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_FRIENDS&ENEMIES/HEINZ_PROJECT/MUSIC OPTIONS'"
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_FRIENDS&ENEMIES/MUSIC_REFERENCES/FIRE AND ICE",
+      "error": "[Errno 60] Operation timed out: '/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_FRIENDS&ENEMIES/MUSIC_REFERENCES/FIRE AND ICE'"
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_FRIENDS&ENEMIES/MUSIC_REFERENCES/NOV15_BRODDCAST_THEME",
+      "error": "[Errno 60] Operation timed out: '/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_FRIENDS&ENEMIES/MUSIC_REFERENCES/NOV15_BRODDCAST_THEME'"
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_FRIENDS&ENEMIES/MUSIC_REFERENCES/FUEL_DEMO_2011",
+      "error": "[Errno 60] Operation timed out: '/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_FRIENDS&ENEMIES/MUSIC_REFERENCES/FUEL_DEMO_2011'"
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_FRIENDS&ENEMIES/MUSIC_REFERENCES/FLEET WARS MUSIC",
+      "error": "[Errno 60] Operation timed out: '/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_FRIENDS&ENEMIES/MUSIC_REFERENCES/FLEET WARS MUSIC'"
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_FRIENDS&ENEMIES/MUSIC_REFERENCES/SEPT2008_WEBSITE_AUDIO",
+      "error": "[Errno 60] Operation timed out: '/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_FRIENDS&ENEMIES/MUSIC_REFERENCES/SEPT2008_WEBSITE_AUDIO'"
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_FRIENDS&ENEMIES/MUSIC_REFERENCES/SEPT9_WJ_MUSIC",
+      "error": "[Errno 60] Operation timed out: '/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_FRIENDS&ENEMIES/MUSIC_REFERENCES/SEPT9_WJ_MUSIC'"
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_FRIENDS&ENEMIES/MUSIC_REFERENCES/JULY9_BC_MUSIC",
+      "error": "[Errno 60] Operation timed out: '/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_FRIENDS&ENEMIES/MUSIC_REFERENCES/JULY9_BC_MUSIC'"
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_FRIENDS&ENEMIES/MUSIC_REFERENCES/SHAUN THE SHEEP",
+      "error": "[Errno 60] Operation timed out: '/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_FRIENDS&ENEMIES/MUSIC_REFERENCES/SHAUN THE SHEEP'"
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_FRIENDS&ENEMIES/MUSIC_REFERENCES/GEOX",
+      "error": "[Errno 60] Operation timed out: '/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_FRIENDS&ENEMIES/MUSIC_REFERENCES/GEOX'"
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_FRIENDS&ENEMIES/MUSIC_REFERENCES/FIREFLIES",
+      "error": "[Errno 60] Operation timed out: '/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_FRIENDS&ENEMIES/MUSIC_REFERENCES/FIREFLIES'"
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_FRIENDS&ENEMIES/MUSIC_REFERENCES/REBECCA BON BON",
+      "error": "[Errno 60] Operation timed out: '/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_FRIENDS&ENEMIES/MUSIC_REFERENCES/REBECCA BON BON'"
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_FRIENDS&ENEMIES/MUSIC_REFERENCES/MISH MOSH MUSIC TRACK_2",
+      "error": "[Errno 60] Operation timed out: '/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_FRIENDS&ENEMIES/MUSIC_REFERENCES/MISH MOSH MUSIC TRACK_2'"
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_FRIENDS&ENEMIES/MUSIC_REFERENCES/LUNCHABLES_DEMOS",
+      "error": "[Errno 60] Operation timed out: '/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_FRIENDS&ENEMIES/MUSIC_REFERENCES/LUNCHABLES_DEMOS'"
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_FRIENDS&ENEMIES/MUSIC_REFERENCES/JUKKU_COUTURE",
+      "error": "[Errno 60] Operation timed out: '/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_FRIENDS&ENEMIES/MUSIC_REFERENCES/JUKKU_COUTURE'"
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_FRIENDS&ENEMIES/MUSIC_REFERENCES/DEC20_MUD_PUDDLE_INTRO & IN-GAME",
+      "error": "[Errno 60] Operation timed out: '/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_FRIENDS&ENEMIES/MUSIC_REFERENCES/DEC20_MUD_PUDDLE_INTRO & IN-GAME'"
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_FRIENDS&ENEMIES/MUSIC_REFERENCES/MEGA_MILLIONS",
+      "error": "[Errno 60] Operation timed out: '/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_FRIENDS&ENEMIES/MUSIC_REFERENCES/MEGA_MILLIONS'"
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_FRIENDS&ENEMIES/MUSIC_REFERENCES/DEC12_FUEL_DEMO_MIX",
+      "error": "[Errno 60] Operation timed out: '/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_FRIENDS&ENEMIES/MUSIC_REFERENCES/DEC12_FUEL_DEMO_MIX'"
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_FRIENDS&ENEMIES/HBN_MIXES/DOCUMENTATION",
+      "error": "[Errno 60] Operation timed out: '/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_FRIENDS&ENEMIES/HBN_MIXES/DOCUMENTATION'"
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_FRIENDS&ENEMIES/JUNE11_HEINZ_MUSIC_&_SFX_W_CHLOE/DOCUMENTS",
+      "error": "[Errno 60] Operation timed out: '/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_FRIENDS&ENEMIES/JUNE11_HEINZ_MUSIC_&_SFX_W_CHLOE/DOCUMENTS'"
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_FRIENDS&ENEMIES/JUNE11_HEINZ_MUSIC_&_SFX_W_CHLOE/BOUNCES",
+      "error": "[Errno 60] Operation timed out: '/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_FRIENDS&ENEMIES/JUNE11_HEINZ_MUSIC_&_SFX_W_CHLOE/BOUNCES'"
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/JAN_6_2018_BENDY_MUSIC_EXPLORATION/MOVIE FILES/FEB6_EPISODE2_BENDY_TAXI.wsve",
+      "error": "[Errno 60] Operation timed out: '/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/JAN_6_2018_BENDY_MUSIC_EXPLORATION/MOVIE FILES/FEB6_EPISODE2_BENDY_TAXI.wsve'"
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/JAN_6_2018_BENDY_MUSIC_EXPLORATION/MOVIE FILES/UNTITLED.wsve",
+      "error": "[Errno 60] Operation timed out: '/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/JAN_6_2018_BENDY_MUSIC_EXPLORATION/MOVIE FILES/UNTITLED.wsve'"
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/JAN_6_2018_BENDY_MUSIC_EXPLORATION/MOVIE FILES/JAN22_TREASURE_MONSTER_NEW_AUDIO.wsve",
+      "error": "[Errno 60] Operation timed out: '/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/JAN_6_2018_BENDY_MUSIC_EXPLORATION/MOVIE FILES/JAN22_TREASURE_MONSTER_NEW_AUDIO.wsve'"
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/JAN_6_2018_BENDY_MUSIC_EXPLORATION/MOVIE FILES/JAN22_KARMAN_BENDY_FULL_MOVIE.wsve",
+      "error": "[Errno 60] Operation timed out: '/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/JAN_6_2018_BENDY_MUSIC_EXPLORATION/MOVIE FILES/JAN22_KARMAN_BENDY_FULL_MOVIE.wsve'"
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/JAN_6_2018_BENDY_MUSIC_EXPLORATION/MOVIE FILES/BENDY_TAXI.wsve",
+      "error": "[Errno 60] Operation timed out: '/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/JAN_6_2018_BENDY_MUSIC_EXPLORATION/MOVIE FILES/BENDY_TAXI.wsve'"
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/JAN_6_2018_BENDY_MUSIC_EXPLORATION/MOVIE FILES/FEB28_ALL_EPISODES",
+      "error": "[Errno 60] Operation timed out: '/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/JAN_6_2018_BENDY_MUSIC_EXPLORATION/MOVIE FILES/FEB28_ALL_EPISODES'"
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/JAN_6_2018_BENDY_MUSIC_EXPLORATION/MOVIE FILES/FEB7_BENDY_EPSII_DEATH_BY_TAXI.wsve",
+      "error": "[Errno 60] Operation timed out: '/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/JAN_6_2018_BENDY_MUSIC_EXPLORATION/MOVIE FILES/FEB7_BENDY_EPSII_DEATH_BY_TAXI.wsve'"
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/JAN_6_2018_BENDY_MUSIC_EXPLORATION/JAN_23_2018_BENDY_MUSIC_FINAL MIXES.logicx",
+      "error": "[Errno 60] Operation timed out: '/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/JAN_6_2018_BENDY_MUSIC_EXPLORATION/JAN_23_2018_BENDY_MUSIC_FINAL MIXES.logicx'"
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/JAN_6_2018_BENDY_MUSIC_EXPLORATION/JAN_24_2018_BENDY_EPISODE2_TAXI.logicx",
+      "error": "[Errno 60] Operation timed out: '/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/JAN_6_2018_BENDY_MUSIC_EXPLORATION/JAN_24_2018_BENDY_EPISODE2_TAXI.logicx'"
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/JAN_6_2018_BENDY_MUSIC_EXPLORATION/MARCH6_2018_BENDY_EPS.2_DEATH_BY_TAXI.logicx",
+      "error": "[Errno 60] Operation timed out: '/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/JAN_6_2018_BENDY_MUSIC_EXPLORATION/MARCH6_2018_BENDY_EPS.2_DEATH_BY_TAXI.logicx'"
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/JAN_6_2018_BENDY_MUSIC_EXPLORATION/REFERENCE_MATERIAL/BENDY_IMAGES",
+      "error": "[Errno 60] Operation timed out: '/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/JAN_6_2018_BENDY_MUSIC_EXPLORATION/REFERENCE_MATERIAL/BENDY_IMAGES'"
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/JAN_6_2018_BENDY_MUSIC_EXPLORATION/REFERENCE_MATERIAL/BENDY SOUNDS",
+      "error": "[Errno 60] Operation timed out: '/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/JAN_6_2018_BENDY_MUSIC_EXPLORATION/REFERENCE_MATERIAL/BENDY SOUNDS'"
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/JAN_6_2018_BENDY_MUSIC_EXPLORATION/JAN_12_2018_BENDY_MUSIC_EXPLORATION.logicx",
+      "error": "[Errno 60] Operation timed out: '/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/JAN_6_2018_BENDY_MUSIC_EXPLORATION/JAN_12_2018_BENDY_MUSIC_EXPLORATION.logicx'"
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/JAN_6_2018_BENDY_MUSIC_EXPLORATION/AUDIO FILES/DR_FOR_BENDY-EPS.3",
+      "error": "[Errno 60] Operation timed out: '/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/JAN_6_2018_BENDY_MUSIC_EXPLORATION/AUDIO FILES/DR_FOR_BENDY-EPS.3'"
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/JAN_6_2018_BENDY_MUSIC_EXPLORATION/AUDIO FILES/BENDY SOUNDS",
+      "error": "[Errno 60] Operation timed out: '/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/JAN_6_2018_BENDY_MUSIC_EXPLORATION/AUDIO FILES/BENDY SOUNDS'"
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/JAN_6_2018_BENDY_MUSIC_EXPLORATION/FEB5_2018_BENDY_DEATH_BY_TAXI.logicx",
+      "error": "[Errno 60] Operation timed out: '/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/JAN_6_2018_BENDY_MUSIC_EXPLORATION/FEB5_2018_BENDY_DEATH_BY_TAXI.logicx'"
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/JAN_6_2018_BENDY_MUSIC_EXPLORATION/JAN_11_2018_BENDY_MUSIC_EXPLORATION.logicx",
+      "error": "[Errno 60] Operation timed out: '/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/JAN_6_2018_BENDY_MUSIC_EXPLORATION/JAN_11_2018_BENDY_MUSIC_EXPLORATION.logicx'"
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_ALL_GIRL_ARCADE/AGA VO AUDITIONS/JANET RICE AGA AUDITION",
+      "error": "[Errno 60] Operation timed out: '/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_ALL_GIRL_ARCADE/AGA VO AUDITIONS/JANET RICE AGA AUDITION'"
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_ALL_GIRL_ARCADE/AGA VO AUDITIONS/JAN.22_AUDITIONS",
+      "error": "[Errno 60] Operation timed out: '/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_ALL_GIRL_ARCADE/AGA VO AUDITIONS/JAN.22_AUDITIONS'"
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_ALL_GIRL_ARCADE/AGA VO AUDITIONS/ALLGIRL ARCADE AUDITIONS",
+      "error": "[Errno 60] Operation timed out: '/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_ALL_GIRL_ARCADE/AGA VO AUDITIONS/ALLGIRL ARCADE AUDITIONS'"
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_ALL_GIRL_ARCADE/AGA VO AUDITIONS/SYDNEY OAKS AGA AUDITION",
+      "error": "[Errno 60] Operation timed out: '/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_ALL_GIRL_ARCADE/AGA VO AUDITIONS/SYDNEY OAKS AGA AUDITION'"
+    },
+    {
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_ALL_GIRL_ARCADE/AGA VO AUDITIONS/PAULA MACPHERSON AGA AUDITION",
+      "error": "[Errno 60] Operation timed out: '/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/_AUDIO_RESCUE/RSP_001/_ALL_GIRL_ARCADE/AGA VO AUDITIONS/PAULA MACPHERSON AGA AUDITION'"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+fastapi==0.116.1
+uvicorn[standard]==0.35.0
+sqlalchemy==2.0.43
+pydantic-settings==2.10.1
+python-multipart==0.0.20
+httpx==0.28.1
+
+# ─── Audio Analysis — Nerve-to-Note Engine ────────────────
+librosa==0.11.0        # pitch detection (pyin), RMS, ZCR, spectral features
+scipy==1.13.1          # DSP fundamentals
+numba==0.60.0          # JIT acceleration for librosa
+numpy==1.26.4          # array core
+soundfile==0.13.1      # audio I/O
+
+# ─── NOIZYVOX — Voice Cloning & PyTorch Stack ─────────────
+# Install separately (large downloads, run once):
+#
+#   pip install TTS
+#   → Coqui XTTS v2 voice cloning engine
+#   → Model auto-downloads to ~/.local/share/tts on first use (~1.8 GB)
+#   → HuggingFace: https://huggingface.co/coqui/XTTS-v2
+#
+#   pip install torch torchaudio --index-url https://download.pytorch.org/whl/cpu
+#   → On M2 Ultra, MPS accelerates inference automatically (no CUDA needed)
+#
+#   pip install speechbrain
+#   → Optional: 192-dim ECAPA-TDNN speaker verification vectors
+#   → Model: speechbrain/spkrec-ecapa-voxceleb (HuggingFace auto-download)
+#
+#   pip install transformers datasets accelerate
+#   → HuggingFace model hub access, datasets (Kaggle integration via datasets)
+#
+#   pip install kaggle
+#   → Kaggle dataset access (set KAGGLE_USERNAME + KAGGLE_KEY env vars)

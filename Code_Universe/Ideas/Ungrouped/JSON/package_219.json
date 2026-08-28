@@ -1,0 +1,22 @@
+{
+  "name": "noizy-universal-bot",
+  "version": "0.1.0",
+  "private": true,
+  "description": "NOIZY universal bot — Discord + Slack in one process. Voice → MCP voice-ingest. 6 doctrinal slash commands.",
+  "type": "module",
+  "main": "bot.js",
+  "scripts": {
+    "start": "node --env-file=.env bot.js",
+    "dev": "node --env-file=.env --watch bot.js",
+    "health": "curl -s http://localhost:8088/health | python3 -m json.tool",
+    "ncp": "curl -s 'http://localhost:8088/ncp?limit=50' | python3 -m json.tool"
+  },
+  "engines": {
+    "node": ">=20.6.0"
+  },
+  "dependencies": {
+    "@slack/bolt": "^4.1.0",
+    "discord.js": "^14.16.0",
+    "firebase-admin": "^12.0.0"
+  }
+}

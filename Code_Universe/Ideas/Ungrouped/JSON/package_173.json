@@ -1,0 +1,23 @@
+{
+  "name": "noizybeast-turbo",
+  "version": "1.0.0",
+  "description": "NOIZYBEAST Turbo Script Velocity Booster — T1 through T10",
+  "type": "module",
+  "bin": {
+    "noizybeast": "./noizybeast-turbo.js"
+  },
+  "scripts": {
+    "t1": "node noizybeast-turbo.js T1",
+    "t2": "node noizybeast-turbo.js T2",
+    "t3": "node noizybeast-turbo.js T3",
+    "t4": "node noizybeast-turbo.js T4",
+    "t5": "node noizybeast-turbo.js T5",
+    "t6": "node noizybeast-turbo.js T6",
+    "t7": "node noizybeast-turbo.js T7",
+    "t8": "node noizybeast-turbo.js T8",
+    "t9": "node noizybeast-turbo.js T9",
+    "t10": "node noizybeast-turbo.js T10"
+  },
+  "keywords": ["noizy", "noizybeast", "turbo", "rsp001"],
+  "author": "RSP_001 — Robert Stephen Plowman"
+}

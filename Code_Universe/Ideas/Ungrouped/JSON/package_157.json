@@ -1,0 +1,17 @@
+{
+  "name": "voice-bridge-local",
+  "version": "1.0.0",
+  "description": "NOIZY Voice Bridge — local stdio MCP server (Lane 1).",
+  "type": "module",
+  "main": "server.mjs",
+  "scripts": {
+    "start": "node server.mjs"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "zod": "^3.23.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

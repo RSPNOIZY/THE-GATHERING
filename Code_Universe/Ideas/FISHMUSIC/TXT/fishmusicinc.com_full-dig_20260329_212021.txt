@@ -1,0 +1,4 @@
+
+; <<>> DiG 9.10.6 <<>> fishmusicinc.com @8.8.8.8 +noall +answer
+;; global options: +cmd
+fishmusicinc.com.	282	IN	A	172.64.80.1

@@ -1,0 +1,24 @@
+{
+  "name": "@noizy/proof",
+  "version": "1.0.0",
+  "description": "Audio provenance system with C2PA integration, consent enforcement, and immutable audit",
+  "main": "dist/index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "build": "tsc",
+    "test": "vitest"
+  },
+  "dependencies": {
+    "@cloudflare/workers-types": "^4.20240117.0",
+    "hono": "^3.12.0",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.5",
+    "typescript": "^5.3.3",
+    "vitest": "^1.2.1",
+    "wrangler": "^4.76.0"
+  }
+}

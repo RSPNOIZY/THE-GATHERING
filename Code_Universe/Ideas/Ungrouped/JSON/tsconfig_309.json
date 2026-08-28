@@ -1,0 +1,16 @@
+{
+	"extends": "./tsconfig.base.json",
+	"compilerOptions": {
+		"lib": [
+			"es6"
+		],
+		"module": "commonjs",
+	},
+	"exclude": [
+		"node_modules",
+		"server",
+		".vscode-test",
+		"src/webview",
+		"test/resources/projects"
+	]
+}

@@ -1,0 +1,69 @@
+[DEBUG] Found 0 plugins (0 enabled, 0 disabled)
+[DEBUG] Loading skills from directories: managed=/Library/Application Support/ClaudeCode/.claude/skills, user=/Users/rsp_ms/.claude/skills, project=/Users/rsp_ms/.claude/skills
+[DEBUG] >>>>> getPluginSkills CALLED <<<<<
+[DEBUG] Total LSP servers loaded: 0
+[DEBUG] getPluginSkills: Processing 0 enabled plugins
+[DEBUG] Total plugin skills loaded: 0
+[DEBUG] Total plugin commands loaded: 0
+[DEBUG] Registered 0 hooks from 0 plugins
+[DEBUG] LSP manager initialized with 0 servers
+[DEBUG] Loaded 0 unique skills (managed: 0, user: 0, project: 0, duplicates removed: 0)
+[DEBUG] LSP server manager initialized successfully
+[DEBUG] getSkillsIfEnabled returning: 0 skill dir commands, 0 plugin skills
+[DEBUG] Creating shell snapshot for zsh (/bin/zsh)
+[DEBUG] Looking for shell config file: /Users/rsp_ms/.zshrc
+[DEBUG] Snapshots directory: /Users/rsp_ms/.claude/shell-snapshots
+[DEBUG] Creating snapshot at: /Users/rsp_ms/.claude/shell-snapshots/snapshot-zsh-1762106271516-35dqv5.sh
+[DEBUG] Shell binary exists: true
+[DEBUG] Execution timeout: 10000ms
+[DEBUG] Writing to temp file: /Users/rsp_ms/.claude/todos/c918f7d0-07e3-442f-8916-204d446369be-agent-c918f7d0-07e3-442f-8916-204d446369be.json.tmp.33118.1762106271517
+[DEBUG] Temp file written successfully, size: 2 bytes
+[DEBUG] Renaming /Users/rsp_ms/.claude/todos/c918f7d0-07e3-442f-8916-204d446369be-agent-c918f7d0-07e3-442f-8916-204d446369be.json.tmp.33118.1762106271517 to /Users/rsp_ms/.claude/todos/c918f7d0-07e3-442f-8916-204d446369be-agent-c918f7d0-07e3-442f-8916-204d446369be.json
+[DEBUG] File /Users/rsp_ms/.claude/todos/c918f7d0-07e3-442f-8916-204d446369be-agent-c918f7d0-07e3-442f-8916-204d446369be.json written atomically
+[DEBUG] Install: Starting installation process (force=false, target=undefined)
+[DEBUG] Install: Calling installLatest(force=true, target=undefined, forceReinstall=false)
+[DEBUG] Writing to temp file: /Users/rsp_ms/.claude.json.tmp.33118.1762106271608
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 35254 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /Users/rsp_ms/.claude.json.tmp.33118.1762106271608 to /Users/rsp_ms/.claude.json
+[DEBUG] File /Users/rsp_ms/.claude.json written atomically
+[DEBUG] Writing to temp file: /Users/rsp_ms/.claude.json.tmp.33118.1762106271635
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 35254 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /Users/rsp_ms/.claude.json.tmp.33118.1762106271635 to /Users/rsp_ms/.claude.json
+[DEBUG] File /Users/rsp_ms/.claude.json written atomically
+[DEBUG] Writing to temp file: /Users/rsp_ms/.claude.json.tmp.33118.1762106271636
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 35254 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /Users/rsp_ms/.claude.json.tmp.33118.1762106271636 to /Users/rsp_ms/.claude.json
+[DEBUG] File /Users/rsp_ms/.claude.json written atomically
+[DEBUG] Shell snapshot created successfully (51136 bytes)
+[DEBUG] Checking for native installer update to version 2.0.31
+[DEBUG] Downloading native installer version 2.0.31
+[DEBUG] Stream started - received first chunk
+[DEBUG] Stream started - received first chunk
+[DEBUG] Successfully updated to version 2.0.31
+[DEBUG] Writing to temp file: /Users/rsp_ms/.claude.json.tmp.33118.1762106273619
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 35295 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /Users/rsp_ms/.claude.json.tmp.33118.1762106273619 to /Users/rsp_ms/.claude.json
+[DEBUG] File /Users/rsp_ms/.claude.json written atomically
+[DEBUG] Native installer: Set installMethod to "native" and disabled legacy auto-updater for protection
+[DEBUG] Install: installLatest returned version=2.0.31, wasUpdated=true, lockFailed=false
+[DEBUG] Install: Setup launcher completed with 1 messages
+[DEBUG] Install: Setup message: Native installation exists but ~/.local/bin is not in your PATH. Run: echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.zshrc && source ~/.zshrc
+[DEBUG] Install: Cleaning up npm installations after successful install
+[DEBUG] Stream started - received first chunk
+[DEBUG] Writing to temp file: /Users/rsp_ms/.claude.json.tmp.33118.1762106275071
+[DEBUG] Preserving file permissions: 100600
+[DEBUG] Temp file written successfully, size: 35339 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /Users/rsp_ms/.claude.json.tmp.33118.1762106275071 to /Users/rsp_ms/.claude.json
+[DEBUG] File /Users/rsp_ms/.claude.json written atomically
+[DEBUG] Skipping SubagentStop hook execution - workspace trust not accepted
+[DEBUG] Removed global npm installation of @anthropic-ai/claude-code
+[DEBUG] Cleaned up 1 npm installation(s)

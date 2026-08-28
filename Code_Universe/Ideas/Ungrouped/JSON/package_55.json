@@ -1,0 +1,15 @@
+{
+  "name": "lucy-logic-bridge",
+  "version": "0.1.0",
+  "description": "LUCY → Logic Pro X bridge on 127.0.0.1:9788. OSC + AppleScript. Acks ride back to LUCY iPad as Kate Premium en-GB TTS.",
+  "private": true,
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "health": "curl -s http://127.0.0.1:9788/healthz"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

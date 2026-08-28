@@ -1,0 +1,103 @@
+[
+    {
+        "ClassName": "makeup",
+        "Super": "ScriptComponent",
+        "FilePath": "lua/makeup.lua",
+        "FileAbsPath": "/Users/bytedance/Documents/\u4eba\u50cf\u7f8e\u5316\u6027\u80fd/facefitting3d/Capcut/Makeup/makeup-root/AmazingFeature/lua/makeup.lua",
+        "Properties": [
+            {
+                "VarName": "test",
+                "VarType": "Bool",
+                "Comment": ""
+            },
+            {
+                "VarName": "intensity",
+                "VarType": "Double",
+                "Comment": "",
+                "AnnoItems": [
+                    {
+                        "ItemType": "UI",
+                        "Attributes": [
+                            {
+                                "AttrType": "Range",
+                                "RawValue": "",
+                                "Values": [
+                                    0.0,
+                                    1.0
+                                ]
+                            },
+                            {
+                                "AttrType": "Drag",
+                                "RawValue": "",
+                                "Values": []
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "Methods": [
+            {
+                "FuncName": "new",
+                "Params": [],
+                "Comment": ""
+            },
+            {
+                "FuncName": "isStringInList",
+                "Params": [],
+                "Comment": ""
+            },
+            {
+                "FuncName": "onStart",
+                "Params": [],
+                "Comment": ""
+            },
+            {
+                "FuncName": "onUpdate",
+                "Params": [],
+                "Comment": ""
+            },
+            {
+                "FuncName": "onEvent",
+                "Params": [],
+                "Comment": ""
+            },
+            {
+                "FuncName": "handleIntensityEvent",
+                "Params": [],
+                "Comment": ""
+            },
+            {
+                "FuncName": "eventDataToTable",
+                "Params": [],
+                "Comment": ""
+            },
+            {
+                "FuncName": "parserAdjustEvent",
+                "Params": [],
+                "Comment": ""
+            },
+            {
+                "FuncName": "updateFaceInfoBySize",
+                "Params": [],
+                "Comment": ""
+            }
+        ],
+        "Comment": "",
+        "ExportFiles": [],
+        "AnnoItems": [
+            {
+                "ItemType": "UI",
+                "Attributes": [
+                    {
+                        "AttrType": "Display",
+                        "RawValue": "",
+                        "Values": [
+                            "makeup"
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+]

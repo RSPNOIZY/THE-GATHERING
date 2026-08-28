@@ -1,0 +1,27 @@
+version: '2'
+rules:
+- id: only-delete-object-properties
+  description: Delete should only be used for object properties.
+  explanation: |
+    The `delete` operator is intended for use in deleting the properties of objects, and does not
+    have meaningful behaviour otherwise.
+
+    See [the MDN docs for delete.](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/delete)
+  all:
+  - pattern: delete ...
+  - not:
+      pattern: delete ${obj}.${prop}
+  - not:
+      pattern: delete ${obj}[${prop}]
+  language:
+  - javascript
+  - typescript
+  tags:
+  - default
+  tests:
+  - match: |
+      var q = 1;
+      delete q;
+  - no-match: delete obj.property;
+  - no-match: delete obj[property];
+  - no-match: const result = this.has(key) && delete this.__data__[key]

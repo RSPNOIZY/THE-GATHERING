@@ -1,0 +1,169 @@
+{
+	"ae_tool" : "AmazingEditor",
+	"bALG_BACH_CONFIG" : true,
+	"effect" : 
+	{
+		"Link" : 
+		[
+			{
+				"extra" : 
+				{
+					"composer_param" : 
+					[
+						{
+							"allow_negative" : false,
+							"default_value" : 0.5,
+							"key" : "wry_eye_all",
+							"max_value" : 1.0,
+							"min_value" : 0.0,
+							"name" : "wry_eye_all"
+						},
+						{
+							"allow_negative" : false,
+							"default_value" : 0.5,
+							"key" : "wry_eye_left",
+							"max_value" : 1.0,
+							"min_value" : 0.0,
+							"name" : "wry_eye_left"
+						},
+						{
+							"allow_negative" : false,
+							"default_value" : 0.5,
+							"key" : "wry_eye_right",
+							"max_value" : 1.0,
+							"min_value" : 0.0,
+							"name" : "wry_eye_right"
+						},
+						{
+							"allow_negative" : false,
+							"default_value" : 0.5,
+							"key" : "wry_mouth_all",
+							"max_value" : 1.0,
+							"min_value" : 0.0,
+							"name" : "wry_mouth_all"
+						},
+						{
+							"allow_negative" : false,
+							"default_value" : 0.5,
+							"key" : "wry_smile_all",
+							"max_value" : 1.0,
+							"min_value" : 0.0,
+							"name" : "wry_smile_all"
+						},
+						{
+							"allow_negative" : false,
+							"default_value" : 0.0,
+							"key" : "eyebrow_adjust_BiaoZhun",
+							"max_value" : 1.0,
+							"min_value" : 0.0,
+							"name" : "eyebrow_adjust_BiaoZhun"
+						},
+						{
+							"allow_negative" : false,
+							"default_value" : 0.0,
+							"key" : "eyebrow_adjust_JianMei",
+							"max_value" : 1.0,
+							"min_value" : 0.0,
+							"name" : "eyebrow_adjust_JianMei"
+						},
+						{
+							"allow_negative" : false,
+							"default_value" : 0.0,
+							"key" : "eyebrow_adjust_LiuYe",
+							"max_value" : 1.0,
+							"min_value" : 0.0,
+							"name" : "eyebrow_adjust_LiuYe"
+						},
+						{
+							"allow_negative" : false,
+							"default_value" : 0.0,
+							"key" : "eyebrow_adjust_OuShi",
+							"max_value" : 1.0,
+							"min_value" : 0.0,
+							"name" : "eyebrow_adjust_OuShi"
+						},
+						{
+							"allow_negative" : false,
+							"default_value" : 0.0,
+							"key" : "eyebrow_left_1",
+							"max_value" : 1.0,
+							"min_value" : 0.0,
+							"name" : "eyebrow_left_biaozhun"
+						},
+						{
+							"allow_negative" : false,
+							"default_value" : 0.0,
+							"key" : "eyebrow_left_2",
+							"max_value" : 1.0,
+							"min_value" : 0.0,
+							"name" : "eyebrow_left_jianmei"
+						},
+						{
+							"allow_negative" : false,
+							"default_value" : 0.0,
+							"key" : "eyebrow_left_3",
+							"max_value" : 1.0,
+							"min_value" : 0.0,
+							"name" : "eyebrow_left_liuye"
+						},
+						{
+							"allow_negative" : false,
+							"default_value" : 0.0,
+							"key" : "eyebrow_left_4",
+							"max_value" : 1.0,
+							"min_value" : 0.0,
+							"name" : "eyebrow_left_oushi"
+						},
+						{
+							"allow_negative" : false,
+							"default_value" : 0.0,
+							"key" : "eyebrow_right_1",
+							"max_value" : 1.0,
+							"min_value" : 0.0,
+							"name" : "eyebrow_right_biaozhun"
+						},
+						{
+							"allow_negative" : false,
+							"default_value" : 0.0,
+							"key" : "eyebrow_right_2",
+							"max_value" : 1.0,
+							"min_value" : 0.0,
+							"name" : "eyebrow_right_jianmei"
+						},
+						{
+							"allow_negative" : false,
+							"default_value" : 0.0,
+							"key" : "eyebrow_right_3",
+							"max_value" : 1.0,
+							"min_value" : 0.0,
+							"name" : "eyebrow_right_liuye"
+						},
+						{
+							"allow_negative" : false,
+							"default_value" : 0.0,
+							"key" : "eyebrow_right_4",
+							"max_value" : 1.0,
+							"min_value" : 0.0,
+							"name" : "eyebrow_right_oushi"
+						}
+					]
+				},
+				"path" : "AmazingFeature/",
+				"type" : "AmazingFeature",
+				"zorder" : 8011
+			}
+		],
+		"model_names" : 
+		{
+			"alg_model" : 
+			[
+				"tt_face",
+				"tt_face_extra",
+				"tt_fsnew_base_jianying",
+				"tt_freid"
+			]
+		}
+	},
+	"name" : "Editor_Sticker_Config_TAG_fbEch5d9dNdmbcbNcsccbJc3bYdHbec",
+	"version" : "14.9.0"
+}

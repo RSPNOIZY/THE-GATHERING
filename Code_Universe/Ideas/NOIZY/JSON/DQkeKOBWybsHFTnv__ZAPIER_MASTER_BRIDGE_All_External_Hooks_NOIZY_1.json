@@ -1,0 +1,191 @@
+{
+  "name": "ZAPIER MASTER BRIDGE \u2014 All External Hooks \u2192 NOIZY",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "zapier-bridge",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "zapier-webhook",
+      "name": "Zapier Incoming Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        250,
+        300
+      ],
+      "webhookId": "noizy-zapier-bridge"
+    },
+    {
+      "parameters": {
+        "jsCode": "// ZAPIER MASTER BRIDGE \u2014 Route all external events\nconst body = $input.first().json;\nconst source = body.source || 'unknown';\nconst event = body.event || 'unknown';\nconst payload = body.payload || body;\n\n// Route map: source.event \u2192 handler\nconst routes = {\n  'linear.issue_created': 'slack_notify',\n  'linear.issue_updated': 'slack_notify',\n  'gmail.new_from_noizy': 'notion_inbox',\n  'gmail.new_important': 'slack_alert',\n  'calendar.recording_session': 'prep_checklist',\n  'calendar.meeting': 'slack_notify',\n  'github.push': 'slack_dev',\n  'github.pr_created': 'slack_dev',\n  'github.pr_merged': 'deploy_trigger',\n  'stripe.payment': 'ledger_update',\n  'stripe.subscription': 'ledger_update',\n  'notion.page_updated': 'sync_linear',\n  'slack.mention': 'gabriel_alert',\n  'zapier.test': 'echo',\n};\n\nconst handler = routes[`${source}.${event}`] || 'unknown_route';\n\nreturn [{\n  json: {\n    source,\n    event,\n    handler,\n    payload,\n    received_at: new Date().toISOString(),\n    bridge: 'ZAPIER_MASTER_BRIDGE_v1'\n  }\n}];"
+      },
+      "id": "router",
+      "name": "Event Router",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.handler }}",
+              "value2": "slack_notify"
+            },
+            {
+              "value1": "={{ $json.handler }}",
+              "value2": "slack_alert"
+            },
+            {
+              "value1": "={{ $json.handler }}",
+              "value2": "slack_dev"
+            }
+          ]
+        }
+      },
+      "id": "is-slack",
+      "name": "Route: Slack?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        650,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.handler }}",
+              "value2": "notion_inbox"
+            },
+            {
+              "value1": "={{ $json.handler }}",
+              "value2": "sync_linear"
+            }
+          ]
+        }
+      },
+      "id": "is-notion",
+      "name": "Route: Notion?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        650,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Build Slack message from event\nconst { source, event, payload } = $input.first().json;\nconst emoji = {\n  'linear': ':linear:',\n  'github': ':github:',\n  'gmail': ':email:',\n  'calendar': ':calendar:',\n  'stripe': ':money_with_wings:',\n  'slack': ':speech_balloon:'\n};\nconst icon = emoji[source] || ':zap:';\nconst title = payload.title || payload.subject || payload.summary || event;\nconst url = payload.url || payload.link || '';\n\nreturn [{\n  json: {\n    text: `${icon} *${source.toUpperCase()}* \u2014 ${event}\\n>${title}${url ? '\\n' + url : ''}`,\n    channel: source === 'github' ? '#dev' : '#general'\n  }\n}];"
+      },
+      "id": "format-slack",
+      "name": "Format Slack Message",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        850,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Log to Notion inbox\nconst { source, event, payload } = $input.first().json;\nreturn [{\n  json: {\n    title: `[${source}] ${event}: ${payload.title || payload.subject || 'Event'}`,\n    source,\n    event,\n    received: new Date().toISOString()\n  }\n}];"
+      },
+      "id": "format-notion",
+      "name": "Format Notion Entry",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        850,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ status: 'received', handler: $json.handler, bridge: 'ZAPIER_MASTER_BRIDGE_v1' }) }}"
+      },
+      "id": "respond",
+      "name": "Send Response",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        1050,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Zapier Incoming Webhook": {
+      "main": [
+        [
+          {
+            "node": "Event Router",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Event Router": {
+      "main": [
+        [
+          {
+            "node": "Route: Slack?",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Route: Notion?",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Send Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Route: Slack?": {
+      "main": [
+        [
+          {
+            "node": "Format Slack Message",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        []
+      ]
+    },
+    "Route: Notion?": {
+      "main": [
+        [
+          {
+            "node": "Format Notion Entry",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        []
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  }
+}

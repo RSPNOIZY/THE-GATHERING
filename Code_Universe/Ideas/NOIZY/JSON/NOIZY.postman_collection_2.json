@@ -1,0 +1,283 @@
+u{
+  "infot
+  ngorunfree dev
+  gorunfree test
+    nngit status
+    y: {
+    "name": "NOIZY Integration Plane",
+    "description": "API test suite for the NOIZY Connector Hub and NOIZYNET services",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_postman_id": "noizy-integration-plane-v1"
+  },
+  "variable": [
+    { "key": "hub_url", "value": "{{HUB_URL}}" },
+    { "key": "hub_auth", "value": "{{HUB_AUTH_SECRET}}" },
+    { "key": "noizynet_url", "value": "{{NOIZYNET_URL}}" },
+    { "key": "n8n_url", "value": "{{N8N_URL}}" }
+  ],
+  "item": [
+    {
+      "name": "Connector Hub",
+      "item": [
+        {
+          "name": "Health Check",
+          "request": {
+            "method": "GET",
+            "url": "{{hub_url}}/health",
+            "header": []
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Hub is healthy', function () {",
+                  "  pm.response.to.have.status(200);",
+                  "  var json = pm.response.json();",
+                  "  pm.expect(json.status).to.eql('ok');",
+                  "  pm.expect(json.connector_count).to.be.above(0);",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Audit Log",
+          "request": {
+            "method": "GET",
+            "url": "{{hub_url}}/audit?limit=10",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{hub_auth}}" }
+            ]
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Audit log returns array', function () {",
+                  "  pm.response.to.have.status(200);",
+                  "  var json = pm.response.json();",
+                  "  pm.expect(json).to.be.an('array');",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Dispatch Job",
+          "request": {
+            "method": "POST",
+            "url": "{{hub_url}}/dispatch",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{hub_auth}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{ \"connector\": \"test\", \"action\": \"ping\", \"data\": {} }"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Job dispatched', function () {",
+                  "  pm.response.to.have.status(200);",
+                  "  var json = pm.response.json();",
+                  "  pm.expect(json.dispatched).to.eql(true);",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Webhook — Zapier",
+          "request": {
+            "method": "POST",
+            "url": "{{hub_url}}/webhook/zapier",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{ \"trigger_name\": \"test_trigger\", \"data\": { \"key\": \"value\" } }"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Zapier webhook accepted', function () {",
+                  "  pm.response.to.have.status(200);",
+                  "  var json = pm.response.json();",
+                  "  pm.expect(json.received).to.eql(true);",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Webhook — Linear",
+          "request": {
+            "method": "POST",
+            "url": "{{hub_url}}/webhook/linear",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{ \"action\": \"create\", \"type\": \"Issue\", \"data\": { \"id\": \"test-1\", \"title\": \"Test issue\" }, \"createdAt\": \"2026-04-14T00:00:00Z\" }"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Linear webhook accepted', function () {",
+                  "  pm.response.to.have.status(200);",
+                  "  var json = pm.response.json();",
+                  "  pm.expect(json.received).to.eql(true);",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Webhook — n8n",
+          "request": {
+            "method": "POST",
+            "url": "{{hub_url}}/webhook/n8n",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{ \"workflow_id\": \"test-wf\", \"payload\": { \"message\": \"hello\" } }"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('n8n webhook accepted', function () {",
+                  "  pm.response.to.have.status(200);",
+                  "  var json = pm.response.json();",
+                  "  pm.expect(json.received).to.eql(true);",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Webhook — Unknown Connector (404)",
+          "request": {
+            "method": "POST",
+            "url": "{{hub_url}}/webhook/nonexistent",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Unknown connector returns 404', function () {",
+                  "  pm.response.to.have.status(404);",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Audit Unauthorized (401)",
+          "request": {
+            "method": "GET",
+            "url": "{{hub_url}}/audit",
+            "header": []
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Audit without auth returns 401', function () {",
+                  "  pm.response.to.have.status(401);",
+                  "});"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "NOIZYNET",
+      "item": [
+        {
+          "name": "Daemon Status",
+          "request": {
+            "method": "GET",
+            "url": "{{noizynet_url}}/status",
+            "header": []
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('NOIZYNET daemon is healthy', function () {",
+                  "  pm.response.to.have.status(200);",
+                  "  var json = pm.response.json();",
+                  "  pm.expect(json.services).to.be.an('object');",
+                  "});"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "n8n",
+      "item": [
+        {
+          "name": "n8n Health",
+          "request": {
+            "method": "GET",
+            "url": "{{n8n_url}}/healthz",
+            "header": []
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('n8n is healthy', function () {",
+                  "  pm.response.to.have.status(200);",
+                  "});"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

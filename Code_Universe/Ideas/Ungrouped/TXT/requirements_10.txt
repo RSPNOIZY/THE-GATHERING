@@ -1,0 +1,8 @@
+PyYAML==6.0.2
+numpy==1.26.4          # aligned with noizy_platform (numba 0.60 requires numpy <2)
+soundfile==0.13.1
+
+# ─── Audio Analysis — Nerve-to-Note Engine ────────────────
+librosa==0.11.0        # pitch, onset, RMS, spectral features
+scipy==1.13.1          # DSP fundamentals (librosa dep) — aligned with noizy_platform
+numba==0.60.0          # JIT acceleration for librosa — aligned with noizy_platform

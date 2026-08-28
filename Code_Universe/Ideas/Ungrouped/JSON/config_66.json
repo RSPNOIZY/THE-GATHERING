@@ -1,0 +1,33 @@
+{
+	"ae_tool" : "AmazingEditor",
+	"bALG_BACH_CONFIG" : true,
+	"effect" : 
+	{
+		"Link" : 
+		[
+			{
+				"path" : "AmazingFeature/",
+				"type" : "AmazingFeature",
+				"zorder" : 8011
+			},
+			{
+				"path" : "v6/",
+				"type" : "AmazingFeature",
+				"zorder" : 8013
+			}
+		],
+		"model_names" : 
+		{
+			"alg_model" : 
+			[
+				"tt_fsnew_base_jianying",
+				"tt_face_extra",
+				"tt_facefitting1220",
+				"tt_facefitting1256",
+				"tt_freid"
+			]
+		}
+	},
+	"name" : "2022_06_28_16_45_44_b2a9ecaef6be11ec94c03e22fb85a5_tuofengbiV2",
+	"version" : "14.9.0"
+}

@@ -1,0 +1,19 @@
+{
+  "ID": "ipad",
+  "Name": "ipad",
+  "Address": "100.93.41.54",
+  "Tags": ["device", "mobile", "ios", "lucy", "mesh-peer"],
+  "Meta": {
+    "owner": "RSP_001",
+    "tailscale_hostname": "ipad-pro-12-9-gen-2",
+    "role": "LUCY PWA host + monitor",
+    "doctrine": "mobile-listener"
+  },
+  "Check": {
+    "Name": "tailscale-ping",
+    "Args": ["/opt/homebrew/bin/tailscale", "ping", "-c", "1", "--timeout", "3s", "100.93.41.54"],
+    "Interval": "60s",
+    "Timeout": "10s",
+    "DeregisterCriticalServiceAfter": "30m"
+  }
+}

@@ -1,0 +1,260 @@
+{
+  "mcpServers": {
+    "gabriel-mcp": {
+      "command": "/Users/m2ultra/.nvm/versions/node/v24.15.0/bin/node",
+      "args": [
+        "--env-file=/Users/m2ultra/NOIZYANTHROPIC/.env",
+        "/Users/m2ultra/mcp-master/gabriel-mcp/index.js"
+      ],
+      "env": {
+        "GABRIEL_PORT": "9777",
+        "HEAVEN_URL": "https://heaven.rsp-5f3.workers.dev",
+        "NOIZY_EMPIRE_ROOT": "/Users/m2ultra/NOIZYANTHROPIC",
+        "PATH": "/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/m2ultra/.local/bin"
+      }
+    },
+    "lucy-mcp": {
+      "command": "/Users/m2ultra/.nvm/versions/node/v24.15.0/bin/node",
+      "args": [
+        "--env-file=/Users/m2ultra/NOIZYANTHROPIC/.env",
+        "/Users/m2ultra/mcp-master/lucy-mcp/index.js"
+      ],
+      "env": {
+        "GABRIEL_PORT": "9777",
+        "HEAVEN_URL": "https://heaven.rsp-5f3.workers.dev",
+        "NOIZY_EMPIRE_ROOT": "/Users/m2ultra/NOIZYANTHROPIC",
+        "PATH": "/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/m2ultra/.local/bin"
+      }
+    },
+    "heaven-mcp": {
+      "command": "/Users/m2ultra/.nvm/versions/node/v24.15.0/bin/node",
+      "args": [
+        "--env-file=/Users/m2ultra/NOIZYANTHROPIC/.env",
+        "/Users/m2ultra/mcp-master/heaven-mcp/index.js"
+      ],
+      "env": {
+        "HEAVEN_WORKER_URL": "https://heaven.rsp-5f3.workers.dev",
+        "HEAVEN_WORKER_DIR": "/Users/m2ultra/NOIZYANTHROPIC/repos/noizy-heaven",
+        "NOIZY_EMPIRE_ROOT": "/Users/m2ultra/NOIZYANTHROPIC",
+        "PATH": "/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/m2ultra/.local/bin"
+      }
+    },
+    "voice-bridge": {
+      "command": "/Users/m2ultra/.nvm/versions/node/v24.15.0/bin/node",
+      "args": [
+        "--env-file=/Users/m2ultra/NOIZYANTHROPIC/.env",
+        "/Users/m2ultra/mcp-master/voice-bridge/voice-bridge-server.mjs"
+      ],
+      "env": {
+        "GABRIEL_PORT": "9777",
+        "NOIZY_EMPIRE_ROOT": "/Users/m2ultra/NOIZYANTHROPIC",
+        "PATH": "/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/m2ultra/.local/bin"
+      }
+    },
+    "engr-keith-mcp": {
+      "command": "/Users/m2ultra/.nvm/versions/node/v24.15.0/bin/node",
+      "args": [
+        "--env-file=/Users/m2ultra/NOIZYANTHROPIC/.env",
+        "/Users/m2ultra/mcp-master/engr-keith-mcp/index.js"
+      ],
+      "env": {
+        "HEAVEN_WORKER_URL": "https://heaven.rsp-5f3.workers.dev",
+        "NOIZY_EMPIRE_ROOT": "/Users/m2ultra/NOIZYANTHROPIC",
+        "PATH": "/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/m2ultra/.local/bin"
+      }
+    },
+    "dream-mcp": {
+      "command": "/Users/m2ultra/.nvm/versions/node/v24.15.0/bin/node",
+      "args": [
+        "--env-file=/Users/m2ultra/NOIZYANTHROPIC/.env",
+        "/Users/m2ultra/mcp-master/dream-mcp/index.js"
+      ],
+      "env": {
+        "GABRIEL_PORT": "9777",
+        "DREAMCHAMBER_PORT": "7777",
+        "NOIZY_EMPIRE_ROOT": "/Users/m2ultra/NOIZYANTHROPIC",
+        "PATH": "/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/m2ultra/.local/bin"
+      }
+    },
+    "cb01-mcp": {
+      "command": "/Users/m2ultra/.nvm/versions/node/v24.15.0/bin/node",
+      "args": [
+        "--env-file=/Users/m2ultra/NOIZYANTHROPIC/.env",
+        "/Users/m2ultra/mcp-master/cb01-mcp/index.js"
+      ],
+      "env": {
+        "HEAVEN_WORKER_URL": "https://heaven.rsp-5f3.workers.dev",
+        "NOIZY_EMPIRE_ROOT": "/Users/m2ultra/NOIZYANTHROPIC",
+        "PATH": "/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/m2ultra/.local/bin"
+      }
+    },
+    "shirley-mcp": {
+      "command": "/Users/m2ultra/.nvm/versions/node/v24.15.0/bin/node",
+      "args": [
+        "--env-file=/Users/m2ultra/NOIZYANTHROPIC/.env",
+        "/Users/m2ultra/mcp-master/shirley-mcp/index.js"
+      ],
+      "env": {
+        "NOIZY_EMPIRE_ROOT": "/Users/m2ultra/NOIZYANTHROPIC",
+        "OLLAMA_PORT": "11434",
+        "PATH": "/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/m2ultra/.local/bin"
+      }
+    },
+    "family-mcp": {
+      "command": "/Users/m2ultra/.nvm/versions/node/v24.15.0/bin/node",
+      "args": [
+        "--env-file=/Users/m2ultra/NOIZYANTHROPIC/.env",
+        "/Users/m2ultra/mcp-master/family-mcp/index.js"
+      ],
+      "env": {
+        "GABRIEL_PORT": "9777",
+        "HEAVEN_URL": "https://heaven.rsp-5f3.workers.dev",
+        "NOIZY_EMPIRE_ROOT": "/Users/m2ultra/NOIZYANTHROPIC",
+        "PATH": "/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/m2ultra/.local/bin"
+      }
+    },
+    "shortcuts-mcp": {
+      "command": "/Users/m2ultra/.nvm/versions/node/v24.15.0/bin/node",
+      "args": [
+        "--env-file=/Users/m2ultra/NOIZYANTHROPIC/.env",
+        "/Users/m2ultra/mcp-master/shortcuts-mcp/dist/index.js"
+      ],
+      "env": {
+        "NOIZY_EMPIRE_ROOT": "/Users/m2ultra/NOIZYANTHROPIC",
+        "PATH": "/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/m2ultra/.local/bin"
+      }
+    },
+    "consent-oracle": {
+      "command": "/Users/m2ultra/.nvm/versions/node/v24.15.0/bin/node",
+      "args": [
+        "--env-file=/Users/m2ultra/NOIZYANTHROPIC/.env",
+        "/Users/m2ultra/mcp-master/consent-oracle/src/server.js"
+      ],
+      "env": {
+        "HEAVEN_WORKER_URL": "https://heaven.rsp-5f3.workers.dev",
+        "NOIZY_EMPIRE_ROOT": "/Users/m2ultra/NOIZYANTHROPIC",
+        "PATH": "/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/m2ultra/.local/bin"
+      }
+    },
+    "synthesis-oracle": {
+      "command": "/Users/m2ultra/.nvm/versions/node/v24.15.0/bin/node",
+      "args": [
+        "--env-file=/Users/m2ultra/NOIZYANTHROPIC/.env",
+        "/Users/m2ultra/mcp-master/synthesis-oracle/src/server.js"
+      ],
+      "env": {
+        "GABRIEL_PORT": "9777",
+        "NOIZY_EMPIRE_ROOT": "/Users/m2ultra/NOIZYANTHROPIC",
+        "PATH": "/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/m2ultra/.local/bin"
+      }
+    },
+    "audio-mcp": {
+      "command": "/opt/homebrew/bin/python3",
+      "args": ["/Users/m2ultra/mcp-master/dreamchamber-audio/server.py"],
+      "env": {
+        "GABRIEL_PORT": "9777",
+        "NOIZY_EMPIRE_ROOT": "/Users/m2ultra/NOIZYANTHROPIC",
+        "PATH": "/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/m2ultra/.local/bin"
+      }
+    },
+    "gemma3": {
+      "command": "/Users/m2ultra/.nvm/versions/node/v24.15.0/bin/node",
+      "args": [
+        "--env-file=/Users/m2ultra/NOIZYANTHROPIC/.env",
+        "/Users/m2ultra/mcp-master/gemma3/server.js"
+      ],
+      "env": {
+        "OLLAMA_URL": "http://localhost:11434",
+        "GEMMA_MODEL": "gemma4:26b",
+        "NOIZYLAB_DIR": "/Users/m2ultra/NOIZYANTHROPIC",
+        "NOIZY_EMPIRE_ROOT": "/Users/m2ultra/NOIZYANTHROPIC",
+        "PATH": "/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/m2ultra/.local/bin"
+      }
+    },
+    "supersonic": {
+      "command": "/Users/m2ultra/.nvm/versions/node/v24.15.0/bin/node",
+      "args": [
+        "--env-file=/Users/m2ultra/NOIZYANTHROPIC/.env",
+        "/Users/m2ultra/mcp-master/supersonic/src/index.js"
+      ],
+      "env": {
+        "HEAVEN_WORKER_URL": "https://heaven.rsp-5f3.workers.dev",
+        "NOIZY_EMPIRE_ROOT": "/Users/m2ultra/NOIZYANTHROPIC",
+        "OLLAMA_PORT": "11434",
+        "PATH": "/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/m2ultra/.local/bin"
+      }
+    },
+    "gabriel-local-diag": {
+      "command": "/Users/m2ultra/.nvm/versions/node/v24.15.0/bin/node",
+      "args": [
+        "--env-file=/Users/m2ultra/NOIZYANTHROPIC/.env",
+        "/Users/m2ultra/mcp-master/gabriel-local-diag/server.mjs"
+      ],
+      "env": {
+        "GABRIEL_PORT": "9777",
+        "NOIZY_EMPIRE_ROOT": "/Users/m2ultra/NOIZYANTHROPIC",
+        "PATH": "/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/m2ultra/.local/bin"
+      }
+    },
+    "mac-apps-mcp": {
+      "command": "/Users/m2ultra/.nvm/versions/node/v24.15.0/bin/node",
+      "args": ["/Users/m2ultra/mcp-master/mac-apps-mcp/index.js"],
+      "env": {
+        "PATH": "/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/m2ultra/.local/bin"
+      }
+    },
+    "desktop-commander": {
+      "command": "/Users/m2ultra/.nvm/versions/node/v24.15.0/bin/node",
+      "args": ["/Users/m2ultra/mcp-master/DesktopCommanderMCP/dist/index.js"],
+      "env": {
+        "PATH": "/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+      }
+    },
+    "desktop-commander-src": {
+      "command": "/Users/m2ultra/.nvm/versions/node/v24.15.0/bin/node",
+      "args": ["/Users/m2ultra/mcp-master/DesktopCommanderMCP/setup-claude-server.js"],
+      "env": {
+        "PATH": "/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+      }
+    },
+    "audio-repair-mcp": {
+      "command": "/opt/homebrew/bin/python3",
+      "args": ["/Users/m2ultra/mcp-master/audio-repair-mcp/server.py"],
+      "env": {
+        "NOIZY_CATALOG_DB": "/Volumes/6TB/_REORG_LOGS/nki_catalog.db",
+        "NOIZY_REPAIR_LOG": "/Volumes/6TB/_REORG_LOGS/audio_repair.jsonl",
+        "PATH": "/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin"
+      }
+    },
+    "tagspaces-mcp": {
+      "command": "/Users/m2ultra/NOIZYANTHROPIC/mc96_venv/bin/python",
+      "args": ["/Users/m2ultra/mcp-master/tagspaces-mcp/server.py"],
+      "env": {
+        "NOIZY_EMPIRE_ROOT": "/Users/m2ultra/NOIZYANTHROPIC",
+        "PATH": "/Users/m2ultra/NOIZYANTHROPIC/mc96_venv/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin"
+      }
+    },
+    "devonthink-mcp": {
+      "command": "/Users/m2ultra/NOIZYANTHROPIC/mc96_venv/bin/python",
+      "args": ["/Users/m2ultra/mcp-master/devonthink-mcp/server.py"],
+      "env": {
+        "PATH": "/Users/m2ultra/NOIZYANTHROPIC/mc96_venv/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin"
+      }
+    },
+    "lmstudio-mcp": {
+      "command": "/Users/m2ultra/.nvm/versions/node/v24.15.0/bin/node",
+      "args": ["/Users/m2ultra/mcp-master/lmstudio-mcp/index.js"],
+      "env": {
+        "LM_STUDIO_URL": "http://127.0.0.1:1234",
+        "PATH": "/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+      }
+    },
+    "obsidian-mcp": {
+      "command": "/Users/m2ultra/.nvm/versions/node/v24.15.0/bin/npx",
+      "args": ["-y", "obsidian-mcp-seekstone", "/Volumes/3TB-GRF/MC96ECOUNIVERSE"],
+      "env": {
+        "PATH": "/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/m2ultra/.local/bin"
+      }
+    }
+  }
+}

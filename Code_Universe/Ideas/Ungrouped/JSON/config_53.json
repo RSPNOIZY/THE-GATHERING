@@ -1,0 +1,41 @@
+{
+    "ae_tool": "AmazingEditor",
+    "bALG_BACH_CONFIG": true,
+    "effect": {
+        "Link": [
+            {
+                "path": "AmazingFeature/",
+                "rtShare": true,
+                "type": "AmazingFeature",
+                "zorder": 8011
+            }
+        ],
+        "exclusiveScene": [
+            {
+                "priority": 9999,
+                "sceneKey": "FaceMakeup*",
+                "tagName": []
+            },
+            {
+                "priority": 9999,
+                "sceneKey": "Filter*",
+                "tagName": []
+            },
+            {
+                "priority": 9999,
+                "sceneKey": "FaceDeformation*",
+                "tagName": []
+            },
+            {
+                "priority": 9999,
+                "sceneKey": "FaceBeauty*",
+                "tagName": []
+            }
+        ],
+        "model_names": {
+            "script": ["tt_fsnew_base_jianying", "tt_freid", "cc_yunfeng", "cc_yunfeng_js"]
+        }
+    },
+    "name": "2022-09-28_15-39-51_inner_tag__1__billliaom",
+    "version": "13.9.0"
+}

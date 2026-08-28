@@ -1,0 +1,13 @@
+{
+  "allowedRoots": [
+    "/Users/m2ultra/Music",
+    "/Users/m2ultra/Documents/Projects",
+    "/Users/m2ultra/Desktop"
+  ],
+  "tagspacesMetaDir": ".ts",
+  "defaultHashAlgorithm": "sha256",
+  "fastDuplicateHash": "md5",
+  "ledgerBackend": "sqlite",
+  "ledgerPath": "/Users/m2ultra/NOIZY_KNOWLEDGE/_system/indexes/gabriel_ledger.sqlite",
+  "duckdbStatus": "pending_internal_disk_space"
+}

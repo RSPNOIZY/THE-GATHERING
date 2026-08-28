@@ -1,0 +1,268 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://noizy.ai/schemas/lucy/v4/memory-object.json",
+  "title": "LucyMemoryObject",
+  "description": "Canonical Memory Object schema for Lucy v4.0 Personal Operating System and Dreamchamber Knowledge Graph",
+  "type": "object",
+  "required": [
+    "id",
+    "schema_version",
+    "timestamp",
+    "type",
+    "actors",
+    "location",
+    "languages",
+    "content",
+    "signals",
+    "value_score",
+    "governance",
+    "provenance"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique identifier for this memory object"
+    },
+    "schema_version": {
+      "type": "string",
+      "const": "4.0.0"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 creation timestamp"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "trip",
+        "conversation",
+        "idea",
+        "creative_asset",
+        "event",
+        "system_metric",
+        "life_moment",
+        "market_signal"
+      ]
+    },
+    "actors": {
+      "type": "object",
+      "required": ["driver_id", "driver_role", "passenger_count", "consent_state"],
+      "properties": {
+        "driver_id": { "type": "string", "default": "RSP_001" },
+        "driver_role": {
+          "type": "string",
+          "enum": ["primary_operator", "digital_twin", "collaborator"]
+        },
+        "passenger_pseudonym_id": { "type": "string" },
+        "passenger_count": { "type": "integer", "minimum": 0, "maximum": 8 },
+        "passenger_demographic_hint": { "type": "string" },
+        "consent_state": {
+          "type": "string",
+          "enum": ["explicit_opt_in", "passive_telemetry_only", "opt_out", "redacted"]
+        }
+      }
+    },
+    "location": {
+      "type": "object",
+      "required": ["geohash", "zone_tag", "city", "region", "country"],
+      "properties": {
+        "geohash": { "type": "string", "minLength": 4, "maxLength": 12 },
+        "latitude": { "type": "number", "minimum": -90, "maximum": 90 },
+        "longitude": { "type": "number", "minimum": -180, "maximum": 180 },
+        "zone_tag": { "type": "string" },
+        "venue_id": { "type": "string" },
+        "city": { "type": "string", "default": "Ottawa" },
+        "region": { "type": "string", "default": "ON" },
+        "country": { "type": "string", "default": "CA" },
+        "speed_kmh": { "type": "number", "minimum": 0 },
+        "heading_deg": { "type": "number", "minimum": 0, "maximum": 360 }
+      }
+    },
+    "languages": {
+      "type": "object",
+      "required": ["iso_code", "confidence", "is_multilingual", "translation_active"],
+      "properties": {
+        "iso_code": { "type": "string", "minLength": 2, "maxLength": 5 },
+        "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+        "dialect": { "type": "string" },
+        "is_multilingual": { "type": "boolean" },
+        "secondary_languages": { "type": "array", "items": { "type": "string" } },
+        "translation_active": { "type": "boolean" },
+        "target_language": { "type": "string" }
+      }
+    },
+    "content": {
+      "type": "object",
+      "required": ["summary", "keywords"],
+      "properties": {
+        "summary": { "type": "string" },
+        "transcript_snippet": { "type": "string" },
+        "creative_notes": { "type": "string" },
+        "keywords": { "type": "array", "items": { "type": "string" } },
+        "audio_pointer": {
+          "type": "object",
+          "required": ["vault_uri", "encryption_algorithm", "key_fingerprint", "is_ephemeral"],
+          "properties": {
+            "vault_uri": { "type": "string" },
+            "encryption_algorithm": { "type": "string", "enum": ["AES-256-GCM", "ChaCha20-Poly1305"] },
+            "key_fingerprint": { "type": "string" },
+            "is_ephemeral": { "type": "boolean" },
+            "purge_after_timestamp": { "type": "string", "format": "date-time" }
+          }
+        },
+        "asset_attachments": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["asset_id", "asset_type", "file_path", "sha256_hash", "size_bytes"],
+            "properties": {
+              "asset_id": { "type": "string", "format": "uuid" },
+              "asset_type": { "type": "string", "enum": ["stem", "midi", "preset", "prompt", "image", "contract", "receipt"] },
+              "file_path": { "type": "string" },
+              "sha256_hash": { "type": "string" },
+              "size_bytes": { "type": "integer", "minimum": 0 }
+            }
+          }
+        }
+      }
+    },
+    "signals": {
+      "type": "object",
+      "required": ["revenue_gross", "revenue_net", "platform_fee", "tip_amount", "surge_multiplier", "distance_km", "duration_minutes"],
+      "properties": {
+        "revenue_gross": { "type": "number" },
+        "revenue_net": { "type": "number" },
+        "platform_fee": { "type": "number" },
+        "tip_amount": { "type": "number" },
+        "surge_multiplier": { "type": "number", "minimum": 1.0 },
+        "hourly_earning_rate": { "type": "number" },
+        "distance_km": { "type": "number" },
+        "duration_minutes": { "type": "number" },
+        "fuel_liters": { "type": "number" },
+        "fuel_cost": { "type": "number" },
+        "vehicle_battery_pct": { "type": "number", "minimum": 0, "maximum": 100 },
+        "vehicle_health_status": { "type": "string", "enum": ["nominal", "advisory", "warning", "critical"] },
+        "lucy_inference_latency_ms": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "tags": {
+      "type": "object",
+      "properties": {
+        "event_tag": { "type": "string" },
+        "topic_tags": { "type": "array", "items": { "type": "string" } },
+        "sentiment": { "type": "string", "enum": ["deeply_positive", "positive", "neutral", "reflective", "tense", "inspirational"] },
+        "musical_keys_detected": { "type": "array", "items": { "type": "string" } },
+        "bpm_estimates": { "type": "array", "items": { "type": "number" } }
+      }
+    },
+    "value_score": {
+      "type": "object",
+      "required": ["total_score", "components", "computed_by", "computed_at"],
+      "properties": {
+        "total_score": { "type": "number", "minimum": 0, "maximum": 100 },
+        "components": {
+          "type": "object",
+          "required": [
+            "creative_yield_potential",
+            "business_intelligence_weight",
+            "linguistic_cultural_richness",
+            "legacy_longevity_factor",
+            "operational_utility"
+          ],
+          "properties": {
+            "creative_yield_potential": { "type": "number", "minimum": 0, "maximum": 100 },
+            "business_intelligence_weight": { "type": "number", "minimum": 0, "maximum": 100 },
+            "linguistic_cultural_richness": { "type": "number", "minimum": 0, "maximum": 100 },
+            "legacy_longevity_factor": { "type": "number", "minimum": 0, "maximum": 100 },
+            "operational_utility": { "type": "number", "minimum": 0, "maximum": 100 }
+          }
+        },
+        "computed_by": { "type": "string" },
+        "computed_at": { "type": "string", "format": "date-time" }
+      }
+    },
+    "governance": {
+      "type": "object",
+      "required": ["retention_tier", "consent_flags", "jurisdiction", "privacy_compliance"],
+      "properties": {
+        "retention_tier": {
+          "type": "string",
+          "enum": ["tier_hot_active", "tier_warm_analytics", "tier_cold_legacy", "tier_ephemeral_purge"]
+        },
+        "consent_flags": {
+          "type": "object",
+          "required": ["audio_recording_cleared", "transcript_retention_cleared", "digital_twin_training_cleared"],
+          "properties": {
+            "audio_recording_cleared": { "type": "boolean" },
+            "transcript_retention_cleared": { "type": "boolean" },
+            "digital_twin_training_cleared": { "type": "boolean" },
+            "public_anonymized_research_cleared": { "type": "boolean" },
+            "commercial_licensing_cleared": { "type": "boolean" }
+          }
+        },
+        "jurisdiction": { "type": "string", "default": "CA-ON-OTTAWA" },
+        "privacy_compliance": {
+          "type": "object",
+          "properties": {
+            "pipeda_compliant": { "type": "boolean" },
+            "gdpr_ready": { "type": "boolean" },
+            "right_to_forget_supported": { "type": "boolean" },
+            "anonymization_salt_version": { "type": "string" }
+          }
+        }
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "required": ["device_node", "host_machine", "model_versions", "sha256_hash", "storage_location", "receipt_id"],
+      "properties": {
+        "device_node": { "type": "string" },
+        "host_machine": { "type": "string" },
+        "model_versions": {
+          "type": "object",
+          "properties": {
+            "whisper_engine": { "type": "string" },
+            "lucy_core": { "type": "string" },
+            "gabriel_orchestrator": { "type": "string" },
+            "embedding_model": { "type": "string" }
+          }
+        },
+        "sha256_hash": { "type": "string" },
+        "prev_object_hash": { "type": "string" },
+        "ed25519_signature": { "type": "string" },
+        "storage_location": { "type": "string" },
+        "receipt_id": { "type": "string" }
+      }
+    },
+    "relations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["target_id", "target_type", "relation_type", "weight"],
+        "properties": {
+          "target_id": { "type": "string", "format": "uuid" },
+          "target_type": { "type": "string" },
+          "relation_type": {
+            "type": "string",
+            "enum": [
+              "parent_shift",
+              "sparked_by",
+              "spawned_asset",
+              "spatial_neighbor",
+              "semantic_cluster",
+              "supersedes_version",
+              "mitigates_risk"
+            ]
+          },
+          "weight": { "type": "number", "minimum": 0, "maximum": 1 },
+          "annotation": { "type": "string" }
+        }
+      }
+    },
+    "is_immutable": { "type": "boolean", "default": true },
+    "created_at": { "type": "string", "format": "date-time" },
+    "updated_at": { "type": "string", "format": "date-time" }
+  }
+}

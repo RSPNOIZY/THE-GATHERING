@@ -1,0 +1,36 @@
+{
+  "version": "1.0",
+  "captured_at": "2026-04-07T161144Z",
+  "trigger": "test",
+  "action": "demonstration",
+
+  "deployment": {
+    "recent_deployments": 
+{"error": "unable to fetch"}
+  },
+
+  "experiments": {
+    "active_flags": []
+  },
+
+  "error_budget": {"slo":0.999,"sloPercent":"99.90%","totalRequests":100000,"failedRequests":150,"allowedFailures":100,"remaining":0,"consumedPercent":"100.0%","exhausted":true,"canDeploy":false},
+
+  "git": {
+    "sha": "35bf317535c12e54fe6bfe9dd5e0376cd9d88e58",
+    "branch": "main",
+    "uncommitted_changes": 9
+  },
+
+  "environment": {
+    "node_version": "v24.13.1",
+    "wrangler_version": "4.80.0",
+    "hostname": "GABRIEL.local",
+    "user": "m2ultra"
+  },
+
+  "context": {
+    "notes": "Auto-captured postmortem artifact",
+    "requires_followup": true,
+    "severity": "to_be_determined"
+  }
+}

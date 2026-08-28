@@ -1,0 +1,59 @@
+{
+  "_comment": "Per-bot exemptions to specific Standards v1.0 clauses. Each exemption MUST have a documented reason and a compensating control in the bot's README. See STANDARDS.md \u00a7 Exemption process.",
+  "_schema": {
+    "<bot-name>": {
+      "<clause-key>": "exempt_<named-reason>"
+    }
+  },
+  "mc96-follower": {
+    "4_consent": "exempt_ops_only",
+    "10_kill_switch": "n/a"
+  },
+  "cf02-notion": {
+    "4_consent": "exempt_ops_only",
+    "10_kill_switch": "n/a"
+  },
+  "cf03-linear": {
+    "4_consent": "exempt_ops_only",
+    "10_kill_switch": "n/a"
+  },
+  "cf04-slack": {
+    "4_consent": "exempt_ops_only",
+    "10_kill_switch": "n/a"
+  },
+  "cf05-stream": {
+    "4_consent": "exempt_stream_consent_verified_per_session",
+    "10_kill_switch": "n/a"
+  },
+  "cf01-discord": {
+    "4_consent": "exempt_ops_only",
+    "10_kill_switch": "n/a"
+  },
+  "cf06-ai-gateway": {
+    "4_consent": "exempt_inference_ops_only",
+    "10_kill_switch": "n/a"
+  },
+  "cf07-vectorize-rag": {
+    "4_consent": "exempt_read_only_search",
+    "10_kill_switch": "n/a",
+    "11_critical_escalation": "exempt_read_only_search"
+  },
+  "metabeast-remote": {
+    "3_constant_time_auth": "exempt_scaffold_no_writes",
+    "4_consent": "exempt_scaffold_no_writes",
+    "5_ledger": "exempt_scaffold_no_writes",
+    "10_kill_switch": "n/a",
+    "11_critical_escalation": "exempt_scaffold_no_writes"
+  },
+  "cf08-github": {
+    "4_consent": "exempt_ops_only",
+    "10_kill_switch": "n/a"
+  },
+  "cf09-google-workspace": {
+    "4_consent": "exempt_ops_only",
+    "10_kill_switch": "n/a"
+  },
+  "cf10-sso-guard": {
+    "4_consent": "exempt_ops_only"
+  }
+}

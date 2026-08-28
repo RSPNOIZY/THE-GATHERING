@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "allowJs": true,
+    "checkJs": true,
+    "resolveJsonModule": true,
+    "moduleDetection": "force",
+    "verbatimModuleSyntax": true,
+    "strict": true,
+    "noEmit": true,
+    "module": "Preserve",
+    "types": ["mocha"]
+  },
+  "include": ["**/*.ts", "eslint.config.mjs", ".vscode-test.mjs"],
+  "exclude": ["node_modules"]
+}

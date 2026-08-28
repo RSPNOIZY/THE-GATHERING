@@ -1,0 +1,67 @@
+services:
+  gathering-router:
+    image: python:3.13-slim
+    container_name: gathering-router
+    working_dir: /workspace
+    command: python -m http.server 8088
+    ports:
+      - "127.0.0.1:8088:8088"
+    volumes:
+      - ../../:/workspace:ro
+      - ../../logs:/workspace/logs
+    restart: unless-stopped
+    labels:
+      noizy.role: "ingress-router"
+      noizy.actor: "RSP_001"
+
+  node-red:
+    image: nodered/node-red:latest
+    container_name: noizy-node-red
+    ports:
+      - "127.0.0.1:1880:1880"
+    volumes:
+      - node_red_data:/data
+      - ../node-red:/workspace/node-red:ro
+    restart: unless-stopped
+    labels:
+      noizy.role: "local-to-edge-automation"
+
+  ollama:
+    image: ollama/ollama:latest
+    container_name: noizy-ollama
+    ports:
+      - "127.0.0.1:11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+    restart: unless-stopped
+    labels:
+      noizy.role: "local-llm"
+
+  redis:
+    image: redis:7-alpine
+    container_name: noizy-redis
+    command: redis-server --appendonly yes
+    ports:
+      - "127.0.0.1:6379:6379"
+    volumes:
+      - redis_data:/data
+    restart: unless-stopped
+    labels:
+      noizy.role: "bounded-session-cache"
+
+  qdrant:
+    image: qdrant/qdrant:latest
+    container_name: noizy-qdrant
+    ports:
+      - "127.0.0.1:6333:6333"
+    volumes:
+      - qdrant_data:/qdrant/storage
+    restart: unless-stopped
+    labels:
+      noizy.role: "vector-memory"
+
+volumes:
+  node_red_data:
+  ollama_data:
+  redis_data:
+  qdrant_data:

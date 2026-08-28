@@ -1,0 +1,170 @@
+{
+  "name": "MC96 Daily Backup",
+  "nodes": [
+    {
+      "id": "cron",
+      "name": "Daily 3AM",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        0
+      ],
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 3 * * *"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "run_backup",
+      "name": "Execute Backup Script",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        300,
+        0
+      ],
+      "parameters": {
+        "command": "/bin/bash /Users/m2ultra/mc96_backup.sh 2>&1"
+      }
+    },
+    {
+      "id": "check_result",
+      "name": "Check Result",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        600,
+        0
+      ],
+      "parameters": {
+        "jsCode": "const result = $input.first().json;\nconst exitCode = result.exitCode || 0;\nconst stdout = result.stdout || \"\";\nconst stderr = result.stderr || \"\";\n\nconst success = exitCode === 0;\nconst timestamp = new Date().toISOString();\n\nconst report = {\n  timestamp: timestamp,\n  job: \"MC96 Daily Backup\",\n  success: success,\n  exitCode: exitCode,\n  output: stdout.substring(0, 2000),\n  errors: stderr.substring(0, 1000),\n  duration: result.executionTime || \"unknown\"\n};\n\nif (!success) {\n  console.log(\"[BACKUP FAILED] MC96 backup failed at \" + timestamp);\n  console.log(\"Exit code: \" + exitCode);\n  console.log(\"Errors: \" + stderr.substring(0, 500));\n} else {\n  console.log(\"[BACKUP OK] MC96 backup completed at \" + timestamp);\n}\n\nreturn [{ json: report }];"
+      }
+    },
+    {
+      "id": "route_result",
+      "name": "Success or Failure",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        900,
+        0
+      ],
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "combinator": "and",
+          "conditions": [
+            {
+              "id": "success-check",
+              "leftValue": "={{ $json.success }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "true"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "log_success",
+      "name": "Log Success",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1200,
+        -100
+      ],
+      "parameters": {
+        "jsCode": "const report = $input.first().json;\nconsole.log(\"[MC96 BACKUP] SUCCESS at \" + report.timestamp);\nconsole.log(\"Output: \" + report.output.substring(0, 500));\n// Future: Write to D1 agent-memory as backup record\n// Future: Send success notification to Slack #ops\nreturn [{ json: { ...report, notified: false, channel: \"#ops (pending Slack)\" } }];"
+      }
+    },
+    {
+      "id": "log_failure",
+      "name": "Log Failure",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1200,
+        100
+      ],
+      "parameters": {
+        "jsCode": "const report = $input.first().json;\nconsole.log(\"[MC96 BACKUP] FAILURE at \" + report.timestamp);\nconsole.log(\"Exit code: \" + report.exitCode);\nconsole.log(\"Errors: \" + report.errors);\n// Future: Send CRITICAL alert to Slack #ops\n// Future: Retry mechanism\nreturn [{ json: { ...report, alertLevel: \"CRITICAL\", notified: false, channel: \"#ops (pending Slack)\" } }];"
+      }
+    }
+  ],
+  "connections": {
+    "Daily 3AM": {
+      "main": [
+        [
+          {
+            "node": "Execute Backup Script",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute Backup Script": {
+      "main": [
+        [
+          {
+            "node": "Check Result",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check Result": {
+      "main": [
+        [
+          {
+            "node": "Success or Failure",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Success or Failure": {
+      "main": [
+        [
+          {
+            "node": "Log Success",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Log Failure",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "America/Toronto",
+    "saveDataErrorExecution": "all",
+    "saveDataSuccessExecution": "all",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  }
+}

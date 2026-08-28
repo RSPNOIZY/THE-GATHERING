@@ -1,0 +1,120 @@
+{
+  "_meta": {
+    "version": "0.1.0",
+    "updated": "2026-03-27",
+    "source": "NOIZYBEAST master registry"
+  },
+  "properties": [
+    {
+      "id": "NOIZY_AI",
+      "name": "NOIZY.ai",
+      "tagline": "Consent-native infrastructure layer for the entire creative economy",
+      "role": "The Stripe of Creative Rights",
+      "status": "BUILDING",
+      "priority": 1,
+      "urls": { "live": "https://noizy.ai", "worker": "https://heaven.rsp-5f3.workers.dev" },
+      "repo": "~/Desktop/HEAVEN",
+      "worker": "HEAVEN",
+      "cf_account": "5f36aa9795348ea681d0b21910dfc82a",
+      "deploy": "cd ~/Desktop/HEAVEN && npx wrangler deploy",
+      "blockers": ["CF email must change to rsplowman@icloud.com first"],
+      "live_services": ["Heaven consent kernel", "agent-memory D1", "6 KV namespaces"],
+      "next": "npx wrangler deploy"
+    },
+    {
+      "id": "NOIZYVOX",
+      "name": "NOIZYVOX",
+      "tagline": "Voice identity & synthesis platform — creator Voice DNA registry",
+      "role": "Voice synthesis, HVS, NCP v1.1",
+      "status": "BUILDING",
+      "priority": 2,
+      "urls": { "live": null, "planned": "https://noizyvox.com" },
+      "repo": "~/Desktop/HEAVEN/NOIZYVOX",
+      "worker": "noizyvox",
+      "cleared_tools": ["XTTS_v2", "RVC", "Librosa", "pedalboard"],
+      "blocked_tools": ["MusicGen", "MaskGCT", "Tango2", "FishSpeech"],
+      "next": "Portal scaffold + Voice DNA session UX"
+    },
+    {
+      "id": "NOIZYLAB",
+      "name": "NOIZYLAB",
+      "tagline": "Enterprise dev environment — NOIZYBEAST home base",
+      "role": "Internal platform, DreamChamber, GABRIEL, all MCPs",
+      "status": "ACTIVE",
+      "priority": 1,
+      "urls": { "live": "https://rsp-5f3.workers.dev" },
+      "repo": "~/NOIZYLAB",
+      "local_services": ["GABRIEL :7777", "Voice Bridge :8080", "Ollama :11434", "Dashboard :9090"],
+      "next": "HEAVEN deploy to bring noizy.ai live"
+    },
+    {
+      "id": "NOIZYKIDZ",
+      "name": "NOIZYKIDZ",
+      "tagline": "Creator education platform — consent-first music learning for youth",
+      "role": "Youth creator program, consent onboarding",
+      "status": "PLANNED",
+      "priority": 4,
+      "urls": { "planned": "https://noizykidz.com" },
+      "repo": "~/Desktop/HEAVEN/NOIZYKIDZ",
+      "next": "Product spec + scaffold"
+    },
+    {
+      "id": "LIFELUV",
+      "name": "LIFELUV",
+      "tagline": "Creator lifestyle & community — elevation through creation",
+      "role": "Community layer, creator lifestyle brand",
+      "status": "PLANNED",
+      "priority": 5,
+      "urls": { "planned": "https://lifeluv.com" },
+      "repo": null,
+      "next": "Define product scope"
+    },
+    {
+      "id": "FISH_MUSIC",
+      "name": "FISH MUSIC / Noizyfish",
+      "tagline": "40-year music publishing legacy — Robert's creative foundation",
+      "role": "Music publishing, RSP_001 portfolio",
+      "status": "ACTIVE",
+      "priority": 3,
+      "urls": { "live": "https://noizyfish.com" },
+      "repo": "~/Desktop/HEAVEN/NOIZYFISH",
+      "next": "Connect to NOIZY.ai consent layer"
+    },
+    {
+      "id": "DREAMCHAMBER",
+      "name": "DreamChamber",
+      "tagline": "The AI shell, interface world, and command surface",
+      "role": "GABRIEL runtime, multi-model AI, voice synthesis, crew dispatch",
+      "status": "LIVE",
+      "priority": 1,
+      "urls": { "local": "http://GOD.local:7777", "dashboard": "http://10.90.90.10:9090" },
+      "repo": "~/NOIZYLAB/dreamchamber",
+      "models": ["claude-opus-4", "claude-sonnet-4", "gemma3", "mistral", "llava:34b"],
+      "v3_endpoints": ["/api/gabriel/v3/mission", "/api/gabriel/v3/think", "/api/gabriel/v3/crew", "/api/gabriel/v3/empire", "/api/gabriel/v3/queue"],
+      "learnings": 341,
+      "memcells": 333,
+      "next": "ANTHROPIC_API_KEY in .env to unlock speak()"
+    },
+    {
+      "id": "NOIZYLAB_REPAIRS",
+      "name": "NOIZYLAB Repairs",
+      "tagline": "Service portal — 3 open tickets, needs to go live",
+      "role": "Audio gear repair business portal",
+      "status": "BUILT_NOT_LIVE",
+      "priority": 3,
+      "db": "noizylab-repairs / 2bd4aa06",
+      "tickets": 3,
+      "revenue": 0,
+      "next": "Deploy portal, connect to payment"
+    }
+  ],
+  "urgentQueue": [
+    { "p": 1, "action": "CF email → rsplowman@icloud.com",         "type": "BROWSER",  "blocker": true,  "est": "5 min" },
+    { "p": 2, "action": "cd ~/Desktop/HEAVEN && npx wrangler deploy","type": "TERMINAL", "blocker": true,  "est": "2 min" },
+    { "p": 3, "action": "GitHub + CF 2FA enable",                   "type": "BROWSER",  "blocker": true,  "est": "10 min" },
+    { "p": 4, "action": "ANTHROPIC_API_KEY → ~/NOIZYLAB/.env",      "type": "TERMINAL", "blocker": true,  "est": "1 min" },
+    { "p": 5, "action": "KV dead namespace cleanup (10 candidates)", "type": "TERMINAL", "blocker": false, "est": "15 min" },
+    { "p": 6, "action": "NOIZYLAB Repairs portal → deploy",         "type": "BUILD",    "blocker": false, "est": "30 min" },
+    { "p": 7, "action": "GoDaddy exit (ONLY after CF email done)",  "type": "BROWSER",  "blocker": false, "est": "60 min" }
+  ]
+}

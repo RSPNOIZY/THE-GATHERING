@@ -1,0 +1,270 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://noizy.ai/schemas/ncp.v1.1.json",
+  "title": "NCP v1.1 — Noizy Consent Protocol",
+  "description": "Machine-readable consent contract for AI voice synthesis and processing. Open spec — CC0 1.0.",
+  "type": "object",
+  "required": ["ncp_version", "claim_scope_id", "creator_voice_id", "consent_status", "consent_record"],
+  "properties": {
+    "ncp_version": {
+      "type": "string",
+      "const": "1.1",
+      "description": "Protocol version. Must be 1.1 for this schema."
+    },
+    "claim_scope_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique identifier for this consent agreement scope."
+    },
+    "creator_voice_id": {
+      "type": "string",
+      "description": "Human Voice Sovereignty (HVS) UUID for the creator. Issued at HVS registration."
+    },
+    "consent_status": {
+      "type": "string",
+      "enum": ["draft", "pending_signature", "active", "expired", "revoked", "suspended", "disputed"],
+      "description": "Current operational status of this consent record."
+    },
+    "consent_record": {
+      "type": "object",
+      "required": [
+        "granted_by", "granted_to", "usage_types", "authorized_tools",
+        "term", "scope", "payment_terms", "provenance_required",
+        "revocation_trigger", "dispute_status", "signature"
+      ],
+      "properties": {
+        "granted_by": {
+          "type": "string",
+          "description": "creator_id of the creator granting consent. Must match owner of creator_voice_id."
+        },
+        "granted_to": {
+          "type": "string",
+          "description": "claimant_id of the entity receiving consent."
+        },
+        "usage_types": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["synthesis", "training", "derivative", "live", "sync", "broadcast", "archival"]
+          },
+          "minItems": 1,
+          "description": "Permitted operations under this consent record."
+        },
+        "authorized_tools": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Tool/model names explicitly authorized. Must also pass tool_clearance_registry check.",
+          "examples": [["XTTS_v2", "RVC", "Librosa"]]
+        },
+        "term": {
+          "type": "object",
+          "required": ["start_date", "end_date", "auto_renew"],
+          "properties": {
+            "start_date": { "type": "string", "format": "date-time" },
+            "end_date": { "type": "string", "format": "date-time" },
+            "auto_renew": {
+              "type": "boolean",
+              "description": "If true, term extends automatically. Requires re-consent event in audit log."
+            }
+          }
+        },
+        "scope": {
+          "type": "object",
+          "required": ["geographic", "media"],
+          "properties": {
+            "geographic": {
+              "type": "array",
+              "items": { "type": "string" },
+              "description": "ISO 3166-1 alpha-2 codes or 'global'.",
+              "examples": [["global"], ["CA", "US"]]
+            },
+            "media": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": ["commercial", "non-commercial", "editorial", "advertising"]
+              }
+            },
+            "channels": {
+              "type": "array",
+              "items": { "type": "string", "enum": ["platform", "api", "broadcast", "live"] }
+            },
+            "exclusions": {
+              "type": "array",
+              "items": { "type": "string" },
+              "description": "Explicitly prohibited uses regardless of other scope settings.",
+              "examples": [["political_speech", "deepfake_without_attribution"]]
+            }
+          }
+        },
+        "payment_terms": {
+          "type": "object",
+          "required": ["default_model", "creator_pct", "platform_pct", "override_applies"],
+          "properties": {
+            "default_model": {
+              "type": "boolean",
+              "description": "If true, uses NOIZY platform default (75/25). If false, override values apply."
+            },
+            "creator_pct": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100,
+              "description": "Creator's percentage of gross revenue. Default: 75."
+            },
+            "platform_pct": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100,
+              "description": "Platform's percentage. Default: 25. creator_pct + platform_pct must = 100."
+            },
+            "override_applies": {
+              "type": "boolean",
+              "description": "If true, a signed contract-scoped override is active for this record only."
+            },
+            "currency": {
+              "type": "string",
+              "default": "USD",
+              "description": "ISO 4217 currency code."
+            },
+            "payout_window_days": {
+              "type": "integer",
+              "default": 7,
+              "description": "Maximum days from usage event to creator payout."
+            }
+          }
+        },
+        "provenance_required": {
+          "type": "boolean",
+          "description": "If true, all outputs must carry C2PA/NOIZY PROOF provenance manifest."
+        },
+        "inheritance_rules": {
+          "type": "object",
+          "properties": {
+            "heir_control_enabled": { "type": "boolean" },
+            "delegate_ids": {
+              "type": "array",
+              "items": { "type": "string" }
+            },
+            "estate_activation_condition": {
+              "type": "string",
+              "enum": ["death_verified", "incapacity_verified", "creator_specified_date", "never"]
+            }
+          }
+        },
+        "revocation_trigger": {
+          "type": "object",
+          "required": ["grounds", "notice_period_days", "enforcement_sla_hours"],
+          "properties": {
+            "grounds": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": ["creator_request", "copyright_violation", "term_expiration", "dispute_resolution", "platform_policy_violation"]
+              }
+            },
+            "notice_period_days": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "0 = immediate revocation."
+            },
+            "enforcement_sla_hours": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 24,
+              "description": "Maximum hours to operationally enforce revocation across all covered scopes."
+            }
+          }
+        },
+        "dispute_status": {
+          "type": "string",
+          "enum": ["none", "pending", "under_review", "resolved"],
+          "description": "Current dispute state. ESCALATE decision applies when != none."
+        },
+        "signature": {
+          "type": "object",
+          "required": ["creator_signature", "timestamp", "nonce"],
+          "properties": {
+            "creator_signature": {
+              "type": "string",
+              "description": "Ed25519 digital signature over consent_record (excluding this field)."
+            },
+            "claimant_signature": {
+              "type": "string",
+              "description": "Optional claimant counter-signature."
+            },
+            "timestamp": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "nonce": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        }
+      }
+    },
+    "revoked_at": {
+      "type": ["string", "null"],
+      "format": "date-time",
+      "description": "ISO 8601 timestamp of revocation. Null if not revoked."
+    },
+    "last_verified_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last time the consent record was validated by the system."
+    }
+  },
+  "examples": [
+    {
+      "ncp_version": "1.1",
+      "claim_scope_id": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
+      "creator_voice_id": "HVS-RSP001-2026",
+      "consent_status": "active",
+      "consent_record": {
+        "granted_by": "RSP_001",
+        "granted_to": "CLAIMANT_001",
+        "usage_types": ["synthesis", "derivative"],
+        "authorized_tools": ["XTTS_v2", "RVC", "Librosa"],
+        "term": {
+          "start_date": "2026-03-25T00:00:00Z",
+          "end_date": "2030-03-25T00:00:00Z",
+          "auto_renew": false
+        },
+        "scope": {
+          "geographic": ["global"],
+          "media": ["commercial", "non-commercial"],
+          "channels": ["platform", "api"],
+          "exclusions": ["political_speech", "deepfake_without_attribution"]
+        },
+        "payment_terms": {
+          "default_model": true,
+          "creator_pct": 75,
+          "platform_pct": 25,
+          "override_applies": false,
+          "currency": "USD",
+          "payout_window_days": 7
+        },
+        "provenance_required": true,
+        "inheritance_rules": {
+          "heir_control_enabled": true,
+          "delegate_ids": [],
+          "estate_activation_condition": "death_verified"
+        },
+        "revocation_trigger": {
+          "grounds": ["creator_request", "copyright_violation", "term_expiration"],
+          "notice_period_days": 0,
+          "enforcement_sla_hours": 1
+        },
+        "dispute_status": "none",
+        "signature": {
+          "creator_signature": "BASE64_ED25519_SIGNATURE",
+          "timestamp": "2026-03-25T00:00:00Z",
+          "nonce": "a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11"
+        }
+      },
+      "revoked_at": null,
+      "last_verified_at": "2026-03-25T18:00:00Z"
+    }
+  ]
+}

@@ -1,0 +1,118 @@
+{
+  "name": "commercial-library-regrouper",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [{ "field": "hours", "hoursInterval": 12 }]
+        }
+      },
+      "id": "schedule",
+      "name": "Every 12h",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.1,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "command": "df -h /Volumes/* 2>/dev/null | awk 'NR>1 {print $9 \"|\" $4 \"|\" $5}'"
+      },
+      "id": "capacity-check",
+      "name": "Get per-volume capacity",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [460, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Parse df output → identify drives that can ACCEPT vs REFUSE library moves\n// Per RSP decree 2026-04-20: RESPECT DEVICE VOLUME SIZE\nconst out = $input.first().json.stdout || '';\nconst lines = out.split('\\n').filter(l => l.includes('|'));\nconst CAPACITY_HEADROOM_PCT = 80; // never exceed 80% on a target drive\n\nconst drives = lines.map(line => {\n  const [path, available, usedPct] = line.split('|');\n  const used = parseInt(usedPct);\n  return {\n    path: path.trim(),\n    available: available.trim(),\n    used_pct: isNaN(used) ? 100 : used,\n    can_accept: !isNaN(used) && used < CAPACITY_HEADROOM_PCT,\n    role: 'unknown'\n  };\n});\n\n// Classify each drive's role + accept/refuse for commercial library overflow\nconst CANDIDATES = {\n  '/Volumes/RSP_GOFISH': 'AVAILABLE_TARGET (1% used · primary overflow target)',\n  '/Volumes/12TB':       'MASTER_ARCHIVE (87% — full · cannot accept)',\n  '/Volumes/6TB':        'DOCTRINE_ARCHIVE (86% — full · cannot accept)',\n  '/Volumes/4TB BLK':    'OVERFLOW_BLOCKER (100% — must EVACUATE from)',\n  '/Volumes/4TB Blue Fish': 'OVERFLOW_PENDING (99% — cannot accept · should rotate)',\n  '/Volumes/MAG 4TB':    'SAMPLE_OVERFLOW (80% — limited capacity)',\n  '/Volumes/4TB Big Fish': 'PRIMARY_FISH (48% — can accept)',\n  '/Volumes/4TB FISH SG': 'FISH_SAMPLES (82% — limited)',\n  '/Volumes/4TB Lacie':  'EMPIRE_MIRROR (17% — can accept · note: also Design Reunion home)',\n  '/Volumes/JOE':        'GORUNFREE_RECOVERY (56% — can accept moderate)'\n};\n\nreturn drives.map(d => ({\n  json: {\n    ...d,\n    role: CANDIDATES[d.path] || d.role,\n    timestamp: new Date().toISOString()\n  }\n}));"
+      },
+      "id": "classify-drives",
+      "name": "Classify volumes (capacity-aware)",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [680, 300]
+    },
+    {
+      "parameters": {
+        "command": "find '/Volumes/4TB BLK' '/Volumes/4TB Blue Fish' '/Volumes/MAG 4TB' '/Volumes/4TB FISH SG' -type d -maxdepth 4 \\( -name 'XLN_Audio' -o -name 'Avid' -o -name 'Native_Instruments' -o -name 'Native Instruments' -o -name 'IK Multimedia' -o -name 'Toontrack' -o -name 'Sample Magic' -o -name 'Sample_Magic' -o -name 'Best_Service' -o -name 'Earth_Moments' -o -name 'Steven_Slate' -o -name 'Spitfire*' -o -name '8Dio*' -o -name 'Project*Sam*' -o -name '_Play Libraries' \\) 2>/dev/null | head -50"
+      },
+      "id": "find-libraries",
+      "name": "Find commercial library dirs",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [900, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "// For each found library, propose a move target based on capacity-classified drives\n// + the library's vendor canonical home convention\nconst libraryPaths = ($input.first().json.stdout || '').split('\\n').filter(Boolean);\nconst drives = $input.last().json || [];\n\n// Canonical home per vendor (vendor → preferred volume root)\nconst CANONICAL_HOME = {\n  'XLN_Audio':           '/Volumes/RSP_GOFISH/_LIBRARIES/XLN_Audio',\n  'Avid':                '/Volumes/RSP_GOFISH/_LIBRARIES/Avid',\n  'Native_Instruments':  '/Volumes/4TB Big Fish/_LIBRARIES/Native_Instruments',\n  'Native Instruments':  '/Volumes/4TB Big Fish/_LIBRARIES/Native_Instruments',\n  'IK Multimedia':       '/Volumes/4TB Big Fish/_LIBRARIES/IK_Multimedia',\n  'Toontrack':           '/Volumes/4TB Big Fish/_LIBRARIES/Toontrack',\n  'Sample Magic':        '/Volumes/MAG 4TB/_LIBRARIES/Sample_Magic',\n  'Sample_Magic':        '/Volumes/MAG 4TB/_LIBRARIES/Sample_Magic',\n  'Best_Service':        '/Volumes/MAG 4TB/_LIBRARIES/Best_Service',\n  'Earth_Moments':       '/Volumes/MAG 4TB/_LIBRARIES/Earth_Moments',\n  'Steven_Slate':        '/Volumes/MAG 4TB/_LIBRARIES/Steven_Slate'\n};\n\nreturn libraryPaths.map(currentPath => {\n  const dirName = currentPath.split('/').pop();\n  const target = CANONICAL_HOME[dirName] || `/Volumes/RSP_GOFISH/_UNCLASSIFIED/${dirName}`;\n  const targetVolume = '/' + target.split('/').slice(1, 3).join('/');\n  const targetDrive = drives.find(d => d.path === targetVolume);\n  const can_move = targetDrive ? targetDrive.can_accept : false;\n\n  return {\n    json: {\n      current_path: currentPath,\n      vendor: dirName,\n      proposed_target: target,\n      target_volume: targetVolume,\n      target_can_accept: can_move,\n      action: can_move ? 'PROPOSE_MOVE' : 'BLOCKED — target full',\n      command_dry_run: `# DRY RUN — review before executing\\nrsync -av --dry-run \"${currentPath}/\" \"${target}/\"`,\n      command_execute: `# DESTRUCTIVE — only after RSP review\\nmkdir -p \"${target}\" && rsync -av --remove-source-files \"${currentPath}/\" \"${target}/\" && find \"${currentPath}\" -depth -type d -empty -delete`\n    }\n  };\n});"
+      },
+      "id": "propose-moves",
+      "name": "Propose moves (capacity-aware)",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1120, 300]
+    },
+    {
+      "parameters": {
+        "operation": "write",
+        "fileName": "/Users/m2ultra/NOIZYANTHROPIC/_healing_audits/library_regrouper_={{ $now.format('yyyy-MM-dd-HHmm') }}.json",
+        "dataPropertyName": "data"
+      },
+      "id": "save-report",
+      "name": "Save proposal to _healing_audits/",
+      "type": "n8n-nodes-base.writeBinaryFile",
+      "typeVersion": 1,
+      "position": [1340, 300]
+    },
+    {
+      "parameters": {
+        "url": "https://heaven.rsp-5f3.workers.dev/api/v1/ledger",
+        "method": "POST",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "X-NOIZY-Key", "value": "={{ $env.NOIZY_API_KEY }}" },
+            { "name": "Content-Type", "value": "application/json" }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"event_type\": \"LIBRARY_REGROUP_PROPOSED\",\n  \"actor_id\": \"RSP_001\",\n  \"details\": {\n    \"libraries_found\": {{ $json.length }},\n    \"capacity_aware\": true,\n    \"timestamp\": \"{{ $now.toISO() }}\",\n    \"proposer\": \"n8n-commercial-library-regrouper\",\n    \"report_path\": \"_healing_audits/library_regrouper_{{ $now.format('yyyy-MM-dd-HHmm') }}.json\"\n  }\n}"
+      },
+      "id": "ledger",
+      "name": "Append to noizy_ledger",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [1560, 300]
+    }
+  ],
+  "connections": {
+    "Every 12h": { "main": [[{ "node": "Get per-volume capacity", "type": "main", "index": 0 }]] },
+    "Get per-volume capacity": {
+      "main": [[{ "node": "Classify volumes (capacity-aware)", "type": "main", "index": 0 }]]
+    },
+    "Classify volumes (capacity-aware)": {
+      "main": [[{ "node": "Find commercial library dirs", "type": "main", "index": 0 }]]
+    },
+    "Find commercial library dirs": {
+      "main": [[{ "node": "Propose moves (capacity-aware)", "type": "main", "index": 0 }]]
+    },
+    "Propose moves (capacity-aware)": {
+      "main": [[{ "node": "Save proposal to _healing_audits/", "type": "main", "index": 0 }]]
+    },
+    "Save proposal to _healing_audits/": {
+      "main": [[{ "node": "Append to noizy_ledger", "type": "main", "index": 0 }]]
+    }
+  },
+  "settings": { "executionOrder": "v1" },
+  "tags": [
+    { "name": "mc96" },
+    { "name": "library-regroup" },
+    { "name": "heal-the-world" },
+    { "name": "capacity-aware" }
+  ],
+  "meta": {
+    "doctrine": "Ratified 2026-04-20 per RSP decrees: 'USE N8N TO REGROUP ALL COMMERCIAL LIBRARIES' + 'RESPECTING DEVICE VOLUME SIZE'. Workflow runs every 12h. Identifies commercial libraries scattered across overflow drives (4TB BLK 100%, 4TB Blue Fish 99%, etc.) and PROPOSES moves to canonical-vendor-home destinations only when target drive has capacity headroom (<80%). Output is a DRY-RUN proposal saved to _healing_audits/ — RSP reviews before any move executes. Honors no-data-loss + no-overflow doctrine."
+  }
+}

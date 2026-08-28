@@ -1,0 +1,29 @@
+{
+	"ae_tool" : "AmazingEditor",
+	"bALG_BACH_CONFIG" : true,
+	"effect" : 
+	{
+		"Link" : 
+		[
+			{
+				"path" : "AmazingFeature/",
+				"type" : "AmazingFeature",
+				"zorder" : 8011
+			}
+		],
+		"forceRender" : true,
+		"forceUseAlgCache" : true,
+		"model_names" : 
+		{
+			"bytenn" : 
+			[
+				"tt_fsnew_base_jianying",
+				"tt_freid",
+				"newbandou",
+				"newbandou_remove_script"
+			]
+		}
+	},
+	"name" : "05d5e017-bcff-11eb-a04a-acde480011220",
+	"version" : "17.6.0"
+}

@@ -1,0 +1,81 @@
+{
+	"version":	"1.0",
+	"mode":	2,
+	"name":	"Editor_Sticker_Config_TAG_Icb6bFc0d9bbbSdzcgShbUcxbwd1c",
+	"model_names":	{
+		"alg_model":	["tt_face_extra", "tt_freid", "tt_fsnew_base_jianying"]
+	},
+	"nodes":	[{
+			"name":	"face_0",
+			"type":	"face",
+			"graphs":	[],
+			"config":	{
+				"keyMaps":	{
+					"intParam":	{
+						"face_max_num":	10,
+						"face_detect_ability":	1
+					},
+					"floatParam":	{
+					},
+					"stringParam":	{
+						"face_base_model_key":	"tt_fsnew_base_jianying"
+					},
+					"pathParam":	{
+					}
+				}
+			}
+		}, {
+			"name":	"freid_0",
+			"type":	"freid",
+			"graphs":	[],
+			"config":	{
+				"keyMaps":	{
+					"intParam":	{
+						"freid_buffer_immediate_mode":	1
+					},
+					"floatParam":	{
+					},
+					"stringParam":	{
+					},
+					"pathParam":	{
+					}
+				}
+			}
+		}, {
+			"name":	"textureBlitter",
+			"type":	"blit",
+			"graphs":	[],
+			"config":	{
+				"size":	{
+                    "width": 360,
+                    "height": 640
+				},
+				"keyMaps":	{
+					"intParam":	{
+					},
+					"floatParam":	{
+					},
+					"stringParam":	{
+					},
+					"pathParam":	{
+					}
+				}
+			}
+		}],
+	"links":	[{
+			"fromNode":	"face_0",
+			"fromIndex":	0,
+			"toNode":	"freid_0",
+			"toIndex":	1
+		}, {
+			"fromNode":	"textureBlitter",
+			"fromIndex":	0,
+			"toNode":	"face_0",
+			"toIndex":	0
+		}, {
+			"fromNode":	"textureBlitter",
+			"fromIndex":	0,
+			"toNode":	"freid_0",
+			"toIndex":	0
+		}]
+}

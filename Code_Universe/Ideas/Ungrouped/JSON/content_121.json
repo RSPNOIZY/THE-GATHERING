@@ -1,0 +1,11 @@
+{
+	"ae_tool" : "AmazingEditor",
+	"content" : {},
+	"filemap" : 
+	{
+		"prefab" : "prefabs/customMaskProcess.prefab"
+	},
+	"needblend" : false,
+	"tag" : "AMG_1190884128452820234610353134616856420759",
+	"version" : "1.0"
+}

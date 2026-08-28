@@ -1,0 +1,19 @@
+{
+  "name": "heaven-worker",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Heaven — Cloudflare Worker edge gateway for the MC96 Ecosystem",
+  "scripts": {
+    "dev": "wrangler dev",
+    "check": "wrangler deploy --dry-run --outdir=.wrangler/dist",
+    "typecheck": "tsc --noEmit",
+    "deploy": "wrangler deploy",
+    "deploy:staging": "wrangler deploy --env staging",
+    "tail": "wrangler tail"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20241127.0",
+    "typescript": "^5.7.0",
+    "wrangler": "^3.91.0"
+  }
+}

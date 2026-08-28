@@ -1,0 +1,11 @@
+{
+	"ae_tool" : "AmazingEditor",
+	"content" : {},
+	"filemap" : 
+	{
+		"prefab" : "prefabs/heartMaskProcess.prefab"
+	},
+	"needblend" : false,
+	"tag" : "AMG_1169306318585824650110705459647893311118",
+	"version" : "1.0"
+}

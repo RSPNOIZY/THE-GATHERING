@@ -1,0 +1,175 @@
+{
+    "name": "db-predictor",
+    "displayName": "QueryGuard",
+    "description": "Real-time Database Safety Analyzer for Prisma, Supabase and Drizzle.",
+    "version": "1.2.1",
+    "publisher": "queryguard",
+    "icon": "assets/icon.png",
+    "engines": {
+        "vscode": "^1.85.0"
+    },
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/queryguard/db-predictor.git"
+    },
+    "homepage": "https://github.com/queryguard/db-predictor",
+    "bugs": {
+        "url": "https://github.com/queryguard/db-predictor/issues"
+    },
+    "categories": [
+        "Linters",
+        "Programming Languages"
+    ],
+    "keywords": [
+        "database",
+        "safety",
+        "prisma",
+        "supabase",
+        "drizzle"
+    ],
+    "main": "./out/extension.js",
+    "activationEvents": [
+        "onLanguage:typescript",
+        "onLanguage:typescriptreact",
+        "onLanguage:javascript",
+        "onLanguage:javascriptreact"
+    ],
+    "contributes": {
+        "configuration": {
+            "title": "QueryGuard",
+            "properties": {
+                "queryguard.enabled": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Enable/Disable QueryGuard analysis."
+                },
+                "queryguard.showCodeLens": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Show inline code lens impact estimations."
+                },
+                "queryguard.sslMode": {
+                    "type": "string",
+                    "default": "auto",
+                    "description": "SSL/TLS mode for database connections: auto (default), disable, require, verify-ca, verify-full.",
+                    "enum": [
+                        "auto",
+                        "disable",
+                        "require",
+                        "verify-ca",
+                        "verify-full"
+                    ]
+                },
+                "queryguard.analysisDebounce": {
+                    "type": "integer",
+                    "default": 750,
+                    "minimum": 100,
+                    "maximum": 10000,
+                    "description": "Delay in milliseconds before re-analyzing code after changes. Range: 100–10000ms. Default: 750."
+                },
+                "queryguard.cacheTTL": {
+                    "type": "integer",
+                    "default": 300,
+                    "minimum": 30,
+                    "maximum": 86400,
+                    "description": "Schema cache time-to-live in seconds. Range: 30–86400s (1 day max). Default: 300."
+                }
+            }
+        },
+        "commands": [
+            {
+                "command": "queryguard.connect",
+                "title": "QueryGuard: Connect to Database",
+                "icon": "$(database)"
+            },
+            {
+                "command": "queryguard.disconnect",
+                "title": "QueryGuard: Disconnect",
+                "icon": "$(debug-disconnect)"
+            },
+            {
+                "command": "queryguard.refreshSchema",
+                "title": "QueryGuard: Refresh Schema",
+                "icon": "$(refresh)"
+            },
+            {
+                "command": "queryguard.showImpactPanel",
+                "title": "QueryGuard: Show Impact Analysis",
+                "icon": "$(graph)"
+            },
+            {
+                "command": "queryguard.simulate",
+                "title": "QueryGuard: Run Safe Simulation",
+                "icon": "$(zap)"
+            },
+            {
+                "command": "queryguard.showLogs",
+                "title": "QueryGuard: Show Logs",
+                "icon": "$(output)"
+            }
+        ],
+        "keybindings": [
+            {
+                "command": "queryguard.connect",
+                "key": "ctrl+shift+d c",
+                "mac": "cmd+shift+d c",
+                "when": "editorTextFocus"
+            },
+            {
+                "command": "queryguard.simulate",
+                "key": "ctrl+shift+d s",
+                "mac": "cmd+shift+d s",
+                "when": "editorTextFocus"
+            },
+            {
+                "command": "queryguard.refreshSchema",
+                "key": "ctrl+shift+d r",
+                "mac": "cmd+shift+d r",
+                "when": "editorTextFocus"
+            },
+            {
+                "command": "queryguard.showLogs",
+                "key": "ctrl+shift+d l",
+                "mac": "cmd+shift+d l",
+                "when": "editorTextFocus"
+            }
+        ]
+    },
+    "scripts": {
+        "vscode:prepublish": "node ./esbuild.js --production && cd webview-ui && npm run build",
+        "compile": "tsc --noEmit && node ./esbuild.js",
+        "watch": "tsc --noEmit --watch && node ./esbuild.js",
+        "typecheck": "tsc --noEmit",
+        "test": "tsc -p tsconfig.test.json && mocha --timeout 5000 out/test/unit/setup.js out/test/unit/**/*.test.js",
+        "test:coverage": "tsc -p tsconfig.test.json && c8 --reporter=text --reporter=lcov mocha --timeout 5000 out/test/unit/setup.js out/test/unit/**/*.test.js",
+        "lint": "eslint .",
+        "format": "prettier --write .",
+        "package": "vsce package"
+    },
+    "dependencies": {
+        "pg": "^8.11.3",
+        "pg-pool": "^3.6.1"
+    },
+    "devDependencies": {
+        "@eslint/js": "^10.0.1",
+        "@types/mocha": "^10.0.10",
+        "@types/node": "20.x",
+        "@types/pg": "^8.20.0",
+        "@types/vscode": "^1.85.0",
+        "c8": "^11.0.0",
+        "esbuild": "^0.28.0",
+        "eslint": "^10.2.0",
+        "globals": "^17.5.0",
+        "mocha": "^11.7.5",
+        "module-alias": "^2.3.4",
+        "prettier": "^3.8.3",
+        "ts-node": "^10.9.2",
+        "typescript": "^6.0.3",
+        "typescript-eslint": "^8.58.2"
+    },
+    "overrides": {
+        "diff": "^9.0.0",
+        "serialize-javascript": "^7.0.5"
+    }
+}

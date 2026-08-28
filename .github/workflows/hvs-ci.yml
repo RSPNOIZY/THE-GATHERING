@@ -1,0 +1,42 @@
+name: HVS CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  verify-hvs-contracts:
+    name: Verify HVS contracts
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Verify JSON schemas
+        run: |
+          python -m json.tool hvs-sovereignty/schema/hvs-manifest.json >/dev/null
+
+      - name: Verify D1 pilot SQL parses
+        run: |
+          sqlite3 :memory: ".read hvs-sovereignty/pilots/mc96-equity-ledger.sql"
+
+      - name: Guard env files
+        run: |
+          ! find . -name '.env' -o -name '*.env' | grep -v '.env.example'
+
+      - name: Check sensitive payload exclusions
+        run: |
+          ! grep -RInE 'raw_biometric|private_key|seed_phrase|access_token|refresh_token' hvs-sovereignty infrastructure mobile-transit voice-control
+
+      - name: Optional C2PA and AudioSeal verification hook
+        run: |
+          if command -v c2patool >/dev/null 2>&1; then
+            echo "c2patool available; wire asset manifest verification here."
+          else
+            echo "c2patool unavailable in CI image; schema-only verification complete."
+          fi

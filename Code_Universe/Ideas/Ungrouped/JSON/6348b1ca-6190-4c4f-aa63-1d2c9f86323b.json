@@ -1,0 +1,56 @@
+{
+  "receipt": {
+    "receipt_id": "6348b1ca-6190-4c4f-aa63-1d2c9f86323b",
+    "workstream": "RIDESHARE",
+    "project_ref": "GABRIEL",
+    "account": "rspdrives@gmail.com",
+    "vehicle": "2026-HONDA-CRV-HYBRID",
+    "timestamp_utc": "2026-07-07T01:51:39.187125+00:00",
+    "session_id": "f49427ac-0fe2-4a6b-9321-3cef82fca398",
+    "action": {
+      "type": "PIPELINE",
+      "source": "GABRIEL",
+      "description": "Expense: PARKING \u2014 $8.00 (100% deductible = $8.00)",
+      "payload": {
+        "category": "PARKING",
+        "amount": 8.0,
+        "vendor": null,
+        "cra_deductible": true,
+        "deductible_amount": 8.0
+      }
+    },
+    "data": {
+      "trip_id": null,
+      "platform": null,
+      "earnings_gross": null,
+      "earnings_net": null,
+      "surge_multiplier": null,
+      "miles": null,
+      "duration_minutes": null,
+      "pickup_geo": null,
+      "dropoff_geo": null,
+      "ottawa_context": null
+    },
+    "consent": {
+      "driver_consented": true,
+      "consent_version": "1.0",
+      "consent_timestamp": "2026-07-07T01:51:39.187125+00:00"
+    },
+    "audit": {
+      "rule_zero": true,
+      "logged_by": "THE-GATHERING",
+      "immutable": true,
+      "hash": "79f45221d0264779ad3dea64a7120a47342a3571e626083a32b5e9772599a7cd",
+      "prev_receipt_id": null
+    },
+    "meta": {
+      "environment": "PRODUCTION",
+      "pipeline_version": "1.0.0",
+      "tags": [
+        "rideshare",
+        "gabriel",
+        "rspdrives"
+      ]
+    }
+  }
+}

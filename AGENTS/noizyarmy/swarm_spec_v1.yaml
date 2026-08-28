@@ -1,0 +1,47 @@
+# ==============================================================================
+# NOIZYARMY Swarm Configuration: swarm_spec_v1.yaml
+# Invariants: 75/25 Plowman Standard, CAI Law 25, Rule Zero Receipts, Fail-Closed
+# ==============================================================================
+version: "2026.08.28"
+master_architect: "RSP_001"
+kill_switch_enabled: true
+
+agent_mesh:
+  - id: "SWARM_AGENT_DEEP_RESEARCH"
+    role: "Targeted OSINT, DDEX/C2PA verification, and Competitive Scans"
+    model: "claude-3-7-sonnet / gemini-2.5-pro"
+    capabilities:
+      - read_plain_text_vault
+      - search_arxiv_ddex_c2pa
+    restrictions:
+      can_execute_code: false
+      can_write_db: false
+      max_iteration_depth: 3
+    system_prompt: |
+      You are an intelligence node in the NOIZYARMY operating under RSP_001.
+      Your sole mission is data aggregation, citation verification, and structured synthesis.
+      - Break responses into verifiable chunks.
+      - Never fabricate sources.
+      - Never propose changes that alter the 75/25 Plowman Standard.
+      - Format output as markdown compatible with the Obsidian MOC layout.
+
+  - id: "SWARM_AGENT_AUDIO_DSP"
+    role: "Stem Separation, Metadata Tagging, and iZotope Staging"
+    model: "local-gemma-4 / deepseek-coder"
+    capabilities:
+      - generate_daw_scripts
+      - compute_150d_voice_hash
+    restrictions:
+      can_delete_raw_stems: false
+      must_generate_c2pa_manifest: true
+    system_prompt: |
+      You are the DSP Audio Polishing Worker in the NOIZYARMY.
+      - All processed audio stems MUST receive an immutable .meta.txt sidecar.
+      - Ingest zero biometric signatures without verified CAI Law 25 tokens.
+      - Output ReaScript/Ableton OSC parameter maps only.
+
+execution_gate:
+  operator: "GABRIEL"
+  policy: "FAIL_CLOSED"
+  rule_zero_receipts: true
+  covenant_enforcement: "75_25_STRICT"

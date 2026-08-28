@@ -1,0 +1,74 @@
+{
+  "name": "NOIZY — Volume Scan Fanout",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "manual-trigger",
+      "name": "Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "url": "http://host.docker.internal:9797/volumes",
+        "options": {}
+      },
+      "id": "list-volumes",
+      "name": "List Volumes (host)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [460, 300]
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "volumes",
+        "options": {}
+      },
+      "id": "split-volumes",
+      "name": "Split Volumes",
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [680, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://host.docker.internal:9797/scan",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={ \"volume\": \"{{ $json.path }}\" }",
+        "options": {
+          "timeout": 1800000
+        }
+      },
+      "id": "scan-volume",
+      "name": "Scan Volume (host)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [900, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Aggregate per-volume summaries into a master record\nconst volumes = $input.all().map(i => i.json);\nconst total_code = volumes.reduce((s, v) => s + Object.values(v.code || {}).reduce((a, b) => a + b, 0), 0);\nconst total_secrets = volumes.reduce((s, v) => s + (v.secrets_pattern_count || 0), 0);\nconst total_audio = volumes.reduce((s, v) => s + Object.values(v.media || {}).reduce((a, b) => a + b, 0), 0);\nreturn [{ json: {\n  scanned_at: new Date().toISOString(),\n  volume_count: volumes.length,\n  total_code_projects: total_code,\n  total_secret_pattern_files: total_secrets,\n  total_audio_files: total_audio,\n  per_volume: volumes.map(v => ({\n    volume: v.volume,\n    size: v.size,\n    code: Object.values(v.code || {}).reduce((a, b) => a + b, 0),\n    secrets: v.secrets_pattern_count,\n    audio: Object.values(v.media || {}).reduce((a, b) => a + b, 0),\n    audit: v.audit_path\n  }))\n} }];"
+      },
+      "id": "aggregate",
+      "name": "Aggregate Summary",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1120, 300]
+    }
+  ],
+  "connections": {
+    "Manual Trigger": { "main": [[{ "node": "List Volumes (host)", "type": "main", "index": 0 }]] },
+    "List Volumes (host)": { "main": [[{ "node": "Split Volumes", "type": "main", "index": 0 }]] },
+    "Split Volumes": { "main": [[{ "node": "Scan Volume (host)", "type": "main", "index": 0 }]] },
+    "Scan Volume (host)": {
+      "main": [[{ "node": "Aggregate Summary", "type": "main", "index": 0 }]]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "tags": ["noizy", "scan", "infra"]
+}

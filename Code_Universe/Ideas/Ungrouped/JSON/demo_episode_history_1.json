@@ -1,0 +1,16 @@
+{
+  "episodes": [
+    {
+      "timestamp": "2026-02-20T15:11:00Z",
+      "peak_hr_bpm": 131,
+      "resolved_bpm": 69,
+      "preferred_beat_hz": 8
+    },
+    {
+      "timestamp": "2026-03-01T14:48:00Z",
+      "peak_hr_bpm": 126,
+      "resolved_bpm": 67,
+      "preferred_beat_hz": 6
+    }
+  ]
+}

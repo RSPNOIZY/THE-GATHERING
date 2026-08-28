@@ -1,0 +1,215 @@
+{
+  "name": "ZAP 7: Notion Task \u2192 GitHub \u2192 GABRIEL Deploy",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "notion-task-trigger",
+        "options": {}
+      },
+      "id": "wh7",
+      "name": "Notion Task Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        240,
+        300
+      ],
+      "webhookId": "12c8a9bb-3b71-4300-8c0d-bfe73b0fbf3d"
+    },
+    {
+      "parameters": {
+        "jsCode": "const body = $input.first().json.body || $input.first().json;\nconst task = body.title || body.name || 'Unknown Task';\nconst status = body.status || 'Active';\nconst repo = body.repo || 'NOIZY-AI/noizylab';\nconst branch = body.branch || 'main';\nconst action = body.action || 'deploy';\n\n// Validate consent before proceeding\nconst consentRequired = body.consent_check !== false;\n\nreturn [{ json: {\n  task, status, repo, branch, action,\n  consent_required: consentRequired,\n  run_id: `notion-${Date.now()}`,\n  ts: new Date().toISOString()\n} }];"
+      },
+      "id": "parse7",
+      "name": "Parse Notion Task",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        460,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.consent_required }}",
+              "value2": "true"
+            }
+          ]
+        }
+      },
+      "id": "consent7",
+      "name": "Consent Gate",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        680,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://heaven.rsp-5f3.workers.dev/api/v1/stats",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "X-NOIZY-Key",
+              "value": "={{ $env.NOIZY_API_KEY }}"
+            }
+          ]
+        }
+      },
+      "id": "verify7",
+      "name": "Verify Consent (Heaven)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [
+        900,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "url": "http://localhost:7777/memcell/deploy:task:{{ $json.run_id }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ value: { task: $('Parse Notion Task').first().json.task, action: $('Parse Notion Task').first().json.action, repo: $('Parse Notion Task').first().json.repo, consent_verified: true, ts: new Date().toISOString() } }) }}"
+      },
+      "id": "gabriel7",
+      "name": "GABRIEL Deploy Command",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [
+        1120,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "url": "http://localhost:7777/speak",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ text: `Notion task received. ${$('Parse Notion Task').first().json.task}. Consent verified. Deploying to ${$('Parse Notion Task').first().json.repo}.` }) }}"
+      },
+      "id": "speak7",
+      "name": "GABRIEL Announce",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [
+        1120,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "url": "http://localhost:7777/speak",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ text: `BLOCKED. Task ${$('Parse Notion Task').first().json.task} requires consent verification. Check Heaven.` }) }}"
+      },
+      "id": "blocked7",
+      "name": "GABRIEL Block Alert",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [
+        900,
+        450
+      ]
+    }
+  ],
+  "connections": {
+    "Notion Task Webhook": {
+      "main": [
+        [
+          {
+            "node": "Parse Notion Task",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse Notion Task": {
+      "main": [
+        [
+          {
+            "node": "Consent Gate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Consent Gate": {
+      "main": [
+        [
+          {
+            "node": "Verify Consent (Heaven)",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "GABRIEL Block Alert",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Verify Consent (Heaven)": {
+      "main": [
+        [
+          {
+            "node": "GABRIEL Deploy Command",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "GABRIEL Announce",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  }
+}

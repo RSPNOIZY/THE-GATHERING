@@ -1,0 +1,20 @@
+{
+	"compilerOptions": {
+		"composite": true
+	},
+	"files": [],
+	"references": [
+		{ "path": "./packages/utils" },
+		{ "path": "./packages/ipc" },
+		{ "path": "./packages/git" },
+		{ "path": "./packages/git-cli" },
+		{ "path": "./packages/plus/git-github" },
+		{ "path": "./packages/plus/ai" },
+		{ "path": "./packages/plus/agents" },
+		{ "path": "./tsconfig.node.json" },
+		{ "path": "./tsconfig.browser.json" },
+		{ "path": "./src/webviews/apps/tsconfig.json" },
+		{ "path": "./tsconfig.e2e.json" },
+		{ "path": "./tsconfig.test.json" }
+	]
+}

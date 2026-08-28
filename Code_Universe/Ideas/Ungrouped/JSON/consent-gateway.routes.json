@@ -1,0 +1,5 @@
+{
+  "routing_contract": "TOP_LEVEL:/health,/verify,/revoke,/status/:creatorId",
+  "routes_public": ["/health"],
+  "routes_protected": ["/verify", "/revoke", "/status/:creatorId"]
+}

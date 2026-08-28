@@ -1,0 +1,24 @@
+{
+    "extends": "../tsconfig.base.json",
+    "compilerOptions": {
+        "baseUrl": "..",
+        "rootDir": ".",
+        "outDir": "out",
+
+        // Types
+        "lib": ["es6", "es2018", "dom", "ES2019", "ES2020", "ES2021", "ES2022"],
+        "paths": {
+            "*": ["types/*"]
+        },
+        "typeRoots": ["./node_modules/@types"],
+        "types": []
+    },
+    "include": [
+        "./**/*",
+
+        // Include all types outside the type roots manually
+        "../types/slickgrid",
+        "../vscode.*"
+    ],
+    "exclude": ["src/test", "*.node.ts", "**/*.node.ts"]
+}

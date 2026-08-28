@@ -1,0 +1,126 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://noizy.ai/schemas/brand-registry-v1.json",
+  "title": "NOIZY Empire Brand Registry",
+  "version": "1.0.0",
+  "updated": "2026-05-06",
+  "killSwitchHolder": "RSP_001",
+  "covenant": "75/25",
+  "canon": "noizy.ai",
+  "brands": [
+    {
+      "id": "NOIZY_AI",
+      "name": "NOIZY.AI",
+      "domain": "noizy.ai",
+      "url": "https://noizy.ai",
+      "repo": "RSPNOIZY/NOIZYANTHROPIC",
+      "role": "Sovereign AI infrastructure",
+      "status": "active",
+      "tier": 1
+    },
+    {
+      "id": "NOIZYFISH",
+      "name": "NOIZYFISH",
+      "domain": "noizyfish.com",
+      "url": "https://noizyfish.com",
+      "repo": "RSPNOIZY/NOIZYFISH",
+      "role": "Producer ecosystem",
+      "status": "building",
+      "tier": 1,
+      "note": "Successor to FISHMUSICINC. Full succession effective immediately."
+    },
+    {
+      "id": "NOIZYKIDZ",
+      "name": "NOIZYKIDZ",
+      "domain": "noizykidz.com",
+      "url": "https://noizykidz.com",
+      "repo": "RSPNOIZY/NOIZYKIDZ",
+      "role": "Youth division",
+      "status": "planned",
+      "tier": 1
+    },
+    {
+      "id": "NOIZYVOX",
+      "name": "NOIZYVOX",
+      "domain": "noizyvox.com",
+      "url": "https://noizyvox.com",
+      "repo": "RSPNOIZY/NOIZYVOX",
+      "role": "Voice + schema core",
+      "status": "building",
+      "tier": 1
+    },
+    {
+      "id": "NOIZYLAB",
+      "name": "NOIZYLAB",
+      "domain": "noizylab.ca",
+      "url": "https://noizylab.ca",
+      "repo": "RSPNOIZY/NOIZYLAB",
+      "role": "Research + shared tooling",
+      "status": "active",
+      "tier": 1
+    },
+    {
+      "id": "DREAMCHAMBER",
+      "name": "DREAMCHAMBER",
+      "domain": null,
+      "url": "https://github.com/RSPNOIZY/DREAMCHAMBER",
+      "repo": "RSPNOIZY/DREAMCHAMBER",
+      "role": "Creative residency",
+      "status": "building",
+      "tier": 2
+    },
+    {
+      "id": "THE_OLD_GUARD",
+      "name": "THE-OLD-GUARD",
+      "domain": null,
+      "url": "https://github.com/RSPNOIZY/THE-OLD-GUARD",
+      "repo": "RSPNOIZY/THE-OLD-GUARD",
+      "role": "Legacy artist catalog",
+      "status": "building",
+      "tier": 2
+    },
+    {
+      "id": "THE_GATHERING",
+      "name": "THE-GATHERING",
+      "domain": null,
+      "url": "https://github.com/RSPNOIZY/THE-GATHERING",
+      "repo": "RSPNOIZY/THE-GATHERING",
+      "role": "Community gathering point",
+      "status": "building",
+      "tier": 2
+    },
+    {
+      "id": "NOIZYANTHROPIC",
+      "name": "NOIZYANTHROPIC",
+      "domain": null,
+      "url": "https://github.com/RSPNOIZY/NOIZYANTHROPIC",
+      "repo": "RSPNOIZY/NOIZYANTHROPIC",
+      "role": "AI governance + doctrine",
+      "status": "active",
+      "tier": 2
+    },
+    {
+      "id": "THE_AQUARIUM",
+      "name": "THE-AQUARIUM",
+      "domain": null,
+      "url": "https://github.com/RSPNOIZY/THE-AQUARIUM",
+      "repo": "RSPNOIZY/THE-AQUARIUM",
+      "role": "Audio vault",
+      "status": "active",
+      "tier": 1,
+      "client": "RSP001",
+      "clientId": "RSP_001",
+      "note": "All audio routes to THE-AQUARIUM. CLIENT#1 RSP001."
+    }
+  ],
+  "retired": [
+    {
+      "id": "FISHMUSICINC",
+      "name": "FISHMUSICINC",
+      "domain": "fishmusicinc.com",
+      "status": "retired",
+      "successor": "NOIZYFISH",
+      "note": "Succeeded by NOIZYFISH.COM. All label infrastructure migrated."
+    }
+  ]
+}

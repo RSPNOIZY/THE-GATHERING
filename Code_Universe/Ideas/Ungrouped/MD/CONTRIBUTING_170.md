@@ -1,0 +1,210 @@
+# E2E Testing Guide
+
+End-to-end tests use Cypress to test the Posit Publisher extension in a real VS Code environment with a Posit Connect server.
+
+## Requirements
+
+### Docker Desktop
+
+Docker Desktop is required. On Apple Silicon:
+
+- Select `Apple Virtualization framework` in the "Virtual Machine Options" general settings
+- Check `Use Rosetta for x86_64/amd64 emulation on Apple Silicon`
+
+### with-connect CLI
+
+Install [uv](https://docs.astral.sh/uv/) if you don't have it (`brew install uv`), then install the CLI that manages the Connect server:
+
+```bash
+uv tool install git+https://github.com/posit-dev/with-connect.git
+```
+
+### Connect License
+
+Running E2E tests locally requires a Posit Connect license. You can either rely on GitHub CI to run these tests, or contact a member of the team to help get a license set up.
+
+Save your license to a file (this guide assumes `~/connect-license.lic`).
+
+### Environment Variables
+
+The E2E tests require several environment variables. We recommend using [direnv](https://direnv.net/) with a `.envrc` file in this directory (already gitignored):
+
+```bash
+# test/e2e/.envrc
+export CONNECT_LICENSE_FILE=~/connect-license.lic
+export DOCKER_HOST=unix://$HOME/.docker/run/docker.sock  # macOS only
+```
+
+Run `direnv allow` after creating the file. Without direnv, export these variables manually before running tests.
+
+### 1Password CLI (optional, for Connect Cloud tests)
+
+Tests tagged `@uses-posit-connect-cloud` fetch credentials from 1Password. To run these locally:
+
+1. Install the 1Password CLI: `brew install 1password-cli`
+2. Enable the desktop app integration: 1Password > Settings > Developer > "Integrate with 1Password CLI"
+3. Verify access: `op item get "pcc_user_ccqa3" --field "password" --vault "Publisher" --reveal`
+
+If you don't have 1Password access, you can skip cloud tests by running with a filter that excludes `@uses-posit-connect-cloud` (e.g., `--env grepTags="@uses-posit-connect-server @uses-no-target"`) or set `SKIP_1PASSWORD=true` to use placeholder credentials.
+
+### Workbench License (optional)
+
+For Workbench tests, create `test/e2e/licenses/workbench-license.lic`. In CI, this is stored in GitHub secrets.
+
+## Setup
+
+**1. Install dependencies:**
+
+```bash
+npm install
+npx playwright install chromium
+```
+
+**2. Build the Publisher extension** (from repo root):
+
+```bash
+just
+```
+
+**3. Build Docker images:**
+
+```bash
+# Base image (first time only)
+just build-base
+
+# code-server image
+just build-image code-server
+```
+
+## Running Tests
+
+### Using Justfile Commands
+
+```bash
+# Run all tests
+just e2e
+
+# Run specific test file
+just e2e --spec "tests/credentials.cy.js"
+
+# Run multiple test files
+just e2e --spec "tests/common.cy.js,tests/deployments.cy.js"
+
+# Run only the tag(s) you want (positive filtering)
+just e2e --env grepTags="@uses-posit-connect-server @uses-no-target"
+
+# Interactive Cypress UI
+just e2e-open
+
+# Build publisher and run tests
+just dev
+
+# Stop containers when done
+just stop
+```
+
+## Architecture
+
+```
+┌─────────────────┐     ┌──────────────────┐     ┌─────────────────┐
+│     Cypress     │────▶│   code-server    │────▶│  Posit Connect  │
+│  (test runner)  │     │ (VS Code in web) │     │  (with-connect) │
+└─────────────────┘     └──────────────────┘     └─────────────────┘
+     localhost              :8080                      :3939
+```
+
+- **with-connect** manages the Connect server lifecycle (pull image, license, API key)
+- **code-server** runs VS Code in a browser with the Publisher extension
+- **Cypress** automates browser interactions for testing
+
+Containers reach Connect via `connect-publisher-e2e` hostname mapped to host-gateway.
+
+## Test Categories
+
+Every spec is tagged with exactly one of the following. CI rows and mock-mode runs select tests by including the relevant tags in `grepTags` (positive filtering — untagged tests do not run anywhere).
+
+| Tag                          | What it needs                                       | Where it runs in CI |
+| ---------------------------- | --------------------------------------------------- | ------------------- |
+| `@uses-posit-connect-server` | Local Connect server                                | All matrix rows     |
+| `@uses-posit-connect-cloud`  | Real PCC credentials (1Password / `PCC_USER_CCQA3`) | `release` row only  |
+| `@uses-positron`             | Workbench + Positron containers                     | `release` row only  |
+| `@uses-no-target`            | Nothing external (smoke tests)                      | All matrix rows     |
+
+When adding a new test, tag it with the most restrictive requirement it has. The tag describes the _gating_ capability, not an exhaustive inventory — e.g., the Workbench specs publish to a Connect Server too, but they're tagged `@uses-positron` because that's the rarer requirement.
+
+Tag at the describe level when every test inside shares the same requirement; tag at the `it` level when a single file mixes requirements (see `credentials.cy.js`).
+
+### Connect Cloud Tests (`@uses-posit-connect-cloud`)
+
+Require PCC credentials configured in `config/staging-pccqa.json`. To skip locally, run with a `grepTags` filter that doesn't include the tag — e.g., `--env grepTags="@uses-posit-connect-server @uses-no-target"`.
+
+### Workbench Tests (`@uses-positron`)
+
+Require the Workbench container:
+
+```bash
+just pull-workbench release
+just start-workbench release
+just install-positron-extension release
+just e2e --env grepTags="@uses-positron"
+```
+
+## Testing Against Specific Connect Versions
+
+```bash
+with-connect --license ~/connect-license.lic --version 2025.03.0 -- \
+  bash -c 'CYPRESS_BOOTSTRAP_ADMIN_API_KEY=$CONNECT_API_KEY npx cypress run'
+```
+
+## Manual Testing
+
+For manual testing without Cypress, start Connect in persistent mode:
+
+```bash
+just start code-server
+eval $(with-connect --license ~/connect-license.lic)
+# Connect running at http://localhost:3939
+# code-server at http://localhost:8080
+```
+
+## Debugging
+
+### View test screenshots
+
+Failed test screenshots are saved to `cypress/screenshots/`.
+
+### Enable video recording
+
+```bash
+DEBUG_CYPRESS=true just e2e
+```
+
+### Repeat tests for flakiness
+
+```bash
+./repeat-cypress-headless.sh REPEAT=5 tests/credentials.cy.js
+```
+
+## Troubleshooting
+
+### Port 3939 already allocated
+
+If you see `Bind for 0.0.0.0:3939 failed: port is already allocated`, a Connect container from a previous run is still running. This happens when a test run is interrupted — `with-connect` starts containers outside of docker-compose, so `just stop` doesn't clean them up.
+
+```bash
+# Find and remove the stale container
+docker ps -a --filter "publish=3939"
+docker rm -f <container_id>
+```
+
+### 1Password CLI not found
+
+The E2E setup installs a local `op` binary to `test/bin/op`, but the Connect Cloud tests expect the system-wide CLI. Install it with `brew install 1password-cli` and enable the desktop app integration.
+
+## CI
+
+Tests run automatically in GitHub Actions after unit tests pass. The workflow:
+
+- Uses `CONNECT_LICENSE` secret for licensing
+- Uploads screenshots as artifacts on failure
+- Supports video recording via `ACTIONS_STEP_DEBUG=true`

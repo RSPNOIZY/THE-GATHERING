@@ -1,0 +1,18 @@
+{
+  "ID": "ollama",
+  "Name": "ollama",
+  "Port": 11434,
+  "Address": "127.0.0.1",
+  "Tags": ["llm", "local-inference", "shirley", "gemma"],
+  "Meta": {
+    "owner": "SHIRLEY",
+    "transport": "http",
+    "doctrine": "local-first-inference"
+  },
+  "Check": {
+    "HTTP": "http://127.0.0.1:11434/",
+    "Interval": "30s",
+    "Timeout": "5s",
+    "DeregisterCriticalServiceAfter": "10m"
+  }
+}

@@ -1,0 +1,98 @@
+{
+  "name": "RSP Gmail Uber/Lyft Receipt Parser",
+  "nodes": [
+    {
+      "parameters": {
+        "pollTimes": {
+          "rule": [
+            {
+              "interval": [
+                {
+                  "field": "minutes",
+                  "value": 30
+                }
+              ]
+            }
+          ]
+        },
+        "simple": false,
+        "filters": {
+          "q": "subject:(\"Your trip with Uber\" OR \"Your ride with Lyft\")"
+        }
+      },
+      "id": "1b9e82c1-209a-412d-8e3b-d58ea82cfdfb",
+      "name": "Gmail Trigger",
+      "type": "n8n-nodes-base.gmailTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        260,
+        280
+      ],
+      "credentials": {
+        "gmailOAuth2Api": {
+          "id": "demo-credentials-id"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const text = $json.snippet || \"\";\nconst subject = $json.subject || \"\";\nconst platform = subject.toLowerCase().includes(\"lyft\") ? \"LYFT\" : \"UBER\";\n\n// Regexes to extract fare amounts\nconst fareRegex = /\\$[0-9]+\\.[0-9]{2}/;\nconst matches = text.match(fareRegex);\nconst fare = matches ? parseFloat(matches[0].replace(\"$\", \"\")) : 0.0;\n\n// Estimate net fare (minus 25% commission)\nconst commission = 0.25;\nconst net = platform === \"UBER\" || platform === \"LYFT\" ? fare * (1 - commission) : fare;\n\nreturn {\n  platform: platform,\n  gross_fare: fare,\n  net_fare: parseFloat(net.toFixed(2)),\n  tips: 0.0,\n  date: new Date($json.internalDate * 1).toISOString().split(\"T\")[0],\n  notes: \"Automatically ingested from Gmail receipt: \" + subject\n};"
+      },
+      "id": "e2a3b38c-851f-4ef0-9d2c-806d69e120f4",
+      "name": "Parse Receipt Body",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        480,
+        280
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://localhost:8767/trip/end",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"platform\": \"{{ $json.platform }}\",\n  \"fare\": {{ $json.gross_fare }},\n  \"notes\": \"{{ $json.notes }}\"\n}",
+        "options": {}
+      },
+      "id": "49b51f08-8e62-4b2a-a9c3-1d85dfa10ab7",
+      "name": "Sync to iOS Sync Server",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        720,
+        280
+      ]
+    }
+  ],
+  "connections": {
+    "Gmail Trigger": {
+      "main": [
+        [
+          {
+            "node": "Parse Receipt Body",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse Receipt Body": {
+      "main": [
+        [
+          {
+            "node": "Sync to iOS Sync Server",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "active": false,
+  "pinData": {}
+}

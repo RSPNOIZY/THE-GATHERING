@@ -1,0 +1,273 @@
+{
+  "_meta": {
+    "observer": "NOIZY Full Observer v1.0",
+    "machine": "GOD (M2 Ultra)",
+    "timestamp": "2026-04-14T16:10:02.085Z",
+    "epochMs": 1776183002085
+  },
+  "services": {
+    "voice-bridge": {
+      "status": "DOWN"
+    },
+    "gabriel-daemon": {
+      "status": "RUNNING",
+      "pid": "801",
+      "cpu": "0.0%",
+      "mem": "0.0%",
+      "started": "12:37AM"
+    },
+    "gabriel-monitor": {
+      "status": "RUNNING",
+      "pid": "796",
+      "cpu": "0.0%",
+      "mem": "0.1%",
+      "started": "12:37AM"
+    },
+    "voice-server": {
+      "status": "RUNNING",
+      "pid": "770",
+      "cpu": "0.0%",
+      "mem": "0.0%",
+      "started": "12:37AM"
+    },
+    "audio-hijack": {
+      "status": "DOWN"
+    },
+    "ollama": {
+      "status": "RUNNING",
+      "pid": "791",
+      "cpu": "0.0%",
+      "mem": "0.0%",
+      "started": "12:37AM"
+    },
+    "voice-bridge-http": {
+      "status": "RESPONDED",
+      "raw": "<!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\n<html><head>\n<title>404 Not Found</title>\n</head><body>\n<h1>Not Found</h1>\n<p>The requested URL was not found on this server.</p>\n<hr>\n<address>Apach"
+    }
+  },
+  "ollamaModels": [
+    {
+      "name": "gemma4:e4b",
+      "size": "9.6 GB"
+    },
+    {
+      "name": "gemma4:26b",
+      "size": "17 GB"
+    },
+    {
+      "name": "gemma4:31b",
+      "size": "19 GB"
+    },
+    {
+      "name": "gemma3:latest",
+      "size": "3.3 GB"
+    },
+    {
+      "name": "dolphin-mixtral:8x7b",
+      "size": "26 GB"
+    },
+    {
+      "name": "phi3:14b",
+      "size": "7.9 GB"
+    },
+    {
+      "name": "nomic-embed-text:latest",
+      "size": "274 MB"
+    },
+    {
+      "name": "llava:34b",
+      "size": "20 GB"
+    },
+    {
+      "name": "noizy-family-keeper:latest",
+      "size": "3.3 GB"
+    },
+    {
+      "name": "noizy-mission-control:latest",
+      "size": "3.3 GB"
+    },
+    {
+      "name": "noizy-consent-guardian:latest",
+      "size": "3.3 GB"
+    },
+    {
+      "name": "noizy-wisdom-scribe:latest",
+      "size": "3.3 GB"
+    },
+    {
+      "name": "noizy-dream-weaver:latest",
+      "size": "3.3 GB"
+    },
+    {
+      "name": "noizy-gabriel-mind:latest",
+      "size": "3.3 GB"
+    },
+    {
+      "name": "noizy-heaven-forger:latest",
+      "size": "3.3 GB"
+    },
+    {
+      "name": "noizy-fish-cataloguer:latest",
+      "size": "3.3 GB"
+    },
+    {
+      "name": "noizy-kidz-worldbuilder:latest",
+      "size": "3.3 GB"
+    },
+    {
+      "name": "noizy-vox-architect:latest",
+      "size": "3.3 GB"
+    }
+  ],
+  "gabriel": {
+    "recentSessions": [],
+    "activeTasks": [],
+    "recentMemory": [
+      {
+        "key": "last_heartbeat",
+        "value": "2026-04-14T03:52:51.506Z",
+        "category": "system",
+        "updated_at": "2026-04-14 03:52:51"
+      },
+      {
+        "key": "daemon_start",
+        "value": "2026-04-12T07:52:50.592Z",
+        "category": "system",
+        "updated_at": "2026-04-12 07:52:50"
+      }
+    ],
+    "consent": [
+      {
+        "total": 0,
+        "granted": null
+      }
+    ],
+    "estateMembers": [],
+    "logs": {
+      "gabriel.log": {
+        "lastModified": "2026-04-14T16:07:30.055Z",
+        "sizeBytes": 1500,
+        "lines": [
+          "[2026-04-14T06:37:29.865Z] HEARTBEAT — GABRIEL daemon alive · GORUNFREE",
+          "[2026-04-14T07:07:29.863Z] HEARTBEAT — GABRIEL daemon alive · GORUNFREE",
+          "[2026-04-14T07:37:29.905Z] HEARTBEAT — GABRIEL daemon alive · GORUNFREE",
+          "[2026-04-14T08:07:29.999Z] HEARTBEAT — GABRIEL daemon alive · GORUNFREE",
+          "[2026-04-14T08:37:29.998Z] HEARTBEAT — GABRIEL daemon alive · GORUNFREE",
+          "[2026-04-14T09:07:30.007Z] HEARTBEAT — GABRIEL daemon alive · GORUNFREE",
+          "[2026-04-14T09:37:30.044Z] HEARTBEAT — GABRIEL daemon alive · GORUNFREE",
+          "[2026-04-14T10:07:30.037Z] HEARTBEAT — GABRIEL daemon alive · GORUNFREE",
+          "[2026-04-14T10:37:30.004Z] HEARTBEAT — GABRIEL daemon alive · GORUNFREE",
+          "[2026-04-14T11:07:29.995Z] HEARTBEAT — GABRIEL daemon alive · GORUNFREE",
+          "[2026-04-14T11:37:30.036Z] HEARTBEAT — GABRIEL daemon alive · GORUNFREE",
+          "[2026-04-14T12:07:30.066Z] HEARTBEAT — GABRIEL daemon alive · GORUNFREE",
+          "[2026-04-14T12:37:30.017Z] HEARTBEAT — GABRIEL daemon alive · GORUNFREE",
+          "[2026-04-14T13:07:30.011Z] HEARTBEAT — GABRIEL daemon alive · GORUNFREE",
+          "[2026-04-14T13:37:30.047Z] HEARTBEAT — GABRIEL daemon alive · GORUNFREE",
+          "[2026-04-14T14:07:30.019Z] HEARTBEAT — GABRIEL daemon alive · GORUNFREE",
+          "[2026-04-14T14:37:30.025Z] HEARTBEAT — GABRIEL daemon alive · GORUNFREE",
+          "[2026-04-14T15:07:30.046Z] HEARTBEAT — GABRIEL daemon alive · GORUNFREE",
+          "[2026-04-14T15:37:29.997Z] HEARTBEAT — GABRIEL daemon alive · GORUNFREE",
+          "[2026-04-14T16:07:30.053Z] HEARTBEAT — GABRIEL daemon alive · GORUNFREE"
+        ]
+      }
+    }
+  },
+  "voicePipeline": {
+    "state": {
+      "runs": [
+        {
+          "runId": "0d308ad7",
+          "actor_id": "RSP_001",
+          "use_case": "general",
+          "territory": "CA",
+          "voice": "default",
+          "text_hash": "57e477f76f3e8538",
+          "output_path": "/Users/m2ultra/NOIZYLAB/voice-pipeline/responses/voice_2026-03-31T20-20-56-747Z.wav",
+          "output_size": 255116,
+          "consent_ref": "approved",
+          "ts": 1774988456751,
+          "type": "synthesis"
+        }
+      ],
+      "lastRun": {
+        "runId": "0d308ad7",
+        "actor_id": "RSP_001",
+        "use_case": "general",
+        "territory": "CA",
+        "voice": "default",
+        "text_hash": "57e477f76f3e8538",
+        "output_path": "/Users/m2ultra/NOIZYLAB/voice-pipeline/responses/voice_2026-03-31T20-20-56-747Z.wav",
+        "output_size": 255116,
+        "consent_ref": "approved",
+        "ts": 1774988456751,
+        "type": "synthesis"
+      },
+      "totalRuns": 1,
+      "errors": 0
+    },
+    "latestTranscripts": []
+  },
+  "systemLogs": {
+    "n8n.log": {
+      "lastModified": "2026-04-03T06:18:14.000Z",
+      "sizeBytes": 1014,
+      "tail": [
+        "Initializing n8n process",
+        "n8n ready on ::, port 5678",
+        "n8n Task Broker ready on 127.0.0.1, port 5679",
+        "Failed to start Python task runner in internal mode. because its virtual environment is missing from this system. Launching a Python runner in internal mode is intended only for debugging and is not recommended for production. Users are encouraged to deploy in external mode. See: https://docs.n8n.io/hosting/configuration/task-runners/#setting-up-external-mode",
+        "[license SDK] Skipping renewal on init: license cert is not initialized",
+        "Registered runner \"JS Task Runner\" (Qoz5UG_CzPwYJn_XyGj3D) ",
+        "Version: 2.13.4",
+        "Building workflow dependency index...",
+        "Finished building workflow dependency index. Processed 0 draft workflows, 0 published workflows.",
+        "",
+        "Editor is now accessible via:",
+        "http://localhost:5678",
+        "Pruning old insights data",
+        "Pruning old insights data",
+        "Pruning old insights data",
+        "Received SIGTERM. Shutting down...",
+        "[runnner:js] Received SIGTERM signal, shutting down...",
+        "[runnner:js] Task runner stopped",
+        "",
+        "Stopping n8n..."
+      ]
+    },
+    "noizylab_services.log": {
+      "lastModified": "2026-03-30T17:49:27.000Z",
+      "sizeBytes": 1058,
+      "tail": [
+        "[2026-03-30 13:49:23] ✅ GABRIEL: online",
+        "[2026-03-30 13:49:23] ✅ GABRIEL: online",
+        "[2026-03-30 13:49:23] ✅ pm2: 2 processes online",
+        "[2026-03-30 13:49:23] ✅ pm2: 2 processes online",
+        "[2026-03-30 13:49:23] ✅ Ollama: ready",
+        "[2026-03-30 13:49:23] ✅ Ollama: ready",
+        "[2026-03-30 13:49:23] ✅ NOIZYVOX: port 8421 healthy",
+        "[2026-03-30 13:49:23] ✅ NOIZYVOX: port 8421 healthy",
+        "[2026-03-30 13:49:23] ",
+        "[2026-03-30 13:49:23] ",
+        "[2026-03-30 13:49:23] ═══ BOOT COMPLETE ═══",
+        "[2026-03-30 13:49:23] ═══ BOOT COMPLETE ═══",
+        "[2026-03-30 13:49:23]   ❌ GABRIEL",
+        "[2026-03-30 13:49:23]   ❌ GABRIEL",
+        "[2026-03-30 13:49:23]   ❌ VoiceBridge",
+        "[2026-03-30 13:49:23]   ❌ VoiceBridge",
+        "[2026-03-30 13:49:23]   ❌ NOIZYVOX",
+        "[2026-03-30 13:49:23]   ❌ NOIZYVOX",
+        "[2026-03-30 13:49:23]   ❌ Ollama",
+        "[2026-03-30 13:49:23]   ❌ Ollama"
+      ]
+    }
+  },
+  "system": {
+    "disk": {
+      "total": "1.8Ti",
+      "used": "11Gi",
+      "available": "1.1Ti",
+      "percentUsed": "2%"
+    },
+    "uptime": "12:10  up 11:33, 1 user, load averages: 16.67 18.73 19.16"
+  }
+}

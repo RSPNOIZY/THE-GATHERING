@@ -1,0 +1,42 @@
+<root>
+    <BFD2PerfKitPieceChanPreset name="BFD2PerfKitPieceChanPreset">
+        <VString name="kitpiece_path">Percussion\Red Jam Block Stick</VString>
+        <BFD2KitPiece name="kitpiece" pan="0.5" trim="0.8" dampAmt="0" dampFreq="500" gainOH="0.8" gainRM="0.8" gainPZM="0.8" tune="0.5" dyn="0.5" flip_amb="false" kick_bl_lvl="1" snre_bl_lvl="1" kick_bl_dst="2" snre_bl_dst="2" amb1Dest="OH" amb2Dest="Room" amb3Dest="Room" mute="false" solo="false" micBlend="0.5" chokeGroup="11">
+            <BFD2Artic name="artic_0_Hit" v2d="0.5" v2p="0.5" v2a="0.5" aTrim="0.5" velVar="1" artic_name="Hit" artic_load_state="false" />
+        </BFD2KitPiece>
+        <BFD2MixerChan name="mixerchan" solo="false" soloIsolate="false" mute="false" gain="0.5" chanType="2" micID="0" slotID="11" chanName="Perc3" userChanName="Perc3" stereo="false" output="Master" outputID="0" phaseInvert="false" inputMainTrim="0.8" inputSideTrim="0.8" pan="0.5" recArmed="false">
+            <VObjectArray name="Effects" count="4">
+                <BFD2MixerChanEffect active="false" stereo="false" effect="EQ" presetName="default">
+                    <VValue name="Active" type="string" value="Off" />
+                    <VValue name="LF-Bell" type="string" value="off" />
+                    <VValue name="LF-Freq" type="string" value="200 Hz" />
+                    <VValue name="LF-Gain" type="string" value="0 dB" />
+                    <VValue name="LF-In" type="string" value="off" />
+                    <VValue name="LMF-Q" type="string" value="1.00" />
+                    <VValue name="LMF-Freq" type="string" value="800 Hz" />
+                    <VValue name="LMF-Gain" type="string" value="0 dB" />
+                    <VValue name="LMF-In" type="string" value="off" />
+                    <VValue name="HMF-Q" type="string" value="1.00" />
+                    <VValue name="HMF-Freq" type="string" value="2.50 kHz" />
+                    <VValue name="HMF-Gain" type="string" value="0 dB" />
+                    <VValue name="HMF-In" type="string" value="off" />
+                    <VValue name="HF-Bell" type="string" value="off" />
+                    <VValue name="HF-Freq" type="string" value="4.00 kHz" />
+                    <VValue name="HF-Gain" type="string" value="0 dB" />
+                    <VValue name="HF-In" type="string" value="off" />
+                    <VValue name="Sidechain" type="string" value="off" />
+                    <VValue name="Wet Mix" type="string" value="100 %" />
+                </BFD2MixerChanEffect>
+                <BFD2MixerChanEffect active="false" stereo="false" effect="" presetName="" />
+                <BFD2MixerChanEffect active="false" stereo="false" effect="" presetName="" />
+                <BFD2MixerChanEffect active="false" stereo="false" effect="" presetName="" />
+            </VObjectArray>
+            <VObjectArray name="Sends" count="4">
+                <BFD2MixerChanSend side_chain="false" send_level="0" active="false" dest_chan_name="Aux1" send_from="PostInsert" />
+                <BFD2MixerChanSend side_chain="false" send_level="0" active="false" dest_chan_name="Aux2" send_from="PostInsert" />
+                <BFD2MixerChanSend side_chain="false" send_level="0" active="false" dest_chan_name="" send_from="PostFader" />
+                <BFD2MixerChanSend side_chain="false" send_level="0" active="false" dest_chan_name="" send_from="PostFader" />
+            </VObjectArray>
+        </BFD2MixerChan>
+    </BFD2PerfKitPieceChanPreset>
+</root>

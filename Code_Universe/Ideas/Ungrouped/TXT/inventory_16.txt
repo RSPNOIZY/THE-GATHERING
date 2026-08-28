@@ -1,0 +1,4 @@
+1.7T	/Volumes/4TB Big Fish/_ORGANIZED
+4.2G	/Volumes/4TB Big Fish/Music Samples
+711M	/Volumes/4TB Big Fish/M2Ultra_Backup
+8.0K	/Volumes/4TB Big Fish/CLAUDE.md

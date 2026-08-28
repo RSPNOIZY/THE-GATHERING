@@ -1,0 +1,18 @@
+{
+  "ID": "n8n",
+  "Name": "n8n",
+  "Port": 5678,
+  "Address": "127.0.0.1",
+  "Tags": ["nervous-system", "orchestration", "docker", "mcp-bridge"],
+  "Meta": {
+    "owner": "GABRIEL",
+    "transport": "http",
+    "doctrine": "event-routing"
+  },
+  "Check": {
+    "HTTP": "http://127.0.0.1:5678/healthz",
+    "Interval": "30s",
+    "Timeout": "5s",
+    "DeregisterCriticalServiceAfter": "10m"
+  }
+}

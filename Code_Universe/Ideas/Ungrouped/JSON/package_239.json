@@ -1,0 +1,27 @@
+{
+  "name": "@tagspaces/json-editor",
+  "version": "1.0.254",
+  "description": "A TagSpaces extension allowing viewing and editing of JSON documents.",
+  "homepage": "https://www.tagspaces.org",
+  "main": "main.js",
+  "author": {
+    "name": "TagSpaces GmbH",
+    "email": "info@tagspaces.org",
+    "url": "https://www.tagspaces.org"
+  },
+  "license": "MIT",
+  "tsextension": {
+    "name": "JSON Editor",
+    "types": [
+      "viewer",
+      "editor"
+    ],
+    "color": "",
+    "fileTypes": [
+      {
+        "ext": "json",
+        "color": "#C4A83C"
+      }
+    ]
+  }
+}

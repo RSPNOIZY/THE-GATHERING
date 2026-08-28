@@ -1,0 +1,25 @@
+{
+  "volume": "/Volumes/4TB Blue Fish",
+  "slug": "4TB_Blue_Fish_",
+  "timestamp": "20260420T063257Z",
+  "size": "3.6T",
+  "top_level_entries": 4,
+  "code": {
+    "git_dirs": 1,
+    "package_json": 4,
+    "pyproject": 0,
+    "cargo": 0,
+    "gemfile": 0,
+    "go_mod": 0
+  },
+  "secrets_pattern_count": 0,
+  "media": {
+    "wav": 113946,
+    "aif": 312,
+    "flac": 0,
+    "logicx": 0,
+    "ptx": 0
+  },
+  "audit_path": "/Users/m2ultra/NOIZYANTHROPIC/infra/scans/scan-reports/4TB_Blue_Fish_/20260420T063257Z/audit.md",
+  "inventory_path": "/Users/m2ultra/NOIZYANTHROPIC/infra/scans/scan-reports/4TB_Blue_Fish_/20260420T063257Z/inventory.txt"
+}

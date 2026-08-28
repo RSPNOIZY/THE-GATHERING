@@ -1,0 +1,15 @@
+{
+  "extends": [
+    "@tsconfig/node22/tsconfig.json",
+    "@vue/tsconfig/tsconfig.dom.json"
+  ],
+  "include": ["src/**/*", "src/**/*.vue"],
+  "compilerOptions": {
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "paths": {
+      "src/*": ["./src/*"]
+    },
+    "verbatimModuleSyntax": false,
+    "types": ["@types/vscode-webview", "@types/node"]
+  }
+}

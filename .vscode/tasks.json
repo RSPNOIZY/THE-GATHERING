@@ -1,44 +1,97 @@
 {
-	"version": "2.0.0",
-	"tasks": [
-		{
-			"type": "shell",
-			"label": "🚀 Deploy NOIZYLAB",
-			"command": "wrangler deploy",
-			"options": {
-				"cwd": "${workspaceFolder}"
-			},
-			"problemMatcher": [],
-			"group": {
-				"kind": "build",
-				"isDefault": true
-			}
-		},
-		{
-			"type": "shell",
-			"label": "⚡ Speed Test (Jumbo Frames)",
-			"command": "time dd if=/dev/zero of=/Volumes/12TB/speedtest bs=1m count=1000 && ls -lh /Volumes/12TB/speedtest && rm /Volumes/12TB/speedtest",
-			"problemMatcher": []
-		},
-		{
-			"type": "shell",
-			"label": "🔥 Check MTU (Jumbo Frames)",
-			"command": "networksetup -getMTU Ethernet && networksetup -getMTU 'Thunderbolt Bridge' && ifconfig en0 | grep mtu",
-			"problemMatcher": []
-		}
-		,
-		{
-			"type": "shell",
-			"label": "🧰 Upgrade & Improve macOS",
-			"command": "bash scripts/upgrade_macos.sh",
-			"options": {
-				"cwd": "${workspaceFolder}"
-			},
-			"problemMatcher": [],
-			"presentation": {
-				"reveal": "always",
-				"panel": "dedicated"
-			}
-		}
-	]
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "type": "shell",
+      "label": "🜂 LUCY: Real-Time Ottawa Zone Score",
+      "command": "./lucy.sh score",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": [],
+      "group": {
+        "kind": "test",
+        "isDefault": true
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "focus": true
+      }
+    },
+    {
+      "type": "shell",
+      "label": "📥 LUCY: Ingest Shift into Memory Objects",
+      "command": "./lucy.sh ingest",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      }
+    },
+    {
+      "type": "shell",
+      "label": "🔮 LUCY: Synthesize Dreamchamber Knowledge Graph",
+      "command": "./lucy.sh graph",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      }
+    },
+    {
+      "type": "shell",
+      "label": "🏛️ MICHAEL: Run Cold Vault Merkle Archive",
+      "command": "./lucy.sh archive",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      }
+    },
+    {
+      "type": "shell",
+      "label": "🤖 GABRIEL: Query Digital Twin Reasoning",
+      "command": "./lucy.sh twin 'Where should we stage tonight and what sonic textures should we explore?'",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      }
+    },
+    {
+      "type": "shell",
+      "label": "🧪 LUCY: Run Full Verification Suite",
+      "command": "./lucy.sh test",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      }
+    },
+    {
+      "type": "shell",
+      "label": "🚀 Deploy NOIZYLAB",
+      "command": "wrangler deploy",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    }
+  ]
 }

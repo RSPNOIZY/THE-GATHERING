@@ -1,0 +1,291 @@
+{
+  "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+  "description": "NOIZY Enterprise — Teams Message → OneNote → Claude Enrichment → NOIZY Ingest Pipeline",
+  "version": "1.0.0",
+  "triggers": {
+    "When_a_new_channel_message_is_added": {
+      "type": "ApiConnection",
+      "inputs": {
+        "host": {
+          "connectionName": "teams",
+          "operationId": "SubscribeToChannelMessages",
+          "apiId": "/providers/Microsoft.PowerApps/apis/shared_teams"
+        },
+        "parameters": {
+          "groupId": "@parameters('TEAMS_GROUP_ID')",
+          "channelId": "@parameters('TEAMS_CHANNEL_ID')"
+        }
+      },
+      "recurrence": {
+        "frequency": "Minute",
+        "interval": 5
+      }
+    }
+  },
+  "actions": {
+    "Filter_NOIZY_Tagged_Messages": {
+      "type": "Query",
+      "inputs": {
+        "from": "@triggerOutputs()?['body/value']",
+        "where": "@or(contains(item()?['body/content'], '#noizy'), contains(item()?['body/content'], '#consent'), contains(item()?['body/content'], '#voice'))"
+      },
+      "runAfter": {}
+    },
+    "For_Each_Message": {
+      "type": "Foreach",
+      "foreach": "@body('Filter_NOIZY_Tagged_Messages')",
+      "runAfter": {
+        "Filter_NOIZY_Tagged_Messages": ["Succeeded"]
+      },
+      "actions": {
+        "Get_Message_Details": {
+          "type": "Compose",
+          "inputs": {
+            "message_id": "@items('For_Each_Message')?['id']",
+            "author": "@items('For_Each_Message')?['from/user/displayName']",
+            "author_email": "@items('For_Each_Message')?['from/user/email']",
+            "content": "@items('For_Each_Message')?['body/content']",
+            "timestamp": "@items('For_Each_Message')?['createdDateTime']",
+            "channel": "@parameters('TEAMS_CHANNEL_NAME')",
+            "has_attachments": "@greater(length(items('For_Each_Message')?['attachments']), 0)"
+          }
+        },
+        "Append_to_OneNote_Section": {
+          "type": "ApiConnection",
+          "runAfter": {
+            "Get_Message_Details": ["Succeeded"]
+          },
+          "inputs": {
+            "host": {
+              "connectionName": "onenote",
+              "operationId": "CreatePageInSection",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_onenote"
+            },
+            "parameters": {
+              "notebookKey": "@parameters('ONENOTE_NOTEBOOK_KEY')",
+              "sectionKey": "@parameters('ONENOTE_SECTION_KEY')",
+              "body": {
+                "title": "NOIZY Intake — @{outputs('Get_Message_Details')?['timestamp']}",
+                "content": "<html><body><h1>NOIZY Intake</h1><p><b>Author:</b> @{outputs('Get_Message_Details')?['author']}</p><p><b>Email:</b> @{outputs('Get_Message_Details')?['author_email']}</p><p><b>Timestamp:</b> @{outputs('Get_Message_Details')?['timestamp']}</p><p><b>Channel:</b> @{outputs('Get_Message_Details')?['channel']}</p><hr/><p>@{outputs('Get_Message_Details')?['content']}</p></body></html>"
+              }
+            }
+          }
+        },
+        "Call_NOIZY_Azure_Function": {
+          "type": "Http",
+          "runAfter": {
+            "Append_to_OneNote_Section": ["Succeeded"]
+          },
+          "inputs": {
+            "method": "POST",
+            "uri": "@parameters('AZURE_FUNCTION_URL')",
+            "headers": {
+              "Content-Type": "application/json",
+              "x-noizy-key": "@parameters('NOIZY_API_KEY')",
+              "x-functions-key": "@parameters('AZURE_FUNCTION_KEY')"
+            },
+            "body": {
+              "content": "@outputs('Get_Message_Details')?['content']",
+              "source": "teams-channel",
+              "metadata": {
+                "author": "@outputs('Get_Message_Details')?['author']",
+                "author_email": "@outputs('Get_Message_Details')?['author_email']",
+                "message_id": "@outputs('Get_Message_Details')?['message_id']",
+                "channel": "@outputs('Get_Message_Details')?['channel']",
+                "timestamp": "@outputs('Get_Message_Details')?['timestamp']",
+                "onenote_page_id": "@body('Append_to_OneNote_Section')?['id']"
+              }
+            }
+          }
+        },
+        "Parse_Enrichment_Response": {
+          "type": "ParseJson",
+          "runAfter": {
+            "Call_NOIZY_Azure_Function": ["Succeeded"]
+          },
+          "inputs": {
+            "content": "@body('Call_NOIZY_Azure_Function')",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "intake_id": { "type": "string" },
+                "sanitized": {
+                  "type": "object",
+                  "properties": {
+                    "content_type": { "type": "string" },
+                    "requires_human_review": { "type": "boolean" },
+                    "risk_flags": { "type": "array", "items": { "type": "string" } },
+                    "summary": { "type": "string" },
+                    "confidence": { "type": "number" }
+                  }
+                },
+                "enrichment": {
+                  "type": "object",
+                  "properties": {
+                    "recommended_action": { "type": "string" },
+                    "priority": { "type": "string" },
+                    "notes": { "type": "string" }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "Branch_On_Priority": {
+          "type": "Switch",
+          "runAfter": {
+            "Parse_Enrichment_Response": ["Succeeded"]
+          },
+          "expression": "@body('Parse_Enrichment_Response')?['enrichment']?['priority']",
+          "cases": {
+            "P0_Critical": {
+              "case": "P0",
+              "actions": {
+                "Post_P0_Alert_to_Teams": {
+                  "type": "ApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "teams",
+                      "operationId": "PostMessageToConversation",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_teams"
+                    },
+                    "parameters": {
+                      "groupId": "@parameters('TEAMS_GROUP_ID')",
+                      "channelId": "@parameters('ALERT_CHANNEL_ID')",
+                      "body": {
+                        "content": {
+                          "contentType": "html",
+                          "content": "<b>🚨 NOIZY P0 ALERT</b><br/>Intake: @{body('Parse_Enrichment_Response')?['intake_id']}<br/>Action: @{body('Parse_Enrichment_Response')?['enrichment']?['recommended_action']}<br/>Summary: @{body('Parse_Enrichment_Response')?['sanitized']?['summary']}<br/>Notes: @{body('Parse_Enrichment_Response')?['enrichment']?['notes']}"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "P1_Urgent": {
+              "case": "P1",
+              "actions": {
+                "Send_P1_Email_Alert": {
+                  "type": "ApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "office365",
+                      "operationId": "SendEmailV2",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365"
+                    },
+                    "parameters": {
+                      "emailMessage": {
+                        "To": "@parameters('ALERT_EMAIL')",
+                        "Subject": "NOIZY P1 — @{body('Parse_Enrichment_Response')?['enrichment']?['recommended_action']}",
+                        "Body": "<p>Intake ID: @{body('Parse_Enrichment_Response')?['intake_id']}</p><p>Summary: @{body('Parse_Enrichment_Response')?['sanitized']?['summary']}</p><p>Notes: @{body('Parse_Enrichment_Response')?['enrichment']?['notes']}</p>"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "actions": {
+              "Log_Standard_Intake": {
+                "type": "Compose",
+                "inputs": {
+                  "log": "Intake @{body('Parse_Enrichment_Response')?['intake_id']} queued with priority @{body('Parse_Enrichment_Response')?['enrichment']?['priority']}"
+                }
+              }
+            }
+          }
+        },
+        "Handle_Human_Review_Required": {
+          "type": "Condition",
+          "runAfter": {
+            "Branch_On_Priority": ["Succeeded", "Failed", "Skipped"]
+          },
+          "expression": {
+            "and": [
+              {
+                "equals": [
+                  "@body('Parse_Enrichment_Response')?['sanitized']?['requires_human_review']",
+                  true
+                ]
+              }
+            ]
+          },
+          "actions": {
+            "Create_Approval_Task": {
+              "type": "ApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "approvals",
+                  "operationId": "CreateAnApproval",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_approvals"
+                },
+                "parameters": {
+                  "ApprovalType": "Basic",
+                  "Title": "NOIZY Intake Review Required — @{body('Parse_Enrichment_Response')?['intake_id']}",
+                  "AssignedTo": "@parameters('ALERT_EMAIL')",
+                  "Details": "Content requires human review.\n\nSummary: @{body('Parse_Enrichment_Response')?['sanitized']?['summary']}\n\nRisk flags: @{join(body('Parse_Enrichment_Response')?['sanitized']?['risk_flags'], ', ')}\n\nRecommended action: @{body('Parse_Enrichment_Response')?['enrichment']?['recommended_action']}"
+                }
+              }
+            }
+          },
+          "else": {
+            "actions": {}
+          }
+        }
+      }
+    }
+  },
+  "parameters": {
+    "TEAMS_GROUP_ID": {
+      "type": "string",
+      "defaultValue": "",
+      "metadata": { "description": "Azure AD Group ID for the Teams team" }
+    },
+    "TEAMS_CHANNEL_ID": {
+      "type": "string",
+      "defaultValue": "",
+      "metadata": { "description": "Teams channel ID to monitor" }
+    },
+    "TEAMS_CHANNEL_NAME": {
+      "type": "string",
+      "defaultValue": "noizy-intake"
+    },
+    "ALERT_CHANNEL_ID": {
+      "type": "string",
+      "defaultValue": "",
+      "metadata": { "description": "Teams channel ID for P0 alerts" }
+    },
+    "ONENOTE_NOTEBOOK_KEY": {
+      "type": "string",
+      "defaultValue": "",
+      "metadata": { "description": "OneNote notebook key" }
+    },
+    "ONENOTE_SECTION_KEY": {
+      "type": "string",
+      "defaultValue": "",
+      "metadata": { "description": "OneNote section key for NOIZY intakes" }
+    },
+    "AZURE_FUNCTION_URL": {
+      "type": "string",
+      "defaultValue": "",
+      "metadata": { "description": "URL of the NOIZY Azure Function (noizyIngest endpoint)" }
+    },
+    "AZURE_FUNCTION_KEY": {
+      "type": "securestring",
+      "defaultValue": "",
+      "metadata": { "description": "Azure Function host key" }
+    },
+    "NOIZY_API_KEY": {
+      "type": "securestring",
+      "defaultValue": "",
+      "metadata": { "description": "NOIZY API key (X-NOIZY-Key header)" }
+    },
+    "ALERT_EMAIL": {
+      "type": "string",
+      "defaultValue": "rsp@noizyfish.com",
+      "metadata": { "description": "Email address for P1/P2 alerts and approval tasks" }
+    }
+  }
+}

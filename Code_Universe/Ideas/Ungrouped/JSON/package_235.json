@@ -1,0 +1,84 @@
+{
+  "name": "@tagspaces/image-viewer",
+  "version": "1.0.254",
+  "description": "A TagSpaces extension allowing opening of image files, such as JPG, PNG, BMP, GIF and WEBP.",
+  "homepage": "https://www.tagspaces.org",
+  "main": "index.html",
+  "author": {
+    "name": "TagSpaces GmbH",
+    "email": "info@tagspaces.org",
+    "url": "https://www.tagspaces.org"
+  },
+  "license": "MIT",
+  "scripts": {
+    "copy-index": "npx shx cp index.html ../../release/app/node_modules/@tagspaces/extensions/image-viewer"
+  },
+  "dependencies": {
+    "psd": "3.4.0",
+    "utif.ts": "3.1.1",
+    "exif-js": "2.3.0"
+  },
+  "tsextension": {
+    "name": "Image Viewer",
+    "types": [
+      "viewer"
+    ],
+    "color": "#9fd5ba",
+    "fileTypes": [
+      {
+        "ext": "avif"
+      },
+      {
+        "ext": "bmp"
+      },
+      {
+        "ext": "gif"
+      },
+      {
+        "ext": "ico"
+      },
+      {
+        "ext": "jpeg"
+      },
+      {
+        "ext": "jpg"
+      },
+      {
+        "ext": "jif"
+      },
+      {
+        "ext": "jfif"
+      },
+      {
+        "ext": "png"
+      },
+      {
+        "ext": "tga"
+      },
+      {
+        "ext": "psd"
+      },
+      {
+        "ext": "nef"
+      },
+      {
+        "ext": "cr2"
+      },
+      {
+        "ext": "dng"
+      },
+      {
+        "ext": "tif"
+      },
+      {
+        "ext": "tiff"
+      },
+      {
+        "ext": "webp"
+      },
+      {
+        "ext": "svg"
+      }
+    ]
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "session_id": "3c68ad81-18c1-4664-81fa-90d2c6643845",
+  "session_name": "Incomplete Test",
+  "session_number": 101,
+  "actor_id": "RSP_001",
+  "character_id": "rsp_natural",
+  "actor_imprint_version": "v1",
+  "planned_takes": 2,
+  "script_lines": [
+    {
+      "line_number": 1,
+      "text": "Every sound has a story. Listen close.",
+      "direction": "Intimate, like sharing a secret with a student",
+      "energy_band": "whisper"
+    },
+    {
+      "line_number": 2,
+      "text": "The silence between notes — that's where the music breathes.",
+      "direction": "Reflective, let the pauses speak",
+      "energy_band": "whisper"
+    }
+  ],
+  "recording_format": {
+    "codec": "wav",
+    "sample_rate": 48000,
+    "bit_depth": 24,
+    "channels": "mono"
+  },
+  "recording_device": "GOD M2 Ultra — Built-in Microphone",
+  "recording_environment": "Home Studio — Ottawa",
+  "takes": [
+    {
+      "take_id": "18bad387-4f9d-4c0e-8897-b08140b50483",
+      "take_number": 1,
+      "session_id": "3c68ad81-18c1-4664-81fa-90d2c6643845",
+      "actor_id": "RSP_001",
+      "character_id": "rsp_natural",
+      "script_line": "Every sound has a story. Listen close.",
+      "performance_mode": "CHARACTER",
+      "intensity": 0.5,
+      "energy_band": "conversational",
+      "improvised": false,
+      "audio_file": "3c68ad81-18c1-4664-81fa-90d2c6643845/take-001.wav",
+      "audio_duration_ms": 0,
+      "status": "captured",
+      "voice_ip_retained": true,
+      "consent_confirmed": true,
+      "started_at": "2026-04-02T20:57:11.738Z",
+      "blessed": false,
+      "gabriel_ingested": false
+    }
+  ],
+  "total_takes": 1,
+  "approved_takes": 0,
+  "rejected_takes": 0,
+  "total_duration_ms": 0,
+  "status": "active",
+  "all_consent_confirmed": true,
+  "voice_ip_owner": true,
+  "created_at": "2026-04-02T20:57:11.738Z",
+  "blessed": false,
+  "gabriel_ingested": false,
+  "started_at": "2026-04-02T20:57:11.738Z"
+}

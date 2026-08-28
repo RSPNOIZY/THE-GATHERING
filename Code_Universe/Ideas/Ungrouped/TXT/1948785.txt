@@ -1,0 +1,1982 @@
+<root SourceEngineVersion="2.3" SourceEngine="BFD Eco" timeformat="ticks" ppqn="1000000" loop="true" loopstart="0" loopend="37000000" timesig="4/4" bpm="120" PresetName="London - Flying Rock" ActivePanelID="2" selected_slot="5">
+    <BFD2ProgramInfo name="program_info" info_path="C:\Users\Drew\Documents\FXpansion\BFD Eco NFUZD\Presets\London - Flying Rock.eco" info_photo="London - Flying Rock.png" info_name="London - Flying Rock" info_rating="3" />
+    <BFD2KitInfo name="kit_info" info_name="London - Flying Rock" info_rating="3" SourceEngine="BFD2">
+        <VString name="kit_text" string="" />
+        <VString name="kit_user_text" string="" />
+        <VString name="kit_slot_0">Pork Pie\Kick</VString>
+        <VString name="kit_slot_1">Ludwig Black Oyster\Snare Supraphonic 402</VString>
+        <VString name="kit_slot_2">Bosphorus\Hihat Trad Medium 14</VString>
+        <VString name="kit_slot_3">Ludwig Vistalite\Tom Floor2</VString>
+        <VString name="kit_slot_4">Ludwig Vistalite\Tom Mid</VString>
+        <VString name="kit_slot_5">Ludwig Black Oyster\Tom Hi</VString>
+        <VString name="kit_slot_6">Paiste\Crash 2002 18</VString>
+        <VString name="kit_slot_7">Zildjian\Ride Z Custom 22</VString>
+        <VString name="kit_slot_8">Zildjian\Ride Flat 22</VString>
+        <VString name="kit_slot_9" string="" />
+        <VString name="kit_slot_10" string="" />
+        <VString name="kit_slot_11" string="" />
+    </BFD2KitInfo>
+    <BFD2Kit name="kit_meta_info" SourceEngine="BFD Eco" masterDynamics="0.5" kit_size="12">
+        <BFD2KitPiece name="kp_slot_0" pan="0.5" trim="0.8" dampAmt="0" dampFreq="500" gainOH="0.8" gainRM="0.505" gainPZM="0.8" tune="0.5" dyn="0.56" flip_amb="false" kick_bl_lvl="1" snre_bl_lvl="1" kick_bl_dst="2" snre_bl_dst="2" amb1Dest="OH" amb2Dest="Room" amb3Dest="Room" mute="false" solo="false" micBlend="0.68" chokeGroup="0">
+            <BFD2Artic name="artic_0_Hit" v2d="0.5" v2p="0.5" v2a="0.5" aTrim="0.5" velVar="0.5" artic_name="Hit" artic_load_state="false" />
+            <BFD2Artic name="artic_1_NoSnare" v2d="0.5" v2p="0.5" v2a="0.5" aTrim="0.5" velVar="0.5" artic_name="NoSnare" artic_load_state="false" />
+        </BFD2KitPiece>
+        <BFD2KitPiece name="kp_slot_1" pan="0.5" trim="0.8" dampAmt="0" dampFreq="500" gainOH="1" gainRM="1" gainPZM="0.8" tune="0.615" dyn="0.5" flip_amb="false" kick_bl_lvl="1" snre_bl_lvl="1" kick_bl_dst="2" snre_bl_dst="2" amb1Dest="OH" amb2Dest="Room" amb3Dest="Room" mute="false" solo="false" micBlend="0.61" chokeGroup="1">
+            <BFD2Artic name="artic_0_Hit" v2d="0.5" v2p="0.5" v2a="0.5" aTrim="0.5" velVar="0.5" artic_name="Hit" artic_load_state="false" />
+            <BFD2Artic name="artic_1_Drag" v2d="0.5" v2p="0.5" v2a="0.5" aTrim="0.5" velVar="0.5" artic_name="Drag" artic_load_state="false" />
+            <BFD2Artic name="artic_3_Rim" v2d="0.5" v2p="0.5" v2a="0.5" aTrim="0.5" velVar="0.5" artic_name="Rim" artic_load_state="false" />
+            <BFD2Artic name="artic_4_SS" v2d="0.5" v2p="0.5" v2a="0.5" aTrim="0.5" velVar="0.5" artic_name="SS" artic_load_state="false" />
+            <BFD2Artic name="artic_5_HalfEdge" v2d="0.5" v2p="0.5" v2a="0.5" aTrim="0.5" velVar="0.5" artic_name="HalfEdge" artic_load_state="false" />
+        </BFD2KitPiece>
+        <BFD2KitPiece name="kp_slot_2" pan="0.55" trim="0.8" dampAmt="0" dampFreq="500" gainOH="0.8" gainRM="0.52" gainPZM="0.8" tune="0.5" dyn="0.57" flip_amb="false" kick_bl_lvl="1" snre_bl_lvl="1" kick_bl_dst="2" snre_bl_dst="2" amb1Dest="OH" amb2Dest="Room" amb3Dest="Room" mute="false" solo="false" micBlend="0.5" chokeGroup="2">
+            <BFD2Artic name="artic_0_OpenT" v2d="0.5" v2p="0.5" v2a="0.5" aTrim="0.5" velVar="0.5" artic_name="OpenT" artic_load_state="false" />
+            <BFD2Artic name="artic_1_OpenS" v2d="0.5" v2p="0.5" v2a="0.5" aTrim="0.5" velVar="0.5" artic_name="OpenS" artic_load_state="false" />
+            <BFD2Artic name="artic_2_ThreeqT" v2d="0.5" v2p="0.5" v2a="0.5" aTrim="0.5" velVar="0.5" artic_name="ThreeqT" artic_load_state="false" />
+            <BFD2Artic name="artic_3_ThreeqS" v2d="0.5" v2p="0.5" v2a="0.5" aTrim="0.5" velVar="0.5" artic_name="ThreeqS" artic_load_state="false" />
+            <BFD2Artic name="artic_4_HalfT" v2d="0.5" v2p="0.5" v2a="0.5" aTrim="0.5" velVar="0.5" artic_name="HalfT" artic_load_state="false" />
+            <BFD2Artic name="artic_5_HalfS" v2d="0.5" v2p="0.5" v2a="0.5" aTrim="0.5" velVar="0.5" artic_name="HalfS" artic_load_state="false" />
+            <BFD2Artic name="artic_6_QuarterT" v2d="0.5" v2p="0.5" v2a="0.5" aTrim="0.5" velVar="0.5" artic_name="QuarterT" artic_load_state="false" />
+            <BFD2Artic name="artic_8_ClosedT" v2d="0.5" v2p="0.5" v2a="0.5" aTrim="0.5" velVar="0.5" artic_name="ClosedT" artic_load_state="false" />
+            <BFD2Artic name="artic_9_ClosedS" v2d="0.5" v2p="0.5" v2a="0.5" aTrim="0.5" velVar="0.5" artic_name="ClosedS" artic_load_state="false" />
+            <BFD2Artic name="artic_10_Pedal" v2d="0.5" v2p="0.5" v2a="0.5" aTrim="0.5" velVar="0.5" artic_name="Pedal" artic_load_state="false" />
+        </BFD2KitPiece>
+        <BFD2KitPiece name="kp_slot_3" pan="0.3" trim="0.8" dampAmt="0.395" dampFreq="500" gainOH="0.8" gainRM="0.8" gainPZM="0.8" tune="0.5" dyn="0.5" flip_amb="false" kick_bl_lvl="1" snre_bl_lvl="1" kick_bl_dst="2" snre_bl_dst="2" amb1Dest="OH" amb2Dest="Room" amb3Dest="Room" mute="false" solo="false" micBlend="0.5" chokeGroup="3">
+            <BFD2Artic name="artic_0_Hit" v2d="0.5" v2p="0.5" v2a="0.5" aTrim="0.5" velVar="0.5" artic_name="Hit" artic_load_state="false" />
+        </BFD2KitPiece>
+        <BFD2KitPiece name="kp_slot_4" pan="0.325" trim="0.8" dampAmt="0.37" dampFreq="500" gainOH="0.8" gainRM="0.8" gainPZM="0.8" tune="0.5" dyn="0.5" flip_amb="false" kick_bl_lvl="1" snre_bl_lvl="1" kick_bl_dst="2" snre_bl_dst="2" amb1Dest="OH" amb2Dest="Room" amb3Dest="Room" mute="false" solo="false" micBlend="0.5" chokeGroup="4">
+            <BFD2Artic name="artic_0_Hit" v2d="0.5" v2p="0.5" v2a="0.5" aTrim="0.5" velVar="0.5" artic_name="Hit" artic_load_state="false" />
+        </BFD2KitPiece>
+        <BFD2KitPiece name="kp_slot_5" pan="0.675" trim="0.8" dampAmt="0.435" dampFreq="500" gainOH="0.8" gainRM="0.8" gainPZM="0.8" tune="0.5" dyn="0.445" flip_amb="false" kick_bl_lvl="1" snre_bl_lvl="1" kick_bl_dst="2" snre_bl_dst="2" amb1Dest="OH" amb2Dest="Room" amb3Dest="Room" mute="false" solo="false" micBlend="0.5" chokeGroup="5">
+            <BFD2Artic name="artic_0_Hit" v2d="0.5" v2p="0.5" v2a="0.5" aTrim="0.5" velVar="0.5" artic_name="Hit" artic_load_state="false" />
+        </BFD2KitPiece>
+        <BFD2KitPiece name="kp_slot_6" pan="0.6" trim="0.8" dampAmt="0" dampFreq="500" gainOH="0.68" gainRM="0.62" gainPZM="0.8" tune="0.5" dyn="0.39" flip_amb="false" kick_bl_lvl="1" snre_bl_lvl="1" kick_bl_dst="2" snre_bl_dst="2" amb1Dest="OH" amb2Dest="Room" amb3Dest="Room" mute="false" solo="false" micBlend="0.5" chokeGroup="6">
+            <BFD2Artic name="artic_0_Hit" v2d="0.5" v2p="0.5" v2a="0.5" aTrim="0.5" velVar="0.5" artic_name="Hit" artic_load_state="false" />
+            <BFD2Artic name="artic_1_Bell" v2d="0.5" v2p="0.5" v2a="0.5" aTrim="0.5" velVar="0.5" artic_name="Bell" artic_load_state="false" />
+            <BFD2Artic name="artic_2_Edge" v2d="0.5" v2p="0.5" v2a="0.5" aTrim="0.5" velVar="0.5" artic_name="Edge" artic_load_state="false" />
+        </BFD2KitPiece>
+        <BFD2KitPiece name="kp_slot_7" pan="0.725" trim="0.8" dampAmt="0" dampFreq="500" gainOH="0.72" gainRM="0.66" gainPZM="0.8" tune="0.5" dyn="0.39" flip_amb="false" kick_bl_lvl="1" snre_bl_lvl="1" kick_bl_dst="2" snre_bl_dst="2" amb1Dest="OH" amb2Dest="Room" amb3Dest="Room" mute="false" solo="false" micBlend="0.5" chokeGroup="7">
+            <BFD2Artic name="artic_0_Hit" v2d="0.5" v2p="0.5" v2a="0.5" aTrim="0.5" velVar="0.5" artic_name="Hit" artic_load_state="false" />
+            <BFD2Artic name="artic_1_Bell" v2d="0.5" v2p="0.5" v2a="0.5" aTrim="0.5" velVar="0.5" artic_name="Bell" artic_load_state="false" />
+        </BFD2KitPiece>
+        <BFD2KitPiece name="kp_slot_8" pan="0.875" trim="0.8" dampAmt="0" dampFreq="500" gainOH="0.68" gainRM="0.74" gainPZM="0.8" tune="0.5" dyn="0.375" flip_amb="false" kick_bl_lvl="1" snre_bl_lvl="1" kick_bl_dst="2" snre_bl_dst="2" amb1Dest="OH" amb2Dest="Room" amb3Dest="Room" mute="false" solo="false" micBlend="0.5" chokeGroup="8">
+            <BFD2Artic name="artic_0_Hit" v2d="0.5" v2p="0.5" v2a="0.5" aTrim="0.5" velVar="0.5" artic_name="Hit" artic_load_state="false" />
+            <BFD2Artic name="artic_2_Edge" v2d="0.5" v2p="0.5" v2a="0.5" aTrim="0.5" velVar="0.5" artic_name="Edge" artic_load_state="false" />
+        </BFD2KitPiece>
+        <BFD2KitPiece name="kp_slot_9" pan="0.5" trim="0.8" dampAmt="0" dampFreq="500" gainOH="0.8" gainRM="0.8" gainPZM="0.8" tune="0.5" dyn="0.5" flip_amb="false" kick_bl_lvl="1" snre_bl_lvl="1" kick_bl_dst="2" snre_bl_dst="2" mute="false" solo="false" micBlend="0.5" chokeGroup="9" />
+        <BFD2KitPiece name="kp_slot_10" pan="0.5" trim="0.8" dampAmt="0" dampFreq="500" gainOH="0.8" gainRM="0.8" gainPZM="0.8" tune="0.5" dyn="0.5" flip_amb="false" kick_bl_lvl="1" snre_bl_lvl="1" kick_bl_dst="2" snre_bl_dst="2" mute="false" solo="false" micBlend="0.5" chokeGroup="10" />
+        <BFD2KitPiece name="kp_slot_11" pan="0.5" trim="0.8" dampAmt="0" dampFreq="500" gainOH="0.8" gainRM="0.8" gainPZM="0.8" tune="0.5" dyn="0.5" flip_amb="false" kick_bl_lvl="1" snre_bl_lvl="1" kick_bl_dst="2" snre_bl_dst="2" mute="false" solo="false" micBlend="0.5" chokeGroup="11" />
+    </BFD2Kit>
+    <BFD2GrooveBundle name="bundle">
+        <BFD2GrooveBundleInfo name="info" info_name="London Sessions - Funky" info_rating="3" bpm="120" timesig="4/4">
+            <VObjectArray name="grooves" count="0" />
+        </BFD2GrooveBundleInfo>
+        <BFD2Song name="song" timeformat="ticks" ppqn="1000000" songver="2">
+            <VObjectArray name="parts" count="4">
+                <BFD2SongPart pos="5000000" len="8000000" grvoff="0" grv="3" />
+                <BFD2SongPart pos="13000000" len="8000000" grvoff="0" grv="4" />
+                <BFD2SongPart pos="21000000" len="8000000" grvoff="0" grv="7" />
+                <BFD2SongPart pos="29000000" len="8000000" grvoff="0" grv="1" />
+            </VObjectArray>
+            <BFD2SongInfo name="info" info_name="London Sessions - Funky" info_rating="3" bpm="0" timesig="4/4" />
+        </BFD2Song>
+        <VDictionary name="grooves" version="2" count="6">
+            <VDictionaryPair>
+                <VValue type="int" value="1" />
+                <BFD2GrooveSlot fill="true">
+                    <BFD2Groove name="groove" timeformat="ticks" ppqn="1000000">
+                        <BFD2GrooveInfo name="info" info_library="BFD2" info_author="Mikael Adle" info_authurl="mikaeladle" info_name="dimm01_80f" info_rating="3" bpm="80" genre="Rock" bars="2" sugguse="1" timesig="4/4" />
+                        <VObjectArray name="kitpieces" count="5">
+                            <BFD2GrooveKitPiece kpclass="Kick" kpindex="0" slotindex="0">
+                                <VObjectArray name="artics" count="3">
+                                    <BFD2GrooveArtic articid="0" articname="Hit" />
+                                    <BFD2GrooveArtic articid="1" articname="No Snare" />
+                                    <BFD2GrooveArtic articid="8000" articname="Choke" />
+                                </VObjectArray>
+                            </BFD2GrooveKitPiece>
+                            <BFD2GrooveKitPiece kpclass="Cymbal" kpindex="0" slotindex="6">
+                                <VObjectArray name="artics" count="5">
+                                    <BFD2GrooveArtic articid="0" articname="Hit" />
+                                    <BFD2GrooveArtic articid="1" articname="Bell" />
+                                    <BFD2GrooveArtic articid="2" articname="Edge" />
+                                    <BFD2GrooveArtic articid="8000" articname="Choke" />
+                                    <BFD2GrooveArtic articid="3" articname="Bow" />
+                                </VObjectArray>
+                            </BFD2GrooveKitPiece>
+                            <BFD2GrooveKitPiece kpclass="Hihat" kpindex="0" slotindex="2">
+                                <VObjectArray name="artics" count="16">
+                                    <BFD2GrooveArtic articid="0" articname="Open tip" />
+                                    <BFD2GrooveArtic articid="1" articname="Open shank" />
+                                    <BFD2GrooveArtic articid="2" articname="3/4 tip" />
+                                    <BFD2GrooveArtic articid="3" articname="3/4 shank" />
+                                    <BFD2GrooveArtic articid="4" articname="Half tip" />
+                                    <BFD2GrooveArtic articid="5" articname="Half shank" />
+                                    <BFD2GrooveArtic articid="6" articname="1/4 tip" />
+                                    <BFD2GrooveArtic articid="7" articname="1/4 shank" />
+                                    <BFD2GrooveArtic articid="8" articname="Closed tip" />
+                                    <BFD2GrooveArtic articid="9" articname="Closed shank" />
+                                    <BFD2GrooveArtic articid="10" articname="Pedal" />
+                                    <BFD2GrooveArtic articid="11" articname="Variable tip" />
+                                    <BFD2GrooveArtic articid="12" articname="Variable shank" />
+                                    <BFD2GrooveArtic articid="8000" articname="Choke" />
+                                    <BFD2GrooveArtic articid="13" articname="Splash" />
+                                    <BFD2GrooveArtic articid="14" articname="Closed tip" />
+                                </VObjectArray>
+                            </BFD2GrooveKitPiece>
+                            <BFD2GrooveKitPiece kpclass="Snare" kpindex="0" slotindex="1">
+                                <VObjectArray name="artics" count="8">
+                                    <BFD2GrooveArtic articid="0" articname="Hit" />
+                                    <BFD2GrooveArtic articid="1" articname="Drag" />
+                                    <BFD2GrooveArtic articid="2" articname="Flam" />
+                                    <BFD2GrooveArtic articid="3" articname="Rim shot" />
+                                    <BFD2GrooveArtic articid="4" articname="Side stick" />
+                                    <BFD2GrooveArtic articid="5" articname="Half" />
+                                    <BFD2GrooveArtic articid="6" articname="Rim Click" />
+                                    <BFD2GrooveArtic articid="8000" articname="Choke" />
+                                </VObjectArray>
+                            </BFD2GrooveKitPiece>
+                            <BFD2GrooveKitPiece kpclass="Tom" kpindex="2" slotindex="5">
+                                <VObjectArray name="artics" count="5">
+                                    <BFD2GrooveArtic articid="0" articname="Hit" />
+                                    <BFD2GrooveArtic articid="1" articname="Alternative" />
+                                    <BFD2GrooveArtic articid="8000" articname="Choke" />
+                                    <BFD2GrooveArtic articid="2" articname="Rim Shot" />
+                                    <BFD2GrooveArtic articid="3" articname="Rim Click" />
+                                </VObjectArray>
+                            </BFD2GrooveKitPiece>
+                        </VObjectArray>
+                        <VObjectArray name="hits" count="33">
+                            <BFD2GrooveHit pos="0" len="125000" kpslot="0" kpartic="0" vel="0.929134" />
+                            <BFD2GrooveHit pos="2083" len="129167" kpslot="6" kpartic="0" vel="0.913386" />
+                            <BFD2GrooveHit pos="506250" len="125000" kpslot="2" kpartic="3" vel="0.818898" />
+                            <BFD2GrooveHit pos="747917" len="125000" kpslot="0" kpartic="0" vel="0.80315" />
+                            <BFD2GrooveHit pos="1006250" len="127083" kpslot="1" kpartic="0" vel="0.811024" />
+                            <BFD2GrooveHit pos="1010417" len="125000" kpslot="2" kpartic="3" vel="0.897638" />
+                            <BFD2GrooveHit pos="1504167" len="125000" kpslot="0" kpartic="0" vel="0.88189" />
+                            <BFD2GrooveHit pos="1508333" len="129167" kpslot="6" kpartic="0" vel="0.889764" />
+                            <BFD2GrooveHit pos="2006250" len="125000" kpslot="1" kpartic="0" vel="0.708661" />
+                            <BFD2GrooveHit pos="2250000" len="125000" kpslot="1" kpartic="0" vel="0.732283" />
+                            <BFD2GrooveHit pos="2504167" len="127083" kpslot="1" kpartic="0" vel="0.677165" />
+                            <BFD2GrooveHit pos="2752083" len="127083" kpslot="1" kpartic="0" vel="0.858268" />
+                            <BFD2GrooveHit pos="3004167" len="127083" kpslot="1" kpartic="0" vel="0.897638" />
+                            <BFD2GrooveHit pos="3250000" len="127083" kpslot="1" kpartic="0" vel="0.84252" />
+                            <BFD2GrooveHit pos="3502083" len="125000" kpslot="5" kpartic="0" vel="0.732283" />
+                            <BFD2GrooveHit pos="3750000" len="127083" kpslot="5" kpartic="0" vel="0.80315" />
+                            <BFD2GrooveHit pos="3997917" len="129167" kpslot="0" kpartic="0" vel="0.818898" />
+                            <BFD2GrooveHit pos="4004167" len="122917" kpslot="6" kpartic="0" vel="0.92126" />
+                            <BFD2GrooveHit pos="4500000" len="127083" kpslot="2" kpartic="3" vel="0.700787" />
+                            <BFD2GrooveHit pos="4745833" len="125000" kpslot="0" kpartic="0" vel="0.716535" />
+                            <BFD2GrooveHit pos="4997917" len="125000" kpslot="1" kpartic="0" vel="0.834646" />
+                            <BFD2GrooveHit pos="5000000" len="129167" kpslot="2" kpartic="3" vel="0.937008" />
+                            <BFD2GrooveHit pos="5500000" len="127083" kpslot="0" kpartic="0" vel="0.811024" />
+                            <BFD2GrooveHit pos="5506250" len="127083" kpslot="6" kpartic="0" vel="1" />
+                            <BFD2GrooveHit pos="6002083" len="127083" kpslot="2" kpartic="3" vel="0.897638" />
+                            <BFD2GrooveHit pos="6254167" len="129167" kpslot="1" kpartic="0" vel="0.76378" />
+                            <BFD2GrooveHit pos="6504167" len="127083" kpslot="2" kpartic="3" vel="0.84252" />
+                            <BFD2GrooveHit pos="6750000" len="127083" kpslot="0" kpartic="0" vel="0.818898" />
+                            <BFD2GrooveHit pos="6985417" len="54166" kpslot="1" kpartic="0" vel="0.574803" />
+                            <BFD2GrooveHit pos="7041667" len="127083" kpslot="1" kpartic="0" vel="0.897638" />
+                            <BFD2GrooveHit pos="7254167" len="125000" kpslot="1" kpartic="0" vel="0.771654" />
+                            <BFD2GrooveHit pos="7500000" len="129167" kpslot="1" kpartic="0" vel="0.913386" />
+                            <BFD2GrooveHit pos="7750000" len="125000" kpslot="1" kpartic="0" vel="0.913386" />
+                        </VObjectArray>
+                    </BFD2Groove>
+                </BFD2GrooveSlot>
+            </VDictionaryPair>
+            <VDictionaryPair>
+                <VValue type="int" value="3" />
+                <BFD2GrooveSlot fill="false">
+                    <BFD2Groove name="groove" timeformat="ticks" ppqn="1000000">
+                        <BFD2GrooveInfo name="info" info_library="BFD2" info_author="Mikael Adle" info_authurl="mikaeladle" info_name="dimm06_80" info_rating="3" bpm="80" genre="Rock" bars="2" timesig="4/4" />
+                        <VObjectArray name="kitpieces" count="4">
+                            <BFD2GrooveKitPiece kpclass="Kick" kpindex="0" slotindex="0">
+                                <VObjectArray name="artics" count="3">
+                                    <BFD2GrooveArtic articid="0" articname="Hit" />
+                                    <BFD2GrooveArtic articid="1" articname="No Snare" />
+                                    <BFD2GrooveArtic articid="8000" articname="Choke" />
+                                </VObjectArray>
+                            </BFD2GrooveKitPiece>
+                            <BFD2GrooveKitPiece kpclass="Cymbal" kpindex="0" slotindex="6">
+                                <VObjectArray name="artics" count="5">
+                                    <BFD2GrooveArtic articid="0" articname="Hit" />
+                                    <BFD2GrooveArtic articid="1" articname="Bell" />
+                                    <BFD2GrooveArtic articid="2" articname="Edge" />
+                                    <BFD2GrooveArtic articid="8000" articname="Choke" />
+                                    <BFD2GrooveArtic articid="3" articname="Bow" />
+                                </VObjectArray>
+                            </BFD2GrooveKitPiece>
+                            <BFD2GrooveKitPiece kpclass="Hihat" kpindex="0" slotindex="2">
+                                <VObjectArray name="artics" count="16">
+                                    <BFD2GrooveArtic articid="0" articname="Open tip" />
+                                    <BFD2GrooveArtic articid="1" articname="Open shank" />
+                                    <BFD2GrooveArtic articid="2" articname="3/4 tip" />
+                                    <BFD2GrooveArtic articid="3" articname="3/4 shank" />
+                                    <BFD2GrooveArtic articid="4" articname="Half tip" />
+                                    <BFD2GrooveArtic articid="5" articname="Half shank" />
+                                    <BFD2GrooveArtic articid="6" articname="1/4 tip" />
+                                    <BFD2GrooveArtic articid="7" articname="1/4 shank" />
+                                    <BFD2GrooveArtic articid="8" articname="Closed tip" />
+                                    <BFD2GrooveArtic articid="9" articname="Closed shank" />
+                                    <BFD2GrooveArtic articid="10" articname="Pedal" />
+                                    <BFD2GrooveArtic articid="11" articname="Variable tip" />
+                                    <BFD2GrooveArtic articid="12" articname="Variable shank" />
+                                    <BFD2GrooveArtic articid="8000" articname="Choke" />
+                                    <BFD2GrooveArtic articid="13" articname="Splash" />
+                                    <BFD2GrooveArtic articid="14" articname="Closed tip" />
+                                </VObjectArray>
+                            </BFD2GrooveKitPiece>
+                            <BFD2GrooveKitPiece kpclass="Snare" kpindex="0" slotindex="1">
+                                <VObjectArray name="artics" count="8">
+                                    <BFD2GrooveArtic articid="0" articname="Hit" />
+                                    <BFD2GrooveArtic articid="1" articname="Drag" />
+                                    <BFD2GrooveArtic articid="2" articname="Flam" />
+                                    <BFD2GrooveArtic articid="3" articname="Rim shot" />
+                                    <BFD2GrooveArtic articid="4" articname="Side stick" />
+                                    <BFD2GrooveArtic articid="5" articname="Half" />
+                                    <BFD2GrooveArtic articid="6" articname="Rim Click" />
+                                    <BFD2GrooveArtic articid="8000" articname="Choke" />
+                                </VObjectArray>
+                            </BFD2GrooveKitPiece>
+                        </VObjectArray>
+                        <VObjectArray name="hits" count="36">
+                            <BFD2GrooveHit pos="0" len="131250" kpslot="0" kpartic="0" vel="0.897638" />
+                            <BFD2GrooveHit pos="2083" len="129167" kpslot="6" kpartic="0" vel="0.913386" />
+                            <BFD2GrooveHit pos="500000" len="129167" kpslot="2" kpartic="3" vel="0.496063" />
+                            <BFD2GrooveHit pos="750000" len="131250" kpslot="0" kpartic="0" vel="0.795276" />
+                            <BFD2GrooveHit pos="1000000" len="129167" kpslot="1" kpartic="0" vel="0.905512" />
+                            <BFD2GrooveHit pos="1006250" len="127083" kpslot="2" kpartic="3" vel="0.818898" />
+                            <BFD2GrooveHit pos="1250000" len="129167" kpslot="0" kpartic="0" vel="0.80315" />
+                            <BFD2GrooveHit pos="1506250" len="131250" kpslot="2" kpartic="3" vel="0.598425" />
+                            <BFD2GrooveHit pos="1758333" len="129167" kpslot="0" kpartic="0" vel="0.685039" />
+                            <BFD2GrooveHit pos="2004167" len="129167" kpslot="0" kpartic="0" vel="0.913386" />
+                            <BFD2GrooveHit pos="2008333" len="129167" kpslot="2" kpartic="3" vel="0.708661" />
+                            <BFD2GrooveHit pos="2506250" len="131250" kpslot="2" kpartic="3" vel="0.598425" />
+                            <BFD2GrooveHit pos="2754167" len="129167" kpslot="0" kpartic="0" vel="0.826772" />
+                            <BFD2GrooveHit pos="2997917" len="131250" kpslot="1" kpartic="0" vel="0.874016" />
+                            <BFD2GrooveHit pos="3012500" len="129167" kpslot="2" kpartic="3" vel="0.80315" />
+                            <BFD2GrooveHit pos="3252083" len="129167" kpslot="0" kpartic="0" vel="0.866142" />
+                            <BFD2GrooveHit pos="3506250" len="131250" kpslot="2" kpartic="3" vel="0.692913" />
+                            <BFD2GrooveHit pos="3750000" len="129167" kpslot="0" kpartic="0" vel="0.708661" />
+                            <BFD2GrooveHit pos="4000000" len="127083" kpslot="0" kpartic="0" vel="0.897638" />
+                            <BFD2GrooveHit pos="4012500" len="129167" kpslot="2" kpartic="3" vel="0.716535" />
+                            <BFD2GrooveHit pos="4504167" len="129167" kpslot="2" kpartic="3" vel="0.637795" />
+                            <BFD2GrooveHit pos="4745833" len="129167" kpslot="0" kpartic="0" vel="0.850394" />
+                            <BFD2GrooveHit pos="5004167" len="131250" kpslot="1" kpartic="0" vel="0.874016" />
+                            <BFD2GrooveHit pos="5012500" len="131250" kpslot="2" kpartic="3" vel="0.787402" />
+                            <BFD2GrooveHit pos="5250000" len="129167" kpslot="0" kpartic="0" vel="0.834646" />
+                            <BFD2GrooveHit pos="5506250" len="127083" kpslot="2" kpartic="3" vel="0.653543" />
+                            <BFD2GrooveHit pos="5754167" len="129167" kpslot="0" kpartic="0" vel="0.779528" />
+                            <BFD2GrooveHit pos="6004167" len="131250" kpslot="0" kpartic="0" vel="0.88189" />
+                            <BFD2GrooveHit pos="6010417" len="131250" kpslot="2" kpartic="3" vel="0.669291" />
+                            <BFD2GrooveHit pos="6504167" len="129167" kpslot="0" kpartic="0" vel="0.850394" />
+                            <BFD2GrooveHit pos="6506250" len="129167" kpslot="2" kpartic="3" vel="0.677165" />
+                            <BFD2GrooveHit pos="7000000" len="129167" kpslot="1" kpartic="0" vel="0.858268" />
+                            <BFD2GrooveHit pos="7004167" len="127083" kpslot="2" kpartic="3" vel="0.708661" />
+                            <BFD2GrooveHit pos="7250000" len="129167" kpslot="0" kpartic="0" vel="0.850394" />
+                            <BFD2GrooveHit pos="7504167" len="129167" kpslot="2" kpartic="3" vel="0.653543" />
+                            <BFD2GrooveHit pos="7750000" len="127083" kpslot="0" kpartic="0" vel="0.826772" />
+                        </VObjectArray>
+                    </BFD2Groove>
+                </BFD2GrooveSlot>
+            </VDictionaryPair>
+            <VDictionaryPair>
+                <VValue type="int" value="4" />
+                <BFD2GrooveSlot fill="true">
+                    <BFD2Groove name="groove" timeformat="ticks" ppqn="1000000">
+                        <BFD2GrooveInfo name="info" info_library="BFD2" info_author="Mikael Adle" info_authurl="mikaeladle" info_name="dimm06_80f" info_rating="3" bpm="80" genre="Rock" bars="2" sugguse="1" timesig="4/4" />
+                        <VObjectArray name="kitpieces" count="6">
+                            <BFD2GrooveKitPiece kpclass="Kick" kpindex="0" slotindex="0">
+                                <VObjectArray name="artics" count="3">
+                                    <BFD2GrooveArtic articid="0" articname="Hit" />
+                                    <BFD2GrooveArtic articid="1" articname="No Snare" />
+                                    <BFD2GrooveArtic articid="8000" articname="Choke" />
+                                </VObjectArray>
+                            </BFD2GrooveKitPiece>
+                            <BFD2GrooveKitPiece kpclass="Cymbal" kpindex="0" slotindex="6">
+                                <VObjectArray name="artics" count="5">
+                                    <BFD2GrooveArtic articid="0" articname="Hit" />
+                                    <BFD2GrooveArtic articid="1" articname="Bell" />
+                                    <BFD2GrooveArtic articid="2" articname="Edge" />
+                                    <BFD2GrooveArtic articid="8000" articname="Choke" />
+                                    <BFD2GrooveArtic articid="3" articname="Bow" />
+                                </VObjectArray>
+                            </BFD2GrooveKitPiece>
+                            <BFD2GrooveKitPiece kpclass="Hihat" kpindex="0" slotindex="2">
+                                <VObjectArray name="artics" count="16">
+                                    <BFD2GrooveArtic articid="0" articname="Open tip" />
+                                    <BFD2GrooveArtic articid="1" articname="Open shank" />
+                                    <BFD2GrooveArtic articid="2" articname="3/4 tip" />
+                                    <BFD2GrooveArtic articid="3" articname="3/4 shank" />
+                                    <BFD2GrooveArtic articid="4" articname="Half tip" />
+                                    <BFD2GrooveArtic articid="5" articname="Half shank" />
+                                    <BFD2GrooveArtic articid="6" articname="1/4 tip" />
+                                    <BFD2GrooveArtic articid="7" articname="1/4 shank" />
+                                    <BFD2GrooveArtic articid="8" articname="Closed tip" />
+                                    <BFD2GrooveArtic articid="9" articname="Closed shank" />
+                                    <BFD2GrooveArtic articid="10" articname="Pedal" />
+                                    <BFD2GrooveArtic articid="11" articname="Variable tip" />
+                                    <BFD2GrooveArtic articid="12" articname="Variable shank" />
+                                    <BFD2GrooveArtic articid="8000" articname="Choke" />
+                                    <BFD2GrooveArtic articid="13" articname="Splash" />
+                                    <BFD2GrooveArtic articid="14" articname="Closed tip" />
+                                </VObjectArray>
+                            </BFD2GrooveKitPiece>
+                            <BFD2GrooveKitPiece kpclass="Snare" kpindex="0" slotindex="1">
+                                <VObjectArray name="artics" count="8">
+                                    <BFD2GrooveArtic articid="0" articname="Hit" />
+                                    <BFD2GrooveArtic articid="1" articname="Drag" />
+                                    <BFD2GrooveArtic articid="2" articname="Flam" />
+                                    <BFD2GrooveArtic articid="3" articname="Rim shot" />
+                                    <BFD2GrooveArtic articid="4" articname="Side stick" />
+                                    <BFD2GrooveArtic articid="5" articname="Half" />
+                                    <BFD2GrooveArtic articid="6" articname="Rim Click" />
+                                    <BFD2GrooveArtic articid="8000" articname="Choke" />
+                                </VObjectArray>
+                            </BFD2GrooveKitPiece>
+                            <BFD2GrooveKitPiece kpclass="Tom" kpindex="2" slotindex="5">
+                                <VObjectArray name="artics" count="5">
+                                    <BFD2GrooveArtic articid="0" articname="Hit" />
+                                    <BFD2GrooveArtic articid="1" articname="Alternative" />
+                                    <BFD2GrooveArtic articid="8000" articname="Choke" />
+                                    <BFD2GrooveArtic articid="2" articname="Rim Shot" />
+                                    <BFD2GrooveArtic articid="3" articname="Rim Click" />
+                                </VObjectArray>
+                            </BFD2GrooveKitPiece>
+                            <BFD2GrooveKitPiece kpclass="Tom" kpindex="1" slotindex="4">
+                                <VObjectArray name="artics" count="5">
+                                    <BFD2GrooveArtic articid="0" articname="Hit" />
+                                    <BFD2GrooveArtic articid="1" articname="Alternative" />
+                                    <BFD2GrooveArtic articid="8000" articname="Choke" />
+                                    <BFD2GrooveArtic articid="2" articname="Rim Shot" />
+                                    <BFD2GrooveArtic articid="3" articname="Rim Click" />
+                                </VObjectArray>
+                            </BFD2GrooveKitPiece>
+                        </VObjectArray>
+                        <VObjectArray name="hits" count="44">
+                            <BFD2GrooveHit pos="0" len="131250" kpslot="0" kpartic="0" vel="0.889764" />
+                            <BFD2GrooveHit pos="2083" len="127083" kpslot="6" kpartic="0" vel="0.944882" />
+                            <BFD2GrooveHit pos="497917" len="129167" kpslot="0" kpartic="0" vel="0.716535" />
+                            <BFD2GrooveHit pos="506250" len="129167" kpslot="2" kpartic="3" vel="0.653543" />
+                            <BFD2GrooveHit pos="750000" len="129167" kpslot="0" kpartic="0" vel="0.834646" />
+                            <BFD2GrooveHit pos="1000000" len="127083" kpslot="1" kpartic="0" vel="0.905512" />
+                            <BFD2GrooveHit pos="1004167" len="129167" kpslot="2" kpartic="3" vel="0.905512" />
+                            <BFD2GrooveHit pos="1250000" len="129167" kpslot="0" kpartic="0" vel="0.787402" />
+                            <BFD2GrooveHit pos="1504167" len="129167" kpslot="2" kpartic="3" vel="0.732283" />
+                            <BFD2GrooveHit pos="1754167" len="131250" kpslot="0" kpartic="0" vel="0.779528" />
+                            <BFD2GrooveHit pos="2000000" len="127083" kpslot="0" kpartic="0" vel="0.937008" />
+                            <BFD2GrooveHit pos="2004167" len="129167" kpslot="2" kpartic="3" vel="0.834646" />
+                            <BFD2GrooveHit pos="2250000" len="131250" kpslot="1" kpartic="0" vel="0.700787" />
+                            <BFD2GrooveHit pos="2500000" len="129167" kpslot="0" kpartic="0" vel="0.748031" />
+                            <BFD2GrooveHit pos="2504167" len="131250" kpslot="2" kpartic="3" vel="0.708661" />
+                            <BFD2GrooveHit pos="2747917" len="127083" kpslot="0" kpartic="0" vel="0.866142" />
+                            <BFD2GrooveHit pos="3000000" len="129167" kpslot="1" kpartic="0" vel="0.913386" />
+                            <BFD2GrooveHit pos="3006250" len="129167" kpslot="2" kpartic="3" vel="0.850394" />
+                            <BFD2GrooveHit pos="3243750" len="131250" kpslot="0" kpartic="0" vel="0.84252" />
+                            <BFD2GrooveHit pos="3508333" len="131250" kpslot="2" kpartic="3" vel="0.858268" />
+                            <BFD2GrooveHit pos="3752083" len="127083" kpslot="1" kpartic="0" vel="0.787402" />
+                            <BFD2GrooveHit pos="4002083" len="129167" kpslot="0" kpartic="0" vel="0.826772" />
+                            <BFD2GrooveHit pos="4006250" len="131250" kpslot="6" kpartic="0" vel="0.952756" />
+                            <BFD2GrooveHit pos="4254167" len="131250" kpslot="0" kpartic="0" vel="0.874016" />
+                            <BFD2GrooveHit pos="4489583" len="127083" kpslot="1" kpartic="3" vel="0.771654" />
+                            <BFD2GrooveHit pos="4543750" len="129167" kpslot="1" kpartic="0" vel="0.858268" />
+                            <BFD2GrooveHit pos="4750000" len="129167" kpslot="0" kpartic="0" vel="0.889764" />
+                            <BFD2GrooveHit pos="4987500" len="127083" kpslot="1" kpartic="3" vel="0.850394" />
+                            <BFD2GrooveHit pos="5047917" len="129166" kpslot="1" kpartic="0" vel="0.716535" />
+                            <BFD2GrooveHit pos="5247917" len="133333" kpslot="0" kpartic="0" vel="0.771654" />
+                            <BFD2GrooveHit pos="5502083" len="131250" kpslot="0" kpartic="0" vel="0.88189" />
+                            <BFD2GrooveHit pos="5737500" len="56250" kpslot="5" kpartic="0" vel="0.716535" />
+                            <BFD2GrooveHit pos="5795833" len="127084" kpslot="5" kpartic="0" vel="0.858268" />
+                            <BFD2GrooveHit pos="6000000" len="127083" kpslot="0" kpartic="0" vel="0.779528" />
+                            <BFD2GrooveHit pos="6245833" len="129167" kpslot="0" kpartic="0" vel="0.858268" />
+                            <BFD2GrooveHit pos="6495833" len="47917" kpslot="1" kpartic="0" vel="0.622047" />
+                            <BFD2GrooveHit pos="6545833" len="129167" kpslot="1" kpartic="0" vel="1" />
+                            <BFD2GrooveHit pos="6745833" len="131250" kpslot="0" kpartic="0" vel="0.850394" />
+                            <BFD2GrooveHit pos="6985417" len="45833" kpslot="5" kpartic="0" vel="0.629921" />
+                            <BFD2GrooveHit pos="7041667" len="129167" kpslot="5" kpartic="0" vel="0.795276" />
+                            <BFD2GrooveHit pos="7243750" len="129167" kpslot="0" kpartic="0" vel="0.858268" />
+                            <BFD2GrooveHit pos="7479167" len="54167" kpslot="4" kpartic="0" vel="0.692913" />
+                            <BFD2GrooveHit pos="7533333" len="129167" kpslot="4" kpartic="0" vel="0.866142" />
+                            <BFD2GrooveHit pos="7752083" len="131250" kpslot="4" kpartic="0" vel="0.732283" />
+                        </VObjectArray>
+                    </BFD2Groove>
+                </BFD2GrooveSlot>
+            </VDictionaryPair>
+            <VDictionaryPair>
+                <VValue type="int" value="5" />
+                <BFD2GrooveSlot fill="true">
+                    <BFD2Groove name="groove" timeformat="ticks" ppqn="1000000">
+                        <BFD2GrooveInfo name="info" info_library="BFD2" info_author="Mikael Adle" info_authurl="mikaeladle" info_name="dimm05_80f" info_rating="3" bpm="80" genre="Rock" bars="2" sugguse="1" timesig="4/4" />
+                        <VObjectArray name="kitpieces" count="5">
+                            <BFD2GrooveKitPiece kpclass="Kick" kpindex="0" slotindex="0">
+                                <VObjectArray name="artics" count="3">
+                                    <BFD2GrooveArtic articid="0" articname="Hit" />
+                                    <BFD2GrooveArtic articid="1" articname="No Snare" />
+                                    <BFD2GrooveArtic articid="8000" articname="Choke" />
+                                </VObjectArray>
+                            </BFD2GrooveKitPiece>
+                            <BFD2GrooveKitPiece kpclass="Cymbal" kpindex="0" slotindex="6">
+                                <VObjectArray name="artics" count="5">
+                                    <BFD2GrooveArtic articid="0" articname="Hit" />
+                                    <BFD2GrooveArtic articid="1" articname="Bell" />
+                                    <BFD2GrooveArtic articid="2" articname="Edge" />
+                                    <BFD2GrooveArtic articid="8000" articname="Choke" />
+                                    <BFD2GrooveArtic articid="3" articname="Bow" />
+                                </VObjectArray>
+                            </BFD2GrooveKitPiece>
+                            <BFD2GrooveKitPiece kpclass="Hihat" kpindex="0" slotindex="2">
+                                <VObjectArray name="artics" count="16">
+                                    <BFD2GrooveArtic articid="0" articname="Open tip" />
+                                    <BFD2GrooveArtic articid="1" articname="Open shank" />
+                                    <BFD2GrooveArtic articid="2" articname="3/4 tip" />
+                                    <BFD2GrooveArtic articid="3" articname="3/4 shank" />
+                                    <BFD2GrooveArtic articid="4" articname="Half tip" />
+                                    <BFD2GrooveArtic articid="5" articname="Half shank" />
+                                    <BFD2GrooveArtic articid="6" articname="1/4 tip" />
+                                    <BFD2GrooveArtic articid="7" articname="1/4 shank" />
+                                    <BFD2GrooveArtic articid="8" articname="Closed tip" />
+                                    <BFD2GrooveArtic articid="9" articname="Closed shank" />
+                                    <BFD2GrooveArtic articid="10" articname="Pedal" />
+                                    <BFD2GrooveArtic articid="11" articname="Variable tip" />
+                                    <BFD2GrooveArtic articid="12" articname="Variable shank" />
+                                    <BFD2GrooveArtic articid="8000" articname="Choke" />
+                                    <BFD2GrooveArtic articid="13" articname="Splash" />
+                                    <BFD2GrooveArtic articid="14" articname="Closed tip" />
+                                </VObjectArray>
+                            </BFD2GrooveKitPiece>
+                            <BFD2GrooveKitPiece kpclass="Snare" kpindex="0" slotindex="1">
+                                <VObjectArray name="artics" count="8">
+                                    <BFD2GrooveArtic articid="0" articname="Hit" />
+                                    <BFD2GrooveArtic articid="1" articname="Drag" />
+                                    <BFD2GrooveArtic articid="2" articname="Flam" />
+                                    <BFD2GrooveArtic articid="3" articname="Rim shot" />
+                                    <BFD2GrooveArtic articid="4" articname="Side stick" />
+                                    <BFD2GrooveArtic articid="5" articname="Half" />
+                                    <BFD2GrooveArtic articid="6" articname="Rim Click" />
+                                    <BFD2GrooveArtic articid="8000" articname="Choke" />
+                                </VObjectArray>
+                            </BFD2GrooveKitPiece>
+                            <BFD2GrooveKitPiece kpclass="Tom" kpindex="0" slotindex="3">
+                                <VObjectArray name="artics" count="5">
+                                    <BFD2GrooveArtic articid="0" articname="Hit" />
+                                    <BFD2GrooveArtic articid="1" articname="Alternative" />
+                                    <BFD2GrooveArtic articid="8000" articname="Choke" />
+                                    <BFD2GrooveArtic articid="2" articname="Rim Shot" />
+                                    <BFD2GrooveArtic articid="3" articname="Rim Click" />
+                                </VObjectArray>
+                            </BFD2GrooveKitPiece>
+                        </VObjectArray>
+                        <VObjectArray name="hits" count="42">
+                            <BFD2GrooveHit pos="0" len="129167" kpslot="0" kpartic="0" vel="0.889764" />
+                            <BFD2GrooveHit pos="4167" len="127083" kpslot="6" kpartic="0" vel="0.937008" />
+                            <BFD2GrooveHit pos="510417" len="129167" kpslot="2" kpartic="3" vel="0.80315" />
+                            <BFD2GrooveHit pos="750000" len="127083" kpslot="2" kpartic="3" vel="0.614173" />
+                            <BFD2GrooveHit pos="997917" len="131250" kpslot="1" kpartic="0" vel="0.937008" />
+                            <BFD2GrooveHit pos="1002083" len="129167" kpslot="2" kpartic="3" vel="0.818898" />
+                            <BFD2GrooveHit pos="1252083" len="129167" kpslot="2" kpartic="3" vel="0.653543" />
+                            <BFD2GrooveHit pos="1506250" len="129167" kpslot="2" kpartic="3" vel="0.677165" />
+                            <BFD2GrooveHit pos="1750000" len="129167" kpslot="2" kpartic="3" vel="0.700787" />
+                            <BFD2GrooveHit pos="1995833" len="127083" kpslot="0" kpartic="0" vel="0.834646" />
+                            <BFD2GrooveHit pos="2004167" len="129167" kpslot="2" kpartic="3" vel="0.740157" />
+                            <BFD2GrooveHit pos="2250000" len="129167" kpslot="0" kpartic="0" vel="0.905512" />
+                            <BFD2GrooveHit pos="2256250" len="129167" kpslot="2" kpartic="3" vel="0.669291" />
+                            <BFD2GrooveHit pos="2502083" len="127083" kpslot="2" kpartic="3" vel="0.716535" />
+                            <BFD2GrooveHit pos="2745833" len="127083" kpslot="2" kpartic="3" vel="0.669291" />
+                            <BFD2GrooveHit pos="3006250" len="129167" kpslot="1" kpartic="0" vel="0.92126" />
+                            <BFD2GrooveHit pos="3012500" len="127083" kpslot="2" kpartic="3" vel="0.771654" />
+                            <BFD2GrooveHit pos="3254167" len="129167" kpslot="2" kpartic="3" vel="0.724409" />
+                            <BFD2GrooveHit pos="3508333" len="131250" kpslot="2" kpartic="3" vel="0.755906" />
+                            <BFD2GrooveHit pos="3754167" len="129167" kpslot="2" kpartic="3" vel="0.653543" />
+                            <BFD2GrooveHit pos="4000000" len="127083" kpslot="0" kpartic="0" vel="0.834646" />
+                            <BFD2GrooveHit pos="4008333" len="129167" kpslot="2" kpartic="3" vel="0.755906" />
+                            <BFD2GrooveHit pos="4247917" len="127083" kpslot="0" kpartic="0" vel="0.92126" />
+                            <BFD2GrooveHit pos="4250000" len="129167" kpslot="2" kpartic="3" vel="0.653543" />
+                            <BFD2GrooveHit pos="4508333" len="129167" kpslot="2" kpartic="3" vel="0.740157" />
+                            <BFD2GrooveHit pos="4747917" len="129167" kpslot="2" kpartic="3" vel="0.637795" />
+                            <BFD2GrooveHit pos="5000000" len="129167" kpslot="1" kpartic="0" vel="0.897638" />
+                            <BFD2GrooveHit pos="5008333" len="131250" kpslot="2" kpartic="3" vel="0.84252" />
+                            <BFD2GrooveHit pos="5247917" len="129167" kpslot="2" kpartic="3" vel="0.622047" />
+                            <BFD2GrooveHit pos="5504167" len="129167" kpslot="2" kpartic="3" vel="0.818898" />
+                            <BFD2GrooveHit pos="5747917" len="131250" kpslot="2" kpartic="3" vel="0.724409" />
+                            <BFD2GrooveHit pos="6000000" len="127083" kpslot="0" kpartic="0" vel="0.811024" />
+                            <BFD2GrooveHit pos="6004167" len="129167" kpslot="2" kpartic="3" vel="0.76378" />
+                            <BFD2GrooveHit pos="6252083" len="131250" kpslot="0" kpartic="0" vel="0.929134" />
+                            <BFD2GrooveHit pos="6256250" len="129167" kpslot="2" kpartic="3" vel="0.629921" />
+                            <BFD2GrooveHit pos="6500000" len="129167" kpslot="2" kpartic="3" vel="0.818898" />
+                            <BFD2GrooveHit pos="6747917" len="129167" kpslot="0" kpartic="0" vel="0.929134" />
+                            <BFD2GrooveHit pos="6752083" len="129167" kpslot="2" kpartic="3" vel="0.645669" />
+                            <BFD2GrooveHit pos="7002083" len="131250" kpslot="1" kpartic="0" vel="0.897638" />
+                            <BFD2GrooveHit pos="7008333" len="129167" kpslot="6" kpartic="0" vel="0.929134" />
+                            <BFD2GrooveHit pos="7510417" len="127083" kpslot="3" kpartic="0" vel="0.795276" />
+                            <BFD2GrooveHit pos="7750000" len="129167" kpslot="3" kpartic="0" vel="0.858268" />
+                        </VObjectArray>
+                    </BFD2Groove>
+                </BFD2GrooveSlot>
+            </VDictionaryPair>
+            <VDictionaryPair>
+                <VValue type="int" value="6" />
+                <BFD2GrooveSlot fill="false">
+                    <BFD2Groove name="groove" timeformat="ticks" ppqn="1000000">
+                        <BFD2GrooveInfo name="info" info_library="BFD2" info_author="Mikael Adle" info_authurl="mikaeladle" info_name="dimm05_80" info_rating="3" bpm="80" genre="Rock" bars="2" timesig="4/4" />
+                        <VObjectArray name="kitpieces" count="3">
+                            <BFD2GrooveKitPiece kpclass="Kick" kpindex="0" slotindex="0">
+                                <VObjectArray name="artics" count="3">
+                                    <BFD2GrooveArtic articid="0" articname="Hit" />
+                                    <BFD2GrooveArtic articid="1" articname="No Snare" />
+                                    <BFD2GrooveArtic articid="8000" articname="Choke" />
+                                </VObjectArray>
+                            </BFD2GrooveKitPiece>
+                            <BFD2GrooveKitPiece kpclass="Hihat" kpindex="0" slotindex="2">
+                                <VObjectArray name="artics" count="16">
+                                    <BFD2GrooveArtic articid="0" articname="Open tip" />
+                                    <BFD2GrooveArtic articid="1" articname="Open shank" />
+                                    <BFD2GrooveArtic articid="2" articname="3/4 tip" />
+                                    <BFD2GrooveArtic articid="3" articname="3/4 shank" />
+                                    <BFD2GrooveArtic articid="4" articname="Half tip" />
+                                    <BFD2GrooveArtic articid="5" articname="Half shank" />
+                                    <BFD2GrooveArtic articid="6" articname="1/4 tip" />
+                                    <BFD2GrooveArtic articid="7" articname="1/4 shank" />
+                                    <BFD2GrooveArtic articid="8" articname="Closed tip" />
+                                    <BFD2GrooveArtic articid="9" articname="Closed shank" />
+                                    <BFD2GrooveArtic articid="10" articname="Pedal" />
+                                    <BFD2GrooveArtic articid="11" articname="Variable tip" />
+                                    <BFD2GrooveArtic articid="12" articname="Variable shank" />
+                                    <BFD2GrooveArtic articid="8000" articname="Choke" />
+                                    <BFD2GrooveArtic articid="13" articname="Splash" />
+                                    <BFD2GrooveArtic articid="14" articname="Closed tip" />
+                                </VObjectArray>
+                            </BFD2GrooveKitPiece>
+                            <BFD2GrooveKitPiece kpclass="Snare" kpindex="0" slotindex="1">
+                                <VObjectArray name="artics" count="8">
+                                    <BFD2GrooveArtic articid="0" articname="Hit" />
+                                    <BFD2GrooveArtic articid="1" articname="Drag" />
+                                    <BFD2GrooveArtic articid="2" articname="Flam" />
+                                    <BFD2GrooveArtic articid="3" articname="Rim shot" />
+                                    <BFD2GrooveArtic articid="4" articname="Side stick" />
+                                    <BFD2GrooveArtic articid="5" articname="Half" />
+                                    <BFD2GrooveArtic articid="6" articname="Rim Click" />
+                                    <BFD2GrooveArtic articid="8000" articname="Choke" />
+                                </VObjectArray>
+                            </BFD2GrooveKitPiece>
+                        </VObjectArray>
+                        <VObjectArray name="hits" count="34">
+                            <BFD2GrooveHit pos="0" len="125000" kpslot="0" kpartic="0" vel="0.795276" />
+                            <BFD2GrooveHit pos="6250" len="127083" kpslot="2" kpartic="3" vel="0.897638" />
+                            <BFD2GrooveHit pos="500000" len="125000" kpslot="2" kpartic="3" vel="0.748031" />
+                            <BFD2GrooveHit pos="750000" len="127083" kpslot="0" kpartic="0" vel="0.724409" />
+                            <BFD2GrooveHit pos="1002083" len="127083" kpslot="2" kpartic="3" vel="0.889764" />
+                            <BFD2GrooveHit pos="1008333" len="127083" kpslot="1" kpartic="0" vel="0.897638" />
+                            <BFD2GrooveHit pos="1506250" len="127083" kpslot="2" kpartic="3" vel="0.80315" />
+                            <BFD2GrooveHit pos="1745833" len="127083" kpslot="1" kpartic="0" vel="0.88189" />
+                            <BFD2GrooveHit pos="1989583" len="125000" kpslot="0" kpartic="0" vel="0.732283" />
+                            <BFD2GrooveHit pos="2000000" len="127083" kpslot="2" kpartic="3" vel="0.818898" />
+                            <BFD2GrooveHit pos="2245833" len="127083" kpslot="1" kpartic="0" vel="0.677165" />
+                            <BFD2GrooveHit pos="2489583" len="125000" kpslot="0" kpartic="0" vel="0.771654" />
+                            <BFD2GrooveHit pos="2504167" len="122917" kpslot="2" kpartic="3" vel="0.755906" />
+                            <BFD2GrooveHit pos="2985417" len="125000" kpslot="1" kpartic="0" vel="0.913386" />
+                            <BFD2GrooveHit pos="3004167" len="127083" kpslot="2" kpartic="3" vel="0.913386" />
+                            <BFD2GrooveHit pos="3493750" len="127083" kpslot="2" kpartic="3" vel="0.834646" />
+                            <BFD2GrooveHit pos="3745833" len="127083" kpslot="1" kpartic="0" vel="0.818898" />
+                            <BFD2GrooveHit pos="4000000" len="125000" kpslot="0" kpartic="0" vel="0.771654" />
+                            <BFD2GrooveHit pos="4000000" len="127083" kpslot="2" kpartic="3" vel="0.787402" />
+                            <BFD2GrooveHit pos="4239583" len="127083" kpslot="1" kpartic="0" vel="0.80315" />
+                            <BFD2GrooveHit pos="4495833" len="127083" kpslot="0" kpartic="0" vel="0.755906" />
+                            <BFD2GrooveHit pos="4500000" len="125000" kpslot="2" kpartic="3" vel="0.795276" />
+                            <BFD2GrooveHit pos="4995833" len="125000" kpslot="1" kpartic="0" vel="0.897638" />
+                            <BFD2GrooveHit pos="4997917" len="127083" kpslot="2" kpartic="3" vel="0.866142" />
+                            <BFD2GrooveHit pos="5506250" len="125000" kpslot="2" kpartic="3" vel="0.771654" />
+                            <BFD2GrooveHit pos="5743750" len="127083" kpslot="1" kpartic="0" vel="0.80315" />
+                            <BFD2GrooveHit pos="5993750" len="127083" kpslot="0" kpartic="0" vel="0.771654" />
+                            <BFD2GrooveHit pos="6000000" len="127083" kpslot="2" kpartic="3" vel="0.795276" />
+                            <BFD2GrooveHit pos="6245833" len="125000" kpslot="1" kpartic="0" vel="0.692913" />
+                            <BFD2GrooveHit pos="6500000" len="125000" kpslot="0" kpartic="0" vel="0.771654" />
+                            <BFD2GrooveHit pos="6502083" len="125000" kpslot="2" kpartic="3" vel="0.795276" />
+                            <BFD2GrooveHit pos="7000000" len="127083" kpslot="1" kpartic="0" vel="0.913386" />
+                            <BFD2GrooveHit pos="7010417" len="125000" kpslot="2" kpartic="3" vel="0.874016" />
+                            <BFD2GrooveHit pos="7508333" len="125000" kpslot="2" kpartic="3" vel="0.818898" />
+                        </VObjectArray>
+                    </BFD2Groove>
+                </BFD2GrooveSlot>
+            </VDictionaryPair>
+            <VDictionaryPair>
+                <VValue type="int" value="7" />
+                <BFD2GrooveSlot fill="false">
+                    <BFD2Groove name="groove" timeformat="ticks" ppqn="1000000">
+                        <BFD2GrooveInfo name="info" info_library="BFD2" info_author="Mikael Adle" info_authurl="mikaeladle" info_name="dimm02_80" info_rating="3" bpm="80" genre="Rock" bars="2" timesig="4/4" />
+                        <VObjectArray name="kitpieces" count="4">
+                            <BFD2GrooveKitPiece kpclass="Cymbal" kpindex="0" slotindex="6">
+                                <VObjectArray name="artics" count="5">
+                                    <BFD2GrooveArtic articid="0" articname="Hit" />
+                                    <BFD2GrooveArtic articid="1" articname="Bell" />
+                                    <BFD2GrooveArtic articid="2" articname="Edge" />
+                                    <BFD2GrooveArtic articid="8000" articname="Choke" />
+                                    <BFD2GrooveArtic articid="3" articname="Bow" />
+                                </VObjectArray>
+                            </BFD2GrooveKitPiece>
+                            <BFD2GrooveKitPiece kpclass="Kick" kpindex="0" slotindex="0">
+                                <VObjectArray name="artics" count="3">
+                                    <BFD2GrooveArtic articid="0" articname="Hit" />
+                                    <BFD2GrooveArtic articid="1" articname="No Snare" />
+                                    <BFD2GrooveArtic articid="8000" articname="Choke" />
+                                </VObjectArray>
+                            </BFD2GrooveKitPiece>
+                            <BFD2GrooveKitPiece kpclass="Hihat" kpindex="0" slotindex="2">
+                                <VObjectArray name="artics" count="16">
+                                    <BFD2GrooveArtic articid="0" articname="Open tip" />
+                                    <BFD2GrooveArtic articid="1" articname="Open shank" />
+                                    <BFD2GrooveArtic articid="2" articname="3/4 tip" />
+                                    <BFD2GrooveArtic articid="3" articname="3/4 shank" />
+                                    <BFD2GrooveArtic articid="4" articname="Half tip" />
+                                    <BFD2GrooveArtic articid="5" articname="Half shank" />
+                                    <BFD2GrooveArtic articid="6" articname="1/4 tip" />
+                                    <BFD2GrooveArtic articid="7" articname="1/4 shank" />
+                                    <BFD2GrooveArtic articid="8" articname="Closed tip" />
+                                    <BFD2GrooveArtic articid="9" articname="Closed shank" />
+                                    <BFD2GrooveArtic articid="10" articname="Pedal" />
+                                    <BFD2GrooveArtic articid="11" articname="Variable tip" />
+                                    <BFD2GrooveArtic articid="12" articname="Variable shank" />
+                                    <BFD2GrooveArtic articid="8000" articname="Choke" />
+                                    <BFD2GrooveArtic articid="13" articname="Splash" />
+                                    <BFD2GrooveArtic articid="14" articname="Closed tip" />
+                                </VObjectArray>
+                            </BFD2GrooveKitPiece>
+                            <BFD2GrooveKitPiece kpclass="Snare" kpindex="0" slotindex="1">
+                                <VObjectArray name="artics" count="8">
+                                    <BFD2GrooveArtic articid="0" articname="Hit" />
+                                    <BFD2GrooveArtic articid="1" articname="Drag" />
+                                    <BFD2GrooveArtic articid="2" articname="Flam" />
+                                    <BFD2GrooveArtic articid="3" articname="Rim shot" />
+                                    <BFD2GrooveArtic articid="4" articname="Side stick" />
+                                    <BFD2GrooveArtic articid="5" articname="Half" />
+                                    <BFD2GrooveArtic articid="6" articname="Rim Click" />
+                                    <BFD2GrooveArtic articid="8000" articname="Choke" />
+                                </VObjectArray>
+                            </BFD2GrooveKitPiece>
+                        </VObjectArray>
+                        <VObjectArray name="hits" count="30">
+                            <BFD2GrooveHit pos="0" len="125000" kpslot="6" kpartic="0" vel="0.944882" />
+                            <BFD2GrooveHit pos="0" len="127083" kpslot="0" kpartic="0" vel="0.771654" />
+                            <BFD2GrooveHit pos="502083" len="122917" kpslot="2" kpartic="2" vel="0.629921" />
+                            <BFD2GrooveHit pos="754167" len="127083" kpslot="0" kpartic="0" vel="0.708661" />
+                            <BFD2GrooveHit pos="1006250" len="125000" kpslot="2" kpartic="3" vel="0.866142" />
+                            <BFD2GrooveHit pos="1006250" len="125000" kpslot="1" kpartic="0" vel="0.889764" />
+                            <BFD2GrooveHit pos="1497917" len="127083" kpslot="0" kpartic="0" vel="0.76378" />
+                            <BFD2GrooveHit pos="1502083" len="125000" kpslot="6" kpartic="0" vel="0.929134" />
+                            <BFD2GrooveHit pos="2000000" len="125000" kpslot="2" kpartic="3" vel="0.787402" />
+                            <BFD2GrooveHit pos="2243750" len="125000" kpslot="1" kpartic="0" vel="0.84252" />
+                            <BFD2GrooveHit pos="2485417" len="127083" kpslot="0" kpartic="0" vel="0.740157" />
+                            <BFD2GrooveHit pos="2495833" len="127083" kpslot="2" kpartic="3" vel="0.732283" />
+                            <BFD2GrooveHit pos="3000000" len="127083" kpslot="1" kpartic="0" vel="0.755906" />
+                            <BFD2GrooveHit pos="3008333" len="125000" kpslot="2" kpartic="3" vel="0.84252" />
+                            <BFD2GrooveHit pos="3500000" len="127083" kpslot="2" kpartic="3" vel="0.771654" />
+                            <BFD2GrooveHit pos="3993750" len="127083" kpslot="0" kpartic="0" vel="0.811024" />
+                            <BFD2GrooveHit pos="3995833" len="127083" kpslot="6" kpartic="0" vel="0.913386" />
+                            <BFD2GrooveHit pos="4495833" len="125000" kpslot="2" kpartic="3" vel="0.614173" />
+                            <BFD2GrooveHit pos="4743750" len="127083" kpslot="0" kpartic="0" vel="0.692913" />
+                            <BFD2GrooveHit pos="4989583" len="127083" kpslot="1" kpartic="0" vel="0.858268" />
+                            <BFD2GrooveHit pos="4995833" len="125000" kpslot="2" kpartic="3" vel="0.913386" />
+                            <BFD2GrooveHit pos="5497917" len="127083" kpslot="0" kpartic="0" vel="0.795276" />
+                            <BFD2GrooveHit pos="5500000" len="127083" kpslot="6" kpartic="0" vel="0.913386" />
+                            <BFD2GrooveHit pos="6002083" len="125000" kpslot="2" kpartic="3" vel="0.740157" />
+                            <BFD2GrooveHit pos="6254167" len="127083" kpslot="1" kpartic="0" vel="0.716535" />
+                            <BFD2GrooveHit pos="6497917" len="127083" kpslot="0" kpartic="0" vel="0.755906" />
+                            <BFD2GrooveHit pos="6502083" len="125000" kpslot="2" kpartic="2" vel="0.732283" />
+                            <BFD2GrooveHit pos="6997917" len="125000" kpslot="1" kpartic="0" vel="0.874016" />
+                            <BFD2GrooveHit pos="7012500" len="122917" kpslot="2" kpartic="3" vel="0.84252" />
+                            <BFD2GrooveHit pos="7502083" len="125000" kpslot="2" kpartic="2" vel="0.826772" />
+                        </VObjectArray>
+                    </BFD2Groove>
+                </BFD2GrooveSlot>
+            </VDictionaryPair>
+        </VDictionary>
+        <BFD2BundleUserState name="userstate" gridswingamount="0.5">
+            <BFD2QuantizeTemplate name="gridquantizetemplate" div="16" divtype="normal" swing="0" />
+        </BFD2BundleUserState>
+    </BFD2GrooveBundle>
+    <BFD2HumanizeTemplate name="fx" bypass="false" qstrength="0" timevarmax="0" timevarprob="0.25" timemult="1" timediv="1" comp="1" gain="0" simplicity="0" velvarmax="0" velvarprob="0.25" sstrength="0">
+        <BFD2QuantizeTemplate name="qtemplate" div="16" divtype="normal" swing="0" />
+        <BFD2SwingTemplate name="stemplate" swingname="1/16 Note">
+            <VFloatVectorMapXY name="timemap" count="3">
+                <element x="0" y="0" />
+                <element x="0.25" y="0.333333" />
+                <element x="0.5" y="0.5" />
+            </VFloatVectorMapXY>
+        </BFD2SwingTemplate>
+    </BFD2HumanizeTemplate>
+    <BFD2PatternManagerSettings name="settings" loop="true" grvactive="true" latch="false" poly="false" synctolastbar="false" autofill="false" autofillperiod="16" autoplay="true" autoplaygroove="60" />
+    <BFD2PatternManagerUserState name="userstate" gridxpos="0" gridzoomscale="1" gridview="artic" gridtopline="0" songxpos="77" songzoomscale="4" palettelownote="60">
+        <VObjectArray name="gridcollapse" count="0" />
+        <VObjectArray name="paletteselectedgrooves" count="0" />
+    </BFD2PatternManagerUserState>
+    <BFD2MixerInfo name="mixerInfo" info_name="London Sessions - Funky" info_rating="3" />
+    <BFD2Mixer name="BFD2Mixer" SourceEngine="BFD Eco" directBussMute="false" directBussSolo="false" directBussLevel="0.8" masterKickBleed="0.8" masterSnareBleed="0.8" masterOtherBleed="0.8" fxPower="true">
+        <VObjectArray name="MixerChannels" count="17">
+            <BFD2MixerChan solo="false" soloIsolate="false" mute="false" gain="0.593814" chanType="2" micID="0" slotID="0" chanName="Kick" userChanName="Kick" stereo="false" output="Master" outputID="0" phaseInvert="false" inputMainTrim="0.8" inputSideTrim="0.8" pan="0.5" recArmed="false">
+                <VObjectArray name="Effects" count="4">
+                    <BFD2MixerChanEffect active="true" stereo="false" effect="EQ" presetName="default">
+                        <VValue name="Active" type="string" value="On" />
+                        <VValue name="LF-Bell" type="string" value="off" />
+                        <VValue name="LF-Freq" type="string" value="193.34 Hz" />
+                        <VValue name="LF-Gain" type="string" value="1.821 dB" />
+                        <VValue name="LF-In" type="string" value="on" />
+                        <VValue name="LMF-Q" type="string" value="1.000" />
+                        <VValue name="LMF-Freq" type="string" value="424.71 Hz" />
+                        <VValue name="LMF-Gain" type="string" value="-7.362 dB" />
+                        <VValue name="LMF-In" type="string" value="on" />
+                        <VValue name="HMF-Q" type="string" value="1.000" />
+                        <VValue name="HMF-Freq" type="string" value="2.50 kHz" />
+                        <VValue name="HMF-Gain" type="string" value="0 dB" />
+                        <VValue name="HMF-In" type="string" value="off" />
+                        <VValue name="HF-Bell" type="string" value="off" />
+                        <VValue name="HF-Freq" type="string" value="4.68 kHz" />
+                        <VValue name="HF-Gain" type="string" value="2.195 dB" />
+                        <VValue name="HF-In" type="string" value="on" />
+                        <VValue name="Sidechain" type="string" value="off" />
+                        <VValue name="Wet Mix" type="string" value="100 %" />
+                    </BFD2MixerChanEffect>
+                    <BFD2MixerChanEffect active="false" stereo="false" effect="" presetName="" />
+                    <BFD2MixerChanEffect active="false" stereo="false" effect="" presetName="" />
+                    <BFD2MixerChanEffect active="false" stereo="false" effect="" presetName="" />
+                </VObjectArray>
+                <VObjectArray name="Sends" count="4">
+                    <BFD2MixerChanSend side_chain="false" send_level="0.47" active="true" dest_chan_name="Aux1" send_from="PostInsert" />
+                    <BFD2MixerChanSend side_chain="false" send_level="0.025" active="true" dest_chan_name="Aux2" send_from="PostInsert" />
+                    <BFD2MixerChanSend side_chain="false" send_level="0" active="false" dest_chan_name="" send_from="PostInsert" />
+                    <BFD2MixerChanSend side_chain="false" send_level="0" active="false" dest_chan_name="" send_from="PostInsert" />
+                </VObjectArray>
+            </BFD2MixerChan>
+            <BFD2MixerChan solo="false" soloIsolate="false" mute="false" gain="0.820619" chanType="2" micID="0" slotID="1" chanName="Snare" userChanName="Snare" stereo="false" output="Master" outputID="0" phaseInvert="false" inputMainTrim="0.8" inputSideTrim="0.8" pan="0.5" recArmed="false">
+                <VObjectArray name="Effects" count="4">
+                    <BFD2MixerChanEffect active="true" stereo="false" effect="EQ" presetName="default">
+                        <VValue name="Active" type="string" value="On" />
+                        <VValue name="LF-Bell" type="string" value="off" />
+                        <VValue name="LF-Freq" type="string" value="186.91 Hz" />
+                        <VValue name="LF-Gain" type="string" value="1.587 dB" />
+                        <VValue name="LF-In" type="string" value="on" />
+                        <VValue name="LMF-Q" type="string" value="1.000" />
+                        <VValue name="LMF-Freq" type="string" value="252.98 Hz" />
+                        <VValue name="LMF-Gain" type="string" value="2.716 dB" />
+                        <VValue name="LMF-In" type="string" value="on" />
+                        <VValue name="HMF-Q" type="string" value="1.000" />
+                        <VValue name="HMF-Freq" type="string" value="2.50 kHz" />
+                        <VValue name="HMF-Gain" type="string" value="-3.828 dB" />
+                        <VValue name="HMF-In" type="string" value="on" />
+                        <VValue name="HF-Bell" type="string" value="off" />
+                        <VValue name="HF-Freq" type="string" value="4.33 kHz" />
+                        <VValue name="HF-Gain" type="string" value="1.443 dB" />
+                        <VValue name="HF-In" type="string" value="on" />
+                        <VValue name="Sidechain" type="string" value="off" />
+                        <VValue name="Wet Mix" type="string" value="100 %" />
+                    </BFD2MixerChanEffect>
+                    <BFD2MixerChanEffect active="false" stereo="false" effect="EnvShaper" presetName="default">
+                        <VValue name="Active" type="string" value="Off" />
+                        <VValue name="Mix" type="string" value="20 %" />
+                        <VValue name="Attack" type="string" value="5.1 dB" />
+                        <VValue name="Sustain" type="string" value="-5.8 dB" />
+                        <VValue name="Gain" type="string" value="1.7 dB" />
+                        <VValue name="Sensitivity" type="string" value="63 %" />
+                    </BFD2MixerChanEffect>
+                    <BFD2MixerChanEffect active="true" stereo="false" effect="TinCanVerb" presetName="default">
+                        <VValue name="Active" type="string" value="On" />
+                        <VValue name="Size" type="string" value="45 %" />
+                        <VValue name="Decay-Time" type="string" value="50 %" />
+                        <VValue name="Damp" type="string" value="10 %" />
+                        <VValue name="Pinch" type="string" value="0 %" />
+                        <VValue name="Squeeze" type="string" value="0 %" />
+                        <VValue name="Freeze" type="string" value="off" />
+                        <VValue name="Wet Mix" type="string" value="14 %" />
+                    </BFD2MixerChanEffect>
+                    <BFD2MixerChanEffect active="false" stereo="false" effect="" presetName="" />
+                </VObjectArray>
+                <VObjectArray name="Sends" count="4">
+                    <BFD2MixerChanSend side_chain="false" send_level="0.175" active="true" dest_chan_name="Aux1" send_from="PostInsert" />
+                    <BFD2MixerChanSend side_chain="false" send_level="0.115" active="true" dest_chan_name="Aux2" send_from="PostInsert" />
+                    <BFD2MixerChanSend side_chain="false" send_level="0" active="false" dest_chan_name="" send_from="PostInsert" />
+                    <BFD2MixerChanSend side_chain="false" send_level="0" active="false" dest_chan_name="" send_from="PostInsert" />
+                </VObjectArray>
+            </BFD2MixerChan>
+            <BFD2MixerChan solo="false" soloIsolate="false" mute="false" gain="0.501031" chanType="2" micID="0" slotID="2" chanName="Hihat" userChanName="Hihat" stereo="false" output="Master" outputID="0" phaseInvert="false" inputMainTrim="0.8" inputSideTrim="0.8" pan="0.55" recArmed="false">
+                <VObjectArray name="Effects" count="4">
+                    <BFD2MixerChanEffect active="true" stereo="false" effect="EQ" presetName="default">
+                        <VValue name="Active" type="string" value="On" />
+                        <VValue name="LF-Bell" type="string" value="off" />
+                        <VValue name="LF-Freq" type="string" value="321.25 Hz" />
+                        <VValue name="LF-Gain" type="string" value="-9.988 dB" />
+                        <VValue name="LF-In" type="string" value="on" />
+                        <VValue name="LMF-Q" type="string" value="1.000" />
+                        <VValue name="LMF-Freq" type="string" value="800.00 Hz" />
+                        <VValue name="LMF-Gain" type="string" value="0 dB" />
+                        <VValue name="LMF-In" type="string" value="off" />
+                        <VValue name="HMF-Q" type="string" value="1.000" />
+                        <VValue name="HMF-Freq" type="string" value="2.35 kHz" />
+                        <VValue name="HMF-Gain" type="string" value="0.956 dB" />
+                        <VValue name="HMF-In" type="string" value="on" />
+                        <VValue name="HF-Bell" type="string" value="off" />
+                        <VValue name="HF-Freq" type="string" value="4.00 kHz" />
+                        <VValue name="HF-Gain" type="string" value="2.984 dB" />
+                        <VValue name="HF-In" type="string" value="on" />
+                        <VValue name="Sidechain" type="string" value="off" />
+                        <VValue name="Wet Mix" type="string" value="100 %" />
+                    </BFD2MixerChanEffect>
+                    <BFD2MixerChanEffect active="false" stereo="false" effect="" presetName="" />
+                    <BFD2MixerChanEffect active="false" stereo="false" effect="" presetName="" />
+                    <BFD2MixerChanEffect active="false" stereo="false" effect="" presetName="" />
+                </VObjectArray>
+                <VObjectArray name="Sends" count="4">
+                    <BFD2MixerChanSend side_chain="false" send_level="0" active="false" dest_chan_name="Aux1" send_from="PostInsert" />
+                    <BFD2MixerChanSend side_chain="false" send_level="0" active="false" dest_chan_name="Aux2" send_from="PostInsert" />
+                    <BFD2MixerChanSend side_chain="false" send_level="0" active="false" dest_chan_name="" send_from="PostInsert" />
+                    <BFD2MixerChanSend side_chain="false" send_level="0" active="false" dest_chan_name="" send_from="PostInsert" />
+                </VObjectArray>
+            </BFD2MixerChan>
+            <BFD2MixerChan solo="false" soloIsolate="false" mute="false" gain="0.501031" chanType="2" micID="0" slotID="3" chanName="Floor Tom" userChanName="Floor Tom" stereo="false" output="Master" outputID="0" phaseInvert="false" inputMainTrim="0.8" inputSideTrim="0.8" pan="0.3" recArmed="false">
+                <VObjectArray name="Effects" count="4">
+                    <BFD2MixerChanEffect active="true" stereo="false" effect="EQ" presetName="default">
+                        <VValue name="Active" type="string" value="On" />
+                        <VValue name="LF-Bell" type="string" value="off" />
+                        <VValue name="LF-Freq" type="string" value="229.00 Hz" />
+                        <VValue name="LF-Gain" type="string" value="-3.305 dB" />
+                        <VValue name="LF-In" type="string" value="on" />
+                        <VValue name="LMF-Q" type="string" value="1.000" />
+                        <VValue name="LMF-Freq" type="string" value="800.00 Hz" />
+                        <VValue name="LMF-Gain" type="string" value="0 dB" />
+                        <VValue name="LMF-In" type="string" value="off" />
+                        <VValue name="HMF-Q" type="string" value="1.000" />
+                        <VValue name="HMF-Freq" type="string" value="2.58 kHz" />
+                        <VValue name="HMF-Gain" type="string" value="-4.125 dB" />
+                        <VValue name="HMF-In" type="string" value="on" />
+                        <VValue name="HF-Bell" type="string" value="off" />
+                        <VValue name="HF-Freq" type="string" value="4.00 kHz" />
+                        <VValue name="HF-Gain" type="string" value="-1.199 dB" />
+                        <VValue name="HF-In" type="string" value="on" />
+                        <VValue name="Sidechain" type="string" value="off" />
+                        <VValue name="Wet Mix" type="string" value="100 %" />
+                    </BFD2MixerChanEffect>
+                    <BFD2MixerChanEffect active="false" stereo="false" effect="" presetName="" />
+                    <BFD2MixerChanEffect active="false" stereo="false" effect="" presetName="" />
+                    <BFD2MixerChanEffect active="false" stereo="false" effect="" presetName="" />
+                </VObjectArray>
+                <VObjectArray name="Sends" count="4">
+                    <BFD2MixerChanSend side_chain="false" send_level="0.45" active="true" dest_chan_name="Aux1" send_from="PostInsert" />
+                    <BFD2MixerChanSend side_chain="false" send_level="0.125" active="true" dest_chan_name="Aux2" send_from="PostInsert" />
+                    <BFD2MixerChanSend side_chain="false" send_level="0" active="false" dest_chan_name="" send_from="PostInsert" />
+                    <BFD2MixerChanSend side_chain="false" send_level="0" active="false" dest_chan_name="" send_from="PostInsert" />
+                </VObjectArray>
+            </BFD2MixerChan>
+            <BFD2MixerChan solo="false" soloIsolate="false" mute="false" gain="0.573196" chanType="2" micID="0" slotID="4" chanName="Mid Tom" userChanName="Mid Tom" stereo="false" output="Master" outputID="0" phaseInvert="false" inputMainTrim="0.8" inputSideTrim="0.8" pan="0.325" recArmed="false">
+                <VObjectArray name="Effects" count="4">
+                    <BFD2MixerChanEffect active="true" stereo="false" effect="EQ" presetName="default">
+                        <VValue name="Active" type="string" value="On" />
+                        <VValue name="LF-Bell" type="string" value="off" />
+                        <VValue name="LF-Freq" type="string" value="310.56 Hz" />
+                        <VValue name="LF-Gain" type="string" value="-3.842 dB" />
+                        <VValue name="LF-In" type="string" value="on" />
+                        <VValue name="LMF-Q" type="string" value="1.000" />
+                        <VValue name="LMF-Freq" type="string" value="847.40 Hz" />
+                        <VValue name="LMF-Gain" type="string" value="-3.540 dB" />
+                        <VValue name="LMF-In" type="string" value="on" />
+                        <VValue name="HMF-Q" type="string" value="1.000" />
+                        <VValue name="HMF-Freq" type="string" value="2.50 kHz" />
+                        <VValue name="HMF-Gain" type="string" value="0 dB" />
+                        <VValue name="HMF-In" type="string" value="off" />
+                        <VValue name="HF-Bell" type="string" value="off" />
+                        <VValue name="HF-Freq" type="string" value="4.50 kHz" />
+                        <VValue name="HF-Gain" type="string" value="2.716 dB" />
+                        <VValue name="HF-In" type="string" value="on" />
+                        <VValue name="Sidechain" type="string" value="off" />
+                        <VValue name="Wet Mix" type="string" value="100 %" />
+                    </BFD2MixerChanEffect>
+                    <BFD2MixerChanEffect active="false" stereo="false" effect="" presetName="" />
+                    <BFD2MixerChanEffect active="false" stereo="false" effect="" presetName="" />
+                    <BFD2MixerChanEffect active="false" stereo="false" effect="" presetName="" />
+                </VObjectArray>
+                <VObjectArray name="Sends" count="4">
+                    <BFD2MixerChanSend side_chain="false" send_level="0.425" active="true" dest_chan_name="Aux1" send_from="PostInsert" />
+                    <BFD2MixerChanSend side_chain="false" send_level="0.175" active="true" dest_chan_name="Aux2" send_from="PostInsert" />
+                    <BFD2MixerChanSend side_chain="false" send_level="0" active="false" dest_chan_name="" send_from="PostInsert" />
+                    <BFD2MixerChanSend side_chain="false" send_level="0" active="false" dest_chan_name="" send_from="PostInsert" />
+                </VObjectArray>
+            </BFD2MixerChan>
+            <BFD2MixerChan solo="false" soloIsolate="false" mute="false" gain="0.604124" chanType="2" micID="0" slotID="5" chanName="High Tom" userChanName="High Tom" stereo="false" output="Master" outputID="0" phaseInvert="false" inputMainTrim="0.8" inputSideTrim="0.8" pan="0.675" recArmed="false">
+                <VObjectArray name="Effects" count="4">
+                    <BFD2MixerChanEffect active="true" stereo="false" effect="EQ" presetName="default">
+                        <VValue name="Active" type="string" value="On" />
+                        <VValue name="LF-Bell" type="string" value="off" />
+                        <VValue name="LF-Freq" type="string" value="280.57 Hz" />
+                        <VValue name="LF-Gain" type="string" value="-7.536 dB" />
+                        <VValue name="LF-In" type="string" value="on" />
+                        <VValue name="LMF-Q" type="string" value="1.000" />
+                        <VValue name="LMF-Freq" type="string" value="823.36 Hz" />
+                        <VValue name="LMF-Gain" type="string" value="-3.828 dB" />
+                        <VValue name="LMF-In" type="string" value="on" />
+                        <VValue name="HMF-Q" type="string" value="1.000" />
+                        <VValue name="HMF-Freq" type="string" value="2.50 kHz" />
+                        <VValue name="HMF-Gain" type="string" value="0 dB" />
+                        <VValue name="HMF-In" type="string" value="off" />
+                        <VValue name="HF-Bell" type="string" value="off" />
+                        <VValue name="HF-Freq" type="string" value="4.00 kHz" />
+                        <VValue name="HF-Gain" type="string" value="-1.443 dB" />
+                        <VValue name="HF-In" type="string" value="on" />
+                        <VValue name="Sidechain" type="string" value="off" />
+                        <VValue name="Wet Mix" type="string" value="100 %" />
+                    </BFD2MixerChanEffect>
+                    <BFD2MixerChanEffect active="false" stereo="false" effect="" presetName="" />
+                    <BFD2MixerChanEffect active="false" stereo="false" effect="" presetName="" />
+                    <BFD2MixerChanEffect active="false" stereo="false" effect="" presetName="" />
+                </VObjectArray>
+                <VObjectArray name="Sends" count="4">
+                    <BFD2MixerChanSend side_chain="false" send_level="0.465" active="true" dest_chan_name="Aux1" send_from="PostInsert" />
+                    <BFD2MixerChanSend side_chain="false" send_level="0.135" active="true" dest_chan_name="Aux2" send_from="PostInsert" />
+                    <BFD2MixerChanSend side_chain="false" send_level="0" active="false" dest_chan_name="" send_from="PostInsert" />
+                    <BFD2MixerChanSend side_chain="false" send_level="0" active="false" dest_chan_name="" send_from="PostInsert" />
+                </VObjectArray>
+            </BFD2MixerChan>
+            <BFD2MixerChan solo="false" soloIsolate="false" mute="false" gain="0.439175" chanType="2" micID="0" slotID="6" chanName="Crash" userChanName="Crash" stereo="false" output="Master" outputID="0" phaseInvert="false" inputMainTrim="0.8" inputSideTrim="0.8" pan="0.6" recArmed="false">
+                <VObjectArray name="Effects" count="4">
+                    <BFD2MixerChanEffect active="true" stereo="false" effect="EQ" presetName="default">
+                        <VValue name="Active" type="string" value="On" />
+                        <VValue name="LF-Bell" type="string" value="off" />
+                        <VValue name="LF-Freq" type="string" value="600.00 Hz" />
+                        <VValue name="LF-Gain" type="string" value="-9.988 dB" />
+                        <VValue name="LF-In" type="string" value="on" />
+                        <VValue name="LMF-Q" type="string" value="1.000" />
+                        <VValue name="LMF-Freq" type="string" value="800.00 Hz" />
+                        <VValue name="LMF-Gain" type="string" value="0 dB" />
+                        <VValue name="LMF-In" type="string" value="off" />
+                        <VValue name="HMF-Q" type="string" value="1.000" />
+                        <VValue name="HMF-Freq" type="string" value="2.50 kHz" />
+                        <VValue name="HMF-Gain" type="string" value="0 dB" />
+                        <VValue name="HMF-In" type="string" value="off" />
+                        <VValue name="HF-Bell" type="string" value="off" />
+                        <VValue name="HF-Freq" type="string" value="4.16 kHz" />
+                        <VValue name="HF-Gain" type="string" value="6.527 dB" />
+                        <VValue name="HF-In" type="string" value="on" />
+                        <VValue name="Sidechain" type="string" value="off" />
+                        <VValue name="Wet Mix" type="string" value="100 %" />
+                    </BFD2MixerChanEffect>
+                    <BFD2MixerChanEffect active="false" stereo="false" effect="" presetName="" />
+                    <BFD2MixerChanEffect active="false" stereo="false" effect="" presetName="" />
+                    <BFD2MixerChanEffect active="false" stereo="false" effect="" presetName="" />
+                </VObjectArray>
+                <VObjectArray name="Sends" count="4">
+                    <BFD2MixerChanSend side_chain="false" send_level="0" active="false" dest_chan_name="Aux1" send_from="PostInsert" />
+                    <BFD2MixerChanSend side_chain="false" send_level="0" active="false" dest_chan_name="Aux2" send_from="PostInsert" />
+                    <BFD2MixerChanSend side_chain="false" send_level="0" active="false" dest_chan_name="" send_from="PostInsert" />
+                    <BFD2MixerChanSend side_chain="false" send_level="0" active="false" dest_chan_name="" send_from="PostInsert" />
+                </VObjectArray>
+            </BFD2MixerChan>
+            <BFD2MixerChan solo="false" soloIsolate="false" mute="false" gain="0.459794" chanType="2" micID="0" slotID="7" chanName="Cymbal" userChanName="Cymbal" stereo="false" output="Master" outputID="0" phaseInvert="false" inputMainTrim="0.8" inputSideTrim="0.8" pan="0.725" recArmed="false">
+                <VObjectArray name="Effects" count="4">
+                    <BFD2MixerChanEffect active="true" stereo="false" effect="EQ" presetName="default">
+                        <VValue name="Active" type="string" value="On" />
+                        <VValue name="LF-Bell" type="string" value="off" />
+                        <VValue name="LF-Freq" type="string" value="186.91 Hz" />
+                        <VValue name="LF-Gain" type="string" value="-6.732 dB" />
+                        <VValue name="LF-In" type="string" value="on" />
+                        <VValue name="LMF-Q" type="string" value="1.000" />
+                        <VValue name="LMF-Freq" type="string" value="713.00 Hz" />
+                        <VValue name="LMF-Gain" type="string" value="-4.125 dB" />
+                        <VValue name="LMF-In" type="string" value="on" />
+                        <VValue name="HMF-Q" type="string" value="1.000" />
+                        <VValue name="HMF-Freq" type="string" value="2.66 kHz" />
+                        <VValue name="HMF-Gain" type="string" value="-4.748 dB" />
+                        <VValue name="HMF-In" type="string" value="on" />
+                        <VValue name="HF-Bell" type="string" value="off" />
+                        <VValue name="HF-Freq" type="string" value="3.70 kHz" />
+                        <VValue name="HF-Gain" type="string" value="8.803 dB" />
+                        <VValue name="HF-In" type="string" value="on" />
+                        <VValue name="Sidechain" type="string" value="off" />
+                        <VValue name="Wet Mix" type="string" value="100 %" />
+                    </BFD2MixerChanEffect>
+                    <BFD2MixerChanEffect active="false" stereo="false" effect="" presetName="" />
+                    <BFD2MixerChanEffect active="false" stereo="false" effect="" presetName="" />
+                    <BFD2MixerChanEffect active="false" stereo="false" effect="" presetName="" />
+                </VObjectArray>
+                <VObjectArray name="Sends" count="4">
+                    <BFD2MixerChanSend side_chain="false" send_level="0" active="false" dest_chan_name="Aux1" send_from="PostInsert" />
+                    <BFD2MixerChanSend side_chain="false" send_level="0" active="false" dest_chan_name="Aux2" send_from="PostInsert" />
+                    <BFD2MixerChanSend side_chain="false" send_level="0" active="false" dest_chan_name="" send_from="PostInsert" />
+                    <BFD2MixerChanSend side_chain="false" send_level="0" active="false" dest_chan_name="" send_from="PostInsert" />
+                </VObjectArray>
+            </BFD2MixerChan>
+            <BFD2MixerChan solo="false" soloIsolate="false" mute="false" gain="0.721649" chanType="2" micID="0" slotID="8" chanName="Ride" userChanName="Ride" stereo="false" output="Master" outputID="0" phaseInvert="false" inputMainTrim="0.8" inputSideTrim="0.8" pan="0.875" recArmed="false">
+                <VObjectArray name="Effects" count="4">
+                    <BFD2MixerChanEffect active="true" stereo="false" effect="EQ" presetName="default">
+                        <VValue name="Active" type="string" value="On" />
+                        <VValue name="LF-Bell" type="string" value="off" />
+                        <VValue name="LF-Freq" type="string" value="600.00 Hz" />
+                        <VValue name="LF-Gain" type="string" value="-16.50 dB" />
+                        <VValue name="LF-In" type="string" value="on" />
+                        <VValue name="LMF-Q" type="string" value="0.500" />
+                        <VValue name="LMF-Freq" type="string" value="1.30 kHz" />
+                        <VValue name="LMF-Gain" type="string" value="-8.803 dB" />
+                        <VValue name="LMF-In" type="string" value="on" />
+                        <VValue name="HMF-Q" type="string" value="1.567" />
+                        <VValue name="HMF-Freq" type="string" value="2.58 kHz" />
+                        <VValue name="HMF-Gain" type="string" value="-2.195 dB" />
+                        <VValue name="HMF-In" type="string" value="on" />
+                        <VValue name="HF-Bell" type="string" value="off" />
+                        <VValue name="HF-Freq" type="string" value="4.00 kHz" />
+                        <VValue name="HF-Gain" type="string" value="0 dB" />
+                        <VValue name="HF-In" type="string" value="off" />
+                        <VValue name="Sidechain" type="string" value="off" />
+                        <VValue name="Wet Mix" type="string" value="100 %" />
+                    </BFD2MixerChanEffect>
+                    <BFD2MixerChanEffect active="false" stereo="false" effect="" presetName="" />
+                    <BFD2MixerChanEffect active="false" stereo="false" effect="" presetName="" />
+                    <BFD2MixerChanEffect active="false" stereo="false" effect="" presetName="" />
+                </VObjectArray>
+                <VObjectArray name="Sends" count="4">
+                    <BFD2MixerChanSend side_chain="false" send_level="0" active="false" dest_chan_name="Aux1" send_from="PostInsert" />
+                    <BFD2MixerChanSend side_chain="false" send_level="0" active="false" dest_chan_name="Aux2" send_from="PostInsert" />
+                    <BFD2MixerChanSend side_chain="false" send_level="0" active="false" dest_chan_name="" send_from="PostInsert" />
+                    <BFD2MixerChanSend side_chain="false" send_level="0" active="false" dest_chan_name="" send_from="PostInsert" />
+                </VObjectArray>
+            </BFD2MixerChan>
+            <BFD2MixerChan solo="false" soloIsolate="false" mute="false" gain="0.8" chanType="2" micID="0" slotID="9" chanName="Perc 1" userChanName="Perc 1" stereo="false" output="Master" outputID="0" phaseInvert="false" inputMainTrim="0.8" inputSideTrim="0.8" pan="0.5" recArmed="false">
+                <VObjectArray name="Effects" count="4">
+                    <BFD2MixerChanEffect active="false" stereo="false" effect="EQ" presetName="default">
+                        <VValue name="Active" type="string" value="Off" />
+                        <VValue name="LF-Bell" type="string" value="off" />
+                        <VValue name="LF-Freq" type="string" value="200.00 Hz" />
+                        <VValue name="LF-Gain" type="string" value="0 dB" />
+                        <VValue name="LF-In" type="string" value="off" />
+                        <VValue name="LMF-Q" type="string" value="1.000" />
+                        <VValue name="LMF-Freq" type="string" value="800.00 Hz" />
+                        <VValue name="LMF-Gain" type="string" value="0 dB" />
+                        <VValue name="LMF-In" type="string" value="off" />
+                        <VValue name="HMF-Q" type="string" value="1.000" />
+                        <VValue name="HMF-Freq" type="string" value="2.50 kHz" />
+                        <VValue name="HMF-Gain" type="string" value="0 dB" />
+                        <VValue name="HMF-In" type="string" value="off" />
+                        <VValue name="HF-Bell" type="string" value="off" />
+                        <VValue name="HF-Freq" type="string" value="4.00 kHz" />
+                        <VValue name="HF-Gain" type="string" value="0 dB" />
+                        <VValue name="HF-In" type="string" value="off" />
+                        <VValue name="Sidechain" type="string" value="off" />
+                        <VValue name="Wet Mix" type="string" value="100 %" />
+                    </BFD2MixerChanEffect>
+                    <BFD2MixerChanEffect active="false" stereo="false" effect="" presetName="" />
+                    <BFD2MixerChanEffect active="false" stereo="false" effect="" presetName="" />
+                    <BFD2MixerChanEffect active="false" stereo="false" effect="" presetName="" />
+                </VObjectArray>
+                <VObjectArray name="Sends" count="4">
+                    <BFD2MixerChanSend side_chain="false" send_level="0" active="false" dest_chan_name="Aux1" send_from="PostInsert" />
+                    <BFD2MixerChanSend side_chain="false" send_level="0" active="false" dest_chan_name="Aux2" send_from="PostInsert" />
+                    <BFD2MixerChanSend side_chain="false" send_level="0" active="false" dest_chan_name="" send_from="PostInsert" />
+                    <BFD2MixerChanSend side_chain="false" send_level="0" active="false" dest_chan_name="" send_from="PostInsert" />
+                </VObjectArray>
+            </BFD2MixerChan>
+            <BFD2MixerChan solo="false" soloIsolate="false" mute="false" gain="0.8" chanType="2" micID="0" slotID="10" chanName="Tom 4" userChanName="Tom 4" stereo="false" output="Master" outputID="0" phaseInvert="false" inputMainTrim="0.8" inputSideTrim="0.8" pan="0.5" recArmed="false">
+                <VObjectArray name="Effects" count="4">
+                    <BFD2MixerChanEffect active="false" stereo="false" effect="EQ" presetName="default">
+                        <VValue name="Active" type="string" value="Off" />
+                        <VValue name="LF-Bell" type="string" value="off" />
+                        <VValue name="LF-Freq" type="string" value="200.00 Hz" />
+                        <VValue name="LF-Gain" type="string" value="0 dB" />
+                        <VValue name="LF-In" type="string" value="off" />
+                        <VValue name="LMF-Q" type="string" value="1.000" />
+                        <VValue name="LMF-Freq" type="string" value="800.00 Hz" />
+                        <VValue name="LMF-Gain" type="string" value="0 dB" />
+                        <VValue name="LMF-In" type="string" value="off" />
+                        <VValue name="HMF-Q" type="string" value="1.000" />
+                        <VValue name="HMF-Freq" type="string" value="2.50 kHz" />
+                        <VValue name="HMF-Gain" type="string" value="0 dB" />
+                        <VValue name="HMF-In" type="string" value="off" />
+                        <VValue name="HF-Bell" type="string" value="off" />
+                        <VValue name="HF-Freq" type="string" value="4.00 kHz" />
+                        <VValue name="HF-Gain" type="string" value="0 dB" />
+                        <VValue name="HF-In" type="string" value="off" />
+                        <VValue name="Sidechain" type="string" value="off" />
+                        <VValue name="Wet Mix" type="string" value="100 %" />
+                    </BFD2MixerChanEffect>
+                    <BFD2MixerChanEffect active="false" stereo="false" effect="" presetName="" />
+                    <BFD2MixerChanEffect active="false" stereo="false" effect="" presetName="" />
+                    <BFD2MixerChanEffect active="false" stereo="false" effect="" presetName="" />
+                </VObjectArray>
+                <VObjectArray name="Sends" count="4">
+                    <BFD2MixerChanSend side_chain="false" send_level="0" active="false" dest_chan_name="Aux1" send_from="PostInsert" />
+                    <BFD2MixerChanSend side_chain="false" send_level="0" active="false" dest_chan_name="Aux2" send_from="PostInsert" />
+                    <BFD2MixerChanSend side_chain="false" send_level="0" active="false" dest_chan_name="" send_from="PostInsert" />
+                    <BFD2MixerChanSend side_chain="false" send_level="0" active="false" dest_chan_name="" send_from="PostInsert" />
+                </VObjectArray>
+            </BFD2MixerChan>
+            <BFD2MixerChan solo="false" soloIsolate="false" mute="false" gain="0.8" chanType="2" micID="0" slotID="11" chanName="Perc 2" userChanName="Perc 2" stereo="false" output="Master" outputID="0" phaseInvert="false" inputMainTrim="0.8" inputSideTrim="0.8" pan="0.5" recArmed="false">
+                <VObjectArray name="Effects" count="4">
+                    <BFD2MixerChanEffect active="false" stereo="false" effect="EQ" presetName="default">
+                        <VValue name="Active" type="string" value="Off" />
+                        <VValue name="LF-Bell" type="string" value="off" />
+                        <VValue name="LF-Freq" type="string" value="200.00 Hz" />
+                        <VValue name="LF-Gain" type="string" value="0 dB" />
+                        <VValue name="LF-In" type="string" value="off" />
+                        <VValue name="LMF-Q" type="string" value="1.000" />
+                        <VValue name="LMF-Freq" type="string" value="800.00 Hz" />
+                        <VValue name="LMF-Gain" type="string" value="0 dB" />
+                        <VValue name="LMF-In" type="string" value="off" />
+                        <VValue name="HMF-Q" type="string" value="1.000" />
+                        <VValue name="HMF-Freq" type="string" value="2.50 kHz" />
+                        <VValue name="HMF-Gain" type="string" value="0 dB" />
+                        <VValue name="HMF-In" type="string" value="off" />
+                        <VValue name="HF-Bell" type="string" value="off" />
+                        <VValue name="HF-Freq" type="string" value="4.00 kHz" />
+                        <VValue name="HF-Gain" type="string" value="0 dB" />
+                        <VValue name="HF-In" type="string" value="off" />
+                        <VValue name="Sidechain" type="string" value="off" />
+                        <VValue name="Wet Mix" type="string" value="100 %" />
+                    </BFD2MixerChanEffect>
+                    <BFD2MixerChanEffect active="false" stereo="false" effect="" presetName="" />
+                    <BFD2MixerChanEffect active="false" stereo="false" effect="" presetName="" />
+                    <BFD2MixerChanEffect active="false" stereo="false" effect="" presetName="" />
+                </VObjectArray>
+                <VObjectArray name="Sends" count="4">
+                    <BFD2MixerChanSend side_chain="false" send_level="0" active="false" dest_chan_name="Aux1" send_from="PostInsert" />
+                    <BFD2MixerChanSend side_chain="false" send_level="0" active="false" dest_chan_name="Aux2" send_from="PostInsert" />
+                    <BFD2MixerChanSend side_chain="false" send_level="0" active="false" dest_chan_name="" send_from="PostInsert" />
+                    <BFD2MixerChanSend side_chain="false" send_level="0" active="false" dest_chan_name="" send_from="PostInsert" />
+                </VObjectArray>
+            </BFD2MixerChan>
+            <BFD2MixerChan solo="false" soloIsolate="false" mute="false" gain="0.793814" chanType="1" micID="0" slotID="-1" chanName="OH" userChanName="OH" stereo="true" output="Master" outputID="0" phaseInvert="false" inputMainTrim="0.8" inputSideTrim="0.8" pan="0.5" recArmed="false" distance="0" width="0.5">
+                <VObjectArray name="Effects" count="4">
+                    <BFD2MixerChanEffect active="true" stereo="true" effect="EQ" presetName="default">
+                        <VValue name="Active" type="string" value="On" />
+                        <VValue name="LF-Bell" type="string" value="off" />
+                        <VValue name="LF-Freq" type="string" value="245.04 Hz" />
+                        <VValue name="LF-Gain" type="string" value="-5.011 dB" />
+                        <VValue name="LF-In" type="string" value="on" />
+                        <VValue name="LMF-Q" type="string" value="1.000" />
+                        <VValue name="LMF-Freq" type="string" value="800.00 Hz" />
+                        <VValue name="LMF-Gain" type="string" value="0 dB" />
+                        <VValue name="LMF-In" type="string" value="off" />
+                        <VValue name="HMF-Q" type="string" value="0.500" />
+                        <VValue name="HMF-Freq" type="string" value="1.48 kHz" />
+                        <VValue name="HMF-Gain" type="string" value="4.431 dB" />
+                        <VValue name="HMF-In" type="string" value="on" />
+                        <VValue name="HF-Bell" type="string" value="off" />
+                        <VValue name="HF-Freq" type="string" value="4.00 kHz" />
+                        <VValue name="HF-Gain" type="string" value="0.476 dB" />
+                        <VValue name="HF-In" type="string" value="on" />
+                        <VValue name="Sidechain" type="string" value="off" />
+                        <VValue name="Wet Mix" type="string" value="100 %" />
+                    </BFD2MixerChanEffect>
+                    <BFD2MixerChanEffect active="true" stereo="true" effect="Comp Chan" presetName="default">
+                        <VValue name="Active" type="string" value="On" />
+                        <VValue name="Input" type="string" value="-4.5 dB" />
+                        <VValue name="Attack" type="string" value="220 us" />
+                        <VValue name="Release" type="string" value="539 ms" />
+                        <VValue name="Ratio" type="string" value="12" />
+                        <VValue name="Output" type="string" value="1.5 dB" />
+                        <VValue name="Wet Mix" type="string" value="100 %" />
+                        <VValue name="In" type="string" value="on" />
+                    </BFD2MixerChanEffect>
+                    <BFD2MixerChanEffect active="false" stereo="true" effect="" presetName="" />
+                    <BFD2MixerChanEffect active="false" stereo="true" effect="" presetName="" />
+                </VObjectArray>
+                <VObjectArray name="Sends" count="4">
+                    <BFD2MixerChanSend side_chain="false" send_level="0.06" active="true" dest_chan_name="Aux1" send_from="PostInsert" />
+                    <BFD2MixerChanSend side_chain="false" send_level="0" active="false" dest_chan_name="Aux2" send_from="PostInsert" />
+                    <BFD2MixerChanSend side_chain="false" send_level="0" active="false" dest_chan_name="" send_from="PostInsert" />
+                    <BFD2MixerChanSend side_chain="false" send_level="0" active="false" dest_chan_name="" send_from="PostInsert" />
+                </VObjectArray>
+            </BFD2MixerChan>
+            <BFD2MixerChan solo="false" soloIsolate="false" mute="false" gain="0.8" chanType="1" micID="1" slotID="-1" chanName="Room" userChanName="Room" stereo="true" output="Master" outputID="0" phaseInvert="false" inputMainTrim="0.8" inputSideTrim="0.8" pan="0.5" recArmed="false" distance="0" width="0.5">
+                <VObjectArray name="Effects" count="4">
+                    <BFD2MixerChanEffect active="true" stereo="true" effect="EQ" presetName="default">
+                        <VValue name="Active" type="string" value="On" />
+                        <VValue name="LF-Bell" type="string" value="off" />
+                        <VValue name="LF-Freq" type="string" value="90.13 Hz" />
+                        <VValue name="LF-Gain" type="string" value="-16.50 dB" />
+                        <VValue name="LF-In" type="string" value="on" />
+                        <VValue name="LMF-Q" type="string" value="0.500" />
+                        <VValue name="LMF-Freq" type="string" value="2.00 kHz" />
+                        <VValue name="LMF-Gain" type="string" value="8.803 dB" />
+                        <VValue name="LMF-In" type="string" value="on" />
+                        <VValue name="HMF-Q" type="string" value="1.000" />
+                        <VValue name="HMF-Freq" type="string" value="2.50 kHz" />
+                        <VValue name="HMF-Gain" type="string" value="0 dB" />
+                        <VValue name="HMF-In" type="string" value="off" />
+                        <VValue name="HF-Bell" type="string" value="off" />
+                        <VValue name="HF-Freq" type="string" value="2.70 kHz" />
+                        <VValue name="HF-Gain" type="string" value="-7.362 dB" />
+                        <VValue name="HF-In" type="string" value="on" />
+                        <VValue name="Sidechain" type="string" value="off" />
+                        <VValue name="Wet Mix" type="string" value="100 %" />
+                    </BFD2MixerChanEffect>
+                    <BFD2MixerChanEffect active="true" stereo="true" effect="Comp Chan" presetName="default">
+                        <VValue name="Active" type="string" value="On" />
+                        <VValue name="Input" type="string" value="-6.0 dB" />
+                        <VValue name="Attack" type="string" value="270 us" />
+                        <VValue name="Release" type="string" value="290 ms" />
+                        <VValue name="Ratio" type="string" value="4" />
+                        <VValue name="Output" type="string" value="0.0 dB" />
+                        <VValue name="Wet Mix" type="string" value="100 %" />
+                        <VValue name="In" type="string" value="on" />
+                    </BFD2MixerChanEffect>
+                    <BFD2MixerChanEffect active="true" stereo="true" effect="Filter" presetName="default">
+                        <VValue name="Active" type="string" value="On" />
+                        <VValue name="HPIn" type="string" value="on" />
+                        <VValue name="HPFreq" type="string" value="46.93 Hz" />
+                        <VValue name="LPIn" type="string" value="on" />
+                        <VValue name="LPFreq" type="string" value="7.72 kHz" />
+                        <VValue name="Wet Mix" type="string" value="100 %" />
+                    </BFD2MixerChanEffect>
+                    <BFD2MixerChanEffect active="false" stereo="true" effect="" presetName="" />
+                </VObjectArray>
+                <VObjectArray name="Sends" count="4">
+                    <BFD2MixerChanSend side_chain="false" send_level="0.07" active="true" dest_chan_name="Aux1" send_from="PostInsert" />
+                    <BFD2MixerChanSend side_chain="false" send_level="0" active="false" dest_chan_name="Aux2" send_from="PostInsert" />
+                    <BFD2MixerChanSend side_chain="false" send_level="0" active="false" dest_chan_name="" send_from="PostInsert" />
+                    <BFD2MixerChanSend side_chain="false" send_level="0" active="false" dest_chan_name="" send_from="PostInsert" />
+                </VObjectArray>
+            </BFD2MixerChan>
+            <BFD2MixerChan solo="false" soloIsolate="false" mute="false" gain="0.515464" chanType="3" micID="0" slotID="-1" chanName="Aux1" userChanName="Aux1" stereo="true" output="Master" outputID="0" phaseInvert="false" inputMainTrim="0.8" inputSideTrim="0.8" pan="0.5" recArmed="false">
+                <VObjectArray name="Effects" count="4">
+                    <BFD2MixerChanEffect active="true" stereo="true" effect="EQ" presetName="default">
+                        <VValue name="Active" type="string" value="On" />
+                        <VValue name="LF-Bell" type="string" value="off" />
+                        <VValue name="LF-Freq" type="string" value="200.00 Hz" />
+                        <VValue name="LF-Gain" type="string" value="0 dB" />
+                        <VValue name="LF-In" type="string" value="off" />
+                        <VValue name="LMF-Q" type="string" value="0.500" />
+                        <VValue name="LMF-Freq" type="string" value="800.00 Hz" />
+                        <VValue name="LMF-Gain" type="string" value="-4.125 dB" />
+                        <VValue name="LMF-In" type="string" value="on" />
+                        <VValue name="HMF-Q" type="string" value="1.000" />
+                        <VValue name="HMF-Freq" type="string" value="2.50 kHz" />
+                        <VValue name="HMF-Gain" type="string" value="0 dB" />
+                        <VValue name="HMF-In" type="string" value="off" />
+                        <VValue name="HF-Bell" type="string" value="off" />
+                        <VValue name="HF-Freq" type="string" value="4.00 kHz" />
+                        <VValue name="HF-Gain" type="string" value="0 dB" />
+                        <VValue name="HF-In" type="string" value="off" />
+                        <VValue name="Sidechain" type="string" value="off" />
+                        <VValue name="Wet Mix" type="string" value="100 %" />
+                    </BFD2MixerChanEffect>
+                    <BFD2MixerChanEffect active="true" stereo="true" effect="Drive" presetName="default">
+                        <VValue name="Active" type="string" value="On" />
+                        <VValue name="Mode" type="string" value="OpAmp" />
+                        <VValue name="Drive" type="string" value="7.2 dB" />
+                        <VValue name="LPFreq" type="string" value="22.00 kHz" />
+                        <VValue name="HPFreq" type="string" value="10.00 Hz" />
+                        <VValue name="Dirty" type="string" value="0.0 dB" />
+                        <VValue name="Clean" type="string" value="0.0 dB" />
+                        <VValue name="Tone" type="string" value="22.00 kHz" />
+                        <VValue name="Wet Mix" type="string" value="100 %" />
+                    </BFD2MixerChanEffect>
+                    <BFD2MixerChanEffect active="false" stereo="true" effect="" presetName="" />
+                    <BFD2MixerChanEffect active="false" stereo="true" effect="" presetName="" />
+                </VObjectArray>
+                <VObjectArray name="Sends" count="4">
+                    <BFD2MixerChanSend side_chain="false" send_level="0" active="false" dest_chan_name="" send_from="PostInsert" />
+                    <BFD2MixerChanSend side_chain="false" send_level="0" active="false" dest_chan_name="" send_from="PostInsert" />
+                    <BFD2MixerChanSend side_chain="false" send_level="0" active="false" dest_chan_name="" send_from="PostInsert" />
+                    <BFD2MixerChanSend side_chain="false" send_level="0" active="false" dest_chan_name="" send_from="PostInsert" />
+                </VObjectArray>
+            </BFD2MixerChan>
+            <BFD2MixerChan solo="false" soloIsolate="false" mute="false" gain="0.536082" chanType="3" micID="1" slotID="-1" chanName="Aux2" userChanName="Aux2" stereo="true" output="Master" outputID="0" phaseInvert="false" inputMainTrim="0.8" inputSideTrim="0.8" pan="0.5" recArmed="false">
+                <VObjectArray name="Effects" count="4">
+                    <BFD2MixerChanEffect active="false" stereo="true" effect="EQ" presetName="default">
+                        <VValue name="Active" type="string" value="Off" />
+                        <VValue name="LF-Bell" type="string" value="off" />
+                        <VValue name="LF-Freq" type="string" value="200.00 Hz" />
+                        <VValue name="LF-Gain" type="string" value="0 dB" />
+                        <VValue name="LF-In" type="string" value="off" />
+                        <VValue name="LMF-Q" type="string" value="1.000" />
+                        <VValue name="LMF-Freq" type="string" value="800.00 Hz" />
+                        <VValue name="LMF-Gain" type="string" value="0 dB" />
+                        <VValue name="LMF-In" type="string" value="off" />
+                        <VValue name="HMF-Q" type="string" value="1.000" />
+                        <VValue name="HMF-Freq" type="string" value="2.50 kHz" />
+                        <VValue name="HMF-Gain" type="string" value="0 dB" />
+                        <VValue name="HMF-In" type="string" value="off" />
+                        <VValue name="HF-Bell" type="string" value="off" />
+                        <VValue name="HF-Freq" type="string" value="4.00 kHz" />
+                        <VValue name="HF-Gain" type="string" value="0 dB" />
+                        <VValue name="HF-In" type="string" value="off" />
+                        <VValue name="Sidechain" type="string" value="off" />
+                        <VValue name="Wet Mix" type="string" value="100 %" />
+                    </BFD2MixerChanEffect>
+                    <BFD2MixerChanEffect active="true" stereo="true" effect="Drive" presetName="default">
+                        <VValue name="Active" type="string" value="On" />
+                        <VValue name="Mode" type="string" value="HalfRect" />
+                        <VValue name="Drive" type="string" value="1.5 dB" />
+                        <VValue name="LPFreq" type="string" value="22.00 kHz" />
+                        <VValue name="HPFreq" type="string" value="10.00 Hz" />
+                        <VValue name="Dirty" type="string" value="0.0 dB" />
+                        <VValue name="Clean" type="string" value="0.0 dB" />
+                        <VValue name="Tone" type="string" value="2.10 kHz" />
+                        <VValue name="Wet Mix" type="string" value="100 %" />
+                    </BFD2MixerChanEffect>
+                    <BFD2MixerChanEffect active="false" stereo="true" effect="" presetName="" />
+                    <BFD2MixerChanEffect active="false" stereo="true" effect="" presetName="" />
+                </VObjectArray>
+                <VObjectArray name="Sends" count="4">
+                    <BFD2MixerChanSend side_chain="false" send_level="0" active="false" dest_chan_name="" send_from="PostInsert" />
+                    <BFD2MixerChanSend side_chain="false" send_level="0" active="false" dest_chan_name="" send_from="PostInsert" />
+                    <BFD2MixerChanSend side_chain="false" send_level="0" active="false" dest_chan_name="" send_from="PostInsert" />
+                    <BFD2MixerChanSend side_chain="false" send_level="0" active="false" dest_chan_name="" send_from="PostInsert" />
+                </VObjectArray>
+            </BFD2MixerChan>
+            <BFD2MixerChan solo="false" soloIsolate="false" mute="false" gain="0.8" chanType="4" micID="-1" slotID="-1" chanName="Master" userChanName="Master" stereo="true" outputID="0" phaseInvert="false" inputMainTrim="0.8" inputSideTrim="0.8" pan="0.5" recArmed="false" output="Master">
+                <VObjectArray name="Effects" count="4">
+                    <BFD2MixerChanEffect active="false" stereo="true" effect="EQ" presetName="default">
+                        <VValue name="Active" type="string" value="Off" />
+                        <VValue name="LF-Bell" type="string" value="off" />
+                        <VValue name="LF-Freq" type="string" value="200.00 Hz" />
+                        <VValue name="LF-Gain" type="string" value="0 dB" />
+                        <VValue name="LF-In" type="string" value="off" />
+                        <VValue name="LMF-Q" type="string" value="1.000" />
+                        <VValue name="LMF-Freq" type="string" value="800.00 Hz" />
+                        <VValue name="LMF-Gain" type="string" value="0 dB" />
+                        <VValue name="LMF-In" type="string" value="off" />
+                        <VValue name="HMF-Q" type="string" value="1.000" />
+                        <VValue name="HMF-Freq" type="string" value="2.50 kHz" />
+                        <VValue name="HMF-Gain" type="string" value="0 dB" />
+                        <VValue name="HMF-In" type="string" value="off" />
+                        <VValue name="HF-Bell" type="string" value="off" />
+                        <VValue name="HF-Freq" type="string" value="4.00 kHz" />
+                        <VValue name="HF-Gain" type="string" value="0 dB" />
+                        <VValue name="HF-In" type="string" value="off" />
+                        <VValue name="Sidechain" type="string" value="off" />
+                        <VValue name="Wet Mix" type="string" value="100 %" />
+                    </BFD2MixerChanEffect>
+                    <BFD2MixerChanEffect active="false" stereo="true" effect="" presetName="" />
+                    <BFD2MixerChanEffect active="true" stereo="true" effect="Comp Bus" presetName="default">
+                        <VValue name="Active" type="string" value="On" />
+                        <VValue name="Threshold" type="string" value="14.000 dB" />
+                        <VValue name="Attack" type="string" value="0.3 ms" />
+                        <VValue name="Ratio" type="string" value="4" />
+                        <VValue name="Release" type="string" value="0.6 s" />
+                        <VValue name="Makeup" type="string" value="-2.286 dB" />
+                        <VValue name="Wet Mix" type="string" value="100 %" />
+                        <VValue name="ExtSidechain" type="string" value="off" />
+                        <VValue name="SidechainHP" type="string" value="Off" />
+                        <VValue name="AnalogLimit" type="string" value="on" />
+                    </BFD2MixerChanEffect>
+                    <BFD2MixerChanEffect active="false" stereo="true" effect="" presetName="" />
+                </VObjectArray>
+                <VObjectArray name="Sends" count="4">
+                    <BFD2MixerChanSend side_chain="false" send_level="0" active="false" dest_chan_name="" send_from="PostInsert" />
+                    <BFD2MixerChanSend side_chain="false" send_level="0" active="false" dest_chan_name="" send_from="PostInsert" />
+                    <BFD2MixerChanSend side_chain="false" send_level="0" active="false" dest_chan_name="" send_from="PostInsert" />
+                    <BFD2MixerChanSend side_chain="false" send_level="0" active="false" dest_chan_name="" send_from="PostInsert" />
+                </VObjectArray>
+            </BFD2MixerChan>
+        </VObjectArray>
+    </BFD2Mixer>
+    <BFD2MidiMap name="bfd2_midi_map" SourceEngine="BFD Eco" info_path="C:\Program Files (x86)\FXpansion\BFD Eco NFUZD\System\Maps\NSPIRE.eco_map" info_photo="C:\Program Files (x86)\FXpansion\BFD Eco NFUZD\System\Maps\NSPIRE.tga" info_name="NSPIRE" info_rating="3" HihatAutoPedal="false" HihatAutoSplash="false" HihatVariableMode="true">
+        <VObjectArray name="midi_note_0" count="0" />
+        <VObjectArray name="midi_note_1" count="0" />
+        <VObjectArray name="midi_note_2" count="0" />
+        <VObjectArray name="midi_note_3" count="0" />
+        <VObjectArray name="midi_note_4" count="0" />
+        <VObjectArray name="midi_note_5" count="0" />
+        <VObjectArray name="midi_note_6" count="0" />
+        <VObjectArray name="midi_note_7" count="0" />
+        <VObjectArray name="midi_note_8" count="0" />
+        <VObjectArray name="midi_note_9" count="0" />
+        <VObjectArray name="midi_note_10" count="0" />
+        <VObjectArray name="midi_note_11" count="0" />
+        <VObjectArray name="midi_note_12" count="0" />
+        <VObjectArray name="midi_note_13" count="0" />
+        <VObjectArray name="midi_note_14" count="1">
+            <MIDIMapElement note="14" minCC="0" maxCC="1" curve="0">
+                <RequestedArticulationID name="req_artic" slot="9" artic="1" />
+            </MIDIMapElement>
+        </VObjectArray>
+        <VObjectArray name="midi_note_15" count="1">
+            <MIDIMapElement note="15" minCC="0" maxCC="1" curve="0">
+                <RequestedArticulationID name="req_artic" slot="9" artic="0" />
+            </MIDIMapElement>
+        </VObjectArray>
+        <VObjectArray name="midi_note_16" count="0" />
+        <VObjectArray name="midi_note_17" count="0" />
+        <VObjectArray name="midi_note_18" count="0" />
+        <VObjectArray name="midi_note_19" count="0" />
+        <VObjectArray name="midi_note_20" count="0" />
+        <VObjectArray name="midi_note_21" count="1">
+            <MIDIMapElement note="21" minCC="0" maxCC="1" curve="0">
+                <RequestedArticulationID name="req_artic" slot="2" artic="13" />
+            </MIDIMapElement>
+        </VObjectArray>
+        <VObjectArray name="midi_note_22" count="1">
+            <MIDIMapElement note="22" minCC="0" maxCC="1" curve="0">
+                <RequestedArticulationID name="req_artic" slot="2" artic="9" />
+            </MIDIMapElement>
+        </VObjectArray>
+        <VObjectArray name="midi_note_23" count="0" />
+        <VObjectArray name="midi_note_24" count="0" />
+        <VObjectArray name="midi_note_25" count="0" />
+        <VObjectArray name="midi_note_26" count="1">
+            <MIDIMapElement note="26" minCC="0" maxCC="0.928571" curve="0">
+                <RequestedArticulationID name="req_artic" slot="2" artic="1" />
+            </MIDIMapElement>
+        </VObjectArray>
+        <VObjectArray name="midi_note_27" count="0" />
+        <VObjectArray name="midi_note_28" count="0" />
+        <VObjectArray name="midi_note_29" count="0" />
+        <VObjectArray name="midi_note_30" count="0" />
+        <VObjectArray name="midi_note_31" count="0" />
+        <VObjectArray name="midi_note_32" count="0" />
+        <VObjectArray name="midi_note_33" count="0" />
+        <VObjectArray name="midi_note_34" count="0" />
+        <VObjectArray name="midi_note_35" count="0" />
+        <VObjectArray name="midi_note_36" count="1">
+            <MIDIMapElement note="36" minCC="0" maxCC="1" curve="1">
+                <RequestedArticulationID name="req_artic" slot="0" artic="0" />
+            </MIDIMapElement>
+        </VObjectArray>
+        <VObjectArray name="midi_note_37" count="1">
+            <MIDIMapElement note="37" minCC="0.365079" maxCC="1" curve="1">
+                <RequestedArticulationID name="req_artic" slot="1" artic="4" />
+            </MIDIMapElement>
+        </VObjectArray>
+        <VObjectArray name="midi_note_38" count="1">
+            <MIDIMapElement note="38" minCC="0" maxCC="0.984127" curve="0">
+                <RequestedArticulationID name="req_artic" slot="1" artic="0" />
+            </MIDIMapElement>
+        </VObjectArray>
+        <VObjectArray name="midi_note_39" count="1">
+            <MIDIMapElement note="39" minCC="0" maxCC="1" curve="0">
+                <RequestedArticulationID name="req_artic" slot="10" artic="2" />
+            </MIDIMapElement>
+        </VObjectArray>
+        <VObjectArray name="midi_note_40" count="1">
+            <MIDIMapElement note="40" minCC="0" maxCC="0.984127" curve="0">
+                <RequestedArticulationID name="req_artic" slot="1" artic="3" />
+            </MIDIMapElement>
+        </VObjectArray>
+        <VObjectArray name="midi_note_41" count="1">
+            <MIDIMapElement note="41" minCC="0" maxCC="1" curve="0">
+                <RequestedArticulationID name="req_artic" slot="10" artic="0" />
+            </MIDIMapElement>
+        </VObjectArray>
+        <VObjectArray name="midi_note_42" count="1">
+            <MIDIMapElement note="42" minCC="0" maxCC="1" curve="0">
+                <RequestedArticulationID name="req_artic" slot="2" artic="8" />
+            </MIDIMapElement>
+        </VObjectArray>
+        <VObjectArray name="midi_note_43" count="1">
+            <MIDIMapElement note="43" minCC="0" maxCC="1" curve="0">
+                <RequestedArticulationID name="req_artic" slot="3" artic="0" />
+            </MIDIMapElement>
+        </VObjectArray>
+        <VObjectArray name="midi_note_44" count="1">
+            <MIDIMapElement note="44" minCC="0" maxCC="0.761905" curve="0">
+                <RequestedArticulationID name="req_artic" slot="2" artic="10" />
+            </MIDIMapElement>
+        </VObjectArray>
+        <VObjectArray name="midi_note_45" count="1">
+            <MIDIMapElement note="45" minCC="0" maxCC="1" curve="0">
+                <RequestedArticulationID name="req_artic" slot="4" artic="0" />
+            </MIDIMapElement>
+        </VObjectArray>
+        <VObjectArray name="midi_note_46" count="1">
+            <MIDIMapElement note="46" minCC="0" maxCC="0.952381" curve="0">
+                <RequestedArticulationID name="req_artic" slot="2" artic="0" />
+            </MIDIMapElement>
+        </VObjectArray>
+        <VObjectArray name="midi_note_47" count="1">
+            <MIDIMapElement note="47" minCC="0" maxCC="1" curve="0">
+                <RequestedArticulationID name="req_artic" slot="4" artic="2" />
+            </MIDIMapElement>
+        </VObjectArray>
+        <VObjectArray name="midi_note_48" count="1">
+            <MIDIMapElement note="48" minCC="0" maxCC="1" curve="0">
+                <RequestedArticulationID name="req_artic" slot="5" artic="0" />
+            </MIDIMapElement>
+        </VObjectArray>
+        <VObjectArray name="midi_note_49" count="1">
+            <MIDIMapElement note="49" minCC="0" maxCC="1" curve="0">
+                <RequestedArticulationID name="req_artic" slot="6" artic="0" />
+            </MIDIMapElement>
+        </VObjectArray>
+        <VObjectArray name="midi_note_50" count="1">
+            <MIDIMapElement note="50" minCC="0" maxCC="1" curve="0">
+                <RequestedArticulationID name="req_artic" slot="5" artic="2" />
+            </MIDIMapElement>
+        </VObjectArray>
+        <VObjectArray name="midi_note_51" count="1">
+            <MIDIMapElement note="51" minCC="0" maxCC="1" curve="0">
+                <RequestedArticulationID name="req_artic" slot="8" artic="0" />
+            </MIDIMapElement>
+        </VObjectArray>
+        <VObjectArray name="midi_note_52" count="1">
+            <MIDIMapElement note="52" minCC="0" maxCC="1" curve="0">
+                <RequestedArticulationID name="req_artic" slot="7" artic="2" />
+            </MIDIMapElement>
+        </VObjectArray>
+        <VObjectArray name="midi_note_53" count="1">
+            <MIDIMapElement note="53" minCC="0" maxCC="1" curve="0">
+                <RequestedArticulationID name="req_artic" slot="8" artic="1" />
+            </MIDIMapElement>
+        </VObjectArray>
+        <VObjectArray name="midi_note_54" count="0" />
+        <VObjectArray name="midi_note_55" count="1">
+            <MIDIMapElement note="55" minCC="0" maxCC="1" curve="0">
+                <RequestedArticulationID name="req_artic" slot="6" artic="2" />
+            </MIDIMapElement>
+        </VObjectArray>
+        <VObjectArray name="midi_note_56" count="0" />
+        <VObjectArray name="midi_note_57" count="1">
+            <MIDIMapElement note="57" minCC="0" maxCC="1" curve="0">
+                <RequestedArticulationID name="req_artic" slot="7" artic="0" />
+            </MIDIMapElement>
+        </VObjectArray>
+        <VObjectArray name="midi_note_58" count="1">
+            <MIDIMapElement note="58" minCC="0" maxCC="1" curve="0">
+                <RequestedArticulationID name="req_artic" slot="3" artic="2" />
+            </MIDIMapElement>
+        </VObjectArray>
+        <VObjectArray name="midi_note_59" count="1">
+            <MIDIMapElement note="59" minCC="0" maxCC="0.777778" curve="0">
+                <RequestedArticulationID name="req_artic" slot="8" artic="2" />
+            </MIDIMapElement>
+        </VObjectArray>
+        <VObjectArray name="midi_note_60" count="0" />
+        <VObjectArray name="midi_note_61" count="0" />
+        <VObjectArray name="midi_note_62" count="1">
+            <MIDIMapElement note="62" minCC="0" maxCC="1" curve="0">
+                <RequestedArticulationID name="req_artic" slot="6" artic="1" />
+            </MIDIMapElement>
+        </VObjectArray>
+        <VObjectArray name="midi_note_63" count="0" />
+        <VObjectArray name="midi_note_64" count="1">
+            <MIDIMapElement note="64" minCC="0" maxCC="1" curve="0">
+                <RequestedArticulationID name="req_artic" slot="7" artic="1" />
+            </MIDIMapElement>
+        </VObjectArray>
+        <VObjectArray name="midi_note_65" count="0" />
+        <VObjectArray name="midi_note_66" count="0" />
+        <VObjectArray name="midi_note_67" count="0" />
+        <VObjectArray name="midi_note_68" count="0" />
+        <VObjectArray name="midi_note_69" count="0" />
+        <VObjectArray name="midi_note_70" count="0" />
+        <VObjectArray name="midi_note_71" count="0" />
+        <VObjectArray name="midi_note_72" count="0" />
+        <VObjectArray name="midi_note_73" count="0" />
+        <VObjectArray name="midi_note_74" count="0" />
+        <VObjectArray name="midi_note_75" count="0" />
+        <VObjectArray name="midi_note_76" count="0" />
+        <VObjectArray name="midi_note_77" count="0" />
+        <VObjectArray name="midi_note_78" count="0" />
+        <VObjectArray name="midi_note_79" count="0" />
+        <VObjectArray name="midi_note_80" count="0" />
+        <VObjectArray name="midi_note_81" count="0" />
+        <VObjectArray name="midi_note_82" count="0" />
+        <VObjectArray name="midi_note_83" count="0" />
+        <VObjectArray name="midi_note_84" count="0" />
+        <VObjectArray name="midi_note_85" count="0" />
+        <VObjectArray name="midi_note_86" count="0" />
+        <VObjectArray name="midi_note_87" count="0" />
+        <VObjectArray name="midi_note_88" count="0" />
+        <VObjectArray name="midi_note_89" count="0" />
+        <VObjectArray name="midi_note_90" count="0" />
+        <VObjectArray name="midi_note_91" count="0" />
+        <VObjectArray name="midi_note_92" count="0" />
+        <VObjectArray name="midi_note_93" count="0" />
+        <VObjectArray name="midi_note_94" count="0" />
+        <VObjectArray name="midi_note_95" count="0" />
+        <VObjectArray name="midi_note_96" count="0" />
+        <VObjectArray name="midi_note_97" count="0" />
+        <VObjectArray name="midi_note_98" count="0" />
+        <VObjectArray name="midi_note_99" count="0" />
+        <VObjectArray name="midi_note_100" count="0" />
+        <VObjectArray name="midi_note_101" count="0" />
+        <VObjectArray name="midi_note_102" count="0" />
+        <VObjectArray name="midi_note_103" count="0" />
+        <VObjectArray name="midi_note_104" count="0" />
+        <VObjectArray name="midi_note_105" count="0" />
+        <VObjectArray name="midi_note_106" count="0" />
+        <VObjectArray name="midi_note_107" count="0" />
+        <VObjectArray name="midi_note_108" count="0" />
+        <VObjectArray name="midi_note_109" count="0" />
+        <VObjectArray name="midi_note_110" count="0" />
+        <VObjectArray name="midi_note_111" count="0" />
+        <VObjectArray name="midi_note_112" count="0" />
+        <VObjectArray name="midi_note_113" count="0" />
+        <VObjectArray name="midi_note_114" count="0" />
+        <VObjectArray name="midi_note_115" count="0" />
+        <VObjectArray name="midi_note_116" count="0" />
+        <VObjectArray name="midi_note_117" count="0" />
+        <VObjectArray name="midi_note_118" count="0" />
+        <VObjectArray name="midi_note_119" count="0" />
+        <VObjectArray name="midi_note_120" count="0" />
+        <VObjectArray name="midi_note_121" count="0" />
+        <VObjectArray name="midi_note_122" count="0" />
+        <VObjectArray name="midi_note_123" count="0" />
+        <VObjectArray name="midi_note_124" count="0" />
+        <VObjectArray name="midi_note_125" count="0" />
+        <VObjectArray name="midi_note_126" count="0" />
+        <VObjectArray name="midi_note_127" count="0" />
+        <BFD2MidiMapHihatVariableElement name="HHTip" zone0="14" zone1="45" zone2="65" zone3="108" CC="4" />
+        <BFD2MidiMapHihatVariableElement name="HHShank" zone0="14" zone1="45" zone2="65" zone3="108" CC="4" />
+        <BFD2MidiMapSnareVariableElement name="VarSnare" zone0="35" CC="4" />
+    </BFD2MidiMap>
+    <MIDIMapSongSettings noteschan="16" groovesinchan="16" groovesoutchan="0" sendmidiout="true" />
+    <BFD2AutomationMap name="bfd2_automation_map">
+        <VObjectArray name="map_CCs" count="128">
+            <BFD2AutomationMapTuple autoSourceIndex="0" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="1" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="2" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="3" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="4" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="5" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="6" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="7" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="8" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="9" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="10" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="11" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="12" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="13" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="14" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="15" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="16" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="17" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="18" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="19" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="20" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="21" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="22" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="23" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="24" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="25" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="26" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="27" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="28" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="29" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="30" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="31" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="32" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="33" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="34" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="35" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="36" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="37" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="38" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="39" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="40" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="41" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="42" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="43" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="44" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="45" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="46" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="47" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="48" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="49" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="50" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="51" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="52" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="53" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="54" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="55" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="56" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="57" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="58" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="59" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="60" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="61" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="62" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="63" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="64" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="65" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="66" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="67" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="68" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="69" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="70" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="71" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="72" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="73" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="74" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="75" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="76" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="77" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="78" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="79" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="80" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="81" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="82" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="83" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="84" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="85" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="86" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="87" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="88" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="89" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="90" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="91" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="92" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="93" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="94" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="95" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="96" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="97" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="98" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="99" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="100" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="101" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="102" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="103" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="104" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="105" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="106" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="107" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="108" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="109" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="110" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="111" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="112" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="113" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="114" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="115" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="116" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="117" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="118" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="119" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="120" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="121" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="122" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="123" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="124" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="125" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="126" targetName="" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="127" targetName="" mode="Continuous" />
+        </VObjectArray>
+        <VObjectArray name="map_notes" count="128">
+            <BFD2AutomationMapTuple autoSourceIndex="0" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="1" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="2" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="3" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="4" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="5" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="6" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="7" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="8" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="9" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="10" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="11" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="12" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="13" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="14" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="15" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="16" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="17" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="18" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="19" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="20" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="21" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="22" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="23" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="24" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="25" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="26" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="27" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="28" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="29" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="30" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="31" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="32" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="33" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="34" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="35" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="36" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="37" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="38" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="39" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="40" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="41" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="42" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="43" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="44" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="45" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="46" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="47" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="48" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="49" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="50" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="51" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="52" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="53" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="54" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="55" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="56" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="57" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="58" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="59" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="60" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="61" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="62" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="63" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="64" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="65" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="66" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="67" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="68" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="69" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="70" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="71" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="72" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="73" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="74" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="75" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="76" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="77" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="78" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="79" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="80" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="81" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="82" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="83" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="84" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="85" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="86" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="87" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="88" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="89" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="90" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="91" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="92" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="93" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="94" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="95" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="96" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="97" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="98" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="99" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="100" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="101" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="102" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="103" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="104" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="105" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="106" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="107" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="108" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="109" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="110" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="111" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="112" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="113" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="114" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="115" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="116" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="117" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="118" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="119" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="120" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="121" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="122" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="123" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="124" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="125" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="126" targetName="" mode="Toggle" />
+            <BFD2AutomationMapTuple autoSourceIndex="127" targetName="" mode="Toggle" />
+        </VObjectArray>
+        <VObjectArray name="map_hostAuto" count="99">
+            <BFD2AutomationMapTuple autoSourceIndex="0" targetName="BFD2.Gain" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="1" targetName="BFD2.Master Tune" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="2" targetName="BFD2.Grooves.Groove FX.Humanize Velocity" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="3" targetName="BFD2.Grooves.Groove FX.Humanize Time" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="4" targetName="BFD2.Grooves.Groove FX.Swing Amount" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="5" targetName="BFD2.Grooves.Groove FX.Simplify Amount" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="6" targetName="BFD2.Master Dynamics" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="7" targetName="BFD2.Kit.KitPiece[0].Mic Blend" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="8" targetName="BFD2.Kit.KitPiece[1].Mic Blend" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="9" targetName="BFD2.Mixer.Master Kick Bleed" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="10" targetName="BFD2.Mixer.Chan[Kick].Pan" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="11" targetName="BFD2.Mixer.Chan[Snare].Pan" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="12" targetName="BFD2.Mixer.Chan[Hihat].Pan" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="13" targetName="BFD2.Mixer.Chan[Floor Tom].Pan" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="14" targetName="BFD2.Mixer.Chan[Mid Tom].Pan" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="15" targetName="BFD2.Mixer.Chan[High Tom].Pan" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="16" targetName="BFD2.Mixer.Chan[Crash].Pan" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="17" targetName="BFD2.Mixer.Chan[Cymbal].Pan" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="18" targetName="BFD2.Mixer.Chan[Ride].Pan" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="19" targetName="BFD2.Mixer.Chan[Perc 1].Pan" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="20" targetName="BFD2.Mixer.Chan[Tom 4].Pan" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="21" targetName="BFD2.Mixer.Chan[Perc 2].Pan" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="22" targetName="BFD2.Kit.KitPiece[0].Damping Amount" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="23" targetName="BFD2.Kit.KitPiece[1].Damping Amount" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="24" targetName="BFD2.Kit.KitPiece[2].Damping Amount" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="25" targetName="BFD2.Kit.KitPiece[3].Damping Amount" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="26" targetName="BFD2.Kit.KitPiece[4].Damping Amount" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="27" targetName="BFD2.Kit.KitPiece[5].Damping Amount" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="28" targetName="BFD2.Kit.KitPiece[6].Damping Amount" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="29" targetName="BFD2.Kit.KitPiece[7].Damping Amount" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="30" targetName="BFD2.Kit.KitPiece[8].Damping Amount" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="31" targetName="BFD2.Kit.KitPiece[9].Damping Amount" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="32" targetName="BFD2.Kit.KitPiece[10].Damping Amount" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="33" targetName="BFD2.Kit.KitPiece[11].Damping Amount" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="34" targetName="BFD2.Kit.KitPiece[0].Tune" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="35" targetName="BFD2.Kit.KitPiece[1].Tune" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="36" targetName="BFD2.Kit.KitPiece[2].Tune" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="37" targetName="BFD2.Kit.KitPiece[3].Tune" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="38" targetName="BFD2.Kit.KitPiece[4].Tune" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="39" targetName="BFD2.Kit.KitPiece[5].Tune" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="40" targetName="BFD2.Kit.KitPiece[6].Tune" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="41" targetName="BFD2.Kit.KitPiece[7].Tune" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="42" targetName="BFD2.Kit.KitPiece[8].Tune" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="43" targetName="BFD2.Kit.KitPiece[9].Tune" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="44" targetName="BFD2.Kit.KitPiece[10].Tune" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="45" targetName="BFD2.Kit.KitPiece[11].Tune" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="46" targetName="BFD2.Mixer.Chan[Kick].Gain" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="47" targetName="BFD2.Mixer.Chan[Snare].Gain" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="48" targetName="BFD2.Mixer.Chan[Hihat].Gain" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="49" targetName="BFD2.Mixer.Chan[Floor Tom].Gain" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="50" targetName="BFD2.Mixer.Chan[Mid Tom].Gain" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="51" targetName="BFD2.Mixer.Chan[High Tom].Gain" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="52" targetName="BFD2.Mixer.Chan[Crash].Gain" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="53" targetName="BFD2.Mixer.Chan[Cymbal].Gain" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="54" targetName="BFD2.Mixer.Chan[Ride].Gain" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="55" targetName="BFD2.Mixer.Chan[Perc 1].Gain" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="56" targetName="BFD2.Mixer.Chan[Tom 4].Gain" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="57" targetName="BFD2.Mixer.Chan[Perc 2].Gain" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="58" targetName="BFD2.Mixer.Chan[OH].Gain" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="59" targetName="BFD2.Mixer.Chan[Room].Gain" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="60" targetName="BFD2.Mixer.Chan[Aux1].Gain" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="61" targetName="BFD2.Mixer.Chan[Aux2].Gain" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="62" targetName="BFD2.Mixer.Chan[Master].Gain" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="63" targetName="BFD2.Mixer.Chan[Kick].Mute" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="64" targetName="BFD2.Mixer.Chan[Snare].Mute" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="65" targetName="BFD2.Mixer.Chan[Hihat].Mute" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="66" targetName="BFD2.Mixer.Chan[Floor Tom].Mute" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="67" targetName="BFD2.Mixer.Chan[Mid Tom].Mute" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="68" targetName="BFD2.Mixer.Chan[High Tom].Mute" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="69" targetName="BFD2.Mixer.Chan[Crash].Mute" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="70" targetName="BFD2.Mixer.Chan[Cymbal].Mute" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="71" targetName="BFD2.Mixer.Chan[Ride].Mute" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="72" targetName="BFD2.Mixer.Chan[Perc 1].Mute" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="73" targetName="BFD2.Mixer.Chan[Tom 4].Mute" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="74" targetName="BFD2.Mixer.Chan[Perc 2].Mute" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="75" targetName="BFD2.Mixer.Chan[OH].Mute" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="76" targetName="BFD2.Mixer.Chan[Room].Mute" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="77" targetName="BFD2.Mixer.Chan[Aux1].Mute" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="78" targetName="BFD2.Mixer.Chan[Aux2].Mute" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="79" targetName="BFD2.Mixer.Chan[Master].Mute" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="80" targetName="BFD2.Mixer.Chan[Kick].Solo" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="81" targetName="BFD2.Mixer.Chan[Snare].Solo" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="82" targetName="BFD2.Mixer.Chan[Hihat].Solo" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="83" targetName="BFD2.Mixer.Chan[Floor Tom].Solo" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="84" targetName="BFD2.Mixer.Chan[Mid Tom].Solo" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="85" targetName="BFD2.Mixer.Chan[High Tom].Solo" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="86" targetName="BFD2.Mixer.Chan[Crash].Solo" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="87" targetName="BFD2.Mixer.Chan[Cymbal].Solo" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="88" targetName="BFD2.Mixer.Chan[Ride].Solo" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="89" targetName="BFD2.Mixer.Chan[Perc 1].Solo" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="90" targetName="BFD2.Mixer.Chan[Tom 4].Solo" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="91" targetName="BFD2.Mixer.Chan[Perc 2].Solo" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="92" targetName="BFD2.Mixer.Chan[OH].Solo" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="93" targetName="BFD2.Mixer.Chan[Room].Solo" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="94" targetName="BFD2.Mixer.Chan[Aux1].Solo" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="95" targetName="BFD2.Mixer.Chan[Aux2].Solo" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="96" targetName="BFD2.Mixer.Chan[Master].Solo" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="97" targetName="BFD2.Mixer.OH Distance" mode="Continuous" />
+            <BFD2AutomationMapTuple autoSourceIndex="98" targetName="BFD2.Mixer.Room Distance" mode="Continuous" />
+        </VObjectArray>
+        <BFD2AutomationMapInfo name="map_info" info_path="C:\Program Files (x86)\FXpansion\BFD Eco NFUZD\System\Maps\BFD Eco Auto map.eco_auto" info_name="BFD Eco Auto map" info_rating="3" />
+    </BFD2AutomationMap>
+    <AutomationMapSongSettings controllerchan="16" />
+    <BFD2Synth name="Synth" pluginVolume="0.8" masterTune="0.5" V2A="0.5" antiMachinegunMode="false" liveVelRandAmt="0" />
+    <BFD2SynthSettings name="BFD2SynthSettings" DefTip="0" DefShank="0" TipTight="2.14577e-008" ShankTight="2.14577e-008" ReoThreshold="0" TransTime="0.5" HatsVar="true" />
+    <BFD2CtrlMixerState name="Mixer_User_Config" show_tools="false" show_signal_paths="false" selected_chan_name="Floor Tom" selected_utility_tab="0" audioExportFormat="0" audioExportBitDepth="16" audioExportMode="0" audioExportSyncStart="0" audioExportSyncDuration="2" />
+</root>

@@ -1,0 +1,154 @@
+{
+    "version": "1.0",
+    "mode": 2,
+    "name": "2022-09-28_15-39-51_inner_tag__1__billliaom",
+    "model_names": {
+        "alg_model": [
+            "tt_fsnew_base_jianying",
+            "tt_freid",
+            "cc_yunfeng",
+            "cc_yunfeng_js"
+        ]
+    },
+    "nodes": [
+        {
+            "name": "FaceAlign_jybeauty",
+            "type": "nh_face_align",
+            "config": {
+                "keyMaps": {
+                    "intParam": {
+                        "affine_mode": 2
+                    },
+                    "floatParam": {},
+                    "stringParam": {
+                        "model_name": "cc_yunfeng",
+                        "packed_model_group_key": "face_align"
+                    },
+                    "pathParam": {}
+                }
+            }
+        },
+        {
+            "name": "blit_0",
+            "type": "blit",
+            "config": {
+                "size": {
+                    "width": 360,
+                    "height": 640
+                },
+                "keyMaps": {
+                    "intParam": {},
+                    "floatParam": {},
+                    "stringParam": {},
+                    "pathParam": {}
+                }
+            }
+        },
+        {
+            "name": "face_0",
+            "type": "face",
+            "config": {
+                "keyMaps": {
+                    "intParam": {
+                        "face_detect_ability": 1,
+                        "face_max_num": 10
+                    },
+                    "floatParam": {},
+                    "stringParam": {},
+                    "pathParam": {}
+                }
+            }
+        },
+        {
+            "name": "freid_0",
+            "type": "freid",
+            "config": {
+                "keyMaps": {
+                    "intParam": {
+                        "freid_buffer_immediate_mode": 1
+                    },
+                    "floatParam": {},
+                    "stringParam": {},
+                    "pathParam": {}
+                }
+            }
+        },
+        {
+            "name": "script_0",
+            "type": "script",
+            "config": {
+                "keyMaps": {
+                    "intParam": {
+                        "face_count": 10,
+                        "use_full_gpu_link": 1,
+                        "async_load": 0
+                    },
+                    "floatParam": {},
+                    "stringParam": {
+                        "model_key": "cc_yunfeng",
+                        "packed_model_group_key": "script",
+                        "model_name": "cc_yunfeng_js"
+                    },
+                    "pathParam": {
+                    }
+                }
+            }
+        }
+    ],
+    "links": [
+        {
+            "fromNode": "FaceAlign_jybeauty",
+            "fromIndex": 1,
+            "toNode": "script_0",
+            "toIndex": 0
+        },
+        {
+            "fromNode": "blit_0",
+            "fromIndex": 0,
+            "toNode": "FaceAlign_jybeauty",
+            "toIndex": 0
+        },
+        {
+            "fromNode": "blit_0",
+            "fromIndex": 0,
+            "toNode": "face_0",
+            "toIndex": 0
+        },
+        {
+            "fromNode": "blit_0",
+            "fromIndex": 0,
+            "toNode": "freid_0",
+            "toIndex": 0
+        },
+        {
+            "fromNode": "blit_0",
+            "fromIndex": 0,
+            "toNode": "script_0",
+            "toIndex": 1
+        },
+        {
+            "fromNode": "face_0",
+            "fromIndex": 0,
+            "toNode": "FaceAlign_jybeauty",
+            "toIndex": 2
+        },
+        {
+            "fromNode": "face_0",
+            "fromIndex": 0,
+            "toNode": "freid_0",
+            "toIndex": 1
+        },
+        {
+            "fromNode": "face_0",
+            "fromIndex": 0,
+            "toNode": "script_0",
+            "toIndex": 2
+        },
+        {
+            "fromNode": "freid_0",
+            "fromIndex": 0,
+            "toNode": "script_0",
+            "toIndex": 3
+        }
+    ]
+}

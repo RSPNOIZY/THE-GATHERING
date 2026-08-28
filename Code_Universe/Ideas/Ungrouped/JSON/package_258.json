@@ -1,0 +1,26 @@
+{
+  "name": "@noizybeast/consent-sdk",
+  "version": "0.1.0",
+  "description": "TypeScript client for the NOIZY consent-gateway Cloudflare Worker. Consent-native — nothing creator-linked moves without it.",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.esm.js",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsc --project tsconfig.json",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "keywords": ["consent", "creator", "noizy", "sovereignty"],
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "typescript": "^5.4.0",
+    "vitest": "^1.4.0"
+  }
+}

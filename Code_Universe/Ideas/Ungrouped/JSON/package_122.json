@@ -1,0 +1,11 @@
+{
+  "name": "@noizy/config",
+  "version": "1.0.0",
+  "private": true,
+  "main": "./index.js",
+  "exports": {
+    "./tailwind": "./tailwind.config.js",
+    "./postcss": "./postcss.config.js",
+    "./eslint": "./eslint.config.js"
+  }
+}

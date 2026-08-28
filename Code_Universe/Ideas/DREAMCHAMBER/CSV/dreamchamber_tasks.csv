@@ -1,0 +1,9 @@
+Title,Layer,Machine,Command,Status,Risk,Owner,Definition of Done,Source Artifacts
+"Initial system scan","Recovery","GOD","scan-drives","Todo","Safe","Archivist","scans complete with volumes + counts","counts.csv; events.jsonl"
+"MICKY-P partition scan","Recovery","MICKY-P","scan-drives","Todo","Safe","Archivist","all partitions inventoried","counts.csv"
+"Extract code-gold","Ingest","GOD","extract-code","Todo","Safe","Builder","code-gold populated; no deletes","code-gold/"
+"Quarantine plugins","Ingest","GOD","copy-plugins-to-quarantine","Todo","Safe","Archivist","plugins copied; no installs","plugins-quarantine/"
+"Verify manifests","Verify","GOD","verify-manifests","Todo","Safe","Builder","hashes + counts match","manifests/"
+"Studio health green","Runtime","GOD","studio_health","Todo","Review","Engineer","Logic+KEITH+NOIZYNET healthy","/health"
+"Record preflight gate","Runtime","GOD","record_preflight","Todo","Review","Engineer","all gates pass","events.jsonl"
+"Operational session","Operate","GOD","operate","Blocked","Dangerous","Producer","explicit approval logged","events.jsonl"

@@ -1,0 +1,195 @@
+{
+  "name": "GitHub \u2192 Linear Sync",
+  "nodes": [
+    {
+      "id": "webhook-1",
+      "name": "GitHub Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        250,
+        300
+      ],
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "github-linear-sync",
+        "responseMode": "onReceived",
+        "responseData": "allEntries"
+      },
+      "webhookId": "7ea464b5-39ca-4263-8521-3063dacc6b7a"
+    },
+    {
+      "id": "switch-1",
+      "name": "Event Router",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3,
+      "position": [
+        450,
+        300
+      ],
+      "parameters": {
+        "rules": {
+          "rules": [
+            {
+              "outputKey": "push",
+              "conditions": {
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.headers['x-github-event'] }}",
+                    "rightValue": "push",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "outputKey": "pull_request",
+              "conditions": {
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.headers['x-github-event'] }}",
+                    "rightValue": "pull_request",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "code-1",
+      "name": "Extract Linear IDs",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        650,
+        200
+      ],
+      "parameters": {
+        "jsCode": "// Extract NOI-XXX patterns from commit messages\nconst commits = $input.first().json.body?.commits || [];\nconst issueIds = [];\n\nfor (const commit of commits) {\n  const matches = commit.message.match(/NOI-\\d+/gi) || [];\n  for (const match of matches) {\n    issueIds.push({\n      issueId: match.toUpperCase(),\n      commitMessage: commit.message,\n      commitUrl: commit.url,\n      author: commit.author?.name\n    });\n  }\n}\n\nreturn issueIds.length > 0 ? issueIds : [{ noIssues: true }];"
+      }
+    },
+    {
+      "id": "code-2",
+      "name": "Check PR Merged",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        650,
+        400
+      ],
+      "parameters": {
+        "jsCode": "// Check if PR was merged and extract Linear issue IDs\nconst pr = $input.first().json.body?.pull_request;\nconst action = $input.first().json.body?.action;\n\nif (action === 'closed' && pr?.merged) {\n  const title = pr.title || '';\n  const body = pr.body || '';\n  const combined = title + ' ' + body;\n  const matches = combined.match(/NOI-\\d+/gi) || [];\n  \n  return matches.map(match => ({\n    issueId: match.toUpperCase(),\n    prTitle: pr.title,\n    prUrl: pr.html_url,\n    merged: true\n  }));\n}\n\nreturn [{ noMerge: true }];"
+      }
+    },
+    {
+      "id": "http-1",
+      "name": "Update Linear (In Progress)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        850,
+        200
+      ],
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.linear.app/graphql",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ query: `mutation { issueUpdate(id: \"${$json.issueId}\", input: { stateId: \"in_progress\" }) { success } }` }) }}"
+      }
+    },
+    {
+      "id": "http-2",
+      "name": "Update Linear (Done)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        850,
+        400
+      ],
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.linear.app/graphql",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ query: `mutation { issueUpdate(id: \"${$json.issueId}\", input: { stateId: \"done\" }) { success } }` }) }}"
+      }
+    }
+  ],
+  "connections": {
+    "GitHub Webhook": {
+      "main": [
+        [
+          {
+            "node": "Event Router",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Event Router": {
+      "main": [
+        [
+          {
+            "node": "Extract Linear IDs",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Check PR Merged",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract Linear IDs": {
+      "main": [
+        [
+          {
+            "node": "Update Linear (In Progress)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check PR Merged": {
+      "main": [
+        [
+          {
+            "node": "Update Linear (Done)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "saveDataErrorExecution": "all",
+    "saveDataSuccessExecution": "all",
+    "saveManualExecutions": true,
+    "saveExecutionProgress": true,
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  }
+}

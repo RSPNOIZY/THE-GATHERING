@@ -1,0 +1,70 @@
+{
+	"version":	"1.0",
+	"mode":	2,
+	"name":	"AlgorithmGraph_RcibVqdrdlbabQc5tdNd5Od3czd",
+	"size":	{
+		"width":	360,
+		"height":	640
+	},
+	"nodes":	[{
+			"name":	"skin_seg_0",
+			"type":	"skin_seg",
+			"config":	{
+				"keyMaps":	{
+					"intParam":	{
+					},
+					"floatParam":	{
+					},
+					"stringParam":	{
+					}
+				}
+			}
+		}, {
+			"name":	"face_0",
+			"type":	"face",
+			"config":	{
+				"keyMaps":	{
+					"intParam":	{
+						"face_detect_ability":	319
+					},
+					"floatParam":	{
+					},
+					"stringParam":	{
+					}
+				}
+			}
+		}, {
+			"name":	"textureBlitter",
+			"type":	"texture_blit",
+			"config":	{
+				"size":	{
+					"width":	360,
+					"height":	640
+				},
+				"keyMaps":	{
+					"intParam":	{
+					},
+					"floatParam":	{
+					},
+					"stringParam":	{
+					}
+				}
+			}
+		}],
+	"links":	[{
+			"fromNode":	"face_0",
+			"fromIndex":	0,
+			"toNode":	"skin_seg_0",
+			"toIndex":	1
+		}, {
+			"fromNode":	"textureBlitter",
+			"fromIndex":	0,
+			"toNode":	"skin_seg_0",
+			"toIndex":	0
+		}, {
+			"fromNode":	"textureBlitter",
+			"fromIndex":	0,
+			"toNode":	"face_0",
+			"toIndex":	0
+		}]
+}

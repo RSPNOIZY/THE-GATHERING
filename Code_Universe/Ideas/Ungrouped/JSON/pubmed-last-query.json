@@ -1,0 +1,38 @@
+{
+  "query": "haptic biofeedback anxiety",
+  "generated_at": "2026-03-12T18:51:31.562998+00:00",
+  "source": "PubMed E-utilities",
+  "article_count": 2,
+  "articles": [
+    {
+      "pmid": "37177701",
+      "title": "Guiding Breathing at the Resonance Frequency with Haptic Sensors Potentiates Cardiac Coherence.",
+      "journal": "Sensors (Basel, Switzerland)",
+      "pubdate": "2023 May 5",
+      "authors": [
+        "Bouny P",
+        "Arsac LM",
+        "Gu\u00e9rin A",
+        "Nerincx G",
+        "Deschodt-Arsac V"
+      ],
+      "doi": "doi: 10.3390/s23094494",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/37177701/"
+    },
+    {
+      "pmid": "40257886",
+      "title": "Centroparietal Alpha/Beta Asymmetry in Response to Urgency Elicited by Upper Body Vibration.",
+      "journal": "IEEE transactions on haptics",
+      "pubdate": "2025 Jul-Sep",
+      "authors": [
+        "Park W",
+        "Alsuradi H",
+        "Eid M"
+      ],
+      "doi": "doi: 10.1109/TOH.2025.3561889",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/40257886/"
+    }
+  ],
+  "claude_summary": null,
+  "safety_note": "Research support output only. Not medical advice. Validate clinically before deployment."
+}

@@ -1,0 +1,29 @@
+{
+    "version": "8.1.0", 
+    "effect": {
+        "requirement": {
+            "faceDetect": true, 
+            "blit": {
+                "width": 720, 
+                "height": 1280
+            }
+        }, 
+        "Link": [
+            {
+                "path": "amazingfeature/", 
+                "zorder": 9999, 
+                "type": "AmazingFeature"
+            }, 
+            {
+                "type": "TouchGes"
+            }
+        ], 
+        "model_names": {
+            "xxx": [
+                "tt_skeleton"
+            ]
+        }
+    }, 
+    "bALG_BACH_CONFIG": true, 
+    "name": "Qinyan"
+}

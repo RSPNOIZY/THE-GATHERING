@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0.0",
+  "ledger_id": "LEDGER_RSP001_CREATURE_001",
+  "persona_id": "RSP_003_CREATURE",
+  "actor_id": "RSP_001",
+  "actor_name": "Rob Plowman",
+
+  "status": "registered_inactive",
+  "activation_date": null,
+  "activation_trigger": "30_days_post_first_license",
+
+  "lifetime_earnings": {
+    "currency": "USD",
+    "gross_total": 0.00,
+    "actor_share_total": 0.00,
+    "platform_share_total": 0.00,
+    "lifeluv_token_value": 0.00
+  },
+
+  "transactions": [],
+
+  "splits_config": {
+    "actor_pct": 75,
+    "platform_pct": 25,
+    "model": "perpetual_75_25",
+    "renegotiation_allowed": false,
+    "override_requires": "dual_consent_plus_ncp_amendment"
+  },
+
+  "consent_log": [
+    {
+      "event": "persona_registered",
+      "timestamp": "2026-03-13T00:00:00Z",
+      "consent_given": true,
+      "consent_key": "RSP001_CRTR_GENESIS",
+      "never_clauses_accepted": true,
+      "ncp_version": "1.0"
+    }
+  ],
+
+  "legacy_vault": {
+    "enabled": true,
+    "beneficiary": "TBD",
+    "transfer_condition": "estate_or_explicit_designation",
+    "vault_seed_amount": 0.00
+  },
+
+  "audit_trail_hash": "sha256:pending_first_transaction"
+}

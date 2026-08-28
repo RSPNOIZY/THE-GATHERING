@@ -1,0 +1,19 @@
+name = "noizy-mcp-router"
+main = "src/index.ts"
+compatibility_date = "2026-08-01"
+compatibility_flags = ["nodejs_compat"]
+
+[routes]
+pattern = "mcp.noizyfish.com/*"
+custom_domain = true
+
+[vars]
+ENVIRONMENT = "production"
+API_VERSION = "2024-11-05"
+SERVER_NAME = "NOIZY MCP Sovereign Mesh Gateway"
+SERVER_VERSION = "4.0.0"
+
+# Optional Cloudflare KV Cache for active MCP Sessions & Rate Limiting
+# [[kv_namespaces]]
+# binding = "MCP_SESSIONS"
+# id = "noizy_mcp_sessions_kv"

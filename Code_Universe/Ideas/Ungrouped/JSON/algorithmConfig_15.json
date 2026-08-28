@@ -1,0 +1,111 @@
+{
+	"version":	"1.0",
+	"mode":	2,
+	"name":	"colormigration_hauisdhfiuwfhaui",
+	"nodes":	[{
+		"name": "blit_0",
+            "type": "blit",
+            "config": {
+                "keyMaps": {
+                    "intParam": {
+                        "gpu_mode": 1
+                    },
+                    "floatParam": {},
+                    "stringParam": {
+                        "alg_tag": "unmergeable"
+                    },
+                    "pathParam": {}
+                }
+            }
+		}, {
+			"name": "blit_1",
+            "type": "blit",
+            "config": {
+                "keyMaps": {
+                    "intParam": {
+                        "gpu_mode": 1
+                    },
+                    "floatParam": {},
+                    "stringParam": {
+                        "alg_tag": "unmergeable"
+                    },
+                    "pathParam": {}
+                }
+            }
+		}, {
+			"name": "general_lens_0",
+			"type": "general_lens",
+			"config": {
+				"keyMaps": {
+					"intParam": {
+						"colormatch_feature_type": 1
+					},
+					"floatParam": {
+					},
+					"stringParam": {
+						"name": "lensii_colormatch_feature_0",
+						"general_lens_alg_name": "lensii_colormatch_feature"
+					},
+					"pathParam": {
+					}
+				}
+			}
+		}, {
+			"name": "general_lens_1",
+			"type": "general_lens",
+			"config": {
+				"keyMaps": {
+					"intParam": {
+						"colormatch_feature_type": 0
+					},
+					"floatParam": {
+					},
+					"stringParam": {
+						"name": "lensii_colormatch_feature_1",
+						"general_lens_alg_name": "lensii_colormatch_feature"
+					},
+					"pathParam": {
+					}
+				}
+			}
+		}, {
+			"name": "general_lens_2",
+			"type": "general_lens",
+			"config": {
+				"keyMaps": {
+					"intParam": {
+					},
+					"floatParam": {
+					},
+					"stringParam": {
+						"name": "llensii_colormatch_lut_0",
+						"general_lens_alg_name": "lensii_colormatch_lut"
+					},
+					"pathParam": {
+					}
+				}
+			}
+		}
+	],
+	"links":	[{
+			"fromNode":	"blit_0",
+			"fromIndex":	0,
+			"toNode":	"general_lens_0",
+			"toIndex":	0
+		}, {
+			"fromNode":	"blit_1",
+			"fromIndex":	0,
+			"toNode":	"general_lens_1",
+			"toIndex":	0
+		}, {
+			"fromNode":	"general_lens_0",
+			"fromIndex":	1,
+			"toNode":	"general_lens_2",
+			"toIndex":	1
+		}, {
+			"fromNode":	"general_lens_1",
+			"fromIndex":	1,
+			"toNode":	"general_lens_2",
+			"toIndex":	0
+		}]
+}

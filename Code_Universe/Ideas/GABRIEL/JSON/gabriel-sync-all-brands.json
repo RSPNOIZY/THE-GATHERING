@@ -1,0 +1,118 @@
+{
+  "name": "gabriel-sync-all-brands",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "gabriel-sync",
+        "responseMode": "responseNode",
+        "options": {
+          "rawBody": false
+        }
+      },
+      "id": "webhook-trigger",
+      "name": "Webhook · /gabriel-sync",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [240, 300],
+      "webhookId": "gabriel-sync-all-brands"
+    },
+    {
+      "parameters": {
+        "command": "=bash /Users/m2ultra/NOIZYANTHROPIC/ops/gabriel-to-all-brands.sh {{ $json.body.mode === 'push' ? '--push' : $json.body.mode === 'scan' ? '--scan-only' : '' }} 2>&1 | tail -60"
+      },
+      "id": "execute-sync",
+      "name": "Execute · gabriel-to-all-brands.sh",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [480, 300]
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict"
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.exitCode }}",
+                    "rightValue": 0,
+                    "operator": {
+                      "type": "number",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "success"
+            }
+          ]
+        },
+        "options": {
+          "fallbackOutput": "extra"
+        }
+      },
+      "id": "split-by-exit",
+      "name": "Switch · success vs failure",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3,
+      "position": [720, 300]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ ok: true, mode: $('Webhook · /gabriel-sync').item.json.body.mode || 'dry', exitCode: $('Execute · gabriel-to-all-brands.sh').item.json.exitCode, stdout_tail: $('Execute · gabriel-to-all-brands.sh').item.json.stdout, ts: new Date().toISOString() }) }}"
+      },
+      "id": "respond-success",
+      "name": "Respond · success",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [960, 200]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ ok: false, exitCode: $('Execute · gabriel-to-all-brands.sh').item.json.exitCode, stderr_tail: $('Execute · gabriel-to-all-brands.sh').item.json.stderr || $('Execute · gabriel-to-all-brands.sh').item.json.stdout, ts: new Date().toISOString() }) }}",
+        "options": {
+          "responseCode": 502
+        }
+      },
+      "id": "respond-failure",
+      "name": "Respond · failure",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [960, 400]
+    }
+  ],
+  "connections": {
+    "Webhook · /gabriel-sync": {
+      "main": [[{ "node": "Execute · gabriel-to-all-brands.sh", "type": "main", "index": 0 }]]
+    },
+    "Execute · gabriel-to-all-brands.sh": {
+      "main": [[{ "node": "Switch · success vs failure", "type": "main", "index": 0 }]]
+    },
+    "Switch · success vs failure": {
+      "main": [
+        [{ "node": "Respond · success", "type": "main", "index": 0 }],
+        [{ "node": "Respond · failure", "type": "main", "index": 0 }]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "saveExecutionProgress": true,
+    "saveManualExecutions": true
+  },
+  "tags": [{ "name": "gabriel" }, { "name": "mc96" }, { "name": "sync" }],
+  "meta": {
+    "note": "Gabriel → All 6 Brand Repos sync workflow. POST JSON {mode:'dry'|'push'|'scan'} to the webhook. Wraps ops/gabriel-to-all-brands.sh on GOD.local. Runs only when n8n process has filesystem access to NOIZYANTHROPIC (default for local n8n on :5678)."
+  }
+}

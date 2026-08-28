@@ -13,7 +13,63 @@
 *.msi
 *.iso
 
-# Exclude audio and video files
+# ── Node / JS ─────────────────────────────────────────────────
+node_modules/
+**/node_modules/
+npm-debug.log*
+*.tsbuildinfo
+.next/
+.cache/
+**/dist/
+
+# ── Secrets & Keys (NEVER commit these) ──────────────────────
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+secrets/
+.secrets/
+wrangler.toml.bak
+
+# ── Databases (local runtime state) ──────────────────────────
+*.db
+*.sqlite
+*.sqlite3
+*.duckdb
+memory/chroma/
+
+# ── Ollama / AI Models (huge) ────────────────────────────────
+*.gguf
+*.bin
+*.safetensors
+models/
+.ollama/
+
+# ── macOS ─────────────────────────────────────────────────────
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+*.icloud
+
+# ── IDE ───────────────────────────────────────────────────────
+.idea/
+.vscode/settings.json
+*.swp
+*~
+
+# ── Logs & temp ───────────────────────────────────────────────
+logs/
+*.log
+*.tmp
+*.bak
+*.orig
+_quarantine_duplicates/
+reports/
+
+# ── Audio / Media (large — keep in THE-AQUARIUM) ─────────────
 *.wav
 *.WAV
 *.mp3
@@ -30,10 +86,6 @@
 *.wav/
 
 # Exclude IDE/Editor files and system files
-.DS_Store
 Thumbs.db
-node_modules/
 .ts/
-.vscode/
-*.bak
 *.BAK

@@ -1,0 +1,76 @@
+{
+  "name": "Gabriel Heartbeat → Status Logger",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "hoursInterval": 1
+            }
+          ]
+        }
+      },
+      "id": "1",
+      "name": "Every Hour",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.1,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "url": "http://host.docker.internal:9090/api/status",
+        "options": {
+          "timeout": 5000
+        }
+      },
+      "id": "2",
+      "name": "Pull Gabriel Status",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [460, 300]
+    },
+    {
+      "parameters": {
+        "url": "http://host.docker.internal:9090/api/webhook/n8n",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"action\": \"heartbeat\",\n  \"subject\": \"n8n_scheduler\",\n  \"countdown_days\": {{ $json.countdown_days }},\n  \"vibe\": \"{{ $json.memcell.vibe }}\",\n  \"memories\": {{ $json.memcell.memories }}\n}",
+        "options": {}
+      },
+      "id": "3",
+      "name": "Log to MemCell",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [680, 300]
+    }
+  ],
+  "connections": {
+    "Every Hour": {
+      "main": [
+        [
+          {
+            "node": "Pull Gabriel Status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Pull Gabriel Status": {
+      "main": [
+        [
+          {
+            "node": "Log to MemCell",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

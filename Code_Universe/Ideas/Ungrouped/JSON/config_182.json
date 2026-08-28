@@ -1,0 +1,34 @@
+{
+    "ae_tool": "AmazingEditor",
+    "bALG_BACH_CONFIG": true,
+    "effect": {
+        "Link": [
+            {
+                "path": "AmazingFeature/",
+                "type": "AmazingFeature",
+                "zorder": 8011,
+                "extra": {
+                    "composer_param": [
+                        {
+                            "name": "intensity",
+                            "key": "face_adjust_whole",
+                            "default_value": 0.8,
+                            "min_value": 0.0,
+                            "max_value": 1.0,
+                            "allow_negative": false
+                        }
+                    ]
+                }
+            }
+        ],
+        "model_names": {
+            "alg_model": [
+                "tt_face_extra",
+                "tt_fsnew_base_jianying",
+                "tt_freid"
+            ]
+        }
+    },
+    "name": "legacy-model-2d-6321eeb8-5927-11ed-b0cf-3e22fb85aea1zia",
+    "version": "12.8.0"
+}

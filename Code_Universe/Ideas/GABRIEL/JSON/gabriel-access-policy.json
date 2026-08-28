@@ -1,0 +1,55 @@
+{
+  "_comment": "Cloudflare Access policy — gabriel.noizy.ai restricted to RSP_001 only. This is a config artifact; apply via Cloudflare dashboard or API (see .sh file in same dir). Do NOT commit account_id or api_token to git.",
+  "application": {
+    "name": "GABRIEL — Agent Control Plane",
+    "domain": "gabriel.noizy.ai",
+    "type": "self_hosted",
+    "session_duration": "24h",
+    "auto_redirect_to_identity": false,
+    "cors_headers": {
+      "allowed_origins": ["https://metabeast.noizy.ai"],
+      "allow_credentials": true,
+      "allowed_methods": ["GET", "POST", "OPTIONS"],
+      "allowed_headers": ["Authorization", "Content-Type", "X-NOIZY-Key"],
+      "max_age": 600
+    },
+    "tags": ["empire", "agent-control", "rsp-only"]
+  },
+  "policies": [
+    {
+      "name": "ALLOW — RSP_001 only",
+      "decision": "allow",
+      "precedence": 1,
+      "include": [
+        { "email": { "email": "rsp@noizy.ai" } }
+      ],
+      "require": [
+        { "auth_method": { "auth_method": "mfa" } }
+      ],
+      "session_duration": "24h",
+      "purpose_justification_required": false,
+      "approval_required": false
+    },
+    {
+      "name": "BLOCK — everyone else",
+      "decision": "deny",
+      "precedence": 2,
+      "include": [
+        { "everyone": {} }
+      ]
+    }
+  ],
+  "service_tokens": [
+    {
+      "_comment": "Optional: machine-to-machine token for GABRIEL daemon → gabriel.noizy.ai. Store the client_secret in wrangler secret as GABRIEL_ACCESS_CLIENT_SECRET. Never commit.",
+      "name": "gabriel-daemon",
+      "duration": "non-expiring"
+    }
+  ],
+  "notes": {
+    "identity_providers": "Requires at minimum a one-time-pin (OTP) email IdP. Recommended: add GitHub IdP for RSPNOIZY handle as second option.",
+    "mfa_requirement": "MFA is enforced at the policy level — RSP must complete TOTP or WebAuthn on every new device.",
+    "kill_switch_integration": "If HEAVEN Kill Switch fires for RSP_001, this Access app MUST be disabled via API within 30s. Hook to be built: Heaven /kill endpoint → Cloudflare API DELETE on app UUID.",
+    "audit": "Cloudflare Access logs → Logpush to R2 bucket `gabriel-access-audit` for 100-year retention per Estate doctrine."
+  }
+}

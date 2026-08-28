@@ -1,0 +1,52 @@
+{
+  "OBSERVABILITY_MISSING": {
+    "section": "§1 Observability Before Promotion",
+    "quote": "No version may be promoted unless it emits the required telemetry needed to judge safety. Required telemetry must be emitted by the new Worker version itself, not inferred from aggregate or upstream metrics.",
+    "remediation": "Add observability instrumentation to your Worker code before deployment."
+  },
+  "VERSION_CANARY_SKIPPED": {
+    "section": "§2 Gradual Deployments (Primary Mechanism)",
+    "quote": "All promotions begin as gradual deployments unless an explicit exemption is documented, justified, and approved.",
+    "remediation": "Use `wrangler versions deploy --percentage` for traffic splitting."
+  },
+  "ROUTE_CANARY_WITHOUT_VERSION": {
+    "section": "§3 Route Canaries (Secondary Mechanism)",
+    "quote": "Route canaries do not satisfy the requirement for version-based gradual deployment.",
+    "remediation": "Add a version-split gradual deployment before or alongside route canaries."
+  },
+  "FLAG_GOVERNANCE_VIOLATION": {
+    "section": "§4 Flags Are Not Governance by Themselves",
+    "quote": "Any control capable of unblocking prohibited or trust-critical compute must be treated as a hard-stop control, not an ordinary feature flag.",
+    "remediation": "Move trust-critical controls to Durable Objects with explicit authorization."
+  },
+  "ERROR_BUDGET_EXHAUSTED": {
+    "section": "§5 Error Budget Authority",
+    "quote": "When budget is exhausted, feature deployments freeze. Rollbacks remain allowed. Reliability fixes bypass freeze.",
+    "remediation": "Wait for error budget recovery or submit a reliability fix."
+  },
+  "ROLLBACK_NOT_WIRED": {
+    "section": "Core Law",
+    "quote": "If the edge cannot observe itself, choose restraint, and roll back safely, the edge cannot be trusted.",
+    "remediation": "Ensure rollback.sh exists and is wired into CI workflows."
+  },
+  "DR_PLAYBOOK_MISSING": {
+    "section": "DR Visibility",
+    "quote": "Recovery procedures must be documented and tested before production deployment.",
+    "remediation": "Create or update docs/DR-PLAYBOOK.md with recovery procedures."
+  },
+  "ZONE_MIGRATION_BLOCKED": {
+    "section": "Zone Migration Policy",
+    "quote": "Zone migration is the highest-risk, least-reversible operation. Do the reversible things first. Do the irreversible thing last.",
+    "remediation": "Complete all prerequisites: KV created, Worker deployed, route verified, DNS exported."
+  },
+  "MIGRATION_TOKEN_INVALID": {
+    "section": "Migration Intent Enforcement",
+    "quote": "A zone migration cannot proceed unless a time-bounded, single-use DRM token is minted and validated by the EdgeGovernor Durable Object.",
+    "remediation": "Request a migration token from an authorized operator."
+  },
+  "NEVER_CLAUSE_VIOLATION": {
+    "section": "Never Clauses (Immutable)",
+    "quote": "Never Clauses are immovable prohibitions burned into law, never overrideable.",
+    "remediation": "This action is permanently blocked. No override exists."
+  }
+}

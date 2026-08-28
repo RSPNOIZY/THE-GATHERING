@@ -1,0 +1,208 @@
+{
+  "info": {
+    "name": "NOIZY Governance — Webhooks",
+    "_postman_id": "noizy-governance-webhooks-001",
+    "description": "Contract definitions and test payloads for the NOIZY governance event system.\n\nRules:\n- Postman DEFINES truth (schemas, examples, expected responses)\n- Postman NEVER mutates state\n- Every webhook has a saved example request + expected response\n\nOperator: RSP_001 | NOIZY Empire | 2026",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "governance/webhooks/n8n",
+      "item": [
+        {
+          "name": "AI Commit Validation — Valid Payload",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"source\": \"github\",\n  \"repo\": \"NOIZYANTHROPIC\",\n  \"branch\": \"main\",\n  \"commit_sha\": \"abc123def456\",\n  \"author\": \"RSP_001\",\n  \"message\": \"feat: add governance loop for commit validation\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:5678/webhook/ai-commit-validate",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5678",
+              "path": ["webhook", "ai-commit-validate"]
+            },
+            "description": "Valid commit event. Expect 200 with execution_id + status=validated."
+          },
+          "response": [
+            {
+              "name": "200 — Validated",
+              "status": "OK",
+              "code": 200,
+              "header": [
+                { "key": "Content-Type", "value": "application/json" }
+              ],
+              "body": "{\n  \"status\": \"validated\",\n  \"execution_id\": \"nf-2026-04-08-00001\",\n  \"commit_sha\": \"abc123def456\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "AI Commit Validation — Missing Fields (Rejected)",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"source\": \"github\",\n  \"repo\": \"NOIZYANTHROPIC\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:5678/webhook/ai-commit-validate",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5678",
+              "path": ["webhook", "ai-commit-validate"]
+            },
+            "description": "Missing commit_sha and message. Expect 422 with rejection reason."
+          },
+          "response": [
+            {
+              "name": "422 — Schema Rejected",
+              "status": "Unprocessable Entity",
+              "code": 422,
+              "header": [
+                { "key": "Content-Type", "value": "application/json" }
+              ],
+              "body": "{\n  \"status\": \"rejected\",\n  \"execution_id\": \"nf-2026-04-08-00002\",\n  \"reason\": \"Missing required fields: commit_sha, repo, or message\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "AI Commit Validation — Empty Body (Rejected)",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "url": {
+              "raw": "http://localhost:5678/webhook/ai-commit-validate",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5678",
+              "path": ["webhook", "ai-commit-validate"]
+            },
+            "description": "Empty body edge case. Must still return execution_id + structured rejection."
+          },
+          "response": [
+            {
+              "name": "422 — Empty Body Rejected",
+              "status": "Unprocessable Entity",
+              "code": 422,
+              "header": [
+                { "key": "Content-Type", "value": "application/json" }
+              ],
+              "body": "{\n  \"status\": \"rejected\",\n  \"execution_id\": \"nf-2026-04-08-00003\",\n  \"reason\": \"Missing required fields: commit_sha, repo, or message\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "governance/gabriel",
+      "item": [
+        {
+          "name": "GABRIEL — Health Check",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:7777/health",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "7777",
+              "path": ["health"]
+            },
+            "description": "Verify GABRIEL daemon is alive. Expect uptime, version."
+          },
+          "response": []
+        },
+        {
+          "name": "GABRIEL — Speak",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"text\": \"Governance audit: commit validated on NOIZYANTHROPIC main.\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:7777/speak",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "7777",
+              "path": ["speak"]
+            },
+            "description": "Trigger spoken alert via GABRIEL TTS."
+          },
+          "response": []
+        },
+        {
+          "name": "GABRIEL — Write MemCell",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"value\": {\n    \"execution_id\": \"nf-2026-04-08-00001\",\n    \"event\": \"commit_validated\",\n    \"repo\": \"NOIZYANTHROPIC\",\n    \"ts\": \"2026-04-08T10:00:00Z\"\n  }\n}"
+            },
+            "url": {
+              "raw": "http://localhost:7777/memcell/governance:audit:test",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "7777",
+              "path": ["memcell", "governance:audit:test"]
+            },
+            "description": "Write a governance event to GABRIEL MemCell storage."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "governance/contracts",
+      "item": [
+        {
+          "name": "HEAVEN — Health Check",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "https://heaven.rsp-5f3.workers.dev/health",
+              "protocol": "https",
+              "host": ["heaven", "noizylab", "workers", "dev"],
+              "path": ["health"]
+            },
+            "description": "Verify HEAVEN Cloudflare Worker is alive."
+          },
+          "response": []
+        },
+        {
+          "name": "Anthropic Status — API Check",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "https://status.claude.com/api/v2/status.json",
+              "protocol": "https",
+              "host": ["status", "claude", "com"],
+              "path": ["api", "v2", "status.json"]
+            },
+            "description": "Anthropic API status. indicator='none' means all operational."
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}

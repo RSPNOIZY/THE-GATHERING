@@ -1,0 +1,161 @@
+HEAVEN Worker asset API blueprint
+=================================
+
+Use this route module in your Cloudflare Worker deployment to register/search/sync creator assets against D1 + R2.
+Production Worker implementation is now in:
+- `cloudflare/src/index.mjs`
+- `cloudflare/wrangler.toml`
+
+Before running remote D1 migrations:
+- export `CLOUDFLARE_API_TOKEN` with D1 edit permissions
+- export `API_AUTH_TOKEN`
+- run `npm run cf:remote:one-command`
+
+```javascript
+export default {
+  async fetch(request, env) {
+    const url = new URL(request.url);
+    const path = url.pathname;
+
+    if (request.method === 'POST' && path === '/api/assets/register') {
+      return registerAsset(request, env);
+    }
+
+    if (request.method === 'GET' && path === '/api/assets/search') {
+      return searchAssets(request, env);
+    }
+
+    if (request.method === 'PUT' && path === '/api/assets/sync') {
+      return syncAsset(request, env);
+    }
+
+    return json({ error: 'Not found' }, 404);
+  },
+};
+
+async function registerAsset(request, env) {
+  const body = await request.json();
+
+  const required = ['public_id', 'asset_name', 'app_category', 'app_name', 'file_type'];
+  for (const key of required) {
+    if (!body[key]) {
+      return json({ error: `Missing required field: ${key}` }, 400);
+    }
+  }
+
+  const stmt = env.DB.prepare(
+    `INSERT INTO hvs_creator_assets
+      (public_id, asset_name, app_category, app_name, file_type, r2_object_key, local_path_blueprint)
+     VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7)
+     ON CONFLICT(public_id) DO UPDATE SET
+       asset_name = excluded.asset_name,
+       app_category = excluded.app_category,
+       app_name = excluded.app_name,
+       file_type = excluded.file_type,
+       r2_object_key = excluded.r2_object_key,
+       local_path_blueprint = excluded.local_path_blueprint,
+       updated_at = CURRENT_TIMESTAMP`
+  );
+
+  await stmt
+    .bind(
+      body.public_id,
+      body.asset_name,
+      body.app_category,
+      body.app_name,
+      body.file_type,
+      body.r2_object_key ?? null,
+      body.local_path_blueprint ?? null
+    )
+    .run();
+
+  return json({ ok: true, public_id: body.public_id }, 200);
+}
+
+async function searchAssets(request, env) {
+  const url = new URL(request.url);
+  const appName = url.searchParams.get('app_name');
+  const fileType = url.searchParams.get('file_type');
+  const limit = Number(url.searchParams.get('limit') ?? '100');
+
+  if (!appName && !fileType) {
+    return json({ error: 'Provide app_name or file_type' }, 400);
+  }
+
+  let sql =
+    'SELECT asset_id, public_id, asset_name, app_category, app_name, file_type, r2_object_key, local_path_blueprint, created_at, updated_at FROM hvs_creator_assets WHERE 1=1';
+  const binds = [];
+
+  if (appName) {
+    sql += ' AND app_name = ?';
+    binds.push(appName);
+  }
+
+  if (fileType) {
+    sql += ' AND file_type = ?';
+    binds.push(fileType);
+  }
+
+  sql += ' ORDER BY updated_at DESC LIMIT ?';
+  binds.push(Math.min(Math.max(limit, 1), 500));
+
+  const { results } = await env.DB.prepare(sql).bind(...binds).all();
+  return json({ ok: true, count: results.length, results }, 200);
+}
+
+async function syncAsset(request, env) {
+  const url = new URL(request.url);
+  const mode = url.searchParams.get('mode') ?? 'stream';
+  const objectKey = url.searchParams.get('object_key');
+  const publicId = url.searchParams.get('public_id');
+
+  if (!objectKey || !publicId) {
+    return json({ error: 'object_key and public_id are required' }, 400);
+  }
+
+  // High-speed direct stream path for heavy creative assets.
+  if (mode === 'stream') {
+    if (!request.body) {
+      return json({ error: 'Request body is required for stream mode' }, 400);
+    }
+
+    await env.ASSETS.put(objectKey, request.body, {
+      httpMetadata: { contentType: request.headers.get('content-type') ?? 'application/octet-stream' },
+    });
+
+    await env.DB.prepare(
+      `UPDATE hvs_creator_assets
+       SET r2_object_key = ?1, updated_at = CURRENT_TIMESTAMP
+       WHERE public_id = ?2`
+    )
+      .bind(objectKey, publicId)
+      .run();
+
+    return json({ ok: true, mode: 'stream', object_key: objectKey }, 200);
+  }
+
+  // Placeholder mode for external pre-signed URL pipeline.
+  if (mode === 'presign') {
+    return json(
+      {
+        ok: false,
+        error: 'presign mode blueprint only: implement SigV4 signing endpoint for your external uploader',
+      },
+      501
+    );
+  }
+
+  return json({ error: 'Unsupported sync mode' }, 400);
+}
+
+function json(data, status = 200) {
+  return new Response(JSON.stringify(data), {
+    status,
+    headers: { 'content-type': 'application/json; charset=utf-8' },
+  });
+}
+```
+
+Expected Worker bindings:
+- `DB` -> D1 binding
+- `ASSETS` -> R2 bucket binding

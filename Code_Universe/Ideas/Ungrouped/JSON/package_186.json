@@ -1,0 +1,21 @@
+{
+  "name": "connect-api-contracts",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:update": "vitest run --update",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@posit-dev/connect-api": "*",
+    "@posit-dev/mock-connect": "*",
+    "axios": "^1.17.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.8"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "volume": "/Volumes/6TB",
+  "slug": "6TB_",
+  "timestamp": "20260420T072736Z",
+  "size": "4.7T",
+  "top_level_entries": 11,
+  "code": {
+    "git_dirs": 9,
+    "package_json": 97,
+    "pyproject": 1,
+    "cargo": 0,
+    "gemfile": 0,
+    "go_mod": 0
+  },
+  "secrets_pattern_count": 0,
+  "media": {
+    "wav": 87442,
+    "aif": 10199,
+    "flac": 1,
+    "logicx": 5,
+    "ptx": 0
+  },
+  "audit_path": "/Users/m2ultra/NOIZYANTHROPIC/infra/scans/scan-reports/6TB_/20260420T072736Z/audit.md",
+  "inventory_path": "/Users/m2ultra/NOIZYANTHROPIC/infra/scans/scan-reports/6TB_/20260420T072736Z/inventory.txt"
+}

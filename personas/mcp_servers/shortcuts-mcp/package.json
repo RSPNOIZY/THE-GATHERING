@@ -1,0 +1,23 @@
+{
+  "name": "shortcuts-mcp",
+  "version": "0.1.0",
+  "description": "MCP server that runs macOS Shortcuts. Universal control surface for Rogue Amoeba (Audio Hijack, Loopback, SoundSource, Airfoil), Logic Pro, and any app exposing Shortcut actions.",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "shortcuts-mcp": "dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "tsc --watch"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.4",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "typescript": "^5.7.2"
+  }
+}

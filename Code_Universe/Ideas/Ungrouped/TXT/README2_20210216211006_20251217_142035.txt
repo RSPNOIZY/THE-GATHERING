@@ -1,0 +1,15 @@
+
+A Visual Studio Code extension adding an ability to preview SVG images.
+![Workflow](media/preview.gif)
+
+
+---
+
+Second focus:
+Show and describe preview editor feature
+
+---
+
+Commands
+Settings
+Shortcuts

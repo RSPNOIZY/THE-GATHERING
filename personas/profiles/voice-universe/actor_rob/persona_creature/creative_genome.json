@@ -1,0 +1,68 @@
+{
+  "schema_version": "1.0.0",
+  "persona_id": "RSP_003_CREATURE",
+  "actor_id": "RSP_001",
+  "actor_name": "Rob Plowman",
+  "persona_name": "The Creature",
+  "persona_archetype": "nonhuman_sentient",
+  "capture_date": "2026-03-13",
+  "fingerprint_sha256": "pending_capture",
+
+  "voice_dna": {
+    "fundamental_frequency_hz": 94,
+    "formant_profile": {
+      "F1": 380,
+      "F2": 980,
+      "F3": 2800,
+      "F4": 4200
+    },
+    "breathiness_index": 0.58,
+    "resonance_chamber": "nasal_hollow_chest",
+    "articulation_style": "irregular_primal",
+    "cadence_signature": "unpredictable_lurching",
+    "dynamic_range_db": 38,
+    "grain_texture": "rough_wet_layered",
+    "subharmonic_presence": 0.81
+  },
+
+  "emotional_spectrum": {
+    "primary_states": ["hunger", "curiosity", "territorial_warning", "wounded_intelligence", "alien_joy"],
+    "emotional_transitions": {
+      "curiosity_to_hunger": { "speed": "slow_creep", "breathiness_shift": 0.22 },
+      "territorial_warning_to_attack": { "speed": "explosive", "dynamic_spike_db": 12 },
+      "wounded_intelligence_to_alien_joy": { "speed": "erratic", "pitch_oscillation_hz": 18 }
+    },
+    "forbidden_states": ["neutral_human", "polished_speech", "social_performance"],
+    "signature_pause_ms": 1100
+  },
+
+  "stylistic_markers": {
+    "phrasing": "fractured_emergent",
+    "word_stress_pattern": "biologically_driven",
+    "breath_audibility": "prominent_textural",
+    "consonant_release": "wet_guttural",
+    "vowel_elongation": "sustained_alien",
+    "silence_as_instrument": true,
+    "trailing_resonance": true,
+    "sub_vocal_layers": ["growl", "click", "chest_rumble"]
+  },
+
+  "use_constraints": {
+    "requires_consent": true,
+    "consent_key_required": true,
+    "allowed_genres": ["horror", "sci_fi", "fantasy", "game_narrative", "animation", "experimental"],
+    "prohibited_uses": ["political_speech", "impersonation", "harassment", "commercial_without_split"],
+    "minimum_credit": "Voice: Rob Plowman / RSP_003 CREATURE — NOIZYVOX Protocol",
+    "nsfw_allowed": false,
+    "clone_allowed": false
+  },
+
+  "royalty_config": {
+    "actor_share": 0.75,
+    "platform_share": 0.25,
+    "activation_delay_days": 30,
+    "micro_split_enabled": true,
+    "lifeluv_token_routing": "legacy_vault_first",
+    "perpetual": true
+  }
+}

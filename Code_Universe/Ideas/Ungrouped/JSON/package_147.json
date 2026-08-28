@@ -1,0 +1,27 @@
+{
+  "name": "noizyanthropic-audio-hub",
+  "version": "1.0.0",
+  "description": "Audio Hijack Static IP Hub for Noizyanthropic Ecosystem",
+  "main": "audio-receiver.js",
+  "scripts": {
+    "start": "node audio-receiver.js",
+    "dev": "nodemon audio-receiver.js",
+    "status": "curl -s http://localhost:9000/status | python3 -m json.tool",
+    "transcript": "curl -s -X POST http://localhost:9000/transcript -H 'Content-Type: application/json' -d '{\"text\":\"test transcript\",\"source\":\"manual\"}'"
+  },
+  "keywords": [
+    "audio",
+    "hijack",
+    "streaming",
+    "noizyanthropic",
+    "mc96"
+  ],
+  "author": "Noizy Empire",
+  "license": "MIT",
+  "dependencies": {
+    "ws": "^8.18.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}

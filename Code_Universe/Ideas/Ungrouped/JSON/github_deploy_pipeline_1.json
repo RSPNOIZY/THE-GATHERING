@@ -1,0 +1,123 @@
+{
+  "name": "GitHub → Cloudflare Auto-Deploy",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "github-push",
+        "responseMode": "lastNode",
+        "options": {}
+      },
+      "id": "github-webhook",
+      "name": "GitHub Push Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [200, 300],
+      "webhookId": "github-push-deploy"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Parse GitHub push event\nconst body = $input.first().json;\nconst repo = body.repository?.name || body.repo || 'unknown';\nconst branch = (body.ref || '').replace('refs/heads/', '');\nconst pusher = body.pusher?.name || body.sender?.login || 'unknown';\nconst commits = body.commits || [];\nconst commitCount = commits.length;\nconst lastMsg = commits[commits.length - 1]?.message || 'no message';\n\n// Only deploy from main branch\nconst shouldDeploy = branch === 'main';\n\n// Map repo to deploy action\nconst DEPLOY_MAP = {\n  'noizy-heaven': { action: 'deploy_heaven', cmd: 'cd /Users/m2ultra/Desktop/HEAVEN && npx wrangler deploy' },\n  'noizy-gabriel': { action: 'restart_gabriel', cmd: 'cd /Users/m2ultra/NOIZYLAB && bun run repos/noizy-gabriel/src/daemon.ts' },\n  'noizy-supersonic': { action: 'rebuild_supersonic', cmd: 'cd /Users/m2ultra/NOIZYLAB/supersonic && source venv/bin/activate && pip install -e .' },\n  'noizy-infra': { action: 'sync_infra', cmd: 'echo \"Infra updated — manual review required\"' },\n};\n\nconst deployConfig = DEPLOY_MAP[repo] || { action: 'log_only', cmd: 'echo \"No auto-deploy for ' + repo + '\"' };\n\nreturn [{\n  json: {\n    repo,\n    branch,\n    pusher,\n    commit_count: commitCount,\n    last_message: lastMsg,\n    should_deploy: shouldDeploy,\n    ...deployConfig,\n    timestamp: new Date().toISOString(),\n    pipeline: 'GITHUB_DEPLOY'\n  }\n}];"
+      },
+      "id": "parse-push",
+      "name": "Parse Push Event",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [420, 300]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $json.should_deploy }}",
+              "value2": true
+            }
+          ]
+        }
+      },
+      "id": "check-branch",
+      "name": "Main Branch?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [640, 300]
+    },
+    {
+      "parameters": {
+        "command": "={{ $json.cmd }} 2>&1 | tail -30"
+      },
+      "id": "run-deploy",
+      "name": "Execute Deploy",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [880, 220]
+    },
+    {
+      "parameters": {
+        "url": "http://localhost:7777/learn",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ category: 'deploy', lesson: $json.repo + ' deployed: ' + $json.last_message, source: 'github_pipeline', confidence: 1.0 }) }}"
+      },
+      "id": "notify-gabriel",
+      "name": "Notify GABRIEL",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [1100, 220]
+    },
+    {
+      "parameters": {
+        "jsCode": "const data = $input.first().json;\nreturn [{ json: { status: 'deployed', repo: data.repo || 'unknown', pipeline: 'GITHUB_DEPLOY', timestamp: new Date().toISOString() } }];"
+      },
+      "id": "respond-ok",
+      "name": "Respond",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1320, 300]
+    },
+    {
+      "parameters": {
+        "url": "http://localhost:7777/learn",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ category: 'git', lesson: 'Push to ' + $json.repo + '/' + $json.branch + ' (' + $json.commit_count + ' commits) — skipped deploy (not main)', source: 'github_pipeline', confidence: 0.8 }) }}"
+      },
+      "id": "log-skip",
+      "name": "Log Skip to GABRIEL",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [880, 420]
+    }
+  ],
+  "connections": {
+    "GitHub Push Webhook": {
+      "main": [[{"node": "Parse Push Event", "type": "main", "index": 0}]]
+    },
+    "Parse Push Event": {
+      "main": [[{"node": "Main Branch?", "type": "main", "index": 0}]]
+    },
+    "Main Branch?": {
+      "main": [
+        [{"node": "Execute Deploy", "type": "main", "index": 0}],
+        [{"node": "Log Skip to GABRIEL", "type": "main", "index": 0}]
+      ]
+    },
+    "Execute Deploy": {
+      "main": [[{"node": "Notify GABRIEL", "type": "main", "index": 0}]]
+    },
+    "Notify GABRIEL": {
+      "main": [[{"node": "Respond", "type": "main", "index": 0}]]
+    },
+    "Log Skip to GABRIEL": {
+      "main": [[{"node": "Respond", "type": "main", "index": 0}]]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "tags": [
+    {"name": "github"},
+    {"name": "deploy"},
+    {"name": "production"}
+  ]
+}

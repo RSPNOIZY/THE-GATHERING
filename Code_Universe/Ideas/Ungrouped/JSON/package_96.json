@@ -1,0 +1,14 @@
+{
+  "name": "noizy-gemma3-mcp",
+  "version": "1.0.0",
+  "description": "NOIZY.AI Gemma 3 MCP Setup Assistant — agentic task runner on GOD.local",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0"
+  }
+}

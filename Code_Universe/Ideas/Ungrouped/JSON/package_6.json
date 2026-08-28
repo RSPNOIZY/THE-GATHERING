@@ -1,0 +1,15 @@
+{
+  "name": "@noizy-ms/mcp-stdio",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Local Node stdio MCP server wrapping Microsoft Graph for rspnoizy@outlook.com",
+  "main": "src/server.mjs",
+  "scripts": {
+    "start": "node src/server.mjs"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.4",
+    "@noizy-ms/graph-client": "*"
+  }
+}

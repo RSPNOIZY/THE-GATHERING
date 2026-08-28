@@ -1,0 +1,24 @@
+{
+  "name": "heaven-api",
+  "version": "2.0.0",
+  "description": "NOIZYLAB DreamChamber — Heaven/Lucy API with Cloudflare Zero Trust",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js",
+    "test": "jest"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "jose": "^5.9.6",
+    "pg": "^8.11.5",
+    "redis": "^4.6.14"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

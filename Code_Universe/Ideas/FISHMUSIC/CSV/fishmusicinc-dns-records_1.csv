@@ -1,0 +1,8 @@
+Action,Type,Name,Content,Proxy,Priority,TTL,Notes
+DELETE,ALL,,,,,,"Delete everything first, start clean"
+ADD,MX,@,fishmusicinc-com.mail.protection.outlook.com,DNS Only (Gray),0,Auto,M365 Mail
+ADD,CNAME,autodiscover,autodiscover.outlook.com,DNS Only (Gray),,Auto,M365 Autodiscover
+ADD,TXT,@,v=spf1 include:spf.protection.outlook.com -all,,,Auto,SPF - Email Auth
+ADD,TXT,_dmarc,v=DMARC1; p=quarantine; rua=mailto:rsplowman@outlook.com,,,Auto,DMARC - Email Security
+ADD,CNAME,selector1._domainkey,selector1-fishmusicinc-com._domainkey.rsplowman.onmicrosoft.com,DNS Only (Gray),,Auto,DKIM Key 1
+ADD,CNAME,selector2._domainkey,selector2-fishmusicinc-com._domainkey.rsplowman.onmicrosoft.com,DNS Only (Gray),,Auto,DKIM Key 2

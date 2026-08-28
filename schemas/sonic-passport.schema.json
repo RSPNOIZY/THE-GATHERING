@@ -1,0 +1,52 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "SonicPassportAssetRecord",
+  "description": "Schema for Sonic Passport Asset Identity Graph nodes with 5 distinct identity layers",
+  "type": "object",
+  "required": [
+    "exact_hash",
+    "perceptual_id",
+    "provenance_claim",
+    "rights_claim",
+    "watermark_signal"
+  ],
+  "properties": {
+    "exact_hash": {
+      "type": "string",
+      "description": "Exact SHA-256 binary hash of the uncompressed audio payload"
+    },
+    "perceptual_id": {
+      "type": "string",
+      "description": "Chromaprint 1.6.1 acoustic fingerprint for similarity lookup"
+    },
+    "provenance_claim": {
+      "type": "string",
+      "description": "C2PA v2.2 signed creation history manifest identifier"
+    },
+    "rights_claim": {
+      "type": "string",
+      "description": "Rights record identifier asserting permissions and 75/25 split invariant"
+    },
+    "watermark_signal": {
+      "type": "object",
+      "required": ["provider", "result"],
+      "properties": {
+        "provider": { "type": "string", "enum": ["audioseal", "google_synthid", "none"] },
+        "result": { "type": "string", "enum": ["DETECTED", "NOT_DETECTED", "NOT_TESTED"] }
+      },
+      "additionalProperties": true
+    },
+    "asset_id": { "type": "string" },
+    "title": { "type": "string" },
+    "derivative_type": {
+      "type": "string",
+      "enum": ["MASTER", "STEM", "EDIT", "LIVE", "VOICE", "DERIVATIVE", "PUBLISHED"]
+    },
+    "parent_asset_ids": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "created_at": { "type": "string", "format": "date-time" }
+  },
+  "additionalProperties": false
+}

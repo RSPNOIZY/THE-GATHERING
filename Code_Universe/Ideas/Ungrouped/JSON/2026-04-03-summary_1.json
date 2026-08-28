@@ -1,0 +1,23 @@
+{
+  "date": "2026-04-03",
+  "report_id": "331e2878-9189-4346-a5bb-08c9abf1ffed",
+  "feed_id": "fd86ed95-c1d9-4018-9ea8-7559ec860050",
+  "total_duration_ms": 10,
+  "phases": {
+    "analysis_ms": 6,
+    "feed_actions": 6,
+    "notifications": 2
+  },
+  "executive_summary": "Lucy's nightly analysis for 2026-04-03. 2 opportunities discovered. 2 risks flagged. RSP_001 is ready for teaching, voice licensing, and community leadership. Priority: lock voice capture for 35 takes and launch first recording session.",
+  "top_three": [
+    "Lock voice capture setup and record 35 takes with RSP_001",
+    "Clear any blocking decisions in the decision queue",
+    "Design NOIZYKIDZ student onboarding for the teaching pipeline"
+  ],
+  "risks_count": 2,
+  "decisions_needed": 0,
+  "compassion_gates": {
+    "cleared": 2,
+    "blocked": 0
+  }
+}

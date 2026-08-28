@@ -1,0 +1,105 @@
+{
+  "name": "dreamchamber",
+  "displayName": "DreamChamber — GABRIEL Voice Control",
+  "description": "iPhone mic → Whisper → Claude → code at cursor. NOIZY Empire voice-first coding.",
+  "version": "2.0.0",
+  "publisher": "noizyempire",
+  "engines": { "vscode": "^1.85.0" },
+  "categories": ["Other"],
+  "activationEvents": ["onStartupFinished"],
+  "main": "./extension.js",
+  "icon": "media/icon.png",
+  "contributes": {
+    "commands": [
+      {
+        "command": "dreamchamber.listen",
+        "title": "DreamChamber: Listen (toggle recording)",
+        "icon": "$(unmute)"
+      },
+      {
+        "command": "dreamchamber.insertLast",
+        "title": "DreamChamber: Insert Last Response",
+        "icon": "$(insert)"
+      },
+      {
+        "command": "dreamchamber.openPanel",
+        "title": "DreamChamber: Open Mission Control",
+        "icon": "$(broadcast)"
+      },
+      {
+        "command": "dreamchamber.speak",
+        "title": "DreamChamber: Type a Command",
+        "icon": "$(comment)"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "dreamchamber.listen",
+        "key": "ctrl+shift+j",
+        "mac": "cmd+shift+j",
+        "when": "editorTextFocus || !inputFocus"
+      },
+      {
+        "command": "dreamchamber.insertLast",
+        "key": "ctrl+shift+i",
+        "mac": "cmd+shift+i",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "dreamchamber.speak",
+        "key": "ctrl+shift+g",
+        "mac": "cmd+shift+g"
+      },
+      {
+        "command": "dreamchamber.openPanel",
+        "key": "ctrl+shift+d",
+        "mac": "cmd+shift+d"
+      }
+    ],
+    "configuration": {
+      "title": "DreamChamber",
+      "properties": {
+        "dreamchamber.serverUrl": {
+          "type": "string",
+          "default": "http://localhost:7777",
+          "description": "DreamChamber server base URL"
+        },
+        "dreamchamber.apiKey": {
+          "type": "string",
+          "default": "",
+          "description": "DC_API_KEY if server auth is enabled (leave blank for dev mode)"
+        },
+        "dreamchamber.silenceSeconds": {
+          "type": "number",
+          "default": 1.8,
+          "description": "Seconds of silence before auto-stopping recording"
+        },
+        "dreamchamber.autoInsert": {
+          "type": "boolean",
+          "default": true,
+          "description": "Auto-insert single code blocks at cursor without prompting"
+        },
+        "dreamchamber.tower": {
+          "type": "string",
+          "enum": ["auto", "max", "code", "work"],
+          "default": "auto",
+          "description": "Claude tower: auto-detect, max (Opus), code (Sonnet), work (Sonnet)"
+        }
+      }
+    },
+    "menus": {
+      "editor/title": [
+        {
+          "command": "dreamchamber.listen",
+          "group": "navigation"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "echo 'ready'"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.85.0"
+  }
+}

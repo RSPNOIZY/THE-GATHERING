@@ -1,0 +1,11 @@
+4.6T	/Volumes/6TB/_ORGANIZED
+ 12G	/Volumes/6TB/ARCHIVE
+6.4G	/Volumes/6TB/NOIZYLAB_ARCHIVES
+4.3G	/Volumes/6TB/Sample_Libraries
+2.2G	/Volumes/6TB/ARCHIVES
+1.6G	/Volumes/6TB/AV_SYSTEM_DRIVE_RELOCATIONS
+1.3G	/Volumes/6TB/Superior_Drummer_TCI
+204M	/Volumes/6TB/NOIZYLAB_AUDIO_ARCHIVE
+120K	/Volumes/6TB/MC96_SOURCE_DUMP.txt
+8.0K	/Volumes/6TB/noizy
+  0B	/Volumes/6TB/backups

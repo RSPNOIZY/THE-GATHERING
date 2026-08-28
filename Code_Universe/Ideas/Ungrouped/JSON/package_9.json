@@ -1,0 +1,27 @@
+{
+  "name": "heaven",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "wrangler dev",
+    "predeploy": "./scripts/wrangler-doctor.sh",
+    "deploy": "./scripts/deploy-with-rollback.sh",
+    "deploy:canary": "./scripts/canary-deploy.sh",
+    "deploy:force": "wrangler deploy",
+    "doctor": "./scripts/wrangler-doctor.sh",
+    "smoke": "./scripts/smoke-test.sh",
+    "lint:token": "./scripts/token-scope-lint.sh",
+    "rollback": "wrangler rollback",
+    "version:upload": "./scripts/upload-version.sh",
+    "version:rollout": "./scripts/rollout-traffic.sh",
+    "audit:export": "./scripts/export-deploy-log.sh",
+    "db:migrate": "wrangler d1 execute agent-memory --file=./schema/001_myfamily_init.sql --remote",
+    "db:migrate:local": "wrangler d1 execute agent-memory --file=./schema/001_myfamily_init.sql",
+    "check:deploy": "wrangler deployments list"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20240222.0",
+    "typescript": "^5.4.0",
+    "wrangler": "^4"
+  }
+}

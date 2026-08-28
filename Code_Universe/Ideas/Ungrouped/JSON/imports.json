@@ -1,0 +1,2624 @@
+[
+  {
+    "facts": [],
+    "predicate": "gencode.GenCode.1"
+  },
+  {
+    "facts": [
+      {
+        "id": 0,
+        "key": ""
+      }
+    ],
+    "predicate": "python.Name.4"
+  },
+  {
+    "facts": [
+      {
+        "id": 0,
+        "key": {
+          "call_args": [],
+          "callee_span": {
+            "length": 13,
+            "start": 310
+          },
+          "file": {
+            "id": 0,
+            "key": "imports.py"
+          }
+        }
+      },
+      {
+        "id": 0,
+        "key": {
+          "call_args": [
+            {
+              "span": {
+                "length": 17,
+                "start": 347
+              }
+            }
+          ],
+          "callee_span": {
+            "length": 32,
+            "start": 333
+          },
+          "file": {
+            "id": 0,
+            "key": "imports.py"
+          }
+        }
+      },
+      {
+        "id": 0,
+        "key": {
+          "call_args": [
+            {
+              "span": {
+                "length": 4,
+                "start": 229
+              }
+            }
+          ],
+          "callee_span": {
+            "length": 20,
+            "start": 214
+          },
+          "file": {
+            "id": 0,
+            "key": "imports.py"
+          }
+        }
+      }
+    ],
+    "predicate": "python.FileCall.4"
+  },
+  {
+    "facts": [
+      {
+        "id": 0,
+        "key": {
+          "callee": {
+            "id": 0,
+            "key": "genericpath.exists"
+          },
+          "caller": {
+            "id": 0,
+            "key": "imports.process_files"
+          }
+        }
+      }
+    ],
+    "predicate": "python.CalleeToCaller.4"
+  },
+  {
+    "facts": [
+      {
+        "id": 0,
+        "key": {
+          "container": {
+            "func": {
+              "id": 0,
+              "key": {
+                "name": {
+                  "id": 0,
+                  "key": "imports.process_files"
+                }
+              }
+            }
+          },
+          "declaration": {
+            "variable": {
+              "id": 0,
+              "key": {
+                "name": {
+                  "id": 0,
+                  "key": "imports.process_files.<locals>.count"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "id": 0,
+        "key": {
+          "container": {
+            "func": {
+              "id": 0,
+              "key": {
+                "name": {
+                  "id": 0,
+                  "key": "imports.process_files"
+                }
+              }
+            }
+          },
+          "declaration": {
+            "variable": {
+              "id": 0,
+              "key": {
+                "name": {
+                  "id": 0,
+                  "key": "imports.process_files.<locals>.count"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "id": 0,
+        "key": {
+          "container": {
+            "func": {
+              "id": 0,
+              "key": {
+                "name": {
+                  "id": 0,
+                  "key": "imports.process_files"
+                }
+              }
+            }
+          },
+          "declaration": {
+            "variable": {
+              "id": 0,
+              "key": {
+                "name": {
+                  "id": 0,
+                  "key": "imports.process_files.<locals>.path"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "id": 0,
+        "key": {
+          "container": {
+            "func": {
+              "id": 0,
+              "key": {
+                "name": {
+                  "id": 0,
+                  "key": "imports.process_files"
+                }
+              }
+            }
+          },
+          "declaration": {
+            "variable": {
+              "id": 0,
+              "key": {
+                "name": {
+                  "id": 0,
+                  "key": "imports.process_files.<locals>.paths"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "id": 0,
+        "key": {
+          "container": {
+            "module": {
+              "id": 0,
+              "key": {
+                "name": {
+                  "id": 0,
+                  "key": "imports"
+                }
+              }
+            }
+          },
+          "declaration": {
+            "func": {
+              "id": 0,
+              "key": {
+                "name": {
+                  "id": 0,
+                  "key": "imports.process_files"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "id": 0,
+        "key": {
+          "container": {
+            "module": {
+              "id": 0,
+              "key": {
+                "name": {
+                  "id": 0,
+                  "key": "imports"
+                }
+              }
+            }
+          },
+          "declaration": {
+            "imp": {
+              "id": 0,
+              "key": {
+                "as_name": {
+                  "id": 0,
+                  "key": "imports.List"
+                },
+                "from_name": {
+                  "id": 0,
+                  "key": "typing.List"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "id": 0,
+        "key": {
+          "container": {
+            "module": {
+              "id": 0,
+              "key": {
+                "name": {
+                  "id": 0,
+                  "key": "imports"
+                }
+              }
+            }
+          },
+          "declaration": {
+            "imp": {
+              "id": 0,
+              "key": {
+                "as_name": {
+                  "id": 0,
+                  "key": "imports.hello_world"
+                },
+                "from_name": {
+                  "id": 0,
+                  "key": "simple.hello_world"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "id": 0,
+        "key": {
+          "container": {
+            "module": {
+              "id": 0,
+              "key": {
+                "name": {
+                  "id": 0,
+                  "key": "imports"
+                }
+              }
+            }
+          },
+          "declaration": {
+            "imp": {
+              "id": 0,
+              "key": {
+                "as_name": {
+                  "id": 0,
+                  "key": "imports.os"
+                },
+                "from_name": {
+                  "id": 0,
+                  "key": "os"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "id": 0,
+        "key": {
+          "container": {
+            "module": {
+              "id": 0,
+              "key": {
+                "name": {
+                  "id": 0,
+                  "key": "imports"
+                }
+              }
+            }
+          },
+          "declaration": {
+            "module": {
+              "id": 0,
+              "key": {
+                "name": {
+                  "id": 0,
+                  "key": "imports"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "id": 0,
+        "key": {
+          "container": {
+            "module": {
+              "id": 0,
+              "key": {
+                "name": {
+                  "id": 0,
+                  "key": "imports"
+                }
+              }
+            }
+          },
+          "declaration": {
+            "variable": {
+              "id": 0,
+              "key": {
+                "name": {
+                  "id": 0,
+                  "key": "imports.greeting"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "id": 0,
+        "key": {
+          "container": {
+            "module": {
+              "id": 0,
+              "key": {
+                "name": {
+                  "id": 0,
+                  "key": "imports"
+                }
+              }
+            }
+          },
+          "declaration": {
+            "variable": {
+              "id": 0,
+              "key": {
+                "name": {
+                  "id": 0,
+                  "key": "imports.result"
+                }
+              }
+            }
+          }
+        }
+      }
+    ],
+    "predicate": "python.ContainingTopLevelDeclaration.4"
+  },
+  {
+    "facts": [
+      {
+        "id": 0,
+        "key": {
+          "declaration": {
+            "func": {
+              "id": 0,
+              "key": {
+                "name": {
+                  "id": 0,
+                  "key": "imports.process_files"
+                }
+              }
+            }
+          },
+          "file": {
+            "id": 0,
+            "key": "imports.py"
+          },
+          "span": {
+            "length": 191,
+            "start": 84
+          }
+        }
+      },
+      {
+        "id": 0,
+        "key": {
+          "declaration": {
+            "imp": {
+              "id": 0,
+              "key": {
+                "as_name": {
+                  "id": 0,
+                  "key": "imports.List"
+                },
+                "from_name": {
+                  "id": 0,
+                  "key": "typing.List"
+                }
+              }
+            }
+          },
+          "file": {
+            "id": 0,
+            "key": "imports.py"
+          },
+          "span": {
+            "length": 4,
+            "start": 29
+          }
+        }
+      },
+      {
+        "id": 0,
+        "key": {
+          "declaration": {
+            "imp": {
+              "id": 0,
+              "key": {
+                "as_name": {
+                  "id": 0,
+                  "key": "imports.hello_world"
+                },
+                "from_name": {
+                  "id": 0,
+                  "key": "simple.hello_world"
+                }
+              }
+            }
+          },
+          "file": {
+            "id": 0,
+            "key": "imports.py"
+          },
+          "span": {
+            "length": 11,
+            "start": 54
+          }
+        }
+      },
+      {
+        "id": 0,
+        "key": {
+          "declaration": {
+            "imp": {
+              "id": 0,
+              "key": {
+                "as_name": {
+                  "id": 0,
+                  "key": "imports.os"
+                },
+                "from_name": {
+                  "id": 0,
+                  "key": "os"
+                }
+              }
+            }
+          },
+          "file": {
+            "id": 0,
+            "key": "imports.py"
+          },
+          "span": {
+            "length": 2,
+            "start": 7
+          }
+        }
+      },
+      {
+        "id": 0,
+        "key": {
+          "declaration": {
+            "module": {
+              "id": 0,
+              "key": {
+                "name": {
+                  "id": 0,
+                  "key": "imports"
+                }
+              }
+            }
+          },
+          "file": {
+            "id": 0,
+            "key": "imports.py"
+          },
+          "span": {
+            "length": 365,
+            "start": 0
+          }
+        }
+      },
+      {
+        "id": 0,
+        "key": {
+          "declaration": {
+            "variable": {
+              "id": 0,
+              "key": {
+                "name": {
+                  "id": 0,
+                  "key": "imports.greeting"
+                }
+              }
+            }
+          },
+          "file": {
+            "id": 0,
+            "key": "imports.py"
+          },
+          "span": {
+            "length": 24,
+            "start": 299
+          }
+        }
+      },
+      {
+        "id": 0,
+        "key": {
+          "declaration": {
+            "variable": {
+              "id": 0,
+              "key": {
+                "name": {
+                  "id": 0,
+                  "key": "imports.process_files.<locals>.count"
+                }
+              }
+            }
+          },
+          "file": {
+            "id": 0,
+            "key": "imports.py"
+          },
+          "span": {
+            "length": 10,
+            "start": 248
+          }
+        }
+      },
+      {
+        "id": 0,
+        "key": {
+          "declaration": {
+            "variable": {
+              "id": 0,
+              "key": {
+                "name": {
+                  "id": 0,
+                  "key": "imports.process_files.<locals>.count"
+                }
+              }
+            }
+          },
+          "file": {
+            "id": 0,
+            "key": "imports.py"
+          },
+          "span": {
+            "length": 9,
+            "start": 170
+          }
+        }
+      },
+      {
+        "id": 0,
+        "key": {
+          "declaration": {
+            "variable": {
+              "id": 0,
+              "key": {
+                "name": {
+                  "id": 0,
+                  "key": "imports.process_files.<locals>.path"
+                }
+              }
+            }
+          },
+          "file": {
+            "id": 0,
+            "key": "imports.py"
+          },
+          "span": {
+            "length": 17,
+            "start": 184
+          }
+        }
+      },
+      {
+        "id": 0,
+        "key": {
+          "declaration": {
+            "variable": {
+              "id": 0,
+              "key": {
+                "name": {
+                  "id": 0,
+                  "key": "imports.process_files.<locals>.paths"
+                }
+              }
+            }
+          },
+          "file": {
+            "id": 0,
+            "key": "imports.py"
+          },
+          "span": {
+            "length": 5,
+            "start": 102
+          }
+        }
+      },
+      {
+        "id": 0,
+        "key": {
+          "declaration": {
+            "variable": {
+              "id": 0,
+              "key": {
+                "name": {
+                  "id": 0,
+                  "key": "imports.result"
+                }
+              }
+            }
+          },
+          "file": {
+            "id": 0,
+            "key": "imports.py"
+          },
+          "span": {
+            "length": 41,
+            "start": 324
+          }
+        }
+      }
+    ],
+    "predicate": "python.DeclarationLocation.4"
+  },
+  {
+    "facts": [
+      {
+        "id": 0,
+        "key": {
+          "declaration": {
+            "func": {
+              "id": 0,
+              "key": {
+                "name": {
+                  "id": 0,
+                  "key": "imports.process_files"
+                }
+              }
+            }
+          },
+          "location": {
+            "length": 33,
+            "start": 132
+          },
+          "pretty_text": "Count files in given paths."
+        }
+      }
+    ],
+    "predicate": "python.DeclarationDocstring.4"
+  },
+  {
+    "facts": [
+      {
+        "id": 0,
+        "key": {
+          "definition": {
+            "func": {
+              "id": 0,
+              "key": {
+                "container": {
+                  "module": {
+                    "id": 0,
+                    "key": {
+                      "name": {
+                        "id": 0,
+                        "key": "imports"
+                      }
+                    }
+                  }
+                },
+                "declaration": {
+                  "id": 0,
+                  "key": {
+                    "name": {
+                      "id": 0,
+                      "key": "imports.process_files"
+                    }
+                  }
+                },
+                "is_async": false,
+                "kwonly_params": [],
+                "params": [
+                  {
+                    "name": {
+                      "id": 0,
+                      "key": "paths"
+                    },
+                    "typeInfo": {
+                      "displayType": {
+                        "id": 0,
+                        "key": "List[str]"
+                      },
+                      "xrefs": [
+                        {
+                          "source": {
+                            "length": 3,
+                            "start": 5
+                          },
+                          "target": {
+                            "id": 0,
+                            "key": "str"
+                          }
+                        },
+                        {
+                          "source": {
+                            "length": 4,
+                            "start": 0
+                          },
+                          "target": {
+                            "id": 0,
+                            "key": "imports.List"
+                          }
+                        },
+                        {
+                          "source": {
+                            "length": 4,
+                            "start": 0
+                          },
+                          "target": {
+                            "id": 0,
+                            "key": "typing.List"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ],
+                "posonly_params": [],
+                "returnsInfo": {
+                  "displayType": {
+                    "id": 0,
+                    "key": "int"
+                  },
+                  "xrefs": [
+                    {
+                      "source": {
+                        "length": 3,
+                        "start": 0
+                      },
+                      "target": {
+                        "id": 0,
+                        "key": "int"
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "file": {
+            "id": 0,
+            "key": "imports.py"
+          },
+          "span": {
+            "length": 191,
+            "start": 84
+          }
+        }
+      },
+      {
+        "id": 0,
+        "key": {
+          "definition": {
+            "module": {
+              "id": 0,
+              "key": {
+                "module": {
+                  "id": 0,
+                  "key": {
+                    "name": {
+                      "id": 0,
+                      "key": "imports"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "file": {
+            "id": 0,
+            "key": "imports.py"
+          },
+          "span": {
+            "length": 365,
+            "start": 0
+          }
+        }
+      },
+      {
+        "id": 0,
+        "key": {
+          "definition": {
+            "variable": {
+              "id": 0,
+              "key": {
+                "container": {
+                  "func": {
+                    "id": 0,
+                    "key": {
+                      "name": {
+                        "id": 0,
+                        "key": "imports.process_files"
+                      }
+                    }
+                  }
+                },
+                "declaration": {
+                  "id": 0,
+                  "key": {
+                    "name": {
+                      "id": 0,
+                      "key": "imports.process_files.<locals>.count"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "file": {
+            "id": 0,
+            "key": "imports.py"
+          },
+          "span": {
+            "length": 10,
+            "start": 248
+          }
+        }
+      },
+      {
+        "id": 0,
+        "key": {
+          "definition": {
+            "variable": {
+              "id": 0,
+              "key": {
+                "container": {
+                  "func": {
+                    "id": 0,
+                    "key": {
+                      "name": {
+                        "id": 0,
+                        "key": "imports.process_files"
+                      }
+                    }
+                  }
+                },
+                "declaration": {
+                  "id": 0,
+                  "key": {
+                    "name": {
+                      "id": 0,
+                      "key": "imports.process_files.<locals>.count"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "file": {
+            "id": 0,
+            "key": "imports.py"
+          },
+          "span": {
+            "length": 9,
+            "start": 170
+          }
+        }
+      },
+      {
+        "id": 0,
+        "key": {
+          "definition": {
+            "variable": {
+              "id": 0,
+              "key": {
+                "container": {
+                  "func": {
+                    "id": 0,
+                    "key": {
+                      "name": {
+                        "id": 0,
+                        "key": "imports.process_files"
+                      }
+                    }
+                  }
+                },
+                "declaration": {
+                  "id": 0,
+                  "key": {
+                    "name": {
+                      "id": 0,
+                      "key": "imports.process_files.<locals>.path"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "file": {
+            "id": 0,
+            "key": "imports.py"
+          },
+          "span": {
+            "length": 17,
+            "start": 184
+          }
+        }
+      },
+      {
+        "id": 0,
+        "key": {
+          "definition": {
+            "variable": {
+              "id": 0,
+              "key": {
+                "container": {
+                  "func": {
+                    "id": 0,
+                    "key": {
+                      "name": {
+                        "id": 0,
+                        "key": "imports.process_files"
+                      }
+                    }
+                  }
+                },
+                "declaration": {
+                  "id": 0,
+                  "key": {
+                    "name": {
+                      "id": 0,
+                      "key": "imports.process_files.<locals>.paths"
+                    }
+                  }
+                },
+                "typeInfo": {
+                  "displayType": {
+                    "id": 0,
+                    "key": "List[str]"
+                  },
+                  "xrefs": [
+                    {
+                      "source": {
+                        "length": 3,
+                        "start": 5
+                      },
+                      "target": {
+                        "id": 0,
+                        "key": "str"
+                      }
+                    },
+                    {
+                      "source": {
+                        "length": 4,
+                        "start": 0
+                      },
+                      "target": {
+                        "id": 0,
+                        "key": "imports.List"
+                      }
+                    },
+                    {
+                      "source": {
+                        "length": 4,
+                        "start": 0
+                      },
+                      "target": {
+                        "id": 0,
+                        "key": "typing.List"
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "file": {
+            "id": 0,
+            "key": "imports.py"
+          },
+          "span": {
+            "length": 5,
+            "start": 102
+          }
+        }
+      },
+      {
+        "id": 0,
+        "key": {
+          "definition": {
+            "variable": {
+              "id": 0,
+              "key": {
+                "container": {
+                  "module": {
+                    "id": 0,
+                    "key": {
+                      "name": {
+                        "id": 0,
+                        "key": "imports"
+                      }
+                    }
+                  }
+                },
+                "declaration": {
+                  "id": 0,
+                  "key": {
+                    "name": {
+                      "id": 0,
+                      "key": "imports.greeting"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "file": {
+            "id": 0,
+            "key": "imports.py"
+          },
+          "span": {
+            "length": 24,
+            "start": 299
+          }
+        }
+      },
+      {
+        "id": 0,
+        "key": {
+          "definition": {
+            "variable": {
+              "id": 0,
+              "key": {
+                "container": {
+                  "module": {
+                    "id": 0,
+                    "key": {
+                      "name": {
+                        "id": 0,
+                        "key": "imports"
+                      }
+                    }
+                  }
+                },
+                "declaration": {
+                  "id": 0,
+                  "key": {
+                    "name": {
+                      "id": 0,
+                      "key": "imports.result"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "file": {
+            "id": 0,
+            "key": "imports.py"
+          },
+          "span": {
+            "length": 41,
+            "start": 324
+          }
+        }
+      }
+    ],
+    "predicate": "python.DefinitionLocation.4"
+  },
+  {
+    "facts": [
+      {
+        "id": 0,
+        "key": {
+          "digest": {
+            "hash": "c2800b51f02d8c0c80fb194ed70a6f527b97bd7cc247ad7229888d7ea22c55fe",
+            "size": 365
+          },
+          "file": {
+            "id": 0,
+            "key": "imports.py"
+          }
+        }
+      }
+    ],
+    "predicate": "digest.FileDigest.1"
+  },
+  {
+    "facts": [
+      {
+        "id": 0,
+        "key": {
+          "endsInNewline": false,
+          "file": {
+            "id": 0,
+            "key": "imports.py"
+          },
+          "hasUnicodeOrTabs": false,
+          "lengths": [
+            1,
+            1,
+            10,
+            14,
+            17,
+            17,
+            22,
+            23,
+            23,
+            24,
+            25,
+            32,
+            33,
+            38,
+            42,
+            44
+          ]
+        }
+      }
+    ],
+    "predicate": "src.FileLines.1"
+  },
+  {
+    "facts": [
+      {
+        "id": 0,
+        "key": {
+          "file": {
+            "id": 0,
+            "key": "imports.py"
+          },
+          "import_star": {
+            "id": 0,
+            "key": {
+              "from_name": {
+                "id": 0,
+                "key": "os"
+              },
+              "into_module": {
+                "id": 0,
+                "key": {
+                  "name": {
+                    "id": 0,
+                    "key": "imports"
+                  }
+                }
+              }
+            }
+          },
+          "span": {
+            "length": 16,
+            "start": 66
+          }
+        }
+      }
+    ],
+    "predicate": "python.ImportStarLocation.4"
+  },
+  {
+    "facts": [
+      {
+        "id": 0,
+        "key": {
+          "file": {
+            "id": 0,
+            "key": "imports.py"
+          },
+          "language": 7
+        }
+      }
+    ],
+    "predicate": "src.FileLanguage.1"
+  },
+  {
+    "facts": [
+      {
+        "id": 0,
+        "key": {
+          "file": {
+            "id": 0,
+            "key": "imports.py"
+          },
+          "spans": [
+            {
+              "length": 11,
+              "start": 310
+            },
+            {
+              "length": 11,
+              "start": 54
+            }
+          ],
+          "target": {
+            "id": 0,
+            "key": "simple.hello_world"
+          }
+        }
+      },
+      {
+        "id": 0,
+        "key": {
+          "file": {
+            "id": 0,
+            "key": "imports.py"
+          },
+          "spans": [
+            {
+              "length": 11,
+              "start": 310
+            }
+          ],
+          "target": {
+            "id": 0,
+            "key": "imports.hello_world"
+          }
+        }
+      },
+      {
+        "id": 0,
+        "key": {
+          "file": {
+            "id": 0,
+            "key": "imports.py"
+          },
+          "spans": [
+            {
+              "length": 13,
+              "start": 333
+            }
+          ],
+          "target": {
+            "id": 0,
+            "key": "imports.process_files"
+          }
+        }
+      },
+      {
+        "id": 0,
+        "key": {
+          "file": {
+            "id": 0,
+            "key": "imports.py"
+          },
+          "spans": [
+            {
+              "length": 2,
+              "start": 214
+            },
+            {
+              "length": 2,
+              "start": 71
+            },
+            {
+              "length": 2,
+              "start": 7
+            }
+          ],
+          "target": {
+            "id": 0,
+            "key": "os"
+          }
+        }
+      },
+      {
+        "id": 0,
+        "key": {
+          "file": {
+            "id": 0,
+            "key": "imports.py"
+          },
+          "spans": [
+            {
+              "length": 2,
+              "start": 214
+            }
+          ],
+          "target": {
+            "id": 0,
+            "key": "imports.os"
+          }
+        }
+      },
+      {
+        "id": 0,
+        "key": {
+          "file": {
+            "id": 0,
+            "key": "imports.py"
+          },
+          "spans": [
+            {
+              "length": 3,
+              "start": 114
+            }
+          ],
+          "target": {
+            "id": 0,
+            "key": "str"
+          }
+        }
+      },
+      {
+        "id": 0,
+        "key": {
+          "file": {
+            "id": 0,
+            "key": "imports.py"
+          },
+          "spans": [
+            {
+              "length": 3,
+              "start": 123
+            }
+          ],
+          "target": {
+            "id": 0,
+            "key": "int"
+          }
+        }
+      },
+      {
+        "id": 0,
+        "key": {
+          "file": {
+            "id": 0,
+            "key": "imports.py"
+          },
+          "spans": [
+            {
+              "length": 4,
+              "start": 109
+            },
+            {
+              "length": 4,
+              "start": 29
+            }
+          ],
+          "target": {
+            "id": 0,
+            "key": "typing.List"
+          }
+        }
+      },
+      {
+        "id": 0,
+        "key": {
+          "file": {
+            "id": 0,
+            "key": "imports.py"
+          },
+          "spans": [
+            {
+              "length": 4,
+              "start": 109
+            }
+          ],
+          "target": {
+            "id": 0,
+            "key": "imports.List"
+          }
+        }
+      },
+      {
+        "id": 0,
+        "key": {
+          "file": {
+            "id": 0,
+            "key": "imports.py"
+          },
+          "spans": [
+            {
+              "length": 4,
+              "start": 217
+            }
+          ],
+          "target": {
+            "id": 0,
+            "key": "imports.os.path"
+          }
+        }
+      },
+      {
+        "id": 0,
+        "key": {
+          "file": {
+            "id": 0,
+            "key": "imports.py"
+          },
+          "spans": [
+            {
+              "length": 4,
+              "start": 217
+            }
+          ],
+          "target": {
+            "id": 0,
+            "key": "os.path"
+          }
+        }
+      },
+      {
+        "id": 0,
+        "key": {
+          "file": {
+            "id": 0,
+            "key": "imports.py"
+          },
+          "spans": [
+            {
+              "length": 4,
+              "start": 229
+            }
+          ],
+          "target": {
+            "id": 0,
+            "key": "imports.process_files.<locals>.path"
+          }
+        }
+      },
+      {
+        "id": 0,
+        "key": {
+          "file": {
+            "id": 0,
+            "key": "imports.py"
+          },
+          "spans": [
+            {
+              "length": 5,
+              "start": 196
+            }
+          ],
+          "target": {
+            "id": 0,
+            "key": "imports.process_files.<locals>.paths"
+          }
+        }
+      },
+      {
+        "id": 0,
+        "key": {
+          "file": {
+            "id": 0,
+            "key": "imports.py"
+          },
+          "spans": [
+            {
+              "length": 5,
+              "start": 270
+            }
+          ],
+          "target": {
+            "id": 0,
+            "key": "imports.process_files.<locals>.count"
+          }
+        }
+      },
+      {
+        "id": 0,
+        "key": {
+          "file": {
+            "id": 0,
+            "key": "imports.py"
+          },
+          "spans": [
+            {
+              "length": 6,
+              "start": 15
+            }
+          ],
+          "target": {
+            "id": 0,
+            "key": "typing"
+          }
+        }
+      },
+      {
+        "id": 0,
+        "key": {
+          "file": {
+            "id": 0,
+            "key": "imports.py"
+          },
+          "spans": [
+            {
+              "length": 6,
+              "start": 222
+            }
+          ],
+          "target": {
+            "id": 0,
+            "key": "genericpath.exists"
+          }
+        }
+      },
+      {
+        "id": 0,
+        "key": {
+          "file": {
+            "id": 0,
+            "key": "imports.py"
+          },
+          "spans": [
+            {
+              "length": 6,
+              "start": 40
+            }
+          ],
+          "target": {
+            "id": 0,
+            "key": "simple"
+          }
+        }
+      }
+    ],
+    "predicate": "python.XRefsViaNameByTarget.4"
+  },
+  {
+    "facts": [
+      {
+        "id": 0,
+        "key": {
+          "file": {
+            "id": 0,
+            "key": "imports.py"
+          },
+          "xrefs": [
+            {
+              "source": {
+                "length": 11,
+                "start": 310
+              },
+              "target": {
+                "file": {
+                  "id": 0,
+                  "key": "imports.py"
+                },
+                "name": {
+                  "id": 0,
+                  "key": "imports.hello_world"
+                }
+              }
+            },
+            {
+              "source": {
+                "length": 11,
+                "start": 310
+              },
+              "target": {
+                "file": {
+                  "id": 0,
+                  "key": "simple.py"
+                },
+                "name": {
+                  "id": 0,
+                  "key": "simple.hello_world"
+                }
+              }
+            },
+            {
+              "source": {
+                "length": 11,
+                "start": 54
+              },
+              "target": {
+                "file": {
+                  "id": 0,
+                  "key": "simple.py"
+                },
+                "name": {
+                  "id": 0,
+                  "key": "simple.hello_world"
+                }
+              }
+            },
+            {
+              "source": {
+                "length": 13,
+                "start": 333
+              },
+              "target": {
+                "file": {
+                  "id": 0,
+                  "key": "imports.py"
+                },
+                "name": {
+                  "id": 0,
+                  "key": "imports.process_files"
+                }
+              }
+            },
+            {
+              "source": {
+                "length": 2,
+                "start": 214
+              },
+              "target": {
+                "file": {
+                  "id": 0,
+                  "key": "imports.py"
+                },
+                "name": {
+                  "id": 0,
+                  "key": "imports.os"
+                }
+              }
+            },
+            {
+              "source": {
+                "length": 2,
+                "start": 214
+              },
+              "target": {
+                "file": {
+                  "id": 0,
+                  "key": "os/__init__.pyi"
+                },
+                "name": {
+                  "id": 0,
+                  "key": "os"
+                }
+              }
+            },
+            {
+              "source": {
+                "length": 2,
+                "start": 71
+              },
+              "target": {
+                "file": {
+                  "id": 0,
+                  "key": "os/__init__.pyi"
+                },
+                "name": {
+                  "id": 0,
+                  "key": "os"
+                }
+              }
+            },
+            {
+              "source": {
+                "length": 2,
+                "start": 7
+              },
+              "target": {
+                "file": {
+                  "id": 0,
+                  "key": "os/__init__.pyi"
+                },
+                "name": {
+                  "id": 0,
+                  "key": "os"
+                }
+              }
+            },
+            {
+              "source": {
+                "length": 3,
+                "start": 114
+              },
+              "target": {
+                "file": {
+                  "id": 0,
+                  "key": "builtins.pyi"
+                },
+                "name": {
+                  "id": 0,
+                  "key": "str"
+                }
+              }
+            },
+            {
+              "source": {
+                "length": 3,
+                "start": 123
+              },
+              "target": {
+                "file": {
+                  "id": 0,
+                  "key": "builtins.pyi"
+                },
+                "name": {
+                  "id": 0,
+                  "key": "int"
+                }
+              }
+            },
+            {
+              "source": {
+                "length": 4,
+                "start": 109
+              },
+              "target": {
+                "file": {
+                  "id": 0,
+                  "key": "imports.py"
+                },
+                "name": {
+                  "id": 0,
+                  "key": "imports.List"
+                }
+              }
+            },
+            {
+              "source": {
+                "length": 4,
+                "start": 109
+              },
+              "target": {
+                "file": {
+                  "id": 0,
+                  "key": "typing.pyi"
+                },
+                "name": {
+                  "id": 0,
+                  "key": "typing.List"
+                }
+              }
+            },
+            {
+              "source": {
+                "length": 4,
+                "start": 217
+              },
+              "target": {
+                "file": {
+                  "id": 0,
+                  "key": "imports.py"
+                },
+                "name": {
+                  "id": 0,
+                  "key": "imports.os.path"
+                }
+              }
+            },
+            {
+              "source": {
+                "length": 4,
+                "start": 217
+              },
+              "target": {
+                "file": {
+                  "id": 0,
+                  "key": "os/__init__.pyi"
+                },
+                "name": {
+                  "id": 0,
+                  "key": "os.path"
+                }
+              }
+            },
+            {
+              "source": {
+                "length": 4,
+                "start": 229
+              },
+              "target": {
+                "file": {
+                  "id": 0,
+                  "key": "imports.py"
+                },
+                "name": {
+                  "id": 0,
+                  "key": "imports.process_files.<locals>.path"
+                }
+              }
+            },
+            {
+              "source": {
+                "length": 4,
+                "start": 29
+              },
+              "target": {
+                "file": {
+                  "id": 0,
+                  "key": "typing.pyi"
+                },
+                "name": {
+                  "id": 0,
+                  "key": "typing.List"
+                }
+              }
+            },
+            {
+              "source": {
+                "length": 5,
+                "start": 196
+              },
+              "target": {
+                "file": {
+                  "id": 0,
+                  "key": "imports.py"
+                },
+                "name": {
+                  "id": 0,
+                  "key": "imports.process_files.<locals>.paths"
+                }
+              }
+            },
+            {
+              "source": {
+                "length": 5,
+                "start": 270
+              },
+              "target": {
+                "file": {
+                  "id": 0,
+                  "key": "imports.py"
+                },
+                "name": {
+                  "id": 0,
+                  "key": "imports.process_files.<locals>.count"
+                }
+              }
+            },
+            {
+              "source": {
+                "length": 6,
+                "start": 15
+              },
+              "target": {
+                "file": {
+                  "id": 0,
+                  "key": "typing.pyi"
+                },
+                "name": {
+                  "id": 0,
+                  "key": "typing"
+                }
+              }
+            },
+            {
+              "source": {
+                "length": 6,
+                "start": 222
+              },
+              "target": {
+                "file": {
+                  "id": 0,
+                  "key": "genericpath.pyi"
+                },
+                "name": {
+                  "id": 0,
+                  "key": "genericpath.exists"
+                }
+              }
+            },
+            {
+              "source": {
+                "length": 6,
+                "start": 40
+              },
+              "target": {
+                "file": {
+                  "id": 0,
+                  "key": "simple.py"
+                },
+                "name": {
+                  "id": 0,
+                  "key": "simple"
+                }
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "predicate": "python.xrefs.XRefsByFile.1"
+  },
+  {
+    "facts": [
+      {
+        "id": 0,
+        "key": {
+          "file": {
+            "id": 0,
+            "key": "imports.py"
+          },
+          "xrefs": [
+            {
+              "source": {
+                "length": 11,
+                "start": 310
+              },
+              "target": {
+                "id": 0,
+                "key": "imports.hello_world"
+              }
+            },
+            {
+              "source": {
+                "length": 11,
+                "start": 310
+              },
+              "target": {
+                "id": 0,
+                "key": "simple.hello_world"
+              }
+            },
+            {
+              "source": {
+                "length": 11,
+                "start": 54
+              },
+              "target": {
+                "id": 0,
+                "key": "simple.hello_world"
+              }
+            },
+            {
+              "source": {
+                "length": 13,
+                "start": 333
+              },
+              "target": {
+                "id": 0,
+                "key": "imports.process_files"
+              }
+            },
+            {
+              "source": {
+                "length": 2,
+                "start": 214
+              },
+              "target": {
+                "id": 0,
+                "key": "imports.os"
+              }
+            },
+            {
+              "source": {
+                "length": 2,
+                "start": 214
+              },
+              "target": {
+                "id": 0,
+                "key": "os"
+              }
+            },
+            {
+              "source": {
+                "length": 2,
+                "start": 71
+              },
+              "target": {
+                "id": 0,
+                "key": "os"
+              }
+            },
+            {
+              "source": {
+                "length": 2,
+                "start": 7
+              },
+              "target": {
+                "id": 0,
+                "key": "os"
+              }
+            },
+            {
+              "source": {
+                "length": 3,
+                "start": 114
+              },
+              "target": {
+                "id": 0,
+                "key": "str"
+              }
+            },
+            {
+              "source": {
+                "length": 3,
+                "start": 123
+              },
+              "target": {
+                "id": 0,
+                "key": "int"
+              }
+            },
+            {
+              "source": {
+                "length": 4,
+                "start": 109
+              },
+              "target": {
+                "id": 0,
+                "key": "imports.List"
+              }
+            },
+            {
+              "source": {
+                "length": 4,
+                "start": 109
+              },
+              "target": {
+                "id": 0,
+                "key": "typing.List"
+              }
+            },
+            {
+              "source": {
+                "length": 4,
+                "start": 217
+              },
+              "target": {
+                "id": 0,
+                "key": "imports.os.path"
+              }
+            },
+            {
+              "source": {
+                "length": 4,
+                "start": 217
+              },
+              "target": {
+                "id": 0,
+                "key": "os.path"
+              }
+            },
+            {
+              "source": {
+                "length": 4,
+                "start": 229
+              },
+              "target": {
+                "id": 0,
+                "key": "imports.process_files.<locals>.path"
+              }
+            },
+            {
+              "source": {
+                "length": 4,
+                "start": 29
+              },
+              "target": {
+                "id": 0,
+                "key": "typing.List"
+              }
+            },
+            {
+              "source": {
+                "length": 5,
+                "start": 196
+              },
+              "target": {
+                "id": 0,
+                "key": "imports.process_files.<locals>.paths"
+              }
+            },
+            {
+              "source": {
+                "length": 5,
+                "start": 270
+              },
+              "target": {
+                "id": 0,
+                "key": "imports.process_files.<locals>.count"
+              }
+            },
+            {
+              "source": {
+                "length": 6,
+                "start": 15
+              },
+              "target": {
+                "id": 0,
+                "key": "typing"
+              }
+            },
+            {
+              "source": {
+                "length": 6,
+                "start": 222
+              },
+              "target": {
+                "id": 0,
+                "key": "genericpath.exists"
+              }
+            },
+            {
+              "source": {
+                "length": 6,
+                "start": 40
+              },
+              "target": {
+                "id": 0,
+                "key": "simple"
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "predicate": "python.XRefsViaNameByFile.4"
+  },
+  {
+    "facts": [
+      {
+        "id": 0,
+        "key": {
+          "id": 0,
+          "key": ""
+        },
+        "value": {
+          "id": 0,
+          "key": {
+            "local_name": {
+              "id": 0,
+              "key": ""
+            }
+          }
+        }
+      },
+      {
+        "id": 0,
+        "key": {
+          "id": 0,
+          "key": "imports"
+        },
+        "value": {
+          "id": 0,
+          "key": {
+            "local_name": {
+              "id": 0,
+              "key": "imports"
+            }
+          }
+        }
+      },
+      {
+        "id": 0,
+        "key": {
+          "id": 0,
+          "key": "imports.List"
+        },
+        "value": {
+          "id": 0,
+          "key": {
+            "local_name": {
+              "id": 0,
+              "key": "List"
+            },
+            "parent": {
+              "id": 0,
+              "key": {
+                "local_name": {
+                  "id": 0,
+                  "key": "imports"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "id": 0,
+        "key": {
+          "id": 0,
+          "key": "imports.greeting"
+        },
+        "value": {
+          "id": 0,
+          "key": {
+            "local_name": {
+              "id": 0,
+              "key": "greeting"
+            },
+            "parent": {
+              "id": 0,
+              "key": {
+                "local_name": {
+                  "id": 0,
+                  "key": "imports"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "id": 0,
+        "key": {
+          "id": 0,
+          "key": "imports.hello_world"
+        },
+        "value": {
+          "id": 0,
+          "key": {
+            "local_name": {
+              "id": 0,
+              "key": "hello_world"
+            },
+            "parent": {
+              "id": 0,
+              "key": {
+                "local_name": {
+                  "id": 0,
+                  "key": "imports"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "id": 0,
+        "key": {
+          "id": 0,
+          "key": "imports.os"
+        },
+        "value": {
+          "id": 0,
+          "key": {
+            "local_name": {
+              "id": 0,
+              "key": "os"
+            },
+            "parent": {
+              "id": 0,
+              "key": {
+                "local_name": {
+                  "id": 0,
+                  "key": "imports"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "id": 0,
+        "key": {
+          "id": 0,
+          "key": "imports.process_files"
+        },
+        "value": {
+          "id": 0,
+          "key": {
+            "local_name": {
+              "id": 0,
+              "key": "process_files"
+            },
+            "parent": {
+              "id": 0,
+              "key": {
+                "local_name": {
+                  "id": 0,
+                  "key": "imports"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "id": 0,
+        "key": {
+          "id": 0,
+          "key": "imports.process_files.<locals>"
+        },
+        "value": {
+          "id": 0,
+          "key": {
+            "local_name": {
+              "id": 0,
+              "key": "<locals>"
+            },
+            "parent": {
+              "id": 0,
+              "key": {
+                "local_name": {
+                  "id": 0,
+                  "key": "process_files"
+                },
+                "parent": {
+                  "id": 0,
+                  "key": {
+                    "local_name": {
+                      "id": 0,
+                      "key": "imports"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "id": 0,
+        "key": {
+          "id": 0,
+          "key": "imports.process_files.<locals>.count"
+        },
+        "value": {
+          "id": 0,
+          "key": {
+            "local_name": {
+              "id": 0,
+              "key": "count"
+            },
+            "parent": {
+              "id": 0,
+              "key": {
+                "local_name": {
+                  "id": 0,
+                  "key": "<locals>"
+                },
+                "parent": {
+                  "id": 0,
+                  "key": {
+                    "local_name": {
+                      "id": 0,
+                      "key": "process_files"
+                    },
+                    "parent": {
+                      "id": 0,
+                      "key": {
+                        "local_name": {
+                          "id": 0,
+                          "key": "imports"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "id": 0,
+        "key": {
+          "id": 0,
+          "key": "imports.process_files.<locals>.path"
+        },
+        "value": {
+          "id": 0,
+          "key": {
+            "local_name": {
+              "id": 0,
+              "key": "path"
+            },
+            "parent": {
+              "id": 0,
+              "key": {
+                "local_name": {
+                  "id": 0,
+                  "key": "<locals>"
+                },
+                "parent": {
+                  "id": 0,
+                  "key": {
+                    "local_name": {
+                      "id": 0,
+                      "key": "process_files"
+                    },
+                    "parent": {
+                      "id": 0,
+                      "key": {
+                        "local_name": {
+                          "id": 0,
+                          "key": "imports"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "id": 0,
+        "key": {
+          "id": 0,
+          "key": "imports.process_files.<locals>.paths"
+        },
+        "value": {
+          "id": 0,
+          "key": {
+            "local_name": {
+              "id": 0,
+              "key": "paths"
+            },
+            "parent": {
+              "id": 0,
+              "key": {
+                "local_name": {
+                  "id": 0,
+                  "key": "<locals>"
+                },
+                "parent": {
+                  "id": 0,
+                  "key": {
+                    "local_name": {
+                      "id": 0,
+                      "key": "process_files"
+                    },
+                    "parent": {
+                      "id": 0,
+                      "key": {
+                        "local_name": {
+                          "id": 0,
+                          "key": "imports"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "id": 0,
+        "key": {
+          "id": 0,
+          "key": "imports.result"
+        },
+        "value": {
+          "id": 0,
+          "key": {
+            "local_name": {
+              "id": 0,
+              "key": "result"
+            },
+            "parent": {
+              "id": 0,
+              "key": {
+                "local_name": {
+                  "id": 0,
+                  "key": "imports"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "id": 0,
+        "key": {
+          "id": 0,
+          "key": "os"
+        },
+        "value": {
+          "id": 0,
+          "key": {
+            "local_name": {
+              "id": 0,
+              "key": "os"
+            }
+          }
+        }
+      },
+      {
+        "id": 0,
+        "key": {
+          "id": 0,
+          "key": "simple"
+        },
+        "value": {
+          "id": 0,
+          "key": {
+            "local_name": {
+              "id": 0,
+              "key": "simple"
+            }
+          }
+        }
+      },
+      {
+        "id": 0,
+        "key": {
+          "id": 0,
+          "key": "simple.hello_world"
+        },
+        "value": {
+          "id": 0,
+          "key": {
+            "local_name": {
+              "id": 0,
+              "key": "hello_world"
+            },
+            "parent": {
+              "id": 0,
+              "key": {
+                "local_name": {
+                  "id": 0,
+                  "key": "simple"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "id": 0,
+        "key": {
+          "id": 0,
+          "key": "typing"
+        },
+        "value": {
+          "id": 0,
+          "key": {
+            "local_name": {
+              "id": 0,
+              "key": "typing"
+            }
+          }
+        }
+      },
+      {
+        "id": 0,
+        "key": {
+          "id": 0,
+          "key": "typing.List"
+        },
+        "value": {
+          "id": 0,
+          "key": {
+            "local_name": {
+              "id": 0,
+              "key": "List"
+            },
+            "parent": {
+              "id": 0,
+              "key": {
+                "local_name": {
+                  "id": 0,
+                  "key": "typing"
+                }
+              }
+            }
+          }
+        }
+      }
+    ],
+    "predicate": "python.NameToSName.4"
+  },
+  {
+    "facts": [
+      {
+        "id": 0,
+        "key": {
+          "name": {
+            "id": 0,
+            "key": "imports"
+          }
+        }
+      }
+    ],
+    "predicate": "python.Module.4"
+  },
+  {
+    "schema_id": "f329796272b9314200433ac342cbc15c"
+  }
+]

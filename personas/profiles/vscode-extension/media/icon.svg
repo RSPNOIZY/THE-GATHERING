@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
+  <!-- Outer ring -->
+  <circle cx="16" cy="16" r="15" stroke="#ff4500" stroke-width="1.5" opacity="0.6"/>
+  <!-- Mic body -->
+  <rect x="12" y="5" width="8" height="14" rx="4" fill="#ff4500"/>
+  <!-- Mic stand arc -->
+  <path d="M9 16 Q9 23 16 23 Q23 23 23 16" stroke="#ff4500" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <!-- Mic stand pole -->
+  <line x1="16" y1="23" x2="16" y2="27" stroke="#ff4500" stroke-width="2" stroke-linecap="round"/>
+  <!-- Stand base -->
+  <line x1="12" y1="27" x2="20" y2="27" stroke="#ff4500" stroke-width="2" stroke-linecap="round"/>
+  <!-- Inner highlight -->
+  <rect x="14" y="7" width="4" height="6" rx="2" fill="rgba(255,200,150,0.35)"/>
+</svg>

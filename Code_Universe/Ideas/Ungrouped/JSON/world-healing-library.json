@@ -1,0 +1,111 @@
+{
+  "program": "NOIZYVOX Global Healing Library",
+  "version": "v1",
+  "generated_for": "Global Audio for Calm & Healing",
+  "protocol_families": [
+    "panic_deescalation",
+    "anxiety_pre_event",
+    "sleep_onset",
+    "post_meltdown_recovery",
+    "group_calm_session"
+  ],
+  "traditions": [
+    {
+      "id": "aboriginal_songline",
+      "label": "Aboriginal Australia Songline",
+      "region": "Oceania",
+      "modalities": ["drone", "breath_pacing", "narrative_chant"],
+      "tempo_bpm_range": "48-72",
+      "frequency_focus_hz": "sub-200 resonance + low drone bed",
+      "guild_voice_role": "Elder Narrator",
+      "languages_examples": ["English", "local Indigenous language (opt-in)"],
+      "protocol_family": "sleep_onset",
+      "safety_profile": "low_stim"
+    },
+    {
+      "id": "tibetan_bowl_chant",
+      "label": "Tibetan Bowl + Chant",
+      "region": "Himalayan",
+      "modalities": ["harmonic_overtone", "sustained_tone", "chant"],
+      "tempo_bpm_range": "40-64",
+      "frequency_focus_hz": "overtone stack + gentle alpha assist",
+      "guild_voice_role": "Monastic Guide",
+      "languages_examples": ["Tibetan", "Mandarin", "English"],
+      "protocol_family": "anxiety_pre_event",
+      "safety_profile": "low_stim"
+    },
+    {
+      "id": "west_african_drum_griot",
+      "label": "West African Drum + Griot",
+      "region": "West Africa",
+      "modalities": ["rhythmic_entrainment", "storytelling", "call_response"],
+      "tempo_bpm_range": "60-84",
+      "frequency_focus_hz": "pulse-led rhythm with controlled transient caps",
+      "guild_voice_role": "Griot Guide",
+      "languages_examples": ["Yoruba", "Mandinka", "Wolof", "English"],
+      "protocol_family": "group_calm_session",
+      "safety_profile": "medium_stim"
+    },
+    {
+      "id": "indian_raga_therapy",
+      "label": "Indian Raga-informed Calming",
+      "region": "South Asia",
+      "modalities": ["raga_mode", "sustained_drone", "vocal_seed_syllables"],
+      "tempo_bpm_range": "42-76",
+      "frequency_focus_hz": "time-of-day raga profile + low arousal dynamics",
+      "guild_voice_role": "Classical Vocal Guide",
+      "languages_examples": ["Hindi", "Tamil", "Bengali", "English"],
+      "protocol_family": "anxiety_pre_event",
+      "safety_profile": "low_stim"
+    },
+    {
+      "id": "sufi_ney_dhikr",
+      "label": "Sufi Ney + Dhikr Rhythm",
+      "region": "MENA",
+      "modalities": ["circular_rhythm", "breath_aligned_phrase", "flute_bed"],
+      "tempo_bpm_range": "50-78",
+      "frequency_focus_hz": "steady pulse with long exhale-biased phrasing",
+      "guild_voice_role": "Sufi Reciter",
+      "languages_examples": ["Arabic", "Farsi", "Turkish"],
+      "protocol_family": "panic_deescalation",
+      "safety_profile": "low_stim"
+    },
+    {
+      "id": "native_medicine_drum",
+      "label": "Native Medicine Drum + Song",
+      "region": "North America",
+      "modalities": ["drum_theta_carrier", "chant", "grounding_pulse"],
+      "tempo_bpm_range": "54-74",
+      "frequency_focus_hz": "theta-supportive rhythm and low-frequency grounding",
+      "guild_voice_role": "Indigenous Elder Voice",
+      "languages_examples": ["English", "opt-in Indigenous language"],
+      "protocol_family": "post_meltdown_recovery",
+      "safety_profile": "low_stim"
+    },
+    {
+      "id": "pythagorean_interval",
+      "label": "Pythagorean Interval Tuning",
+      "region": "Mediterranean",
+      "modalities": ["interval_ratio", "lyre_like_harmonics", "slow_phrase_voice"],
+      "tempo_bpm_range": "46-70",
+      "frequency_focus_hz": "mathematical harmonic ratio scaffolding",
+      "guild_voice_role": "Clinical Narrator",
+      "languages_examples": ["Greek", "English"],
+      "protocol_family": "sleep_onset",
+      "safety_profile": "low_stim"
+    },
+    {
+      "id": "sacred_architecture_reverb",
+      "label": "Sacred Architecture Acoustic Space",
+      "region": "Cross-regional",
+      "modalities": ["spatial_reverb_field", "long_decay", "guided_breath"],
+      "tempo_bpm_range": "40-68",
+      "frequency_focus_hz": "high clarity voice with controlled reverb tail",
+      "guild_voice_role": "Spatial Calm Guide",
+      "languages_examples": ["localized by market"],
+      "protocol_family": "sleep_onset",
+      "safety_profile": "low_stim"
+    }
+  ]
+}
+

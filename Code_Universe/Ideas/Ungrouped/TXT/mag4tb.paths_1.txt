@@ -1,0 +1,89 @@
+/Volumes/MAG 4TB/NOIZYFISH_THE_AQAURIUM/_04.Utilities/_Osc/Oscdatamonitor-Master/Current 2017 Version Applications/Application.linux64/Source/Osc_Data_Monitor.java
+/Volumes/MAG 4TB/NOIZYFISH_THE_AQAURIUM/_04.Utilities/_Osc/Oscdatamonitor-Master/Current 2017 Version Applications/Application.windows64/Source/Osc_Data_Monitor.java
+/Volumes/MAG 4TB/NOIZYFISH_THE_AQAURIUM/_04.Utilities/_Osc/Oscdatamonitor-Master/Current 2017 Version Applications/Oscs Data Monitor/Source/Osc_Data_Monitor.java
+/Volumes/MAG 4TB/NOIZYFISH_THE_AQAURIUM/_04.Utilities/_Osc/Oscdatamonitor-Master/Readme.md
+/Volumes/MAG 4TB/NOIZYFISH_THE_AQAURIUM/_04.Utilities/_Unity_Installs/Nativeaudioplugins-Master/Nativecode/Audioplugininterface.h
+/Volumes/MAG 4TB/NOIZYFISH_THE_AQAURIUM/_04.Utilities/_Unity_Installs/Nativeaudioplugins-Master/Nativecode/Audiopluginutil.cpp
+/Volumes/MAG 4TB/NOIZYFISH_THE_AQAURIUM/_04.Utilities/_Unity_Installs/Nativeaudioplugins-Master/Nativecode/Buildteleportdemo.sh
+/Volumes/MAG 4TB/NOIZYFISH_THE_AQAURIUM/_04.Utilities/_Unity_Installs/Nativeaudioplugins-Master/Nativecode/Hrtftable.cpp
+/Volumes/MAG 4TB/NOIZYFISH_THE_AQAURIUM/_04.Utilities/_Unity_Installs/Nativeaudioplugins-Master/Nativecode/Plugin_Convolutionreverb.cpp
+/Volumes/MAG 4TB/NOIZYFISH_THE_AQAURIUM/_04.Utilities/_Unity_Installs/Nativeaudioplugins-Master/Nativecode/Plugin_Correlationmeter.cpp
+/Volumes/MAG 4TB/NOIZYFISH_THE_AQAURIUM/_04.Utilities/_Unity_Installs/Nativeaudioplugins-Master/Nativecode/Plugin_Equalizer.cpp
+/Volumes/MAG 4TB/NOIZYFISH_THE_AQAURIUM/_04.Utilities/_Unity_Installs/Nativeaudioplugins-Master/Nativecode/Plugin_Granulator.cpp
+/Volumes/MAG 4TB/NOIZYFISH_THE_AQAURIUM/_04.Utilities/_Unity_Installs/Nativeaudioplugins-Master/Nativecode/Plugin_Impactgenerator.cpp
+/Volumes/MAG 4TB/NOIZYFISH_THE_AQAURIUM/_04.Utilities/_Unity_Installs/Nativeaudioplugins-Master/Nativecode/Plugin_Impulsegenerator.cpp
+/Volumes/MAG 4TB/NOIZYFISH_THE_AQAURIUM/_04.Utilities/_Unity_Installs/Nativeaudioplugins-Master/Nativecode/Plugin_Levelmixer.cpp
+/Volumes/MAG 4TB/NOIZYFISH_THE_AQAURIUM/_04.Utilities/_Unity_Installs/Nativeaudioplugins-Master/Nativecode/Plugin_Lofinator.cpp
+/Volumes/MAG 4TB/NOIZYFISH_THE_AQAURIUM/_04.Utilities/_Unity_Installs/Nativeaudioplugins-Master/Nativecode/Plugin_Loudnessmeter.cpp
+/Volumes/MAG 4TB/NOIZYFISH_THE_AQAURIUM/_04.Utilities/_Unity_Installs/Nativeaudioplugins-Master/Nativecode/Plugin_Modalfilter.cpp
+/Volumes/MAG 4TB/NOIZYFISH_THE_AQAURIUM/_04.Utilities/_Unity_Installs/Nativeaudioplugins-Master/Nativecode/Plugin_Multiband.cpp
+/Volumes/MAG 4TB/NOIZYFISH_THE_AQAURIUM/_04.Utilities/_Unity_Installs/Nativeaudioplugins-Master/Nativecode/Plugin_Noisebox.cpp
+/Volumes/MAG 4TB/NOIZYFISH_THE_AQAURIUM/_04.Utilities/_Unity_Installs/Nativeaudioplugins-Master/Nativecode/Plugin_Oscilloscope.cpp
+/Volumes/MAG 4TB/NOIZYFISH_THE_AQAURIUM/_04.Utilities/_Unity_Installs/Nativeaudioplugins-Master/Nativecode/Plugin_Pitchdetector.cpp
+/Volumes/MAG 4TB/NOIZYFISH_THE_AQAURIUM/_04.Utilities/_Unity_Installs/Nativeaudioplugins-Master/Nativecode/Plugin_Ringmodulator.cpp
+/Volumes/MAG 4TB/NOIZYFISH_THE_AQAURIUM/_04.Utilities/_Unity_Installs/Nativeaudioplugins-Master/Nativecode/Plugin_Routing.cpp
+/Volumes/MAG 4TB/NOIZYFISH_THE_AQAURIUM/_04.Utilities/_Unity_Installs/Nativeaudioplugins-Master/Nativecode/Plugin_Spatializer.cpp
+/Volumes/MAG 4TB/NOIZYFISH_THE_AQAURIUM/_04.Utilities/_Unity_Installs/Nativeaudioplugins-Master/Nativecode/Plugin_Spatializerreverb.cpp
+/Volumes/MAG 4TB/NOIZYFISH_THE_AQAURIUM/_04.Utilities/_Unity_Installs/Nativeaudioplugins-Master/Nativecode/Plugin_Stereowidener.cpp
+/Volumes/MAG 4TB/NOIZYFISH_THE_AQAURIUM/_04.Utilities/_Unity_Installs/Nativeaudioplugins-Master/Nativecode/Plugin_Synthesizer.cpp
+/Volumes/MAG 4TB/NOIZYFISH_THE_AQAURIUM/_04.Utilities/_Unity_Installs/Nativeaudioplugins-Master/Nativecode/Plugin_Teebee.cpp
+/Volumes/MAG 4TB/NOIZYFISH_THE_AQAURIUM/_04.Utilities/_Unity_Installs/Nativeaudioplugins-Master/Nativecode/Plugin_Teedee.cpp
+/Volumes/MAG 4TB/NOIZYFISH_THE_AQAURIUM/_04.Utilities/_Unity_Installs/Nativeaudioplugins-Master/Nativecode/Plugin_Teleport.cpp
+/Volumes/MAG 4TB/NOIZYFISH_THE_AQAURIUM/_04.Utilities/_Unity_Installs/Nativeaudioplugins-Master/Nativecode/Plugin_Tuberesonator.cpp
+/Volumes/MAG 4TB/NOIZYFISH_THE_AQAURIUM/_04.Utilities/_Unity_Installs/Nativeaudioplugins-Master/Nativecode/Plugin_Vocoder.cpp
+/Volumes/MAG 4TB/NOIZYFISH_THE_AQAURIUM/_04.Utilities/_Unity_Installs/Nativeaudioplugins-Master/Nativecode/Plugin_Wahwah.cpp
+/Volumes/MAG 4TB/NOIZYFISH_THE_AQAURIUM/_04.Utilities/_Unity_Installs/Nativeaudioplugins-Master/Nativecode/Pluginlist.h
+/Volumes/MAG 4TB/NOIZYFISH_THE_AQAURIUM/_04.Utilities/_Unity_Installs/Nativeaudioplugins-Master/Nativecode/Teleportdemo.cpp
+/Volumes/MAG 4TB/NOIZYFISH_THE_AQAURIUM/_04.Utilities/_Unity_Installs/Nativeaudioplugins-Master/Nativecode/Teleportlib.cpp
+/Volumes/MAG 4TB/NOIZYFISH_THE_AQAURIUM/_04.Utilities/_Unity_Installs/Nativeaudioplugins-Master/Nativecode/Teleportlib.h
+/Volumes/MAG 4TB/NOIZYFISH_THE_AQAURIUM/_04.Utilities/_Unity_Installs/Nativeaudioplugins-Master/Nativecode/Xcode/Auteleport/Auteleport.cpp
+/Volumes/MAG 4TB/NOIZYFISH_THE_AQAURIUM/_04.Utilities/_Unity_Installs/Nativeaudioplugins-Master/Nativecode/Xcode/Auteleport/Auteleportversion.h
+/Volumes/MAG 4TB/NOIZYFISH_THE_AQAURIUM/_04.Utilities/_Unity_Installs/Nativeaudioplugins-Master/Readme.md
+/Volumes/MAG 4TB/NOIZYFISH_THE_AQAURIUM/_04.Utilities/Airse701/Airserver/Contents/Frameworks/Sparkle.framework/PrivateHeaders/SUUnarchiver.h
+/Volumes/MAG 4TB/NOIZYFISH_THE_AQAURIUM/_04.Utilities/Airse701/Airserver/Contents/Frameworks/Sparkle.framework/Versions/A/Headers/Sparkle.h
+/Volumes/MAG 4TB/NOIZYFISH_THE_AQAURIUM/_04.Utilities/Airse701/Airserver/Contents/Frameworks/Sparkle.framework/Versions/A/Headers/SUAppcast.h
+/Volumes/MAG 4TB/NOIZYFISH_THE_AQAURIUM/_04.Utilities/Airse701/Airserver/Contents/Frameworks/Sparkle.framework/Versions/A/Headers/SUAppcastItem.h
+/Volumes/MAG 4TB/NOIZYFISH_THE_AQAURIUM/_04.Utilities/Airse701/Airserver/Contents/Frameworks/Sparkle.framework/Versions/A/Headers/SUErrors.h
+/Volumes/MAG 4TB/NOIZYFISH_THE_AQAURIUM/_04.Utilities/Airse701/Airserver/Contents/Frameworks/Sparkle.framework/Versions/A/Headers/SUExport.h
+/Volumes/MAG 4TB/NOIZYFISH_THE_AQAURIUM/_04.Utilities/Airse701/Airserver/Contents/Frameworks/Sparkle.framework/Versions/A/Headers/SUStandardVersionComparator.h
+/Volumes/MAG 4TB/NOIZYFISH_THE_AQAURIUM/_04.Utilities/Airse701/Airserver/Contents/Frameworks/Sparkle.framework/Versions/A/Headers/SUUpdater.h
+/Volumes/MAG 4TB/NOIZYFISH_THE_AQAURIUM/_04.Utilities/Airse701/Airserver/Contents/Frameworks/Sparkle.framework/Versions/A/Headers/SUVersionComparisonProtocol.h
+/Volumes/MAG 4TB/NOIZYFISH_THE_AQAURIUM/_04.Utilities/Airse701/Airserver/Contents/Frameworks/Sparkle.framework/Versions/A/Headers/SUVersionDisplayProtocol.h
+/Volumes/MAG 4TB/NOIZYFISH_THE_AQAURIUM/_04.Utilities/Learn_Cc.wdgt/Attributes.js
+/Volumes/MAG 4TB/NOIZYFISH_THE_AQAURIUM/_04.Utilities/Learn_Cc.wdgt/En.lproj/Localizedstrings.js
+/Volumes/MAG 4TB/NOIZYFISH_THE_AQAURIUM/_04.Utilities/Learn_Cc.wdgt/Main.js
+/Volumes/MAG 4TB/NOIZYFISH_THE_AQAURIUM/_04.Utilities/Learn_Cc.wdgt/Parts/Core/External/Sizzle_C.js
+/Volumes/MAG 4TB/NOIZYFISH_THE_AQAURIUM/_04.Utilities/Learn_Cc.wdgt/Parts/Parts.js
+/Volumes/MAG 4TB/NOIZYFISH_THE_AQAURIUM/_04.Utilities/Learn_Cc.wdgt/Podcastsupport.js
+/Volumes/MAG 4TB/NOIZYFISH_THE_AQAURIUM/_D0C MASTER/Documents/files (42)/README.md
+/Volumes/MAG 4TB/NOIZYFISH_THE_AQAURIUM/_D0C MASTER/Documents/MissionControl96/noizylab_2026/MissionControl96/NoizyFish_Aquarium/NoizyFish_Workspace/🐍 Python_Projects/NoizyFish/Projects/MovingSuitcase/NoizyAI/SalvadorAI/docs/branding.md
+/Volumes/MAG 4TB/NOIZYFISH_THE_AQAURIUM/_D0C MASTER/Documents/MissionControl96/noizylab_2026/MissionControl96/NoizyFish_Aquarium/NoizyFish_Workspace/🐍 Python_Projects/NoizyFish/Projects/MovingSuitcase/NoizyAI/SalvadorAI/docs/roadmap.md
+/Volumes/MAG 4TB/NOIZYFISH_THE_AQAURIUM/_D0C MASTER/Documents/MissionControl96/noizylab_2026/MissionControl96/NoizyFish_Aquarium/NoizyFish_Workspace/🐍 Python_Projects/NoizyFish/Projects/MovingSuitcase/NoizyAI/SalvadorAI/docs/vision.md
+/Volumes/MAG 4TB/NOIZYFISH_THE_AQAURIUM/_D0C MASTER/Documents/MissionControl96/noizylab_2026/MissionControl96/NoizyFish_Aquarium/NoizyFish_Workspace/🐍 Python_Projects/NoizyFish/Projects/MovingSuitcase/NoizyAI/Support/scripts/.github/copilot-instructions.md
+/Volumes/MAG 4TB/NOIZYFISH_THE_AQAURIUM/_D0C MASTER/Documents/MissionControl96/noizylab_2026/MissionControl96/NoizyFish_Aquarium/NoizyFish_Workspace/🐍 Python_Projects/NoizyFish/Projects/noizy-ai/CHANGELOG.md
+/Volumes/MAG 4TB/NOIZYFISH_THE_AQAURIUM/_D0C MASTER/Documents/MissionControl96/noizylab_2026/MissionControl96/NoizyFish_Aquarium/NoizyFish_Workspace/🐍 Python_Projects/NoizyFish/Projects/noizy-ai/out/ai/voice/VoiceLibraryGenerator.js
+/Volumes/MAG 4TB/NOIZYFISH_THE_AQAURIUM/_D0C MASTER/Documents/MissionControl96/noizylab_2026/MissionControl96/NoizyFish_Aquarium/NoizyFish_Workspace/🐍 Python_Projects/NoizyFish/Projects/noizy-ai/out/extensions/AutoSender/extension.js
+/Volumes/MAG 4TB/NOIZYFISH_THE_AQAURIUM/_D0C MASTER/Documents/MissionControl96/noizylab_2026/MissionControl96/NoizyFish_Aquarium/NoizyFish_Workspace/🐍 Python_Projects/NoizyFish/Projects/noizy-ai/out/features/autoSender.js
+/Volumes/MAG 4TB/NOIZYFISH_THE_AQAURIUM/_D0C MASTER/Documents/MissionControl96/noizylab_2026/MissionControl96/NoizyFish_Aquarium/NoizyFish_Workspace/🐍 Python_Projects/NoizyFish/Projects/noizy-ai/out/minions/AutoSenderSquad.js
+/Volumes/MAG 4TB/NOIZYFISH_THE_AQAURIUM/_D0C MASTER/Documents/MissionControl96/noizylab_2026/MissionControl96/NoizyFish_Aquarium/NoizyFish_Workspace/🐍 Python_Projects/NoizyFish/Projects/noizy-ai/out/minions/MinionOrchestrator.js
+/Volumes/MAG 4TB/NOIZYFISH_THE_AQAURIUM/_D0C MASTER/Documents/MissionControl96/noizylab_2026/MissionControl96/NoizyFish_Aquarium/NoizyFish_Workspace/🐍 Python_Projects/NoizyFish/Projects/Projects/Md/APP_STORE_REVIEW_NOTES.md
+/Volumes/MAG 4TB/NOIZYFISH_THE_AQAURIUM/_D0C MASTER/Documents/MissionControl96/noizylab_2026/MissionControl96/NoizyFish_Aquarium/NoizyFish_Workspace/🐍 Python_Projects/NoizyFish/Projects/Projects/Md/README.md
+/Volumes/MAG 4TB/NOIZYFISH_THE_AQAURIUM/_D0C MASTER/Documents/MissionControl96/noizylab_2026/MissionControl96/NoizyFish_Aquarium/NoizyFish_Workspace/🐍 Python_Projects/NoizyFish/Projects/Projects/Md/ROADMAP.md
+/Volumes/MAG 4TB/NOIZYFISH_THE_AQAURIUM/_D0C MASTER/Imports/rsplowman@icloud.com - Google Drive/apps_desktop-cleaner_detox.py
+/Volumes/MAG 4TB/NOIZYFISH_THE_AQAURIUM/_D0C MASTER/Imports/rsplowman@icloud.com - Google Drive/Saved from Chrome/IPAD_OPTIMIZATION_GUIDE.md
+/Volumes/MAG 4TB/NOIZYFISH_THE_AQAURIUM/_D0C MASTER/Imports/rsplowman@icloud.com - Google Drive/Saved from Chrome/sun_dec_21_2025_upgrade_and_improve_software_performance.md
+/Volumes/MAG 4TB/NOIZYFISH_THE_AQAURIUM/_D0C MASTER/OLDER_THINGS/Microsoft Copilot Chat Files/turbo_gabriel_omega.py
+/Volumes/MAG 4TB/NOIZYFISH_THE_AQAURIUM/docs/aquarium-librosa.md
+/Volumes/MAG 4TB/NOIZYFISH_THE_AQAURIUM/docs/audio-format-strategy.md
+/Volumes/MAG 4TB/NOIZYFISH_THE_AQAURIUM/docs/audio-learning-stage.md
+/Volumes/MAG 4TB/NOIZYFISH_THE_AQAURIUM/docs/dev-setup.md
+/Volumes/MAG 4TB/NOIZYFISH_THE_AQAURIUM/docs/noizy-librosa-stack.md
+/Volumes/MAG 4TB/NOIZYFISH_THE_AQAURIUM/docs/noizycore-librosa-modules.md
+/Volumes/MAG 4TB/NOIZYFISH_THE_AQAURIUM/docs/noizyfish-audio-stacks.md
+/Volumes/MAG 4TB/NOIZYFISH_THE_AQAURIUM/docs/reaper-librosa-bridge.md
+/Volumes/MAG 4TB/NOIZYFISH_THE_AQAURIUM/librosa_agent/__init__.py
+/Volumes/MAG 4TB/NOIZYFISH_THE_AQAURIUM/librosa_agent/__main__.py
+/Volumes/MAG 4TB/NOIZYFISH_THE_AQAURIUM/librosa_agent/agent.py
+/Volumes/MAG 4TB/NOIZYFISH_THE_AQAURIUM/librosa_agent/cli.py
+/Volumes/MAG 4TB/NOIZYFISH_THE_AQAURIUM/README.md
+/Volumes/MAG 4TB/NOIZYFISH_THE_AQAURIUM/tools/noizy_vault_engine.py

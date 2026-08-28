@@ -1,0 +1,19 @@
+{
+  "name": "@noizy-ms/graph-client",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Shared Microsoft Graph client + MSAL device-code auth for noizy-ms MCPs",
+  "main": "src/index.mjs",
+  "exports": {
+    ".": "./src/index.mjs",
+    "./auth": "./src/auth.mjs",
+    "./graph": "./src/graph.mjs"
+  },
+  "scripts": {
+    "auth": "node src/cli-auth.mjs"
+  },
+  "dependencies": {
+    "@azure/msal-node": "^2.16.2"
+  }
+}

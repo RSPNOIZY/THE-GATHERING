@@ -1,0 +1,55 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CapabilityRegistryEntry",
+  "description": "Schema for GABRIEL Allowlisted Capability Registry tools",
+  "type": "object",
+  "required": [
+    "capability_id",
+    "provider",
+    "transport",
+    "risk_class",
+    "required_policy",
+    "required_approval",
+    "receipt_required",
+    "reversible",
+    "allowed_inputs",
+    "redactions",
+    "timeout_ms"
+  ],
+  "properties": {
+    "capability_id": { "type": "string" },
+    "provider": { "type": "string" },
+    "transport": {
+      "type": "string",
+      "enum": ["mcp_stdio", "mcp_streamable_http", "native_bridge", "local_function"]
+    },
+    "risk_class": {
+      "type": "string",
+      "enum": [
+        "READ_ONLY_OBSERVE",
+        "PREPARATION",
+        "DEVICE_EXECUTION",
+        "LOCATION_OPERATION",
+        "CONSEQUENTIAL_FINANCIAL",
+        "DESTRUCTIVE_OVERWRITE"
+      ]
+    },
+    "required_policy": { "type": "string" },
+    "required_approval": {
+      "type": "string",
+      "enum": ["NONE", "SYSTEM", "DRIVER", "RSP"]
+    },
+    "receipt_required": { "type": "boolean" },
+    "reversible": { "type": "boolean" },
+    "allowed_inputs": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "redactions": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "timeout_ms": { "type": "integer", "minimum": 500, "maximum": 60000 }
+  },
+  "additionalProperties": false
+}

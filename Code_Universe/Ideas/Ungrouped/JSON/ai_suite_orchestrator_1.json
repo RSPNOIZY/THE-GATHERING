@@ -1,0 +1,92 @@
+{
+  "name": "AI SUITE ORCHESTRATOR — Smart Routing Across All Services",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "ai-suite",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "suite-webhook",
+      "name": "AI Suite Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [250, 300],
+      "webhookId": "noizy-ai-suite"
+    },
+    {
+      "parameters": {
+        "jsCode": "// AI SUITE ORCHESTRATOR\n// Routes requests to the right AI-powered service\nconst body = $input.first().json;\nconst service = body.service || 'auto';\nconst action = body.action || 'query';\nconst content = body.content || body.text || body.query || '';\n\n// Service map\nconst services = {\n  'search':   { url: 'http://localhost:8082/search', method: 'GET' },\n  'pdf':      { url: 'http://localhost:8083/api/v1/convert', method: 'POST' },\n  'sheets':   { url: 'http://localhost:8081/api/v1', method: 'POST' },\n  'forms':    { url: 'http://localhost:8084/api', method: 'POST' },\n  'ai':       { url: 'http://localhost:4000/chat/completions', method: 'POST' },\n  'embed':    { url: 'http://localhost:4000/embeddings', method: 'POST' },\n  'monitor':  { url: 'http://localhost:3001/api', method: 'GET' },\n  'cloud':    { url: 'http://localhost:8080', method: 'GET' },\n  'analytics':{ url: 'http://localhost:8085/api', method: 'GET' },\n  'typesense':{ url: 'http://localhost:8108', method: 'GET' },\n};\n\n// Auto-route based on content\nlet targetService = service;\nif (service === 'auto') {\n  if (content.toLowerCase().includes('search') || content.includes('?')) targetService = 'search';\n  else if (content.toLowerCase().includes('pdf')) targetService = 'pdf';\n  else if (content.toLowerCase().includes('spreadsheet') || content.toLowerCase().includes('data')) targetService = 'sheets';\n  else targetService = 'ai';\n}\n\nconst target = services[targetService] || services['ai'];\n\nreturn [{\n  json: {\n    service: targetService,\n    action,\n    content,\n    target_url: target.url,\n    target_method: target.method,\n    routed_at: new Date().toISOString(),\n    orchestrator: 'AI_SUITE_v1'\n  }\n}];"
+      },
+      "id": "orchestrator",
+      "name": "AI Service Router",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [450, 300]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            { "value1": "={{ $json.service }}", "value2": "ai" }
+          ]
+        }
+      },
+      "id": "is-ai",
+      "name": "Route: AI Query?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [650, 200]
+    },
+    {
+      "parameters": {
+        "url": "http://host.docker.internal:4000/chat/completions",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            { "name": "model", "value": "gemma4-8b" },
+            { "name": "messages", "value": "=[{\"role\":\"system\",\"content\":\"You are GABRIEL, the NOIZY Empire AI assistant. Consent as code. Provenance as default.\"},{\"role\":\"user\",\"content\":\"{{ $json.content }}\"}]" }
+          ]
+        },
+        "options": {
+          "timeout": 30000
+        }
+      },
+      "id": "litellm-call",
+      "name": "LiteLLM AI Query",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [850, 200]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ status: 'processed', service: $json.service, orchestrator: 'AI_SUITE_v1' }) }}"
+      },
+      "id": "respond",
+      "name": "Send Response",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [1050, 300]
+    }
+  ],
+  "connections": {
+    "AI Suite Webhook": {
+      "main": [[{ "node": "AI Service Router", "type": "main", "index": 0 }]]
+    },
+    "AI Service Router": {
+      "main": [[
+        { "node": "Route: AI Query?", "type": "main", "index": 0 },
+        { "node": "Send Response", "type": "main", "index": 0 }
+      ]]
+    },
+    "Route: AI Query?": {
+      "main": [[{ "node": "LiteLLM AI Query", "type": "main", "index": 0 }], [{ "node": "Send Response", "type": "main", "index": 0 }]]
+    },
+    "LiteLLM AI Query": {
+      "main": [[{ "node": "Send Response", "type": "main", "index": 0 }]]
+    }
+  },
+  "settings": { "executionOrder": "v1" }
+}

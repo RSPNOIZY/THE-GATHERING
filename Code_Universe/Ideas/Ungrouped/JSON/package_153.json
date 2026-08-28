@@ -1,0 +1,20 @@
+{
+  "name": "noizy-connector-hub",
+  "version": "1.0.0",
+  "private": true,
+  "description": "NOIZY Integration Plane — Cloudflare Worker Connector Hub",
+  "scripts": {
+    "dev": "wrangler dev --local",
+    "deploy:staging": "wrangler deploy --env staging",
+    "deploy:production": "wrangler deploy --env production",
+    "types": "wrangler types",
+    "tail": "wrangler tail",
+    "d1:init": "wrangler d1 execute noizy-connector-audit --command \"CREATE TABLE IF NOT EXISTS audit_log (id INTEGER PRIMARY KEY AUTOINCREMENT, ts TEXT NOT NULL DEFAULT (datetime('now')), event TEXT NOT NULL, connector TEXT NOT NULL, detail TEXT, status TEXT DEFAULT 'ok')\"",
+    "kv:list": "wrangler kv key list --binding TOKENS"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20250410.0",
+    "typescript": "^5.7.0",
+    "wrangler": "^4.14.0"
+  }
+}

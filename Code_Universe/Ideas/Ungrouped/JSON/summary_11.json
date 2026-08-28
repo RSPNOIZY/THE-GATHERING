@@ -1,0 +1,25 @@
+{
+  "volume": "/Volumes/JOE",
+  "slug": "JOE_",
+  "timestamp": "20260420T080624Z",
+  "size": "2.0T",
+  "top_level_entries": 10,
+  "code": {
+    "git_dirs": 2,
+    "package_json": 1,
+    "pyproject": 0,
+    "cargo": 0,
+    "gemfile": 0,
+    "go_mod": 0
+  },
+  "secrets_pattern_count": 0,
+  "media": {
+    "wav": 73598,
+    "aif": 6125,
+    "flac": 0,
+    "logicx": 55,
+    "ptx": 1
+  },
+  "audit_path": "/Users/m2ultra/NOIZYANTHROPIC/infra/scans/scan-reports/JOE_/20260420T080624Z/audit.md",
+  "inventory_path": "/Users/m2ultra/NOIZYANTHROPIC/infra/scans/scan-reports/JOE_/20260420T080624Z/inventory.txt"
+}

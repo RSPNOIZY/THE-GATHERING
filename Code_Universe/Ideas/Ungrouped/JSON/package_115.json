@@ -1,0 +1,25 @@
+{
+  "name": "noizy-consent-gateway",
+  "version": "1.0.0",
+  "description": "NOIZY Consent Gateway — 10-check decision matrix for voice consent enforcement",
+  "author": "Robert Stephen Plowman <rsp@noizyfish.com>",
+  "license": "UNLICENSED",
+  "private": true,
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:matrix": "node test-matrix.mjs",
+    "db:create": "wrangler d1 create noizy_consent_db",
+    "db:schema": "wrangler d1 execute noizy_consent_db --file=schema.sql",
+    "db:schema:local": "wrangler d1 execute noizy_consent_db --local --file=schema.sql"
+  },
+  "devDependencies": {
+    "@cloudflare/vitest-pool-workers": "^0.5.41",
+    "typescript": "^5.6.3",
+    "vitest": "^2.1.9"
+  }
+}

@@ -1,0 +1,202 @@
+{
+  "name": "NOIZY Audio RAG Safe Sync",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "noizy/sync",
+        "responseMode": "lastNode",
+        "options": {}
+      },
+      "id": "WebhookSync",
+      "name": "Webhook /noizy/sync",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        240,
+        260
+      ]
+    },
+    {
+      "parameters": {
+        "command": "cd {{$env.PWD || process.cwd()}} && PATH=\"$PWD:$PATH\" noizy sync --input \"{{$json.input || '/NOIZY/raw_stems'}}\" --canary \"{{$json.canary || 500}}\" --dry-run"
+      },
+      "id": "IngestCommand",
+      "name": "Run NOIZY Ingest",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        500,
+        260
+      ]
+    },
+    {
+      "parameters": {
+        "command": "python3 noizy-audio-rag/embeddings/build_embeddings.py"
+      },
+      "id": "BuildEmbeddings",
+      "name": "Build Audio Embeddings",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        760,
+        260
+      ]
+    },
+    {
+      "parameters": {
+        "command": "python3 noizy-audio-rag/embeddings/build_faiss.py"
+      },
+      "id": "BuildFaiss",
+      "name": "Build FAISS",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        890,
+        260
+      ]
+    },
+    {
+      "parameters": {
+        "command": "echo \"Hot Rod pipeline active: accelerate embedding->index->mirror chain\""
+      },
+      "id": "HotRodPipeline",
+      "name": "Run Hot Rod Pipeline",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        960,
+        110
+      ]
+    },
+    {
+      "parameters": {
+        "command": "python3 noizy-audio-rag/firestore/mirror_metadata.py"
+      },
+      "id": "MirrorMetadata",
+      "name": "Mirror Metadata to Firestore",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        1020,
+        260
+      ]
+    },
+    {
+      "parameters": {
+        "command": "python3 noizy-audio-rag/mc96/receipt_stub.py"
+      },
+      "id": "EmitReceipt",
+      "name": "Emit MC96 Receipt",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        1280,
+        260
+      ]
+    },
+    {
+      "parameters": {
+        "command": "if [ -n \"$DISCORD_WEBHOOK_URL\" ]; then curl -sS -H 'Content-Type: application/json' -d '{\"content\":\"NOIZY sync complete: ingest -> embeddings -> faiss -> firestore -> receipt\"}' \"$DISCORD_WEBHOOK_URL\"; else echo \"Discord webhook not configured\"; fi"
+      },
+      "id": "NotifyDiscord",
+      "name": "Notify Discord",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        1540,
+        260
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook /noizy/sync": {
+      "main": [
+        [
+          {
+            "node": "Run NOIZY Ingest",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Run NOIZY Ingest": {
+      "main": [
+        [
+          {
+            "node": "Build Audio Embeddings",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build Audio Embeddings": {
+      "main": [
+        [
+          {
+            "node": "Run Hot Rod Pipeline",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Build FAISS",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build FAISS": {
+      "main": [
+        [
+          {
+            "node": "Mirror Metadata to Firestore",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Run Hot Rod Pipeline": {
+      "main": [
+        [
+          {
+            "node": "Mirror Metadata to Firestore",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mirror Metadata to Firestore": {
+      "main": [
+        [
+          {
+            "node": "Emit MC96 Receipt",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Emit MC96 Receipt": {
+      "main": [
+        [
+          {
+            "node": "Notify Discord",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "pinData": {},
+  "versionId": "noizy-audio-rag-v1",
+  "active": false
+}

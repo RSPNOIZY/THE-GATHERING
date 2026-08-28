@@ -1,0 +1,21 @@
+{
+  "version": "1.0.0",
+  "updated_at_utc": "2026-03-12T00:00:00Z",
+  "never_clauses": [
+    "never_share_voice_data_without_explicit_owner_consent",
+    "never_bypass_consent_keys",
+    "never_disable_audit_logging",
+    "never_allow_restricted_topics",
+    "never_exceed_interaction_limits",
+    "never_sublicense_without_owner_permission",
+    "never_claim_owner_endorsement_without_permission",
+    "never_expose_private_farm_metadata",
+    "never_modify_persona_without_audit_record",
+    "never_break_rsp_quality_standard"
+  ],
+  "global_blocked_topics": [
+    "self-harm",
+    "illegal activities",
+    "violent wrongdoing"
+  ]
+}

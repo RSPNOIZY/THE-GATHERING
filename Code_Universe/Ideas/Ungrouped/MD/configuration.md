@@ -1,0 +1,408 @@
+---
+title: "Configuration File Reference"
+---
+
+## General settings
+
+#### product_type
+
+The type of server the content is being deployed to. May be set to `connect` or `connect_cloud`. Defaults to `connect`.
+
+Many of the fields described here are only valid for one product_type value. If not otherwise specified, fields are valid for both.
+
+#### type
+
+Indicates the type of content being deployed. Valid values are:
+
+- `html`
+- `jupyter-notebook`
+- `jupyter-voila`
+- `nodejs`
+- `python-bokeh`
+- `python-dash`
+- `python-fastapi`
+- `python-flask`
+- `python-gradio`
+- `python-panel`
+- `python-shiny`
+- `python-streamlit`
+- `quarto-shiny`
+- `quarto-static`
+- `quarto` (Deprecated use `quarto-static` instead)
+- `r-plumber`
+- `r-shiny`
+- `rmd-shiny`
+- `rmd`
+
+#### entrypoint
+
+Name of the primary file containing the content. For Python flask, dash, fastapi, and python-shiny projects, this specifies the object within the
+file in module:object format. See [understanding entrypoints](https://docs.posit.co/connect/user/publishing-cli-apps/#understanding-entrypoints) for additional information.
+
+#### title
+
+Title for this content. If specified, it must be a single line containing between 3 and 1000 characters.
+
+#### description
+
+Description for this content. It may span multiple lines and be up to 4000 characters.
+
+#### files
+
+Project-relative paths of the files to be included in the deployment.
+Uses [`.gitignore` syntax](https://git-scm.com/docs/gitignore) for file include
+patterns, like wildcards.
+
+Here are some examples given an example project structure:
+
+```
+project-root/
+|
+├── dir/
+│   ├── util.py
+│   └─  helper.py
+│
+└── app.py
+```
+
+- To include all Python files in your project, you can use a wildcard pattern.
+  `*.py` would include all `.py` files in any directory.
+- `/dir/util.py` would include the specific `util.py` file in the `dir`
+  directory under the root of the project to be published.
+- To include the file `app.py` at the root of the project, you can use
+  `/app.py`.
+
+#### has_parameters
+
+_Only valid when `product_type` is `connect`_
+
+`true` if this is a report that accepts parameters.
+
+#### validate
+
+_Only valid when `product_type` is `connect`_
+
+Access the content after deploying, to validate that it is live. Defaults to `true`.
+
+#### $schema
+
+URL of the json-schema definition for this file. Must be 'https://cdn.posit.co/publisher/schemas/posit-publishing-schema-v3.json'. TOML editing tools may use this to provide validation and/or autocomplete.
+
+Example:
+
+```toml
+"$schema" = "https://cdn.posit.co/publisher/schemas/posit-publishing-schema-v3.json"
+type = "quarto-static"
+entrypoint = "report.qmd"
+title = "Regional Quarterly Sales Report"
+description = "This is the quarterly sales report, broken down by region."
+validate = true
+
+files = [
+    "*.py",
+    "*.qmd",
+    "requirements.txt",
+]
+```
+
+## Environment
+
+Environment variable/value map. All values must be strings. Secrets such as API keys or tokens should not be stored here.
+
+Example:
+
+```toml
+[environment]
+API_URL = "https://example.com/api"
+```
+
+## Python settings
+
+#### package_file
+
+_Only valid when `product_type` is `connect`_
+
+File containing package dependencies. The file must exist and be listed under 'files'. The default is 'requirements.txt'.
+
+#### package_manager
+
+_Only valid when `product_type` is `connect`_
+
+Package manager that will install the dependencies.
+Supported values are `pip`, `uv` and `none`.
+
+- Omitting the value will let the server decide.
+- If package_manager is `uv`, dependencies will be installed using `uv pip`
+- If package_manager is `pip`, dependencies will be installed using `pip`
+- If package_manager is `none`, dependencies will not be installed.
+
+#### version
+
+Python version. The server must have a matching Python major/minor version in order to run the content.
+
+Example:
+
+```toml
+[python]
+version = "3.11.3"
+package_file = "requirements.txt"
+package_manager = "pip"
+```
+
+## R settings
+
+#### package_file
+
+_Only valid when `product_type` is `connect`_
+
+File containing package dependencies. This is usually `renv.lock`. The file must exist and be listed under 'files'.
+
+#### package_manager
+
+_Only valid when `product_type` is `connect`_
+
+Package manager that will install the dependencies. Supported values are `renv` and `none`. If package-manager is `none`, dependencies will be assumed to be pre-installed on the server.
+
+#### packages_from_library
+
+_Only valid when `product_type` is `connect`_
+
+Controls how Publisher retrieves dependencies for R projects.
+
+- `false` (default): Read package metadata directly from `renv.lock`.
+  This does not require a local `renv` library to be present in your workspace.
+- `true`: Read package metadata from the local `renv` library (legacy behavior).
+  This requires an initialized `renv` library matching your lockfile.
+
+#### version
+
+R version. The server will use the nearest R version to run the content.
+
+Example:
+
+```toml
+[r]
+version = "4.3.1"
+package_file = "renv.lock"
+package_manager = "renv"
+```
+
+## Jupyter settings
+
+_Only valid when `product_type` is `connect`_
+
+### hide_all_input
+
+Hide all input cells when rendering output.
+
+### hide_tagged_input
+
+Hide input code cells with the 'hide_input' tag when rendering output.
+
+Example:
+
+```toml
+[jupyter]
+hide_all_input = false
+hide_tagged_input = false
+```
+
+## Quarto settings
+
+_Only valid when `product_type` is `connect`_
+
+#### engines
+
+List of Quarto engines required for this content.
+
+#### version
+
+Quarto version. The server must have a similar Quarto version in order to run the content.
+
+```toml
+[quarto]
+version = "1.4.554"
+engines = ["knitr"]
+```
+
+## Node.js settings
+
+_Only valid when `product_type` is `connect`_
+
+[Posit Connect supports deploying Node.js applications](https://docs.posit.co/connect/user/nodejs/).
+
+Both `package.json` and `package-lock.json` must be present and listed under `files`. Connect uses `npm ci` to install dependencies; if `package-lock.json` is missing, run `npm install` to generate it.
+
+If `package.json` specifies an [`engines.node`](https://docs.npmjs.com/cli/configuring-npm/package-json) constraint, Connect uses it to select the runtime version. Otherwise Connect uses the latest version of Node.js available on the server.
+
+Node.js deployment requires an [Advanced Connect license](https://docs.posit.co/connect/user/licensing/), and the server administrator must enable Node.js support. Publisher reports when the target server has Node.js disabled.
+
+Connect Cloud does not support Node.js content.
+
+Example:
+
+```toml
+type = "nodejs"
+entrypoint = "index.js"
+files = ["*.js", "package.json", "package-lock.json"]
+```
+
+## Connect-specific settings
+
+### Access settings
+
+_Only valid when `product_type` is `connect`_
+
+#### run_as
+
+The system username under which the content should be run. Must be an existing user in the allowed group. You must be an administrator to set this value.
+
+#### run_as_current_user
+
+For application content types, run a separate process under the user account of each visiting user under that user's server account. Requires PAM authentication on the Posit Connect server. You must be an administrator to set this value.
+
+Example:
+
+```toml
+[connect.access]
+run_as = "myuser"
+run_as_current_user = true
+```
+
+### Kubernetes settings
+
+_Only valid when `product_type` is `connect`_
+
+Settings used with Posit Connect's off-host execution feature, where content is run in Kubernetes.
+
+#### amd_gpu_limit
+
+The number of AMD GPUs that will be allocated by Kubernetes to run this content.
+
+#### cpu_limit
+
+The maximum amount of compute power this content will be allowed to consume when executing or rendering, expressed in CPU Units, where 1.0 unit is equivalent to 1 physical or virtual core. Fractional values are allowed. If the process tries to use more CPU than allowed, it will be throttled.
+
+#### cpu_request
+
+The minimum amount of compute power this content needs when executing virtual core. Fractional values are allowed.
+
+#### default_image_name
+
+Name of the target container image.
+
+#### default_py_environment_management
+
+Enables or disables Python environment management. When false, Posit Connect will not install Python packages and instead assume that all required packages are present in the container image.
+
+#### default_r_environment_management
+
+Enables or disables R environment management. When false, Posit Connect will not install R packages and instead assume that all required packages are present in the container image.
+
+#### memory_limit
+
+The maximum amount of RAM this content will be allowed to consume when executing or rendering, expressed in bytes. If the process tries to use more memory than allowed, it will be terminated
+
+#### memory_request
+
+The minimum amount of RAM this content needs when executing or rendering, expressed in bytes.
+
+#### nvidia_gpu_limit
+
+The number of NVIDIA GPUs that will be allocated by Kubernetes to run this content.
+
+#### service_account_name
+
+The name of the Kubernetes service account that is used to run this content. It must adhere to Kubernetes service account naming rules. You must be an administrator to set this value.
+
+Example:
+
+```toml
+[connect.kubernetes]
+amd_gpu_limit = 0
+cpu_limit = 1.5
+cpu_request = 0.5
+default_image_name = "posit/connect-runtime-python3.11-r4.3"
+default_py_environment_management = true
+default_r_environment_management = true
+memory_limit = 100000000
+memory_request = 20000000
+nvidia_gpu_limit = 1
+service_account_name = "posit-connect-content"
+```
+
+### Runtime settings
+
+_Valid when `product_type` is `connect` or `connect_cloud`_
+
+Runtime settings for application content types
+
+#### connection_timeout
+
+Maximum number of seconds allowed without data sent or received across a client connection. A value of `0` means connections will never time-out (not recommended).
+
+#### idle_timeout
+
+The maximum number of seconds a worker process for an interactive application to remain alive after it goes idle (no active connections).
+
+#### init_timeout
+
+The maximum number of seconds allowed for an interactive application to start. Posit Connect must be able to connect to a newly launched application before this threshold has elapsed.
+
+#### load_factor
+
+Controls how aggressively new processes are spawned. The valid range is between 0.0 and 1.0.
+
+#### max_conns_per_process
+
+Specifies the maximum number of client connections allowed to an individual process. Incoming connections which will exceed this limit are routed to a new process or rejected.
+
+#### max_processes
+
+Specifies the total number of concurrent processes allowed for a single interactive application.
+
+#### min_processes
+
+Specifies the minimum number of concurrent processes allowed for a single interactive application.
+
+#### read_timeout
+
+Maximum number of seconds allowed without data received from a client connection. A value of `0` means a lack of client (browser) interaction never causes the connection to close.
+
+Example:
+
+```toml
+[connect.runtime]
+connection_timeout = 5
+idle_timeout = 120
+init_timeout = 60
+load_factor = 0.5
+max_conns_per_process = 50
+max_processes = 5
+min_processes = 1
+read_timeout = 30
+```
+
+## Connect Cloud-specific settings
+
+_Only valid when `product_type` is `connect_cloud`_
+
+### vanity_name
+
+The custom component of the vanity URL. If your account name is 'my-account' and this value is 'vanity', the vanity URL will be `https://my-account-vanity.share.connect.posit.cloud`.
+
+Only supported for organizational accounts.
+
+### access_control
+
+Settings for who can do what with the content.
+
+Only supported for organizational accounts.
+
+#### public_access
+
+Specifies whether the content is publicly accessible. Defaults to `true` on free accounts and `false` on paid accounts.
+
+#### organization_access
+
+Specifies the default level of access for account members within an organizational account. Can be `disabled`, `view`, or `editor`.

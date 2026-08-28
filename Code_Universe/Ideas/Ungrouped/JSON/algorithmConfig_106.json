@@ -1,0 +1,214 @@
+{
+	"version":	"1.0",
+	"mode":	2,
+	"name":	"Editor_Sticker_Config_TAG_89VbqQbskbzbyc7dCbUbObPdB001",
+	"size":	{
+		"width":	360,
+		"height":	640
+	},
+	"nodes":	[{
+			"name":	"FaceAlign",
+			"type":	"nh_face_align",
+			"config":	{
+				"keyMaps":	{
+					"intParam":	{
+						"num_faces":	10
+					},
+					"floatParam":	{
+					},
+					"stringParam":	{
+						"model_name": "skinunified",
+                    	"packed_model_group_key": "face_align"
+					},
+					"pathParam":	{
+					}
+				}
+			}
+		}, {
+			"name":	"ImageTransform",
+			"type":	"nh_image_transform",
+			"config":	{
+				"keyMaps":	{
+					"intParam":	{
+						"cvt_color_code":	1,
+						"data_convert_rtype":	5
+					},
+					"floatParam":	{
+						"data_convert_beta":	-1,
+						"data_convert_alpha":	0.0078,
+						"resize_fy":	0.0078
+					},
+					"stringParam":	{
+						"transforms":	"cvt_color:data_convert"
+					},
+					"pathParam":	{
+					}
+				}
+			}
+		}, {
+			"name":	"Inference",
+			"type":	"nh_inference",
+			"config":	{
+				"keyMaps":	{
+					"intParam":	{
+						"num_thread":	2,
+						"forward_type":	4,
+						"target_width": 320,
+						"target_height": 320,
+						"crop_type": 1
+					},
+					"floatParam":	{
+						"crop_margin": 0.375,
+						"crop_offset_x": 0.0,
+						"crop_offset_y": 31.0
+					},
+					"stringParam":	{
+						"model_name": "skinunified"
+					},
+					"pathParam":	{
+					}
+				}
+			}
+		}, {
+			"name":	"StyleTransferPostProcess",
+			"type":	"nh_style_transfer_post_process",
+			"config":	{
+				"keyMaps":	{
+					"intParam":	{
+					},
+					"floatParam":	{
+					},
+					"stringParam":	{
+					},
+					"pathParam":	{
+					}
+				}
+			}
+		}, {
+			"name":	"ToTensor",
+			"type":	"nh_convert_to_tensor",
+			"config":	{
+				"keyMaps":	{
+					"intParam":	{
+					},
+					"floatParam":	{
+					},
+					"stringParam":	{
+					},
+					"pathParam":	{
+					}
+				}
+			}
+		}, {
+			"name":	"blit",
+			"type":	"blit",
+			"config":	{
+				"size":	{
+					"width":	360,
+					"height":	640
+				},
+				"keyMaps":	{
+					"intParam":	{
+					},
+					"floatParam":	{
+					},
+					"stringParam":	{
+					},
+					"pathParam":	{
+					}
+				}
+			}
+		}, {
+			"name":	"face_0",
+			"type":	"face",
+			"config":	{
+				"keyMaps":	{
+					"intParam":	{
+						"face_max_num":	10,
+						"face_detect_ability":	63
+					},
+					"floatParam":	{
+					},
+					"stringParam":	{
+						"face_base_model_key": "tt_fsnew_base_jianying"
+					},
+					"pathParam":	{
+					}
+				}
+			}
+		}, {
+			"name":	"freid_0",
+			"type":	"freid",
+			"config":	{
+				"keyMaps":	{
+					"intParam":	{
+					},
+					"floatParam":	{
+					},
+					"stringParam":	{
+					},
+					"pathParam":	{
+					}
+				}
+			}
+		}, {
+            "name": "face_select_0",
+			"type": "nh_face_select"
+	}],
+	"links":	[{
+			"fromNode":	"FaceAlign",
+			"fromIndex":	0,
+			"toNode":	"ImageTransform",
+			"toIndex":	1
+		}, {
+			"fromNode":	"ImageTransform",
+			"fromIndex":	0,
+			"toNode":	"ToTensor",
+			"toIndex":	0
+		}, {
+			"fromNode":	"Inference",
+			"fromIndex":	0,
+			"toNode":	"StyleTransferPostProcess",
+			"toIndex":	0
+		}, {
+			"fromNode":	"ToTensor",
+			"fromIndex":	0,
+			"toNode":	"Inference",
+			"toIndex":	0
+		}, {
+			"fromNode":	"blit",
+			"fromIndex":	0,
+			"toNode":	"FaceAlign",
+			"toIndex":	0
+		}, {
+			"fromNode":	"blit",
+			"fromIndex":	0,
+			"toNode":	"face_0",
+			"toIndex":	0
+		}, {
+			"fromNode":	"blit",
+			"fromIndex":	0,
+			"toNode":	"freid_0",
+			"toIndex":	0
+		}, {
+			"fromNode":	"face_select_0",
+			"fromIndex":	0,
+			"toNode":	"FaceAlign",
+			"toIndex":	2
+		}, {
+			"fromNode":	"face_0",
+			"fromIndex":	0,
+			"toNode":	"freid_0",
+			"toIndex":	1
+		}, {
+			"fromNode": "face_0",
+			"fromIndex": 0,
+			"toNode": "face_select_0",
+			"toIndex": 0
+		},  {
+			"fromNode": "freid_0",
+			"fromIndex": 0,
+			"toNode": "face_select_0",
+			"toIndex": 3
+		}]
+}

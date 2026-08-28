@@ -1,0 +1,122 @@
+{
+  "inference_policy_version": "2.5.0",
+  "ecosystem": "NOIZYWORLD / MC96",
+  "sovereign_authorizer": "RSP_001",
+  "source_verified_at": "2026-08-28",
+  "routing_rules": {
+    "tier_0_on_device_foundation_models": {
+      "execution_target": "Apple Intelligence / M2 Ultra Neural Engine",
+      "latency_target_ms": "< 250ms",
+      "data_privacy": "ZERO_CLOUD_TRANSMISSION",
+      "authority": "LOCAL_PREFILTER_ONLY",
+      "eligible_tasks": [
+        "voice_to_intent_classification",
+        "glanceable_live_activity_formatting",
+        "local_traffic_delta_sanitization",
+        "in_vehicle_sensor_threshold_anomaly_filtering",
+        "briefing_summary_compression",
+        "structured_receipt_draft_generation"
+      ],
+      "blocked_tasks": [
+        "payment_authorization",
+        "catalog_rights_mutation",
+        "voice_clone_authorization",
+        "biometric_enrollment",
+        "vehicle_remote_control",
+        "external_publication"
+      ]
+    },
+    "tier_1_local_gabriel_reasoning": {
+      "execution_target": "M2 Ultra Master Node (192GB Unified Memory)",
+      "latency_target_ms": "< 250ms",
+      "data_privacy": "LOCAL_M2_SANDBOX",
+      "authority": "LOCAL_RECEIPT_AND_POLICY_GATE",
+      "eligible_tasks": [
+        "rule_zero_command_ledger_generation",
+        "c2pa_v2_2_jumbf_manifest_signing",
+        "quebec_law_25_biometric_voice_hash_verification",
+        "audio_dsp_396hz_lufs_metering",
+        "audioseal_watermark_generation",
+        "short_lived_handoff_token_signing"
+      ]
+    },
+    "tier_2_deep_reasoning_and_swarms": {
+      "execution_target": "GABRIEL Swarm Orchestrator / approved external model lane",
+      "latency_target_ms": "< 1800ms",
+      "data_privacy": "FAIL_CLOSED_GATED_EGRESS",
+      "authority": "SANITIZED_OR_EXACT_APPROVAL_ONLY",
+      "eligible_tasks": [
+        "deep_music_catalog_arrangement_synthesis",
+        "multi_agent_market_intelligence_research",
+        "complex_covenant_dispute_arbitration",
+        "autonomous_codebase_refactoring"
+      ],
+      "required_controls": [
+        "data_classification",
+        "redaction_or_projection",
+        "provider_retention_review",
+        "cost_estimate",
+        "mc96_receipt"
+      ]
+    },
+    "tier_3_apple_system_surfaces": {
+      "execution_target": "App Intents / Siri / Spotlight / Shortcuts / Live Activities / CarPlay Templates",
+      "data_privacy": "STATE_PROJECTION_ONLY",
+      "authority": "READ_ONLY_OR_PENDING_APPROVAL",
+      "eligible_tasks": [
+        "founder_briefing_status",
+        "approval_queue_summary",
+        "catalog_lock_status",
+        "governance_review_request",
+        "user_tap_navigation_handoff",
+        "live_activity_status_projection"
+      ],
+      "blocked_tasks": [
+        "silent_navigation_injection",
+        "background_vehicle_control",
+        "payment_execution",
+        "rights_mutation",
+        "biometric_binding",
+        "secret_display",
+        "raw_coordinate_display_by_default"
+      ],
+      "notes": [
+        "Voice-based conversational app side-button launch is Japan-only and requires Apple's Side Button Access entitlement.",
+        "CarPlay video requires supported vehicles and relevant Apple capabilities; motion/unavailable states must fall back to audio or summary mode.",
+        "CPInformationTemplate availability depends on CarPlay app category entitlements."
+      ]
+    }
+  },
+  "apple_surface_contract": {
+    "app_intents_default": "READ_ONLY_OR_PROPOSE_APPROVAL",
+    "live_activity_allowed_fields": [
+      "topMission",
+      "destinationName",
+      "etaMinutes",
+      "trafficDeltaMinutes",
+      "pendingApprovalsCount",
+      "receiptStatus",
+      "vehicleStateSummary"
+    ],
+    "live_activity_redacted_fields": [
+      "exact_coordinates",
+      "raw_route_polyline",
+      "session_tokens",
+      "sovereign_keys",
+      "biometric_identifiers",
+      "private_catalog_names",
+      "private_financial_data"
+    ],
+    "carplay_default": "SPARSE_TEMPLATE_UI",
+    "carplay_handoff": "USER_VISIBLE_TAP_REQUIRED",
+    "video_default": "LOCKED_UNTIL_VEHICLE_AND_ENTITLEMENT_CONFIRM_PARKED"
+  },
+  "never_clauses": [
+    "NEVER_LOWER_CREATOR_SPLIT_BELOW_75_PERCENT",
+    "NEVER_SEND_GOOGLE_TURN_BY_TURN_TEXT_TO_TTS",
+    "NEVER_ALLOW_VIDEO_PLAYBACK_WHILE_VEHICLE_IN_MOTION",
+    "NEVER_BYPASS_LAW25_LOCATION_OR_VOICE_CONSENT",
+    "NEVER_CLAIM_CERTIFICATION_WITHOUT_REPRODUCIBLE_VERIFICATION",
+    "NEVER_USE_APP_INTENTS_AS_HIDDEN_ADMIN_EXECUTION"
+  ]
+}

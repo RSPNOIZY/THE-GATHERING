@@ -1,0 +1,65 @@
+{
+  "receipt": {
+    "receipt_id": "138b20ea-10d3-450e-a201-3096c4dca65c",
+    "workstream": "RIDESHARE",
+    "project_ref": "GABRIEL",
+    "account": "rspdrives@gmail.com",
+    "vehicle": "2026-HONDA-CRV-HYBRID",
+    "timestamp_utc": "2026-07-06T21:32:20.385936+00:00",
+    "session_id": "f60770be-1714-4ac9-a7c8-9518ff8d051c",
+    "action": {
+      "type": "OTTAWA_EVENT",
+      "source": "COPILOT",
+      "description": "Ottawa event logged \u2014 Weekend Nightlife \u2014 ByWard / Elgin / Lansdowne",
+      "payload": {
+        "event_name": "Weekend Nightlife \u2014 ByWard / Elgin / Lansdowne",
+        "event_type": "NIGHTLIFE",
+        "venue": "ByWard Market / Elgin Street / Lansdowne Park",
+        "zone": "BYWARD",
+        "event_date": "2026-07-07",
+        "start_time": "22:00",
+        "end_time": "02:00",
+        "expected_attendance": 6000,
+        "surge_impact_score": 0.85,
+        "notes": "10pm\u20132am. Rotate ByWard \u2192 Elgin \u2192 Lansdowne."
+      }
+    },
+    "data": {
+      "trip_id": null,
+      "platform": null,
+      "earnings_gross": null,
+      "earnings_net": null,
+      "surge_multiplier": null,
+      "miles": null,
+      "duration_minutes": null,
+      "pickup_geo": null,
+      "dropoff_geo": null,
+      "ottawa_context": {
+        "event": "Weekend Nightlife \u2014 ByWard / Elgin / Lansdowne",
+        "surge_zone": "BYWARD"
+      }
+    },
+    "consent": {
+      "driver_consented": true,
+      "consent_version": "1.0",
+      "consent_timestamp": "2026-07-06T21:32:20.385936+00:00"
+    },
+    "audit": {
+      "rule_zero": true,
+      "logged_by": "THE-GATHERING",
+      "immutable": true,
+      "hash": "2d436f99ddf022de8439c1f4bf9cb287da98b56412b2347a6818bde0b7fdbb9f",
+      "prev_receipt_id": null
+    },
+    "meta": {
+      "environment": "PRODUCTION",
+      "pipeline_version": "1.0.0",
+      "tags": [
+        "rideshare",
+        "ottawa",
+        "event",
+        "surge_schedule"
+      ]
+    }
+  }
+}

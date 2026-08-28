@@ -1,0 +1,77 @@
+{
+	"version":	"1.0",
+	"mode":	2,
+	"name":	"AlgorithmGraph_dehazing",
+	"model_names":	{
+		"alg_model":	["tt_skin_seg"]
+	},
+	"nodes":	[{
+			"name":	"nh_script_0",
+			"type":	"script",
+			"config":	{
+				"keyMaps":	{
+					"intParam":	{
+					},
+					"floatParam":	{
+					},
+					"stringParam":	{
+					},
+					"pathParam":	{
+						"script_path":	"../js/MainSystem.js"
+					}
+				}
+			}
+		}, {
+			"name":	"skin_seg_0",
+			"type":	"skin_seg",
+			"config":	{
+				"keyMaps":	{
+					"intParam":	{
+						"skin_seg_is_need_face":	0,
+						"base_image_mode":	1
+					},
+					"floatParam":	{
+					},
+					"stringParam":	{
+					},
+					"pathParam":	{
+					}
+				}
+			}
+		}, {
+			"name":	"textureBlitter",
+			"type":	"blit",
+			"config":	{
+				"size":	{
+					"width":	360,
+					"height":	640
+				},
+				"keyMaps":	{
+					"intParam":	{
+					},
+					"floatParam":	{
+					},
+					"stringParam":	{
+					},
+					"pathParam":	{
+					}
+				}
+			}
+		}],
+	"links":	[{
+			"fromNode":	"skin_seg_0",
+			"fromIndex":	0,
+			"toNode":	"nh_script_0",
+			"toIndex":	1
+		}, {
+			"fromNode":	"textureBlitter",
+			"fromIndex":	0,
+			"toNode":	"nh_script_0",
+			"toIndex":	0
+		}, {
+			"fromNode":	"textureBlitter",
+			"fromIndex":	0,
+			"toNode":	"skin_seg_0",
+			"toIndex":	0
+		}]
+}

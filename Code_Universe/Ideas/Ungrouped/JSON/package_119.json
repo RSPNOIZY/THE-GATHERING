@@ -1,0 +1,25 @@
+{
+  "name": "noizy-mono",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": ["apps/*", "packages/*"],
+  "scripts": {
+    "dev": "turbo dev",
+    "build": "turbo build",
+    "lint": "turbo lint",
+    "typecheck": "turbo typecheck",
+    "clean": "turbo clean && rm -rf node_modules",
+    "dev:fish": "turbo dev --filter=noizyfish",
+    "dev:vox": "turbo dev --filter=noizyvox",
+    "build:fish": "turbo build --filter=noizyfish",
+    "build:vox": "turbo build --filter=noizyvox"
+  },
+  "devDependencies": {
+    "turbo": "2.0.4",
+    "prettier": "3.2.5"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "packageManager": "pnpm@9.1.0"
+}

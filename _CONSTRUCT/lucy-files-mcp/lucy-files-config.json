@@ -1,0 +1,24 @@
+{
+  "_comment": "Absolute folder paths lucy-files-mcp is allowed to manage. Operations outside these paths are blocked — hard security boundary.",
+  "allowedRoots": [
+    "/Users/m2ultra",
+    "/Users/m2ultra/Library/CloudStorage",
+    "/Users/m2ultra/NOIZYANTHROPIC",
+    "/Users/m2ultra/Downloads",
+    "/Users/m2ultra/Library/Mobile Documents/com~apple~CloudDocs/NOIZY.AI/NOIZYEMPIRE",
+    "/Volumes/6TB",
+    "/Volumes/12TB",
+    "/Volumes/2TB_SGW",
+    "/Volumes/3TB-GRF",
+    "/Volumes/4TB BLK",
+    "/Volumes/4TB Lacie",
+    "/Volumes/4TB_02",
+    "/Volumes/JOE",
+    "/Volumes/MAG 4TB",
+    "/Volumes/RED DRAGON",
+    "/Volumes/SAMPLE_MASTER",
+    "/Volumes/SOUND_DESIGN"
+  ],
+  "tagspacesMetaDir": ".ts",
+  "defaultHashAlgorithm": "md5"
+}

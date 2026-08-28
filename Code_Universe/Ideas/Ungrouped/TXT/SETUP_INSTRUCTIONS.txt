@@ -1,0 +1,177 @@
+================================================================================
+                    MC 96 AUDIO HUB - SETUP INSTRUCTIONS
+           Noizyanthropic Static IP Audio Broadcasting System
+================================================================================
+
+WHAT YOU'RE BUILDING:
+- A private audio broadcast hub accessible on static IP 192.168.1.100
+- iPhone/iPad can receive audio streams from your Mac
+- Mac can receive audio from iOS devices  
+- All integrated with Noizyanthropic IDE (VS Code)
+
+================================================================================
+FIRST: SET UP STATIC IP ON YOUR MAC
+================================================================================
+
+1. Open System Preferences > Network
+2. Select Wi-Fi (or Ethernet)
+3. Click Advanced > TCP/IP
+4. Set:
+   - IPv4 Address:     192.168.1.100
+   - Subnet Mask:      255.255.255.0
+   - Router:           192.168.1.1
+   - DNS Servers:      8.8.8.8, 8.8.4.4
+
+5. Click OK and Apply
+
+VERIFY:
+  Open Terminal and run:
+  $ ifconfig | grep "inet 192.168.1"
+  Should show: inet 192.168.1.100
+
+================================================================================
+SECOND: SET UP AUDIO HIJACK BROADCAST
+================================================================================
+
+1. Open Audio Hijack 3
+2. Create a new session: "Noizy Hub Broadcast"
+3. Add INPUT sources:
+   - Microphone
+   - System Audio Capture
+4. Add OUTPUT: Network > Broadcast
+   - Type: SHOUTcast (NOT Icecast)
+   - Port: 8000
+   - Bitrate: 128 kbps
+   - Password: noisy123
+   - Format: MP3
+5. Click RECORD to start broadcasting
+
+VERIFY:
+  Open Terminal and run:
+  $ lsof -i :8000
+  Should show Audio Hijack listening on port 8000
+
+================================================================================
+THIRD: START NOIZYANTHROPIC AUDIO RECEIVER
+================================================================================
+
+In Terminal:
+  $ cd /Users/m2ultra/NOIZYANTHROPIC/NOIZYLAB/audio-hub
+  $ node audio-receiver.js
+
+Expected Output:
+  🎙️  Noizyanthropic Audio Hub Receiver Starting...
+  📍 Audio Hub URL: http://192.168.1.100:8000/stream
+  📡 Receiver Port: 9000
+  🚀 Receiver server listening on port 9000
+
+The receiver will automatically connect to the Audio Hijack broadcast 
+and relay it to all connected clients.
+
+================================================================================
+FOURTH: CONNECT iOS DEVICES
+================================================================================
+
+QUICK TEST (Safari on iPhone):
+  1. Open Safari on iPhone/iPad
+  2. Go to: http://192.168.1.100:8000/stream
+  3. You should hear audio from your Mac
+
+CREATE SIRI SHORTCUT (Recommended):
+  1. Open Shortcuts app
+  2. Tap "+"
+  3. Add action: "Get contents of URL"
+     URL: http://192.168.1.100:8000/stream
+  4. Add action: "Play sound"
+     Select: "Result from previous action"
+  5. Save as "Connect to Noisy Hub"
+  6. Add to Siri: Record voice phrase
+     Say: "Hey Siri, connect to Noisy Hub"
+
+Now you can say: "Hey Siri, connect to Noisy Hub" and start receiving audio!
+
+================================================================================
+VERIFY EVERYTHING WORKS
+================================================================================
+
+Test from Mac:
+  $ curl -I http://192.168.1.100:8000/stream
+  Should get HTTP 200
+
+Check receiver status:
+  $ curl http://127.0.0.1:9000/status
+  Should show JSON with connection count
+
+Listen to stream on Mac:
+  $ ffplay http://192.168.1.100:8000/stream
+  (requires ffmpeg installed via Homebrew)
+
+================================================================================
+WHAT'S RUNNING NOW
+================================================================================
+
+✅ Audio Hijack Broadcasting:    http://192.168.1.100:8000/stream (Port 8000)
+✅ Noizyanthropic Receiver:      http://127.0.0.1:9000 (Port 9000)  
+✅ iOS Devices Connected:        Receiving audio via Siri Shortcut
+
+================================================================================
+NEXT: INTEGRATE WITH NOIZYANTHROPIC IDE AND CLAUDE
+================================================================================
+
+1. In VS Code, open /Users/m2ultra/NOIZYANTHROPIC/NOIZYLAB/
+2. Create a new extension component that connects to http://127.0.0.1:9000/stream
+3. Add Claude API integration to transcribe + process audio
+4. Create "Dream Chamber" UI to show conversations in real-time
+
+See: /Users/m2ultra/NOIZYANTHROPIC/NOIZYLAB/audio-hub/QUICKSTART.md
+
+================================================================================
+TROUBLESHOOTING
+================================================================================
+
+Cannot connect to hub:
+  $ ping 192.168.1.100
+  Make sure Mac is on the network and responding
+
+Audio Hijack not broadcasting:
+  $ lsof -i :8000
+  If nothing shows, restart Audio Hijack
+
+Receiver not starting:
+  $ lsof -i :9000
+  If port 9000 in use, kill process and retry
+
+No audio from iOS:
+  - Verify all devices on same Wi-Fi
+  - Check Audio Hijack is recording (red dot visible)
+  - Increase bitrate to 192 or 256 kbps
+  - Restart Safari/Shortcuts on iOS
+
+================================================================================
+REFERENCE URLS
+================================================================================
+
+Receive Audio (iPhone/iPad):      http://192.168.1.100:8000/stream
+Noizyanthropic Receiver Status:   http://127.0.0.1:9000/status
+Noizyanthropic Receiver UI:       http://127.0.0.1:9000/
+
+iOS Setup Guide:                  See iOS-SETUP.md in this directory
+Quick Start:                       See QUICKSTART.md in this directory
+
+================================================================================
+SUMMARY
+================================================================================
+
+You now have a PRIVATE AUDIO NETWORK that:
+  ✓ Broadcasts from Mac to iPhone/iPad
+  ✓ Receives audio from iOS back to Mac
+  ✓ Integrates with Noizyanthropic IDE
+  ✓ Ready for Claude API integration
+  ✓ Uses static IP (no cloud required)
+  ✓ Fully under your control
+
+The entire Noizy AI Empire can now communicate through this audio backbone.
+
+Ready to activate Dream Chamber. 🎙️ ✨
+
+================================================================================

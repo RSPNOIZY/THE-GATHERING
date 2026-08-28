@@ -1,0 +1,20 @@
+{
+  "name": "noizy-mcp-worker",
+  "version": "1.0.0",
+  "description": "NOIZY Model Context Protocol (MCP) Edge Worker Router for mcp.noizyfish.com",
+  "main": "src/index.ts",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "build": "wrangler deploy --dry-run --outdir=dist"
+  },
+  "dependencies": {
+    "itty-router": "^5.0.18",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20240722.0",
+    "typescript": "^5.5.3",
+    "wrangler": "^3.67.0"
+  }
+}

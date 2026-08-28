@@ -1,0 +1,69 @@
+{
+  "sessions": [
+    {
+      "date": "2026-04-23",
+      "openedAt": "2026-04-23T00:29:07.954Z",
+      "closed": false,
+      "summary": null,
+      "entries": []
+    },
+    {
+      "date": "2026-04-22",
+      "openedAt": "2026-04-22T16:20:44.628Z",
+      "closed": false,
+      "summary": null,
+      "entries": [
+        {
+          "timestamp": "2026-04-22T16:21:12.524Z",
+          "type": "milestone",
+          "entry": "LUCY boss wired to GABRIEL daemon. /intent + lucy-mcp now share ~/NOIZYLAB/lucy-state/*.json substrate. First real /intent write verified."
+        },
+        {
+          "timestamp": "2026-04-22T16:41:28.813Z",
+          "type": "milestone",
+          "entry": "Boot DAZEFLOW hook + /lucy/notify route both live."
+        },
+        {
+          "timestamp": "2026-04-22T17:01:02.625Z",
+          "type": "win",
+          "entry": "GABRIEL daemon got GET /ops/cloudflare-fix route (127.0.0.1, pre-auth). Returns token-creation URL if CLOUDFLARE_API_TOKEN missing."
+        },
+        {
+          "timestamp": "2026-04-22T17:01:02.819Z",
+          "type": "win",
+          "entry": "cb01 stub replaced with real boss wrapping ops/cloudflare-deploy.sh. Verbs: cloudflare.status/deploy/all/broken. Verified via /intent — fleet probe returned 13 workers 3 broken."
+        },
+        {
+          "timestamp": "2026-04-22T17:01:03.001Z",
+          "type": "win",
+          "entry": "shirley stub replaced with real boss wrapping turbo-python arsenal. Verbs: vitals/net/recall/speed. Verified turbo_vitals.py via /intent."
+        },
+        {
+          "timestamp": "2026-04-22T17:01:03.121Z",
+          "type": "win",
+          "entry": "POST /lucy/notify simple-API route added. Any surface (voice, iPad, n8n, cron) can log to today's DAZEFLOW with one JSON post."
+        },
+        {
+          "timestamp": "2026-04-22T17:01:03.244Z",
+          "type": "win",
+          "entry": "Daemon now auto-opens today's DAZEFLOW session on startup via dispatch({boss:lucy,verb:dazeflow.today}). No morning silence."
+        },
+        {
+          "timestamp": "2026-04-22T17:01:03.316Z",
+          "type": "win",
+          "entry": "com.noizy.gabriel-daemon was crash-looping against port 9777. Booted out, disabled, renamed plist to .disabled. ai.noizy.gabriel is sole canonical."
+        },
+        {
+          "timestamp": "2026-04-22T17:01:03.388Z",
+          "type": "win",
+          "entry": "lucy-mcp and supersonic/lucy write tasks.json to different dirs. GABRIEL lucy boss aligns with lucy-mcp path. Reconciliation pending."
+        },
+        {
+          "timestamp": "2026-04-22T17:13:16.079Z",
+          "type": "milestone",
+          "entry": "All 8 GABRIEL bosses wired: gabriel + lucy + cb01 + shirley + pops + shirl + dream + engr_keith. Zero stubs remain. Pops wisdom, Shirl session check, Dream vision filter, EngrKeith Heaven probe — all verified via /intent. Global scrape: 47 agents across 7 types (12 subagents / 14 MCPs / 12 bosses / 2 SDK apps / 7 n8n flows / 0 soldiers / 0 plugins)."
+        }
+      ]
+    }
+  ]
+}

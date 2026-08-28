@@ -1,0 +1,22 @@
+{
+	"ae_tool" : "AmazingEditor",
+	"bALG_BACH_CONFIG" : true,
+	"effect" : 
+	{
+		"Link" : 
+		[
+			{
+				"path" : "AmazingFeature2DV6/",
+				"type" : "AmazingFeature",
+				"zorder" : 8012
+			},
+			{
+				"path" : "AmazingFeature3D/",
+				"type" : "AmazingFeature",
+				"zorder" : 8013
+			}
+		]
+	},
+	"name" : "Editor_Sticker_Config_TAG_RcScKczdnbtbbnc7cMcbfdBmdDdTd",
+	"version" : "10.1.0"
+}

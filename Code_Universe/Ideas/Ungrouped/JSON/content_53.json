@@ -1,0 +1,11 @@
+{
+	"ae_tool" : "AmazingEditor",
+	"content" : {},
+	"filemap" : 
+	{
+		"prefab" : "prefabs/circleMaskProcess.prefab"
+	},
+	"needblend" : false,
+	"tag" : "AMG_1291720612510840482211148103269484654782",
+	"version" : "1.0"
+}

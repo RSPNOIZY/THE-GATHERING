@@ -1,0 +1,355 @@
+{
+  "name": "DreamChamber Branding Pipeline",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "branding-pipeline",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "webhook-trigger",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [220, 300],
+      "webhookId": "branding-pipeline-001"
+    },
+    {
+      "parameters": {
+        "resource": "databasePage",
+        "operation": "create",
+        "databaseId": {
+          "__rl": true,
+          "value": "02742a13c66b4ef5b1c4a4401bcafaa0",
+          "mode": "id"
+        },
+        "propertiesUi": {
+          "propertyValues": [
+            {
+              "key": "Project Name|title",
+              "title": "={{ $json.body.projectName }}"
+            },
+            {
+              "key": "Status|select",
+              "selectValue": "Ideation"
+            },
+            {
+              "key": "Priority|select",
+              "selectValue": "={{ $json.body.priority || 'P2 Medium' }}"
+            },
+            {
+              "key": "Project Type|select",
+              "selectValue": "={{ $json.body.projectType || 'Full Brand Kit' }}"
+            },
+            {
+              "key": "Client|rich_text",
+              "textValue": "={{ $json.body.client }}"
+            },
+            {
+              "key": "Notes|rich_text",
+              "textValue": "={{ $json.body.notes }}"
+            }
+          ]
+        }
+      },
+      "id": "notion-create-project",
+      "name": "Create Notion Project",
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2.2,
+      "position": [440, 200],
+      "credentials": {}
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://heaven.rsp-5f3.workers.dev/api/consent",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "name": "X-API-Key",
+              "value": "={{ $env.NOIZY_API_KEY }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "actor_id",
+              "value": "={{ $json.body.actorId || 'RSP_001' }}"
+            },
+            {
+              "name": "scope",
+              "value": "branding"
+            },
+            {
+              "name": "project_ref",
+              "value": "={{ $json.body.projectName }}"
+            }
+          ]
+        }
+      },
+      "id": "heaven-consent-check",
+      "name": "HEAVEN Consent Gate",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [440, 400]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "consent-check",
+              "leftValue": "={{ $node['HEAVEN Consent Gate'].json.status }}",
+              "rightValue": "approved",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "consent-gate",
+      "name": "Consent Approved?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [660, 400]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://localhost:7777/api/generate",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "prompt",
+              "value": "Generate brand identity concepts for: {{ $node['Webhook Trigger'].json.body.projectName }}. Style: {{ $node['Webhook Trigger'].json.body.style || 'modern, minimal, accessible' }}. Industry: {{ $node['Webhook Trigger'].json.body.industry || 'creative technology' }}."
+            },
+            {
+              "name": "model",
+              "value": "claude-sonnet-4"
+            },
+            {
+              "name": "stream",
+              "value": "false"
+            }
+          ]
+        }
+      },
+      "id": "dreamchamber-generate",
+      "name": "DreamChamber AI Generate",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [880, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://localhost:11434/api/generate",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "model",
+              "value": "noizy-dream-weaver:latest"
+            },
+            {
+              "name": "prompt",
+              "value": "Review this brand concept and suggest color palette, typography, and voice identity guidelines: {{ $node['DreamChamber AI Generate'].json.response }}"
+            },
+            {
+              "name": "stream",
+              "value": false
+            }
+          ]
+        }
+      },
+      "id": "ollama-review",
+      "name": "Ollama Dream Weaver Review",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1100, 300]
+    },
+    {
+      "parameters": {
+        "resource": "databasePage",
+        "operation": "update",
+        "pageId": "={{ $node['Create Notion Project'].json.id }}",
+        "propertiesUi": {
+          "propertyValues": [
+            {
+              "key": "Status|select",
+              "selectValue": "Design"
+            },
+            {
+              "key": "Notes|rich_text",
+              "textValue": "AI-generated concepts ready for review. DreamChamber + Dream Weaver pipeline complete."
+            }
+          ]
+        }
+      },
+      "id": "notion-update-status",
+      "name": "Update Notion Status",
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2.2,
+      "position": [1320, 300],
+      "credentials": {}
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ success: true, projectId: $node['Create Notion Project'].json.id, consentStatus: $node['HEAVEN Consent Gate'].json.status, aiConcepts: 'generated', status: 'pipeline-complete' }) }}"
+      },
+      "id": "webhook-response",
+      "name": "Pipeline Response",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [1540, 300]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ success: false, error: 'consent_denied', message: 'HEAVEN consent gate rejected this request. Voice/brand use not authorized.' }) }}",
+        "options": {
+          "responseCode": 403
+        }
+      },
+      "id": "consent-denied-response",
+      "name": "Consent Denied",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [880, 500]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Create Notion Project",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "HEAVEN Consent Gate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HEAVEN Consent Gate": {
+      "main": [
+        [
+          {
+            "node": "Consent Approved?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Consent Approved?": {
+      "main": [
+        [
+          {
+            "node": "DreamChamber AI Generate",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Consent Denied",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "DreamChamber AI Generate": {
+      "main": [
+        [
+          {
+            "node": "Ollama Dream Weaver Review",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ollama Dream Weaver Review": {
+      "main": [
+        [
+          {
+            "node": "Update Notion Status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update Notion Status": {
+      "main": [
+        [
+          {
+            "node": "Pipeline Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "dreamchamber-god-local"
+  },
+  "tags": [
+    {
+      "name": "branding",
+      "id": "branding-tag"
+    },
+    {
+      "name": "DreamChamber",
+      "id": "dreamchamber-tag"
+    }
+  ]
+}

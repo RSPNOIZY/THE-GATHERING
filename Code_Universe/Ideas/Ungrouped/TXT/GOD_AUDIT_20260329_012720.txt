@@ -1,0 +1,126 @@
+==========================================
+NOIZY EMPIRE — GOD M2 ULTRA FULL AUDIT
+Date: Sun 29 Mar 2026 01:27:20 EDT
+Machine: GABRIEL.local
+macOS: 15.7.5
+Chip: Apple M2 Ultra
+RAM: 192 GB
+==========================================
+
+=== DISK USAGE ===
+Filesystem        Size    Used   Avail Capacity iused ifree %iused  Mounted on
+/dev/disk3s3s1   1.8Ti    10Gi   1.2Ti     1%    427k  4.3G    0%   /
+
+=== HOME DIRECTORY TOP LEVEL ===
+total 5928
+drwxr-xr-x    3 m2ultra  staff       96 Mar 25 19:09 _Config
+drwxr-x---@ 108 m2ultra  staff     3456 Mar 29 01:27 .
+drwxr-xr-x    6 root     admin      192 Mar 19 19:02 ..
+-rw-r--r--    1 m2ultra  staff      104 Mar 20 12:17 .ado_orgs.cache
+drwxr-xr-x@   4 m2ultra  staff      128 Mar 16 17:34 .agents
+drwxr-xr-x@ 831 m2ultra  staff    26592 Mar 28 21:36 .aitk
+drwxr-xr-x    4 m2ultra  staff      128 Mar 20 12:50 .amp
+drwxr-xr-x@   5 m2ultra  staff      160 Mar  5 01:19 .antigravity
+drwxr-xr-x@   5 m2ultra  staff      160 Mar  2 19:46 .augment
+drwxr-xr-x    4 m2ultra  staff      128 Jan 22 16:44 .aws
+drwxr-xr-x@  14 m2ultra  staff      448 Jan 24 14:56 .azure
+-rw-------@   1 m2ultra  staff     6767 Mar 21 00:17 .bash_history
+drwxr-xr-x@   9 m2ultra  staff      288 Dec 31 16:06 .brewfiles
+drwxr-xr-x@  14 m2ultra  staff      448 Mar 29 01:27 .cache
+drwxr-xr-x   11 m2ultra  staff      352 Mar 10 14:46 .cagent
+-r--------    1 m2ultra  staff        7 Mar 23 01:24 .CFUserTextEncoding
+drwxr-xr-x@  25 m2ultra  staff      800 Mar 27 11:30 .claude
+-rw-------@   1 m2ultra  staff    21641 Mar 28 21:36 .claude.json
+-rw-------    1 m2ultra  staff   206550 Mar 27 14:16 .claude.json.backup
+drwxr-xr-x@   3 m2ultra  staff       96 Feb 23 22:07 .cline
+drwxr-xr-x@   3 m2ultra  staff       96 Jan 13 14:14 .codeium
+drwxr-xr-x@  19 m2ultra  staff      608 Mar 28 22:08 .codex
+drwxr-xr-x@  19 m2ultra  staff      608 Mar 13 21:04 .config
+drwxr-xr-x@  16 m2ultra  staff      512 Mar 29 01:27 .console-ninja
+drwxr-xr-x@   4 m2ultra  staff      128 Dec 29 17:53 .continue
+drwx------@   5 m2ultra  staff      160 Mar 19 01:19 .copilot
+drwxr-xr-x@  10 m2ultra  staff      320 Feb 24 01:23 .cursor
+drwxr-xr-x@   3 m2ultra  staff       96 Mar 17 14:27 .cursorless
+drwxr-xr-x   18 m2ultra  staff      576 Mar 27 17:40 .docker
+-rw-r--r--@   1 m2ultra  staff    10244 Mar 28 16:06 .DS_Store
+-rw-------@   1 m2ultra  staff     1030 Dec 29 00:49 .env.secrets
+drwxr-xr-x@   3 m2ultra  staff       96 Jan  8 14:34 .espressif
+drwxr-xr-x   10 m2ultra  staff      320 Mar  5 02:50 .gemini
+drwxr-xr-x@   4 m2ultra  staff      128 Dec 31 16:06 .git-templates
+-rw-r--r--    1 m2ultra  staff    13766 Mar 16 14:33 .gitconfig
+drwxr-xr-x@   4 m2ultra  staff      128 Jan 15 02:55 .github
+-rw-r--r--@   1 m2ultra  staff      813 Dec 31 16:07 .gitignore
+drwxr-xr-x@  15 m2ultra  staff      480 Mar  1 15:12 .gitkraken
+-rw-r--r--@   1 m2ultra  staff       93 Dec 29 21:27 .gitmodules
+drwxr-xr-x@   6 m2ultra  staff      192 Mar 28 20:19 .gk
+drwxr-xr-x    4 m2ultra  staff      128 Mar 27 17:40 .kube
+-rw-------    1 m2ultra  staff       20 Mar 28 05:49 .lesshst
+drwx------    7 m2ultra  staff      224 Jan 18 20:59 .local
+-rw-r--r--    1 m2ultra  staff   146510 Mar 24 12:48 .m2ultra-boot.log
+drwxr-xr-x@   3 m2ultra  staff       96 Jan  6 04:19 .matplotlib
+drwxr-xr-x@   9 m2ultra  staff      288 Mar  7 01:26 .minikube
+drwx------@   3 m2ultra  staff       96 Jan  4 17:00 .net
+drwxr-xr-x@   5 m2ultra  staff      160 Mar 28 21:09 .noizy
+drwxr-xr-x@   7 m2ultra  staff      224 Mar 13 13:51 .npm
+drwxr-xr-x@   7 m2ultra  staff      224 Jan 21 14:28 .npm_backup_20260205
+drwxr-xr-x    4 m2ultra  staff      128 Feb  4 14:57 .npm-global
+-rw-------    1 m2ultra  staff       58 Mar 20 12:17 .npmrc
+drwxr-xr-x   22 m2ultra  staff      704 Mar 24 14:06 .oh-my-zsh
+drwxr-xr-x    6 m2ultra  staff      192 Mar 20 17:33 .ollama
+-rw-r--r--@   1 m2ultra  staff    95686 Mar 17 12:44 .p10k.zsh
+drwx------   12 m2ultra  staff      384 Feb 15 23:49 .parsec
+drwxr-xr-x@  15 m2ultra  staff      480 Mar 24 01:48 .quokka
+drwxr-xr-x@   3 m2ultra  staff       96 Jan  7 20:34 .redhat
+drwxr-xr-x@   6 m2ultra  staff      192 Mar 20 02:09 .rest-client
+drwxr-xr-x    3 m2ultra  staff       96 Feb  9 22:35 .skills
+drwxr-xr-x@   5 m2ultra  staff      160 Dec 29 17:31 .software
+drwxr-xr-x@   7 m2ultra  staff      224 Feb  2 17:58 .sonarlint
+drwx------@   8 m2ultra  staff      256 Jan 12 21:51 .ssh
+drwxr-xr-x@   5 m2ultra  staff      160 Jan 17 18:39 .subversion
+drwxr-xr-x    6 m2ultra  staff      192 Mar  8 00:38 .swiftly
+drwxr-xr-x@   5 m2ultra  staff      160 Mar 28 21:36 .swiftpm
+drwxr-xr-x@   9 m2ultra  staff      288 Mar 16 12:16 .talon
+drwxr-xr-x@   4 m2ultra  staff      128 Jan 10 13:24 .th-client
+drwx------+   2 m2ultra  staff       64 Mar 28 02:07 .Trash
+drwxr-xr-x@   3 m2ultra  staff       96 Feb 23 22:12 .venvs
+drwxr-xr-x@   3 m2ultra  staff       96 Jan 16 18:16 .vs-kubernetes
+drwxr-xr-x@  10 m2ultra  staff      320 Jan 14 22:47 .vscode
+drwxr-xr-x@   5 m2ultra  staff      160 Jan 13 23:32 .vscode-insiders
+drwx------@   4 m2ultra  staff      128 Jan  3 16:15 .vscode-server
+drwxr-xr-x@   3 m2ultra  staff       96 Dec 31 16:06 .vscode-templates
+drwxr-xr-x@   8 m2ultra  staff      256 Jan 16 04:40 .wallaby
+drwxr-xr-x@   4 m2ultra  staff      128 Dec 31 23:12 .windsurf
+drwxr-xr-x    4 m2ultra  staff      128 Mar 27 12:56 .wrangler
+-rw-r--r--@   1 m2ultra  staff    49215 Dec 29 15:32 .zcompdump
+-rw-r--r--    1 m2ultra  staff    49623 Mar 27 12:34 .zcompdump-GABRIEL-5.9
+-r--r--r--    1 m2ultra  staff   117400 Mar 27 12:34 .zcompdump-GABRIEL-5.9.zwc
+-rw-r--r--    1 m2ultra  staff       54 Mar  8 00:38 .zprofile
+-rw-------@   1 m2ultra  staff  1107019 Mar 29 01:27 .zsh_history
+drwx------   18 m2ultra  staff      576 Mar 28 18:02 .zsh_sessions
+-rw-r--r--@   1 m2ultra  staff     5497 Mar 27 12:55 .zshrc
+-rw-r--r--@   1 m2ultra  staff    34154 Jan  4 15:50 .zshrc.bak
+-rw-r--r--@   1 m2ultra  staff    38488 Mar 16 21:05 .zshrc.pre-oh-my-zsh
+drwx------@   6 m2ultra  staff      192 Feb 28 22:48 Applications
+drwxr-xr-x    3 m2ultra  staff       96 Mar 23 15:03 Claude
+drwx------@   9 m2ultra  staff      288 Mar 29 01:27 Desktop
+drwx------@  44 m2ultra  staff     1408 Mar 27 17:42 Documents
+drwx------@  67 m2ultra  staff     2144 Mar 28 20:00 Downloads
+drwxr-xr-x@   4 m2ultra  staff      128 Mar 17 16:40 go
+drwxr-xr-x    3 m2ultra  staff       96 Mar 17 11:32 GORUNFREE
+drwx------@ 112 m2ultra  staff     3584 Mar 21 17:12 Library
+drwx------    4 m2ultra  staff      128 Mar 21 17:08 Movies
+drwx------+   9 m2ultra  staff      288 Mar 24 23:44 Music
+drwxr-xr-x    5 m2ultra  staff      160 Mar 21 13:29 noizy
+-rw-------    1 m2ultra  staff    18775 Mar 25 04:48 NOIZY_AI_LANDING_PREVIEW.html
+drwxr-xr-x   11 m2ultra  staff      352 Mar 23 16:43 NOIZYANTHROPIC
+drwxr-xr-x    3 m2ultra  staff       96 Mar 28 16:06 NOIZYEMPIRE
+drwxr-xr-x@  90 m2ultra  staff     2880 Mar 27 23:32 NOIZYLAB
+-rw-r--r--    1 m2ultra  staff       86 Mar 20 10:57 package-lock.json
+drwxr-xr-x@   2 m2ultra  staff       64 Mar  3 02:52 Parallels
+drwx------+   6 m2ultra  staff      192 Mar 13 11:34 Pictures
+drwxr-xr-x    5 m2ultra  staff      160 Mar 27 13:37 Projects
+drwxr-xr-x+   3 m2ultra  staff       96 Dec 15 04:14 Public
+drwxr-xr-x@  10 m2ultra  staff      320 Mar 15 01:38 swift-library
+
+=== ALL CODE FILES (.py .ts .tsx .js .jsx .go .rs .rb .sh .swift) ===
+--- Python ---

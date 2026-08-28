@@ -1,0 +1,532 @@
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/AccessibilityIDs.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/AccessibilityIDs.framework/Versions/A/AccessibilityIDs
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/AgeRangeComponents.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/AgeRangeComponents.framework/Versions/A/AgeRangeComponents
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/AgeRangeCore.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/AgeRangeCore.framework/Versions/A/AgeRangeCore
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/AIModelCore.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/AIModelCore.framework/Versions/A/AIModelCore
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/AIModelSelectionCore.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/AIModelSelectionCore.framework/Versions/A/AIModelSelectionCore
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/AIModelSelectionInterface.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/AIModelSelectionInterface.framework/Versions/A/AIModelSelectionInterface
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/AIModelSelectionUI.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/AIModelSelectionUI.framework/Versions/A/AIModelSelectionUI
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/AppAuth_301D3024C78727BA_PackageProduct.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/AppAuth_301D3024C78727BA_PackageProduct.framework/Versions/A/AppAuth_301D3024C78727BA_PackageProduct
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/AppAuthCore.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/AppAuthCore.framework/Versions/A/AppAuthCore
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/AppCheckCore_94BFC7DC30FF194_PackageProduct.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/AppCheckCore_94BFC7DC30FF194_PackageProduct.framework/Versions/A/AppCheckCore_94BFC7DC30FF194_PackageProduct
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/AssetsCore.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/AssetsCore.framework/Versions/A/AssetsCore
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/AssetsUI.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/AssetsUI.framework/Versions/A/AssetsUI
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/AttachmentsCore.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/AttachmentsCore.framework/Versions/A/AttachmentsCore
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/Authentication.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/Authentication.framework/Versions/A/Authentication
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/Billing.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/Billing.framework/Versions/A/Billing
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/BillingCore.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/BillingCore.framework/Versions/A/BillingCore
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/CanonicalPageInterface.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/CanonicalPageInterface.framework/Versions/A/CanonicalPageInterface
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/CanonicalPageUI.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/CanonicalPageUI.framework/Versions/A/CanonicalPageUI
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/Cmlx.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/Cmlx.framework/Versions/A/Cmlx
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/ComputerCore.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/ComputerCore.framework/Versions/A/ComputerCore
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/ConnectorsCore.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/ConnectorsCore.framework/Versions/A/ConnectorsCore
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/ConnectorsUI.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/ConnectorsUI.framework/Versions/A/ConnectorsUI
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/ConversionTracking.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/ConversionTracking.framework/Versions/A/ConversionTracking
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/CurrencyWidget.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/CurrencyWidget.framework/Versions/A/CurrencyWidget
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/DaemonConnectionsCore.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/DaemonConnectionsCore.framework/Versions/A/DaemonConnectionsCore
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/DefaultSettings.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/DefaultSettings.framework/Versions/A/DefaultSettings
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/DesignTokens_-321ADA4D1E1E5C26_PackageProduct.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/DesignTokens_-321ADA4D1E1E5C26_PackageProduct.framework/Versions/A/DesignTokens_-321ADA4D1E1E5C26_PackageProduct
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/DevicePairingCore.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/DevicePairingCore.framework/Versions/A/DevicePairingCore
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/DevicePairingUI.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/DevicePairingUI.framework/Versions/A/DevicePairingUI
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/DiscoverCore.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/DiscoverCore.framework/Versions/A/DiscoverCore
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/DynamicJSON_5FDA1429EF1FC70A_PackageProduct.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/DynamicJSON_5FDA1429EF1FC70A_PackageProduct.framework/Versions/A/DynamicJSON_5FDA1429EF1FC70A_PackageProduct
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/EppoFlagging_726BE3044138ABBF_PackageProduct.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/EppoFlagging_726BE3044138ABBF_PackageProduct.framework/Versions/A/EppoFlagging_726BE3044138ABBF_PackageProduct
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/EventsTracker.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/EventsTracker.framework/Versions/A/EventsTracker
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/Experimentation.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/Experimentation.framework/Versions/A/Experimentation
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/ExperimentationDebugUI.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/ExperimentationDebugUI.framework/Versions/A/ExperimentationDebugUI
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/FactoryKit_-63AAD52C175527F6_PackageProduct.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/FactoryKit_-63AAD52C175527F6_PackageProduct.framework/Versions/A/FactoryKit_-63AAD52C175527F6_PackageProduct
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/FBLPromises.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/FBLPromises.framework/Versions/A/FBLPromises
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/FinanceCore.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/FinanceCore.framework/Versions/A/FinanceCore
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/FinanceUI.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/FinanceUI.framework/Versions/A/FinanceUI
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/FirebaseCrashlytics_-F5B0BD00025CD43_PackageProduct.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/FirebaseCrashlytics_-F5B0BD00025CD43_PackageProduct.framework/Versions/A/FirebaseCrashlytics_-F5B0BD00025CD43_PackageProduct
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/FlashcardsComponents.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/FlashcardsComponents.framework/Versions/A/FlashcardsComponents
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/FlightStatusCore.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/FlightStatusCore.framework/Versions/A/FlightStatusCore
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/FlightStatusUI.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/FlightStatusUI.framework/Versions/A/FlightStatusUI
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/GoogleDataTransport_-7F0BFDB5E1E4E49_PackageProduct.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/GoogleDataTransport_-7F0BFDB5E1E4E49_PackageProduct.framework/Versions/A/GoogleDataTransport_-7F0BFDB5E1E4E49_PackageProduct
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/GoogleSignIn.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/GoogleSignIn.framework/Versions/A/GoogleSignIn
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/GoogleSignInSwift_7D2A5014C4ECBAC3_PackageProduct.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/GoogleSignInSwift_7D2A5014C4ECBAC3_PackageProduct.framework/Versions/A/GoogleSignInSwift_7D2A5014C4ECBAC3_PackageProduct
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/GoogleUtilities-Environment.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/GoogleUtilities-Environment.framework/Versions/A/GoogleUtilities-Environment
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/GoogleUtilities-Logger.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/GoogleUtilities-Logger.framework/Versions/A/GoogleUtilities-Logger
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/GRDB_5DC4DB053_PackageProduct.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/GRDB_5DC4DB053_PackageProduct.framework/Versions/A/GRDB_5DC4DB053_PackageProduct
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/GTMAppAuth_-410662E72BC8335B_PackageProduct.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/GTMAppAuth_-410662E72BC8335B_PackageProduct.framework/Versions/A/GTMAppAuth_-410662E72BC8335B_PackageProduct
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/GTMSessionFetcherCore_7C12F63883B5F82B_PackageProduct.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/GTMSessionFetcherCore_7C12F63883B5F82B_PackageProduct.framework/Versions/A/GTMSessionFetcherCore_7C12F63883B5F82B_PackageProduct
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/GULNSData_456D1C2818A1930C_PackageProduct.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/GULNSData_456D1C2818A1930C_PackageProduct.framework/Versions/A/GULNSData_456D1C2818A1930C_PackageProduct
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/GULUserDefaults_E3F6D5B982152CE_PackageProduct.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/GULUserDefaults_E3F6D5B982152CE_PackageProduct.framework/Versions/A/GULUserDefaults_E3F6D5B982152CE_PackageProduct
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/Highlighter_7435E3C84F52947A_PackageProduct.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/Highlighter_7435E3C84F52947A_PackageProduct.framework/Versions/A/Highlighter_7435E3C84F52947A_PackageProduct
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/Hub.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/Hub.framework/Versions/A/Hub
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/ImageOCR.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/ImageOCR.framework/Versions/A/ImageOCR
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/Jinja_C5899F34211_PackageProduct.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/Jinja_C5899F34211_PackageProduct.framework/Versions/A/Jinja_C5899F34211_PackageProduct
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/JobsCore.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/JobsCore.framework/Versions/A/JobsCore
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/JobsUI.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/JobsUI.framework/Versions/A/JobsUI
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/LocalSubagentCore.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/LocalSubagentCore.framework/Versions/A/LocalSubagentCore
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/LocalVLMCore.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/LocalVLMCore.framework/Versions/A/LocalVLMCore
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/LocationService.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/LocationService.framework/Versions/A/LocationService
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/Logging.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/Logging.framework/Versions/A/Logging
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/Login.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/Login.framework/Versions/A/Login
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/LoginCore.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/LoginCore.framework/Versions/A/LoginCore
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/LoginUI.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/LoginUI.framework/Versions/A/LoginUI
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/MacUtils.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/MacUtils.framework/Versions/A/MacUtils
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/MapSettingsCore.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/MapSettingsCore.framework/Versions/A/MapSettingsCore
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/Markdown.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/Markdown.framework/Versions/A/Markdown
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/MarkdownCore.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/MarkdownCore.framework/Versions/A/MarkdownCore
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/MarkdownUI.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/MarkdownUI.framework/Versions/A/MarkdownUI
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/MCPCore.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/MCPCore.framework/Versions/A/MCPCore
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/MediaItemCore.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/MediaItemCore.framework/Versions/A/MediaItemCore
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/MemoryWidget.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/MemoryWidget.framework/Versions/A/MemoryWidget
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/MLX.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/MLX.framework/Versions/A/MLX
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/MLXFast.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/MLXFast.framework/Versions/A/MLXFast
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/MLXLinalg_1F5C2A34A92A1A51_PackageProduct.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/MLXLinalg_1F5C2A34A92A1A51_PackageProduct.framework/Versions/A/MLXLinalg_1F5C2A34A92A1A51_PackageProduct
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/MLXLLM_1A30A827AD79DC_PackageProduct.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/MLXLLM_1A30A827AD79DC_PackageProduct.framework/Versions/A/MLXLLM_1A30A827AD79DC_PackageProduct
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/MLXLMCommon.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/MLXLMCommon.framework/Versions/A/MLXLMCommon
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/MLXNN.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/MLXNN.framework/Versions/A/MLXNN
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/MLXOptimizers_-2DFC7FD263EE29CC_PackageProduct.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/MLXOptimizers_-2DFC7FD263EE29CC_PackageProduct.framework/Versions/A/MLXOptimizers_-2DFC7FD263EE29CC_PackageProduct
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/MLXRandom.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/MLXRandom.framework/Versions/A/MLXRandom
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/MLXVLM_1A30A82A3C9066_PackageProduct.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/MLXVLM_1A30A82A3C9066_PackageProduct.framework/Versions/A/MLXVLM_1A30A82A3C9066_PackageProduct
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/MoviesCore.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/MoviesCore.framework/Versions/A/MoviesCore
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/MoviesUI.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/MoviesUI.framework/Versions/A/MoviesUI
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/MultimodalCore_-57C70654CBCBBD51_PackageProduct.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/MultimodalCore_-57C70654CBCBBD51_PackageProduct.framework/Versions/A/MultimodalCore_-57C70654CBCBBD51_PackageProduct
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/MultimodalVoiceCore.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/MultimodalVoiceCore.framework/Versions/A/MultimodalVoiceCore
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/MultipleChoiceQuizCardWidget.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/MultipleChoiceQuizCardWidget.framework/Versions/A/MultipleChoiceQuizCardWidget
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/nanopb_22C15169858984_PackageProduct.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/nanopb_22C15169858984_PackageProduct.framework/Versions/A/nanopb_22C15169858984_PackageProduct
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/Networking.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/Networking.framework/Versions/A/Networking
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/NotificationsCore.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/NotificationsCore.framework/Versions/A/NotificationsCore
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/NotificationsExtensionCore.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/NotificationsExtensionCore.framework/Versions/A/NotificationsExtensionCore
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/Nuke.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/Nuke.framework/Versions/A/Nuke
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/NukeExtensions_-5F1CF3E3E395C92F_PackageProduct.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/NukeExtensions_-5F1CF3E3E395C92F_PackageProduct.framework/Versions/A/NukeExtensions_-5F1CF3E3E395C92F_PackageProduct
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/NukeUI_1A7D877EC7EDF7_PackageProduct.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/NukeUI_1A7D877EC7EDF7_PackageProduct.framework/Versions/A/NukeUI_1A7D877EC7EDF7_PackageProduct
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/Numerics_-3D5A696188114EB2_PackageProduct.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/Numerics_-3D5A696188114EB2_PackageProduct.framework/Versions/A/Numerics_-3D5A696188114EB2_PackageProduct
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/OAIInferenceCore.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/OAIInferenceCore.framework/Versions/A/OAIInferenceCore
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/Observability.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/Observability.framework/Versions/A/Observability
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/OrderedCollections_1222128174265B56_PackageProduct.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/OrderedCollections_1222128174265B56_PackageProduct.framework/Versions/A/OrderedCollections_1222128174265B56_PackageProduct
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/PerplexityClient.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/PerplexityClient.framework/Versions/A/PerplexityClient
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/PerplexityCore.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/PerplexityCore.framework/Versions/A/PerplexityCore
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/PerplexityMiddleware.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/PerplexityMiddleware.framework/Versions/A/PerplexityMiddleware
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/PerplexityNetworking.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/PerplexityNetworking.framework/Versions/A/PerplexityNetworking
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/PerplexityUI.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/PerplexityUI.framework/Versions/A/PerplexityUI
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/PerplexityUtils.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/PerplexityUtils.framework/Versions/A/PerplexityUtils
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/PerplexityWeb.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/PerplexityWeb.framework/Versions/A/PerplexityWeb
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/PersistenceCore.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/PersistenceCore.framework/Versions/A/PersistenceCore
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/PhoneNumberKit_-3870B48103116467_PackageProduct.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/PhoneNumberKit_-3870B48103116467_PackageProduct.framework/Versions/A/PhoneNumberKit_-3870B48103116467_PackageProduct
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/PlacesCore.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/PlacesCore.framework/Versions/A/PlacesCore
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/PlacesUI.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/PlacesUI.framework/Versions/A/PlacesUI
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/PredictionMarketComponents.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/PredictionMarketComponents.framework/Versions/A/PredictionMarketComponents
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/PredictionMarketCore.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/PredictionMarketCore.framework/Versions/A/PredictionMarketCore
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/PreferencesCore.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/PreferencesCore.framework/Versions/A/PreferencesCore
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/Promises_-353A2F0A22C021A6_PackageProduct.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/Promises_-353A2F0A22C021A6_PackageProduct.framework/Versions/A/Promises_-353A2F0A22C021A6_PackageProduct
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/QueryCore.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/QueryCore.framework/Versions/A/QueryCore
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/QueryInputCore.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/QueryInputCore.framework/Versions/A/QueryInputCore
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/QueryInputUI.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/QueryInputUI.framework/Versions/A/QueryInputUI
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/QueryInterface.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/QueryInterface.framework/Versions/A/QueryInterface
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/QueryUI.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/QueryUI.framework/Versions/A/QueryUI
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/RealtimeCore.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/RealtimeCore.framework/Versions/A/RealtimeCore
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/RealtimeTools.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/RealtimeTools.framework/Versions/A/RealtimeTools
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/RevenueCat_76EF69325FE509FC_PackageProduct.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/RevenueCat_76EF69325FE509FC_PackageProduct.framework/Versions/A/RevenueCat_76EF69325FE509FC_PackageProduct
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/Routing.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/Routing.framework/Versions/A/Routing
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/SafariWebUI.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/SafariWebUI.framework/Versions/A/SafariWebUI
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/Semver_1BC4CD6CF54F78_PackageProduct.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/Semver_1BC4CD6CF54F78_PackageProduct.framework/Versions/A/Semver_1BC4CD6CF54F78_PackageProduct
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/Sentry.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/Sentry.framework/Versions/A/Sentry
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/Sentry_1BC4CDAE39604B_PackageProduct.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/Sentry_1BC4CDAE39604B_PackageProduct.framework/Versions/A/Sentry_1BC4CDAE39604B_PackageProduct
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/SharedStrings.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/SharedStrings.framework/Versions/A/SharedStrings
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/ShoppingCore.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/ShoppingCore.framework/Versions/A/ShoppingCore
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/ShoppingUI.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/ShoppingUI.framework/Versions/A/ShoppingUI
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/sidekick_uniffiFFI.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/sidekick_uniffiFFI.framework/Versions/A/sidekick_uniffiFFI
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/SidekickIntegrationCore.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/SidekickIntegrationCore.framework/Versions/A/SidekickIntegrationCore
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/SidekickKit_-65A0A2C8126985A6_PackageProduct.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/SidekickKit_-65A0A2C8126985A6_PackageProduct.framework/Versions/A/SidekickKit_-65A0A2C8126985A6_PackageProduct
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/SourceOptionsUI.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/SourceOptionsUI.framework/Versions/A/SourceOptionsUI
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/SpacesCore.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/SpacesCore.framework/Versions/A/SpacesCore
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/Sparkle.framework/Versions/B/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/Sparkle.framework/Versions/B/Autoupdate
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/Sparkle.framework/Versions/B/Sparkle
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/Sparkle.framework/Versions/B/Updater.app/Contents/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/Sparkle.framework/Versions/B/Updater.app/Contents/MacOS/Updater
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/Sparkle.framework/Versions/B/Updater.app/Contents/PkgInfo
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/Sparkle.framework/Versions/B/XPCServices/Downloader.xpc/Contents/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/Sparkle.framework/Versions/B/XPCServices/Downloader.xpc/Contents/MacOS/Downloader
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/Sparkle.framework/Versions/B/XPCServices/Installer.xpc/Contents/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/Sparkle.framework/Versions/B/XPCServices/Installer.xpc/Contents/MacOS/Installer
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/SpeechRecognitionSessionCore.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/SpeechRecognitionSessionCore.framework/Versions/A/SpeechRecognitionSessionCore
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/StatusBarComponents.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/StatusBarComponents.framework/Versions/A/StatusBarComponents
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/StripePaymentCore.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/StripePaymentCore.framework/Versions/A/StripePaymentCore
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/SwiftMath_-5E59CDD896963160_PackageProduct.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/SwiftMath_-5E59CDD896963160_PackageProduct.framework/Versions/A/Resources/SwiftMath_SwiftMath.bundle/Contents/Resources/mathFonts.bundle/LICENSE
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/SwiftMath_-5E59CDD896963160_PackageProduct.framework/Versions/A/SwiftMath_-5E59CDD896963160_PackageProduct
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/TextToSpeechCore.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/TextToSpeechCore.framework/Versions/A/TextToSpeechCore
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/third-party-IsAppEncrypted.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/third-party-IsAppEncrypted.framework/Versions/A/third-party-IsAppEncrypted
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/ThreadInputUI.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/ThreadInputUI.framework/Versions/A/ThreadInputUI
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/Tokenizers.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/Tokenizers.framework/Versions/A/Tokenizers
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/Transformers_79FFCAD726DD9D12_PackageProduct.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/Transformers_79FFCAD726DD9D12_PackageProduct.framework/Versions/A/Transformers_79FFCAD726DD9D12_PackageProduct
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/TwoFactorAuthComponents.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/TwoFactorAuthComponents.framework/Versions/A/TwoFactorAuthComponents
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/TwoFactorAuthCore.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/TwoFactorAuthCore.framework/Versions/A/TwoFactorAuthCore
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/UpsellCore.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/UpsellCore.framework/Versions/A/UpsellCore
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/UserCore.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/UserCore.framework/Versions/A/UserCore
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/VoiceAssistantUI.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/VoiceAssistantUI.framework/Versions/A/VoiceAssistantUI
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/VoiceSessionCore.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/VoiceSessionCore.framework/Versions/A/VoiceSessionCore
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/WatchlistCore.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/WatchlistCore.framework/Versions/A/WatchlistCore
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/WatchlistUI.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/WatchlistUI.framework/Versions/A/WatchlistUI
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/WeatherWidget.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/WeatherWidget.framework/Versions/A/WeatherWidget
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/WebResultsCore.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/WebResultsCore.framework/Versions/A/WebResultsCore
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/WebRTC.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/WebRTC.framework/Versions/A/WebRTC
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/WorkflowComponents.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/WorkflowComponents.framework/Versions/A/WorkflowComponents
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/WorkflowCore.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Frameworks/WorkflowCore.framework/Versions/A/WorkflowCore
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Library/LaunchAgents/Perplexity Helper.app/Contents/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Library/LaunchAgents/Perplexity Helper.app/Contents/Frameworks/Authentication.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Library/LaunchAgents/Perplexity Helper.app/Contents/Frameworks/Authentication.framework/Versions/A/Authentication
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Library/LaunchAgents/Perplexity Helper.app/Contents/Frameworks/DaemonConnectionsCore.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Library/LaunchAgents/Perplexity Helper.app/Contents/Frameworks/DaemonConnectionsCore.framework/Versions/A/DaemonConnectionsCore
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Library/LaunchAgents/Perplexity Helper.app/Contents/Frameworks/DefaultSettings.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Library/LaunchAgents/Perplexity Helper.app/Contents/Frameworks/DefaultSettings.framework/Versions/A/DefaultSettings
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Library/LaunchAgents/Perplexity Helper.app/Contents/Frameworks/DesignTokens_-321ADA4D1E1E5C26_PackageProduct.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Library/LaunchAgents/Perplexity Helper.app/Contents/Frameworks/DesignTokens_-321ADA4D1E1E5C26_PackageProduct.framework/Versions/A/DesignTokens_-321ADA4D1E1E5C26_PackageProduct
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Library/LaunchAgents/Perplexity Helper.app/Contents/Frameworks/EppoFlagging_726BE3044138ABBF_PackageProduct.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Library/LaunchAgents/Perplexity Helper.app/Contents/Frameworks/EppoFlagging_726BE3044138ABBF_PackageProduct.framework/Versions/A/EppoFlagging_726BE3044138ABBF_PackageProduct
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Library/LaunchAgents/Perplexity Helper.app/Contents/Frameworks/EventsTracker.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Library/LaunchAgents/Perplexity Helper.app/Contents/Frameworks/EventsTracker.framework/Versions/A/EventsTracker
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Library/LaunchAgents/Perplexity Helper.app/Contents/Frameworks/Experimentation.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Library/LaunchAgents/Perplexity Helper.app/Contents/Frameworks/Experimentation.framework/Versions/A/Experimentation
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Library/LaunchAgents/Perplexity Helper.app/Contents/Frameworks/FactoryKit_-63AAD52C175527F6_PackageProduct.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Library/LaunchAgents/Perplexity Helper.app/Contents/Frameworks/FactoryKit_-63AAD52C175527F6_PackageProduct.framework/Versions/A/FactoryKit_-63AAD52C175527F6_PackageProduct
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Library/LaunchAgents/Perplexity Helper.app/Contents/Frameworks/FBLPromises.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Library/LaunchAgents/Perplexity Helper.app/Contents/Frameworks/FBLPromises.framework/Versions/A/FBLPromises
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Library/LaunchAgents/Perplexity Helper.app/Contents/Frameworks/FirebaseCrashlytics_-F5B0BD00025CD43_PackageProduct.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Library/LaunchAgents/Perplexity Helper.app/Contents/Frameworks/FirebaseCrashlytics_-F5B0BD00025CD43_PackageProduct.framework/Versions/A/FirebaseCrashlytics_-F5B0BD00025CD43_PackageProduct
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Library/LaunchAgents/Perplexity Helper.app/Contents/Frameworks/FSBridge.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Library/LaunchAgents/Perplexity Helper.app/Contents/Frameworks/FSBridge.framework/Versions/A/FSBridge
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Library/LaunchAgents/Perplexity Helper.app/Contents/Frameworks/GoogleDataTransport_-7F0BFDB5E1E4E49_PackageProduct.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Library/LaunchAgents/Perplexity Helper.app/Contents/Frameworks/GoogleDataTransport_-7F0BFDB5E1E4E49_PackageProduct.framework/Versions/A/GoogleDataTransport_-7F0BFDB5E1E4E49_PackageProduct
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Library/LaunchAgents/Perplexity Helper.app/Contents/Frameworks/GoogleUtilities-Environment.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Library/LaunchAgents/Perplexity Helper.app/Contents/Frameworks/GoogleUtilities-Environment.framework/Versions/A/GoogleUtilities-Environment
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Library/LaunchAgents/Perplexity Helper.app/Contents/Frameworks/GoogleUtilities-Logger.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Library/LaunchAgents/Perplexity Helper.app/Contents/Frameworks/GoogleUtilities-Logger.framework/Versions/A/GoogleUtilities-Logger
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Library/LaunchAgents/Perplexity Helper.app/Contents/Frameworks/GULNSData_456D1C2818A1930C_PackageProduct.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Library/LaunchAgents/Perplexity Helper.app/Contents/Frameworks/GULNSData_456D1C2818A1930C_PackageProduct.framework/Versions/A/GULNSData_456D1C2818A1930C_PackageProduct
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Library/LaunchAgents/Perplexity Helper.app/Contents/Frameworks/GULUserDefaults_E3F6D5B982152CE_PackageProduct.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Library/LaunchAgents/Perplexity Helper.app/Contents/Frameworks/GULUserDefaults_E3F6D5B982152CE_PackageProduct.framework/Versions/A/GULUserDefaults_E3F6D5B982152CE_PackageProduct
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Library/LaunchAgents/Perplexity Helper.app/Contents/Frameworks/LocalSubagentCore.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Library/LaunchAgents/Perplexity Helper.app/Contents/Frameworks/LocalSubagentCore.framework/Versions/A/LocalSubagentCore
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Library/LaunchAgents/Perplexity Helper.app/Contents/Frameworks/Logging.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Library/LaunchAgents/Perplexity Helper.app/Contents/Frameworks/Logging.framework/Versions/A/Logging
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Library/LaunchAgents/Perplexity Helper.app/Contents/Frameworks/MacUtils.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Library/LaunchAgents/Perplexity Helper.app/Contents/Frameworks/MacUtils.framework/Versions/A/MacUtils
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Library/LaunchAgents/Perplexity Helper.app/Contents/Frameworks/MediaItemCore.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Library/LaunchAgents/Perplexity Helper.app/Contents/Frameworks/MediaItemCore.framework/Versions/A/MediaItemCore
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Library/LaunchAgents/Perplexity Helper.app/Contents/Frameworks/nanopb_22C15169858984_PackageProduct.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Library/LaunchAgents/Perplexity Helper.app/Contents/Frameworks/nanopb_22C15169858984_PackageProduct.framework/Versions/A/nanopb_22C15169858984_PackageProduct
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Library/LaunchAgents/Perplexity Helper.app/Contents/Frameworks/Networking.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Library/LaunchAgents/Perplexity Helper.app/Contents/Frameworks/Networking.framework/Versions/A/Networking
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Library/LaunchAgents/Perplexity Helper.app/Contents/Frameworks/Nuke.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Library/LaunchAgents/Perplexity Helper.app/Contents/Frameworks/Nuke.framework/Versions/A/Nuke
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Library/LaunchAgents/Perplexity Helper.app/Contents/Frameworks/NukeExtensions_-5F1CF3E3E395C92F_PackageProduct.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Library/LaunchAgents/Perplexity Helper.app/Contents/Frameworks/NukeExtensions_-5F1CF3E3E395C92F_PackageProduct.framework/Versions/A/NukeExtensions_-5F1CF3E3E395C92F_PackageProduct
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Library/LaunchAgents/Perplexity Helper.app/Contents/Frameworks/NukeUI_1A7D877EC7EDF7_PackageProduct.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Library/LaunchAgents/Perplexity Helper.app/Contents/Frameworks/NukeUI_1A7D877EC7EDF7_PackageProduct.framework/Versions/A/NukeUI_1A7D877EC7EDF7_PackageProduct
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Library/LaunchAgents/Perplexity Helper.app/Contents/Frameworks/OAIInferenceCore.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Library/LaunchAgents/Perplexity Helper.app/Contents/Frameworks/OAIInferenceCore.framework/Versions/A/OAIInferenceCore
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Library/LaunchAgents/Perplexity Helper.app/Contents/Frameworks/Observability.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Library/LaunchAgents/Perplexity Helper.app/Contents/Frameworks/Observability.framework/Versions/A/Observability
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Library/LaunchAgents/Perplexity Helper.app/Contents/Frameworks/PerplexityNetworking.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Library/LaunchAgents/Perplexity Helper.app/Contents/Frameworks/PerplexityNetworking.framework/Versions/A/PerplexityNetworking
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Library/LaunchAgents/Perplexity Helper.app/Contents/Frameworks/PerplexityUI.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Library/LaunchAgents/Perplexity Helper.app/Contents/Frameworks/PerplexityUI.framework/Versions/A/PerplexityUI
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Library/LaunchAgents/Perplexity Helper.app/Contents/Frameworks/PerplexityUtils.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Library/LaunchAgents/Perplexity Helper.app/Contents/Frameworks/PerplexityUtils.framework/Versions/A/PerplexityUtils
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Library/LaunchAgents/Perplexity Helper.app/Contents/Frameworks/PreferencesCore.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Library/LaunchAgents/Perplexity Helper.app/Contents/Frameworks/PreferencesCore.framework/Versions/A/PreferencesCore
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Library/LaunchAgents/Perplexity Helper.app/Contents/Frameworks/Promises_-353A2F0A22C021A6_PackageProduct.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Library/LaunchAgents/Perplexity Helper.app/Contents/Frameworks/Promises_-353A2F0A22C021A6_PackageProduct.framework/Versions/A/Promises_-353A2F0A22C021A6_PackageProduct
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Library/LaunchAgents/Perplexity Helper.app/Contents/Frameworks/Routing.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Library/LaunchAgents/Perplexity Helper.app/Contents/Frameworks/Routing.framework/Versions/A/Routing
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Library/LaunchAgents/Perplexity Helper.app/Contents/Frameworks/Semver_1BC4CD6CF54F78_PackageProduct.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Library/LaunchAgents/Perplexity Helper.app/Contents/Frameworks/Semver_1BC4CD6CF54F78_PackageProduct.framework/Versions/A/Semver_1BC4CD6CF54F78_PackageProduct
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Library/LaunchAgents/Perplexity Helper.app/Contents/Frameworks/Sentry.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Library/LaunchAgents/Perplexity Helper.app/Contents/Frameworks/Sentry.framework/Versions/A/Sentry
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Library/LaunchAgents/Perplexity Helper.app/Contents/Frameworks/Sentry_1BC4CDAE39604B_PackageProduct.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Library/LaunchAgents/Perplexity Helper.app/Contents/Frameworks/Sentry_1BC4CDAE39604B_PackageProduct.framework/Versions/A/Sentry_1BC4CDAE39604B_PackageProduct
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Library/LaunchAgents/Perplexity Helper.app/Contents/Frameworks/SharedStrings.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Library/LaunchAgents/Perplexity Helper.app/Contents/Frameworks/SharedStrings.framework/Versions/A/SharedStrings
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Library/LaunchAgents/Perplexity Helper.app/Contents/Frameworks/StatusBarComponents.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Library/LaunchAgents/Perplexity Helper.app/Contents/Frameworks/StatusBarComponents.framework/Versions/A/StatusBarComponents
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Library/LaunchAgents/Perplexity Helper.app/Contents/Frameworks/third-party-IsAppEncrypted.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Library/LaunchAgents/Perplexity Helper.app/Contents/Frameworks/third-party-IsAppEncrypted.framework/Versions/A/third-party-IsAppEncrypted
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Library/LaunchAgents/Perplexity Helper.app/Contents/Frameworks/TwoFactorAuthCore.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Library/LaunchAgents/Perplexity Helper.app/Contents/Frameworks/TwoFactorAuthCore.framework/Versions/A/TwoFactorAuthCore
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Library/LaunchAgents/Perplexity Helper.app/Contents/Frameworks/UserCore.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Library/LaunchAgents/Perplexity Helper.app/Contents/Frameworks/UserCore.framework/Versions/A/UserCore
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Library/LaunchAgents/Perplexity Helper.app/Contents/MacOS/fs-sftp
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Library/LaunchAgents/Perplexity Helper.app/Contents/MacOS/perplexityd
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Library/LaunchAgents/Perplexity Helper.app/Contents/PkgInfo
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/MacOS/comet-native-host
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/MacOS/Perplexity
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/PkgInfo
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/PlugIns/PerplexityRichNotification.appex/Contents/_CodeSignature/CodeResources
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/PlugIns/PerplexityRichNotification.appex/Contents/MacOS/PerplexityRichNotification
+/Volumes/9C931D7C-B67C-4374-A772-6FD71A167103/Perplexity.app/Contents/Resources/SwiftMath_SwiftMath.bundle/Contents/Resources/mathFonts.bundle/LICENSE
+/Volumes/GoLand/GoLand.app/Contents/_CodeSignature/CodeResources
+/Volumes/GoLand/GoLand.app/Contents/bin/fsnotifier
+/Volumes/GoLand/GoLand.app/Contents/bin/printenv
+/Volumes/GoLand/GoLand.app/Contents/bin/remote-dev-server
+/Volumes/GoLand/GoLand.app/Contents/bin/restarter
+/Volumes/GoLand/GoLand.app/Contents/CodeResources
+/Volumes/GoLand/GoLand.app/Contents/jbr/Contents/_CodeSignature/CodeResources
+/Volumes/GoLand/GoLand.app/Contents/jbr/Contents/CodeResources
+/Volumes/GoLand/GoLand.app/Contents/jbr/Contents/Frameworks/cef_server.app/Contents/_CodeSignature/CodeResources
+/Volumes/GoLand/GoLand.app/Contents/jbr/Contents/Frameworks/cef_server.app/Contents/Frameworks/cef_server Helper (GPU).app/Contents/_CodeSignature/CodeResources
+/Volumes/GoLand/GoLand.app/Contents/jbr/Contents/Frameworks/cef_server.app/Contents/Frameworks/cef_server Helper (GPU).app/Contents/MacOS/cef_server Helper (GPU)
+/Volumes/GoLand/GoLand.app/Contents/jbr/Contents/Frameworks/cef_server.app/Contents/Frameworks/cef_server Helper (GPU).app/Contents/PkgInfo
+/Volumes/GoLand/GoLand.app/Contents/jbr/Contents/Frameworks/cef_server.app/Contents/Frameworks/cef_server Helper (Plugin).app/Contents/_CodeSignature/CodeResources
+/Volumes/GoLand/GoLand.app/Contents/jbr/Contents/Frameworks/cef_server.app/Contents/Frameworks/cef_server Helper (Plugin).app/Contents/MacOS/cef_server Helper (Plugin)
+/Volumes/GoLand/GoLand.app/Contents/jbr/Contents/Frameworks/cef_server.app/Contents/Frameworks/cef_server Helper (Plugin).app/Contents/PkgInfo
+/Volumes/GoLand/GoLand.app/Contents/jbr/Contents/Frameworks/cef_server.app/Contents/Frameworks/cef_server Helper (Renderer).app/Contents/_CodeSignature/CodeResources
+/Volumes/GoLand/GoLand.app/Contents/jbr/Contents/Frameworks/cef_server.app/Contents/Frameworks/cef_server Helper (Renderer).app/Contents/MacOS/cef_server Helper (Renderer)
+/Volumes/GoLand/GoLand.app/Contents/jbr/Contents/Frameworks/cef_server.app/Contents/Frameworks/cef_server Helper (Renderer).app/Contents/PkgInfo
+/Volumes/GoLand/GoLand.app/Contents/jbr/Contents/Frameworks/cef_server.app/Contents/Frameworks/cef_server Helper.app/Contents/_CodeSignature/CodeResources
+/Volumes/GoLand/GoLand.app/Contents/jbr/Contents/Frameworks/cef_server.app/Contents/Frameworks/cef_server Helper.app/Contents/MacOS/cef_server Helper
+/Volumes/GoLand/GoLand.app/Contents/jbr/Contents/Frameworks/cef_server.app/Contents/Frameworks/cef_server Helper.app/Contents/PkgInfo
+/Volumes/GoLand/GoLand.app/Contents/jbr/Contents/Frameworks/cef_server.app/Contents/MacOS/cef_server
+/Volumes/GoLand/GoLand.app/Contents/jbr/Contents/Frameworks/cef_server.app/Contents/PkgInfo
+/Volumes/GoLand/GoLand.app/Contents/jbr/Contents/Frameworks/Chromium Embedded Framework.framework/_CodeSignature/CodeResources
+/Volumes/GoLand/GoLand.app/Contents/jbr/Contents/Frameworks/Chromium Embedded Framework.framework/Chromium Embedded Framework
+/Volumes/GoLand/GoLand.app/Contents/jbr/Contents/Frameworks/jcef Helper (GPU).app/Contents/_CodeSignature/CodeResources
+/Volumes/GoLand/GoLand.app/Contents/jbr/Contents/Frameworks/jcef Helper (GPU).app/Contents/MacOS/jcef Helper (GPU)
+/Volumes/GoLand/GoLand.app/Contents/jbr/Contents/Frameworks/jcef Helper (GPU).app/Contents/PkgInfo
+/Volumes/GoLand/GoLand.app/Contents/jbr/Contents/Frameworks/jcef Helper (Plugin).app/Contents/_CodeSignature/CodeResources
+/Volumes/GoLand/GoLand.app/Contents/jbr/Contents/Frameworks/jcef Helper (Plugin).app/Contents/MacOS/jcef Helper (Plugin)
+/Volumes/GoLand/GoLand.app/Contents/jbr/Contents/Frameworks/jcef Helper (Plugin).app/Contents/PkgInfo
+/Volumes/GoLand/GoLand.app/Contents/jbr/Contents/Frameworks/jcef Helper (Renderer).app/Contents/_CodeSignature/CodeResources
+/Volumes/GoLand/GoLand.app/Contents/jbr/Contents/Frameworks/jcef Helper (Renderer).app/Contents/MacOS/jcef Helper (Renderer)
+/Volumes/GoLand/GoLand.app/Contents/jbr/Contents/Frameworks/jcef Helper (Renderer).app/Contents/PkgInfo
+/Volumes/GoLand/GoLand.app/Contents/jbr/Contents/Frameworks/jcef Helper.app/Contents/_CodeSignature/CodeResources
+/Volumes/GoLand/GoLand.app/Contents/jbr/Contents/Frameworks/jcef Helper.app/Contents/MacOS/jcef Helper
+/Volumes/GoLand/GoLand.app/Contents/jbr/Contents/Frameworks/jcef Helper.app/Contents/PkgInfo
+/Volumes/GoLand/GoLand.app/Contents/jbr/Contents/Home/bin/java
+/Volumes/GoLand/GoLand.app/Contents/jbr/Contents/Home/bin/javac
+/Volumes/GoLand/GoLand.app/Contents/jbr/Contents/Home/bin/javadoc
+/Volumes/GoLand/GoLand.app/Contents/jbr/Contents/Home/bin/jcmd
+/Volumes/GoLand/GoLand.app/Contents/jbr/Contents/Home/bin/jdb
+/Volumes/GoLand/GoLand.app/Contents/jbr/Contents/Home/bin/jfr
+/Volumes/GoLand/GoLand.app/Contents/jbr/Contents/Home/bin/jhsdb
+/Volumes/GoLand/GoLand.app/Contents/jbr/Contents/Home/bin/jinfo
+/Volumes/GoLand/GoLand.app/Contents/jbr/Contents/Home/bin/jmap
+/Volumes/GoLand/GoLand.app/Contents/jbr/Contents/Home/bin/jps
+/Volumes/GoLand/GoLand.app/Contents/jbr/Contents/Home/bin/jrunscript
+/Volumes/GoLand/GoLand.app/Contents/jbr/Contents/Home/bin/jstack
+/Volumes/GoLand/GoLand.app/Contents/jbr/Contents/Home/bin/jstat
+/Volumes/GoLand/GoLand.app/Contents/jbr/Contents/Home/bin/jwebserver
+/Volumes/GoLand/GoLand.app/Contents/jbr/Contents/Home/bin/keytool
+/Volumes/GoLand/GoLand.app/Contents/jbr/Contents/Home/bin/rmiregistry
+/Volumes/GoLand/GoLand.app/Contents/jbr/Contents/Home/bin/serialver
+/Volumes/GoLand/GoLand.app/Contents/jbr/Contents/Home/legal/java.base/ADDITIONAL_LICENSE_INFO
+/Volumes/GoLand/GoLand.app/Contents/jbr/Contents/Home/legal/java.base/ASSEMBLY_EXCEPTION
+/Volumes/GoLand/GoLand.app/Contents/jbr/Contents/Home/legal/java.base/LICENSE
+/Volumes/GoLand/GoLand.app/Contents/jbr/Contents/Home/lib/classlist
+/Volumes/GoLand/GoLand.app/Contents/jbr/Contents/Home/lib/jspawnhelper
+/Volumes/GoLand/GoLand.app/Contents/jbr/Contents/Home/lib/modules
+/Volumes/GoLand/GoLand.app/Contents/jbr/Contents/Home/lib/security/cacerts
+/Volumes/GoLand/GoLand.app/Contents/jbr/Contents/Home/release
+/Volumes/GoLand/GoLand.app/Contents/lib/pty4j/darwin/pty4j-unix-spawn-helper
+/Volumes/GoLand/GoLand.app/Contents/MacOS/goland
+/Volumes/GoLand/GoLand.app/Contents/plugins/gateway-plugin/lib/remote-dev-workers/remote-dev-worker-darwin-amd64
+/Volumes/GoLand/GoLand.app/Contents/plugins/gateway-plugin/lib/remote-dev-workers/remote-dev-worker-darwin-arm64
+/Volumes/GoLand/GoLand.app/Contents/plugins/gateway-plugin/lib/remote-dev-workers/remote-dev-worker-linux-amd64
+/Volumes/GoLand/GoLand.app/Contents/plugins/gateway-plugin/lib/remote-dev-workers/remote-dev-worker-linux-arm64
+/Volumes/GoLand/GoLand.app/Contents/plugins/go-plugin/lib/dlv/linux/dlv
+/Volumes/GoLand/GoLand.app/Contents/plugins/go-plugin/lib/dlv/linuxarm/dlv
+/Volumes/GoLand/GoLand.app/Contents/plugins/go-plugin/lib/dlv/linuxarmmusl/dlv
+/Volumes/GoLand/GoLand.app/Contents/plugins/go-plugin/lib/dlv/linuxmusl/dlv
+/Volumes/GoLand/GoLand.app/Contents/plugins/go-plugin/lib/dlv/mac/dlv
+/Volumes/GoLand/GoLand.app/Contents/plugins/go-plugin/lib/dlv/macarm/dlv
+/Volumes/GoLand/GoLand.app/Contents/plugins/javascript-plugin/helpers/package-version-range-matcher/bin/batch-matcher
+/Volumes/GoLand/GoLand.app/Contents/plugins/javascript-plugin/helpers/package-version-range-matcher/node_modules/semver/LICENSE
+/Volumes/GoLand/GoLand.app/Contents/plugins/platform-ijent-impl/ijent-aarch64-unknown-linux-musl-release
+/Volumes/GoLand/GoLand.app/Contents/plugins/platform-ijent-impl/ijent-x86_64-unknown-linux-musl-release
+/Volumes/GoLand/GoLand.app/Contents/plugins/textmate-plugin/lib/bundles/adoc/LICENSE
+/Volumes/GoLand/GoLand.app/Contents/plugins/textmate-plugin/lib/bundles/cmake/LICENSE
+/Volumes/GoLand/GoLand.app/Contents/plugins/textmate-plugin/lib/bundles/hcl/LICENSE
+/Volumes/GoLand/GoLand.app/Contents/plugins/textmate-plugin/lib/bundles/jsp/LICENSE
+/Volumes/GoLand/GoLand.app/Contents/plugins/textmate-plugin/lib/bundles/kconfig/LICENSE
+/Volumes/GoLand/GoLand.app/Contents/plugins/textmate-plugin/lib/bundles/mdx/license
+/Volumes/GoLand/GoLand.app/Contents/plugins/textmate-plugin/lib/bundles/terraform/LICENSE
+/Volumes/Antigravity/Antigravity.app/Contents/_CodeSignature/CodeResources
+/Volumes/Antigravity/Antigravity.app/Contents/MacOS/Antigravity
+/Volumes/Antigravity/Antigravity.app/Contents/Resources/bin/language_server
+/Volumes/Antigravity/Antigravity.app/Contents/Resources/bin/webm_encoder
+/Volumes/Antigravity/Antigravity.app/Contents/Resources/app.asar.unpacked/node_modules/chrome-devtools-mcp/LICENSE
+/Volumes/Antigravity/Antigravity.app/Contents/Resources/app.asar.unpacked/node_modules/chrome-devtools-mcp/build/src/third_party/THIRD_PARTY_NOTICES
+/Volumes/Antigravity/Antigravity.app/Contents/Frameworks/Electron Framework.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/Antigravity/Antigravity.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Electron Framework
+/Volumes/Antigravity/Antigravity.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Helpers/chrome_crashpad_handler
+/Volumes/Antigravity/Antigravity.app/Contents/Frameworks/ReactiveObjC.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/Antigravity/Antigravity.app/Contents/Frameworks/ReactiveObjC.framework/Versions/A/ReactiveObjC
+/Volumes/Antigravity/Antigravity.app/Contents/Frameworks/Squirrel.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/Antigravity/Antigravity.app/Contents/Frameworks/Squirrel.framework/Versions/A/Resources/ShipIt
+/Volumes/Antigravity/Antigravity.app/Contents/Frameworks/Squirrel.framework/Versions/A/Squirrel
+/Volumes/Antigravity/Antigravity.app/Contents/Frameworks/Mantle.framework/Versions/A/_CodeSignature/CodeResources
+/Volumes/Antigravity/Antigravity.app/Contents/Frameworks/Mantle.framework/Versions/A/Mantle
+/Volumes/Antigravity/Antigravity.app/Contents/Frameworks/Antigravity Helper (GPU).app/Contents/_CodeSignature/CodeResources
+/Volumes/Antigravity/Antigravity.app/Contents/Frameworks/Antigravity Helper (GPU).app/Contents/MacOS/Antigravity Helper (GPU)
+/Volumes/Antigravity/Antigravity.app/Contents/Frameworks/Antigravity Helper (GPU).app/Contents/PkgInfo
+/Volumes/Antigravity/Antigravity.app/Contents/Frameworks/Antigravity Helper (Renderer).app/Contents/_CodeSignature/CodeResources
+/Volumes/Antigravity/Antigravity.app/Contents/Frameworks/Antigravity Helper (Renderer).app/Contents/MacOS/Antigravity Helper (Renderer)
+/Volumes/Antigravity/Antigravity.app/Contents/Frameworks/Antigravity Helper (Renderer).app/Contents/PkgInfo
+/Volumes/Antigravity/Antigravity.app/Contents/Frameworks/Antigravity Helper (Plugin).app/Contents/_CodeSignature/CodeResources
+/Volumes/Antigravity/Antigravity.app/Contents/Frameworks/Antigravity Helper (Plugin).app/Contents/MacOS/Antigravity Helper (Plugin)
+/Volumes/Antigravity/Antigravity.app/Contents/Frameworks/Antigravity Helper (Plugin).app/Contents/PkgInfo
+/Volumes/Antigravity/Antigravity.app/Contents/Frameworks/Antigravity Helper.app/Contents/_CodeSignature/CodeResources
+/Volumes/Antigravity/Antigravity.app/Contents/Frameworks/Antigravity Helper.app/Contents/MacOS/Antigravity Helper
+/Volumes/Antigravity/Antigravity.app/Contents/Frameworks/Antigravity Helper.app/Contents/PkgInfo
+/Volumes/Antigravity/Antigravity.app/Contents/PkgInfo

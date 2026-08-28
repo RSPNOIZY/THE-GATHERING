@@ -1,0 +1,94 @@
+{
+  "proof_bundle": {
+    "version": "1.0",
+    "generated_at": "2026-03-30T18:17:27.161714+00:00",
+    "generated_by": "RSP_001",
+    "sprint": "Consent Gateway Hardening + Deploy Certainty",
+    "constitution_version": "v2.0",
+    "policy_version": "v2.0",
+    "bundle_hash": "64d124f15040497d6f36a16ecdc314935281fe19237e37afec3fcecd441296f5"
+  },
+  "live_state": {
+    "heaven": {
+      "version": "17.6.0",
+      "status": "LIVE",
+      "ledger_events": 143,
+      "actors": 1,
+      "url": "https://heaven.rsp-5f3.workers.dev"
+    },
+    "gabriel": {
+      "version": "2.0.0",
+      "model": "unknown",
+      "uptime_seconds": 1440
+    },
+    "timestamp": "2026-03-30T18:17:27.161897+00:00"
+  },
+  "routing_contract": {
+    "consent_gateway": {
+      "public": [
+        "/health"
+      ],
+      "protected": [
+        "/verify",
+        "/revoke",
+        "/status/:creatorId"
+      ],
+      "legacy": [
+        "/v1/check-eligibility",
+        "/v1/revoke",
+        "/v1/consent/:id",
+        "/v1/audit/:asset_id"
+      ],
+      "auth_model": "X-NOIZY-Key header | 401=missing | 403=unauthorized"
+    },
+    "cb01_router": {
+      "forwards": [
+        "full path preserved \u2014 no segment stripping"
+      ],
+      "upstream": "https://noizy-consent-gateway.workers.dev"
+    },
+    "heaven": {
+      "version": "17.6.0",
+      "webhook_endpoints": [
+        "POST /webhooks/github",
+        "POST /webhooks/stripe",
+        "POST /webhooks/cloudflare",
+        "POST /webhooks/consent",
+        "POST /webhooks/voice",
+        "POST /webhooks/dreamchamber",
+        "POST /webhooks/custom/:name",
+        "GET  /webhooks/status",
+        "GET  /webhooks/log"
+      ]
+    },
+    "voice_bridge": {
+      "local_webhook_endpoints": [
+        "POST /webhook/github",
+        "POST /webhook/stripe",
+        "POST /webhook/n8n",
+        "POST /webhook/zapier",
+        "POST /webhook/heaven",
+        "POST /power-automate-webhook",
+        "POST /voice-command"
+      ]
+    }
+  },
+  "governance_claims": {
+    "plowman_standard": "75/25 creator split \u2014 hard-coded in every royalty model",
+    "ncp_protocol": "NOIZY Consent Protocol \u2014 every data flow answers who owns this",
+    "never_clause_enforcement": "consent_gateway enforces never-clauses before any synth request",
+    "revocation_is_sacred": "POST /revoke enforced with 403 authorization check \u2014 caller must be consent record owner",
+    "status_is_sanitized": "GET /status/:creatorId returns { creator_id, status, updated_at } only \u2014 no history, no events"
+  },
+  "infrastructure_bindings": {
+    "gabriel_db": "fc0edd97-5a4c-49ff-a5fb-b3d7d8fda1aa",
+    "gabriel_kv": "6fe434a8020147c7bc4788e7057b843a",
+    "gabriel_voice": "afef27e69f634d2b941482435d042167",
+    "account_id": "5f36aa9795348ea681d0b21910dfc82a"
+  },
+  "checksums": {
+    "routing_contract": "399a5606bc971a983624616f4fc3170fbcf963a96a9271c36e745dbc3b17ac1f",
+    "governance_claims": "c8db51e887f7b5499010f09ba6be82dc7b6bd7681de37698173f471234541e71",
+    "bindings": "baab87bd5f9939614a576dfe7139d98cef5e20ff2ac0f1fafff10ff1bbfdd40c"
+  }
+}

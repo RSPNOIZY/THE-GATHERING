@@ -1,0 +1,29 @@
+{
+  "name": "publishing-client",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "packages/*",
+    "extensions/vscode",
+    "extensions/vscode/webviews/homeView",
+    "test/mock-connect",
+    "test/connect-api-contracts",
+    "test/extension-contract-tests"
+  ],
+  "scripts": {
+    "format": "prettier . --write",
+    "check-format": "prettier . --check",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*": [
+      "prettier --write --ignore-unknown"
+    ]
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "husky": "^9.0.11",
+    "lint-staged": "^17.0.7",
+    "prettier": "^3.8.3"
+  }
+}

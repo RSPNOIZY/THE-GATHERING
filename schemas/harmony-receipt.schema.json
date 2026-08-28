@@ -1,0 +1,48 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "HarmonyReceipt",
+  "description": "Lifecycle receipt recorded in Cloudflare D1 Harmony Ledger with state machine progression and hash chaining",
+  "type": "object",
+  "required": [
+    "receipt_id",
+    "mission_id",
+    "sequence",
+    "state",
+    "capability_id",
+    "decision_id",
+    "policy_version",
+    "input_hash",
+    "output_hash",
+    "previous_receipt_hash",
+    "signing_key_id",
+    "created_at"
+  ],
+  "properties": {
+    "receipt_id": { "type": "string", "pattern": "^REC-[a-zA-Z0-9_-]+$" },
+    "mission_id": { "type": "string", "pattern": "^MIS-[a-zA-Z0-9_-]+$" },
+    "sequence": { "type": "integer", "minimum": 0 },
+    "state": {
+      "type": "string",
+      "enum": [
+        "PROPOSED",
+        "AUTHORIZED",
+        "EXECUTING",
+        "SUCCEEDED",
+        "FAILED",
+        "ROLLED_BACK",
+        "REVOKED"
+      ]
+    },
+    "capability_id": { "type": "string" },
+    "decision_id": { "type": "string", "pattern": "^DEC-[a-zA-Z0-9_-]+$" },
+    "policy_version": { "type": "string", "default": "RSP-CF-v1" },
+    "input_hash": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "output_hash": { "type": ["string", "null"] },
+    "previous_receipt_hash": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "signing_key_id": { "type": "string" },
+    "created_at": { "type": "string", "format": "date-time" },
+    "finalized_at": { "type": ["string", "null"], "format": "date-time" },
+    "error_details": { "type": ["string", "null"] }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,96 @@
+{
+  "receipt": {
+    "receipt_id": "c9f91d60-77f6-4946-9385-101ed6a691f5",
+    "workstream": "RIDESHARE",
+    "project_ref": "GABRIEL",
+    "account": "rspdrives@gmail.com",
+    "vehicle": "2026-HONDA-CRV-HYBRID",
+    "timestamp_utc": "2026-07-06T21:32:20.580329+00:00",
+    "session_id": "b744f853-9b42-458a-ae2a-fa406f382492",
+    "action": {
+      "type": "PIPELINE",
+      "source": "COPILOT",
+      "description": "Copilot Ottawa research fully ingested \u2014 YOW windows + surge events + profit positions",
+      "payload": {
+        "yow_windows_ingested": 4,
+        "surge_events_ingested": 6,
+        "profit_positions": [
+          {
+            "time": "05:00\u201308:30",
+            "position": "Downtown Ottawa \u2192 YOW",
+            "reason": "Morning airport departure rush"
+          },
+          {
+            "time": "08:30\u201311:00",
+            "position": "Downtown / Parliament Hill",
+            "reason": "Post-airport AM commuter tail"
+          },
+          {
+            "time": "11:00\u201314:00",
+            "position": "Downtown offices / Kanata",
+            "reason": "Midday business + YOW moderate"
+          },
+          {
+            "time": "14:00\u201316:00",
+            "position": "Kanata North Tech Hub",
+            "reason": "Afternoon tech/business district"
+          },
+          {
+            "time": "16:00\u201320:30",
+            "position": "Downtown \u2192 YOW rotation",
+            "reason": "STRONGEST window \u2014 intl departures"
+          },
+          {
+            "time": "20:30\u201321:30",
+            "position": "YOW Arrivals \u2192 Downtown",
+            "reason": "Evening arrivals from YOW"
+          },
+          {
+            "time": "21:30\u201323:30",
+            "position": "Kanata (CTC) or ByWard",
+            "reason": "Game/concert end spike"
+          },
+          {
+            "time": "23:30\u201302:00",
+            "position": "ByWard \u2192 Elgin \u2192 Lansdowne",
+            "reason": "Late night nightlife surge"
+          }
+        ],
+        "session_id": "f60770be-1714-4ac9-a7c8-9518ff8d051c"
+      }
+    },
+    "data": {
+      "trip_id": null,
+      "platform": null,
+      "earnings_gross": null,
+      "earnings_net": null,
+      "surge_multiplier": null,
+      "miles": null,
+      "duration_minutes": null,
+      "pickup_geo": null,
+      "dropoff_geo": null,
+      "ottawa_context": null
+    },
+    "consent": {
+      "driver_consented": true,
+      "consent_version": "1.0",
+      "consent_timestamp": "2026-07-06T21:32:20.580329+00:00"
+    },
+    "audit": {
+      "rule_zero": true,
+      "logged_by": "THE-GATHERING",
+      "immutable": true,
+      "hash": "78820881a08d47c315e2ad4a1613558109a245ad90398f09c36bada9c3afef9a",
+      "prev_receipt_id": null
+    },
+    "meta": {
+      "environment": "PRODUCTION",
+      "pipeline_version": "1.0.0",
+      "tags": [
+        "rideshare",
+        "gabriel",
+        "rspdrives"
+      ]
+    }
+  }
+}

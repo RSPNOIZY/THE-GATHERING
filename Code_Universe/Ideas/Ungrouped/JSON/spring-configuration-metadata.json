@@ -1,0 +1,57 @@
+{
+  "groups": [
+    {
+      "name": "languageserver",
+      "type": "org.springframework.ide.vscode.commons.languageserver.config.LanguageServerProperties",
+      "sourceType": "org.springframework.ide.vscode.commons.languageserver.config.LanguageServerProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "languageserver.completion-trigger-characters",
+      "type": "java.util.Map<java.lang.String,java.lang.String>",
+      "description": "List of characters that trigger completions.",
+      "sourceType": "org.springframework.ide.vscode.commons.languageserver.config.LanguageServerProperties"
+    },
+    {
+      "name": "languageserver.extension-id",
+      "type": "java.lang.String",
+      "description": "Extension id is a unique identifier associated with a type of language server. It is used to derive further unique ids that should be 'scoped' to a particular language server. For example ids for vscode comands used to define code actions are derived by appending command names with this id.",
+      "sourceType": "org.springframework.ide.vscode.commons.languageserver.config.LanguageServerProperties"
+    },
+    {
+      "name": "languageserver.hover-timeout",
+      "type": "java.lang.Long",
+      "description": "Hover request handler timeout in milliseconds",
+      "sourceType": "org.springframework.ide.vscode.commons.languageserver.config.LanguageServerProperties"
+    },
+    {
+      "name": "languageserver.reconcile-delay",
+      "type": "java.lang.Long",
+      "description": "Reconciling delay time interval. Maximum reconcile rate.",
+      "sourceType": "org.springframework.ide.vscode.commons.languageserver.config.LanguageServerProperties"
+    },
+    {
+      "name": "languageserver.reconcile-strategy",
+      "type": "org.springframework.ide.vscode.commons.languageserver.config.LanguageServerProperties$ReconcileStrategy",
+      "description": "Strategy for performing document reconciling once document changes.",
+      "sourceType": "org.springframework.ide.vscode.commons.languageserver.config.LanguageServerProperties"
+    },
+    {
+      "name": "languageserver.standalone",
+      "type": "java.lang.Boolean",
+      "description": "Enables 'standalone' launch mode. In standalone mode the language server creates a server socket and waits for a client to connect on that socket.",
+      "sourceType": "org.springframework.ide.vscode.commons.languageserver.config.LanguageServerProperties"
+    },
+    {
+      "name": "languageserver.standalone-port",
+      "type": "java.lang.Integer",
+      "description": "The port on which a standalone language server listens. This setting is ignored if the server is not launched in standalone mode.",
+      "sourceType": "org.springframework.ide.vscode.commons.languageserver.config.LanguageServerProperties"
+    }
+  ],
+  "hints": [],
+  "ignored": {
+    "properties": []
+  }
+}

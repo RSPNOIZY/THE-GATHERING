@@ -1,0 +1,32 @@
+{
+  "name": "@tagspaces/mindmap-viewer",
+  "version": "1.0.254",
+  "description": "A TagSpaces extension for displaying markdown files as mind map.",
+  "homepage": "https://www.tagspaces.org",
+  "main": "main.js",
+  "author": {
+    "name": "TagSpaces GmbH",
+    "email": "info@tagspaces.org",
+    "url": "https://www.tagspaces.org"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "markmap-lib": "^0.18.11",
+    "markmap-view": "^0.18.10"
+  },
+  "tsextension": {
+    "name": "Mindmap Viewer",
+    "types": [
+      "viewer"
+    ],
+    "color": "#4986E7",
+    "fileTypes": [
+      {
+        "ext": "mmd"
+      },
+      {
+        "ext": "mmdown"
+      }
+    ]
+  }
+}

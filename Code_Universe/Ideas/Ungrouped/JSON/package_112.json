@@ -1,0 +1,17 @@
+{
+  "name": "noizyempire-email-ai",
+  "version": "1.0.0",
+  "description": "AI-powered email processing for NOIZYEMPIRE using Cloudflare Workers",
+  "main": "src/index.js",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "test": "wrangler test"
+  },
+  "dependencies": {
+    "@cloudflare/workers-types": "^4.20231218.0"
+  },
+  "devDependencies": {
+    "wrangler": "^3.0.0"
+  }
+}

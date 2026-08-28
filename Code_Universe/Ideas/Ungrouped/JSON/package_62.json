@@ -1,0 +1,22 @@
+{
+  "name": "noizy-voice-bridge-http",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "NOIZY Voice Bridge — Cloud Run HTTP MCP mirror. Same tool contract as local stdio server. Auth required. Disabled by default.",
+  "main": "server.mjs",
+  "scripts": {
+    "start": "node server.mjs",
+    "dev": "PORT=8080 node server.mjs",
+    "build": "echo 'No build step — pure ESM'",
+    "docker:build": "docker build -t noizy-voice-bridge-http .",
+    "docker:run": "docker run -p 8080:8080 --env-file .env.local noizy-voice-bridge-http",
+    "deploy": "gcloud run deploy noizy-voice-bridge --source . --region us-central1 --project gen-lang-client-0531202734"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "zod": "^3.24.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

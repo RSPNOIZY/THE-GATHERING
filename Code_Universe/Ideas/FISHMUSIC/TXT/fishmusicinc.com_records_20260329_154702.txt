@@ -1,0 +1,24 @@
+# DNS Records for fishmusicinc.com - Exported Sun Mar 29 15:47:03 EDT 2026
+# Source: GoDaddy (requires manual export from dashboard)
+
+## Nameservers
+fishmusicinc.com	nameserver = alex.ns.cloudflare.com.
+fishmusicinc.com	nameserver = melinda.ns.cloudflare.com.
+
+## A Records
+104.21.16.164
+172.67.214.218
+
+## AAAA Records (IPv6)
+2606:4700:3032::6815:10a4
+2606:4700:3034::ac43:d6da
+
+## CNAME Records
+
+## MX Records (Mail)
+
+## TXT Records (SPF, DKIM, DMARC)
+
+## SOA Record
+alex.ns.cloudflare.com. dns.cloudflare.com. 2399638598 10000 2400 604800 1800
+

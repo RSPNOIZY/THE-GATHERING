@@ -1,0 +1,130 @@
+{
+  "version": "1.0",
+  "mode": 2,
+  "nodes": [
+    {
+      "name": "blit_0",
+      "type": "texture_blit",
+      "config": {
+        "keymaps": {
+          "intParam": {},
+          "floatParam": {},
+          "stringParam": {}
+        },
+        "size": {
+          
+        }
+      }
+    },
+    {
+      "name": "nh_script_0",
+      "type": "script",
+      "config": {
+        "keyMaps": {
+          "intParam": {},
+          "floatParam": {
+            "x": 0,
+            "y": 0,
+            "width": 1,
+            "height": 1
+          },
+          "stringParam": {
+            "packed_model_group_key": "script_pre",
+            "model_name": "lock_key_point.model"
+          },
+          "pathParam": {}
+        }
+      }
+    },
+    {
+      "name": "face_0",
+      "type": "face",
+      "config": {
+        "keymaps": {
+          "intParam": {
+            "face_max_num": 5,
+            "face_detect_mode": 262144,
+            "face_detect_ability": 1
+          },
+          "floatParam": {},
+          "stringParam": {
+            "face_base_model_key": "tt_fsnew_base_jianying"
+          }
+        }
+      }
+    },
+    {
+      "name": "skeleton_0",
+      "type": "skeleton",
+      "config": {
+        "keyMaps": {
+          "intParam": {
+            "skeleton_force_detect": 1,
+            "skeleton_body_max_count": 5,
+            "skeleton_image_mode": 1,
+            "base_image_mode": 1
+          },
+          "floatParam": {
+          },
+          "stringParam": {
+            "skeleton_model_key": "tt_skeletonlockon"
+          }
+        }
+      }
+    },
+    {
+      "name": "nh_script_1",
+      "type": "script",
+      "enable": true,
+      "config": {
+        "keyMaps": {
+          "intParam": {},
+          "floatParam": {},
+          "stringParam": {
+            "packed_model_group_key": "script_post",
+            "model_name": "lock_key_point.model"
+          },
+          "pathParam": {}
+        }
+      }
+    }
+  ],
+  "links": [
+    {
+      "fromNode": "blit_0",
+      "fromIndex": 0,
+      "toNode": "nh_script_0",
+      "toIndex": 0
+    },
+    {
+      "fromNode": "nh_script_0",
+      "fromIndex": 0,
+      "toNode": "nh_script_1",
+      "toIndex": 0
+    },
+    {
+      "fromNode": "nh_script_0",
+      "fromIndex": 1,
+      "toNode": "face_0",
+      "toIndex": 0
+    },
+    {
+      "fromNode": "nh_script_0",
+      "fromIndex": 1,
+      "toNode": "skeleton_0",
+      "toIndex": 0
+    },
+    {
+      "fromNode": "face_0",
+      "fromIndex": 0,
+      "toNode": "nh_script_1",
+      "toIndex": 1
+    },
+    {
+      "fromNode": "skeleton_0",
+      "fromIndex": 0,
+      "toNode": "nh_script_1",
+      "toIndex": 2
+    }
+  ]
+}

@@ -1,0 +1,166 @@
+FISHNET CODE CONSOLIDATION MAP - GABRIEL & CLAUDE INTEGRATION
+Generated: March 29, 2026
+========================================================
+
+HIGH PRIORITY - MCP SERVERS (GABRIEL Integration)
+================================================
+
+1. dreamchamber-audio-mcp
+   Type: Node.js MCP Server
+   Purpose: Audio processing & streaming
+   Status: Ready for consolidation
+   Action: Generate GABRIEL client wrapper
+
+2. mcp-gemma3
+   Type: AI Model MCP Server
+   Purpose: Gemma 3 LLM integration
+   Status: Ready for consolidation
+   Action: Wrap as GABRIEL tool
+
+3. mcp (Core Framework)
+   Type: Model Context Protocol
+   Purpose: Base MCP infrastructure
+   Status: Foundation layer
+   Action: Ensure GABRIEL/CLAUDE integration points
+
+HIGH PRIORITY - DREAM AGENTS (CLAUDE Workflows)
+================================================
+
+1. dreamchamber
+   Type: Agent Framework
+   Purpose: Multi-agent orchestration
+   Status: Core agent system
+   Action: Link to CLAUDE agent executor
+
+2. noizybeast
+   Type: Specialized Agent
+   Purpose: Audio/media intelligence
+   Status: Ready for integration
+   Action: Register with CLAUDE workflow engine
+
+MEDIUM PRIORITY - LIBRARIES & DATA LAYER
+==========================================
+
+1. swift-library
+   Type: Swift Package
+   Purpose: Native Swift utilities
+   Status: Git repo active
+   Action: Expose as MCP service
+
+2. sql/
+   Type: Data layer
+   Purpose: Structured data access
+   Status: Backend ready
+   Action: Expose as MCP database tool
+
+3. schemas/
+   Type: Data schemas
+   Purpose: Type definitions
+   Status: Ready
+   Action: Distribute to all services
+
+MEDIUM PRIORITY - PIPELINES
+=============================
+
+1. voice-pipeline/
+   Purpose: Audio ingestion
+   Status: Can feed to audio-mcp
+   Action: Wire to audio MCP
+
+2. rsp001_pipeline/
+   Purpose: RSP data processing
+   Status: Processing stage
+   Action: Add GABRIEL data routing
+
+3. enterprise/
+   Purpose: Production deployment
+   Status: Awaiting integration
+   Action: Prepare ACR/AKS integration
+
+MEDIUM PRIORITY - TOOLS & UTILITIES
+====================================
+
+1. power-automate-flows/
+   Purpose: Business automation
+   Status: Can trigger GABRIEL workflows
+   Action: Create bidirectional links
+
+2. dashboard/
+   Purpose: GABRIEL/CLAUDE visibility
+   Status: Ready for metrics hookup
+   Action: Add real-time dashboard
+
+LOW PRIORITY - CLOUD & WEB
+============================
+
+1. workers/
+   Type: Serverless functions
+   Purpose: Lambda/Cloudflare workers
+   Status: Can wrap as MCP tools
+   Action: Containerize for Foundry
+
+2. noizy-landing/
+   Type: Web frontend
+   Purpose: Public interface
+   Status: Can be hooked to GABRIEL outputs
+   Action: Add dynamic content generation
+
+EXTERNAL STORAGE TO INVESTIGATE
+=================================
+
+Mounted drives:
+- /Volumes/FISH         <- Main Aquarium?
+- /Volumes/4TBSG        <- Code archives?
+- /Volumes/6TB          <- Media/models?
+- /Volumes/SIDNEY       <- Backups?
+
+OneDrive Archive:
+~/NOIZYLAB/ARCHIVE/2026-03-28_GOLD_SCAN/06_CLOUD_ONEDRIVE/
+
+RECOMMENDED FISHNET STRUCTURE
+==============================
+
+FISHNET/
+  MCP_SERVERS/
+    - dreamchamber-audio-mcp/
+    - mcp-gemma3/
+    - mcp/
+  AGENTS/
+    - dreamchamber/
+    - noizybeast/
+  LIBRARIES/
+    - swift-library/
+    - schemas/
+    - sql/
+  PIPELINES/
+    - voice-pipeline/
+    - rsp001_pipeline/
+    - enterprise/
+  TOOLS/
+    - power-automate-flows/
+    - workers/
+    - dashboard/
+  GOVERNANCE/
+    - TURBO_ORGANIZATION/
+    - docs/
+
+CONSOLIDATION CHECKLIST
+========================
+[ ] Copy/link MCP servers to FISHNET
+[ ] Register agents with CLAUDE engine
+[ ] Expose data layer to MCP
+[ ] Create GABRIEL tool wrappers
+[ ] Wire voice pipeline -> audio MCP
+[ ] Set up dashboard metrics
+[ ] Configure turbo aliases for FISHNET
+[ ] Test end-to-end GABRIEL/CLAUDE workflows
+[ ] Deploy to production FISHNET
+
+NEXT STEPS
+==========
+1. Immediate: Consolidate MCP servers & agents
+2. This week: Wire data layer + pipelines
+3. This sprint: Test GABRIEL/CLAUDE integration
+4. This month: Deploy to production FISHNET
+
+========================================================

@@ -1,0 +1,43 @@
+{
+  "vsix_path": "/Users/m2ultra/.vscode/extensions/llvm-vs-code-extensions.lldb-dap-0.4.1/out/lldb-dap.vsix",
+  "extracted_dir": "/Users/m2ultra/NOIZYLAB/rob_ava/data/vsix_inspection/lldb-dap/extracted",
+  "manifest": {
+    "id": "lldb-dap",
+    "publisher": "llvm-vs-code-extensions",
+    "version": "0.4.1",
+    "display_name": "LLDB DAP",
+    "description": "Debugging with LLDB in Visual Studio Code",
+    "tags": "C,C++,LLVM,LLDB,debuggers,lldb.disassembly,Disassembly,__ext_disasm"
+  },
+  "package": {
+    "name": "lldb-dap",
+    "displayName": "LLDB DAP",
+    "version": "0.4.1",
+    "publisher": "llvm-vs-code-extensions",
+    "description": "Debugging with LLDB in Visual Studio Code",
+    "categories": [
+      "Debuggers"
+    ],
+    "activationEvents": [
+      "onDebug",
+      "onUri"
+    ],
+    "has_webview": false
+  },
+  "keyword_hits": {
+    "policy": [
+      "/Users/m2ultra/NOIZYLAB/rob_ava/data/vsix_inspection/lldb-dap/extracted/extension/LICENSE.TXT",
+      "/Users/m2ultra/NOIZYLAB/rob_ava/data/vsix_inspection/lldb-dap/extracted/extension/out/extension.js",
+      "/Users/m2ultra/NOIZYLAB/rob_ava/data/vsix_inspection/lldb-dap/extracted/extension/package.json"
+    ],
+    "ui": [
+      "/Users/m2ultra/NOIZYLAB/rob_ava/data/vsix_inspection/lldb-dap/extracted/extension/out/extension.js",
+      "/Users/m2ultra/NOIZYLAB/rob_ava/data/vsix_inspection/lldb-dap/extracted/extension/out/webview/symbols-table-view.js",
+      "/Users/m2ultra/NOIZYLAB/rob_ava/data/vsix_inspection/lldb-dap/extracted/extension/package.json"
+    ]
+  },
+  "relevance_summary": {
+    "likely_relevant_to_rob_ava": false,
+    "note": "Low for Rob.AVA core; mostly IDE/debugger functionality"
+  }
+}

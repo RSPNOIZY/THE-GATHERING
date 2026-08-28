@@ -1,0 +1,70 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "DecisionPacket",
+  "description": "Canonical schema for an RSP Decision Packet evaluated by the Cognitive Firewall",
+  "type": "object",
+  "required": [
+    "decision_id",
+    "mission_id",
+    "actor_id",
+    "intent",
+    "purpose",
+    "authority",
+    "policy_version",
+    "consent_id",
+    "outcome",
+    "risk",
+    "alternatives",
+    "expires_at"
+  ],
+  "properties": {
+    "decision_id": { "type": "string", "pattern": "^DEC-[a-zA-Z0-9_-]+$" },
+    "mission_id": { "type": "string", "pattern": "^MIS-[a-zA-Z0-9_-]+$" },
+    "actor_id": { "type": "string" },
+    "intent": { "type": "string" },
+    "purpose": { "type": "string" },
+    "authority": { "type": "string", "enum": ["RSP", "RSP_001"] },
+    "policy_version": { "type": "string", "default": "RSP-CF-v1" },
+    "consent_id": { "type": "string", "pattern": "^CON-[a-zA-Z0-9_-]+$" },
+    "outcome": {
+      "type": "string",
+      "enum": [
+        "ALLOW",
+        "ALLOW_WITH_RSP_APPROVAL",
+        "DEFER",
+        "ABSTAIN",
+        "DENY"
+      ]
+    },
+    "risk": {
+      "type": "object",
+      "required": ["urgency", "consequence", "reversibility", "evidence_quality", "confidence"],
+      "properties": {
+        "urgency": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+        "consequence": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+        "reversibility": {
+          "type": "string",
+          "enum": ["REVERSIBLE", "CONDITIONALLY_REVERSIBLE", "IRREVERSIBLE"]
+        },
+        "evidence_quality": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+        "confidence": { "type": "number", "minimum": 0.0, "maximum": 1.0 }
+      },
+      "additionalProperties": false
+    },
+    "alternatives": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "expires_at": { "type": "string", "format": "date-time" },
+    "counterfactual_explanation": {
+      "type": "object",
+      "properties": {
+        "current": { "type": "string" },
+        "would_be_denied_if": { "type": "array", "items": { "type": "string" } },
+        "would_abstain_if": { "type": "array", "items": { "type": "string" } },
+        "safer_alternative": { "type": "string" }
+      }
+    }
+  },
+  "additionalProperties": false
+}

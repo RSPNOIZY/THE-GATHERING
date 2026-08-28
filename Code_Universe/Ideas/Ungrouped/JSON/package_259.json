@@ -1,0 +1,23 @@
+{
+  "name": "noizy-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "upload": "node scripts/upload-one.js",
+    "upload-all": "node scripts/upload-all-mcp.js",
+    "watch": "node scripts/watch.js",
+    "transcribe": "node scripts/transcribe.js",
+    "status": "node scripts/status.js",
+    "gabriel": "node scripts/gabriel.js"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.43.0",
+    "dotenv": "^16.4.5",
+    "node-notifier": "^10.0.1",
+    "pidusage": "^3.0.2"
+  }
+}

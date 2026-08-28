@@ -1,0 +1,135 @@
+{
+  "info": {
+    "name": "Gabriel — NOIZY Operator API",
+    "description": "Local Gabriel backend on GOD.local. Runs on http://127.0.0.1:9090. Boot with `gabriel serve` or via the LaunchAgent. Backed by stdlib HTTP + Server-Sent Events. Zero auth — single-user localhost.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_postman_id": "gabriel-noizy-empire-001"
+  },
+  "variable": [
+    { "key": "base", "value": "http://127.0.0.1:9090" }
+  ],
+  "item": [
+    {
+      "name": "Health & Status",
+      "item": [
+        { "name": "Health",     "request": { "method": "GET", "url": { "raw": "{{base}}/api/health",    "host": ["{{base}}"], "path": ["api","health"] } } },
+        { "name": "Status",     "request": { "method": "GET", "url": { "raw": "{{base}}/api/status",    "host": ["{{base}}"], "path": ["api","status"] } } },
+        { "name": "Countdown",  "request": { "method": "GET", "url": { "raw": "{{base}}/api/countdown", "host": ["{{base}}"], "path": ["api","countdown"] } } }
+      ]
+    },
+    {
+      "name": "MemCell",
+      "item": [
+        { "name": "Full state", "request": { "method": "GET", "url": { "raw": "{{base}}/api/memcell", "host": ["{{base}}"], "path": ["api","memcell"] } } },
+        { "name": "Recall N",   "request": { "method": "GET", "url": { "raw": "{{base}}/api/memcell/recall?n=10", "host": ["{{base}}"], "path": ["api","memcell","recall"], "query": [{"key":"n","value":"10"}] } } },
+        { "name": "Context",    "request": { "method": "GET", "url": { "raw": "{{base}}/api/memcell/context", "host": ["{{base}}"], "path": ["api","memcell","context"] } } },
+        { "name": "Track",
+          "request": {
+            "method": "POST",
+            "header": [{"key":"Content-Type","value":"application/json"}],
+            "body": { "mode": "raw", "raw": "{\n  \"action\": \"deploy\",\n  \"subject\": \"heaven\",\n  \"ctx\": {\"version\":\"17.9.0\"}\n}" },
+            "url": { "raw": "{{base}}/api/memcell/track", "host": ["{{base}}"], "path": ["api","memcell","track"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Tools",
+      "item": [
+        { "name": "Inventory", "request": { "method": "GET",  "url": { "raw": "{{base}}/api/tools",        "host": ["{{base}}"], "path": ["api","tools"] } } },
+        { "name": "Vitals",    "request": { "method": "POST", "url": { "raw": "{{base}}/api/tools/vitals", "host": ["{{base}}"], "path": ["api","tools","vitals"] } } },
+        { "name": "Net",       "request": { "method": "POST", "url": { "raw": "{{base}}/api/tools/net",    "host": ["{{base}}"], "path": ["api","tools","net"] } } },
+        { "name": "Sync",      "request": { "method": "POST", "url": { "raw": "{{base}}/api/tools/sync",   "host": ["{{base}}"], "path": ["api","tools","sync"] } } }
+      ]
+    },
+    {
+      "name": "Think",
+      "item": [
+        { "name": "Auto-route",
+          "request": {
+            "method": "POST",
+            "header": [{"key":"Content-Type","value":"application/json"}],
+            "body": { "mode": "raw", "raw": "{\n  \"prompt\": \"What is the top blocker today?\"\n}" },
+            "url": { "raw": "{{base}}/api/think", "host": ["{{base}}"], "path": ["api","think"] }
+          }
+        },
+        { "name": "Force Claude Max",
+          "request": {
+            "method": "POST",
+            "header": [{"key":"Content-Type","value":"application/json"}],
+            "body": { "mode": "raw", "raw": "{\n  \"prompt\": \"Audit the consent kernel for Never Clause violations\",\n  \"force\": \"claude\"\n}" },
+            "url": { "raw": "{{base}}/api/think", "host": ["{{base}}"], "path": ["api","think"] }
+          }
+        },
+        { "name": "Force Local Ollama",
+          "request": {
+            "method": "POST",
+            "header": [{"key":"Content-Type","value":"application/json"}],
+            "body": { "mode": "raw", "raw": "{\n  \"prompt\": \"Quick summary of these notes (private)\",\n  \"force\": \"local\"\n}" },
+            "url": { "raw": "{{base}}/api/think", "host": ["{{base}}"], "path": ["api","think"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Webhooks",
+      "item": [
+        { "name": "Inbound (n8n)",
+          "request": {
+            "method": "POST",
+            "header": [{"key":"Content-Type","value":"application/json"}],
+            "body": { "mode": "raw", "raw": "{\n  \"action\": \"workflow_run\",\n  \"subject\": \"daily_sync\",\n  \"status\": \"green\"\n}" },
+            "url": { "raw": "{{base}}/api/webhook/n8n", "host": ["{{base}}"], "path": ["api","webhook","n8n"] }
+          }
+        },
+        { "name": "Inbound (zapier)",
+          "request": {
+            "method": "POST",
+            "header": [{"key":"Content-Type","value":"application/json"}],
+            "body": { "mode": "raw", "raw": "{\n  \"action\": \"zap\",\n  \"subject\": \"slack_message\"\n}" },
+            "url": { "raw": "{{base}}/api/webhook/zapier", "host": ["{{base}}"], "path": ["api","webhook","zapier"] }
+          }
+        },
+        { "name": "Outbound (Gabriel posts to URL)",
+          "request": {
+            "method": "POST",
+            "header": [{"key":"Content-Type","value":"application/json"}],
+            "body": { "mode": "raw", "raw": "{\n  \"url\": \"https://hooks.zapier.com/hooks/catch/XXXX/YYYY\",\n  \"payload\": {\"event\":\"deploy\",\"status\":\"green\"}\n}" },
+            "url": { "raw": "{{base}}/api/webhook/out", "host": ["{{base}}"], "path": ["api","webhook","out"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Linear",
+      "item": [
+        { "name": "Issues (live)",   "request": { "method": "GET", "url": { "raw": "{{base}}/api/linear/issues?limit=25", "host": ["{{base}}"], "path": ["api","linear","issues"], "query":[{"key":"limit","value":"25"}] } } },
+        { "name": "Critical Path",   "request": { "method": "GET", "url": { "raw": "{{base}}/api/linear/critical",       "host": ["{{base}}"], "path": ["api","linear","critical"] } } }
+      ]
+    },
+    {
+      "name": "Docker",
+      "item": [
+        { "name": "Containers (ps)", "request": { "method": "GET", "url": { "raw": "{{base}}/api/docker/ps",    "host": ["{{base}}"], "path": ["api","docker","ps"] } } },
+        { "name": "Stats",           "request": { "method": "GET", "url": { "raw": "{{base}}/api/docker/stats", "host": ["{{base}}"], "path": ["api","docker","stats"] } } }
+      ]
+    },
+    {
+      "name": "Filesystem (jailed to ~/NOIZYANTHROPIC)",
+      "item": [
+        { "name": "Tree (root)",     "request": { "method": "GET", "url": { "raw": "{{base}}/api/tree", "host": ["{{base}}"], "path": ["api","tree"] } } },
+        { "name": "Tree (subpath)",  "request": { "method": "GET", "url": { "raw": "{{base}}/api/tree?path=NOIZYLAB/scripts/turbo", "host": ["{{base}}"], "path": ["api","tree"], "query":[{"key":"path","value":"NOIZYLAB/scripts/turbo"}] } } },
+        { "name": "File read",       "request": { "method": "GET", "url": { "raw": "{{base}}/api/file?path=mc96/turbo_prompts.py", "host": ["{{base}}"], "path": ["api","file"], "query":[{"key":"path","value":"mc96/turbo_prompts.py"}] } } }
+      ]
+    },
+    {
+      "name": "Live Stream (SSE)",
+      "item": [
+        { "name": "Connect",
+          "description": "Server-Sent Events. Postman renders this as a streaming text response. Events: hello, vitals (every 5s), memcell (on every track), webhook (on every inbound).",
+          "request": { "method": "GET", "header": [{"key":"Accept","value":"text/event-stream"}], "url": { "raw": "{{base}}/api/stream", "host": ["{{base}}"], "path": ["api","stream"] } }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,202 @@
+{
+  "suite": "NOIZY Consent Decision Matrix — Stress Test Suite v2.0",
+  "version": "2.0",
+  "date": "2026-03-25",
+  "author": "RSP_001 — rsp@noizyfish.com",
+  "gateway_endpoint": "POST /v1/check-eligibility",
+  "cases": [
+    {
+      "id": "T01",
+      "name": "Missing Consent",
+      "description": "Claimant requests training on Creator A's voice. No active NCP exists.",
+      "input": {
+        "creator_id": "CREATOR_A",
+        "claimant_id": "CLAIMANT_001",
+        "action_type": "training",
+        "tool_name": "XTTS_v2"
+      },
+      "expected_decision": "DENY",
+      "expected_reason_codes": ["CONSENT_NOT_FOUND"],
+      "constitution_article": "Article II"
+    },
+    {
+      "id": "T02",
+      "name": "Revoked Consent",
+      "description": "Revocation effective at 3:00 PM. Request arrives at 3:45 PM (within SLA window).",
+      "input": {
+        "creator_id": "CREATOR_B",
+        "claimant_id": "CLAIMANT_001",
+        "action_type": "synthesis",
+        "tool_name": "XTTS_v2",
+        "requested_at": "2026-03-25T15:45:00Z"
+      },
+      "setup": {
+        "consent_status": "revoked",
+        "revoked_at": "2026-03-25T15:00:00Z"
+      },
+      "expected_decision": "DENY",
+      "expected_reason_codes": ["CONSENT_REVOKED"],
+      "constitution_article": "Article V",
+      "sla_note": "Revocation must be enforced within 1 hour of effective_at"
+    },
+    {
+      "id": "T03",
+      "name": "Tool Not Authorized in NCP",
+      "description": "Consent exists. Requested model is not in authorized_tools for this NCP record.",
+      "input": {
+        "creator_id": "CREATOR_C",
+        "claimant_id": "CLAIMANT_001",
+        "action_type": "synthesis",
+        "tool_name": "UnknownModel_v1"
+      },
+      "setup": {
+        "consent_status": "active",
+        "authorized_tools": ["XTTS_v2", "RVC"]
+      },
+      "expected_decision": "HOLD",
+      "expected_reason_codes": ["TOOL_NOT_AUTHORIZED"],
+      "constitution_article": "Article II"
+    },
+    {
+      "id": "T04",
+      "name": "Tool Blocked (Board Pending)",
+      "description": "Consent exists. Requested tool is in clearance registry with status = pending_review.",
+      "input": {
+        "creator_id": "CREATOR_D",
+        "claimant_id": "CLAIMANT_001",
+        "action_type": "synthesis",
+        "tool_name": "MusicGen"
+      },
+      "setup": {
+        "consent_status": "active",
+        "authorized_tools": ["MusicGen"]
+      },
+      "expected_decision": "HOLD",
+      "expected_reason_codes": ["TOOL_PENDING_REVIEW"],
+      "constitution_article": "Article II",
+      "note": "MusicGen blocked until Alex board seat replacement — see OUTREACH_DRAFTS.md"
+    },
+    {
+      "id": "T05",
+      "name": "Provenance Pipeline Unavailable",
+      "description": "Request is valid but the provenance/manifest subsystem is unavailable.",
+      "input": {
+        "creator_id": "CREATOR_E",
+        "claimant_id": "CLAIMANT_001",
+        "action_type": "synthesis",
+        "tool_name": "XTTS_v2"
+      },
+      "setup": {
+        "consent_status": "active",
+        "provenance_required": true,
+        "provenance_pipeline_available": false
+      },
+      "expected_decision": "HOLD",
+      "expected_reason_codes": ["PROVENANCE_PIPELINE_UNAVAILABLE"],
+      "constitution_article": "Article III"
+    },
+    {
+      "id": "T06",
+      "name": "Royalty Route Not Configured",
+      "description": "Consent exists. Creator payout destination is not configured for commercial request.",
+      "input": {
+        "creator_id": "CREATOR_F",
+        "claimant_id": "CLAIMANT_001",
+        "action_type": "synthesis",
+        "tool_name": "XTTS_v2",
+        "requested_scope": { "commercial": true }
+      },
+      "setup": {
+        "consent_status": "active",
+        "payment_terms": {}
+      },
+      "expected_decision": "HOLD",
+      "expected_reason_codes": ["ROYALTY_ROUTE_NOT_READY"],
+      "expected_royalty_route_status": "not_ready",
+      "constitution_article": "Article IV"
+    },
+    {
+      "id": "T07",
+      "name": "Disputed Rights",
+      "description": "Two parties claim authority over the same voice estate. dispute_status != none.",
+      "input": {
+        "creator_id": "CREATOR_G",
+        "claimant_id": "CLAIMANT_001",
+        "action_type": "synthesis",
+        "tool_name": "XTTS_v2"
+      },
+      "setup": {
+        "consent_status": "active",
+        "dispute_status": "pending"
+      },
+      "expected_decision": "ESCALATE",
+      "expected_reason_codes": ["DISPUTED_RIGHTS_ASSERTION"],
+      "constitution_article": "Article VII"
+    },
+    {
+      "id": "T08",
+      "name": "Term Expired",
+      "description": "Consent term ended yesterday. Request arrives today.",
+      "input": {
+        "creator_id": "CREATOR_H",
+        "claimant_id": "CLAIMANT_001",
+        "action_type": "synthesis",
+        "tool_name": "XTTS_v2",
+        "requested_at": "2026-03-25T18:00:00Z"
+      },
+      "setup": {
+        "consent_status": "active",
+        "term_start": "2024-01-01T00:00:00Z",
+        "term_end": "2026-03-24T23:59:59Z"
+      },
+      "expected_decision": "DENY",
+      "expected_reason_codes": ["CONSENT_EXPIRED"],
+      "constitution_article": "Article II"
+    },
+    {
+      "id": "T09",
+      "name": "Scope Exclusion — Political Speech",
+      "description": "Request is for political_speech which is explicitly in scope.exclusions.",
+      "input": {
+        "creator_id": "CREATOR_I",
+        "claimant_id": "CLAIMANT_001",
+        "action_type": "political_speech",
+        "tool_name": "XTTS_v2"
+      },
+      "setup": {
+        "consent_status": "active",
+        "scope_exclusions": ["political_speech", "deepfake_without_attribution"]
+      },
+      "expected_decision": "DENY",
+      "expected_reason_codes": ["USAGE_EXCLUDED_BY_SCOPE"],
+      "constitution_article": "Article II"
+    },
+    {
+      "id": "T10",
+      "name": "Full ALLOW — All Checks Pass",
+      "description": "Valid consent, active, tool cleared, commercial scope with royalty route, provenance ready.",
+      "input": {
+        "creator_id": "RSP_001",
+        "claimant_id": "CLAIMANT_001",
+        "action_type": "synthesis",
+        "tool_name": "XTTS_v2",
+        "requested_scope": { "territory": "global", "commercial": true }
+      },
+      "setup": {
+        "consent_status": "active",
+        "usage_types": ["synthesis", "derivative"],
+        "authorized_tools": ["XTTS_v2", "RVC"],
+        "term_valid": true,
+        "payment_terms": { "creator_pct": 75, "platform_pct": 25 },
+        "provenance_required": true,
+        "dispute_status": "none",
+        "revoked_at": null
+      },
+      "expected_decision": "ALLOW",
+      "expected_reason_codes": ["CONSENT_VALID", "SCOPE_VALID", "TOOL_AUTHORIZED", "PROVENANCE_READY", "ROYALTY_ROUTE_READY"],
+      "expected_payment_terms": { "creator_pct": 75, "platform_pct": 25 },
+      "constitution_article": "Articles I–VII"
+    }
+  ],
+  "run_instructions": "POST each case.input to /v1/check-eligibility. Assert decision === expected_decision and all expected_reason_codes are present in response.reason_codes."
+}

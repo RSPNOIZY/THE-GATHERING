@@ -1,0 +1,448 @@
+{
+  "info": {
+    "name": "NOIZY.AI — HEAVEN API v1",
+    "description": "Complete test collection for HEAVEN Consent Kernel.\n\nAll 16 endpoints. Contract tests, validation tests, and integration tests.\n\nAuthor: Robert Stephen Plowman\nGenerated: 2026-04-13",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "base_url", "value": "{{HEAVEN_URL}}" },
+    { "key": "actor_id", "value": "RSP_001" },
+    { "key": "licensee_id", "value": "LIC_TEST_001" }
+  ],
+  "item": [
+    {
+      "name": "Health & System",
+      "item": [
+        {
+          "name": "GET / — Root Info",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 200', () => pm.response.to.have.status(200));",
+                  "pm.test('Has name HEAVEN', () => {",
+                  "  const body = pm.response.json();",
+                  "  pm.expect(body.name).to.equal('HEAVEN');",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "GET /v1/health — System Health",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/v1/health"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 200 or 503', () => {",
+                  "  pm.expect(pm.response.code).to.be.oneOf([200, 503]);",
+                  "});",
+                  "pm.test('Has status field', () => {",
+                  "  const body = pm.response.json();",
+                  "  pm.expect(body.status).to.be.oneOf(['ok', 'degraded']);",
+                  "});",
+                  "pm.test('Has database status', () => {",
+                  "  const body = pm.response.json();",
+                  "  pm.expect(body.databases).to.have.property('agent_memory');",
+                  "  pm.expect(body.databases).to.have.property('gabriel_db');",
+                  "});",
+                  "pm.test('Has KV status', () => {",
+                  "  const body = pm.response.json();",
+                  "  pm.expect(body.kv).to.have.all.keys('voice', 'gabriel', 'flags', 'gaps');",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "GET /v1/stats — System Stats",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/v1/stats"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 200', () => pm.response.to.have.status(200));",
+                  "pm.test('Has stats object', () => {",
+                  "  const body = pm.response.json();",
+                  "  pm.expect(body.stats).to.have.all.keys('actors', 'consent_tokens', 'ledger_entries', 'never_clauses', 'waitlist_signups');",
+                  "});"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Never Clauses",
+      "item": [
+        {
+          "name": "GET /v1/never-clauses — Constitutional Rules",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/v1/never-clauses"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 200', () => pm.response.to.have.status(200));",
+                  "pm.test('Returns clauses array', () => {",
+                  "  const body = pm.response.json();",
+                  "  pm.expect(body.clauses).to.be.an('array');",
+                  "  pm.expect(body.count).to.be.a('number');",
+                  "});",
+                  "pm.test('Clauses are constitutional (9 never clauses)', () => {",
+                  "  const body = pm.response.json();",
+                  "  pm.expect(body.count).to.be.at.least(9);",
+                  "});"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Actors",
+      "item": [
+        {
+          "name": "GET /v1/actors — List All Actors",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/v1/actors"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 200', () => pm.response.to.have.status(200));",
+                  "pm.test('Returns actors array', () => {",
+                  "  const body = pm.response.json();",
+                  "  pm.expect(body.actors).to.be.an('array');",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "GET /v1/actors/:actor_id — Single Actor",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/v1/actors/{{actor_id}}"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Returns actor or 404', () => {",
+                  "  pm.expect(pm.response.code).to.be.oneOf([200, 404]);",
+                  "});"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Consent",
+      "item": [
+        {
+          "name": "POST /v1/consent/check — Consent Verification",
+          "request": {
+            "method": "POST",
+            "url": "{{base_url}}/v1/consent/check",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"actor_id\": \"{{actor_id}}\",\n  \"licensee_id\": \"{{licensee_id}}\",\n  \"use_case\": \"commercial_voiceover\",\n  \"jurisdiction\": \"CA-ON\",\n  \"medium\": \"broadcast\"\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Returns consent decision', () => {",
+                  "  pm.expect(pm.response.code).to.be.oneOf([200, 400, 403, 404]);",
+                  "  const body = pm.response.json();",
+                  "  if (pm.response.code === 200 || pm.response.code === 403) {",
+                  "    pm.expect(body.decision).to.have.property('allowed');",
+                  "    pm.expect(body.decision).to.have.property('reason');",
+                  "  }",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "POST /v1/consent/grant — Issue Token",
+          "request": {
+            "method": "POST",
+            "url": "{{base_url}}/v1/consent/grant",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Idempotency-Key", "value": "{{$guid}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"actor_id\": \"{{actor_id}}\",\n  \"licensee_id\": \"{{licensee_id}}\",\n  \"scope\": {\n    \"use_cases\": [\"commercial_voiceover\"],\n    \"jurisdictions\": [\"CA-ON\"],\n    \"mediums\": [\"broadcast\", \"streaming\"]\n  },\n  \"duration_days\": 365\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Returns token or error', () => {",
+                  "  pm.expect(pm.response.code).to.be.oneOf([201, 400, 404]);",
+                  "  if (pm.response.code === 201) {",
+                  "    const body = pm.response.json();",
+                  "    pm.expect(body.token_id).to.match(/^CT-/);",
+                  "    pm.expect(body.status).to.equal('active');",
+                  "    pm.collectionVariables.set('consent_token_id', body.token_id);",
+                  "  }",
+                  "});",
+                  "pm.test('Idempotency-Key required', () => {",
+                  "  // This test validates the header was sent",
+                  "  pm.expect(pm.request.headers.get('Idempotency-Key')).to.not.be.empty;",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "POST /v1/consent/revoke — Revoke Token",
+          "request": {
+            "method": "POST",
+            "url": "{{base_url}}/v1/consent/revoke",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Idempotency-Key", "value": "{{$guid}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"token_id\": \"{{consent_token_id}}\",\n  \"actor_id\": \"{{actor_id}}\",\n  \"reason\": \"Testing revocation flow\"\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Returns revoked or error', () => {",
+                  "  pm.expect(pm.response.code).to.be.oneOf([200, 400, 404]);",
+                  "});"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Agents",
+      "item": [
+        {
+          "name": "GET /v1/agents — List Agents",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/v1/agents"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 200', () => pm.response.to.have.status(200));",
+                  "pm.test('Returns agents array with 5+ core agents', () => {",
+                  "  const body = pm.response.json();",
+                  "  pm.expect(body.agents).to.be.an('array');",
+                  "  pm.expect(body.count).to.be.at.least(5);",
+                  "});"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Ledger",
+      "item": [
+        {
+          "name": "GET /v1/ledger — Audit Trail",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/v1/ledger?limit=10"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 200', () => pm.response.to.have.status(200));",
+                  "pm.test('Ledger is append-only (has note)', () => {",
+                  "  const body = pm.response.json();",
+                  "  pm.expect(body.note).to.contain('append-only');",
+                  "});"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Signup & Waitlist",
+      "item": [
+        {
+          "name": "POST /v1/signup — Waitlist Registration",
+          "request": {
+            "method": "POST",
+            "url": "{{base_url}}/v1/signup",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"test-{{$timestamp}}@noizy-test.ai\",\n  \"name\": \"Test Artist\",\n  \"role\": \"artist\",\n  \"source\": \"postman_test\"\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 201', () => pm.response.to.have.status(201));",
+                  "pm.test('Returns signup_id with SU- prefix', () => {",
+                  "  const body = pm.response.json();",
+                  "  pm.expect(body.signup_id).to.match(/^SU-/);",
+                  "  pm.expect(body.status).to.equal('registered');",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "GET /v1/waitlist/stats — Signup Breakdown",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/v1/waitlist/stats"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 200', () => pm.response.to.have.status(200));",
+                  "pm.test('Has waitlist breakdown', () => {",
+                  "  const body = pm.response.json();",
+                  "  pm.expect(body.waitlist).to.have.property('total');",
+                  "  pm.expect(body.waitlist.breakdown).to.have.all.keys('voice_actors', 'studios', 'curious', 'developers');",
+                  "});"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Other",
+      "item": [
+        {
+          "name": "GET /v1/variant — A/B Assignment",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/v1/variant"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 200', () => pm.response.to.have.status(200));",
+                  "pm.test('Returns variant A, B, or C', () => {",
+                  "  const body = pm.response.json();",
+                  "  pm.expect(body.variant).to.be.oneOf(['A', 'B', 'C']);",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "GET /v1/flags/:flag_name — Feature Flag",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/v1/flags/hero_variant_override"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 200', () => pm.response.to.have.status(200));",
+                  "pm.test('Has flag fields', () => {",
+                  "  const body = pm.response.json();",
+                  "  pm.expect(body).to.have.property('flag');",
+                  "  pm.expect(body).to.have.property('exists');",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "GET /nonexistent — 404 Handler",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/v1/this-should-404"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 404', () => pm.response.to.have.status(404));",
+                  "pm.test('Returns structured error', () => {",
+                  "  const body = pm.response.json();",
+                  "  pm.expect(body).to.have.property('error');",
+                  "  pm.expect(body).to.have.property('code');",
+                  "});"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

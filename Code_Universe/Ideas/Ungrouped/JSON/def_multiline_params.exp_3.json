@@ -1,0 +1,60 @@
+{
+    "params": {
+        "kind": "refactor.extract",
+        "title": "Refactor: Extract Variable",
+        "data": {
+            "range": {
+                "start": {
+                    "line": 4,
+                    "character": 2
+                },
+                "end": {
+                    "line": 4,
+                    "character": 7
+                }
+            },
+            "uri": "file:///fake"
+        }
+    },
+    "result": {
+        "title": "Refactor: Extract Variable",
+        "edit": {
+            "documentChanges": [
+                {
+                    "textDocument": {
+                        "uri": "file:///fake",
+                        "version": null
+                    },
+                    "edits": [
+                        {
+                            "range": {
+                                "start": {
+                                    "line": 4,
+                                    "character": 2
+                                },
+                                "end": {
+                                    "line": 4,
+                                    "character": 7
+                                }
+                            },
+                            "newText": "new_variable"
+                        },
+                        {
+                            "range": {
+                                "start": {
+                                    "line": 4,
+                                    "character": 2
+                                },
+                                "end": {
+                                    "line": 4,
+                                    "character": 2
+                                }
+                            },
+                            "newText": "new_variable = a = 2\n  "
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}

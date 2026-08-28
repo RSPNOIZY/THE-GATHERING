@@ -1,0 +1,27 @@
+{
+  "name": "@noizy/voice-bridge-http",
+  "version": "1.0.0",
+  "description": "NOIZY Voice Bridge — Cloud Run HTTP MCP mirror. Same tool contract as Lane 1 (local stdio). Distinct from apps/cloud-run-mcp/ — generic HTTP mirror deployable anywhere.",
+  "type": "module",
+  "main": "server.mjs",
+  "scripts": {
+    "start": "node server.mjs",
+    "deploy": "gcloud run deploy noizy-voice-bridge --source . --no-allow-unauthenticated --region us-central1 --min-instances 1",
+    "deploy-zero": "gcloud run deploy noizy-voice-bridge --source . --no-allow-unauthenticated --region us-central1 --min-instances 0"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "zod": "^3.23.0"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "keywords": [
+    "noizy",
+    "mcp",
+    "voice-bridge",
+    "cloud-run",
+    "opencode"
+  ],
+  "private": true
+}

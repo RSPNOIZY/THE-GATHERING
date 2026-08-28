@@ -1,0 +1,34 @@
+{
+  "name": "@tagspaces/html-viewer",
+  "version": "1.0.254",
+  "description": "A TagSpaces extension allowing opening of HTML files.",
+  "homepage": "https://www.tagspaces.org",
+  "main": "main.js",
+  "author": {
+    "name": "TagSpaces GmbH",
+    "email": "info@tagspaces.org",
+    "url": "https://www.tagspaces.org"
+  },
+  "license": "MIT",
+  "dependencies": {},
+  "tsextension": {
+    "name": "HTML Viewer",
+    "types": [
+      "viewer"
+    ],
+    "fileTypes": [
+      {
+        "ext": "htm",
+        "color": "#FDBD52"
+      },
+      {
+        "ext": "html",
+        "color": "#FDBD52"
+      },
+      {
+        "ext": "xhtml",
+        "color": "#FDBD52"
+      }
+    ]
+  }
+}

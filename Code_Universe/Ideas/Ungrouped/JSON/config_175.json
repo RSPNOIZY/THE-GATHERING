@@ -1,0 +1,30 @@
+{
+    "version": "10.2.0", 
+    "effect": {
+        "requirement": {
+            "faceDetect": true, 
+            "blit": {
+                "width": 360, 
+                "height": 640
+            }
+        }, 
+        "Link": [
+            {
+                "type": "AmazingFeature", 
+                "zorder": 9999, 
+                "path": "AmazingFeature/"
+            }
+        ], 
+        "model_names": {
+            "faceDetect": [
+                "tt_face", 
+                "tt_face_extra"
+            ], 
+            "skinseg": [
+                "tt_skin_seg"
+            ]
+        }
+    }, 
+    "bALG_BACH_CONFIG": true, 
+    "name": "2021_08_25_11_53_13_f8d5da51055711ec9db6acde48001122"
+}

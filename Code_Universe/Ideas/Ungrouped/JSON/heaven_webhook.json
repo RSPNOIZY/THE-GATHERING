@@ -1,0 +1,266 @@
+{
+  "name": "HEAVEN \u2014 Empire Orchestration",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "heaven",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "webhook-trigger",
+      "name": "GABRIEL Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        250,
+        300
+      ],
+      "webhookId": "noizy-empire-gateway"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Route incoming events to the right handler\nconst body = $input.first().json;\nconst action = body.action || body.event_type || 'unknown';\n\nconst routes = {\n  'voice.profile':     'build_voice_profile',\n  'actor.register':   'register_actor',\n  'consent.issue':    'issue_consent',\n  'consent.revoke':   'kill_switch',\n  'synth.request':    'synthesize',\n  'archivist.run':    'run_archivist',\n  'empire.status':    'get_status',\n};\n\nreturn [{\n  json: {\n    ...body,\n    routed_to: routes[action] || 'unknown_route',\n    timestamp: new Date().toISOString(),\n    source: 'GABRIEL_ORCHESTRATOR'\n  }\n}];"
+      },
+      "id": "router",
+      "name": "GABRIEL Router",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.routed_to }}",
+              "value2": "get_status"
+            }
+          ]
+        }
+      },
+      "id": "switch-status",
+      "name": "Route: Status?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        650,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://heaven.rsp-5f3.workers.dev/gabriel",
+        "options": {}
+      },
+      "id": "fetch-gabriel",
+      "name": "Fetch GABRIEL Status",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [
+        850,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://heaven.rsp-5f3.workers.dev/api/v1/stats",
+        "options": {}
+      },
+      "id": "fetch-stats",
+      "name": "Fetch Empire Stats",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [
+        850,
+        350
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Merge GABRIEL + Stats into empire report\nconst gabriel = $('Fetch GABRIEL Status').first()?.json || {};\nconst stats   = $('Fetch Empire Stats').first()?.json?.stats || {};\n\nreturn [{\n  json: {\n    empire: 'NOIZY',\n    gabriel_status: gabriel.gabriel || 'UNKNOWN',\n    rsp001: gabriel.rsp001 || null,\n    actors: stats.actors || 0,\n    ledger_events: stats.ledger_events || 0,\n    consent_tokens: stats.consent_tokens || {},\n    revenue_cad: stats.total_revenue_cad || 0,\n    report_at: new Date().toISOString(),\n    doctrine: 'Consent as code. Provenance as default. Revocation as sacred.',\n  }\n}];"
+      },
+      "id": "merge-report",
+      "name": "Build Empire Report",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1050,
+        275
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify($json) }}"
+      },
+      "id": "respond",
+      "name": "Send Response",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        1250,
+        275
+      ]
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "hoursInterval": 1
+            }
+          ]
+        }
+      },
+      "id": "hourly-trigger",
+      "name": "Hourly Heartbeat",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1,
+      "position": [
+        250,
+        500
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://heaven.rsp-5f3.workers.dev/health",
+        "options": {}
+      },
+      "id": "health-ping",
+      "name": "HEAVEN Health Ping",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [
+        450,
+        500
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Log heartbeat \u2014 alert if HEAVEN is down\nconst health = $input.first().json;\nconst isLive = health.status === 'LIVE';\nif (!isLive) {\n  console.log('[ALERT] HEAVEN is DOWN! Status:', health.status);\n}\nconsole.log(`[HEARTBEAT] ${new Date().toISOString()} | Actors: ${health.actors} | Ledger: ${health.ledger_events} | Tokens: ${health.consent_tokens}`);\nreturn [{ json: { ...health, heartbeat: true, alert: !isLive } }];"
+      },
+      "id": "heartbeat-log",
+      "name": "Log Heartbeat",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        650,
+        500
+      ]
+    }
+  ],
+  "connections": {
+    "GABRIEL Webhook": {
+      "main": [
+        [
+          {
+            "node": "GABRIEL Router",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GABRIEL Router": {
+      "main": [
+        [
+          {
+            "node": "Route: Status?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Route: Status?": {
+      "main": [
+        [
+          {
+            "node": "Fetch GABRIEL Status",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Fetch Empire Stats",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch GABRIEL Status": {
+      "main": [
+        [
+          {
+            "node": "Build Empire Report",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch Empire Stats": {
+      "main": [
+        [
+          {
+            "node": "Build Empire Report",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build Empire Report": {
+      "main": [
+        [
+          {
+            "node": "Send Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Hourly Heartbeat": {
+      "main": [
+        [
+          {
+            "node": "HEAVEN Health Ping",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HEAVEN Health Ping": {
+      "main": [
+        [
+          {
+            "node": "Log Heartbeat",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "meta": {
+    "instanceId": "noizy-empire",
+    "templateCredsSetupCompleted": true
+  }
+}

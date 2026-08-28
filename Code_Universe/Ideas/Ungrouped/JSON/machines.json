@@ -1,0 +1,43 @@
+{
+  "mc96ecouniverse": {
+    "description": "Network of NOIZYLAB systems",
+    "machines": {
+      "GOD": {
+        "name": "Mac Studio M2 Ultra",
+        "hostname": "m2ultra.local",
+        "ip": null,
+        "role": "Primary Command Center",
+        "os": "macOS",
+        "user": "m2ultra",
+        "gabriel_path": "/Users/m2ultra/NOIZYLAB/GABRIEL",
+        "status": "active"
+      },
+      "GABRIEL": {
+        "name": "HP Omen",
+        "hostname": "hp-omen.local",
+        "ip": null,
+        "role": "Windows Workstation",
+        "os": "Windows 11",
+        "user": null,
+        "gabriel_path": "C:\\NOIZYLAB\\GABRIEL",
+        "status": "pending_setup"
+      },
+      "DaFixer": {
+        "name": "MacBook Pro",
+        "hostname": "dafixer.local",
+        "ip": null,
+        "role": "Mobile Repair Unit",
+        "os": "macOS",
+        "user": null,
+        "gabriel_path": null,
+        "status": "pending_setup"
+      }
+    },
+    "sync": {
+      "method": "git",
+      "repo": "https://github.com/NOIZYLAB-io/GABRIEL.git",
+      "branch": "main",
+      "auto_sync": true
+    }
+  }
+}

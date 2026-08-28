@@ -1,0 +1,39 @@
+{
+  "name": "SiriIntentAgent",
+  "version": "1.0",
+  "states": {
+    "IDLE": {
+      "on_wake_word": "LISTENING"
+    },
+    "LISTENING": {
+      "on_utterance_complete": "PARSING_INTENT",
+      "on_timeout": "IDLE"
+    },
+    "PARSING_INTENT": {
+      "description": "Routes utterance to MLX Intent Parser (70B LLaMA 3.1 or Mistral 8x7B) for sub-100ms processing.",
+      "transitions": {
+        "intent_confidence_high": "CHECK_CONSENT",
+        "intent_confidence_low": "ASK_CLARIFICATION",
+        "fallback_homekit": "ROUTE_HOMEKIT"
+      }
+    },
+    "CHECK_CONSENT": {
+      "description": "Queries D1 Rule Zero Consent Ledger.",
+      "transitions": {
+        "consent_granted": "ROUTE_OSC",
+        "consent_denied": "IDLE"
+      }
+    },
+    "ASK_CLARIFICATION": {
+      "on_clarification_received": "PARSING_INTENT"
+    },
+    "ROUTE_OSC": {
+      "description": "Sends canonical command to port 9779 for GUI sync and execution.",
+      "on_receipt": "IDLE"
+    },
+    "ROUTE_HOMEKIT": {
+      "description": "Fallback automation via standard Siri HomeKit commands.",
+      "on_complete": "IDLE"
+    }
+  }
+}

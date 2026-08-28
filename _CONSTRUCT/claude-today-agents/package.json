@@ -1,0 +1,27 @@
+{
+  "name": "noizy-unified-agents",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "search": "node system-core/mc96-omnisearch.js",
+    "slack-engine": "node slack-bots/orchestrator.js",
+    "discord-engine": "node discord-bots/orchestrator.js",
+    "desktop-api": "node app-apis/desktop-orchestrator.js",
+    "mcp-boot": "node mcp-servers/desktop-mcp.js",
+    "clean-drive": "node system-core/drive-sanitizer/mc96-cleaner.js",
+    "multi-brain": "node system-core/multi-brain/hub-orchestrator.js",
+    "neural-core": "node system-core/multi-brain/neural-core.js",
+    "monetize": "node system-core/multi-brain/monetization-core.js",
+    "app-bridge": "node system-core/multi-brain/local-app-bridge.js",
+    "dashboard": "node system-core/multi-brain/dashboard-core.js",
+    "live-forever": "node system-core/agent-guardian.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "cohere-ai": "^7.13.1",
+    "express": "^4.19.2",
+    "express-ws": "^5.0.2",
+    "pidusage": "^3.0.2"
+  }
+}

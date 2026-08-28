@@ -1,0 +1,88 @@
+{
+  "name": "mc96-file-tracker",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [{ "field": "minutes", "minutesInterval": 5 }]
+        }
+      },
+      "id": "schedule-trigger",
+      "name": "Every 5min",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.1,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "command": "find /Users/m2ultra/NOIZYANTHROPIC -type f -newer /tmp/mc96-tracker-last-run -not -path '*/node_modules/*' -not -path '*/.git/*' -not -path '*/dist/*' -not -path '*/build/*' -not -path '*/_quarantine_*' 2>/dev/null | head -100"
+      },
+      "id": "find-changed",
+      "name": "Find changed files (since last run)",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [460, 300]
+    },
+    {
+      "parameters": {
+        "command": "touch /tmp/mc96-tracker-last-run"
+      },
+      "id": "update-marker",
+      "name": "Update last-run marker",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [680, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "const out = $input.first().json.stdout || '';\nconst paths = out.split('\\n').filter(p => p.length > 0);\nreturn paths.map(path => {\n  const cls =\n    path.startsWith('/Users/m2ultra/NOIZYANTHROPIC/.claude/rules/') ? 'DOCTRINE' :\n    path.startsWith('/Users/m2ultra/NOIZYANTHROPIC/.claude/agents/') ? 'AGENT_DEF' :\n    path.startsWith('/Users/m2ultra/NOIZYANTHROPIC/.claude/skills/') ? 'SKILL' :\n    path.startsWith('/Users/m2ultra/NOIZYANTHROPIC/registry/') ? 'REGISTRY' :\n    path.includes('MANIFESTO') ? 'MANIFESTO' :\n    path.startsWith('/Users/m2ultra/NOIZYANTHROPIC/docs/governance/') ? 'GOVERNANCE' :\n    path.match(/\\\\/(apps|mc96|cloudflare\\/workers)\\\\/.*\\\\/src\\\\//) ? 'CODE_RUNTIME' :\n    path.match(/\\\\/(tools|scripts|ops)\\\\//) ? 'CODE_TOOL' :\n    path.endsWith('.sql') ? 'SCHEMA' :\n    path.match(/(wrangler\\\\.|package\\\\.json|\\\\.env)/) ? 'CONFIG' :\n    path.includes('PlowmansChronicles') ? 'CHRONICLE' :\n    path.match(/\\\\/master-deck\\\\//) ? 'DECK_SOURCE' :\n    path.includes('/public/web/designs/') ? 'DESIGN' :\n    path.includes('/scan-reports/') || path.includes('/audits/') ? 'AUDIT' :\n    path.includes('dazeflow-') ? 'DAZEFLOW' :\n    'UNCLASSIFIED';\n  return {\n    json: {\n      path,\n      class: cls,\n      ts: new Date().toISOString()\n    }\n  };\n});"
+      },
+      "id": "classify",
+      "name": "Classify by file pattern",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [900, 300]
+    },
+    {
+      "parameters": {
+        "url": "https://heaven.rsp-5f3.workers.dev/api/v1/ledger",
+        "authentication": "genericCredentialType",
+        "method": "POST",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "X-NOIZY-Key", "value": "={{ $env.NOIZY_API_KEY }}" },
+            { "name": "Content-Type", "value": "application/json" }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"event_type\": \"FILE_TRACKED\",\n  \"actor_id\": \"RSP_001\",\n  \"details\": {\n    \"path\": \"{{ $json.path }}\",\n    \"class\": \"{{ $json.class }}\",\n    \"source\": \"mc96-file-tracker n8n\"\n  }\n}"
+      },
+      "id": "ledger-append",
+      "name": "Append to noizy_ledger",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [1120, 300]
+    }
+  ],
+  "connections": {
+    "Every 5min": {
+      "main": [[{ "node": "Find changed files (since last run)", "type": "main", "index": 0 }]]
+    },
+    "Find changed files (since last run)": {
+      "main": [[{ "node": "Update last-run marker", "type": "main", "index": 0 }]]
+    },
+    "Update last-run marker": {
+      "main": [[{ "node": "Classify by file pattern", "type": "main", "index": 0 }]]
+    },
+    "Classify by file pattern": {
+      "main": [[{ "node": "Append to noizy_ledger", "type": "main", "index": 0 }]]
+    }
+  },
+  "settings": { "executionOrder": "v1" },
+  "tags": [{ "name": "mc96" }, { "name": "file-tracker" }, { "name": "heal-the-world" }],
+  "meta": {
+    "doctrine": "Ratified 2026-04-20 per .claude/rules/mc96-file-tracking.md decree. Closes the loop: every file event in MC96 ledgers to noizy_ledger, surfaces in deck builds, indexes into AQUARIUM. Fires every 5 minutes; uses /tmp marker for diff."
+  }
+}

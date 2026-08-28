@@ -1,0 +1,71 @@
+{
+  "ecosystem": "NOIZYWORLD / MC96 EMPIRE",
+  "version": "4.0.0",
+  "master_architect": "RSP_001",
+  "machine": "GOD.local (Apple M2 Ultra 192GB RAM)",
+  "canonical_repository": "https://github.com/RSPNOIZY/THE-GATHERING",
+  "timestamp": "2026-08-28T12:15:00-04:00",
+  "invariants": {
+    "rule_zero": "ONE COMMAND -> ONE ACTION -> ONE RECEIPT",
+    "the_plowman_standard": "75/25 Creator Revenue Floor (Hardcoded Const)",
+    "biometric_law_25": "150-dimensional non-reversible voice hash & CAI 60-day filing clearance",
+    "provenance_standard": "C2PA v2.2 JUMBF Manifests & Ed25519 Chain Signatures",
+    "agent_gating_tier": "T0_PUBLIC to T4_SOVEREIGN Fail-Closed"
+  },
+  "cloud_endpoints": {
+    "mcp_router": "https://mcp.noizyfish.com",
+    "trust_verifier": "https://noizy.ai/trust/verify",
+    "transparency_ledger": "https://noizy.ai/transparency/proofs",
+    "honda_telemetry_gateway": "https://api.hondalink.ca/v1/vehicles/crv_2026_sport_touring"
+  },
+  "storage_tier_topology": {
+    "tier_0_hot_local": {
+      "path": "/Users/m2ultra/THE-GATHERING",
+      "description": "Active canonical monorepo and live execution workspace"
+    },
+    "tier_1_warm_rideshare": {
+      "path": "/Users/m2ultra/rideshare",
+      "description": "High-frequency vehicular OBD-II, GPS, and spatial database"
+    },
+    "tier_2_cloud_mirrors": {
+      "google_drive_primary": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com",
+      "icloud_mirror": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rsplowman@icloud.com",
+      "onedrive_backup": "/Users/m2ultra/Library/CloudStorage/OneDrive-Personal(2)"
+    },
+    "tier_3_cold_vaults": {
+      "12tb_master_vault": "/Volumes/12TB",
+      "4tb_lacie_github": "/Volumes/4TB Lacie/GitHub/THE-GATHERING",
+      "2tb_sgw_audio": "/Volumes/2TB_SGW/FISH_MUSIC"
+    }
+  },
+  "modules": {
+    "01_core_os": {
+      "lucy_engine": "LUCY/src/engine/lucy-v4-engine.ts",
+      "telemetry_daemon": "LUCY/src/telemetry/lucy_vehicular_telemetry.py",
+      "telemetry_processor": "LUCY/src/telemetry/telemetry-processor.ts",
+      "memory_vault": "memory/"
+    },
+    "02_agents_swarms": {
+      "swarm_spec": "agents/noizyarmy/swarm_spec_v1.yaml",
+      "prompt_scaffolding": "agents/noizyarmy/swarm-prompts.ts",
+      "gating_engine": "agents/noizyarmy/agent-gating.ts",
+      "orchestrator": "agents/noizyarmy/swarm-orchestrator.ts"
+    },
+    "03_edge_mcp_infra": {
+      "worker_router": "infrastructure/mcp-worker/src/index.ts",
+      "wrangler_config": "infrastructure/mcp-worker/wrangler.toml",
+      "tool_registry": "infrastructure/mcp-worker/src/registry.ts"
+    },
+    "04_database_schemas": {
+      "001_core": "supabase/migrations/001_core.sql",
+      "002_consent_law25": "supabase/migrations/002_consent_law25.sql",
+      "003_mc96_ledger": "supabase/migrations/003_mc96_ledger.sql",
+      "004_audit_evidence_c2pa": "supabase/migrations/004_audit_evidence_c2pa.sql"
+    },
+    "05_trust_c2pa_governance": {
+      "c2pa_schema": "supabase/migrations/004_audit_evidence_c2pa.sql",
+      "law25_ledger": "supabase/migrations/002_consent_law25.sql",
+      "revenue_split": "The Plowman Standard 75/25"
+    }
+  }
+}

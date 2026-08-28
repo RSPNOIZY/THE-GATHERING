@@ -1,0 +1,276 @@
+{
+  "name": "NOIZY Empire \u2014 Health Dashboard v2",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes",
+              "minutesInterval": 5
+            }
+          ]
+        }
+      },
+      "id": "health-schedule",
+      "name": "Every 5 Minutes",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "health-check",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "health-manual",
+      "name": "Manual Health Check",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        200,
+        500
+      ],
+      "webhookId": "health-check"
+    },
+    {
+      "parameters": {
+        "jsCode": "// \u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\n// NOIZY Health Dashboard v2 \u2014 Comprehensive System Check\n// Checks ALL services in the NOIZY empire\n// \u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\n\nconst checks = [\n  // Local Docker services\n  { name: 'n8n',             url: 'http://localhost:5678/healthz',                 type: 'docker',   critical: true  },\n  { name: 'PostgreSQL',      url: 'http://localhost:5432',                         type: 'docker',   critical: true,  tcpCheck: true },\n  { name: 'Redis',           url: 'http://localhost:6379',                         type: 'docker',   critical: true,  tcpCheck: true },\n  { name: 'Open WebUI',      url: 'http://localhost:3080/',                        type: 'docker',   critical: false },\n  { name: 'RabbitMQ',        url: 'http://localhost:15672/',                       type: 'docker',   critical: false },\n  { name: 'Qdrant',          url: 'http://localhost:6333/collections',             type: 'docker',   critical: false },\n  { name: 'Grafana',         url: 'http://localhost:3000/api/health',              type: 'docker',   critical: false },\n  { name: 'Neo4j',           url: 'http://localhost:7474/',                        type: 'docker',   critical: false },\n\n  // Cloudflare Workers\n  { name: 'Heaven',        url: 'https://noizy.ai/api/status',                  type: 'cf-worker', critical: true  },\n  { name: 'Consent Gateway', url: 'https://consent.noizy.ai/health',              type: 'cf-worker', critical: true  },\n  { name: 'Webhook Proxy',   url: 'https://webhook-proxy.rsp-5f3.workers.dev/stats', type: 'cf-worker', critical: false },\n\n  // External APIs\n  { name: 'Linear API',      url: 'https://api.linear.app/graphql',               type: 'external',  critical: false, method: 'POST', body: '{\"query\":\"{ viewer { id } }\"}', headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + ($env.LINEAR_API_KEY || 'test') } },\n  { name: 'Notion API',      url: 'https://api.notion.com/v1/users/me',           type: 'external',  critical: false, headers: { 'Authorization': 'Bearer ' + ($env.NOTION_API_KEY || 'test'), 'Notion-Version': '2022-06-28' } },\n  { name: 'GitHub API',      url: 'https://api.github.com/rate_limit',            type: 'external',  critical: false, headers: { 'Authorization': 'token ' + ($env.GITHUB_TOKEN || 'test') } },\n];\n\nreturn [{ json: { checks, timestamp: new Date().toISOString() } }];"
+      },
+      "id": "build-check-list",
+      "name": "Build Check List",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        460,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Execute all health checks with timeouts\nconst { checks, timestamp } = $input.first().json;\n\nconst results = [];\n\nfor (const check of checks) {\n  const start = Date.now();\n  let status = 'unknown';\n  let responseTime = 0;\n  let statusCode = 0;\n  let error = null;\n\n  if (check.tcpCheck) {\n    // TCP-only services (Postgres, Redis) - just mark as needing Docker check\n    status = 'check-via-docker';\n    responseTime = 0;\n  } else {\n    try {\n      const controller = new AbortController();\n      const timeout = setTimeout(() => controller.abort(), 8000);\n\n      const opts = {\n        method: check.method || 'GET',\n        signal: controller.signal,\n        headers: check.headers || {},\n      };\n      if (check.body) opts.body = check.body;\n\n      const response = await fetch(check.url, opts);\n      clearTimeout(timeout);\n\n      statusCode = response.status;\n      responseTime = Date.now() - start;\n\n      if (statusCode >= 200 && statusCode < 400) {\n        status = 'healthy';\n      } else if (statusCode >= 400 && statusCode < 500) {\n        status = 'degraded';\n      } else {\n        status = 'unhealthy';\n      }\n    } catch (err) {\n      responseTime = Date.now() - start;\n      error = err.message || 'Connection failed';\n\n      if (error.includes('abort') || error.includes('timeout')) {\n        status = 'timeout';\n      } else if (error.includes('ECONNREFUSED') || error.includes('fetch failed')) {\n        status = 'down';\n      } else {\n        status = 'error';\n      }\n    }\n  }\n\n  results.push({\n    name: check.name,\n    type: check.type,\n    critical: check.critical,\n    status,\n    statusCode,\n    responseTime,\n    error,\n    url: check.url,\n  });\n}\n\n// Calculate overall health\nconst healthy = results.filter(r => r.status === 'healthy').length;\nconst criticalDown = results.filter(r => r.critical && ['down', 'error', 'timeout', 'unhealthy'].includes(r.status));\nconst total = results.length;\nconst tcpSkipped = results.filter(r => r.status === 'check-via-docker').length;\n\nconst overallStatus = criticalDown.length > 0 ? '\ud83d\udd34 CRITICAL' : (healthy + tcpSkipped >= total * 0.7 ? '\ud83d\udfe2 HEALTHY' : '\ud83d\udfe1 DEGRADED');\n\nreturn [{ json: {\n  overallStatus,\n  timestamp,\n  summary: {\n    total,\n    healthy,\n    degraded: results.filter(r => r.status === 'degraded').length,\n    down: results.filter(r => ['down', 'error', 'timeout', 'unhealthy'].includes(r.status)).length,\n    tcpSkipped,\n    criticalIssues: criticalDown.map(r => r.name),\n  },\n  results,\n  statusMatrix: results.map(r => ({\n    service: r.name,\n    icon: r.status === 'healthy' ? '\u2705' : r.status === 'degraded' ? '\u26a0\ufe0f' : r.status === 'check-via-docker' ? '\ud83d\udd35' : '\u274c',\n    status: r.status,\n    ms: r.responseTime,\n    type: r.type,\n  }))\n} }];"
+      },
+      "id": "execute-checks",
+      "name": "Execute Health Checks",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        700,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "rules": {
+          "rules": [
+            {
+              "outputIndex": 0,
+              "conditions": {
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.overallStatus }}",
+                    "rightValue": "\ud83d\udd34 CRITICAL",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "fallbackOutput": 1
+        }
+      },
+      "id": "critical-check",
+      "name": "Critical Issues?",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3,
+      "position": [
+        940,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $env.HEAVEN_URL }}/api/gabriel/urgent",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "X-Noizy-Key",
+              "value": "={{ $env.NOIZY_API_KEY }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ type: 'health_alert', severity: 'critical', overall: $json.overallStatus, critical_services: $json.summary.criticalIssues, matrix: $json.statusMatrix, timestamp: $json.timestamp }) }}",
+        "options": {
+          "response": {
+            "response": {
+              "neverError": true
+            }
+          }
+        }
+      },
+      "id": "alert-gabriel",
+      "name": "\ud83d\udea8 Alert GABRIEL",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [
+        1180,
+        280
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.notion.com/v1/pages",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $env.NOTION_API_KEY }}"
+            },
+            {
+              "name": "Notion-Version",
+              "value": "2022-06-28"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"parent\": { \"database_id\": \"{{ $env.NOTION_HEALTH_DB_ID || $env.NOTION_EVENTS_DB_ID }}\" },\n  \"properties\": {\n    \"Status\": { \"title\": [{ \"text\": { \"content\": $json.overallStatus + \" \u2014 Empire Health Report\" } }] },\n    \"Summary\": { \"rich_text\": [{ \"text\": { \"content\": `${$json.summary.healthy}/${$json.summary.total} healthy | ${$json.summary.down} down | Critical: ${$json.summary.criticalIssues.join(', ') || 'none'}` } }] },\n    \"Matrix\": { \"rich_text\": [{ \"text\": { \"content\": $json.statusMatrix.map(s => `${s.icon} ${s.service} (${s.ms}ms)`).join('\\n').substring(0, 2000) } }] },\n    \"Timestamp\": { \"date\": { \"start\": $json.timestamp } }\n  }\n}",
+        "options": {
+          "response": {
+            "response": {
+              "neverError": true
+            }
+          }
+        }
+      },
+      "id": "post-to-notion",
+      "name": "Post to Notion Dashboard",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [
+        1180,
+        480
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ status: $json.overallStatus, summary: $json.summary, matrix: $json.statusMatrix, timestamp: $json.timestamp }) }}"
+      },
+      "id": "respond-health",
+      "name": "Respond with Report",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        1420,
+        480
+      ]
+    }
+  ],
+  "connections": {
+    "Every 5 Minutes": {
+      "main": [
+        [
+          {
+            "node": "Build Check List",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Manual Health Check": {
+      "main": [
+        [
+          {
+            "node": "Build Check List",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build Check List": {
+      "main": [
+        [
+          {
+            "node": "Execute Health Checks",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute Health Checks": {
+      "main": [
+        [
+          {
+            "node": "Critical Issues?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Critical Issues?": {
+      "main": [
+        [
+          {
+            "node": "\ud83d\udea8 Alert GABRIEL",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Post to Notion Dashboard",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "\ud83d\udea8 Alert GABRIEL": {
+      "main": [
+        [
+          {
+            "node": "Post to Notion Dashboard",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Post to Notion Dashboard": {
+      "main": [
+        [
+          {
+            "node": "Respond with Report",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  }
+}

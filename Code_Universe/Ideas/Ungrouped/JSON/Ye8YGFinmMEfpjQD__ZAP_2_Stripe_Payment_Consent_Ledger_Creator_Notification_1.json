@@ -1,0 +1,159 @@
+{
+  "name": "ZAP 2: Stripe Payment \u2192 Consent Ledger \u2192 Creator Notification",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "stripe-payment",
+        "options": {}
+      },
+      "id": "wh2",
+      "name": "Stripe Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        240,
+        300
+      ],
+      "webhookId": "959a3d00-846d-4032-8e86-6edecfbd37e1"
+    },
+    {
+      "parameters": {
+        "jsCode": "const body = $input.first().json.body || $input.first().json;\nconst eventType = body.type || 'unknown';\nconst data = body.data?.object || {};\nconst amount = (data.amount || data.amount_paid || data.amount_total || 0) / 100;\nconst currency = (data.currency || 'usd').toUpperCase();\nconst customer = data.customer_email || data.customer || 'unknown';\nconst creatorSplit = amount * 0.75;\nconst platformSplit = amount * 0.25;\nreturn [{ json: { event: eventType, amount, currency, customer, creator_split: creatorSplit, platform_split: platformSplit, plowman_standard: '75/25', stripe_event_id: body.id, livemode: body.livemode, ts: new Date().toISOString() } }];"
+      },
+      "id": "parse2",
+      "name": "Parse + Apply Plowman Standard",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        460,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://heaven.rsp-5f3.workers.dev/api/v1/ledger/append",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "name": "X-NOIZY-Key",
+              "value": "={{ $env.NOIZY_API_KEY }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ event_type: 'payment.' + $json.event, payload_json: JSON.stringify($json), source_system: 'STRIPE' }) }}"
+      },
+      "id": "ledger2",
+      "name": "Append to Heaven Ledger",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [
+        680,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "url": "http://localhost:7777/memcell/stripe:payment:{{ $now.toMillis() }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ value: { ...($json), alert: `Payment received: $${$json.amount} ${$json.currency} \u2014 Creator: $${$json.creator_split} / Platform: $${$json.platform_split}` } }) }}"
+      },
+      "id": "gabriel2",
+      "name": "GABRIEL Memcell",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [
+        680,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "url": "http://localhost:7777/speak",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ text: `Payment received. ${$json.amount} ${$json.currency}. Creator gets ${$json.creator_split}. Plowman Standard enforced.` }) }}"
+      },
+      "id": "speak2",
+      "name": "Speak Payment Alert",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [
+        900,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Stripe Webhook": {
+      "main": [
+        [
+          {
+            "node": "Parse + Apply Plowman Standard",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse + Apply Plowman Standard": {
+      "main": [
+        [
+          {
+            "node": "Append to Heaven Ledger",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "GABRIEL Memcell",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GABRIEL Memcell": {
+      "main": [
+        [
+          {
+            "node": "Speak Payment Alert",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  }
+}

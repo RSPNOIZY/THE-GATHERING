@@ -1,0 +1,11 @@
+{
+	"ae_tool" : "AmazingEditor",
+	"content" : {},
+	"needblend" : false,
+	"requirement" : 
+	{
+		"faceDetect" : true
+	},
+	"tag" : "AMG_1176738193218365630513798719052413019806",
+	"version" : "1.0"
+}

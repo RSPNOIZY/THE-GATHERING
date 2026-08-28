@@ -1,0 +1,24 @@
+{
+	"private": true,
+	"packageManager": "pnpm@11.1.1",
+	"scripts": {
+		"build": "tsgo -b",
+		"watch": "tsgo -b -w",
+		"watch:ext": "node extensions/vscode/scripts/write-plugins.ts --dev && npm run watch",
+		"test": "npm run build && vitest run",
+		"test:grammar": "vitest run extensions/vscode/tests/grammar.spec.ts",
+		"format": "dprint fmt",
+		"lint": "tsslint --project {tsconfig.json,packages/*/tsconfig.json,extensions/*/tsconfig.json}",
+		"lint:fix": "npm run lint -- --fix"
+	},
+	"devDependencies": {
+		"@tsslint/cli": "latest",
+		"@tsslint/compat-eslint": "latest",
+		"@tsslint/config": "latest",
+		"@typescript-eslint/eslint-plugin": "~8.58.2",
+		"@typescript/native-preview": "latest",
+		"dprint": "latest",
+		"typescript": "latest",
+		"vitest": "latest"
+	}
+}

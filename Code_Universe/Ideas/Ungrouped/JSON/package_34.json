@@ -1,0 +1,18 @@
+{
+  "name": "metabeast-remote",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Remote MCP Worker scaffold — Streamable HTTP, minimal /health + /mcp echo, ready to extend.",
+  "main": "src/index.ts",
+  "scripts": {
+    "dev": "wrangler dev --local",
+    "build": "wrangler deploy --dry-run --outdir dist",
+    "deploy": "wrangler deploy",
+    "check": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20250101.0",
+    "typescript": "^5.4.0",
+    "wrangler": "^4.83.0"
+  }
+}

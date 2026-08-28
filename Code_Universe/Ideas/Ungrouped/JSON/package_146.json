@@ -1,0 +1,23 @@
+{
+  "name": "noizy-claude",
+  "version": "1.0.0",
+  "description": "NOIZY Claude — Hot-rodded utility MCP server with full Anthropic API power",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "noizy-claude": "dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "tsc --watch"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.52.0",
+    "@modelcontextprotocol/sdk": "^1.12.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.7.0"
+  }
+}

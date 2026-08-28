@@ -1,0 +1,108 @@
+[
+    {
+        "ClassName": "LumiManager",
+        "Super": "ScriptComponent",
+        "FilePath": "lua/LumiFamily/LumiManager.lua",
+        "FileAbsPath": "/Users/bytedance/Downloads/\u8499\u7248\u8c03\u8272\u8d44\u6e90\u5305/\u8499\u7248\u539f\u59cb\u8d44\u6e90/1a18972fb0c5dde148ea8018d90f48dd/AmazingFeature/lua/LumiFamily/LumiManager.lua",
+        "Properties": [
+            {
+                "VarName": "LumiEffectTrans",
+                "VarType": "Transform",
+                "Comment": ""
+            },
+            {
+                "VarName": "start_render_layer",
+                "VarType": "Int64",
+                "Comment": ""
+            },
+            {
+                "VarName": "start_render_order",
+                "VarType": "Int64",
+                "Comment": ""
+            },
+            {
+                "VarName": "InputTex",
+                "VarType": "Texture",
+                "Comment": ""
+            },
+            {
+                "VarName": "OutputTex",
+                "VarType": "Texture",
+                "Comment": ""
+            },
+            {
+                "VarName": "PingPongTex",
+                "VarType": "Texture",
+                "Comment": ""
+            }
+        ],
+        "Methods": [
+            {
+                "FuncName": "new",
+                "Params": [],
+                "Comment": ""
+            },
+            {
+                "FuncName": "onStart",
+                "Params": [],
+                "Comment": ""
+            },
+            {
+                "FuncName": "onDestroy",
+                "Params": [],
+                "Comment": ""
+            },
+            {
+                "FuncName": "getCameraCount",
+                "Params": [],
+                "Comment": "",
+                "AnnoItems": [
+                    {
+                        "ItemType": "UI",
+                        "Attributes": [
+                            {
+                                "AttrType": "Button",
+                                "RawValue": "",
+                                "Values": [
+                                    "ReRender"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "FuncName": "ReRender",
+                "Params": [],
+                "Comment": ""
+            },
+            {
+                "FuncName": "registerLumiObj",
+                "Params": [],
+                "Comment": ""
+            },
+            {
+                "FuncName": "updateCameraLayerAndOrder",
+                "Params": [],
+                "Comment": ""
+            },
+            {
+                "FuncName": "updateRtPingpong",
+                "Params": [],
+                "Comment": ""
+            },
+            {
+                "FuncName": "onUpdate",
+                "Params": [],
+                "Comment": ""
+            },
+            {
+                "FuncName": "onEvent",
+                "Params": [],
+                "Comment": ""
+            }
+        ],
+        "Comment": "",
+        "ExportFiles": []
+    }
+]

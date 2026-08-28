@@ -1,0 +1,11 @@
+{
+  "contextFileName": "GEMINI.md",
+  "description": "Gemini CLI extension for Google Kubernetes Engine.",
+  "mcpServers": {
+    "gke": {
+      "command": "${extensionPath}${/}gke-mcp"
+    }
+  },
+  "name": "gke-mcp",
+  "version": "0.13.0"
+}

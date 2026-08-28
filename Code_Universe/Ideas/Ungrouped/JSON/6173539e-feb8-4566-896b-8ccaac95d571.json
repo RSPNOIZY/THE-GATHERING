@@ -1,0 +1,58 @@
+{
+  "session_id": "6173539e-feb8-4566-896b-8ccaac95d571",
+  "session_name": "Schema Test",
+  "session_number": 97,
+  "actor_id": "RSP_001",
+  "character_id": "rsp_natural",
+  "actor_imprint_version": "v1",
+  "planned_takes": 1,
+  "script_lines": [
+    {
+      "line_number": 1,
+      "text": "Every sound has a story. Listen close.",
+      "direction": "Intimate, like sharing a secret with a student",
+      "energy_band": "whisper"
+    }
+  ],
+  "recording_format": {
+    "codec": "wav",
+    "sample_rate": 48000,
+    "bit_depth": 24,
+    "channels": "mono"
+  },
+  "recording_device": "GOD M2 Ultra — Built-in Microphone",
+  "recording_environment": "Home Studio — Ottawa",
+  "takes": [
+    {
+      "take_id": "ebd65b7c-c6d0-4e28-8691-26278c572d31",
+      "take_number": 1,
+      "session_id": "6173539e-feb8-4566-896b-8ccaac95d571",
+      "actor_id": "RSP_001",
+      "character_id": "rsp_natural",
+      "script_line": "Every sound has a story. Listen close.",
+      "performance_mode": "CHARACTER",
+      "intensity": 0.5,
+      "energy_band": "whisper",
+      "improvised": false,
+      "audio_file": "6173539e-feb8-4566-896b-8ccaac95d571/take-001.wav",
+      "audio_duration_ms": 3000,
+      "status": "captured",
+      "voice_ip_retained": true,
+      "consent_confirmed": true,
+      "started_at": "2026-04-02T20:43:51.720Z",
+      "blessed": false,
+      "gabriel_ingested": false
+    }
+  ],
+  "total_takes": 1,
+  "approved_takes": 0,
+  "rejected_takes": 0,
+  "total_duration_ms": 3000,
+  "status": "active",
+  "all_consent_confirmed": true,
+  "voice_ip_owner": true,
+  "created_at": "2026-04-02T20:43:51.720Z",
+  "blessed": false,
+  "gabriel_ingested": false,
+  "started_at": "2026-04-02T20:43:51.720Z"
+}

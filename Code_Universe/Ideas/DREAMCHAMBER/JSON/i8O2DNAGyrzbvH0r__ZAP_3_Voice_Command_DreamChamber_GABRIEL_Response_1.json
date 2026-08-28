@@ -1,0 +1,129 @@
+{
+  "name": "ZAP 3: Voice Command \u2192 DreamChamber \u2192 GABRIEL Response",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "voice-command",
+        "options": {}
+      },
+      "id": "wh3",
+      "name": "Voice Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        240,
+        300
+      ],
+      "webhookId": "a5050c66-8ebd-4a3e-bc99-759b3be69bb8"
+    },
+    {
+      "parameters": {
+        "jsCode": "const body = $input.first().json.body || $input.first().json;\nconst text = body.transcript || body.text || body.command || '';\nconst source = body.source || 'voice-bridge';\n// Auto-detect tower\nconst t = text.toLowerCase();\nlet tower = 'max';\nif (/build|code|deploy|script|api|worker/.test(t)) tower = 'code';\nelse if (/consent|revoke|never.*clause|rights/.test(t)) tower = 'cb01';\nelse if (/vision|future|epoch|strategy/.test(t)) tower = 'dream';\nelse if (/family|pops|shirl|wellbeing/.test(t)) tower = 'pops';\nelse if (/music|voice|audio|sing|perform/.test(t)) tower = 'lucy';\nreturn [{ json: { text, source, tower, ts: new Date().toISOString() } }];"
+      },
+      "id": "route3",
+      "name": "Auto-Route to Tower",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        460,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "url": "http://localhost:8080/claude",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "name": "Authorization",
+              "value": "Bearer {{ $env.VOICE_AUTH_TOKEN }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ text: $json.text, tower: $json.tower }) }}"
+      },
+      "id": "claude3",
+      "name": "Send to Claude Tower",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [
+        680,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "url": "http://localhost:7777/memcell/voice:session:{{ $now.toMillis() }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ value: { input: $('Auto-Route to Tower').first().json, response: $json, ts: new Date().toISOString() } }) }}"
+      },
+      "id": "log3",
+      "name": "Log to GABRIEL",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [
+        900,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Voice Webhook": {
+      "main": [
+        [
+          {
+            "node": "Auto-Route to Tower",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Auto-Route to Tower": {
+      "main": [
+        [
+          {
+            "node": "Send to Claude Tower",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send to Claude Tower": {
+      "main": [
+        [
+          {
+            "node": "Log to GABRIEL",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  }
+}
