@@ -1,0 +1,36 @@
+# NOIZYFISH Source Ledger
+
+Created: 2026-09-03
+
+## Claim-To-Source Ledger
+
+| Claim Family | Source | Publisher | Date/Status | URL | Confidence |
+|--------------|--------|-----------|-------------|-----|------------|
+| Creator economy scale is large enough to justify a focused platform wedge | Creator economy projection | Goldman Sachs | 2023 projection to 2027 | https://www.goldmansachs.com/insights/articles/the-creator-economy-could-approach-half-a-trillion-dollars-by-2027 | Medium |
+| Creator advertising spend is growing and operational measurement remains a gap | 2025 Creator Economy Ad Spend & Strategy Report | IAB | 2025 | https://www.iab.com/insights/2025-creator-economy-ad-spend-strategy-report/ | Medium |
+| YouTube remains a major creator monetization platform | 2024 U.S. YouTube Impact Report | YouTube | 2025 | https://blog.youtube/news-and-events/2024-us-youtube-impact-report/ | High for YouTube-reported figures |
+| Threads is a major 2026 distribution surface | 500M monthly Threads users announcement | Meta | 2026-06-16 | https://about.fb.com/news/2026/06/meta-launching-new-features-500-million-monthly-threads-users/ | High |
+| TikTok direct posting exists but requires consent and audit for public posting | Direct Post docs | TikTok for Developers | Updated 2026-08-24 | https://developers.tiktok.com/docs/en/content-posting-api-reference-direct-post | High |
+| YouTube uploads have quota and audit constraints | Quota and Compliance Audits | Google for Developers | Updated 2026-06-24 | https://developers.google.com/youtube/v3/guides/quota_and_compliance_audits | High |
+| Unverified YouTube upload projects can be restricted to private visibility | Videos resource docs | Google for Developers | Current docs | https://developers.google.com/youtube/v3/docs/videos | High |
+| Spotify Web API is not a music upload/sync/remix backbone | Spotify Web API and Developer Policy | Spotify for Developers | Policy effective 2025-05-15 | https://developer.spotify.com/documentation/web-api and https://developer.spotify.com/policy | High |
+| Stripe Connect supports multi-party marketplace charge models | Connect charges docs | Stripe | Current docs | https://docs.stripe.com/connect/charges | High |
+| Separate charges and transfers are relevant for multi-party payouts | Separate charges and transfers | Stripe | Current docs | https://docs.stripe.com/connect/separate-charges-and-transfers | High |
+| R2 is suitable for large cloud object storage but not creator physical custody | R2 limits and consistency | Cloudflare | 2026 docs | https://developers.cloudflare.com/r2/platform/limits/ and https://developers.cloudflare.com/r2/reference/consistency/ | High |
+| D1 needs bounded/sharded design | D1 limits and read replication | Cloudflare | 2026 docs | https://developers.cloudflare.com/d1/platform/limits/ and https://developers.cloudflare.com/d1/best-practices/read-replication/ | High |
+| KV must not be authoritative for consent/revocation/payout | KV consistency model | Cloudflare | 2026 docs | https://developers.cloudflare.com/kv/concepts/how-kv-works/ | High |
+| C2PA can carry provenance and training/data-mining assertions but metadata can be removed | C2PA specs and explainer | C2PA | Specs 2.x | https://spec.c2pa.org/faq/ and https://c2pa.org/specifications/specifications/2.2/explainer/Explainer.html | High |
+| IPTC provides AI/data-mining opt-out best-practice metadata | Generative AI opt-out guidance and Photo Metadata Standard | IPTC | 2025/2026 docs | https://iptc.org/news/iptc-publishes-best-practice-guidance-on-generative-ai-opt-out-for-publishers/ and https://iptc.org/standards/photo-metadata/iptc-standard/ | High |
+| DDEX is the right standards family for music release, party, claim, sales, and recording metadata | DDEX standards overview | DDEX | Current docs | https://kb.ddex.net/about-ddex-standards/ddex-standards/ | High |
+| Ed25519/EdDSA is appropriate for asymmetric signatures | RFC 8032 and RFC 8037 | RFC Editor / IETF / IRTF | 2017 | https://www.rfc-editor.org/info/rfc8032/ and https://www.rfc-editor.org/info/rfc8037/ | High |
+| JWT/JWS validators must prevent algorithm confusion | JWT Best Current Practices | RFC Editor / IETF | RFC 8725 | https://www.rfc-editor.org/rfc/rfc8725.html | High |
+| AI/voice/digital replica systems need formal risk governance | AI RMF and Copyright AI reports | NIST and U.S. Copyright Office | 2023-2026 | https://www.nist.gov/itl/ai-risk-management-framework and https://www.copyright.gov/ai/ | High |
+| U.S. performer voice/likeness protections are evolving | ELVIS Act and California digital likeness laws | Tennessee Governor and California Governor | 2024 | https://www.tn.gov/governor/news/2024/3/21/photos--gov--lee-signs-elvis-act-into-law.html.html and https://www.gov.ca.gov/2024/09/17/governor-newsom-signs-bills-to-protect-digital-likeness-of-performers/ | High for those states |
+| Maps/Waze handoffs are supported through documented URL patterns | Apple unified Maps URLs, Google Maps URLs, Waze Deep Links | Apple, Google, Waze | Current docs | https://developer.apple.com/documentation/mapkit/unified-map-urls, https://developers.google.com/maps/documentation/urls/get-started, https://developers.google.com/waze/deeplinks | High |
+| CarPlay implementation requires entitlement-gated app paths | Requesting CarPlay Entitlements | Apple | Current docs | https://developer.apple.com/documentation/carplay/requesting-carplay-entitlements | High |
+| Open social adapters are plausible but should not expose private rights data | ActivityPub and AT Protocol | W3C and AT Protocol | W3C Recommendation / current docs | https://www.w3.org/TR/activitypub/ and https://atproto.com/guides/overview | High |
+| Google Earth 3D import is experimental and GLB-only | Import 3D models and release notes | Google for Developers | Experimental; import docs last updated 2026-07-15; release notes 2026-04-16 | https://developers.google.com/maps/documentation/earth/import-3d-models and https://developers.google.com/maps/documentation/earth/release-notes | High |
+| Google Earth experimental features are subject to pre-GA terms | Google Earth experimental overview | Google for Developers | Last updated 2026-09-01 | https://developers.google.com/maps/documentation/earth/experimental-overview | High |
+| GLB is the binary glTF container with `.glb` extension and `model/gltf-binary` media type | glTF 2.0 specification | Khronos Group | Version 2.0.1, 2021-10-11 | https://registry.khronos.org/glTF/specs/2.0/glTF-2.0.html | High |
+| Anthropic context engineering treats context as whole-inference-state curation, not only prompt writing | Effective context engineering for AI agents | Anthropic Engineering | Published 2025-09-29 | https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents | High |
+| Agent tool catalogs should use deferred loading, tool search, programmatic tool calling, prompt caching, and context editing as appropriate | Claude Platform context and tool docs | Anthropic | Checked 2026-09-04 | https://platform.claude.com/docs/en/agents-and-tools/tool-use/manage-tool-context and https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-search-tool | High |

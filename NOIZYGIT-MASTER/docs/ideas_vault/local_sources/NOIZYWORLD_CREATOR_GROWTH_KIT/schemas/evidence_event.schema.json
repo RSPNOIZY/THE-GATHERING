@@ -1,0 +1,214 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://noizyfish.com/schemas/evidence_event.schema.json",
+  "title": "NOIZYWORLD Evidence Spine Event",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "event_id",
+    "event_type",
+    "stream_id",
+    "occurred_at",
+    "actor_id",
+    "reason_code",
+    "object",
+    "payload_hash",
+    "prev_event_hash",
+    "redaction",
+    "proof"
+  ],
+  "properties": {
+    "event_id": {
+      "type": "string",
+      "pattern": "^evt_[a-zA-Z0-9_-]{16,96}$"
+    },
+    "event_type": {
+      "type": "string",
+      "enum": [
+        "creator.created",
+        "creator.handle.verified",
+        "creator.consent_profile.updated",
+        "identity.binding.proposed",
+        "identity.binding.approved",
+        "identity.binding.revoked",
+        "asset.created",
+        "asset.hash.recorded",
+        "asset.provenance.attached",
+        "asset.license.attached",
+        "asset.preview.generated",
+        "asset.preview.accessed",
+        "asset.download.approved",
+        "asset.download.denied",
+        "consent.record.created",
+        "consent.record.revoked",
+        "hvs.token.issued",
+        "hvs.token.denied",
+        "hvs.token.revoked",
+        "hvs.validation.failed",
+        "split_sheet.proposed",
+        "split_sheet.signed",
+        "split_sheet.revoked_for_future",
+        "payout.calculated",
+        "payout.executed",
+        "payout.failed",
+        "payout.disputed",
+        "distribution.proposed",
+        "distribution.approved",
+        "distribution.published",
+        "distribution.failed",
+        "distribution.metrics.snapshot",
+        "route.proposed",
+        "route.handoff_token.issued",
+        "route.handoff.denied",
+        "route.handoff.opened",
+        "auth.grant.issued",
+        "auth.grant.denied",
+        "auth.peer_credential.failed",
+        "auth.replay.detected",
+        "secret.access.denied",
+        "secret.access.approved"
+      ]
+    },
+    "stream_id": {
+      "type": "string",
+      "pattern": "^(creator|project|asset|split|consent|distribution|payout|route):[a-zA-Z0-9_-]{8,128}$"
+    },
+    "occurred_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "actor_id": {
+      "type": "string",
+      "minLength": 8,
+      "maxLength": 256
+    },
+    "reason_code": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_.-]{2,80}$"
+    },
+    "object": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "id"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "creator",
+            "project",
+            "asset",
+            "consent",
+            "split_sheet",
+            "distribution_receipt",
+            "payout_receipt",
+            "trip_session",
+            "security_grant"
+          ]
+        },
+        "id": {
+          "type": "string",
+          "minLength": 8,
+          "maxLength": 256
+        }
+      }
+    },
+    "payload_hash": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    },
+    "prev_event_hash": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    },
+    "cross_stream_refs": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "stream_id",
+          "event_hash"
+        ],
+        "properties": {
+          "stream_id": {
+            "type": "string",
+            "pattern": "^(creator|project|asset|split|consent|distribution|payout|route):[a-zA-Z0-9_-]{8,128}$"
+          },
+          "event_hash": {
+            "type": "string",
+            "pattern": "^sha256:[a-f0-9]{64}$"
+          }
+        }
+      }
+    },
+    "redaction": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "contains_raw_secret",
+        "contains_raw_precise_location",
+        "contains_raw_biometric",
+        "redaction_version"
+      ],
+      "properties": {
+        "contains_raw_secret": {
+          "type": "boolean",
+          "const": false
+        },
+        "contains_raw_precise_location": {
+          "type": "boolean",
+          "const": false
+        },
+        "contains_raw_biometric": {
+          "type": "boolean",
+          "const": false
+        },
+        "redaction_version": {
+          "type": "string",
+          "pattern": "^redact_v[0-9]+$"
+        }
+      }
+    },
+    "proof": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "alg",
+        "crv",
+        "key_id",
+        "signature"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "Ed25519Signature2026"
+        },
+        "alg": {
+          "type": "string",
+          "const": "EdDSA"
+        },
+        "crv": {
+          "type": "string",
+          "const": "Ed25519"
+        },
+        "key_id": {
+          "type": "string",
+          "minLength": 8,
+          "maxLength": 256
+        },
+        "signature": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_-]{64,256}$"
+        }
+      }
+    }
+  }
+}

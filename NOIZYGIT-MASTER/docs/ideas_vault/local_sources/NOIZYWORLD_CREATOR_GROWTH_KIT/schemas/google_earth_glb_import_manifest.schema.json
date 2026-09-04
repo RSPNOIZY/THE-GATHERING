@@ -1,0 +1,180 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://noizy.local/schemas/google_earth_glb_import_manifest.schema.json",
+  "title": "NOIZYWORLD Google Earth GLB Import Manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "asset_id",
+    "source_asset_hash",
+    "earth_glb_hash",
+    "file_name",
+    "generated_at",
+    "import_channel",
+    "constraints",
+    "render_checks",
+    "rights",
+    "provenance"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "noizy-google-earth-glb-v1"
+    },
+    "asset_id": {
+      "type": "string",
+      "pattern": "^asset_[A-Za-z0-9][A-Za-z0-9_-]{5,127}$"
+    },
+    "source_asset_hash": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    },
+    "earth_glb_hash": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    },
+    "file_name": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9._ -]+\\.glb$",
+      "maxLength": 180
+    },
+    "generated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "import_channel": {
+      "type": "string",
+      "enum": ["drive", "device", "manual"]
+    },
+    "earth_project_ref": {
+      "type": "string",
+      "description": "Opaque project reference. Do not store auth-bearing URLs.",
+      "maxLength": 256
+    },
+    "constraints": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "glb_only",
+        "static_model",
+        "referenced_textures",
+        "glb_animations",
+        "kml_kmz_export_supported",
+        "experimental_pre_ga"
+      ],
+      "properties": {
+        "glb_only": {
+          "const": true
+        },
+        "static_model": {
+          "const": true
+        },
+        "referenced_textures": {
+          "const": false
+        },
+        "glb_animations": {
+          "const": false
+        },
+        "kml_kmz_export_supported": {
+          "const": false
+        },
+        "experimental_pre_ga": {
+          "const": true
+        }
+      }
+    },
+    "render_checks": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "scale_checked",
+        "metallic_materials_reviewed",
+        "unsupported_extensions_removed",
+        "visible_in_google_earth"
+      ],
+      "properties": {
+        "scale_checked": {
+          "type": "boolean"
+        },
+        "metallic_materials_reviewed": {
+          "type": "boolean"
+        },
+        "unsupported_extensions_removed": {
+          "type": "boolean"
+        },
+        "visible_in_google_earth": {
+          "type": "boolean"
+        },
+        "visible_at_scale_1000_percent": {
+          "type": "boolean"
+        },
+        "notes": {
+          "type": "string",
+          "maxLength": 2000
+        }
+      }
+    },
+    "rights": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "owner_creator_id",
+        "license_id",
+        "consent_record_id"
+      ],
+      "properties": {
+        "owner_creator_id": {
+          "type": "string",
+          "pattern": "^creator_[A-Za-z0-9][A-Za-z0-9_-]{5,127}$"
+        },
+        "license_id": {
+          "type": "string",
+          "pattern": "^license_[A-Za-z0-9][A-Za-z0-9_-]{5,127}$"
+        },
+        "consent_record_id": {
+          "type": "string",
+          "pattern": "^consent_[A-Za-z0-9][A-Za-z0-9_-]{5,127}$"
+        }
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "provenance_id",
+        "export_tool",
+        "export_tool_version",
+        "source_checked_at",
+        "sources"
+      ],
+      "properties": {
+        "provenance_id": {
+          "type": "string",
+          "pattern": "^prov_[A-Za-z0-9][A-Za-z0-9_-]{5,127}$"
+        },
+        "export_tool": {
+          "type": "string",
+          "maxLength": 120
+        },
+        "export_tool_version": {
+          "type": "string",
+          "maxLength": 120
+        },
+        "source_checked_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "sources": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 20,
+          "items": {
+            "type": "string",
+            "maxLength": 300
+          }
+        }
+      }
+    }
+  }
+}
+
