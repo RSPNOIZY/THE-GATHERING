@@ -10,6 +10,10 @@
 - [ ] Code migration from source repo pending
 - [ ] Web deployment pending
 
+## Technical specifications
+
+- [PLOWMAN STANDARD — TIP + Verifiable Learning](./specs/PLOWMAN_TIP_BLOCKCHAIN_TECHNICAL_SPEC.md) — consent-native identity, media provenance, verifiable credentials, dual-ledger anchoring, collaboration, compensation, and FOSS CRM boundaries.
+
 ## Quick Start
 ```bash
 # From THE-GATHERING root
