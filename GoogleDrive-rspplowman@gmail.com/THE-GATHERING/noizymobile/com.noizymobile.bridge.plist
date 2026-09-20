@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+  "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  com.noizymobile.bridge.plist
+  LaunchAgent for M2 Ultra — starts mobile_bridge on boot and keeps it alive.
+
+  Install:
+    cp com.noizymobile.bridge.plist ~/Library/LaunchAgents/
+    launchctl load ~/Library/LaunchAgents/com.noizymobile.bridge.plist
+
+  Reload after edits:
+    launchctl unload ~/Library/LaunchAgents/com.noizymobile.bridge.plist
+    launchctl load   ~/Library/LaunchAgents/com.noizymobile.bridge.plist
+
+  Logs:
+    tail -f /var/log/noizymobile/bridge.stdout.log
+    tail -f /var/log/noizymobile/bridge.stderr.log
+-->
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.noizymobile.bridge</string>
+
+  <key>ProgramArguments</key>
+  <array>
+    <!-- Update this path to your venv uvicorn if using a virtualenv -->
+    <string>/usr/local/bin/uvicorn</string>
+    <string>mobile_bridge:app</string>
+    <string>--host</string>
+    <string>0.0.0.0</string>
+    <string>--port</string>
+    <string>8080</string>
+    <string>--workers</string>
+    <string>2</string>
+    <string>--log-level</string>
+    <string>info</string>
+  </array>
+
+  <!-- Run from the directory containing mobile_bridge.py -->
+  <key>WorkingDirectory</key>
+  <string>/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/THE-GATHERING/noizymobile</string>
+
+  <!-- Environment secrets — keep this file readable only by you -->
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>NOIZY_BRIDGE_SECRET</key>
+    <string>REPLACE_WITH_REAL_SECRET</string>
+    <key>D1_API_BASE</key>
+    <string>https://dispatch.noizyfish.com</string>
+    <key>D1_WORKER_TOKEN</key>
+    <string>REPLACE_WITH_D1_TOKEN</string>
+    <key>GABRIEL_WEBHOOK_URL</key>
+    <string>http://100.x.x.x:9000/gabriel/queue</string>
+    <key>NOIZY_LOG_DIR</key>
+    <string>/var/log/noizymobile</string>
+  </dict>
+
+  <key>RunAtLoad</key>
+  <true/>
+
+  <key>KeepAlive</key>
+  <true/>
+
+  <key>ThrottleInterval</key>
+  <integer>10</integer>
+
+  <key>StandardOutPath</key>
+  <string>/var/log/noizymobile/bridge.stdout.log</string>
+
+  <key>StandardErrorPath</key>
+  <string>/var/log/noizymobile/bridge.stderr.log</string>
+</dict>
+</plist>
