@@ -1,0 +1,145 @@
+{
+  "catalog_version": "2.0.0",
+  "generated_at": "2026-09-24T15:46:00Z",
+  "ecosystem": "NOIZY / FISH MUSIC INC / RSP_001",
+  "description": "Master curated catalog of top FOSS tools, MCP servers, APIs, and bots across Discord, Slack, Microsoft, Google, and Apple ecosystems.",
+  "categories": {
+    "chat_and_community_bridges": [
+      {
+        "name": "Matterbridge",
+        "repo": "https://github.com/42wim/matterbridge",
+        "license": "Apache-2.0",
+        "type": "Multi-Protocol Bridge",
+        "capabilities": ["Bidirectional sync between Discord, Slack, Matrix, Telegram, IRC, Zulip, Teams", "Zero-latency multi-network message routing", "Webhook & Bot token support"],
+        "status": "RECOMMENDED_CORE"
+      },
+      {
+        "name": "slack-bolt-python",
+        "repo": "https://github.com/slackapi/bolt-python",
+        "license": "MIT",
+        "type": "Official Slack Framework",
+        "capabilities": ["Socket Mode (no public IP needed)", "Event API, Slash Commands, Shortcuts, Modals", "OAuth flow & Workflow Builder steps"],
+        "status": "ACTIVE_PRODUCTION"
+      },
+      {
+        "name": "discord.py",
+        "repo": "https://github.com/Rapptz/discord.py",
+        "license": "MIT",
+        "type": "Async Discord API Library",
+        "capabilities": ["Slash Commands (App Commands)", "Voice client & audio streaming", "Component UI (Buttons, Select Menus, Modals)", "Role & permission management"],
+        "status": "ACTIVE_PRODUCTION"
+      },
+      {
+        "name": "Open-WebUI",
+        "repo": "https://github.com/open-webui/open-webui",
+        "license": "MIT",
+        "type": "Multi-LLM Omnichannel Interface",
+        "capabilities": ["Direct integration with Ollama & LM Studio", "Discord & Slack webhook integrations", "RAG & Document Chat over SQLite/Chroma"],
+        "status": "COMPATIBLE_OPTIONAL"
+      }
+    ],
+    "model_context_protocol_servers": [
+      {
+        "name": "slack-mcp",
+        "repo": "https://github.com/modelcontextprotocol/servers/tree/main/src/slack",
+        "license": "MIT",
+        "type": "MCP Server",
+        "capabilities": ["List channels, search message history, post messages, reply to threads, add reactions", "Bot and User token support"],
+        "runtime": "node / python"
+      },
+      {
+        "name": "discord-mcp",
+        "repo": "https://github.com/modelcontextprotocol/servers",
+        "license": "MIT",
+        "type": "MCP Server",
+        "capabilities": ["Guild inspection, channel listing, message dispatch, role query"],
+        "runtime": "node / python"
+      },
+      {
+        "name": "google-workspace-mcp",
+        "repo": "https://github.com/modelcontextprotocol/servers",
+        "license": "MIT",
+        "type": "MCP Server",
+        "capabilities": ["Google Drive file search & read/write", "Gmail search & drafting", "Google Calendar event scheduling", "Google Sheets data append"],
+        "runtime": "python / node"
+      },
+      {
+        "name": "microsoft-graph-mcp",
+        "repo": "https://github.com/modelcontextprotocol/servers",
+        "license": "MIT",
+        "type": "MCP Server",
+        "capabilities": ["OneDrive file sync & sharing", "Outlook email & calendar integration", "Teams channel messaging", "Azure AD user queries"],
+        "runtime": "python / node"
+      },
+      {
+        "name": "apple-macos-mcp",
+        "repo": "https://github.com/modelcontextprotocol/servers",
+        "license": "MIT",
+        "type": "MCP Server",
+        "capabilities": ["Run native macOS Shortcuts CLI", "Execute JXA / AppleScript system automations", "Access Apple Notes, Reminders, and Calendar", "Query Audio output devices (CoreAudio)"],
+        "runtime": "python / swift"
+      },
+      {
+        "name": "sqlite-sovereign-mcp",
+        "repo": "packages/sovereign-intelligence-router/mcps/sovereign_brain_mcp_server.py",
+        "license": "Proprietary / Sovereign",
+        "type": "MCP Server",
+        "capabilities": ["Sub-10ms search across all 16 Canonical SQLite databases (870MB+ memory)", "Council persona deliberation synthesis (RSP_001, GABRIEL, LUCY, MC96)"],
+        "runtime": "python"
+      }
+    ],
+    "big_tech_triad_integration_sdk": {
+      "microsoft": [
+        {
+          "package": "msgraph-sdk",
+          "language": "Python / TypeScript",
+          "purpose": "Full Microsoft 365, OneDrive, Teams, Outlook, Graph REST API access"
+        },
+        {
+          "package": "msal",
+          "language": "Python",
+          "purpose": "Microsoft Authentication Library for OAuth2 / Azure AD Device Flow"
+        },
+        {
+          "package": "pywin32 / directml",
+          "environment": "NOIZYWIN Windows 11 ARM64 VM",
+          "purpose": "DirectML acceleration, Windows COM automation, Power Automate flows"
+        }
+      ],
+      "google": [
+        {
+          "package": "google-api-python-client",
+          "language": "Python",
+          "purpose": "Google Drive (5TB Workspace), Gmail, Docs, Sheets, Calendar REST API client"
+        },
+        {
+          "package": "google-auth-oauthlib",
+          "language": "Python",
+          "purpose": "OAuth2 user consent & Service Account Application Default Credentials"
+        },
+        {
+          "package": "google-genai / google-cloud-aiplatform",
+          "language": "Python",
+          "purpose": "Gemini 2.0 Pro / Flash SDK & Vertex AI orchestration"
+        }
+      ],
+      "apple": [
+        {
+          "package": "mlx / mlx-lm",
+          "language": "Python / C++",
+          "purpose": "Apple Silicon native deep learning on M2 Ultra Unified Memory (192GB)"
+        },
+        {
+          "package": "pyobjc-framework-CoreAudio / pyobjc-framework-AppleScriptKit",
+          "language": "Python",
+          "purpose": "Native macOS Cocoa, CoreAudio, and Apple Events bridge"
+        },
+        {
+          "package": "shortcuts CLI (/usr/bin/shortcuts)",
+          "language": "CLI / Shell",
+          "purpose": "Run native iOS/macOS automation workflows directly from AI agents"
+        }
+      ]
+    }
+  }
+}
