@@ -1,0 +1,35 @@
+# 🛡️ NOIZYVAULT WireGuard Enclave Configuration
+# Interface: wg-noizyvault
+# Subnet: 10.77.0.0/24
+# Device: Apple Mac Studio M2 Ultra (Control Plane)
+
+[Interface]
+# Mac Studio M2 Ultra Assigned Private IP
+Address = 10.77.0.2/24
+ListenPort = 51820
+# PrivateKey = <Stored in Proton Pass / Generated via: wg genkey>
+
+# Hub / Gateway Node (NOIZYVAULT Cloud Anchor)
+[Peer]
+# PublicKey = <Gateway Public Key>
+AllowedIPs = 10.77.0.1/32
+Endpoint = vault.fishmusicinc.com:51820
+PersistentKeepalive = 25
+
+# Peer: NOIZYWIN Hardware Node (Windows 11 PC)
+[Peer]
+# PublicKey = <NOIZYWIN Public Key>
+AllowedIPs = 10.77.0.3/32
+PersistentKeepalive = 25
+
+# Peer: iPhone 15 Pro Max (NOIZYMOBILE)
+[Peer]
+# PublicKey = <iPhone Public Key>
+AllowedIPs = 10.77.0.4/32
+PersistentKeepalive = 25
+
+# Peer: iPad Pro (Studio Command Surface)
+[Peer]
+# PublicKey = <iPad Public Key>
+AllowedIPs = 10.77.0.5/32
+PersistentKeepalive = 25

@@ -1,0 +1,577 @@
+{
+  "generated_at": "2026-09-24T20:38:23.986369+00:00",
+  "scan_roots": [
+    "/Users/m2ultra/Library/CloudStorage/docs",
+    "/Users/m2ultra/Library/CloudStorage/scripts",
+    "/Users/m2ultra/Library/CloudStorage/apps",
+    "/Users/m2ultra/Library/CloudStorage/AGENTS",
+    "/Users/m2ultra/Library/CloudStorage/_CONSTRUCT",
+    "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rsplowman@icloud.com/My Drive",
+    "/Users/m2ultra/NOIZYBEAST/THE-GATHERING/config",
+    "/Users/m2ultra/NOIZYBEAST/THE-GATHERING/docs",
+    "/Users/m2ultra/NOIZYBEAST/THE-GATHERING/schemas",
+    "/Users/m2ultra/NOIZY_DREAMCHAMBER/apps",
+    "/Users/m2ultra/.talon/user",
+    "/Volumes/NOIZYWIN/Windows/MissionControl96/noizylab_2026/CODE_EVAC"
+  ],
+  "metrics": {
+    "total_agents_found": 39,
+    "total_mcps_found": 2,
+    "total_apis_workers_found": 5,
+    "total_workflows_found": 1,
+    "total_schemas_found": 22,
+    "total_ideation_found": 21
+  },
+  "agents": [
+    {
+      "name": "CURSORLESS_AND_APP_INTENTS_SOVEREIGN_GUIDE.md",
+      "path": "/Users/m2ultra/Library/CloudStorage/docs/CURSORLESS_AND_APP_INTENTS_SOVEREIGN_GUIDE.md",
+      "size_kb": 3.53,
+      "modified": "2026-09-24 20:36"
+    },
+    {
+      "name": "GABRIEL_HIVE_STACK.md",
+      "path": "/Users/m2ultra/Library/CloudStorage/docs/GABRIEL_HIVE_STACK.md",
+      "size_kb": 16.01,
+      "modified": "2026-09-24 20:34"
+    },
+    {
+      "name": "AGENT_STACK.md",
+      "path": "/Users/m2ultra/Library/CloudStorage/docs/AGENT_STACK.md",
+      "size_kb": 10.31,
+      "modified": "2026-09-24 20:34"
+    },
+    {
+      "name": "mc96-cockpit.py",
+      "path": "/Users/m2ultra/Library/CloudStorage/scripts/mc96-cockpit.py",
+      "size_kb": 2.85,
+      "modified": "2026-09-24 20:34"
+    },
+    {
+      "name": "verify-mc96-noizyworld.sh",
+      "path": "/Users/m2ultra/Library/CloudStorage/scripts/verify-mc96-noizyworld.sh",
+      "size_kb": 5.06,
+      "modified": "2026-09-24 20:34"
+    },
+    {
+      "name": "NOIZY_AppIntents.swift",
+      "path": "/Users/m2ultra/Library/CloudStorage/apps/noizy-intents/NOIZY_AppIntents.swift",
+      "size_kb": 6.6,
+      "modified": "2026-09-24 20:36"
+    },
+    {
+      "name": "gabriel_monitor.py",
+      "path": "/Users/m2ultra/Library/CloudStorage/AGENTS/gabriel/gabriel_monitor.py",
+      "size_kb": 7.67,
+      "modified": "2026-09-24 20:33"
+    },
+    {
+      "name": "gabriel_ledger.py",
+      "path": "/Users/m2ultra/Library/CloudStorage/AGENTS/gabriel/gabriel_ledger.py",
+      "size_kb": 30.71,
+      "modified": "2026-09-24 20:33"
+    },
+    {
+      "name": "gabriel_core.py",
+      "path": "/Users/m2ultra/Library/CloudStorage/AGENTS/gabriel/gabriel_core.py",
+      "size_kb": 26.35,
+      "modified": "2026-09-24 20:33"
+    },
+    {
+      "name": "gabriel_pulse.py",
+      "path": "/Users/m2ultra/Library/CloudStorage/AGENTS/gabriel/gabriel_pulse.py",
+      "size_kb": 21.48,
+      "modified": "2026-09-24 20:33"
+    },
+    {
+      "name": "GABRIEL_IDEAS.md",
+      "path": "/Users/m2ultra/Library/CloudStorage/AGENTS/gabriel/memory/GABRIEL_IDEAS.md",
+      "size_kb": 2.43,
+      "modified": "2026-09-24 20:33"
+    },
+    {
+      "name": "gabriel-daemon.js",
+      "path": "/Users/m2ultra/Library/CloudStorage/AGENTS/gabriel/daemon/gabriel-daemon.js",
+      "size_kb": 55.38,
+      "modified": "2026-09-24 20:33"
+    },
+    {
+      "name": "gabriel.js",
+      "path": "/Users/m2ultra/Library/CloudStorage/AGENTS/gabriel/daemon/gabriel.js",
+      "size_kb": 4.08,
+      "modified": "2026-09-24 20:33"
+    },
+    {
+      "name": "grand_orchestrator.py",
+      "path": "/Users/m2ultra/Library/CloudStorage/AGENTS/shared/grand_orchestrator.py",
+      "size_kb": 8.45,
+      "modified": "2026-09-24 20:33"
+    },
+    {
+      "name": "swarm-orchestrator.ts",
+      "path": "/Users/m2ultra/Library/CloudStorage/AGENTS/noizyarmy/swarm-orchestrator.ts",
+      "size_kb": 3.68,
+      "modified": "2026-09-24 20:33"
+    },
+    {
+      "name": "agent-gating.ts",
+      "path": "/Users/m2ultra/Library/CloudStorage/AGENTS/noizyarmy/agent-gating.ts",
+      "size_kb": 3.21,
+      "modified": "2026-09-24 20:33"
+    },
+    {
+      "name": "lucy_async_core.py",
+      "path": "/Users/m2ultra/Library/CloudStorage/AGENTS/lucy/lucy_async_core.py",
+      "size_kb": 24.18,
+      "modified": "2026-09-24 20:33"
+    },
+    {
+      "name": "lucy_voice.py",
+      "path": "/Users/m2ultra/Library/CloudStorage/AGENTS/lucy/lucy_voice.py",
+      "size_kb": 7.86,
+      "modified": "2026-09-24 20:33"
+    },
+    {
+      "name": "gabriel_roots.json",
+      "path": "/Users/m2ultra/Library/CloudStorage/_CONSTRUCT/NOIZY_KNOWLEDGE/_system/config/gabriel_roots.json",
+      "size_kb": 0.38,
+      "modified": "2026-09-24 20:34"
+    },
+    {
+      "name": "lucy-files-config.json",
+      "path": "/Users/m2ultra/Library/CloudStorage/_CONSTRUCT/lucy-files-mcp/lucy-files-config.json",
+      "size_kb": 0.73,
+      "modified": "2026-09-24 20:34"
+    },
+    {
+      "name": "noizylab_agents.py",
+      "path": "/Users/m2ultra/Library/CloudStorage/_CONSTRUCT/claude-today-agents/openmetadata-docker/noizylab_agents.py",
+      "size_kb": 2.26,
+      "modified": "2026-09-24 20:34"
+    },
+    {
+      "name": "orchestrator.js",
+      "path": "/Users/m2ultra/Library/CloudStorage/_CONSTRUCT/claude-today-agents/slack-bots/orchestrator.js",
+      "size_kb": 2.46,
+      "modified": "2026-09-24 20:34"
+    },
+    {
+      "name": "mc96-omnisearch.js",
+      "path": "/Users/m2ultra/Library/CloudStorage/_CONSTRUCT/claude-today-agents/system-core/mc96-omnisearch.js",
+      "size_kb": 2.29,
+      "modified": "2026-09-24 20:34"
+    },
+    {
+      "name": "agent-guardian.js",
+      "path": "/Users/m2ultra/Library/CloudStorage/_CONSTRUCT/claude-today-agents/system-core/agent-guardian.js",
+      "size_kb": 2.51,
+      "modified": "2026-09-24 20:34"
+    },
+    {
+      "name": "hub-orchestrator.js",
+      "path": "/Users/m2ultra/Library/CloudStorage/_CONSTRUCT/claude-today-agents/system-core/multi-brain/hub-orchestrator.js",
+      "size_kb": 4.35,
+      "modified": "2026-09-24 20:34"
+    },
+    {
+      "name": "desktop-orchestrator.js",
+      "path": "/Users/m2ultra/Library/CloudStorage/_CONSTRUCT/claude-today-agents/app-apis/desktop-orchestrator.js",
+      "size_kb": 3.88,
+      "modified": "2026-09-24 20:34"
+    },
+    {
+      "name": "orchestrator.js",
+      "path": "/Users/m2ultra/Library/CloudStorage/_CONSTRUCT/claude-today-agents/discord-bots/orchestrator.js",
+      "size_kb": 2.38,
+      "modified": "2026-09-24 20:34"
+    },
+    {
+      "name": "agent-a5198216470c306b6.md",
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rsplowman@icloud.com/My Drive/Claude Archive/markdown/-Users-m2ultra-swift-library/1a4eb2a0-759b-4607-b25a-86a87b4c248b/subagents/agent-a5198216470c306b6.md",
+      "size_kb": 0.0,
+      "modified": "2026-04-09 06:32"
+    },
+    {
+      "name": "agent-acompact-eacbcda9e18b1ed8.md",
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rsplowman@icloud.com/My Drive/Claude Archive/markdown/-Users-m2ultra-swift-library/1a4eb2a0-759b-4607-b25a-86a87b4c248b/subagents/agent-acompact-eacbcda9e18b1ed8.md",
+      "size_kb": 0.0,
+      "modified": "2026-04-09 06:32"
+    },
+    {
+      "name": "agent-acompact-63fc44cfcce13edf.md",
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rsplowman@icloud.com/My Drive/Claude Archive/markdown/-Users-m2ultra-swift-library/1a4eb2a0-759b-4607-b25a-86a87b4c248b/subagents/agent-acompact-63fc44cfcce13edf.md",
+      "size_kb": 0.0,
+      "modified": "2026-04-09 06:32"
+    },
+    {
+      "name": "agent-a7d6ab93a8b488648.md",
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rsplowman@icloud.com/My Drive/Claude Archive/markdown/-Users-m2ultra-swift-library/1a4eb2a0-759b-4607-b25a-86a87b4c248b/subagents/agent-a7d6ab93a8b488648.md",
+      "size_kb": 0.0,
+      "modified": "2026-04-09 06:32"
+    },
+    {
+      "name": "agent-actions.json",
+      "path": "/Users/m2ultra/NOIZYBEAST/THE-GATHERING/config/agent-actions.json",
+      "size_kb": 7.6,
+      "modified": "2026-08-14 17:02"
+    },
+    {
+      "name": "agent-action-system.md",
+      "path": "/Users/m2ultra/NOIZYBEAST/THE-GATHERING/docs/agent-action-system.md",
+      "size_kb": 4.62,
+      "modified": "2026-08-11 20:28"
+    },
+    {
+      "name": "car-companion-mc96-blueprint-2026-08-28.md",
+      "path": "/Users/m2ultra/NOIZYBEAST/THE-GATHERING/docs/integrations/car-companion-mc96-blueprint-2026-08-28.md",
+      "size_kb": 25.05,
+      "modified": "2026-08-28 15:38"
+    },
+    {
+      "name": "noizy-mobile-road-mode-lucy-cortez-blueprint-2026-08-29.md",
+      "path": "/Users/m2ultra/NOIZYBEAST/THE-GATHERING/docs/integrations/noizy-mobile-road-mode-lucy-cortez-blueprint-2026-08-29.md",
+      "size_kb": 24.0,
+      "modified": "2026-08-29 08:26"
+    },
+    {
+      "name": "agent-actions.schema.json",
+      "path": "/Users/m2ultra/NOIZYBEAST/THE-GATHERING/schemas/agent-actions.schema.json",
+      "size_kb": 2.56,
+      "modified": "2026-08-11 18:26"
+    },
+    {
+      "name": "dependabot.yml",
+      "path": "/Users/m2ultra/.talon/user/community/.github/dependabot.yml",
+      "size_kb": 0.16,
+      "modified": "2026-06-22 21:24"
+    },
+    {
+      "name": "TrinityAgentsExtension.swift",
+      "path": "/Volumes/NOIZYWIN/Windows/MissionControl96/noizylab_2026/CODE_EVAC/iPad-App/TrinityAgentsExtension.swift",
+      "size_kb": 11.29,
+      "modified": "2025-11-05 20:29"
+    },
+    {
+      "name": "NOIZY_AppIntents.swift",
+      "path": "/Volumes/NOIZYWIN/Windows/MissionControl96/noizylab_2026/CODE_EVAC/iPad-App/NOIZY_AppIntents.swift",
+      "size_kb": 6.6,
+      "modified": "2026-09-24 20:36"
+    }
+  ],
+  "mcps": [
+    {
+      "name": "audit_and_fix_all_mcps.py",
+      "path": "/Users/m2ultra/Library/CloudStorage/scripts/audit_and_fix_all_mcps.py",
+      "size_kb": 10.46,
+      "modified": "2026-09-24 20:34"
+    },
+    {
+      "name": "desktop-mcp.js",
+      "path": "/Users/m2ultra/Library/CloudStorage/_CONSTRUCT/claude-today-agents/mcp-servers/desktop-mcp.js",
+      "size_kb": 1.59,
+      "modified": "2026-09-24 20:34"
+    }
+  ],
+  "apis_and_workers": [
+    {
+      "name": "wrangler.toml",
+      "path": "/Users/m2ultra/Library/CloudStorage/AGENTS/gabriel/projects/aeon-power/wrangler.toml",
+      "size_kb": 0.15,
+      "modified": "2026-09-24 20:33"
+    },
+    {
+      "name": "router.js",
+      "path": "/Users/m2ultra/Library/CloudStorage/AGENTS/gabriel/daemon/router.js",
+      "size_kb": 2.33,
+      "modified": "2026-09-24 20:33"
+    },
+    {
+      "name": "AI_WORKERS_READINESS.md",
+      "path": "/Users/m2ultra/Library/CloudStorage/_CONSTRUCT/AI_WORKERS_READINESS.md",
+      "size_kb": 1.16,
+      "modified": "2026-09-20 20:50"
+    },
+    {
+      "name": "discord.server.json",
+      "path": "/Users/m2ultra/NOIZYBEAST/THE-GATHERING/config/discord.server.json",
+      "size_kb": 0.85,
+      "modified": "2026-08-11 14:54"
+    },
+    {
+      "name": "cursorless_command_server.py",
+      "path": "/Users/m2ultra/.talon/user/cursorless-talon/src/cursorless_command_server.py",
+      "size_kb": 1.28,
+      "modified": "2026-09-24 20:36"
+    }
+  ],
+  "workflows": [
+    {
+      "name": "ci.yml",
+      "path": "/Users/m2ultra/.talon/user/community/.github/workflows/ci.yml",
+      "size_kb": 0.46,
+      "modified": "2026-06-22 21:24"
+    }
+  ],
+  "schemas": [
+    {
+      "name": "marketing-event.schema.json",
+      "path": "/Users/m2ultra/NOIZYBEAST/THE-GATHERING/schemas/marketing-event.schema.json",
+      "size_kb": 1.91,
+      "modified": "2026-09-07 05:52"
+    },
+    {
+      "name": "release-gate.schema.json",
+      "path": "/Users/m2ultra/NOIZYBEAST/THE-GATHERING/schemas/release-gate.schema.json",
+      "size_kb": 2.25,
+      "modified": "2026-08-14 17:02"
+    },
+    {
+      "name": "martech-source-inventory.schema.json",
+      "path": "/Users/m2ultra/NOIZYBEAST/THE-GATHERING/schemas/martech-source-inventory.schema.json",
+      "size_kb": 1.08,
+      "modified": "2026-09-07 07:08"
+    },
+    {
+      "name": "unfinished-projects.schema.json",
+      "path": "/Users/m2ultra/NOIZYBEAST/THE-GATHERING/schemas/unfinished-projects.schema.json",
+      "size_kb": 1.97,
+      "modified": "2026-09-07 06:09"
+    },
+    {
+      "name": "voice-usage-event.schema.json",
+      "path": "/Users/m2ultra/NOIZYBEAST/THE-GATHERING/schemas/voice-usage-event.schema.json",
+      "size_kb": 1.6,
+      "modified": "2026-08-11 20:42"
+    },
+    {
+      "name": "action-request.schema.json",
+      "path": "/Users/m2ultra/NOIZYBEAST/THE-GATHERING/schemas/action-request.schema.json",
+      "size_kb": 0.52,
+      "modified": "2026-08-11 16:33"
+    },
+    {
+      "name": "martech-claim-register.schema.json",
+      "path": "/Users/m2ultra/NOIZYBEAST/THE-GATHERING/schemas/martech-claim-register.schema.json",
+      "size_kb": 1.03,
+      "modified": "2026-09-07 07:08"
+    },
+    {
+      "name": "voice-consent-session.schema.json",
+      "path": "/Users/m2ultra/NOIZYBEAST/THE-GATHERING/schemas/voice-consent-session.schema.json",
+      "size_kb": 2.63,
+      "modified": "2026-08-11 20:42"
+    },
+    {
+      "name": "executor-candidates.schema.json",
+      "path": "/Users/m2ultra/NOIZYBEAST/THE-GATHERING/schemas/executor-candidates.schema.json",
+      "size_kb": 2.32,
+      "modified": "2026-08-11 18:40"
+    },
+    {
+      "name": "voice-sovereignty.schema.json",
+      "path": "/Users/m2ultra/NOIZYBEAST/THE-GATHERING/schemas/voice-sovereignty.schema.json",
+      "size_kb": 0.87,
+      "modified": "2026-08-11 20:41"
+    },
+    {
+      "name": "action-result.schema.json",
+      "path": "/Users/m2ultra/NOIZYBEAST/THE-GATHERING/schemas/action-result.schema.json",
+      "size_kb": 0.99,
+      "modified": "2026-08-11 18:26"
+    },
+    {
+      "name": "noizy-road-mode-session.schema.json",
+      "path": "/Users/m2ultra/NOIZYBEAST/THE-GATHERING/schemas/noizy-road-mode-session.schema.json",
+      "size_kb": 6.76,
+      "modified": "2026-08-29 08:26"
+    },
+    {
+      "name": "creator-profile.schema.json",
+      "path": "/Users/m2ultra/NOIZYBEAST/THE-GATHERING/schemas/creator-profile.schema.json",
+      "size_kb": 1.27,
+      "modified": "2026-08-11 17:13"
+    },
+    {
+      "name": "media-rights-record.schema.json",
+      "path": "/Users/m2ultra/NOIZYBEAST/THE-GATHERING/schemas/media-rights-record.schema.json",
+      "size_kb": 4.19,
+      "modified": "2026-08-11 20:23"
+    },
+    {
+      "name": "data-authority.schema.json",
+      "path": "/Users/m2ultra/NOIZYBEAST/THE-GATHERING/schemas/data-authority.schema.json",
+      "size_kb": 2.1,
+      "modified": "2026-08-11 17:14"
+    },
+    {
+      "name": "opportunity.schema.json",
+      "path": "/Users/m2ultra/NOIZYBEAST/THE-GATHERING/schemas/opportunity.schema.json",
+      "size_kb": 1.37,
+      "modified": "2026-08-11 14:54"
+    },
+    {
+      "name": "consolidation-targets.schema.json",
+      "path": "/Users/m2ultra/NOIZYBEAST/THE-GATHERING/schemas/consolidation-targets.schema.json",
+      "size_kb": 2.47,
+      "modified": "2026-08-11 17:01"
+    },
+    {
+      "name": "approval.schema.json",
+      "path": "/Users/m2ultra/NOIZYBEAST/THE-GATHERING/schemas/approval.schema.json",
+      "size_kb": 0.71,
+      "modified": "2026-08-11 16:33"
+    },
+    {
+      "name": "ecosystem.schema.json",
+      "path": "/Users/m2ultra/NOIZYBEAST/THE-GATHERING/schemas/ecosystem.schema.json",
+      "size_kb": 1.78,
+      "modified": "2026-08-11 18:11"
+    },
+    {
+      "name": "event.schema.json",
+      "path": "/Users/m2ultra/NOIZYBEAST/THE-GATHERING/schemas/event.schema.json",
+      "size_kb": 0.6,
+      "modified": "2026-08-11 16:30"
+    },
+    {
+      "name": "opportunity-candidate.schema.json",
+      "path": "/Users/m2ultra/NOIZYBEAST/THE-GATHERING/schemas/opportunity-candidate.schema.json",
+      "size_kb": 2.25,
+      "modified": "2026-08-11 20:14"
+    },
+    {
+      "name": "golden-opportunities.schema.json",
+      "path": "/Users/m2ultra/NOIZYBEAST/THE-GATHERING/schemas/golden-opportunities.schema.json",
+      "size_kb": 3.84,
+      "modified": "2026-08-11 20:14"
+    }
+  ],
+  "ideation_and_blueprints": [
+    {
+      "name": "APPLE_DEVELOPER_SOVEREIGN_COPILOT_UPGRADE_v2.5.0.md",
+      "path": "/Users/m2ultra/Library/CloudStorage/docs/APPLE_DEVELOPER_SOVEREIGN_COPILOT_UPGRADE_v2.5.0.md",
+      "size_kb": 7.7,
+      "modified": "2026-09-24 20:34"
+    },
+    {
+      "name": "NOIZY_SOVEREIGN_RUNTIME_v2.4.0.md",
+      "path": "/Users/m2ultra/Library/CloudStorage/docs/NOIZY_SOVEREIGN_RUNTIME_v2.4.0.md",
+      "size_kb": 8.55,
+      "modified": "2026-09-24 20:34"
+    },
+    {
+      "name": "ARCHITECTURE.md",
+      "path": "/Users/m2ultra/Library/CloudStorage/docs/ARCHITECTURE.md",
+      "size_kb": 9.46,
+      "modified": "2026-09-24 20:34"
+    },
+    {
+      "name": "APPLE_INTELLIGENCE_CARPLAY_ROADMAP_2026.md",
+      "path": "/Users/m2ultra/Library/CloudStorage/docs/APPLE_INTELLIGENCE_CARPLAY_ROADMAP_2026.md",
+      "size_kb": 5.29,
+      "modified": "2026-09-24 20:34"
+    },
+    {
+      "name": "NOIZYVAULT_LOCAL_SOVEREIGNTY_STACK.md",
+      "path": "/Users/m2ultra/Library/CloudStorage/docs/NOIZYVAULT_LOCAL_SOVEREIGNTY_STACK.md",
+      "size_kb": 5.31,
+      "modified": "2026-09-24 20:34"
+    },
+    {
+      "name": "claude.constitution.md",
+      "path": "/Users/m2ultra/Library/CloudStorage/docs/claude.constitution.md",
+      "size_kb": 1.85,
+      "modified": "2026-09-24 20:34"
+    },
+    {
+      "name": "FOSS_VOICE_STACK_ARCHITECTURE.md",
+      "path": "/Users/m2ultra/Library/CloudStorage/docs/FOSS_VOICE_STACK_ARCHITECTURE.md",
+      "size_kb": 3.45,
+      "modified": "2026-09-24 20:35"
+    },
+    {
+      "name": "SOVEREIGN_IN_VEHICLE_ORCHESTRATION_PIPELINE_v2.4.0.md",
+      "path": "/Users/m2ultra/Library/CloudStorage/docs/SOVEREIGN_IN_VEHICLE_ORCHESTRATION_PIPELINE_v2.4.0.md",
+      "size_kb": 5.94,
+      "modified": "2026-09-24 20:34"
+    },
+    {
+      "name": "NOI-15_Consent_Architecture_Blueprint.docx",
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rsplowman@icloud.com/My Drive/NOI-15_Consent_Architecture_Blueprint.docx",
+      "size_kb": 11.18,
+      "modified": "2026-03-25 18:37"
+    },
+    {
+      "name": "NOIZYVOX-VOICE-ARMY-PLAYBOOK-2026.docx",
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rsplowman@icloud.com/My Drive/NOIZYVOX-VOICE-ARMY-PLAYBOOK-2026.docx",
+      "size_kb": 232.81,
+      "modified": "2026-03-27 19:19"
+    },
+    {
+      "name": "NOIZY-Founder-Blueprint-2026.gdoc",
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rsplowman@icloud.com/My Drive/NOIZY-Founder-Blueprint-2026.gdoc",
+      "size_kb": 0.17,
+      "modified": "2026-03-14 18:32"
+    },
+    {
+      "name": "HVS-COMPLETE-REFERENCE.docx",
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rsplowman@icloud.com/My Drive/HVS-COMPLETE-REFERENCE.docx",
+      "size_kb": 17.97,
+      "modified": "2026-03-26 18:40"
+    },
+    {
+      "name": "AFVIS-2_0-Architecture.docx",
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rsplowman@icloud.com/My Drive/AFVIS-2_0-Architecture.docx",
+      "size_kb": 18.1,
+      "modified": "2026-03-23 07:29"
+    },
+    {
+      "name": "NOIZY-Founder-Blueprint-2026.docx",
+      "path": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rsplowman@icloud.com/My Drive/NOIZY-Founder-Blueprint-2026.docx",
+      "size_kb": 19.58,
+      "modified": "2026-03-26 07:58"
+    },
+    {
+      "name": "architecture.md",
+      "path": "/Users/m2ultra/NOIZYBEAST/THE-GATHERING/docs/architecture.md",
+      "size_kb": 2.28,
+      "modified": "2026-08-11 14:56"
+    },
+    {
+      "name": "NOIZYVAULT_LOCAL_SOVEREIGNTY_STACK.md",
+      "path": "/Users/m2ultra/NOIZYBEAST/THE-GATHERING/docs/NOIZYVAULT_LOCAL_SOVEREIGNTY_STACK.md",
+      "size_kb": 5.31,
+      "modified": "2026-09-24 20:32"
+    },
+    {
+      "name": "parallel-fleet-architecture.md",
+      "path": "/Users/m2ultra/NOIZYBEAST/THE-GATHERING/docs/parallel-fleet-architecture.md",
+      "size_kb": 8.13,
+      "modified": "2026-08-13 15:37"
+    },
+    {
+      "name": "master-repair-consolidation-blueprint-2026.md",
+      "path": "/Users/m2ultra/NOIZYBEAST/THE-GATHERING/docs/master-repair-consolidation-blueprint-2026.md",
+      "size_kb": 11.04,
+      "modified": "2026-08-11 17:00"
+    },
+    {
+      "name": "ubuntu-orchestra-architecture.md",
+      "path": "/Users/m2ultra/NOIZYBEAST/THE-GATHERING/docs/ubuntu-orchestra-architecture.md",
+      "size_kb": 11.59,
+      "modified": "2026-08-14 05:50"
+    },
+    {
+      "name": "roadmap.md",
+      "path": "/Users/m2ultra/NOIZYBEAST/THE-GATHERING/docs/roadmap.md",
+      "size_kb": 1.89,
+      "modified": "2026-08-11 17:00"
+    },
+    {
+      "name": "sovereign-vocal-integration-v2.md",
+      "path": "/Users/m2ultra/NOIZYBEAST/THE-GATHERING/docs/vox/sovereign-vocal-integration-v2.md",
+      "size_kb": 10.69,
+      "modified": "2026-08-11 20:45"
+    }
+  ]
+}

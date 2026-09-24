@@ -1,0 +1,38 @@
+{
+  "domain": "fishmusicinc.com",
+  "audited_at": "2026-09-24T20:38:43.880763+00:00",
+  "live_status": {
+    "nameservers": [
+      "dns1.p05.nsone.net.",
+      "dns2.p05.nsone.net.",
+      "dns3.p05.nsone.net.",
+      "dns4.p05.nsone.net."
+    ],
+    "mx_records": [],
+    "google_mx_active": false,
+    "spf_active": false,
+    "dmarc_active": false,
+    "raw_txt_records": []
+  },
+  "required_action_items": [
+    {
+      "record": "MX",
+      "host": "@",
+      "priority": 1,
+      "value": "SMTP.GOOGLE.COM.",
+      "purpose": "Directs email traffic to Google Workspace"
+    },
+    {
+      "record": "TXT",
+      "host": "@",
+      "value": "v=spf1 include:_spf.google.com ~all",
+      "purpose": "Authorizes Google Workspace to send on behalf of fishmusicinc.com"
+    },
+    {
+      "record": "TXT",
+      "host": "_dmarc",
+      "value": "v=DMARC1; p=quarantine; rua=mailto:dmarc-reports@fishmusicinc.com",
+      "purpose": "Prevents unauthorized email spoofing of artist domain"
+    }
+  ]
+}
