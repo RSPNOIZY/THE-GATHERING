@@ -1,0 +1,16 @@
+# 📱 NOIZYMOBILE WireGuard Profile (iPhone 15 Pro Max)
+# Interface: wg-noizy-iphone
+# Subnet: 10.77.0.0/24
+
+[Interface]
+# iPhone Assigned Private IP in the NOIZY Mesh
+Address = 10.77.0.4/32
+DNS = 1.1.1.1, 10.77.0.2
+# PrivateKey = <Generated in iOS WireGuard App or Proton Pass>
+
+# Peer: Mac Studio M2 Ultra (Control Plane)
+[Peer]
+# PublicKey = <Mac Studio M2 Ultra Public Key>
+Endpoint = 10.77.0.2:51820
+AllowedIPs = 10.77.0.0/24
+PersistentKeepalive = 25
