@@ -1,0 +1,25 @@
+name = "noisyproof"
+main = "src/index.ts"
+compatibility_date = "2024-01-01"
+account_id = "5f36aa9795348ea681d0b21910dfc82a"
+# Migrated 2026-04-02 — resources created on Account 1
+# OLD D1 (Account 2): be3e1a74-9bab-4f48-975a-0d8a912f6592
+# OLD KV (Account 2): d4ee2982306b486495189216402d8442
+# See: docs/CLOUDFLARE_AUDIT_AND_MIGRATION.md
+
+[env.production]
+name = "noisyproof"
+route = { pattern = "proof.noisy.io/*", custom_domain = true }
+
+[[d1_databases]]
+binding = "DB"
+database_name = "noisyproof"
+database_id = "984106b4-c246-4455-ba9c-d07ed125504b"
+
+[[kv_namespaces]]
+binding = "KV"
+id = "11cb7cd3819341b3beac81ba3318509a"
+preview_id = "11cb7cd3819341b3beac81ba3318509a"
+
+[build]
+command = "npm run build"

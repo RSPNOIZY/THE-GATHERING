@@ -1,0 +1,10 @@
+Account_ID,Provider,Email,Tier,Canonical_Role,Status,Local_Mount_Path
+GW_001_RSPNOIZY,Google Workspace Business Plus,rspnoizy@gmail.com,5TB Cloud Storage + Gemini Advanced,Primary Sovereign Cloud Hub · 5TB Audio Archive & Backup Mirror,ACTIVE / PRIMARY,/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspnoizy@gmail.com
+GD_002_RSPLOWMAN,Google Drive,rsplowman@icloud.com,Legacy Cloud Storage,"Acoustic Audio Archives, CODEMASTER Historical & Rescue Vault",ACTIVE / CONSOLIDATING,/Users/m2ultra/Library/CloudStorage/GoogleDrive-rsplowman@icloud.com
+GD_003_NOIZYLAB,Google Drive,rspnoizylab@gmail.com,Developer Cloud Storage,"NOIZYLAB R&D, Workspace Blueprints & Experimental Builds",ACTIVE / CONSOLIDATING,/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspnoizylab@gmail.com
+GD_004_RSPPLOWMAN,Google Drive,rspplowman@gmail.com,Personal Google Drive,Personal Documents & Historical Records,ACTIVE / ARCHIVAL,/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com
+ICLOUD_001,Apple iCloud+,rsplowman@icloud.com,2TB iCloud+ Family Plan,"Bills & Receipts, Personal Docs, iOS Audio Sync (Logic Pro for iPad)",ACTIVE / REAL-TIME,/Users/m2ultra/Library/Mobile Documents/com~apple~CloudDocs
+ONEDRIVE_001,Microsoft OneDrive,rsplowman@hotmail.com / rsplowman@live.com,1TB Microsoft 365 Personal,Windows 11 NOIZYWIN Microbeast Sync & Office Doc Archives,ACTIVE,/Users/m2ultra/Library/CloudStorage/OneDrive-Personal
+DROPBOX_001,Dropbox,rspnoizy@gmail.com,Basic / Historical,Third-Party Audio Collaborations & Stem Ingest,ACTIVE / INGEST,/Users/m2ultra/Library/CloudStorage/Dropbox
+CLOUDFLARE_R2,Cloudflare R2 Object Storage,rspnoizy@gmail.com,S3-Compatible Zero-Egress Storage,Global CDN Audio Distribution & Haptic Event Storage,CRITICAL / ACTIVE,s3://noizy-audio-vault
+PROTON_DRIVE,Proton Drive,rspnoizy@gmail.com,End-to-End Encrypted Sovereign Storage,"Encrypted Sovereign Secrets, Master Passphrase Backup & Legal Vault",CRITICAL / ACTIVE,https://drive.proton.me

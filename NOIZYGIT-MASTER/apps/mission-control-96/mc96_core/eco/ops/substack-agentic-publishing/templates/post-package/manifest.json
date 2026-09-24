@@ -1,0 +1,30 @@
+{
+  "id": "replace-with-date-slug",
+  "brand": "NOIZY.AI",
+  "section": "DREAMCHAMBER",
+  "status": "draft",
+  "title": "Working Title",
+  "subtitle": "",
+  "audience": "private_review",
+  "send_email": false,
+  "publish_window": {
+    "target_date": "2026-06-16",
+    "timezone": "America/Toronto"
+  },
+  "assets": [],
+  "sources": [],
+  "rights": {
+    "voice_consent_checked": false,
+    "music_rights_checked": false,
+    "image_rights_checked": false,
+    "contains_child_safety_review": false,
+    "approved_for_public_distribution": false
+  },
+  "review": {
+    "fact_check_complete": false,
+    "human_approved": false,
+    "substack_preview_checked": false,
+    "test_email_checked": false,
+    "notes": ""
+  }
+}

@@ -1,0 +1,487 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0263ECD848CC781262AC5886 /* LucyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA7C536A53C7311E48D4E0D /* LucyApp.swift */; };
+		06A299DA03C66817BDD8D3D0 /* MCPBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = E420E2C9D93A51556355B935 /* MCPBridge.swift */; };
+		0C14D9D63A83337588B74233 /* MCPEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72DAFC5F3466F019931A1E8 /* MCPEngine.swift */; };
+		17C1F8B6F0E51B03229C3BF6 /* HeavenJSRuntime.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A4485D20A43716E2B5BA7F /* HeavenJSRuntime.swift */; };
+		2D8B53F286507D1599D0778A /* LucyRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D146262DAB1A5A4E26B521C4 /* LucyRootView.swift */; };
+		2E1B5D459865A11D25DAA41C /* AgentMemory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843857272D981640F1224710 /* AgentMemory.swift */; };
+		52D768F3FB391702F8FC4980 /* AirPlayRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2048BA57040419A43A252120 /* AirPlayRouter.swift */; };
+		D740EB7F35B24C86C5365217 /* ZeroTrustProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEAF7775FA73617B48574732 /* ZeroTrustProxy.swift */; };
+		D7971D39FAEB518830F5B535 /* HeavenWorkerBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B013C4F28D8AD4EDB3C0B3 /* HeavenWorkerBridge.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		01FDF5ED12AEF89FAC492E65 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29FB932BF4454E6AB9B45DB1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 65E1921075A3915C3B73A863;
+			remoteInfo = LucyMCP;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		2048BA57040419A43A252120 /* AirPlayRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirPlayRouter.swift; sourceTree = "<group>"; };
+		52B013C4F28D8AD4EDB3C0B3 /* HeavenWorkerBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeavenWorkerBridge.swift; sourceTree = "<group>"; };
+		5A34F96708D5F857CFFA16A8 /* LucyMCP.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = LucyMCP.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		843857272D981640F1224710 /* AgentMemory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgentMemory.swift; sourceTree = "<group>"; };
+		9CFC4D8EF7D91C5E19AEB178 /* LucyMCPTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = LucyMCPTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D146262DAB1A5A4E26B521C4 /* LucyRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LucyRootView.swift; sourceTree = "<group>"; };
+		DEA7C536A53C7311E48D4E0D /* LucyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LucyApp.swift; sourceTree = "<group>"; };
+		DEAF7775FA73617B48574732 /* ZeroTrustProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZeroTrustProxy.swift; sourceTree = "<group>"; };
+		E420E2C9D93A51556355B935 /* MCPBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MCPBridge.swift; sourceTree = "<group>"; };
+		E6A4485D20A43716E2B5BA7F /* HeavenJSRuntime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeavenJSRuntime.swift; sourceTree = "<group>"; };
+		E72DAFC5F3466F019931A1E8 /* MCPEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MCPEngine.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		131C893DCF09D97F2B5F5E77 /* LucyMCPTests */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = LucyMCPTests;
+			sourceTree = "<group>";
+		};
+		1F9E06E8F90CED0AEBAD9005 /* MCP */ = {
+			isa = PBXGroup;
+			children = (
+				E420E2C9D93A51556355B935 /* MCPBridge.swift */,
+				E72DAFC5F3466F019931A1E8 /* MCPEngine.swift */,
+			);
+			path = MCP;
+			sourceTree = "<group>";
+		};
+		3FD6B117FECFC0B5ADEF1E86 /* Heaven */ = {
+			isa = PBXGroup;
+			children = (
+				52B013C4F28D8AD4EDB3C0B3 /* HeavenWorkerBridge.swift */,
+			);
+			path = Heaven;
+			sourceTree = "<group>";
+		};
+		5146622280FEB9F73306C00C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5A34F96708D5F857CFFA16A8 /* LucyMCP.app */,
+				9CFC4D8EF7D91C5E19AEB178 /* LucyMCPTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7CDE0E993CACBECEEC59D61D /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				2048BA57040419A43A252120 /* AirPlayRouter.swift */,
+			);
+			path = Audio;
+			sourceTree = "<group>";
+		};
+		87F2F356E18C2E7BCBBF2842 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				131C893DCF09D97F2B5F5E77 /* LucyMCPTests */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		971D64B019B796A215E3E91C /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				D146262DAB1A5A4E26B521C4 /* LucyRootView.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		AA5472AA12B0A7D3A6025AE5 /* Agent */ = {
+			isa = PBXGroup;
+			children = (
+				843857272D981640F1224710 /* AgentMemory.swift */,
+			);
+			path = Agent;
+			sourceTree = "<group>";
+		};
+		B81A111C26D7A2EF3C43E03B /* JSRuntime */ = {
+			isa = PBXGroup;
+			children = (
+				E6A4485D20A43716E2B5BA7F /* HeavenJSRuntime.swift */,
+			);
+			path = JSRuntime;
+			sourceTree = "<group>";
+		};
+		C2AD2B5DD578B18EE180DE1D /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				AA5472AA12B0A7D3A6025AE5 /* Agent */,
+				7CDE0E993CACBECEEC59D61D /* Audio */,
+				3FD6B117FECFC0B5ADEF1E86 /* Heaven */,
+				B81A111C26D7A2EF3C43E03B /* JSRuntime */,
+				1F9E06E8F90CED0AEBAD9005 /* MCP */,
+				EC211CCCC96D4142970159C7 /* Security */,
+				971D64B019B796A215E3E91C /* UI */,
+				DEA7C536A53C7311E48D4E0D /* LucyApp.swift */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		EC211CCCC96D4142970159C7 /* Security */ = {
+			isa = PBXGroup;
+			children = (
+				DEAF7775FA73617B48574732 /* ZeroTrustProxy.swift */,
+			);
+			path = Security;
+			sourceTree = "<group>";
+		};
+		F88980A2BBA2DE5EF00B632D = {
+			isa = PBXGroup;
+			children = (
+				C2AD2B5DD578B18EE180DE1D /* Sources */,
+				87F2F356E18C2E7BCBBF2842 /* Tests */,
+				5146622280FEB9F73306C00C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		65E1921075A3915C3B73A863 /* LucyMCP */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BD8861B53CBC902AA5A153DF /* Build configuration list for PBXNativeTarget "LucyMCP" */;
+			buildPhases = (
+				2CEAC4E560A77ADA82C2BD52 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LucyMCP;
+			packageProductDependencies = (
+			);
+			productName = LucyMCP;
+			productReference = 5A34F96708D5F857CFFA16A8 /* LucyMCP.app */;
+			productType = "com.apple.product-type.application";
+		};
+		8ED4DBB3FA3BD8C16A643E90 /* LucyMCPTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 913E29C215E3E885D86F380F /* Build configuration list for PBXNativeTarget "LucyMCPTests" */;
+			buildPhases = (
+				9E8ECD520F15BEBC05FAD789 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1BE007572CD9E8A18133C3DD /* PBXTargetDependency */,
+			);
+			name = LucyMCPTests;
+			packageProductDependencies = (
+			);
+			productName = LucyMCPTests;
+			productReference = 9CFC4D8EF7D91C5E19AEB178 /* LucyMCPTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		29FB932BF4454E6AB9B45DB1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 2630;
+				TargetAttributes = {
+					65E1921075A3915C3B73A863 = {
+						DevelopmentTeam = "$(DEVELOPMENT_TEAM)";
+					};
+					8ED4DBB3FA3BD8C16A643E90 = {
+						DevelopmentTeam = "$(DEVELOPMENT_TEAM)";
+					};
+				};
+			};
+			buildConfigurationList = 0EA23B050703F7772B12A618 /* Build configuration list for PBXProject "LucyMCP" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = F88980A2BBA2DE5EF00B632D;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 5146622280FEB9F73306C00C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				65E1921075A3915C3B73A863 /* LucyMCP */,
+				8ED4DBB3FA3BD8C16A643E90 /* LucyMCPTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2CEAC4E560A77ADA82C2BD52 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2E1B5D459865A11D25DAA41C /* AgentMemory.swift in Sources */,
+				52D768F3FB391702F8FC4980 /* AirPlayRouter.swift in Sources */,
+				17C1F8B6F0E51B03229C3BF6 /* HeavenJSRuntime.swift in Sources */,
+				D7971D39FAEB518830F5B535 /* HeavenWorkerBridge.swift in Sources */,
+				0263ECD848CC781262AC5886 /* LucyApp.swift in Sources */,
+				2D8B53F286507D1599D0778A /* LucyRootView.swift in Sources */,
+				06A299DA03C66817BDD8D3D0 /* MCPBridge.swift in Sources */,
+				0C14D9D63A83337588B74233 /* MCPEngine.swift in Sources */,
+				D740EB7F35B24C86C5365217 /* ZeroTrustProxy.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9E8ECD520F15BEBC05FAD789 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		1BE007572CD9E8A18133C3DD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 65E1921075A3915C3B73A863 /* LucyMCP */;
+			targetProxy = 01FDF5ED12AEF89FAC492E65 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		1D196B1EDA1EA51F3A9458AF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = LucyMCP/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ai.noizy.lucy;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		4DD2732F03B16C67D46E05E8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = LucyMCP/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ai.noizy.lucy;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		5D1827A9B330D431C3158E2C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ai.noizy.LucyMCPTests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LucyMCP.app/LucyMCP";
+			};
+			name = Release;
+		};
+		7A940A99E3E7ADA22939D50B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "$(DEVELOPMENT_TEAM)";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				MARKETING_VERSION = 1.0.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		9F7350BA37044B5774C535CF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ai.noizy.LucyMCPTests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LucyMCP.app/LucyMCP";
+			};
+			name = Debug;
+		};
+		B22171FCF48BBA8E889FFD99 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "$(DEVELOPMENT_TEAM)";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				MARKETING_VERSION = 1.0.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0EA23B050703F7772B12A618 /* Build configuration list for PBXProject "LucyMCP" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B22171FCF48BBA8E889FFD99 /* Debug */,
+				7A940A99E3E7ADA22939D50B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		913E29C215E3E885D86F380F /* Build configuration list for PBXNativeTarget "LucyMCPTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9F7350BA37044B5774C535CF /* Debug */,
+				5D1827A9B330D431C3158E2C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		BD8861B53CBC902AA5A153DF /* Build configuration list for PBXNativeTarget "LucyMCP" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1D196B1EDA1EA51F3A9458AF /* Debug */,
+				4DD2732F03B16C67D46E05E8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 29FB932BF4454E6AB9B45DB1 /* Project object */;
+}

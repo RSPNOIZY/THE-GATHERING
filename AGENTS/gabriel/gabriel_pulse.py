@@ -52,8 +52,7 @@ import subprocess
 import time
 from dataclasses import dataclass, field
 from enum import Enum
-from pathlib import Path
-from typing import Dict, List, Optional, Set, Tuple
+from typing import List, Optional, Set, Tuple
 
 logger = logging.getLogger("PULSE")
 
@@ -436,7 +435,7 @@ class Pulse:
         if r.audio_capture:
             lines.append(f"   🎙  Capture: {r.audio_capture_proc}")
         if r.audio_routing:
-            lines.append(f"   🔊  Audio routing active (Loopback)")
+            lines.append("   🔊  Audio routing active (Loopback)")
         lines.append(f"   Workers: ≤{lim['max_workers']}  |  Batch: {lim['batch_jobs']}  |  Writes: {lim['disk_writes']}")
         return "\n".join(lines)
 

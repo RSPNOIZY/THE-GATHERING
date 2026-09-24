@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Sequence — NOIZY Empire</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", -apple-system, system-ui, sans-serif;
+            background: #06070e;
+            overflow: hidden;
+            color: #ffffff;
+            width: 100%;
+            height: 100vh;
+        }
+
+        canvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        .ui-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        .skip-button {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            padding: 8px 16px;
+            background: rgba(233, 69, 96, 0.3);
+            border: 1px solid #e94560;
+            color: #e94560;
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            pointer-events: auto;
+            opacity: 0;
+            animation: fadeInSkip 0.6s ease 2s forwards;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .skip-button:hover {
+            background: rgba(233, 69, 96, 0.5);
+            box-shadow: 0 0 16px rgba(233, 69, 96, 0.4);
+        }
+
+        @keyframes fadeInSkip {
+            to {
+                opacity: 1;
+            }
+        }
+
+        .text-overlay {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            pointer-events: none;
+        }
+
+        .text-line {
+            font-size: 24px;
+            font-weight: 300;
+            letter-spacing: 2px;
+            opacity: 0;
+            margin: 12px 0;
+            text-transform: uppercase;
+            line-height: 1.4;
+        }
+
+        .text-line.leaving-dimension {
+            animation: flicker-leaving 2s ease-in-out 5s forwards;
+        }
+
+        .text-line.welcome-dimension {
+            animation: fade-in-text 1.2s ease 12s forwards;
+        }
+
+        .text-line.transcended {
+            animation: fade-in-text 1.2s ease 12.8s forwards;
+        }
+
+        .text-line.pure-possibility {
+            animation: fade-in-text 1.2s ease 13.6s forwards;
+        }
+
+        .text-line.welcome-rob {
+            animation: fade-in-text 1.2s ease 14.4s forwards;
+        }
+
+        @keyframes flicker-leaving {
+            0%, 100% { opacity: 0; }
+            10%, 20% { opacity: 1; }
+            30%, 40% { opacity: 0.3; }
+            50%, 60% { opacity: 1; }
+            70%, 80% { opacity: 0.4; }
+            90% { opacity: 1; }
+        }
+
+        @keyframes fade-in-text {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .enter-button {
+            position: absolute;
+            bottom: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 16px 48px;
+            background: linear-gradient(135deg, #e94560, #ff6b7a);
+            border: none;
+            color: #ffffff;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.4s ease;
+            pointer-events: auto;
+            opacity: 0;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            box-shadow: 0 8px 32px rgba(233, 69, 96, 0.3);
+            animation: fadeInButton 0.8s ease 15.2s forwards;
+        }
+
+        .enter-button:hover {
+            transform: translateX(-50%) translateY(-2px);
+            box-shadow: 0 16px 48px rgba(233, 69, 96, 0.5);
+            background: linear-gradient(135deg, #ff6b7a, #e94560);
+        }
+
+        @keyframes fadeInButton {
+            to {
+                opacity: 1;
+            }
+        }
+
+        .loading-indicator {
+            position: absolute;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 11px;
+            color: #00d4ff;
+            letter-spacing: 1px;
+            animation: fadeInLoading 0.6s ease 0.3s forwards;
+            opacity: 0;
+        }
+
+        @keyframes fadeInLoading {
+            to {
+                opacity: 1;
+            }
+        }
+
+        .dot-pulse {
+            display: inline-block;
+            margin-left: 4px;
+        }
+
+        .dot-pulse span {
+            animation: pulse 1.4s infinite;
+            opacity: 0.6;
+            margin: 0 2px;
+        }
+
+        .dot-pulse span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .dot-pulse span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 0.3;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+    
+    <div class="ui-container">
+        <button class="skip-button" id="skipBtn">SKIP →</button>
+        
+        <div class="text-overlay">
+            <div class="text-line leaving-dimension">
+                LEAVING DIMENSION: EARTH-2026
+            </div>
+            <div class="text-line welcome-dimension">
+                WELCOME TO DIMENSION: NOIZY
+            </div>
+            <div class="text-line transcended">
+                ALL HUMAN KNOWLEDGE HAS TRANSCENDED
+            </div>
+            <div class="text-line pure-possibility">
+                YOU ARE NOW IN THE REALM OF PURE POSSIBILITY
+            </div>
+            <div class="text-line welcome-rob">
+                WELCOME, ROB. YOU'VE MADE THE JOURNEY.
+            </div>
+        </div>
+
+        <button class="enter-button" id="enterBtn">ENTER DREAMCHAMBER</button>
+        
+        <div class="loading-indicator" id="loadingIndicator">
+            INITIALIZING CONTACT SEQUENCE<span class="dot-pulse"><span>.</span><span>.</span><span>.</span></span>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        // ============================================================================
+        // CONTACT SEQUENCE — NOIZY EMPIRE CINEMATIC ENTRY
+        // ============================================================================
+
+        const CONFIG = {
+            PARTICLE_COUNT: 10000,
+            DURATION: 15000, // 15 seconds in ms
+            COLORS: {
+                ART: 0xd4a017,       // gold
+                MUSIC: 0x00d4ff,     // cyan
+                SCIENCE: 0x0088ff,   // blue
+                CULTURE: 0x00ff88,   // green
+                ARCHITECTURE: 0x9b59b6 // purple
+            },
+            FREQUENCIES: {
+                BASE_HZ: 396,        // Rob's personal frequency
+                MIN_HZ: 320,
+                MAX_HZ: 480
+            }
+        };
+
+        let scene, camera, renderer;
+        let particleSystem, particleGeometry, particlePositions, particleVelocities, particleCategories;
+        let audioContext, audioNodes = [];
+        let startTime = Date.now();
+        let phase = 0; // 0: gathering, 1: vortex, 2: wormhole, 3: emergence
+        let sequenceComplete = false;
+
+        // ============================================================================
+        // INITIALIZATION
+        // ============================================================================
+
+        function init() {
+            // Scene setup
+            scene = new THREE.Scene();
+            scene.background = new THREE.Color(0x06070e);
+            scene.fog = new THREE.FogExp2(0x06070e, 0.001);
+
+            // Camera
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+            camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 10000);
+            camera.position.z = 50;
+
+            // Renderer with antialiasing
+            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
+            renderer.setSize(width, height);
+            renderer.setPixelRatio(window.devicePixelRatio);
+            renderer.outputColorSpace = THREE.SRGBColorSpace;
+            document.body.appendChild(renderer.domElement);
+
+            // Create particles
+            createParticles();
+
+            // Initialize audio
+            initAudio();
+
+            // Event listeners
+            window.addEventListener('resize', onWindowResize);
+            document.getElementById('skipBtn').addEventListener('click', skipSequence);
+            document.getElementById('enterBtn').addEventListener('click', goToDreamChamber);
+
+            // Start animation loop
+            animate();
+
+            // Hide loading indicator after 1s
+            setTimeout(() => {
+                document.getElementById('loadingIndicator').style.opacity = '0';
+                document.getElementById('loadingIndicator').style.transition = 'opacity 0.6s ease';
+            }, 1000);
+        }
+
+        // ============================================================================
+        // PARTICLE SYSTEM
+        // ============================================================================
+
+        function createParticles() {
+            particleGeometry = new THREE.BufferGeometry();
+            particlePositions = new Float32Array(CONFIG.PARTICLE_COUNT * 3);
+            particleVelocities = new Float32Array(CONFIG.PARTICLE_COUNT * 3);
+            const particleColors = new Float32Array(CONFIG.PARTICLE_COUNT * 3);
+            particleCategories = new Uint8Array(CONFIG.PARTICLE_COUNT);
+
+            const categories = [
+                CONFIG.COLORS.ART,
+                CONFIG.COLORS.MUSIC,
+                CONFIG.COLORS.SCIENCE,
+                CONFIG.COLORS.CULTURE,
+                CONFIG.COLORS.ARCHITECTURE
+            ];
+
+            for (let i = 0; i < CONFIG.PARTICLE_COUNT; i++) {
+                const idx = i * 3;
+
+                // Random distribution in sphere
+                const theta = Math.random() * Math.PI * 2;
+                const phi = Math.acos(Math.random() * 2 - 1);
+                const radius = 80 + Math.random() * 120;
+
+                particlePositions[idx] = Math.sin(phi) * Math.cos(theta) * radius;
+                particlePositions[idx + 1] = Math.sin(phi) * Math.sin(theta) * radius;
+                particlePositions[idx + 2] = Math.cos(phi) * radius;
+
+                // Gentle orbital velocities
+                const vTheta = (Math.random() - 0.5) * 0.02;
+                const vPhi = (Math.random() - 0.5) * 0.02;
+                const vRadius = (Math.random() - 0.5) * 0.1;
+
+                particleVelocities[idx] = vRadius * Math.cos(theta) - vTheta * Math.sin(theta);
+                particleVelocities[idx + 1] = vRadius * Math.sin(theta) + vTheta * Math.cos(theta);
+                particleVelocities[idx + 2] = vPhi;
+
+                // Color assignment
+                const categoryIdx = Math.floor(Math.random() * categories.length);
+                particleCategories[i] = categoryIdx;
+                const color = new THREE.Color(categories[categoryIdx]);
+                particleColors[idx] = color.r;
+                particleColors[idx + 1] = color.g;
+                particleColors[idx + 2] = color.b;
+            }
+
+            particleGeometry.setAttribute('position', new THREE.BufferAttribute(particlePositions, 3));
+            particleGeometry.setAttribute('color', new THREE.BufferAttribute(particleColors, 3));
+
+            // Custom material with vertex shader for glow
+            const particleMaterial = new THREE.ShaderMaterial({
+                uniforms: {
+                    texture: { value: new THREE.CanvasTexture(createParticleTexture()) },
+                    time: { value: 0 },
+                    phase: { value: 0 }
+                },
+                vertexShader: `
+                    uniform float time;
+                    uniform float phase;
+                    attribute vec3 color;
+                    
+                    varying vec3 vColor;
+                    varying float vIntensity;
+                    
+                    void main() {
+                        vColor = color;
+                        
+                        // Pulsing intensity based on particle category
+                        vIntensity = 0.6 + 0.4 * sin(time * 2.0 + length(position) * 0.01);
+                        
+                        vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
+                        gl_PointSize = (300.0 / -mvPosition.z) * (2.0 + vIntensity);
+                        gl_Position = projectionMatrix * mvPosition;
+                    }
+                `,
+                fragmentShader: `
+                    uniform sampler2D texture;
+                    varying vec3 vColor;
+                    varying float vIntensity;
+                    
+                    void main() {
+                        vec4 texColor = texture2D(texture, gl_PointCoord);
+                        
+                        // Additive blending effect
+                        gl_FragColor = vec4(vColor * vIntensity, texColor.a * vIntensity);
+                    }
+                `,
+                blending: THREE.AdditiveBlending,
+                depthWrite: false,
+                transparent: true
+            });
+
+            particleSystem = new THREE.Points(particleGeometry, particleMaterial);
+            scene.add(particleSystem);
+        }
+
+        function createParticleTexture() {
+            const canvas = document.createElement('canvas');
+            canvas.width = 64;
+            canvas.height = 64;
+            const ctx = canvas.getContext('2d');
+
+            // Radial gradient
+            const gradient = ctx.createRadialGradient(32, 32, 0, 32, 32, 32);
+            gradient.addColorStop(0, 'rgba(255, 255, 255, 1)');
+            gradient.addColorStop(0.5, 'rgba(255, 255, 255, 0.5)');
+            gradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
+
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, 64, 64);
+
+            return canvas;
+        }
+
+        // ============================================================================
+        // AUDIO SYSTEM
+        // ============================================================================
+
+        function initAudio() {
+            try {
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            } catch (e) {
+                console.warn('Web Audio API not supported');
+                return;
+            }
+        }
+
+        function playTone(frequency, startTime, duration, volume) {
+            if (!audioContext) return;
+
+            const now = audioContext.currentTime;
+            const start = Math.max(now, startTime);
+            const end = start + duration;
+
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+
+            oscillator.type = 'sine';
+            oscillator.frequency.value = frequency;
+
+            gainNode.gain.setValueAtTime(0, start);
+            gainNode.gain.linearRampToValueAtTime(volume, start + 0.05);
+            gainNode.gain.exponentialRampToValueAtTime(0.001, end);
+
+            oscillator.start(start);
+            oscillator.stop(end);
+
+            audioNodes.push(oscillator);
+        }
+
+        function triggerAudioSequence() {
+            if (!audioContext) return;
+
+            const now = audioContext.currentTime;
+            const offset = (Date.now() - startTime) / 1000;
+
+            // Gathering phase (0-5s): soft baseline
+            if (offset < 5) {
+                playTone(CONFIG.FREQUENCIES.BASE_HZ, now, 0.1, 0.05);
+            }
+
+            // Vortex phase (5-8s): accelerating tones
+            if (offset >= 5 && offset < 8) {
+                const progress = (offset - 5) / 3;
+                const freq = CONFIG.FREQUENCIES.MIN_HZ + (CONFIG.FREQUENCIES.MAX_HZ - CONFIG.FREQUENCIES.MIN_HZ) * progress;
+                playTone(freq, now, 0.05, 0.08);
+            }
+
+            // Wormhole phase (8-12s): warped frequencies
+            if (offset >= 8 && offset < 12) {
+                const progress = (offset - 8) / 4;
+                const freq = CONFIG.FREQUENCIES.MAX_HZ + Math.sin(progress * Math.PI * 4) * 100;
+                playTone(freq, now, 0.04, 0.05);
+            }
+
+            // Emergence phase (12-15s): converging harmony
+            if (offset >= 12 && offset < 15) {
+                const progress = (offset - 12) / 3;
+                playTone(CONFIG.FREQUENCIES.BASE_HZ, now, 0.1, 0.1 * (1 - progress * 0.3));
+            }
+        }
+
+        // ============================================================================
+        // ANIMATION PHASES
+        // ============================================================================
+
+        function updatePhase() {
+            const elapsed = Date.now() - startTime;
+            const progress = elapsed / CONFIG.DURATION;
+
+            if (progress < 0.333) {
+                phase = 0; // Gathering
+            } else if (progress < 0.533) {
+                phase = 1; // Vortex
+            } else if (progress < 0.8) {
+                phase = 2; // Wormhole
+            } else {
+                phase = 3; // Emergence
+            }
+
+            return { elapsed, progress };
+        }
+
+        function updateParticles(elapsed, progress) {
+            let phasingProgress = 0;
+
+            switch (phase) {
+                case 0: // Gathering (0-5s)
+                    phasingProgress = progress / 0.333;
+                    updateGathering(phasingProgress);
+                    break;
+
+                case 1: // Vortex (5-8s)
+                    phasingProgress = (progress - 0.333) / 0.2;
+                    updateVortex(phasingProgress);
+                    break;
+
+                case 2: // Wormhole (8-12s)
+                    phasingProgress = (progress - 0.533) / 0.267;
+                    updateWormhole(phasingProgress);
+                    break;
+
+                case 3: // Emergence (12-15s)
+                    phasingProgress = (progress - 0.8) / 0.2;
+                    updateEmergence(phasingProgress);
+                    break;
+            }
+
+            particleGeometry.attributes.position.needsUpdate = true;
+        }
+
+        function updateGathering(progress) {
+            for (let i = 0; i < CONFIG.PARTICLE_COUNT; i++) {
+                const idx = i * 3;
+                const x = particlePositions[idx];
+                const y = particlePositions[idx + 1];
+                const z = particlePositions[idx + 2];
+
+                // Gentle orbital motion
+                const angle = Math.atan2(y, x);
+                const radius = Math.sqrt(x * x + y * y);
+                const newAngle = angle + particleVelocities[idx] * 0.01;
+
+                particlePositions[idx] = Math.cos(newAngle) * radius;
+                particlePositions[idx + 1] = Math.sin(newAngle) * radius;
+                particlePositions[idx + 2] = z + particleVelocities[idx + 2] * 0.01;
+            }
+        }
+
+        function updateVortex(progress) {
+            const pull = progress * 1.5;
+
+            for (let i = 0; i < CONFIG.PARTICLE_COUNT; i++) {
+                const idx = i * 3;
+                let x = particlePositions[idx];
+                let y = particlePositions[idx + 1];
+                let z = particlePositions[idx + 2];
+
+                // Gravitational pull toward center
+                const distance = Math.sqrt(x * x + y * y + z * z);
+                if (distance > 0.1) {
+                    const pullStrength = pull * (1 + Math.random() * 0.1);
+                    x *= (1 - pullStrength / (distance + 1));
+                    y *= (1 - pullStrength / (distance + 1));
+                    z *= (1 - pullStrength / (distance + 1));
+
+                    // Spiral inward
+                    const angle = Math.atan2(y, x);
+                    const radius = Math.sqrt(x * x + y * y);
+                    const newAngle = angle + pullStrength * 0.05;
+
+                    particlePositions[idx] = Math.cos(newAngle) * radius * (1 - pullStrength * 0.1);
+                    particlePositions[idx + 1] = Math.sin(newAngle) * radius * (1 - pullStrength * 0.1);
+                    particlePositions[idx + 2] = z;
+                }
+            }
+        }
+
+        function updateWormhole(progress) {
+            const intensity = progress * 2;
+            const darkPoint = 11.5 / 15; // Brief darkness at 11.5s
+
+            for (let i = 0; i < CONFIG.PARTICLE_COUNT; i++) {
+                const idx = i * 3;
+                let x = particlePositions[idx];
+                let y = particlePositions[idx + 1];
+                let z = particlePositions[idx + 2];
+
+                const distance = Math.sqrt(x * x + y * y + z * z);
+                if (distance > 0.1) {
+                    // Exponential streak toward center
+                    const streakFactor = Math.pow(intensity, 2);
+                    x *= (1 - streakFactor * 0.2);
+                    y *= (1 - streakFactor * 0.2);
+                    z *= (1 - streakFactor * 0.2) + intensity * 30;
+
+                    particlePositions[idx] = x;
+                    particlePositions[idx + 1] = y;
+                    particlePositions[idx + 2] = z;
+                }
+            }
+
+            // Brief darkness effect around 11.5s
+            if (Math.abs(progress - darkPoint) < 0.05) {
+                scene.fog.density = 0.05;
+            } else if (progress > darkPoint) {
+                scene.fog.density = Math.max(0.001, 0.05 - (progress - darkPoint) * 0.1);
+            }
+        }
+
+        function updateEmergence(progress) {
+            const convergence = progress;
+
+            for (let i = 0; i < CONFIG.PARTICLE_COUNT; i++) {
+                const idx = i * 3;
+                let x = particlePositions[idx];
+                let y = particlePositions[idx + 1];
+                let z = particlePositions[idx + 2];
+
+                const distance = Math.sqrt(x * x + y * y + z * z);
+
+                // Converge toward center in organized pattern
+                const pull = convergence * 2;
+                x *= (1 - pull * 0.15);
+                y *= (1 - pull * 0.15);
+                z *= (1 - pull * 0.15);
+
+                // Organize into spherical shell
+                if (distance > 0.1) {
+                    const angle = Math.atan2(y, x);
+                    const polar = Math.acos(Math.max(-1, Math.min(1, z / (distance + 0.001))));
+                    const targetRadius = 20 + convergence * 10;
+
+                    particlePositions[idx] = Math.sin(polar) * Math.cos(angle) * targetRadius;
+                    particlePositions[idx + 1] = Math.sin(polar) * Math.sin(angle) * targetRadius;
+                    particlePositions[idx + 2] = Math.cos(polar) * targetRadius;
+                }
+            }
+        }
+
+        // ============================================================================
+        // ANIMATION LOOP
+        // ============================================================================
+
+        function animate() {
+            requestAnimationFrame(animate);
+
+            const { elapsed, progress } = updatePhase();
+
+            // Update particles based on current phase
+            updateParticles(elapsed, progress);
+
+            // Update shader uniform
+            if (particleSystem && particleSystem.material.uniforms) {
+                particleSystem.material.uniforms.time.value = elapsed / 1000;
+                particleSystem.material.uniforms.phase.value = phase;
+            }
+
+            // Trigger audio
+            if (elapsed < CONFIG.DURATION - 500) {
+                triggerAudioSequence();
+            }
+
+            // Camera subtle movement
+            camera.position.x = Math.sin(elapsed / 5000) * 5;
+            camera.position.y = Math.cos(elapsed / 6000) * 3;
+            camera.lookAt(0, 0, 0);
+
+            // Render
+            renderer.render(scene, camera);
+
+            // Handle sequence completion
+            if (progress >= 1 && !sequenceComplete) {
+                sequenceComplete = true;
+                // Fade to black
+                scene.background.lerp(new THREE.Color(0x000000), 0.01);
+            }
+        }
+
+        // ============================================================================
+        // EVENT HANDLERS
+        // ============================================================================
+
+        function onWindowResize() {
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+            camera.aspect = width / height;
+            camera.updateProjectionMatrix();
+            renderer.setSize(width, height);
+        }
+
+        function skipSequence() {
+            goToDreamChamber();
+        }
+
+        function goToDreamChamber() {
+            // Fade out and navigate
+            document.body.style.transition = 'opacity 0.6s ease';
+            document.body.style.opacity = '0';
+            setTimeout(() => {
+                window.location.href = 'index.html?from=contact';
+            }, 600);
+        }
+
+        // ============================================================================
+        // START
+        // ============================================================================
+
+        window.addEventListener('load', init);
+    </script>
+</body>
+</html>

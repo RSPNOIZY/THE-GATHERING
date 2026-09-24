@@ -1,0 +1,116 @@
+{
+  "universe": "MC96ECOUNIVERSE",
+  "doctrine": {
+    "mode": "non_destructive_first",
+    "delete_allowed": false,
+    "move_allowed": false,
+    "write_reports_only": true,
+    "approval_required_for_prune": true
+  },
+  "output_root": "/Users/m2ultra/NOIZYANTHROPIC/mc96/eco/logs/noizyworld-audio-recovery",
+  "audio_extensions": [
+    ".wav",
+    ".wave",
+    ".aif",
+    ".aiff",
+    ".mp3",
+    ".m4a",
+    ".flac",
+    ".ogg",
+    ".opus",
+    ".aac",
+    ".caf",
+    ".snd",
+    ".au"
+  ],
+  "exclude_dir_names": [
+    ".DocumentRevisions-V100",
+    ".Spotlight-V100",
+    ".TemporaryItems",
+    ".Trashes",
+    ".fseventsd",
+    ".git",
+    "node_modules",
+    "__pycache__"
+  ],
+  "drives": [
+    {
+      "name": "M2ULTRA_USER",
+      "path": "/Users/m2ultra",
+      "role": "primary_workspace_and_cloud_cache",
+      "priority": 70
+    },
+    {
+      "name": "SAMPLE_MASTER",
+      "path": "/Volumes/SAMPLE_MASTER",
+      "role": "sample_library_master",
+      "priority": 100
+    },
+    {
+      "name": "SOUND_DESIGN",
+      "path": "/Volumes/SOUND_DESIGN",
+      "role": "sound_design_library",
+      "priority": 95
+    },
+    {
+      "name": "4TB_BLK",
+      "path": "/Volumes/4TB BLK",
+      "role": "large_audio_archive",
+      "priority": 95
+    },
+    {
+      "name": "4TB_LACIE",
+      "path": "/Volumes/4TB Lacie",
+      "role": "audio_archive",
+      "priority": 90
+    },
+    {
+      "name": "6TB",
+      "path": "/Volumes/6TB",
+      "role": "archive_and_ogg_collection",
+      "priority": 90
+    },
+    {
+      "name": "12TB",
+      "path": "/Volumes/12TB",
+      "role": "large_archive",
+      "priority": 90
+    },
+    {
+      "name": "3TB_GRF",
+      "path": "/Volumes/3TB-GRF",
+      "role": "archive_caf_heavy",
+      "priority": 85
+    },
+    {
+      "name": "JOE",
+      "path": "/Volumes/JOE",
+      "role": "archive_with_scan_warning",
+      "priority": 80
+    },
+    {
+      "name": "4TB_02",
+      "path": "/Volumes/4TB_02",
+      "role": "audio_archive",
+      "priority": 80
+    },
+    {
+      "name": "2TB_SGW",
+      "path": "/Volumes/2TB_SGW",
+      "role": "mp3_and_wav_archive",
+      "priority": 75
+    },
+    {
+      "name": "MAG_4TB",
+      "path": "/Volumes/MAG 4TB",
+      "role": "audio_archive",
+      "priority": 70
+    },
+    {
+      "name": "RED_DRAGON",
+      "path": "/Volumes/RED DRAGON",
+      "role": "clone_and_recovery_staging",
+      "priority": 70
+    }
+  ]
+}

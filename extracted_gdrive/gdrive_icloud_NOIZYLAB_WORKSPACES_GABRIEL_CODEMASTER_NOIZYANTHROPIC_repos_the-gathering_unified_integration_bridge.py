@@ -15,11 +15,10 @@ Integrates:
 
 import asyncio
 import json
-import os
 import time
 from dataclasses import dataclass, asdict
 from enum import Enum
-from typing import Dict, List, Optional, Any
+from typing import Dict, Optional, Any
 import logging
 from pathlib import Path
 
@@ -247,7 +246,7 @@ class NOIZYLABTunnelBridge:
             # Load tunnel configuration
             config_path = self.tunnel_path / "config.yml"
             if config_path.exists():
-                logger.info(f"  📝 Loaded tunnel config")
+                logger.info("  📝 Loaded tunnel config")
 
             # Initialize Gabriel agent
             logger.info("  🤝 Starting Gabriel agent...")
@@ -422,7 +421,7 @@ class UnifiedIntegrationBridge:
                 "result": result
             })
 
-            logger.info(f"    ✅ Complete")
+            logger.info("    ✅ Complete")
 
         results["end_time"] = time.time()
         results["duration_sec"] = results["end_time"] - results["start_time"]

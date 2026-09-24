@@ -1,0 +1,33 @@
+# Ruff configuration for NOIZYGIT-MASTER
+target-version = "py311"
+line-length = 120
+
+[lint]
+select = ["E", "F", "W"]
+ignore = [
+    "E501", # Line too long
+    "W293", # Blank line contains whitespace
+    "W291", # Trailing whitespace
+    "W292", # No newline at end of file
+    "E741", # Ambiguous variable name
+    "E722", # Do not use bare except
+    "E701", # Multiple statements on one line (colon)
+    "E702", # Multiple statements on one line (semicolon)
+    "E731", # Assigning lambda to variable
+    "E402", # Module level import not at top of file
+    "F401", # Unused import
+    "F841", # Unused variable
+    "F821", # Undefined name
+    "F541", # f-string without placeholders
+]
+
+exclude = [
+    ".git",
+    "node_modules",
+    "docs/ideas_vault",
+    "apps/noizy-ios-native/swift-library",
+    "apps/apps/rob_ava/pseudocode",
+    ".build",
+    "*.ipynb",
+    "**/*.ipynb"
+]

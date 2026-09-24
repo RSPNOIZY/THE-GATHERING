@@ -1,0 +1,27 @@
+#!/bin/bash
+# ═══════════════════════════════════════════════════════════════════════════
+# serve - Quick HTTP server with nice output
+# Usage: serve [port]
+# ═══════════════════════════════════════════════════════════════════════════
+
+PORT="${1:-8000}"
+DIR="${2:-.}"
+
+# Get local IP
+LOCAL_IP=$(ipconfig getifaddr en0 2>/dev/null || echo "localhost")
+
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo "🌐 HTTP Server"
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo ""
+echo "  Local:   http://localhost:$PORT"
+echo "  Network: http://$LOCAL_IP:$PORT"
+echo ""
+echo "  Serving: $(realpath "$DIR")"
+echo ""
+echo "  Press Ctrl+C to stop"
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo ""
+
+cd "$DIR"
+python3 -m http.server "$PORT"

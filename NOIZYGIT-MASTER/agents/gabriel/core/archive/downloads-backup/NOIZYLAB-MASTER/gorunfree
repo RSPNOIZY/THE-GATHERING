@@ -1,0 +1,114 @@
+#!/bin/bash
+# GORUNFREE - Master Deployment Script
+# One command = everything done
+
+set -e
+
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+NC='\033[0m'
+
+REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+show_help() {
+    echo ""
+    echo "GORUNFREE - NOIZYLAB Master Command"
+    echo ""
+    echo "Usage: ./gorunfree [command] [options]"
+    echo ""
+    echo "Commands:"
+    echo "  deploy [target]    Deploy to Cloudflare (all|repairs|edge|api)"
+    echo "  status             Show all system status"
+    echo "  sync               Sync GitHub repo"
+    echo "  agent [name] [cmd] Invoke AI agent"
+    echo "  db [action]        Database operations"
+    echo "  help               Show this help"
+    echo ""
+}
+
+deploy() {
+    local target=${1:-all}
+    echo -e "${BLUE}═══════════════════════════════════════════════════${NC}"
+    echo -e "${GREEN}GORUNFREE DEPLOY: $target${NC}"
+    echo -e "${BLUE}═══════════════════════════════════════════════════${NC}"
+    
+    case $target in
+        repairs|all)
+            echo -e "${YELLOW}Deploying noizylab-repairs...${NC}"
+            cd "$REPO_ROOT/business/noizylab-repairs"
+            wrangler deploy
+            echo -e "${GREEN}✓ noizylab-repairs deployed${NC}"
+            ;;&
+        edge|all)
+            echo -e "${YELLOW}Deploying edge worker...${NC}"
+            cd "$REPO_ROOT/infrastructure/cloudflare-workers/edge"
+            [ -f wrangler.toml ] && wrangler deploy
+            echo -e "${GREEN}✓ edge deployed${NC}"
+            ;;&
+    esac
+    
+    echo -e "${GREEN}═══════════════════════════════════════════════════${NC}"
+    echo -e "${GREEN}DEPLOYMENT COMPLETE${NC}"
+    echo -e "${GREEN}═══════════════════════════════════════════════════${NC}"
+}
+
+status() {
+    echo -e "${BLUE}═══════════════════════════════════════════════════${NC}"
+    echo -e "${GREEN}NOIZYLAB SYSTEM STATUS${NC}"
+    echo -e "${BLUE}═══════════════════════════════════════════════════${NC}"
+    
+    echo ""
+    echo -e "${YELLOW}Cloudflare Workers:${NC}"
+    wrangler whoami 2>/dev/null && wrangler deployments list 2>/dev/null || echo "Not authenticated"
+    
+    echo ""
+    echo -e "${YELLOW}Git Status:${NC}"
+    cd "$REPO_ROOT"
+    git status -s
+    
+    echo ""
+    echo -e "${YELLOW}Last Commit:${NC}"
+    git log -1 --oneline
+}
+
+sync_repo() {
+    echo -e "${BLUE}Syncing to GitHub...${NC}"
+    cd "$REPO_ROOT"
+    git add -A
+    git commit -m "GORUNFREE sync $(date +%Y-%m-%d-%H%M)" || echo "Nothing to commit"
+    git push origin main
+    echo -e "${GREEN}✓ Synced to GitHub${NC}"
+}
+
+invoke_agent() {
+    local agent=$1
+    local command=$2
+    echo -e "${BLUE}Invoking agent: $agent${NC}"
+    echo -e "${YELLOW}Command: $command${NC}"
+    # Agent invocation would go through Cloudflare Worker
+    curl -X POST "https://noizylab-api.workers.dev/agent" \
+        -H "Content-Type: application/json" \
+        -d "{\"agent\": \"$agent\", \"command\": \"$command\"}" 2>/dev/null || \
+        echo "Agent endpoint not deployed yet"
+}
+
+# Main command router
+case ${1:-help} in
+    deploy)
+        deploy "$2"
+        ;;
+    status)
+        status
+        ;;
+    sync)
+        sync_repo
+        ;;
+    agent)
+        invoke_agent "$2" "$3"
+        ;;
+    help|*)
+        show_help
+        ;;
+esac

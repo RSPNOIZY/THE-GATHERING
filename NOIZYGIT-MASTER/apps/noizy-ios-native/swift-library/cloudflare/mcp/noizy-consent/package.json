@@ -1,0 +1,16 @@
+{
+  "name": "noizy-consent-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for NOIZY.ai Consent Engine — wraps live Cloudflare worker",
+  "type": "module",
+  "main": "server.mjs",
+  "bin": {
+    "noizy-consent-mcp": "server.mjs"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

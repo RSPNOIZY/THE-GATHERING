@@ -251,7 +251,7 @@ async def example_authentication():
     store = auth.get_credential_store()
     await store.store_credential("github", "token", "ghp_xxxx")
     cred = await store.get_credential("github", "token")
-    print(f"✅ Stored and retrieved credential")
+    print("✅ Stored and retrieved credential")
 
 # ═════════════════════════════════════════════════════════════════════════════
 # MAIN: Run Examples

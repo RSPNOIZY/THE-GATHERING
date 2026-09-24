@@ -83,7 +83,7 @@ def harvest_ideas():
                         log.write(f"ERROR harvesting {src_file}: {e}\n")
                         print(f"⚠️ Error harvesting {file}: {e}")
                         
-    print(f"\n✅ HARVEST COMPLETE.")
+    print("\n✅ HARVEST COMPLETE.")
     print(f"Ideas Harvested: {moved_count}")
     print(f"Log written to: {LOG_FILE}")
 

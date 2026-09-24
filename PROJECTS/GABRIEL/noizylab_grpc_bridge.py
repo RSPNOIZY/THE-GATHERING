@@ -15,11 +15,9 @@ import grpc
 import asyncio
 import logging
 import json
-from typing import Dict, List, Optional, AsyncIterator
+from typing import Dict, AsyncIterator
 from dataclasses import dataclass
 from datetime import datetime
-from concurrent.futures import ThreadPoolExecutor
-import ssl
 
 # Generated protobuf code (from noizylab_grid.proto)
 # from proto import noizylab_grid_pb2, noizylab_grid_pb2_grpc
@@ -267,7 +265,7 @@ class NoizyGridRPCService:
     
     async def _execute_ai_inference(self, payload: str) -> str:
         """Execute AI inference task via LiteLLM"""
-        logger.info(f"Running AI inference task")
+        logger.info("Running AI inference task")
         
         # TODO: Parse payload, call LiteLLM router
         # Route to most appropriate model (Claude, GPT-4, Gemini, etc.)
@@ -341,7 +339,7 @@ class NoizyGridRPCService:
         # self.server.add_NoizyGridRPCServicer_to_server(...)
         
         await self.server.start()
-        logger.info(f"gRPC server started successfully")
+        logger.info("gRPC server started successfully")
         
         await self.server.wait_for_termination()
     

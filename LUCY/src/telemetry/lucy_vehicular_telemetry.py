@@ -5,7 +5,6 @@ Integrates read-only HondaLink telemetry with duplex voice prioritization.
 Invariants: Rule Zero (ONE COMMAND -> ONE ACTION -> ONE RECEIPT), Read-Only Enforced
 """
 import os
-import hmac
 import hashlib
 import time
 import requests
@@ -43,7 +42,7 @@ class LucyVehicleGateway:
             # Satisfy Rule Zero: Log action to MC96 ledger
             self._log_to_mc96(target_metric, data)
             return {"status": "SUCCESS", "metric": target_metric, "data": data}
-        except Exception as e:
+        except Exception:
             # Fallback to local nominal estimate on network unreachable
             data = {"metric": target_metric, "value": "NOMINAL_EST"}
             self._log_to_mc96(target_metric, data)

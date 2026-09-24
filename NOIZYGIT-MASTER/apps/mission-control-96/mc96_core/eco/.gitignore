@@ -1,0 +1,48 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+__pycache__/
+*.pyc
+venv/
+
+# Build
+dist/
+build/
+.next/
+.nuxt/
+
+# Environment
+.env
+.env.local
+.env.*.local
+*.secrets
+
+# IDE
+.idea/
+.vscode/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Large files
+*.mp3
+*.wav
+*.mp4
+*.mov
+*.zip
+*.tar.gz
+
+# Wrangler
+.wrangler/
+
+# Data
+*.json.backup
+*.db
+*.sqlite

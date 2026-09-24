@@ -1,0 +1,191 @@
+{
+  "name": "NOIZY Mirror — Brief Create",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "mirror-brief",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "webhook-trigger",
+      "name": "New Brief Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [220, 300]
+    },
+    {
+      "parameters": {
+        "url": "https://api.anthropic.com/v1/messages",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "x-api-key", "value": "={{ $env.ANTHROPIC_API_KEY }}" },
+            { "name": "anthropic-version", "value": "2023-06-01" },
+            { "name": "content-type", "value": "application/json" }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ model: 'claude-opus-4-6', max_tokens: 1024, system: 'You are Mirror, the creative interpretation engine of NOIZY.AI. Take the artist\\'s raw creative input and reflect it back as a structured creative brief. Return valid JSON with fields: interpretation, emotional_target, sonic_palette (array), structure_notes, production_cautions (array), what_changed, why_changed, confidence_notes, next_moves (array of 3), suggested_lane (signal|forge|ledger|human_collab). Be specific and sensory. The artist is always the author.', messages: [{ role: 'user', content: 'Source type: ' + $json.body.source_type + '\\nArtist: ' + $json.body.artist_name + '\\n\\n' + $json.body.source_text + ($json.body.reference_notes ? '\\n\\nReference notes: ' + $json.body.reference_notes : '') }] }) }}",
+        "options": {
+          "response": {
+            "response": { "fullResponse": true }
+          }
+        }
+      },
+      "id": "call-claude",
+      "name": "Call Claude Mirror",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [460, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Parse Claude response into structured brief\nconst claudeResponse = $input.first().json;\nconst content = claudeResponse.body?.content?.[0]?.text ?? '{}';\nlet parsed;\ntry {\n  parsed = JSON.parse(content);\n} catch {\n  parsed = { interpretation: content, error: 'Non-JSON response from Claude' };\n}\n\nconst now = new Date().toISOString();\nconst briefId = 'brief_' + Math.random().toString(36).substring(2, 10);\nconst runId = 'run_' + Math.random().toString(36).substring(2, 10);\n\nreturn [{\n  json: {\n    brief_id: briefId,\n    run_id: runId,\n    title: $('New Brief Webhook').first().json.body.title || `Mirror — ${now.split('T')[0]}`,\n    artist_name: $('New Brief Webhook').first().json.body.artist_name,\n    source_type: $('New Brief Webhook').first().json.body.source_type,\n    source_text: $('New Brief Webhook').first().json.body.source_text,\n    ...parsed,\n    model_used: 'claude-opus-4-6',\n    created_at: now,\n    workflow: 'mirror-brief-create',\n    status: 'completed'\n  }\n}];"
+      },
+      "id": "parse-response",
+      "name": "Parse Mirror Response",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [700, 300]
+    },
+    {
+      "parameters": {
+        "resource": "databasePage",
+        "databaseId": "={{ $env.NOTION_BRIEFS_DB_ID }}",
+        "title": "={{ $json.title }}",
+        "propertiesUi": {
+          "propertyValues": [
+            {
+              "key": "Artist",
+              "title": "={{ $json.artist_name }}"
+            },
+            {
+              "key": "Source Type",
+              "select": "={{ $json.source_type }}"
+            },
+            {
+              "key": "Emotional Target",
+              "richTextValue": "={{ $json.emotional_target }}"
+            },
+            {
+              "key": "Suggested Lane",
+              "select": "={{ $json.suggested_lane }}"
+            },
+            {
+              "key": "Brief ID",
+              "richTextValue": "={{ $json.brief_id }}"
+            },
+            {
+              "key": "Run ID",
+              "richTextValue": "={{ $json.run_id }}"
+            },
+            {
+              "key": "Status",
+              "select": "={{ $json.status }}"
+            }
+          ]
+        },
+        "blockUi": {
+          "blockValues": [
+            {
+              "type": "paragraph",
+              "richText": [
+                {
+                  "textValue": "={{ '## Interpretation\\n' + $json.interpretation + '\\n\\n## What Changed\\n' + $json.what_changed + '\\n\\n## Why\\n' + $json.why_changed + '\\n\\n## Confidence Notes\\n' + $json.confidence_notes + '\\n\\n## Next Moves\\n' + ($json.next_moves || []).map((m, i) => (i+1) + '. ' + m).join('\\n') }}"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "id": "save-to-notion",
+      "name": "Save Brief to Notion",
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2.2,
+      "position": [940, 200],
+      "credentials": {
+        "notionApi": { "id": "NOTION_CRED_ID", "name": "NOIZY Notion" }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "databasePage",
+        "databaseId": "={{ $env.NOTION_RUNS_DB_ID }}",
+        "title": "={{ 'mirror-brief-create — ' + $json.run_id }}",
+        "propertiesUi": {
+          "propertyValues": [
+            { "key": "Workflow", "richTextValue": "mirror-brief-create" },
+            { "key": "Run ID", "richTextValue": "={{ $json.run_id }}" },
+            { "key": "Brief ID", "richTextValue": "={{ $json.brief_id }}" },
+            { "key": "Status", "select": "completed" },
+            { "key": "Model", "richTextValue": "claude-opus-4-6" }
+          ]
+        }
+      },
+      "id": "log-run",
+      "name": "Log Automation Run",
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2.2,
+      "position": [940, 420],
+      "credentials": {
+        "notionApi": { "id": "NOTION_CRED_ID", "name": "NOIZY Notion" }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ ok: true, brief_id: $('Parse Mirror Response').first().json.brief_id, run_id: $('Parse Mirror Response').first().json.run_id, interpretation: $('Parse Mirror Response').first().json.interpretation, next_moves: $('Parse Mirror Response').first().json.next_moves }) }}"
+      },
+      "id": "respond",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [1180, 300]
+    },
+    {
+      "parameters": {
+        "url": "={{ $env.DISCORD_AUDIT_WEBHOOK }}",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ content: '🪞 **Mirror Brief Created**\\n**Artist:** ' + $json.artist_name + '\\n**Title:** ' + $json.title + '\\n**Lane:** ' + $json.suggested_lane + '\\n**Run:** `' + $json.run_id + '`', username: 'NOIZY Mirror' }) }}",
+        "options": {}
+      },
+      "id": "discord-notify",
+      "name": "Discord Notification",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1180, 500]
+    }
+  ],
+  "connections": {
+    "New Brief Webhook": {
+      "main": [
+        [{ "node": "Call Claude Mirror", "type": "main", "index": 0 }]
+      ]
+    },
+    "Call Claude Mirror": {
+      "main": [
+        [{ "node": "Parse Mirror Response", "type": "main", "index": 0 }]
+      ]
+    },
+    "Parse Mirror Response": {
+      "main": [
+        [
+          { "node": "Save Brief to Notion", "type": "main", "index": 0 },
+          { "node": "Log Automation Run", "type": "main", "index": 0 },
+          { "node": "Respond to Webhook", "type": "main", "index": 0 },
+          { "node": "Discord Notification", "type": "main", "index": 0 }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "tags": [
+    { "name": "mirror" },
+    { "name": "noizy-core" }
+  ]
+}

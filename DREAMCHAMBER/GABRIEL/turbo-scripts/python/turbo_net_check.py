@@ -6,12 +6,9 @@ Instant Network Health Verification for MC96ECOUNIVERSE
 
 import os
 import socket
-import json
 import sys
-import time
 import subprocess
-import urllib.request
-from concurrent.futures import ThreadPoolExecutor, as_completed
+from concurrent.futures import ThreadPoolExecutor
 
 # Emojis
 CHECK = "✅"

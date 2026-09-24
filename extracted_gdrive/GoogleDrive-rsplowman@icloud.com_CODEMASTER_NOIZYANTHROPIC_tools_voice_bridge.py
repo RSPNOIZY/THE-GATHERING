@@ -18,11 +18,8 @@ Usage:
 """
 
 import sys
-import json
 import queue
-import threading
 import subprocess
-import time
 import tempfile
 import os
 from pathlib import Path
@@ -32,7 +29,6 @@ _venv = Path.home() / "NOIZYLAB/venv/audio-stack/lib/python3.11/site-packages"
 if _venv.exists() and str(_venv) not in sys.path:
     sys.path.insert(0, str(_venv))
 
-import torch
 import whisper
 import numpy as np
 

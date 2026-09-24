@@ -1,0 +1,25 @@
+#!/bin/bash
+# noizynet-pull — Pull files/dirs from a NOIZYNET host
+# Usage: noizynet-pull <host> <source> [local_dest]
+# Example: noizynet-pull micky-p /recordings/session1.wav ~/sessions/
+
+set -euo pipefail
+
+if [ $# -lt 2 ]; then
+    echo "Usage: noizynet-pull <host> <source> [local_dest]"
+    echo ""
+    echo "Hosts: god, micky-p, gabriel, lucy"
+    echo "Example: noizynet-pull micky-p /recordings/*.wav ~/sessions/"
+    exit 1
+fi
+
+HOST="$1"
+SOURCE="$2"
+DEST="${3:-.}"
+
+echo "⇩ Pulling from $HOST:$SOURCE"
+rsync -avz --progress \
+    -e "ssh -i ~/.ssh/noizynet_ed25519" \
+    "$HOST:$SOURCE" \
+    "$DEST"
+echo "✓ Transfer complete"

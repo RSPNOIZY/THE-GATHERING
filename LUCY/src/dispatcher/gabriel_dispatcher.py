@@ -22,18 +22,16 @@ import uuid
 import time
 import json
 import logging
-from typing import Any, Callable, Dict, Optional, Tuple
+from typing import Any, Callable, Optional, Tuple
 
 # Resolve local telemetry and routing imports
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../../..')))
 
 from LUCY.src.telemetry.google_routes_service import (
-    parse_google_duration,
-    normalize_route_result,
     get_traffic_aware_route,
     should_warn_about_delay,
 )
-from LUCY.src.telemetry.routes_mcp_adapter import GoogleRoutesMcpAdapter, QuotaTracker
+from LUCY.src.telemetry.routes_mcp_adapter import GoogleRoutesMcpAdapter
 from LUCY.src.telemetry.lucy_route_engine import LucyRouteEngine
 
 logger = logging.getLogger("GABRIEL.Dispatcher")

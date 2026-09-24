@@ -1,0 +1,62 @@
+{
+  "version": "3.0.0",
+  "frozen_at": "2026-08-12",
+  "doctrine": "Per Milestone 1: Agent Registry is frozen and immutable.",
+  "agents": {
+    "GABRIEL": {
+      "role": "authority/orchestrator",
+      "status": "frozen",
+      "description": "Lead orchestrator and authority node for the command universe."
+    },
+    "LUCY": {
+      "role": "accessibility/mobile",
+      "status": "frozen",
+      "description": "Accessibility interface, mobile intakes, and translation companion."
+    },
+    "POPS": {
+      "role": "memory/continuity",
+      "status": "frozen",
+      "description": "Long-horizon memory keeper and architectural continuity evaluator."
+    },
+    "SHIRL": {
+      "role": "operations/admin",
+      "status": "frozen",
+      "description": "Operations coordinator, pacing watcher, and administrator."
+    },
+    "ENGR_KEITH": {
+      "role": "engineering",
+      "status": "frozen",
+      "description": "Engineering lead, API/schema architect, and Cloudflare wrangler."
+    },
+    "DREAM": {
+      "role": "research/creative",
+      "status": "frozen",
+      "description": "Research, design aesthetics, and sensory architecture visionary."
+    },
+    "CB01": {
+      "role": "bounded worker",
+      "status": "frozen",
+      "description": "General task execution bounded worker #1."
+    },
+    "CB02": {
+      "role": "bounded worker",
+      "status": "frozen",
+      "description": "General task execution bounded worker #2."
+    },
+    "CB03": {
+      "role": "bounded worker",
+      "status": "frozen",
+      "description": "General task execution bounded worker #3."
+    },
+    "CB04": {
+      "role": "bounded worker",
+      "status": "frozen",
+      "description": "General task execution bounded worker #4."
+    },
+    "CB05": {
+      "role": "bounded worker",
+      "status": "frozen",
+      "description": "General task execution bounded worker #5."
+    }
+  }
+}

@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="LUCY">
+  <title>LUCY — NOIZY EMPIRE</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #0a0a0f;
+      --surface:  #12121a;
+      --border:   #1e1e2e;
+      --accent:   #7c6ecd;
+      --accent-dim: #4a3f7a;
+      --text:     #e8e8f0;
+      --text-dim: #666680;
+      --user-bg:  #1a1a2e;
+      --lucy-bg:  #16162a;
+      --safe:     env(safe-area-inset-bottom, 16px);
+    }
+
+    html, body {
+      height: 100%;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif;
+      font-size: 16px;
+      overflow: hidden;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    #app {
+      display: flex;
+      flex-direction: column;
+      height: 100dvh;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* ── Header ── */
+    #header {
+      flex-shrink: 0;
+      padding: 12px 16px 10px;
+      padding-top: max(12px, env(safe-area-inset-top));
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    #header-logo {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent-dim));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      font-weight: 800;
+      color: #fff;
+    }
+    #header-info { flex: 1; }
+    #header-title { font-size: 15px; font-weight: 700; color: var(--accent); letter-spacing: 0.5px; }
+    #header-subtitle { font-size: 11px; color: var(--text-dim); margin-top: 1px; }
+    #status-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: #333; transition: background 0.3s;
+    }
+    #status-dot.connected  { background: #2ecc71; }
+    #status-dot.processing { background: var(--accent); animation: pulse 0.8s infinite; }
+    #status-dot.error      { background: #e74c3c; }
+
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+    /* ── Messages ── */
+    #messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 12px 16px;
+      -webkit-overflow-scrolling: touch;
+    }
+    .msg {
+      max-width: 85%;
+      padding: 10px 14px;
+      border-radius: 16px;
+      margin-bottom: 8px;
+      font-size: 15px;
+      line-height: 1.45;
+      word-wrap: break-word;
+    }
+    .msg.user {
+      background: var(--user-bg);
+      margin-left: auto;
+      border-bottom-right-radius: 4px;
+    }
+    .msg.lucy {
+      background: var(--lucy-bg);
+      border: 1px solid var(--border);
+      margin-right: auto;
+      border-bottom-left-radius: 4px;
+    }
+    .msg .label {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 4px;
+      color: var(--text-dim);
+    }
+    .msg.lucy .label { color: var(--accent); }
+
+    /* ── Input ── */
+    #input-bar {
+      flex-shrink: 0;
+      display: flex;
+      gap: 8px;
+      padding: 10px 16px;
+      padding-bottom: max(10px, var(--safe));
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+    }
+    #input {
+      flex: 1;
+      background: var(--bg);
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 10px 16px;
+      font-size: 16px;
+      outline: none;
+      font-family: inherit;
+    }
+    #input:focus { border-color: var(--accent); }
+    #send-btn, #mic-btn {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      cursor: pointer;
+    }
+    #send-btn {
+      background: var(--accent);
+      color: #fff;
+    }
+    #mic-btn {
+      background: var(--bg);
+      color: var(--accent);
+      border: 1px solid var(--border);
+    }
+    #mic-btn.recording {
+      background: #8b0000;
+      color: #fff;
+      border-color: #8b0000;
+      animation: pulse 0.8s infinite;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <div id="header">
+      <div id="header-logo">L</div>
+      <div id="header-info">
+        <div id="header-title">LUCY</div>
+        <div id="header-subtitle">Archives &middot; AQUARIUM &middot; NOIZY EMPIRE</div>
+      </div>
+      <div id="status-dot"></div>
+    </div>
+
+    <div id="messages">
+      <div class="msg lucy">
+        <div class="label">LUCY</div>
+        Right then, I'm here. What do you need, Rob?
+      </div>
+    </div>
+
+    <div id="input-bar">
+      <button id="mic-btn" title="Hold to speak">&#x1f3a4;</button>
+      <input id="input" type="text" placeholder="Ask LUCY..." autocomplete="off">
+      <button id="send-btn" title="Send">&#x2191;</button>
+    </div>
+  </div>
+
+  <script>
+    const HOST     = location.host;
+    const API_URL  = `${location.protocol}//${HOST}/agent/lucy/ask`;
+    const WS_URL   = `${location.protocol === 'https:' ? 'wss' : 'ws'}://${HOST}/voice`;
+
+    const messages = document.getElementById('messages');
+    const input    = document.getElementById('input');
+    const sendBtn  = document.getElementById('send-btn');
+    const micBtn   = document.getElementById('mic-btn');
+    const statusDot = document.getElementById('status-dot');
+
+    // ── WebSocket for live pipeline events ──
+    let ws;
+    function connectWS() {
+      ws = new WebSocket(WS_URL);
+      ws.onopen = () => {
+        statusDot.className = 'connected';
+        ws.send(JSON.stringify({ type: 'ping' }));
+      };
+      ws.onclose = () => {
+        statusDot.className = '';
+        setTimeout(connectWS, 3000);
+      };
+      ws.onerror = () => statusDot.className = 'error';
+    }
+    connectWS();
+
+    // ── Send text to LUCY ──
+    async function sendToLucy(text) {
+      if (!text.trim()) return;
+      addMessage('You', text, 'user');
+      input.value = '';
+      statusDot.className = 'processing';
+
+      try {
+        const res = await fetch(API_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ text }),
+        });
+        const data = await res.json();
+        if (data.response) {
+          addMessage('LUCY', data.response, 'lucy');
+          // Use Speech Synthesis on iPad (Kate voice)
+          speakLocal(data.response);
+        } else {
+          addMessage('LUCY', data.error || 'No response', 'lucy');
+        }
+      } catch (e) {
+        addMessage('LUCY', 'Connection error: ' + e.message, 'lucy');
+      }
+      statusDot.className = ws?.readyState === 1 ? 'connected' : '';
+    }
+
+    // ── Local TTS (iPad uses Kate, fallback to default) ──
+    function speakLocal(text) {
+      if (!('speechSynthesis' in window)) return;
+      const clean = text.replace(/[`#*_\[\]]/g, '').slice(0, 500);
+      const utter = new SpeechSynthesisUtterance(clean);
+      utter.rate = 0.95;
+      // Try to use Kate (Australian)
+      const voices = speechSynthesis.getVoices();
+      const kate = voices.find(v => v.name.includes('Kate') || v.name.includes('Karen'));
+      if (kate) utter.voice = kate;
+      speechSynthesis.speak(utter);
+    }
+    // Load voices
+    speechSynthesis.getVoices();
+    speechSynthesis.onvoiceschanged = () => speechSynthesis.getVoices();
+
+    function addMessage(label, text, cls) {
+      const div = document.createElement('div');
+      div.className = `msg ${cls}`;
+      div.innerHTML = `<div class="label">${label}</div>${escapeHtml(text)}`;
+      messages.appendChild(div);
+      messages.scrollTop = messages.scrollHeight;
+    }
+
+    function escapeHtml(s) {
+      return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>');
+    }
+
+    // ── Input handlers ──
+    sendBtn.addEventListener('click', () => sendToLucy(input.value));
+    input.addEventListener('keydown', e => { if (e.key === 'Enter') sendToLucy(input.value); });
+
+    // ── Voice recording (hold mic button) ──
+    let mediaRecorder, audioChunks = [];
+
+    micBtn.addEventListener('touchstart', startRecording, { passive: true });
+    micBtn.addEventListener('mousedown', startRecording);
+    micBtn.addEventListener('touchend', stopRecording);
+    micBtn.addEventListener('mouseup', stopRecording);
+
+    async function startRecording(e) {
+      e.preventDefault?.();
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        mediaRecorder = new MediaRecorder(stream, { mimeType: 'audio/webm;codecs=opus' });
+        audioChunks = [];
+        mediaRecorder.ondataavailable = e => audioChunks.push(e.data);
+        mediaRecorder.onstop = async () => {
+          stream.getTracks().forEach(t => t.stop());
+          if (audioChunks.length === 0) return;
+          const blob = new Blob(audioChunks, { type: 'audio/webm' });
+          if (blob.size < 100) return;
+
+          statusDot.className = 'processing';
+          addMessage('You', '[voice recording...]', 'user');
+
+          // Upload to GABRIEL voice pipeline
+          try {
+            const res = await fetch(`${location.protocol}//${HOST}/voice/upload`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'audio/webm' },
+              body: blob,
+            });
+            const data = await res.json();
+            // Pipeline results come via WebSocket
+          } catch (err) {
+            addMessage('LUCY', 'Upload failed: ' + err.message, 'lucy');
+          }
+        };
+        mediaRecorder.start();
+        micBtn.classList.add('recording');
+      } catch (err) {
+        addMessage('LUCY', 'Mic access denied: ' + err.message, 'lucy');
+      }
+    }
+
+    function stopRecording() {
+      if (mediaRecorder?.state === 'recording') {
+        mediaRecorder.stop();
+        micBtn.classList.remove('recording');
+      }
+    }
+
+    // ── Listen for GABRIEL voice pipeline results on WS ──
+    // When voice comes through the pipeline, the response goes to both GABRIEL and LUCY
+    setInterval(() => {
+      if (ws?.readyState === 1) {
+        ws.onmessage = (event) => {
+          try {
+            const msg = JSON.parse(event.data);
+            if (msg.type === 'voice:pipeline:transcript') {
+              // Replace "[voice recording...]" with actual transcript
+              const msgs = messages.querySelectorAll('.msg.user');
+              const last = msgs[msgs.length - 1];
+              if (last && last.textContent.includes('voice recording')) {
+                last.innerHTML = `<div class="label">You</div>${escapeHtml(msg.transcript)}`;
+              }
+            }
+            if (msg.type === 'voice:pipeline:complete') {
+              addMessage('GABRIEL', msg.reply, 'lucy');
+              speakLocal(msg.reply);
+              statusDot.className = 'connected';
+            }
+            if (msg.type === 'voice:pipeline:error') {
+              addMessage('LUCY', 'Pipeline error: ' + msg.error, 'lucy');
+              statusDot.className = 'connected';
+            }
+          } catch {}
+        };
+      }
+    }, 1000);
+  </script>
+</body>
+</html>

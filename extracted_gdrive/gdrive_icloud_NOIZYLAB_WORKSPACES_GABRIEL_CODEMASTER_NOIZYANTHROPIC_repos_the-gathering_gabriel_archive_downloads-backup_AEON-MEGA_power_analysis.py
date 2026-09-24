@@ -1,5 +1,3 @@
-from dataclasses import dataclass
-import math
 
 print("\n⚡ AEON POWER REALITY CHECK ⚡")
 print("=" * 70)
@@ -71,7 +69,7 @@ usable_area = headband_width_cm * headband_length_cm * 0.7  # 70% coverage
 
 print(f"  Headband: {headband_width_cm}cm × {headband_length_cm}cm")
 print(f"  Usable solar area (70% coverage): {usable_area:.1f} cm²")
-print(f"  Current sim area: 40 cm² ✓")
+print("  Current sim area: 40 cm² ✓")
 
 # What can we realistically power with 50cm²?
 print("\n⚡ ACHIEVABLE WITH 50cm² FLEXIBLE PANEL:\n")

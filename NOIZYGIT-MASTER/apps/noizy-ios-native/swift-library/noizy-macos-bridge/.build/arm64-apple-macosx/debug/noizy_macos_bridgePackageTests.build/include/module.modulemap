@@ -1,0 +1,3 @@
+module noizy_macos_bridgePackageTests {
+    header "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/noizy_macos_bridgePackageTests.build/include/noizy-macos-bridgePackageTests-Swift.h"
+}

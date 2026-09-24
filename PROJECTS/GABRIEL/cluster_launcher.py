@@ -13,7 +13,6 @@
 import subprocess
 import asyncio
 import logging
-import json
 import sys
 from pathlib import Path
 from typing import List, Dict

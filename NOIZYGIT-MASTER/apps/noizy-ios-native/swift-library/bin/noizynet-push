@@ -1,0 +1,25 @@
+#!/bin/bash
+# noizynet-push — Send files/dirs to a NOIZYNET host
+# Usage: noizynet-push <host> <source> [dest]
+# Example: noizynet-push micky-p ~/sessions/latest.wav /recordings/
+
+set -euo pipefail
+
+if [ $# -lt 2 ]; then
+    echo "Usage: noizynet-push <host> <source> [dest_dir]"
+    echo ""
+    echo "Hosts: god, micky-p, gabriel, lucy"
+    echo "Example: noizynet-push micky-p ~/session.wav /recordings/"
+    exit 1
+fi
+
+HOST="$1"
+SOURCE="$2"
+DEST="${3:-~/incoming/}"
+
+echo "⇧ Pushing to $HOST:$DEST"
+rsync -avz --progress \
+    -e "ssh -i ~/.ssh/noizynet_ed25519" \
+    "$SOURCE" \
+    "$HOST:$DEST"
+echo "✓ Transfer complete"

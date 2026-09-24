@@ -1,0 +1,130 @@
+# ═══════════════════════════════════════════════════════════════
+# LITELLM — NOIZY AI GATEWAY CONFIGURATION
+# Unified API for: Claude (Anthropic) + Ollama (19 local models)
+# All services call localhost:4000 — LiteLLM routes to the right model
+# ═══════════════════════════════════════════════════════════════
+
+model_list:
+  # ─── ANTHROPIC (Claude Max subscription) ───
+  - model_name: claude-opus
+    litellm_params:
+      model: anthropic/claude-opus-4-6
+      api_key: os.environ/ANTHROPIC_API_KEY
+
+  - model_name: claude-sonnet
+    litellm_params:
+      model: anthropic/claude-sonnet-4-6
+      api_key: os.environ/ANTHROPIC_API_KEY
+
+  - model_name: claude-haiku
+    litellm_params:
+      model: anthropic/claude-haiku-4-5-20251001
+      api_key: os.environ/ANTHROPIC_API_KEY
+
+  # ─── OLLAMA LOCAL MODELS (192GB RAM, M2 Ultra GPU) ───
+  - model_name: gemma4-31b
+    litellm_params:
+      model: ollama/gemma4:31b
+      api_base: http://host.docker.internal:11434
+
+  - model_name: gemma4-26b
+    litellm_params:
+      model: ollama/gemma4:26b
+      api_base: http://host.docker.internal:11434
+
+  - model_name: gemma4-8b
+    litellm_params:
+      model: ollama/gemma4:e4b
+      api_base: http://host.docker.internal:11434
+
+  - model_name: codestral
+    litellm_params:
+      model: ollama/codestral:latest
+      api_base: http://host.docker.internal:11434
+
+  - model_name: dolphin-mixtral
+    litellm_params:
+      model: ollama/dolphin-mixtral:8x7b
+      api_base: http://host.docker.internal:11434
+
+  - model_name: llava-34b
+    litellm_params:
+      model: ollama/llava:34b
+      api_base: http://host.docker.internal:11434
+
+  - model_name: phi3-14b
+    litellm_params:
+      model: ollama/phi3:14b
+      api_base: http://host.docker.internal:11434
+
+  # ─── NOIZY CUSTOM MODELS ───
+  - model_name: gabriel-mind
+    litellm_params:
+      model: ollama/noizy-gabriel-mind:latest
+      api_base: http://host.docker.internal:11434
+
+  - model_name: consent-guardian
+    litellm_params:
+      model: ollama/noizy-consent-guardian:latest
+      api_base: http://host.docker.internal:11434
+
+  - model_name: vox-architect
+    litellm_params:
+      model: ollama/noizy-vox-architect:latest
+      api_base: http://host.docker.internal:11434
+
+  - model_name: heaven-forger
+    litellm_params:
+      model: ollama/noizy-heaven-forger:latest
+      api_base: http://host.docker.internal:11434
+
+  - model_name: dream-weaver
+    litellm_params:
+      model: ollama/noizy-dream-weaver:latest
+      api_base: http://host.docker.internal:11434
+
+  - model_name: wisdom-scribe
+    litellm_params:
+      model: ollama/noizy-wisdom-scribe:latest
+      api_base: http://host.docker.internal:11434
+
+  - model_name: fish-cataloguer
+    litellm_params:
+      model: ollama/noizy-fish-cataloguer:latest
+      api_base: http://host.docker.internal:11434
+
+  - model_name: kidz-worldbuilder
+    litellm_params:
+      model: ollama/noizy-kidz-worldbuilder:latest
+      api_base: http://host.docker.internal:11434
+
+  - model_name: mission-control
+    litellm_params:
+      model: ollama/noizy-mission-control:latest
+      api_base: http://host.docker.internal:11434
+
+  - model_name: family-keeper
+    litellm_params:
+      model: ollama/noizy-family-keeper:latest
+      api_base: http://host.docker.internal:11434
+
+  # ─── EMBEDDINGS ───
+  - model_name: nomic-embed
+    litellm_params:
+      model: ollama/nomic-embed-text:latest
+      api_base: http://host.docker.internal:11434
+
+# ─── ROUTING RULES ───
+router_settings:
+  routing_strategy: "least-busy"
+  num_retries: 3
+  timeout: 120
+  allowed_fails: 2
+
+# ─── GENERAL SETTINGS ───
+general_settings:
+  master_key: os.environ/LITELLM_MASTER_KEY
+  database_url: os.environ/DATABASE_URL
+  alerting:
+    - slack
+  store_model_in_db: true

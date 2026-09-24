@@ -1,0 +1,128 @@
+{
+  "_comment": "NOIZY Mirror v1 — Notion Database Schemas. Create these databases in your NOIZY System Hub space.",
+
+  "creative_briefs": {
+    "title": "Creative Briefs",
+    "icon": "🪞",
+    "properties": {
+      "Title": { "type": "title" },
+      "Artist": { "type": "rich_text" },
+      "Source Type": {
+        "type": "select",
+        "select": {
+          "options": [
+            { "name": "paragraph", "color": "blue" },
+            { "name": "lyric_fragment", "color": "purple" },
+            { "name": "voice_memo_transcript", "color": "pink" },
+            { "name": "reference_track_note", "color": "orange" },
+            { "name": "mood_phrase", "color": "green" }
+          ]
+        }
+      },
+      "Emotional Target": { "type": "rich_text" },
+      "Sonic Palette": { "type": "rich_text" },
+      "Structure Notes": { "type": "rich_text" },
+      "Next Moves": { "type": "rich_text" },
+      "Suggested Lane": {
+        "type": "select",
+        "select": {
+          "options": [
+            { "name": "signal", "color": "yellow" },
+            { "name": "forge", "color": "red" },
+            { "name": "ledger", "color": "blue" },
+            { "name": "human_collab", "color": "green" }
+          ]
+        }
+      },
+      "Status": {
+        "type": "select",
+        "select": {
+          "options": [
+            { "name": "draft", "color": "gray" },
+            { "name": "completed", "color": "green" },
+            { "name": "ready_for_build", "color": "blue" },
+            { "name": "routed", "color": "purple" },
+            { "name": "archived", "color": "default" }
+          ]
+        }
+      },
+      "Brief ID": { "type": "rich_text" },
+      "Run ID": { "type": "rich_text" },
+      "Project": {
+        "type": "relation",
+        "_comment": "Relate to a Projects database if you have one"
+      },
+      "Automation Runs": {
+        "type": "relation",
+        "_comment": "Relate to the Automation Runs database below"
+      },
+      "Tags": {
+        "type": "multi_select",
+        "multi_select": {
+          "options": [
+            { "name": "vocal", "color": "pink" },
+            { "name": "instrumental", "color": "blue" },
+            { "name": "spoken-word", "color": "orange" },
+            { "name": "ambient", "color": "green" },
+            { "name": "beat", "color": "red" },
+            { "name": "collab", "color": "purple" }
+          ]
+        }
+      },
+      "Created": { "type": "created_time" },
+      "Last Edited": { "type": "last_edited_time" }
+    }
+  },
+
+  "automation_runs": {
+    "title": "Automation Runs",
+    "icon": "⚙️",
+    "properties": {
+      "Title": { "type": "title" },
+      "Workflow": {
+        "type": "select",
+        "select": {
+          "options": [
+            { "name": "mirror-brief-create", "color": "purple" },
+            { "name": "mirror-to-spec", "color": "blue" },
+            { "name": "mirror-health", "color": "green" },
+            { "name": "signal-ingest", "color": "yellow" },
+            { "name": "forge-generate", "color": "red" },
+            { "name": "ledger-stamp", "color": "gray" }
+          ]
+        }
+      },
+      "Run ID": { "type": "rich_text" },
+      "Brief ID": { "type": "rich_text" },
+      "Status": {
+        "type": "select",
+        "select": {
+          "options": [
+            { "name": "started", "color": "yellow" },
+            { "name": "completed", "color": "green" },
+            { "name": "failed", "color": "red" },
+            { "name": "skipped", "color": "gray" }
+          ]
+        }
+      },
+      "Model": { "type": "rich_text" },
+      "Duration (ms)": { "type": "number", "number": { "format": "number" } },
+      "Error": { "type": "rich_text" },
+      "Artifact Links": { "type": "url" },
+      "Related Brief": {
+        "type": "relation",
+        "_comment": "Relate to Creative Briefs database"
+      },
+      "Created": { "type": "created_time" }
+    }
+  },
+
+  "setup_instructions": [
+    "1. Create a new Notion database called 'Creative Briefs' with the properties above",
+    "2. Create a new Notion database called 'Automation Runs' with the properties above",
+    "3. Create a two-way relation between Creative Briefs → Automation Runs",
+    "4. Set the n8n env vars: NOTION_BRIEFS_DB_ID, NOTION_RUNS_DB_ID",
+    "5. Import n8n-mirror-brief.json into noizy.app.n8n.cloud",
+    "6. Set n8n credential for Notion API (internal integration token)"
+  ]
+}

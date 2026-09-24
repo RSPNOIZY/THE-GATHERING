@@ -1,0 +1,155 @@
+# ═══════════════════════════════════════════════════════════════
+# NOIZY EMPIRE — Complete Docker Stack
+# RSP_001 Arsenal — GOD (M2 Ultra Mac Studio)
+# ═══════════════════════════════════════════════════════════════
+version: '3.8'
+
+name: noizy-empire
+
+services:
+  # ─── GABRIEL API ───
+  gabriel-api:
+    image: python:3.11-slim
+    container_name: noizy-gabriel-api
+    working_dir: /app
+    volumes:
+      - ~/NOIZYLAB/tools:/app
+      - gabriel-data:/data
+    ports:
+      - "9099:9099"
+    command: >
+      bash -c "pip install flask requests && python grand_orchestrator.py --expose-api --port 9099"
+    restart: unless-stopped
+    networks:
+      - noizy-net
+    labels:
+      - "com.noizy.service=gabriel"
+      - "com.noizy.empire=mc96eco"
+
+  # ─── VOICE PIPELINE ───
+  voice-pipeline:
+    image: python:3.11-slim
+    container_name: noizy-voice-pipeline
+    working_dir: /app
+    volumes:
+      - ~/NOIZYLAB/tools:/app
+      - ~/NOIZYLAB/RSP_001_VAULT:/vault
+      - voice-data:/data
+    ports:
+      - "9100:9100"
+    command: >
+      bash -c "pip install flask librosa soundfile numpy && python voice_server.py"
+    restart: unless-stopped
+    networks:
+      - noizy-net
+    labels:
+      - "com.noizy.service=voice"
+
+  # ─── WHISPER STT (already running, reference) ───
+  # whisper-stt:
+  #   image: fedirz/faster-whisper-server:latest-cpu
+  #   container_name: noizy-stt
+  #   ports:
+  #     - "8010:8000"
+  #   restart: unless-stopped
+
+  # ─── REDIS (session/cache) ───
+  redis:
+    image: redis:7-alpine
+    container_name: noizy-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    command: redis-server --appendonly yes --maxmemory 512mb --maxmemory-policy allkeys-lru
+    restart: unless-stopped
+    networks:
+      - noizy-net
+    labels:
+      - "com.noizy.service=cache"
+
+  # ─── POSTGRES (consent ledger backup) ───
+  postgres:
+    image: postgres:16-alpine
+    container_name: noizy-postgres
+    environment:
+      POSTGRES_DB: noizy_empire
+      POSTGRES_USER: rsp001
+      POSTGRES_PASSWORD: mc96eco_consent_2026
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    restart: unless-stopped
+    networks:
+      - noizy-net
+    labels:
+      - "com.noizy.service=database"
+
+  # ─── MINIO (S3-compatible voice file storage) ───
+  minio:
+    image: minio/minio:latest
+    container_name: noizy-minio
+    environment:
+      MINIO_ROOT_USER: rsp001
+      MINIO_ROOT_PASSWORD: mc96eco_vault_2026
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    volumes:
+      - minio-data:/data
+    command: server /data --console-address ":9001"
+    restart: unless-stopped
+    networks:
+      - noizy-net
+    labels:
+      - "com.noizy.service=storage"
+
+  # ─── CADDY (reverse proxy) ───
+  caddy:
+    image: caddy:2-alpine
+    container_name: noizy-caddy
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - caddy-data:/data
+      - caddy-config:/config
+    restart: unless-stopped
+    networks:
+      - noizy-net
+    labels:
+      - "com.noizy.service=proxy"
+
+  # ─── PROMETHEUS (metrics) ───
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: noizy-prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus-data:/prometheus
+    restart: unless-stopped
+    networks:
+      - noizy-net
+    labels:
+      - "com.noizy.service=metrics"
+
+volumes:
+  gabriel-data:
+  voice-data:
+  redis-data:
+  postgres-data:
+  minio-data:
+  caddy-data:
+  caddy-config:
+  prometheus-data:
+
+networks:
+  noizy-net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.96.0.0/16

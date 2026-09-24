@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>ai.noizy.gabriel</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/opt/homebrew/bin/node</string>
+        <string>/Users/m2ultra/NOIZYANTHROPIC/GABRIEL/daemon/gabriel-daemon.js</string>
+    </array>
+
+    <key>WorkingDirectory</key>
+    <string>/Users/m2ultra/NOIZYANTHROPIC/GABRIEL/daemon</string>
+
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>HOME</key>
+        <string>/Users/m2ultra</string>
+        <key>PATH</key>
+        <string>/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/Users/m2ultra/.npm-global/bin</string>
+        <key>GABRIEL_VOICE</key>
+        <string>Daniel</string>
+        <key>GABRIEL_MODEL</key>
+        <string>claude-opus-4-6</string>
+        <key>GABRIEL_PORT</key>
+        <string>9777</string>
+        <key>N8N_API_KEY</key>
+        <string>n8n_d3241906d1b3e44ce97b730092b02d744ee7e993d30d5889c790a9f78c6067f4</string>
+        <key>N8N_API_URL</key>
+        <string>http://localhost:5678</string>
+    </dict>
+
+    <key>StandardOutPath</key>
+    <string>/Users/m2ultra/NOIZYANTHROPIC/GABRIEL/logs/gabriel.log</string>
+
+    <key>StandardErrorPath</key>
+    <string>/Users/m2ultra/NOIZYANTHROPIC/GABRIEL/logs/gabriel.err</string>
+
+    <key>RunAtLoad</key>
+    <true/>
+
+    <key>KeepAlive</key>
+    <true/>
+
+    <key>ThrottleInterval</key>
+    <integer>10</integer>
+</dict>
+</plist>

@@ -1,0 +1,28 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "hooks-noizy-ai",
+  "main": "src/index.ts",
+  "compatibility_date": "2025-04-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "observability": { "enabled": true },
+
+  "d1_databases": [
+    {
+      "binding": "HOOKS_DB",
+      "database_name": "noizyai-db",
+      "database_id": "ebcf576f-51e3-4e3d-829e-219f8fe6001c"
+    }
+  ],
+
+  "vars": {
+    "N8N_WEBHOOK_BASE": "https://noizy.app.n8n.cloud/webhook",
+    "DISCORD_DEPLOY_WEBHOOK": "REPLACE_WITH_WEBHOOK_URL",
+    "DISCORD_AUDIT_WEBHOOK": "REPLACE_WITH_WEBHOOK_URL",
+    "WEBHOOK_SECRET": "REPLACE_WITH_SECRET"
+  },
+
+  "env": {
+    "staging": {},
+    "production": {}
+  }
+}

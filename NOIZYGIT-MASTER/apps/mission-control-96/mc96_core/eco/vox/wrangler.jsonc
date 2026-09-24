@@ -1,0 +1,28 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "vox-noizy-ai",
+  "main": "src/index.ts",
+  "compatibility_date": "2025-04-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "observability": { "enabled": true },
+
+  "d1_databases": [
+    {
+      "binding": "VOX_DB",
+      "database_name": "noisy-vox",
+      "database_id": "ea110bf3-5ad0-4dd3-ae3a-2ef05fc052ac"
+    }
+  ],
+
+  "vars": {
+    "CONSENT_GATEWAY_URL": "https://consent-gateway.noizylab.workers.dev",
+    "GABRIEL_URL": "http://GOD.local:7777",
+    "VOICE_BRIDGE_URL": "http://GOD.local:8080",
+    "STT_URL": "http://GOD.local:8000"
+  },
+
+  "env": {
+    "staging": {},
+    "production": {}
+  }
+}

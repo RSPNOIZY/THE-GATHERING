@@ -1,0 +1,29 @@
+services:
+  headscale:
+    image: headscale/headscale:latest
+    container_name: noizy-headscale
+    restart: unless-stopped
+    volumes:
+      - ./headscale.yaml:/etc/headscale/config.yaml:ro
+      - ./acl.hujson:/etc/headscale/acl.hujson:ro
+      - /var/lib/headscale:/var/lib/headscale
+    ports:
+      - "8080:8080"
+      - "9090:9090"
+      - "3478:3478/udp"
+    environment:
+      - HEADSCALE_CONFIG=/etc/headscale/config.yaml
+    command: headscale serve
+
+  headscale-ui:
+    image: ghcr.io/gurucomputing/headscale-ui:latest
+    container_name: noizy-headscale-ui
+    restart: unless-stopped
+    ports:
+      - "9443:443"
+      - "9080:80"
+    environment:
+      - HTTP_PORT=80
+      - HTTPS_PORT=443
+    depends_on:
+      - headscale

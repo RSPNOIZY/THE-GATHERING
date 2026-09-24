@@ -1,0 +1,182 @@
+name: NOIZY Unified Release Pipeline
+
+# Single gated pipeline: gate → staging → verify → production (manual approval).
+# Replaces: deploy-consent-gateway.yml, deploy-cb01-router.yml, deploy-all-workers.yml
+#
+# Secrets required in GitHub repo/environment settings:
+#   CLOUDFLARE_API_TOKEN    — Workers:Edit permission
+#   CLOUDFLARE_ACCOUNT_ID   — your Cloudflare account ID
+#
+# GitHub Environment required:
+#   "production" — configure required reviewers in Settings → Environments
+
+on:
+  push:
+    branches: [main, master]
+    paths:
+      - "cloudflare/workers/**"
+      - "scripts/**"
+      - "contracts/**"
+      - "artifacts/**"
+      - ".github/workflows/release-pipeline.yml"
+  workflow_dispatch:
+
+jobs:
+
+  # ── Gate: tests + proof + contract validation ─────────────────────────────────
+  gate:
+    name: Pre-flight Gate
+    runs-on: ubuntu-latest
+    outputs:
+      ok_to_deploy: ${{ steps.set.outputs.ok_to_deploy }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Placeholder guard (hard fail)
+        run: bash scripts/check-no-placeholders.sh
+
+      - name: Validate wrangler config presence (hard fail)
+        run: node scripts/validate-wrangler-configs.mjs
+
+      - name: Install & test consent-gateway
+        working-directory: cloudflare/workers/consent-gateway
+        run: npm ci && npm test
+
+      - name: Install & test cb01-router
+        working-directory: cloudflare/workers/cb01-router
+        run: npm ci && npm test
+
+      - name: Generate proof bundle (staging)
+        env:
+          PROOF_SYSTEM: NOIZY
+          PROOF_COMPONENT: consent-gateway
+          PROOF_WORKER_NAME: consent-gateway
+          PROOF_ENVIRONMENT: staging
+          PROOF_GIT_SHA: ${{ github.sha }}
+          PROOF_ROUTING_CONTRACT: "TOP_LEVEL:/health,/verify,/revoke,/status/:creatorId"
+          PROOF_PUBLIC_ROUTES: "/health"
+          PROOF_PROTECTED_ROUTES: "/verify,/revoke,/status/:creatorId"
+          PROOF_KV_BINDINGS: "CONSENT_KV"
+          PROOF_D1_BINDINGS: "AGENT_MEMORY"
+        run: node scripts/generate-proof-bundle.mjs
+
+      - name: Proof must match contract (hard fail)
+        run: node scripts/validate-proof-vs-contract.mjs
+
+      - name: Upload proof bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: noizy-proof-${{ github.sha }}
+          path: artifacts/proof/*.json
+
+      - id: set
+        run: echo "ok_to_deploy=true" >> $GITHUB_OUTPUT
+
+  # ── Staging Deploy ────────────────────────────────────────────────────────────
+  deploy-staging:
+    name: Deploy → Staging
+    needs: gate
+    if: needs.gate.outputs.ok_to_deploy == 'true'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Deploy consent-gateway → staging
+        working-directory: cloudflare/workers/consent-gateway
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: npx wrangler deploy --env staging
+
+      - name: Deploy cb01-router → staging
+        working-directory: cloudflare/workers/cb01-router
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: npx wrangler deploy --env staging
+
+  # ── Post-deploy Staging Verification ─────────────────────────────────────────
+  verify-staging:
+    name: Verify Staging
+    needs: deploy-staging
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Post-deploy route verification
+        # BLOCKED: replace STAGING_GATEWAY_URL and STAGING_ROUTER_URL with real values.
+        # If using workers.dev: https://consent-gateway.<subdomain>.workers.dev
+        # Set these as GitHub Actions variables (not secrets) once known.
+        run: |
+          GATEWAY_URL="${STAGING_GATEWAY_URL:-}"
+          ROUTER_URL="${STAGING_ROUTER_URL:-}"
+
+          if [[ -z "$GATEWAY_URL" ]]; then
+            echo "BLOCKED: STAGING_GATEWAY_URL not set — add as Actions variable to unblock"
+            exit 1
+          fi
+
+          echo "Verifying /health (expect 200)..."
+          STATUS=$(curl -s -o /dev/null -w "%{http_code}" "$GATEWAY_URL/health")
+          [[ "$STATUS" == "200" ]] || { echo "FAIL: /health returned $STATUS"; exit 1; }
+
+          echo "Verifying /revoke without auth (expect 401)..."
+          STATUS=$(curl -s -o /dev/null -w "%{http_code}" -X POST "$GATEWAY_URL/revoke")
+          [[ "$STATUS" == "401" ]] || { echo "FAIL: /revoke returned $STATUS (expected 401)"; exit 1; }
+
+          echo "PASS: staging route verification complete"
+        env:
+          STAGING_GATEWAY_URL: ${{ vars.STAGING_GATEWAY_URL }}
+          STAGING_ROUTER_URL: ${{ vars.STAGING_ROUTER_URL }}
+
+  # ── Production Deploy (manual approval via GitHub Environment) ────────────────
+  deploy-production:
+    name: Deploy → Production
+    needs: verify-staging
+    runs-on: ubuntu-latest
+    environment: production  # Requires manual approval in Settings → Environments
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Download proof bundle
+        uses: actions/download-artifact@v4
+        with:
+          name: noizy-proof-${{ github.sha }}
+          path: artifacts/proof/
+
+      - name: Deploy consent-gateway → production
+        working-directory: cloudflare/workers/consent-gateway
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: npx wrangler deploy --env production
+
+      - name: Deploy cb01-router → production
+        working-directory: cloudflare/workers/cb01-router
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: npx wrangler deploy --env production

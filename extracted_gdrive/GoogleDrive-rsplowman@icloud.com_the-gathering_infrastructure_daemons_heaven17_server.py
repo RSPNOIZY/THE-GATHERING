@@ -6,7 +6,6 @@ Runs on port 17017 (connect GORUNFREE to this)
 """
 
 import json
-import threading
 import time
 import http.server
 import socketserver
@@ -152,7 +151,7 @@ def main():
         httpd.allow_reuse_address = True
         print(f"[heaven17] ✅ Listening on http://localhost:{HEAVEN17_PORT}")
         print(f"[heaven17] ✅ Connected to Ollama: {OLLAMA_URL}")
-        print(f"[heaven17] ✅ GORUNFREE integration ready")
+        print("[heaven17] ✅ GORUNFREE integration ready")
         httpd.serve_forever()
 
 if __name__ == "__main__":

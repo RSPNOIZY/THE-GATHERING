@@ -1,0 +1,103 @@
+{
+  "mcpServers": {
+    "gabriel": {
+      "command": "node",
+      "args": ["/Users/m2ultra/NOIZYANTHROPIC/mcp/gabriel-mcp/index.js"],
+      "env": { "GABRIEL_PORT": "9777", "NOIZY_EMPIRE_ROOT": "/Users/m2ultra/NOIZYANTHROPIC" }
+    },
+    "lucy": {
+      "command": "node",
+      "args": ["/Users/m2ultra/NOIZYANTHROPIC/mcp/lucy-mcp/index.js"],
+      "env": { "NOIZY_EMPIRE_ROOT": "/Users/m2ultra/NOIZYANTHROPIC" }
+    },
+    "heaven": {
+      "command": "node",
+      "args": ["/Users/m2ultra/NOIZYANTHROPIC/mcp/heaven-mcp/index.js"],
+      "env": { "HEAVEN_WORKER_URL": "https://heaven.rsp-5f3.workers.dev" }
+    },
+    "engr-keith": {
+      "command": "node",
+      "args": ["/Users/m2ultra/NOIZYANTHROPIC/mcp/engr-keith-mcp/index.js"],
+      "env": { "HEAVEN_WORKER_URL": "https://heaven.rsp-5f3.workers.dev" }
+    },
+    "dream": {
+      "command": "node",
+      "args": ["/Users/m2ultra/NOIZYANTHROPIC/mcp/dream-mcp/index.js"],
+      "env": { "DREAMCHAMBER_PORT": "7777" }
+    },
+    "cb01": {
+      "command": "node",
+      "args": ["/Users/m2ultra/NOIZYANTHROPIC/mcp/cb01-mcp/index.js"],
+      "env": { "NOIZY_EMPIRE_ROOT": "/Users/m2ultra/NOIZYANTHROPIC" }
+    },
+    "shirley": {
+      "command": "node",
+      "args": ["/Users/m2ultra/NOIZYANTHROPIC/mcp/shirley-mcp/index.js"],
+      "env": { "OLLAMA_PORT": "11434" }
+    },
+    "family": {
+      "command": "node",
+      "args": ["/Users/m2ultra/NOIZYANTHROPIC/mcp/family-mcp/index.js"],
+      "env": { "GABRIEL_PORT": "9777" }
+    },
+    "shortcuts": {
+      "command": "node",
+      "args": ["/Users/m2ultra/NOIZYANTHROPIC/mcp/shortcuts-mcp/index.js"]
+    },
+    "consent-oracle": {
+      "command": "node",
+      "args": ["/Users/m2ultra/NOIZYANTHROPIC/mcp/consent-oracle/index.js"],
+      "env": { "HEAVEN_WORKER_URL": "https://heaven.rsp-5f3.workers.dev" }
+    },
+    "synthesis-oracle": {
+      "command": "node",
+      "args": ["/Users/m2ultra/NOIZYANTHROPIC/mcp/synthesis-oracle/index.js"]
+    },
+    "voice-bridge": {
+      "command": "node",
+      "args": ["/Users/m2ultra/NOIZYANTHROPIC/mcp/voice-bridge/voice-bridge-server.mjs"],
+      "env": { "GABRIEL_PORT": "9777" }
+    },
+    "dreamchamber-audio": {
+      "command": "node",
+      "args": ["/Users/m2ultra/NOIZYANTHROPIC/mcp/dreamchamber-audio/index.js"]
+    },
+    "gemma3": {
+      "command": "node",
+      "args": ["/Users/m2ultra/NOIZYANTHROPIC/mcp/gemma3/index.js"],
+      "env": { "OLLAMA_PORT": "11434" }
+    },
+    "supersonic": {
+      "command": "node",
+      "args": ["/Users/m2ultra/NOIZYANTHROPIC/mcp/supersonic/index.js"]
+    },
+    "metabeast-remote": {
+      "command": "node",
+      "args": ["/Users/m2ultra/NOIZYANTHROPIC/mcp/metabeast-remote/index.js"]
+    }
+  },
+  "_phase2_mcpServers_planned": {
+    "_comment": "Phase 2 MCPs — scaffolds planned, not yet implemented. Track in INTEGRATIONS.md §Phase status.",
+    "cf-fleet": {
+      "_command": "node",
+      "_args": ["/Users/m2ultra/NOIZYANTHROPIC/mcp/cf-fleet-mcp/index.js"],
+      "_env": {
+        "CF_API_TOKEN": "${CF_API_TOKEN}",
+        "CF_ACCOUNT_ID": "5f36aa9795348ea681d0b21910dfc82a"
+      },
+      "_purpose": "Cloudflare A/V: Stream, R2, Images, Realtime/Calls, Workers deploy — consent-gated through Heaven"
+    },
+    "slack-bridge": {
+      "_command": "node",
+      "_args": ["/Users/m2ultra/NOIZYANTHROPIC/mcp/slack-bridge/index.js"],
+      "_env": { "SLACK_BOT_TOKEN": "${SLACK_BOT_TOKEN}" },
+      "_purpose": "Slack read/post. Prefer via CF04 worker; this is Path B fallback."
+    },
+    "discord-bridge": {
+      "_command": "node",
+      "_args": ["/Users/m2ultra/NOIZYANTHROPIC/mcp/discord-bridge/index.js"],
+      "_env": { "DISCORD_BOT_TOKEN": "${DISCORD_BOT_TOKEN}" },
+      "_purpose": "Discord read/post. Prefer via CF01 worker; this is Path B fallback."
+    }
+  }
+}

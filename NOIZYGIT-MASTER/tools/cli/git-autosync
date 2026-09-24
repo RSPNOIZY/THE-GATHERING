@@ -1,0 +1,68 @@
+#!/bin/bash
+# ═══════════════════════════════════════════════════════════════════════════
+# git-autosync - Automated commit and push to remote
+# Usage: git autosync [message]
+# Runs from any git repo - auto-detects and syncs
+# ═══════════════════════════════════════════════════════════════════════════
+
+set -e
+
+# Check if we're in a git repo
+if ! git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+    echo "❌ Not a git repository"
+    exit 1
+fi
+
+# Get repo root
+REPO_ROOT=$(git rev-parse --show-toplevel)
+REPO_NAME=$(basename "$REPO_ROOT")
+BRANCH=$(git branch --show-current)
+REMOTE=$(git remote | head -1)
+
+# Custom message or auto-generate
+if [[ -n "$1" ]]; then
+    MESSAGE="$*"
+else
+    # Auto-generate message with timestamp
+    TIMESTAMP=$(date "+%Y-%m-%d %H:%M:%S")
+    MESSAGE="sync: Auto-sync $TIMESTAMP"
+fi
+
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo "🔄 Git AutoSync"
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo "  Repo:   $REPO_NAME"
+echo "  Branch: $BRANCH"
+echo "  Remote: $REMOTE"
+echo ""
+
+# Check for changes
+if git diff --quiet && git diff --staged --quiet && [[ -z $(git ls-files --others --exclude-standard) ]]; then
+    echo "✨ No changes to sync"
+    exit 0
+fi
+
+# Show what's being committed
+echo "📝 Changes:"
+git status -s
+echo ""
+
+# Stage all changes
+echo "📦 Staging all changes..."
+git add -A
+
+# Commit
+echo "💾 Committing: $MESSAGE"
+git commit -m "$MESSAGE" --no-verify || {
+    echo "⚠️  Nothing to commit"
+    exit 0
+}
+
+# Push
+echo "🚀 Pushing to $REMOTE/$BRANCH..."
+git push "$REMOTE" "$BRANCH" --no-verify
+
+echo ""
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo "✅ Synced successfully!"
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"

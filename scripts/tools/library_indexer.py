@@ -113,7 +113,7 @@ def index_drives():
     with open(output_path, 'w') as f:
         json.dump(index_data, f, indent=2)
         
-    print(f"\n✅ INDEXING COMPLETE.")
+    print("\n✅ INDEXING COMPLETE.")
     print(f"Found {len(index_data['libraries'])} libraries.")
     print(f"Index saved to: {output_path}")
 

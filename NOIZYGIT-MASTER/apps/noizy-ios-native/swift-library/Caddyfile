@@ -1,0 +1,21 @@
+# NOIZY EMPIRE — Caddy Reverse Proxy
+{
+    admin off
+}
+
+:80 {
+    # GABRIEL API
+    handle /gabriel/* {
+        reverse_proxy noizy-gabriel-api:9099
+    }
+    # Voice Pipeline
+    handle /voice/* {
+        reverse_proxy noizy-voice-pipeline:9100
+    }
+    # MinIO Console
+    handle /storage/* {
+        reverse_proxy noizy-minio:9001
+    }
+    # Default
+    respond "NOIZY EMPIRE — MC96ECO — 5th Epoch" 200
+}

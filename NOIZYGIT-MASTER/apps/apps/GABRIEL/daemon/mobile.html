@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="GABRIEL">
+  <title>GABRIEL — NOIZY EMPIRE</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #0a0a0a;
+      --surface:  #141414;
+      --border:   #222;
+      --gold:     #c9a84c;
+      --gold-dim: #7a6330;
+      --text:     #f0f0f0;
+      --text-dim: #666;
+      --user-bg:  #1a3a1a;
+      --gabriel:  #1a1a2e;
+      --error:    #8b0000;
+      --safe:     env(safe-area-inset-bottom, 16px);
+    }
+
+    html, body {
+      height: 100%;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif;
+      font-size: 16px;
+      overflow: hidden;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    #app {
+      display: flex;
+      flex-direction: column;
+      height: 100dvh;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* ── Header ── */
+    #header {
+      flex-shrink: 0;
+      padding: 12px 16px 10px;
+      padding-top: max(12px, env(safe-area-inset-top));
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    #header-logo {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold), var(--gold-dim));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      font-weight: 800;
+      color: #000;
+    }
+    #header-info { flex: 1; }
+    #header-title { font-size: 15px; font-weight: 700; color: var(--gold); letter-spacing: 0.5px; }
+    #header-subtitle { font-size: 11px; color: var(--text-dim); margin-top: 1px; }
+    #status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #333;
+      transition: background 0.3s;
+    }
+    #status-dot.connected  { background: #2ecc71; }
+    #status-dot.processing { background: var(--gold); animation: pulse 0.8s infinite; }
+    #status-dot.error      { background: #e74c3c; }
+
+    @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+    /* ── Messages ── */
+    #messages {
+      flex: 1;
+      overflow-y: auto;
+      overflow-x: hidden;
+      padding: 16px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .msg {
+      max-width: 82%;
+      padding: 10px 13px;
+      border-radius: 18px;
+      line-height: 1.45;
+      font-size: 14.5px;
+      word-wrap: break-word;
+      animation: fadeIn 0.2s ease;
+    }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+    .msg.user {
+      align-self: flex-end;
+      background: var(--user-bg);
+      border: 1px solid #2a4a2a;
+      border-bottom-right-radius: 4px;
+      color: #cfe8cf;
+    }
+    .msg.gabriel {
+      align-self: flex-start;
+      background: var(--gabriel);
+      border: 1px solid #2a2a4a;
+      border-bottom-left-radius: 4px;
+      color: var(--text);
+    }
+    .msg.system {
+      align-self: center;
+      background: transparent;
+      color: var(--text-dim);
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+    .msg.error {
+      align-self: center;
+      background: var(--error);
+      color: #fcc;
+      font-size: 12px;
+    }
+
+    .msg-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      opacity: 0.5;
+      margin-bottom: 4px;
+    }
+    .msg.gabriel .msg-label { color: var(--gold); opacity: 0.8; }
+    .msg.user    .msg-label { color: #8bc48b; opacity: 0.8; text-align: right; }
+
+    .msg pre {
+      font-family: 'SF Mono', Menlo, monospace;
+      font-size: 12px;
+      background: rgba(0,0,0,0.4);
+      padding: 8px 10px;
+      border-radius: 8px;
+      overflow-x: auto;
+      white-space: pre-wrap;
+      margin-top: 6px;
+    }
+
+    #typing {
+      align-self: flex-start;
+      display: none;
+      padding: 10px 14px;
+      background: var(--gabriel);
+      border: 1px solid #2a2a4a;
+      border-radius: 18px;
+      border-bottom-left-radius: 4px;
+    }
+    #typing span {
+      display: inline-block;
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--gold);
+      margin: 0 2px;
+      animation: bounce 1.2s infinite;
+    }
+    #typing span:nth-child(2) { animation-delay: 0.2s; }
+    #typing span:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes bounce { 0%,80%,100% { transform: translateY(0); } 40% { transform: translateY(-6px); } }
+
+    /* ── Quick commands ── */
+    #quick-bar {
+      flex-shrink: 0;
+      display: flex;
+      gap: 6px;
+      padding: 8px 12px 4px;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      border-top: 1px solid var(--border);
+      scrollbar-width: none;
+    }
+    #quick-bar::-webkit-scrollbar { display: none; }
+
+    .quick-btn {
+      flex-shrink: 0;
+      padding: 5px 12px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text-dim);
+      font-size: 12px;
+      font-family: inherit;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+      transition: border-color 0.15s, color 0.15s;
+    }
+    .quick-btn:active { border-color: var(--gold); color: var(--gold); }
+
+    /* ── Input bar ── */
+    #input-bar {
+      flex-shrink: 0;
+      padding: 10px 12px;
+      padding-bottom: max(10px, var(--safe));
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: flex-end;
+      gap: 8px;
+    }
+
+    #text-input {
+      flex: 1;
+      min-height: 38px;
+      max-height: 120px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 9px 14px;
+      color: var(--text);
+      font-size: 15px;
+      font-family: inherit;
+      resize: none;
+      outline: none;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      line-height: 1.3;
+    }
+    #text-input::placeholder { color: var(--text-dim); }
+    #text-input:focus { border-color: var(--gold-dim); }
+
+    #send-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      border: none;
+      background: var(--gold);
+      color: #000;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      flex-shrink: 0;
+      -webkit-tap-highlight-color: transparent;
+      transition: transform 0.1s, opacity 0.1s;
+    }
+    #send-btn:active { transform: scale(0.92); opacity: 0.8; }
+    #send-btn:disabled { opacity: 0.3; background: var(--border); }
+
+    #mic-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      border: 2px solid var(--border);
+      background: var(--bg);
+      color: var(--text-dim);
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      flex-shrink: 0;
+      -webkit-tap-highlight-color: transparent;
+      transition: border-color 0.15s, background 0.15s, transform 0.1s;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+    #mic-btn.recording {
+      border-color: #e74c3c;
+      background: rgba(231, 76, 60, 0.15);
+      color: #e74c3c;
+      animation: micPulse 0.6s infinite;
+    }
+    @keyframes micPulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.08); } }
+
+    /* ── Pipeline progress ── */
+    #pipeline-bar {
+      display: none;
+      flex-shrink: 0;
+      padding: 4px 12px;
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+      font-size: 11px;
+      color: var(--gold);
+      text-align: center;
+      letter-spacing: 0.3px;
+    }
+  </style>
+</head>
+<body>
+<div id="app">
+  <div id="header">
+    <div id="header-logo">G</div>
+    <div id="header-info">
+      <div id="header-title">GABRIEL · NOIZY EMPIRE</div>
+      <div id="header-subtitle">GOD Machine — M2 Ultra · GORUNFREE</div>
+    </div>
+    <div id="status-dot"></div>
+  </div>
+
+  <div id="messages">
+    <div class="msg system">NOIZY EMPIRE — RSP_001 Sovereign Command</div>
+    <div class="msg system" id="connect-hint">Connecting to GABRIEL…</div>
+    <div id="typing"><span></span><span></span><span></span></div>
+  </div>
+
+  <div id="pipeline-bar" id="pipeline-bar">⚡ Initializing…</div>
+
+  <div id="quick-bar">
+    <button class="quick-btn" data-cmd="Status">Status</button>
+    <button class="quick-btn" data-cmd="What tasks are pending?">Tasks</button>
+    <button class="quick-btn" data-cmd="Deploy Heaven worker">Deploy</button>
+    <button class="quick-btn" data-cmd="What's the estate status for rsp001?">Estate</button>
+    <button class="quick-btn" data-cmd="Run morning brief">Brief</button>
+    <button class="quick-btn" data-cmd="What Cloudflare Workers are deployed?">Workers</button>
+    <button class="quick-btn" data-cmd="GORUNFREE — give me empire summary">Empire</button>
+  </div>
+
+  <div id="input-bar">
+    <button id="mic-btn" title="Hold to speak">🎙</button>
+    <textarea id="text-input" placeholder="Message GABRIEL…" rows="1"></textarea>
+    <button id="send-btn">↑</button>
+  </div>
+</div>
+
+<script>
+'use strict';
+
+// ── Config ────────────────────────────────────────────────────────────────────
+const WS_PATH   = '/voice';
+const WS_PROTO  = location.protocol === 'https:' ? 'wss:' : 'ws:';
+const WS_URL    = `${WS_PROTO}//${location.host}${WS_PATH}`;
+const API_BASE  = `${location.protocol}//${location.host}`;
+
+// ── DOM ───────────────────────────────────────────────────────────────────────
+const $msgs      = document.getElementById('messages');
+const $typing    = document.getElementById('typing');
+const $input     = document.getElementById('text-input');
+const $sendBtn   = document.getElementById('send-btn');
+const $micBtn    = document.getElementById('mic-btn');
+const $dot       = document.getElementById('status-dot');
+const $pipeline  = document.getElementById('pipeline-bar');
+const $hint      = document.getElementById('connect-hint');
+
+// ── State ─────────────────────────────────────────────────────────────────────
+let ws          = null;
+let recorder    = null;
+let audioChunks = [];
+let isRecording = false;
+let pendingRunId = null;
+
+// ── WebSocket ─────────────────────────────────────────────────────────────────
+function connect() {
+  ws = new WebSocket(WS_URL);
+
+  ws.onopen = () => {
+    setDot('connected');
+    $hint && $hint.remove();
+    appendMsg('system', 'GABRIEL online · GORUNFREE');
+  };
+
+  ws.onmessage = (e) => {
+    try {
+      const msg = JSON.parse(e.data);
+      handleWsMsg(msg);
+    } catch {}
+  };
+
+  ws.onclose = () => {
+    setDot('error');
+    appendMsg('system', 'Disconnected — reconnecting in 3s…');
+    setTimeout(connect, 3000);
+  };
+
+  ws.onerror = () => {
+    setDot('error');
+  };
+}
+
+function handleWsMsg(msg) {
+  switch (msg.type) {
+    case 'connected':
+      break;
+    case 'pong':
+      break;
+    case 'gabriel':
+      hideTyping();
+      appendMsg('gabriel', msg.text, msg.tower);
+      break;
+    case 'voice:pipeline:start':
+      showPipeline('Recording received · transcribing…');
+      showTyping();
+      break;
+    case 'voice:pipeline:transcript':
+      showPipeline(`Heard: "${msg.transcript.slice(0, 60)}…"`);
+      if (msg.runId === pendingRunId) appendMsg('user', msg.transcript, null, true);
+      break;
+    case 'voice:pipeline:step':
+      if (msg.name === 'claude') showPipeline(`Routing to GABRIEL [${msg.tower?.toUpperCase()}]…`);
+      break;
+    case 'voice:pipeline:complete':
+      hidePipeline();
+      hideTyping();
+      appendMsg('gabriel', msg.reply, msg.tower);
+      break;
+    case 'voice:pipeline:error':
+      hidePipeline();
+      hideTyping();
+      appendMsg('error', `Pipeline error: ${msg.error}`);
+      break;
+    case 'error':
+      hideTyping();
+      appendMsg('error', msg.error);
+      break;
+  }
+}
+
+// ── Messages ──────────────────────────────────────────────────────────────────
+function appendMsg(role, text, tower, isTranscript = false) {
+  const el = document.createElement('div');
+  el.className = `msg ${role}`;
+
+  if (role === 'gabriel') {
+    const label = document.createElement('div');
+    label.className = 'msg-label';
+    label.textContent = tower ? `GABRIEL [${tower.toUpperCase()}]` : 'GABRIEL';
+    el.appendChild(label);
+  } else if (role === 'user' && !isTranscript) {
+    const label = document.createElement('div');
+    label.className = 'msg-label';
+    label.textContent = 'RSP_001';
+    el.appendChild(label);
+  }
+
+  // Render code blocks
+  const parts = text.split(/(```[\s\S]*?```)/g);
+  parts.forEach(part => {
+    if (part.startsWith('```') && part.endsWith('```')) {
+      const pre = document.createElement('pre');
+      pre.textContent = part.replace(/^```\w*\n?/, '').replace(/\n?```$/, '');
+      el.appendChild(pre);
+    } else if (part.trim()) {
+      const p = document.createElement('span');
+      p.textContent = part;
+      el.appendChild(p);
+    }
+  });
+
+  $msgs.insertBefore(el, $typing);
+  scrollBottom();
+}
+
+function scrollBottom() {
+  requestAnimationFrame(() => { $msgs.scrollTop = $msgs.scrollHeight; });
+}
+
+function showTyping()  { $typing.style.display = 'block'; scrollBottom(); }
+function hideTyping()  { $typing.style.display = 'none'; }
+
+function showPipeline(text) {
+  $pipeline.textContent = `⚡ ${text}`;
+  $pipeline.style.display = 'block';
+  setDot('processing');
+}
+function hidePipeline() {
+  $pipeline.style.display = 'none';
+  setDot('connected');
+}
+
+function setDot(state) {
+  $dot.className = '';
+  $dot.classList.add(state);
+}
+
+// ── Text send ─────────────────────────────────────────────────────────────────
+function sendText() {
+  const text = $input.value.trim();
+  if (!text) return;
+  if (!ws || ws.readyState !== WebSocket.OPEN) {
+    appendMsg('error', 'Not connected to GABRIEL');
+    return;
+  }
+  appendMsg('user', text);
+  $input.value = '';
+  $input.style.height = '';
+  showTyping();
+  ws.send(JSON.stringify({ type: 'transcript', text }));
+}
+
+$sendBtn.addEventListener('click', sendText);
+$input.addEventListener('keydown', e => {
+  if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendText(); }
+});
+$input.addEventListener('input', () => {
+  $input.style.height = 'auto';
+  $input.style.height = Math.min($input.scrollHeight, 120) + 'px';
+});
+
+// ── Quick commands ────────────────────────────────────────────────────────────
+document.getElementById('quick-bar').addEventListener('click', e => {
+  const btn = e.target.closest('.quick-btn');
+  if (!btn) return;
+  $input.value = btn.dataset.cmd;
+  sendText();
+});
+
+// ── Voice recording ───────────────────────────────────────────────────────────
+async function startRecording() {
+  if (isRecording) return;
+  try {
+    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+
+    // Safari iOS prefers audio/mp4
+    const mimeType = MediaRecorder.isTypeSupported('audio/mp4')  ? 'audio/mp4'
+                   : MediaRecorder.isTypeSupported('audio/webm') ? 'audio/webm'
+                   : '';
+    const options = mimeType ? { mimeType } : {};
+
+    recorder    = new MediaRecorder(stream, options);
+    audioChunks = [];
+    isRecording = true;
+
+    recorder.ondataavailable = e => { if (e.data.size > 0) audioChunks.push(e.data); };
+    recorder.onstop = () => {
+      stream.getTracks().forEach(t => t.stop());
+      uploadAudio(mimeType || 'audio/webm');
+    };
+
+    recorder.start(100); // collect chunks every 100ms
+    $micBtn.classList.add('recording');
+    $micBtn.textContent = '⏹';
+    showPipeline('Recording… release to send');
+
+  } catch (e) {
+    appendMsg('error', `Mic error: ${e.message}. Open in Safari and allow mic access.`);
+  }
+}
+
+function stopRecording() {
+  if (!isRecording || !recorder) return;
+  isRecording = false;
+  recorder.stop();
+  $micBtn.classList.remove('recording');
+  $micBtn.textContent = '🎙';
+}
+
+async function uploadAudio(mimeType) {
+  if (audioChunks.length === 0) { hidePipeline(); return; }
+
+  const blob = new Blob(audioChunks, { type: mimeType });
+  if (blob.size < 1000) { appendMsg('system', 'Recording too short — try again'); hidePipeline(); return; }
+
+  showPipeline(`Sending ${(blob.size / 1024).toFixed(0)}KB to GABRIEL…`);
+
+  try {
+    const res = await fetch(`${API_BASE}/voice/upload`, {
+      method: 'POST',
+      headers: { 'Content-Type': mimeType },
+      body: blob,
+    });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || res.statusText);
+    pendingRunId = data.runId;
+    showPipeline('Processing…');
+    // Pipeline result arrives via WebSocket
+  } catch (e) {
+    hidePipeline();
+    appendMsg('error', `Upload failed: ${e.message}`);
+  }
+}
+
+// Touch/pointer events for mic button — tap toggles, or hold-to-record
+let holdTimer = null;
+let didHold   = false;
+
+$micBtn.addEventListener('pointerdown', e => {
+  e.preventDefault();
+  didHold = false;
+  holdTimer = setTimeout(() => {
+    didHold = true;
+    startRecording();
+  }, 120); // 120ms = intentional hold
+});
+
+$micBtn.addEventListener('pointerup', e => {
+  e.preventDefault();
+  clearTimeout(holdTimer);
+  if (isRecording) {
+    stopRecording(); // hold-release: stop
+  } else if (!didHold) {
+    // Quick tap: toggle
+    startRecording();
+    // Stop automatically after 30s
+    setTimeout(() => { if (isRecording) stopRecording(); }, 30000);
+  }
+});
+
+$micBtn.addEventListener('pointercancel', () => {
+  clearTimeout(holdTimer);
+  if (isRecording) stopRecording();
+});
+
+// ── Keepalive ─────────────────────────────────────────────────────────────────
+setInterval(() => {
+  if (ws && ws.readyState === WebSocket.OPEN) {
+    ws.send(JSON.stringify({ type: 'ping' }));
+  }
+}, 25000);
+
+// ── Boot ──────────────────────────────────────────────────────────────────────
+connect();
+</script>
+</body>
+</html>

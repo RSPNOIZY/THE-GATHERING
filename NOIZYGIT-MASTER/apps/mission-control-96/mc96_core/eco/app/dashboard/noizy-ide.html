@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>NOIZY IDE — DreamChamber Command Center</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="noizy-ide.css"/>
+</head>
+<body>
+
+<!-- ── LEFT RAIL ──────────────────────────────────────────── -->
+<nav class="left-rail" id="leftRail">
+  <div class="rail-logo" onclick="navigate('home')">
+    <span class="rail-n">N</span>
+    <span class="rail-wordmark">NOIZY IDE</span>
+  </div>
+  <div class="rail-links">
+    <a class="rlink active" data-screen="home"       onclick="navigate('home')">       <span class="ri">⬡</span><span class="rl">Empire Home</span></a>
+    <a class="rlink"        data-screen="recovery"   onclick="navigate('recovery')">   <span class="ri">🔍</span><span class="rl">Recovery Board</span></a>
+    <a class="rlink"        data-screen="repos"      onclick="navigate('repos')">      <span class="ri">✦</span><span class="rl">Repo Constellation</span></a>
+    <a class="rlink"        data-screen="rituals"    onclick="navigate('rituals')">    <span class="ri">⚙</span><span class="rl">Ops Rituals</span></a>
+    <a class="rlink"        data-screen="rights"     onclick="navigate('rights')">     <span class="ri">🔒</span><span class="rl">Rights &amp; Sovereignty</span></a>
+    <a class="rlink"        data-screen="memory"     onclick="navigate('memory')">     <span class="ri">🧠</span><span class="rl">Memory Spine</span></a>
+    <a class="rlink"        data-screen="archive"    onclick="navigate('archive')">    <span class="ri">🏛</span><span class="rl">Archive Vault</span></a>
+    <a class="rlink"        data-screen="session"    onclick="navigate('session')">    <span class="ri">🌙</span><span class="rl">DreamChamber</span></a>
+    <a class="rlink"        data-screen="deploy"     onclick="navigate('deploy')">     <span class="ri">⚡</span><span class="rl">Deployment Bridge</span></a>
+    <a class="rlink"        data-screen="canon"      onclick="navigate('canon')">      <span class="ri">📐</span><span class="rl">Canon Forge</span></a>
+    <a class="rlink"        data-screen="agents"     onclick="navigate('agents')">     <span class="ri">🤖</span><span class="rl">Agent Orchestrator</span></a>
+    <a class="rlink"        data-screen="settings"   onclick="navigate('settings')">   <span class="ri">⚙</span><span class="rl">Governance</span></a>
+  </div>
+  <div class="rail-version">GABRIEL V4 · DAZEFLOW</div>
+</nav>
+
+<!-- ── MAIN CONTENT ───────────────────────────────────────── -->
+<main class="main-content">
+
+  <!-- SCREEN: EMPIRE HOME -->
+  <div class="screen active" id="screen-home">
+    <div class="screen-header">
+      <div>
+        <div class="screen-title">Empire Home</div>
+        <div class="screen-sub">Current state · risk · momentum · next action</div>
+      </div>
+      <div class="header-right">
+        <div class="countdown-chip" id="countdown">T-minus…</div>
+        <div class="clock-chip" id="clock">--:--:--</div>
+      </div>
+    </div>
+
+    <div class="home-grid">
+      <!-- Mission Now -->
+      <div class="panel span2">
+        <div class="panel-title">🎯 Mission Now</div>
+        <div class="mission-text">Lock the full NOIZYBEAST stack · Deploy HEAVEN17 · Activate GABRIEL V4 multi-agent orchestration · Voice-v2 pipeline live by April 17, 2026</div>
+        <div class="mission-chips">
+          <span class="mchip amber">BUILD MODE</span>
+          <span class="mchip cyan">DAZEFLOW ACTIVE</span>
+          <span class="mchip green">RSP_001 ONLINE</span>
+        </div>
+      </div>
+
+      <!-- Empire Status -->
+      <div class="panel">
+        <div class="panel-title">📊 Empire Status</div>
+        <div class="empire-bars" id="empireBars">
+          <div class="ebar"><span class="eb-label">Mapped</span><div class="eb-track"><div class="eb-fill amber" style="width:45%"></div></div><span class="eb-pct">45%</span></div>
+          <div class="ebar"><span class="eb-label">Recoverable</span><div class="eb-track"><div class="eb-fill cyan" style="width:62%"></div></div><span class="eb-pct">62%</span></div>
+          <div class="ebar"><span class="eb-label">Canonical</span><div class="eb-track"><div class="eb-fill amber" style="width:28%"></div></div><span class="eb-pct">28%</span></div>
+          <div class="ebar"><span class="eb-label">Operable</span><div class="eb-track"><div class="eb-fill green" style="width:55%"></div></div><span class="eb-pct">55%</span></div>
+          <div class="ebar"><span class="eb-label">Immortal</span><div class="eb-track"><div class="eb-fill red" style="width:18%"></div></div><span class="eb-pct">18%</span></div>
+        </div>
+      </div>
+
+      <!-- Top 3 Priorities -->
+      <div class="panel">
+        <div class="panel-title">⚡ Top Priorities</div>
+        <div class="priority-list">
+          <div class="pitem urgent"><span class="p-num">1</span><div class="p-body"><div class="p-name">Deploy HEAVEN17 Worker</div><div class="p-note">Keystone · currently stub · unlocks 6 surfaces</div></div><span class="truth-chip undeployed">UNDEPLOYED</span></div>
+          <div class="pitem high"><span class="p-num">2</span><div class="p-body"><div class="p-name">Activate GABRIEL V4</div><div class="p-note">Multi-agent orchestration · DreamChamber :7777</div></div><span class="truth-chip live">IN PROGRESS</span></div>
+          <div class="pitem med"><span class="p-num">3</span><div class="p-body"><div class="p-name">Voice-v2 Pipeline</div><div class="p-note">STT/Claude dispatch · mlx-whisper + XTTS-v2</div></div><span class="truth-chip stale">PENDING</span></div>
+        </div>
+      </div>
+
+      <!-- Critical Risks -->
+      <div class="panel">
+        <div class="panel-title">🚨 Critical Risks</div>
+        <div class="risk-list">
+          <div class="ritem"><span class="risk-icon">🔴</span><div class="r-body"><div class="r-name">Consent Architecture Blueprint</div><div class="r-note">Slack retention — may purge permanently</div></div></div>
+          <div class="ritem"><span class="risk-icon">🟠</span><div class="r-body"><div class="r-name">HEAVEN17 stub deployed</div><div class="r-note">Hello World still live at production URL</div></div></div>
+          <div class="ritem"><span class="risk-icon">🟠</span><div class="r-body"><div class="r-name">CF Tunnel not configured</div><div class="r-note">voice.noizy.ai → localhost:8080 unreachable</div></div></div>
+          <div class="ritem"><span class="risk-icon">🟡</span><div class="r-body"><div class="r-name">CryptoTokenKit Error -3</div><div class="r-note">Wrangler auth broken · deploy blocked</div></div></div>
+          <div class="ritem"><span class="risk-icon">🟡</span><div class="r-body"><div class="r-name">Founder Blueprint missing</div><div class="r-note">Not found in indexed sources</div></div></div>
+        </div>
+      </div>
+
+      <!-- Live Systems -->
+      <div class="panel">
+        <div class="panel-title">📡 Live Systems</div>
+        <div class="sys-list" id="sysList">
+          <div class="sitem"><span class="sys-dot" id="dot-gabriel"></span><span class="sys-name">GABRIEL V4</span><span class="sys-addr">:7777</span><span class="sys-badge" id="badge-gabriel">CHECKING</span></div>
+          <div class="sitem"><span class="sys-dot" id="dot-bridge"></span><span class="sys-name">Voice Bridge</span><span class="sys-addr">:8080</span><span class="sys-badge" id="badge-bridge">CHECKING</span></div>
+          <div class="sitem"><span class="sys-dot" id="dot-ollama"></span><span class="sys-name">Ollama / Gemma3</span><span class="sys-addr">:11434</span><span class="sys-badge" id="badge-ollama">CHECKING</span></div>
+          <div class="sitem"><span class="sys-dot" id="dot-consent"></span><span class="sys-name">Consent Oracle</span><span class="sys-addr">:7778</span><span class="sys-badge" id="badge-consent">CHECKING</span></div>
+          <div class="sitem"><span class="sys-dot" id="dot-synth"></span><span class="sys-name">Synthesis Oracle</span><span class="sys-addr">:7780</span><span class="sys-badge" id="badge-synth">CHECKING</span></div>
+          <div class="sitem"><span class="sys-dot" id="dot-codex"></span><span class="sys-name">Mutation Codex</span><span class="sys-addr">:7782</span><span class="sys-badge" id="badge-codex">CHECKING</span></div>
+        </div>
+      </div>
+
+      <!-- Turbo Quick Launch -->
+      <div class="panel">
+        <div class="panel-title">⚡ Quick Launch — Turbo Scripts</div>
+        <div class="turbo-grid">
+          <button class="tbtn t1" onclick="runTurbo('T1','NOIZY component')">T1 Scaffold</button>
+          <button class="tbtn t2" onclick="runTurbo('T2')">T2 Flow Sync</button>
+          <button class="tbtn t3" onclick="runTurbo('T3')">T3 Deploy</button>
+          <button class="tbtn t4" onclick="runTurbo('T4')">T4 Cell Burst</button>
+          <button class="tbtn t5" onclick="promptTurbo('T5','Voice ID:')">T5 Consent</button>
+          <button class="tbtn t6" onclick="promptTurbo('T6','Asset ID:')">T6 Mutation</button>
+          <button class="tbtn t7" onclick="promptTurbo('T7','Voice ID:')">T7 Forge</button>
+          <button class="tbtn t8" onclick="runTurbo('T8','T2')">T8 X1000</button>
+          <button class="tbtn t9" onclick="promptTurbo('T9','Issue:')">T9 Fix Canon</button>
+          <button class="tbtn t10" onclick="runTurbo('T10')">T10 Dream Capture</button>
+        </div>
+      </div>
+
+      <!-- Next Best Move -->
+      <div class="panel span2">
+        <div class="panel-title">🧠 Next Best Move <span class="conf-badge high">HIGH CONFIDENCE</span></div>
+        <div class="nbm-card">
+          <div class="nbm-action">Revive HEAVEN17 first</div>
+          <div class="nbm-reason">Reason: highest dependency weight, currently stub-deployed, named as keystone in command map, unlocks 6 downstream surfaces including CF Tunnel, Teams webhook, and voice routing.</div>
+          <div class="nbm-actions">
+            <button class="nbm-btn accept" onclick="navigate('deploy')">→ Open Deploy Bridge</button>
+            <button class="nbm-btn ignore">Ignore</button>
+            <button class="nbm-btn pin">Pin</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCREEN: RECOVERY BOARD -->
+  <div class="screen" id="screen-recovery">
+    <div class="screen-header">
+      <div><div class="screen-title">Recovery Board</div><div class="screen-sub">Keep · Merge · Upgrade · Kill · Missing</div></div>
+    </div>
+    <div class="recovery-tabs">
+      <button class="rtab active" onclick="filterRecovery('all')">All</button>
+      <button class="rtab keep" onclick="filterRecovery('keep')">Keep</button>
+      <button class="rtab merge" onclick="filterRecovery('merge')">Merge</button>
+      <button class="rtab upgrade" onclick="filterRecovery('upgrade')">Upgrade</button>
+      <button class="rtab kill" onclick="filterRecovery('kill')">Kill</button>
+      <button class="rtab missing" onclick="filterRecovery('missing')">Missing</button>
+      <button class="rtab danger" onclick="filterRecovery('danger')">Retention Risk</button>
+    </div>
+    <div class="recovery-board" id="recoveryBoard"></div>
+  </div>
+
+  <!-- SCREEN: REPO CONSTELLATION -->
+  <div class="screen" id="screen-repos">
+    <div class="screen-header">
+      <div><div class="screen-title">Repo Constellation</div><div class="screen-sub">Every repository as a living system node</div></div>
+    </div>
+    <div class="repo-grid" id="repoGrid"></div>
+  </div>
+
+  <!-- SCREEN: OPS RITUALS -->
+  <div class="screen" id="screen-rituals">
+    <div class="screen-header">
+      <div><div class="screen-title">Ops Rituals</div><div class="screen-sub">Shell scripts as visible operational rituals</div></div>
+    </div>
+    <div class="rituals-cats">
+      <button class="rcat active" onclick="filterRituals('all')">All</button>
+      <button class="rcat" onclick="filterRituals('restore')">Restoration</button>
+      <button class="rcat" onclick="filterRituals('deploy')">Deploy</button>
+      <button class="rcat" onclick="filterRituals('validate')">Validation</button>
+      <button class="rcat" onclick="filterRituals('align')">Alignment</button>
+      <button class="rcat danger" onclick="filterRituals('danger')">⚠ Danger Zone</button>
+    </div>
+    <div class="rituals-grid" id="ritualsGrid"></div>
+  </div>
+
+  <!-- SCREEN: RIGHTS & SOVEREIGNTY -->
+  <div class="screen" id="screen-rights">
+    <div class="screen-header">
+      <div><div class="screen-title">Rights &amp; Sovereignty</div><div class="screen-sub">Consent · Provenance · Royalty · Mutations</div></div>
+    </div>
+    <div class="placeholder-screen">
+      <div class="ph-icon">🔒</div>
+      <div class="ph-title">Phase 2 — Rights &amp; Sovereignty</div>
+      <div class="ph-desc">Consent Oracle, Voice Registry Genealogy, Mutation Lineage, Royalty Splits<br/>Use <strong>T5 Consent Snap</strong> for immediate rights lookup.</div>
+      <button class="ph-btn" onclick="runTurbo('T5','rsp001-primary')">Run T5 Consent Snap</button>
+    </div>
+  </div>
+
+  <!-- SCREEN: MEMORY SPINE -->
+  <div class="screen" id="screen-memory">
+    <div class="screen-header">
+      <div><div class="screen-title">Memory Spine</div><div class="screen-sub">Memcells · Patterns · Decisions · Doctrine</div></div>
+    </div>
+    <div class="placeholder-screen">
+      <div class="ph-icon">🧠</div>
+      <div class="ph-title">Phase 2 — Memory Spine</div>
+      <div class="ph-desc">GABRIEL Memcells, Pattern Intelligence, Decision History<br/>315+ memcells in agent-memory D1</div>
+      <button class="ph-btn" onclick="runTurbo('T4')">Run T4 Cell Burst</button>
+    </div>
+  </div>
+
+  <!-- SCREEN: ARCHIVE VAULT -->
+  <div class="screen" id="screen-archive">
+    <div class="screen-header">
+      <div><div class="screen-title">Archive Vault</div><div class="screen-sub">Crown jewels · 34 TB archive · Voice heritage</div></div>
+    </div>
+    <div class="placeholder-screen">
+      <div class="ph-icon">🏛</div>
+      <div class="ph-title">Phase 3 — Archive Vault</div>
+      <div class="ph-desc">34 TB archive · Voice Library · Fish Music / THE_AQUARIUM<br/>MC96ECO_MASTER_OPERATIONS.docx is your command map.</div>
+    </div>
+  </div>
+
+  <!-- SCREEN: DREAMCHAMBER SESSION -->
+  <div class="screen" id="screen-session">
+    <div class="screen-header">
+      <div><div class="screen-title">DreamChamber Session</div><div class="screen-sub">Guided momentum · Open · Build · Review · Close</div></div>
+      <div class="header-right">
+        <div class="session-mode-btns">
+          <button class="smode active" onclick="setMode('open')">Open</button>
+          <button class="smode" onclick="setMode('build')">Build</button>
+          <button class="smode" onclick="setMode('review')">Review</button>
+          <button class="smode" onclick="setMode('close')">Close</button>
+        </div>
+      </div>
+    </div>
+    <div class="session-grid">
+      <div class="panel span2">
+        <div class="panel-title">📋 Current Mission</div>
+        <textarea class="mission-input" id="sessionMission" placeholder="Pin today's objective here…">Lock the full NOIZYBEAST stack — deploy HEAVEN17, activate GABRIEL V4, wire voice-v2 pipeline. Target: April 17, 2026.</textarea>
+      </div>
+      <div class="panel">
+        <div class="panel-title">📁 Active Files</div>
+        <div class="file-list">
+          <div class="fitem"><span class="ftype ts">TS</span><span class="fname">consent-gateway/index.ts</span></div>
+          <div class="fitem"><span class="ftype js">JS</span><span class="fname">dreamchamber/src/routes/gabriel-v3.js</span></div>
+          <div class="fitem"><span class="ftype js">JS</span><span class="fname">dreamchamber/src/server.js</span></div>
+          <div class="fitem"><span class="ftype js">JS</span><span class="fname">turbo-scripts/noizybeast-turbo.js</span></div>
+          <div class="fitem"><span class="ftype md">MD</span><span class="fname">noizybeast/CLAUDE.md</span></div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel-title">⚠ Session Blockers</div>
+        <div class="blocker-list">
+          <div class="blk red">CryptoTokenKit Error -3 — wrangler auth broken</div>
+          <div class="blk orange">CF Tunnel not deployed — voice.noizy.ai offline</div>
+          <div class="blk orange">Teams iPhone not configured</div>
+          <div class="blk yellow">mlx-whisper install pending</div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel-title">📝 Session Notes</div>
+        <textarea class="session-notes" id="sessionNotes" placeholder="Notes accumulate here…"></textarea>
+      </div>
+      <div class="panel">
+        <div class="panel-title">⚡ Session Commands</div>
+        <div class="session-cmds">
+          <button class="scmd cyan" onclick="runTurbo('T2')">T2 Flow Sync — Load Context</button>
+          <button class="scmd amber" onclick="runTurbo('T4')">T4 Cell Burst — Save to Memory</button>
+          <button class="scmd green" onclick="runTurbo('T10')">T10 Dream Capture — Close Session</button>
+          <button class="scmd" onclick="navigate('deploy')">Open Deploy Bridge</button>
+          <button class="scmd" onclick="navigate('recovery')">Open Recovery Board</button>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel-title">📋 Artifacts Generated</div>
+        <div class="artifact-list" id="artifactList">
+          <div class="aitem"><span class="a-type">JS</span><span class="a-name">noizybeast-turbo.js</span><span class="truth-chip live">WRITTEN</span></div>
+          <div class="aitem"><span class="a-type">MD</span><span class="a-name">noizybeast_dream_chamber.md</span><span class="truth-chip live">WRITTEN</span></div>
+          <div class="aitem"><span class="a-type">SH</span><span class="a-name">fix-cryptotokenkit.sh</span><span class="truth-chip live">WRITTEN</span></div>
+          <div class="aitem"><span class="a-type">HTML</span><span class="a-name">noizy-ide.html</span><span class="truth-chip amber">IN PROGRESS</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCREEN: DEPLOYMENT BRIDGE -->
+  <div class="screen" id="screen-deploy">
+    <div class="screen-header">
+      <div><div class="screen-title">Deployment Bridge</div><div class="screen-sub">Releases · Validation · Smoke Tests · Rollback</div></div>
+    </div>
+    <div class="placeholder-screen">
+      <div class="ph-icon">⚡</div>
+      <div class="ph-title">Phase 3 — Deployment Bridge</div>
+      <div class="ph-desc">Deploy environments, smoke status, rollback refs<br/>Use <strong>T3 Deploy Cannon</strong> for immediate deploy.</div>
+      <button class="ph-btn" onclick="runTurbo('T3','heaven17')">Run T3 Deploy Cannon → HEAVEN17</button>
+    </div>
+  </div>
+
+  <!-- SCREEN: CANON FORGE -->
+  <div class="screen" id="screen-canon">
+    <div class="screen-header">
+      <div><div class="screen-title">Canon Forge</div><div class="screen-sub">Fragments → canonical specs · sources of truth</div></div>
+    </div>
+    <div class="placeholder-screen">
+      <div class="ph-icon">📐</div>
+      <div class="ph-title">Phase 4 — Canon Forge</div>
+      <div class="ph-desc">Duplicate detection · canonical merge · doctrine promotion</div>
+    </div>
+  </div>
+
+  <!-- SCREEN: AGENT ORCHESTRATOR -->
+  <div class="screen" id="screen-agents">
+    <div class="screen-header">
+      <div><div class="screen-title">Agent Orchestrator</div><div class="screen-sub">GABRIEL · SHIRL · POPS · ENGR · Multi-agent routing</div></div>
+    </div>
+    <div class="agents-grid" id="agentsGrid"></div>
+  </div>
+
+  <!-- SCREEN: SETTINGS -->
+  <div class="screen" id="screen-settings">
+    <div class="screen-header">
+      <div><div class="screen-title">Governance</div><div class="screen-sub">Policies · Connectors · Emergency Controls</div></div>
+    </div>
+    <div class="settings-grid">
+      <div class="panel">
+        <div class="panel-title">⚙ Environment</div>
+        <div class="env-list">
+          <div class="eitem"><span class="e-key">CF_ACCOUNT</span><span class="e-val">2446d788cc4280f5ea22a9948410c355</span></div>
+          <div class="eitem"><span class="e-key">GABRIEL_URL</span><span class="e-val">http://localhost:7777</span></div>
+          <div class="eitem"><span class="e-key">BRIDGE_URL</span><span class="e-val">http://localhost:8080</span></div>
+          <div class="eitem"><span class="e-key">OLLAMA_URL</span><span class="e-val">http://localhost:11434</span></div>
+          <div class="eitem"><span class="e-key">D1_ID</span><span class="e-val">7b813205-fd12-4a23-84a6-ce83bc49ec70</span></div>
+          <div class="eitem"><span class="e-key">TARGET_DATE</span><span class="e-val">2026-04-17</span></div>
+          <div class="eitem"><span class="e-key">OPERATOR</span><span class="e-val">RSP_001</span></div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel-title">🔴 Emergency Controls</div>
+        <div class="emergency-panel">
+          <button class="emg-btn stop">EMERGENCY STOP ALL AGENTS</button>
+          <button class="emg-btn pause">PAUSE SYNTHESIS</button>
+          <button class="emg-btn revoke">REVOKE ALL ACTIVE CONSENTS</button>
+        </div>
+        <div class="panel-title" style="margin-top:16px">📋 Policy</div>
+        <div class="policy-list">
+          <div class="pol">No deployment without validation gates</div>
+          <div class="pol">No memory write without attribution</div>
+          <div class="pol">No rights mutation without consent resolution</div>
+          <div class="pol">75/25 standard · 85/15 RSP_001</div>
+          <div class="pol">No new D1 databases without GO from RSP_001</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<!-- ── RIGHT RAIL ──────────────────────────────────────────── -->
+<aside class="right-rail">
+  <div class="rr-section">
+    <div class="rr-title">Turbo Scripts</div>
+    <div class="rr-turbos">
+      <button class="rr-t" onclick="runTurbo('T1','component')">T1</button>
+      <button class="rr-t" onclick="runTurbo('T2')">T2</button>
+      <button class="rr-t" onclick="runTurbo('T3')">T3</button>
+      <button class="rr-t" onclick="runTurbo('T4')">T4</button>
+      <button class="rr-t" onclick="promptTurbo('T5','Voice or Asset ID:')">T5</button>
+      <button class="rr-t" onclick="promptTurbo('T6','Asset ID:')">T6</button>
+      <button class="rr-t" onclick="promptTurbo('T7','Voice ID:')">T7</button>
+      <button class="rr-t" onclick="runTurbo('T8','T2')">T8</button>
+      <button class="rr-t" onclick="promptTurbo('T9','Issue:')">T9</button>
+      <button class="rr-t x10" onclick="runTurbo('T10')">T10</button>
+    </div>
+  </div>
+  <div class="rr-section">
+    <div class="rr-title">Alerts</div>
+    <div class="rr-alerts" id="rrAlerts">
+      <div class="ral red">🔴 Consent Blueprint at Slack retention risk</div>
+      <div class="ral orange">🟠 HEAVEN17 stub deployed</div>
+      <div class="ral orange">🟠 CryptoTokenKit Error -3</div>
+      <div class="ral yellow">🟡 CF Tunnel not configured</div>
+    </div>
+  </div>
+  <div class="rr-section">
+    <div class="rr-title">Quick Search</div>
+    <input class="rr-search" placeholder="Search empire…" oninput="quickSearch(this.value)"/>
+  </div>
+  <div class="rr-section">
+    <div class="rr-title">Output</div>
+    <div class="rr-output" id="rrOutput"><span class="out-muted">Ready.</span></div>
+  </div>
+</aside>
+
+<!-- ── BOTTOM STATE STRIP ─────────────────────────────────── -->
+<footer class="state-strip">
+  <span class="ss-item"><span class="ss-label">SESSION</span> <span class="ss-val" id="ssSession">2026-03-27</span></span>
+  <span class="ss-item"><span class="ss-label">REPO</span> <span class="ss-val">NOIZYLAB</span></span>
+  <span class="ss-item"><span class="ss-label">BRANCH</span> <span class="ss-val">main</span></span>
+  <span class="ss-item"><span class="ss-label">CONSENT</span> <span class="ss-val green" id="ssConsent">ACTIVE</span></span>
+  <span class="ss-item"><span class="ss-label">DEPLOY</span> <span class="ss-val orange" id="ssDeploy">PENDING</span></span>
+  <span class="ss-item"><span class="ss-label">MEMORY</span> <span class="ss-val" id="ssMemory">READY</span></span>
+  <span class="ss-item"><span class="ss-label">CF ACCT</span> <span class="ss-val mono">2446d788…</span></span>
+  <span class="ss-stop" onclick="emergencyStop()">⬛ STOP</span>
+</footer>
+
+<!-- ── TURBO OUTPUT MODAL ─────────────────────────────────── -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal">
+    <div class="modal-title" id="modalTitle">Turbo Output</div>
+    <pre class="modal-output" id="modalOutput"></pre>
+    <button class="modal-close" onclick="closeModal()">Close</button>
+  </div>
+</div>
+
+<script src="noizy-ide.js"></script>
+</body>
+</html>

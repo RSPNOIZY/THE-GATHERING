@@ -1,0 +1,32 @@
+{
+  "actor_id": "RSP_TEST",
+  "feature_dim": 5,
+  "feature_names": [
+    "rms",
+    "peak",
+    "centroid_norm",
+    "zcr",
+    "pitch_norm"
+  ],
+  "prototype": [
+    0.049214,
+    0.105865,
+    0.181319,
+    0.066754,
+    0.0
+  ],
+  "sample_count": 3,
+  "windows_analyzed": 35,
+  "built_at": "2026-04-09T16:18:02",
+  "sources": [
+    "sample_001.wav",
+    "sample_002.aiff",
+    "sample_003.aiff"
+  ],
+  "version": "0.1.0",
+  "swift_compat": {
+    "extractor": "HVSFeatureExtractor",
+    "scorer": "AuthenticityScorer",
+    "expected_dim": 5
+  }
+}

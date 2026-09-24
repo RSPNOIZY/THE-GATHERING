@@ -50,13 +50,12 @@ import sys
 import json
 import hashlib
 import argparse
-import shlex
 import subprocess
 import time
 from pathlib import Path
 from datetime import datetime
-from dataclasses import dataclass, asdict, field
-from typing import Optional, Dict, Any, List, Tuple, Union
+from dataclasses import dataclass
+from typing import Optional, Dict, Tuple
 from enum import Enum
 
 # Rich console for beautiful output
@@ -598,7 +597,7 @@ def show_status():
         print(f"Anthropic: {'Ready' if ANTHROPIC_AVAILABLE else 'Unavailable'}")
         print(f"ElevenLabs: {'Ready' if ELEVENLABS_AVAILABLE else 'Unavailable'}")
         print(f"OpenAI: {'Ready' if OPENAI_AVAILABLE else 'Unavailable'}")
-        print(f"Local: Ready")
+        print("Local: Ready")
 
 
 def list_personas():

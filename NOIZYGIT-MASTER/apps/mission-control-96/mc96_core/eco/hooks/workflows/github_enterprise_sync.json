@@ -1,0 +1,56 @@
+{
+  "name": "NOIZY GitHub Enterprise Sync",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "enterprise-sync",
+        "responseMode": "onReceived",
+        "options": {}
+      },
+      "id": "e1f1c243-1a2b-4c3d-8e9f-0a1b2c3d4e5f",
+      "name": "GitHub Enterprise Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [100, 240],
+      "webhookId": "enterprise-sync"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const body = $input.item.json.body ?? $input.item.json;\nconst { event, repository, commit_sha, author, message, environment, system } = body;\n\nconst safeEvent  = event      || 'unknown';\nconst safeRepo   = repository || 'unknown';\nconst safeSha    = (commit_sha || '').slice(0, 7) || 'n/a';\nconst safeAuthor = author     || 'unknown';\nconst safeMsg    = message    || '(no message)';\nconst safeEnv    = environment || 'production';\nconst safeSystem = system     || 'NOIZY.ai Core';\n\n// Route to different Discord embed styles by event type\nlet emoji, label;\nif (safeEvent === 'release') {\n  emoji = '🚀';\n  label = 'Release Published';\n} else if (safeEvent === 'push') {\n  emoji = '📦';\n  label = 'Push to Main';\n} else {\n  emoji = '⚙️';\n  label = 'Workflow Dispatch';\n}\n\nreturn {\n  json: {\n    emoji,\n    label,\n    event:      safeEvent,\n    repository: safeRepo,\n    commit_sha: safeSha,\n    author:     safeAuthor,\n    message:    safeMsg,\n    environment: safeEnv,\n    system:     safeSystem,\n    ts_iso:     new Date().toISOString()\n  }\n};"
+      },
+      "id": "node-route-event",
+      "name": "Route & Enrich Event",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [320, 240]
+    },
+    {
+      "parameters": {
+        "webhookUri": "={{ $env.DISCORD_DEPLOY_WEBHOOK }}",
+        "text": "={{ $json.emoji }} **{{ $json.label }} — {{ $json.system }}**\n**Repo:** `{{ $json.repository }}`\n**Author:** `{{ $json.author }}`\n**Commit:** `{{ $json.commit_sha }}`\n**Message:** {{ $json.message }}\n**Env:** `{{ $json.environment }}`\n**Time:** `{{ $json.ts_iso }}`",
+        "options": {}
+      },
+      "id": "f2a3b4c5-6d7e-8f9a-0b1c-2d3e4f5a6b7c",
+      "name": "Discord Broadcaster",
+      "type": "n8n-nodes-base.discord",
+      "typeVersion": 2,
+      "position": [540, 240]
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "GitHub Enterprise Webhook": {
+      "main": [
+        [{"node": "Route & Enrich Event", "type": "main", "index": 0}]
+      ]
+    },
+    "Route & Enrich Event": {
+      "main": [
+        [{"node": "Discord Broadcaster", "type": "main", "index": 0}]
+      ]
+    }
+  },
+  "active": true
+}

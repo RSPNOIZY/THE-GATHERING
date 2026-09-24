@@ -1,0 +1,51 @@
+# Heaven Docker — Local Dev Configuration
+# Mirrors production Heaven but runs entirely local
+
+name               = "heaven-local"
+main               = "src/index.ts"
+compatibility_date = "2024-01-01"
+
+# Local D1 databases (auto-created by wrangler dev --local)
+[[d1_databases]]
+binding       = "DB_MEMORY"
+database_name = "agent-memory-local"
+database_id   = "local-memory"
+
+[[d1_databases]]
+binding       = "DB_REPAIRS"
+database_name = "noizylab-repairs-local"
+database_id   = "local-repairs"
+
+[[d1_databases]]
+binding       = "DB_AQUARIUM"
+database_name = "aquarium-archive-local"
+database_id   = "local-aquarium"
+
+# Local KV namespaces
+[[kv_namespaces]]
+binding = "KV_SIGNUPS"
+id      = "local-signups"
+
+[[kv_namespaces]]
+binding = "KV_ROYALTIES"
+id      = "local-royalties"
+
+[[kv_namespaces]]
+binding = "KV_GUILD"
+id      = "local-guild"
+
+[[kv_namespaces]]
+binding = "KV_SESSIONS"
+id      = "local-sessions"
+
+[[kv_namespaces]]
+binding = "KV_SUBMISSIONS"
+id      = "local-submissions"
+
+[[kv_namespaces]]
+binding = "KV_MEMCELL"
+id      = "local-memcell"
+
+[vars]
+NOIZY_KEY = "dev-key-local"
+NOIZY_SECRET = "dev-secret-local"

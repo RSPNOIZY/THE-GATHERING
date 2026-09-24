@@ -1,0 +1,16 @@
+{
+  "worker": "consent-gateway",
+  "routing_contract": "TOP_LEVEL:/health,/verify,/revoke,/status/:creatorId",
+  "routes_public": ["/health"],
+  "routes_protected": ["/verify", "/revoke", "/status/:creatorId"],
+  "auth_requirements": {
+    "/revoke": ["authentication", "authorization"],
+    "/status/:creatorId": ["authentication"],
+    "/verify": ["authentication"]
+  },
+  "notes": [
+    "POST /revoke requires auth + authorization. Missing auth = 401. Wrong scope = 403.",
+    "GET /status/:creatorId must not leak data to unauthenticated callers.",
+    "All responses must be sanitized before returning to client."
+  ]
+}

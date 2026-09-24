@@ -1,0 +1,93 @@
+{
+  "beast": "NOIZYBEAST",
+  "version": "1.0.0",
+  "tagline": "The SuperSonic IDE for building all of NOIZY",
+  "operator": {
+    "id": "RSP_001",
+    "name": "Robert Stephen Plowman",
+    "email": "rsp@noizyfish.com",
+    "machine": "GOD.local",
+    "ip": "10.90.90.10",
+    "workflow": "35% voice + 65% AI + 1 click = done"
+  },
+  "philosophy": "GORUNFREE — zero friction between intention and execution",
+  "stack": ["MC96", "Cloudflare", "GABRIEL", "HVS", "NOIZYVOX"],
+  "targetDate": "2026-04-17",
+
+  "portals": {
+    "NOIZY.ai":     { "role": "consent-native infrastructure layer",         "status": "live",     "url": "https://heaven.rsp-5f3.workers.dev", "worker": "heaven v17.4.0" },
+    "NOIZYVOX":     { "role": "voice sovereignty + consent capture",         "status": "building", "url": "noizyvox.com",          "worker": "noizyvox" },
+    "NOIZYFISH":    { "role": "888-title catalogue, C2PA stamped, 75/25",    "status": "active",   "url": "noizyfish.com",         "worker": null },
+    "NOIZYKIDZ":    { "role": "Rhythm Root Island, neurodivergent kids",     "status": "building", "url": "noizykidz.com",         "worker": null },
+    "NOIZYLAB":     { "role": "sonic healing, binaural protocols, AirPlay",  "status": "live",     "url": "rsp-5f3.workers.dev",  "worker": "noizylab" },
+    "WISDOM":       { "role": "elder legacy, 100-year voice archive",        "status": "building", "url": "noizy.ai/wisdom",       "worker": null },
+    "myFAMILY":     { "role": "love in code, consent-native elder care",     "status": "live",     "url": "noizy.ai/family",       "worker": "heaven" },
+    "DREAMCHAMBER": { "role": "AI shell, 11 providers, streaming",           "status": "local",    "url": "GOD.local:7777",        "worker": null }
+  },
+
+  "infrastructure": {
+    "cf_account":    "5f36aa9795348ea681d0b21910dfc82a",
+    "d1_gabriel":    "a31d68e2-f2d4-4203-a803-8039fdff31cb",
+    "d1_repairs":    "75bba892-80a8-46f2-a552-610f38bcb36d",
+    "d1_noizyai":    "ebcf576f-51e3-4e3d-829e-219f8fe6001c",
+    "gabriel_local": "http://GOD.local:7777",
+    "gabriel_edge":  "wss://heaven.rsp-5f3.workers.dev/ws",
+    "heaven":        "https://heaven.rsp-5f3.workers.dev",
+    "heaven_version":"17.4.0",
+    "landing":       "https://noizy-landing.rsp-5f3.workers.dev",
+    "voiceBridge":   "http://GOD.local:8080",
+    "ollama":        "http://GOD.local:11434"
+  },
+
+  "blockedTools": ["MusicGen", "MaskGCT", "Tango2", "FishSpeech"],
+  "clearedTools": ["XTTS_v2", "RVC", "Librosa", "pedalboard", "mlx-whisper", "Whisper", "Gemma3", "Mistral"],
+
+  "doctrine": {
+    "consent":    "Consent as executable code",
+    "provenance": "Provenance as default",
+    "revocation": "Revocation as sacred",
+    "royalty":    "Compensation as automatic",
+    "standard":   "75/25 — creators always take 75%",
+    "rsp_rate":   "85/15 — RSP_001 founding actor rate"
+  },
+
+  "commands": {
+    "beast build":    "Scaffold a new NOIZY property or module",
+    "beast status":   "Full empire status snapshot",
+    "beast audit":    "Consent gap + contradiction detection",
+    "beast ship":     "Deploy to Cloudflare",
+    "beast crew":     "Dispatch to specialist agent",
+    "beast memory":   "Show current mission + blockers",
+    "beast scaffold": "Generate: worker | schema | dashboard | portal | flow",
+    "beast verify":   "Check consent + provenance chain",
+    "beast mission":  "Dispatch complex mission to GABRIEL Opus"
+  },
+
+  "agents": {
+    "GABRIEL":         { "endpoint": "http://localhost:7777", "role": "Warrior Executor + system bridge" },
+    "engr-keith":      { "role": "Architecture & technical engineering" },
+    "dream":           { "role": "Vision, strategy, 5th Epoch planning" },
+    "consent-auditor": { "role": "Never Clauses, Kill Switch, ledger integrity" },
+    "voice-specialist":{ "role": "Audio pipeline, TTS, STT, mlx-whisper" },
+    "cb01":            { "role": "DNS, infrastructure, GoDaddy exit" },
+    "shirley":         { "role": "Code generation, file ops, scaffolding" }
+  },
+
+  "turboScripts": {
+    "T1–T10":        "noizybeast/turbo-scripts/noizybeast-turbo.js",
+    "turbo_pipeline":"turbo-scripts/turbo_pipeline.sh  (HEAL→DEDUPE→UNIFY→VERIFY)",
+    "turbo_zap":     "turbo-scripts/turbo_zap.sh       (DNS flush + network reset)",
+    "turbo_git_sync":"turbo-scripts/turbo_git_sync.sh  (push all repos to GitHub)",
+    "turbo_reset":   "turbo-scripts/turbo_reset.sh     (full env reset)",
+    "turbo_mount":   "turbo-scripts/turbo_mount_omen.sh (HP-OMEN volume)",
+    "turbo_pro":     "mc96/turbo-pro-upgrade.js         (x1000 upgrade engine)"
+  },
+
+  "urgentQueue": [
+    { "p": 1, "action": "dash.cloudflare.com → Add noizy.ai zone",            "type": "BROWSER",  "blocker": true },
+    { "p": 2, "action": "dash.cloudflare.com → R2 → Enable",                  "type": "BROWSER",  "blocker": true },
+    { "p": 3, "action": "npx wrangler secret put NOIZY_API_KEY",               "type": "TERMINAL", "blocker": true },
+    { "p": 4, "action": "npx wrangler secret put ANTHROPIC_API_KEY",           "type": "TERMINAL", "blocker": true },
+    { "p": 5, "action": "Email routing: rs@noizy.ai → rsp@icloud.com",        "type": "BROWSER",  "blocker": false }
+  ]
+}

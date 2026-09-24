@@ -1,0 +1,53 @@
+name: NOIZY Release Gate
+
+on:
+  pull_request:
+    branches: [main, master]
+  push:
+    branches: [main, master]
+
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Placeholder guard (hard fail)
+        run: bash scripts/check-no-placeholders.sh
+
+      - name: Test consent-gateway
+        working-directory: cloudflare/workers/consent-gateway
+        run: npm ci && npm test
+
+      - name: Test cb01-router
+        working-directory: cloudflare/workers/cb01-router
+        run: npm ci && npm test
+
+      - name: Generate proof bundle
+        env:
+          PROOF_SYSTEM: NOIZY
+          PROOF_COMPONENT: consent-gateway
+          PROOF_WORKER_NAME: consent-gateway
+          PROOF_ENVIRONMENT: staging
+          PROOF_GIT_SHA: ${{ github.sha }}
+          PROOF_ROUTING_CONTRACT: "TOP_LEVEL:/health,/verify,/revoke,/status/:creatorId"
+          PROOF_PUBLIC_ROUTES: "/health"
+          PROOF_PROTECTED_ROUTES: "/verify,/revoke,/status/:creatorId"
+          PROOF_KV_BINDINGS: "CONSENT_KV"
+          PROOF_D1_BINDINGS: "AGENT_MEMORY"
+        run: node scripts/generate-proof-bundle.mjs
+
+      - name: Upload proof bundle artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: noizy-proof-${{ github.sha }}
+          path: artifacts/proof/*.json

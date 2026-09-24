@@ -12,8 +12,6 @@ Usage:
   python3 audio_pipeline.py --mode health
 """
 
-import os
-import sys
 import json
 import argparse
 import hashlib
@@ -39,7 +37,8 @@ HEAVEN_URL = "https://heaven.rsp-5f3.workers.dev"
 def ledger_record(event_type: str, actor_id: str, payload: dict):
     """Log to the immutable HEAVEN17 ledger — constitutional traceability."""
     try:
-        import urllib.request, json as _json
+        import urllib.request
+        import json as _json
         data = _json.dumps({
             "event_type": event_type,
             "actor_id": actor_id,
@@ -61,7 +60,6 @@ def ledger_record(event_type: str, actor_id: str, payload: dict):
 def analyze_voice(audio_path: str) -> dict:
     """librosa spectral analysis — extract voice DNA features."""
     import librosa
-    import numpy as np
 
     print(f"[ANALYZE] Loading: {audio_path}")
     y, sr = librosa.load(audio_path, sr=22050)
@@ -128,7 +126,7 @@ def synthesize(text: str, speaker_wav: str, output_path: str, language: str = "e
     """XTTS v2 voice cloning synthesis — creator's own voice."""
     from TTS.api import TTS
 
-    print(f"[XTTS v2] Loading model...")
+    print("[XTTS v2] Loading model...")
     tts = TTS("tts_models/multilingual/multi-dataset/xtts_v2")
 
     print(f"[XTTS v2] Synthesizing: '{text[:60]}...'")
@@ -159,7 +157,6 @@ def apply_effects(input_path: str, output_path: str, preset: str = "voice-clean"
     """pedalboard AU effects chain — therapeutic timbre processing."""
     import pedalboard
     from pedalboard.io import AudioFile
-    import numpy as np
 
     PRESETS = {
         "voice-clean": [

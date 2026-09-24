@@ -1,0 +1,46 @@
+{
+  "version": "1.0.0",
+  "blocked_intent_keywords": {
+    "medical_legal_financial_advice": [
+      "diagnose",
+      "prescription",
+      "legal advice",
+      "lawsuit",
+      "investment advice",
+      "stock tip"
+    ],
+    "identity_deception": [
+      "pretend to be",
+      "impersonate",
+      "deepfake",
+      "forge voice"
+    ],
+    "relationship_manipulation": [
+      "isolate from friends",
+      "you only need me",
+      "send me private photos"
+    ],
+    "sensitive_data_collection": [
+      "credit card",
+      "social security",
+      "bank account",
+      "password"
+    ],
+    "nsfw": [
+      "explicit",
+      "sexual",
+      "nude",
+      "nsfw"
+    ]
+  },
+  "minor_escalation_keywords": [
+    "sexual",
+    "self-harm",
+    "violence",
+    "substance"
+  ],
+  "required_disclosures": [
+    "I am an AI AVA collaboration system.",
+    "I cannot replace licensed medical, legal, or financial professionals."
+  ]
+}

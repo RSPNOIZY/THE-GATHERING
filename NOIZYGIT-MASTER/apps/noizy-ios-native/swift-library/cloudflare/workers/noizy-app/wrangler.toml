@@ -1,0 +1,94 @@
+# ═══════════════════════════════════════════════════════════════
+# NOIZY.ai — Cloudflare Worker (App + API + Admin)
+# Runtime Spine — Phase 1 of Architecture v1
+# ═══════════════════════════════════════════════════════════════
+
+name = "noizy-app"
+main = "src/index.ts"
+compatibility_date = "2025-01-01"
+compatibility_flags = ["nodejs_compat"]
+
+# ─── Routes ───
+# routes = [
+#   { pattern = "noizy.ai/*", zone_name = "noizy.ai" },
+#   { pattern = "api.noizy.ai/*", zone_name = "noizy.ai" }
+# ]
+
+# ─── D1 Databases ───
+[[d1_databases]]
+binding = "DB_PROD"
+database_name = "noizy-prod"
+database_id = "cd6cae46-e5cd-42b6-a97a-5d0e576c1c2a"
+
+[[d1_databases]]
+binding = "DB_GABRIEL"
+database_name = "gabriel_db"
+database_id = "a31d68e2-f2d4-4203-a803-8039fdff31cb"
+
+[[d1_databases]]
+binding = "DB_AGENT"
+database_name = "agent-memory"
+database_id = "bc2f9abc-f49d-4818-9bde-8fc647c359e3"
+
+# ─── KV Namespaces ───
+[[kv_namespaces]]
+binding = "KV_CONSENT"
+id = "f205b56a9914413da0ec454a9dc4c2bd"
+
+[[kv_namespaces]]
+binding = "KV_SESSIONS"
+id = "16532a32b2e8455486cc966403f3442e"
+
+[[kv_namespaces]]
+binding = "KV_FLAGS"
+id = "8b87b8acc80e454083f9d111f3031b60"
+
+[[kv_namespaces]]
+binding = "KV_VOICE"
+id = "64a82e751e654657a6b13ba984fe2cd1"
+
+[[kv_namespaces]]
+binding = "KV_GABRIEL"
+id = "a674bf34bea64c02b0f6cb06b048e566"
+
+[[kv_namespaces]]
+binding = "KV_CACHE"
+id = "6292fc22a52b4f3095b6e0b33db697b3"
+
+# Receipts proof-bundle store — R2 substitute until R2 is enabled on account
+[[kv_namespaces]]
+binding = "KV_RECEIPTS"
+id = "819a25c5f1484a6cbd81290c1b4de250"
+
+# ─── Queues ───
+[[queues.producers]]
+queue = "noizy-tasks"
+binding = "QUEUE_TASKS"
+
+[[queues.producers]]
+queue = "noizy-webhooks"
+binding = "QUEUE_WEBHOOKS"
+
+[[queues.consumers]]
+queue = "noizy-tasks"
+max_batch_size = 10
+max_batch_timeout = 30
+
+# ─── Vectorize (memory / semantic search) ───
+[[vectorize]]
+binding = "VECTORIZE_MEMORY"
+index_name = "noizy-memory"
+
+# ─── Workflows (durable consent lifecycle) ───
+[[workflows]]
+name = "consent-lifecycle"
+binding = "WORKFLOW_CONSENT"
+class_name = "ConsentWorkflow"
+
+# ─── Environment Variables ───
+[vars]
+ENVIRONMENT = "production"
+HEAVEN_VERSION = "19.0.0"
+EMPIRE = "NOIZY"
+FOUNDER = "RSP_001"
+CONSENT_SPLIT = "75/25"

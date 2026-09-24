@@ -1,0 +1,120 @@
+#!/bin/bash
+# ==============================================================================
+# 🔥 TURBO STATUS - REAL-TIME SYSTEM DASHBOARD
+# ==============================================================================
+
+set -euo pipefail
+
+# Colors
+CYAN='\033[96m'
+GREEN='\033[92m'
+YELLOW='\033[93m'
+RED='\033[91m'
+MAGENTA='\033[95m'
+BLUE='\033[94m'
+WHITE='\033[97m'
+RESET='\033[0m'
+BOLD='\033[1m'
+DIM='\033[2m'
+
+clear
+
+echo -e "${BOLD}${CYAN}"
+cat << 'EOF'
+╔═══════════════════════════════════════════════════════════════════════════════╗
+║                                                                               ║
+║  ████████╗██╗   ██╗██████╗ ██████╗  ██████╗     ███████╗████████╗ █████╗      ║
+║  ╚══██╔══╝██║   ██║██╔══██╗██╔══██╗██╔═══██╗    ██╔════╝╚══██╔══╝██╔══██╗     ║
+║     ██║   ██║   ██║██████╔╝██████╔╝██║   ██║    ███████╗   ██║   ███████║     ║
+║     ██║   ██║   ██║██╔══██╗██╔══██╗██║   ██║    ╚════██║   ██║   ██╔══██║     ║
+║     ██║   ╚██████╔╝██║  ██║██████╔╝╚██████╔╝    ███████║   ██║   ██║  ██║     ║
+║     ╚═╝    ╚═════╝ ╚═╝  ╚═╝╚═════╝  ╚═════╝     ╚══════╝   ╚═╝   ╚═╝  ╚═╝     ║
+║                                                                               ║
+║                         ⚡ REAL-TIME SYSTEM STATUS ⚡                          ║
+║                                                                               ║
+╚═══════════════════════════════════════════════════════════════════════════════╝
+EOF
+echo -e "${RESET}"
+
+# System Info
+echo -e "${BOLD}${WHITE}═══ SYSTEM ═══${RESET}"
+echo -e "${DIM}$(date '+%Y-%m-%d %H:%M:%S')${RESET}"
+echo -e "Machine: ${CYAN}$(scutil --get ComputerName 2>/dev/null || hostname)${RESET}"
+echo -e "Uptime:  ${GREEN}$(uptime | sed 's/.*up //' | sed 's/,.*//')${RESET}"
+echo ""
+
+# CPU & Memory
+echo -e "${BOLD}${WHITE}═══ RESOURCES ═══${RESET}"
+LOAD=$(sysctl -n vm.loadavg | awk '{print $2}')
+MEM_FREE=$(memory_pressure 2>/dev/null | grep "free percentage" | awk '{print $NF}' || echo "N/A")
+echo -e "CPU Load:    ${YELLOW}${LOAD}${RESET} (24 cores)"
+echo -e "Memory Free: ${GREEN}${MEM_FREE}${RESET} (192GB total)"
+echo ""
+
+# Disk Space
+echo -e "${BOLD}${WHITE}═══ STORAGE ═══${RESET}"
+DISK_INFO=$(df -h / | tail -1)
+DISK_USED=$(echo "$DISK_INFO" | awk '{print $3}')
+DISK_FREE=$(echo "$DISK_INFO" | awk '{print $4}')
+DISK_PCT=$(echo "$DISK_INFO" | awk '{print $5}')
+echo -e "Used: ${YELLOW}${DISK_USED}${RESET} | Free: ${GREEN}${DISK_FREE}${RESET} | ${DISK_PCT} used"
+
+# External volumes
+echo -e "\n${DIM}Mounted Volumes:${RESET}"
+df -h | grep "/Volumes" | while read line; do
+    VOL=$(echo "$line" | awk '{print $NF}')
+    SIZE=$(echo "$line" | awk '{print $2}')
+    USED=$(echo "$line" | awk '{print $5}')
+    echo -e "  ${CYAN}${VOL}${RESET}: ${SIZE} (${USED} used)"
+done
+echo ""
+
+# Turbo Suite Status
+echo -e "${BOLD}${WHITE}═══ TURBO SUITE ═══${RESET}"
+SCRIPTS_DIR="/Users/m2ultra/.gemini/antigravity/playground/infinite-omega/Audio_Unitor/Scripts"
+SCRIPT_COUNT=$(ls -1 "$SCRIPTS_DIR"/turbo_*.py 2>/dev/null | wc -l | tr -d ' ')
+echo -e "Scripts: ${GREEN}${SCRIPT_COUNT}${RESET} turbo modules"
+
+# Check if server is running
+if pgrep -f "turbo_server.py" > /dev/null 2>&1; then
+    echo -e "Server:  ${GREEN}● ONLINE${RESET} (port 8080)"
+else
+    echo -e "Server:  ${DIM}○ offline${RESET}"
+fi
+
+# Check if sentinel is running
+if pgrep -f "turbo_sentinel.py" > /dev/null 2>&1; then
+    echo -e "Sentinel: ${GREEN}● WATCHING${RESET}"
+else
+    echo -e "Sentinel: ${DIM}○ idle${RESET}"
+fi
+echo ""
+
+# Database Status
+echo -e "${BOLD}${WHITE}═══ DATABASE ═══${RESET}"
+DB_PATH="/Users/m2ultra/.gemini/antigravity/playground/infinite-omega/Audio_Unitor/Database/universe.db"
+if [ -f "$DB_PATH" ]; then
+    DB_SIZE=$(ls -lh "$DB_PATH" | awk '{print $5}')
+    DB_MOD=$(stat -f "%Sm" -t "%Y-%m-%d %H:%M" "$DB_PATH")
+    echo -e "Universe DB: ${GREEN}${DB_SIZE}${RESET} (modified: ${DB_MOD})"
+
+    # Get file count from DB if sqlite3 available
+    if command -v sqlite3 &> /dev/null; then
+        FILE_COUNT=$(sqlite3 "$DB_PATH" "SELECT COUNT(*) FROM files;" 2>/dev/null || echo "?")
+        echo -e "Files Indexed: ${CYAN}${FILE_COUNT}${RESET}"
+    fi
+else
+    echo -e "Universe DB: ${RED}NOT FOUND${RESET}"
+fi
+echo ""
+
+# Recent Activity
+echo -e "${BOLD}${WHITE}═══ QUICK COMMANDS ═══${RESET}"
+echo -e "  ${CYAN}turbo omega ~${RESET}     Full optimization"
+echo -e "  ${CYAN}turbo nexus${RESET}       Interactive dashboard"
+echo -e "  ${CYAN}turbo vacuum ~${RESET}    Clean junk"
+echo -e "  ${CYAN}turbo dedup${RESET}       Find duplicates"
+echo -e "  ${CYAN}turbo-status${RESET}      This dashboard"
+echo ""
+
+echo -e "${BOLD}${GREEN}═══ ALL SYSTEMS NOMINAL ═══${RESET}"

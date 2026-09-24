@@ -1,0 +1,59 @@
+{
+  "$schema": "https://schema.noizyworld.io/v1/power-automate-microbeast.json",
+  "version": "4.0.0-SOVEREIGN",
+  "name": "NOIZYWIN Power Automate & FOSS Suite",
+  "author": "Robert Stephen Plowman (RSP_001)",
+  "vm_target": {
+    "name": "Windows 11",
+    "uuid": "bcb76106-a5f9-4bd7-ac6a-8594a79ba9ee",
+    "hypervisor": "Parallels Desktop 27 Pro"
+  },
+  "flows": [
+    {
+      "id": "FLOW_001_AUDIO_HARVEST",
+      "name": "NoizyAudioHarvestAndNormalize",
+      "description": "Monitors Windows desktop audio ingest, triggers FFmpeg 24-bit 48kHz WAV normalization, and mirrors to /Volumes/NOIZYWIN.",
+      "trigger": "FileSystem_FolderWatcher",
+      "watch_folder": "C:\\NOIZY\\INGEST",
+      "actions": [
+        "NormalizeAudio_LUFS",
+        "GenerateSpectrogram",
+        "MoveToSharedVault"
+      ]
+    },
+    {
+      "id": "FLOW_002_D1_SYNC",
+      "name": "NoizyD1MemCellsMirror",
+      "description": "Pulls daily Cloudflare D1 MemCells export and maintains an offline Windows SQLite replica on NOIZYWIN.",
+      "trigger": "Scheduled_Daily_0400",
+      "actions": [
+        "DownloadD1Snapshot",
+        "VerifySqliteIntegrity",
+        "SyncToDevonthinkWindowsInbox"
+      ]
+    },
+    {
+      "id": "FLOW_003_DIRECTML_VOICE_INFERENCE",
+      "name": "NoizyDirectMLVoiceSynth",
+      "description": "Executes local ONNX/DirectML voice synthesis pipeline on Windows 11 GPU emulation.",
+      "trigger": "MCP_Rest_Webhook",
+      "port": 9095,
+      "actions": [
+        "LoadVoiceEmbedding",
+        "SynthesizeAudioDirectML",
+        "StreamToCoreAudioBridge"
+      ]
+    },
+    {
+      "id": "FLOW_004_BROWSER_AUTO_RPA",
+      "name": "NoizySovereignBrowserRPA",
+      "description": "Automates Windows Edge / Chrome sovereign workflow tasks, reporting, and CRA / invoice validation.",
+      "trigger": "Manual_Or_MCP",
+      "actions": [
+        "LaunchEdgeSession",
+        "ExecuteSovereignRPA",
+        "ExportPdfReport"
+      ]
+    }
+  ]
+}

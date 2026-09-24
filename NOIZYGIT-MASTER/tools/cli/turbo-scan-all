@@ -1,0 +1,50 @@
+#!/bin/bash
+# ==============================================================================
+# 🔥 TURBO SCAN ALL - SCAN EVERY CONNECTED VOLUME
+# ==============================================================================
+
+set -euo pipefail
+
+SCRIPTS_DIR="/Users/m2ultra/.gemini/antigravity/playground/infinite-omega/Audio_Unitor/Scripts"
+
+CYAN='\033[96m'
+GREEN='\033[92m'
+YELLOW='\033[93m'
+MAGENTA='\033[95m'
+RESET='\033[0m'
+BOLD='\033[1m'
+
+echo -e "${BOLD}${MAGENTA}"
+echo "╔═══════════════════════════════════════════════════════════════╗"
+echo "║                                                               ║"
+echo "║           🔥 TURBO SCAN ALL VOLUMES 🔥                        ║"
+echo "║                                                               ║"
+echo "╚═══════════════════════════════════════════════════════════════╝"
+echo -e "${RESET}"
+
+# Get all mounted volumes
+VOLUMES=$(df -h | grep "/Volumes/" | awk '{print $NF}' | grep -v "Simulator" | sort -u)
+
+echo -e "${BOLD}Detected Volumes:${RESET}"
+echo "$VOLUMES" | while read vol; do
+    SIZE=$(df -h "$vol" 2>/dev/null | tail -1 | awk '{print $2}')
+    USED=$(df -h "$vol" 2>/dev/null | tail -1 | awk '{print $5}')
+    echo -e "  ${CYAN}$vol${RESET} ($SIZE, $USED used)"
+done
+echo ""
+
+echo -e "${YELLOW}Starting parallel indexing...${RESET}"
+echo ""
+
+# Index each volume in parallel
+for vol in $VOLUMES; do
+    if [[ "$vol" != *"Simulator"* ]] && [[ "$vol" != *"System"* ]]; then
+        echo -e "${CYAN}Indexing: $vol${RESET}"
+        python3 "$SCRIPTS_DIR/turbo_indexer.py" "$vol" &
+    fi
+done
+
+wait
+
+echo ""
+echo -e "${BOLD}${GREEN}═══ ALL VOLUMES INDEXED ═══${RESET}"

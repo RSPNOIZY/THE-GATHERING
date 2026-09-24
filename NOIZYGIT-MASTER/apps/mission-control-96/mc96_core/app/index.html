@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MC96 Portal — NOIZY Empire Control</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif;
+      background: linear-gradient(135deg, #0f0f1e 0%, #1a1a2e 100%);
+      color: #e0e0e0;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    header {
+      margin-bottom: 60px;
+      border-bottom: 2px solid rgba(255, 215, 0, 0.2);
+      padding-bottom: 30px;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      font-weight: 700;
+      color: #ffd700;
+      margin-bottom: 10px;
+      letter-spacing: 1px;
+    }
+
+    .subtitle {
+      color: #888;
+      font-size: 0.95em;
+      letter-spacing: 0.5px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 30px;
+      margin-bottom: 50px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 215, 0, 0.15);
+      border-radius: 12px;
+      padding: 30px;
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+    }
+
+    .card:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 215, 0, 0.3);
+      box-shadow: 0 8px 32px rgba(255, 215, 0, 0.1);
+    }
+
+    .card h2 {
+      color: #ffd700;
+      font-size: 1.4em;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .card p {
+      color: #b0b0b0;
+      font-size: 0.95em;
+      margin-bottom: 20px;
+    }
+
+    .status {
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 0.85em;
+      font-weight: 600;
+      margin-bottom: 15px;
+    }
+
+    .status.live {
+      background: rgba(76, 175, 80, 0.2);
+      color: #4caf50;
+      border: 1px solid rgba(76, 175, 80, 0.3);
+    }
+
+    .status.pending {
+      background: rgba(255, 193, 7, 0.2);
+      color: #ffc107;
+      border: 1px solid rgba(255, 193, 7, 0.3);
+    }
+
+    .status.blocked {
+      background: rgba(244, 67, 54, 0.2);
+      color: #f44336;
+      border: 1px solid rgba(244, 67, 54, 0.3);
+    }
+
+    .button {
+      background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+      color: #0f0f1e;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.95em;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: inline-block;
+      text-decoration: none;
+      text-align: center;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 16px rgba(255, 215, 0, 0.3);
+    }
+
+    .button:active {
+      transform: translateY(0);
+    }
+
+    .section {
+      margin-bottom: 50px;
+    }
+
+    .section h3 {
+      color: #ffd700;
+      font-size: 1.3em;
+      margin-bottom: 20px;
+      border-left: 3px solid #ffd700;
+      padding-left: 15px;
+    }
+
+    .list {
+      list-style: none;
+    }
+
+    .list li {
+      padding: 12px;
+      margin-bottom: 8px;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 8px;
+      border-left: 3px solid rgba(255, 215, 0, 0.2);
+      padding-left: 15px;
+    }
+
+    .list li strong {
+      color: #ffd700;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    table th {
+      background: rgba(255, 215, 0, 0.1);
+      color: #ffd700;
+      padding: 12px;
+      text-align: left;
+      font-weight: 600;
+      border-bottom: 2px solid rgba(255, 215, 0, 0.2);
+    }
+
+    table td {
+      padding: 12px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    table tr:hover {
+      background: rgba(255, 215, 0, 0.05);
+    }
+
+    .footer {
+      margin-top: 60px;
+      padding-top: 30px;
+      border-top: 1px solid rgba(255, 215, 0, 0.1);
+      text-align: center;
+      color: #666;
+      font-size: 0.9em;
+    }
+
+    .emoji {
+      font-size: 1.2em;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1><span class="emoji">⚡</span> MC96 Portal</h1>
+      <p class="subtitle">NOIZY Empire Control Stack — Live Status & Operations</p>
+    </header>
+
+    <div class="section">
+      <h3><span class="emoji">🔴</span> Critical Path (April 5)</h3>
+      <div class="grid">
+        <div class="card">
+          <h2><span class="emoji">🌐</span> Domain Migration</h2>
+          <span class="status pending">In Progress</span>
+          <p>GoDaddy → Cloudflare domain transfer. Email routing active on noisy.ai.</p>
+          <a href="#" class="button">View Status</a>
+        </div>
+
+        <div class="card">
+          <h2><span class="emoji">🔐</span> Consent Gateway</h2>
+          <span class="status live">Deploy Ready</span>
+          <p>Heaven17 Cloudflare Worker. D1 schema live. C2PA integration ready.</p>
+          <a href="#" class="button">Deploy Now</a>
+        </div>
+
+        <div class="card">
+          <h2><span class="emoji">📦</span> Voice Archive</h2>
+          <span class="status pending">Setup</span>
+          <p>R2 bucket activation. PREMIS metadata. Vault export ready.</p>
+          <a href="#" class="button">Enable R2</a>
+        </div>
+
+        <div class="card">
+          <h2><span class="emoji">🎙️</span> DreamChamber Dress Rehearsal</h2>
+          <span class="status pending">April 13</span>
+          <p>Multi-take recording. Claude-as-director. Vault export.</p>
+          <a href="#" class="button">Rehearsal Brief</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3><span class="emoji">✅</span> Operational Stack (Live)</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Component</th>
+            <th>Status</th>
+            <th>Details</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Heaven17 Gateway</strong></td>
+            <td><span class="status live">Live</span></td>
+            <td>Cloudflare Workers + D1. Consent kernel deployed.</td>
+          </tr>
+          <tr>
+            <td><strong>NCP v1.0</strong></td>
+            <td><span class="status live">Complete</span></td>
+            <td>Machine-readable consent protocol. Ready for C2PA submission.</td>
+          </tr>
+          <tr>
+            <td><strong>Stripe Royalties</strong></td>
+            <td><span class="status live">Live</span></td>
+            <td>4 tiers active. 75/25 splits. Payment links operational.</td>
+          </tr>
+          <tr>
+            <td><strong>Email Routing</strong></td>
+            <td><span class="status live">Live</span></td>
+            <td>rsp@noisy.ai inbound. Outbound SMTP pending.</td>
+          </tr>
+          <tr>
+            <td><strong>Linear Critical Path</strong></td>
+            <td><span class="status live">Tracked</span></td>
+            <td>11 issues. April 17 milestone. Urgent priority.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section">
+      <h3><span class="emoji">📋</span> Today-Tier Actions</h3>
+      <ul class="list">
+        <li><strong>Fill Investor FAQ "ask"</strong> → Dollar amount + terms</li>
+        <li><strong>Send Castle email</strong> → NO FAKES Act outreach (rsplowman@icloud.com or via gh CLI)</li>
+        <li><strong>Send Rosenthol email</strong> → C2PA audio layer proposal (add phone number)</li>
+        <li><strong>Configure SMTP for rsp@noisy.ai</strong> → Gmail, Outlook, or Fastmail (outbound)</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h3><span class="emoji">🔧</span> This Week (March 31 — April 5)</h3>
+      <ul class="list">
+        <li><strong>SSH into GOD</strong> → Activate /voice in Claude Code</li>
+        <li><strong>Run MC96ECO_SETUP.sh</strong> → Environment config on GOD machine</li>
+        <li><strong>Deploy NOIZYVOX portal</strong> → Voice licensing + demo path</li>
+        <li><strong>noizy.ai landing live</strong> → Temp home page + working demo</li>
+        <li><strong>First licensee onboarded</strong> → Proof of commercial readiness</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h3><span class="emoji">🚀</span> Quick Links</h3>
+      <ul class="list">
+        <li><strong>Investor FAQ</strong> → /Users/m2ultra/NOIZYLAB/docs/INVESTOR_FAQ.md</li>
+        <li><strong>Email Routing Checklist</strong> → /Users/m2ultra/NOIZYLAB/docs/EMAIL_ROUTING_CHECKLIST.md</li>
+        <li><strong>Outreach Drafts</strong> → /Users/m2ultra/NOIZYLAB/OUTREACH_DRAFTS.md</li>
+        <li><strong>Linear Critical Path</strong> → https://linear.app/noizylab/project/noizy-critical-path-april-17-2026-5897795326db</li>
+        <li><strong>Heaven17 Worker</strong> → heaven.rsp-5f3.workers.dev (post-deploy)</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h3><span class="emoji">📊</span> Infrastructure State</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Asset</th>
+            <th>Count</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>D1 Databases</td>
+            <td>1</td>
+            <td>gabriel_db (f75939d5-5747-4a9c-8ac2-7710201fda09) live</td>
+          </tr>
+          <tr>
+            <td>KV Namespaces</td>
+            <td>20</td>
+            <td>All operational</td>
+          </tr>
+          <tr>
+            <td>Cloudflare Workers</td>
+            <td>1</td>
+            <td>consent-gateway deploy ready</td>
+          </tr>
+          <tr>
+            <td>R2 Buckets</td>
+            <td>0</td>
+            <td>Pending activation</td>
+          </tr>
+          <tr>
+            <td>Stripe Products</td>
+            <td>4</td>
+            <td>Live mode, all active</td>
+          </tr>
+          <tr>
+            <td>Linear Issues</td>
+            <td>11</td>
+            <td>Critical path tracked</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="footer">
+      <p>MC96 Portal | NOIZYFISH INC. | Created March 30, 2026</p>
+      <p>rsp@noizyfish.com | noizy.ai | 75% to the creator. Always.</p>
+    </div>
+  </div>
+</body>
+</html>

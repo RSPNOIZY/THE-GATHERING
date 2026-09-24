@@ -1,0 +1,89 @@
+# ═══════════════════════════════════════════════════════════════
+# Cloud Run Service Definition — noizy-voice-bridge
+# Region: us-central1
+# Project: gen-lang-client-0531202734
+#
+# Deploy:
+#   gcloud run services replace service.yaml \
+#     --region us-central1 \
+#     --project gen-lang-client-0531202734
+#
+# First deploy (source-based, easier):
+#   gcloud run deploy noizy-voice-bridge \
+#     --source . \
+#     --region us-central1 \
+#     --project gen-lang-client-0531202734 \
+#     --no-allow-unauthenticated
+# ═══════════════════════════════════════════════════════════════
+
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: noizy-voice-bridge
+  annotations:
+    run.googleapis.com/launch-stage: GA
+    run.googleapis.com/ingress: all # HTTPS only via Cloud Run URL
+    run.googleapis.com/description: "NOIZY Voice Bridge HTTP MCP mirror — remote lane, operator-controlled"
+spec:
+  template:
+    metadata:
+      annotations:
+        # ── Scaling ─────────────────────────────────────────
+        # Scale to zero by default (cost efficient)
+        # Set min-instances to 1 when low-latency remote mirror matters
+        autoscaling.knative.dev/minScale: "0" # change to "1" for warm instance
+        autoscaling.knative.dev/maxScale: "3" # cap: this is a mirror, not a cluster
+
+        # ── CPU allocation ───────────────────────────────────
+        # CPU only allocated during request processing (not idle)
+        run.googleapis.com/cpu-throttling: "true"
+
+        # ── Startup probe ────────────────────────────────────
+        run.googleapis.com/startup-cpu-boost: "true"
+
+    spec:
+      # Private by default — IAM controls access
+      # To call this service you need roles/run.invoker on the SA
+      serviceAccountName: noizy-bridge-sa@gen-lang-client-0531202734.iam.gserviceaccount.com
+
+      containerConcurrency: 80 # Cloud Run default; fine for MCP workloads
+
+      timeoutSeconds: 300 # Long enough for Claude API calls
+
+      containers:
+        - image: gcr.io/gen-lang-client-0531202734/noizy-voice-bridge:latest
+          ports:
+            - containerPort: 8080
+              name: http1
+          resources:
+            limits:
+              cpu: "1"
+              memory: 512Mi
+          env:
+            - name: PORT
+              value: "8080"
+            - name: HEAVEN_URL
+              value: "https://heaven.rsp-5f3.workers.dev"
+            # Secrets — set via Secret Manager, not inline
+            - name: NOIZY_BRIDGE_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: noizy-bridge-token
+                  key: latest
+            - name: ANTHROPIC_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: anthropic-api-key
+                  key: latest
+          startupProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 2
+            periodSeconds: 5
+            failureThreshold: 6
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            periodSeconds: 30

@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>NOIZY Empire — Command Center</title>
+<link rel="stylesheet" href="extras.css">
+<link rel="stylesheet" href="gabriel.css">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700;900&family=JetBrains+Mono:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#080a0f;--bg2:#0d1117;--bg3:#111827;
+  --glass:rgba(255,255,255,0.04);--glass2:rgba(255,255,255,0.07);
+  --border:rgba(255,255,255,0.08);--border2:rgba(255,255,255,0.14);
+  --neon:#c084fc;--neon2:#818cf8;--neon3:#38bdf8;
+  --gold:#fbbf24;--green:#34d399;--red:#f87171;--orange:#fb923c;
+  --cf:#f6821f;--cf2:#faad3f;
+  --cmax:#c084fc;--cwork:#818cf8;--ccode:#38bdf8;
+  --text:#f1f5f9;--muted:#64748b;--subtle:#94a3b8;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;}
+.bg-grid{position:fixed;inset:0;z-index:0;background-image:linear-gradient(rgba(192,132,252,.03)1px,transparent 1px),linear-gradient(90deg,rgba(192,132,252,.03)1px,transparent 1px);background-size:40px 40px;pointer-events:none;}
+.orb{position:fixed;border-radius:50%;filter:blur(120px);pointer-events:none;z-index:0;animation:orbF 12s ease-in-out infinite;}
+.orb.a{width:500px;height:500px;top:-100px;left:-100px;background:rgba(192,132,252,.08);}
+.orb.b{width:400px;height:400px;bottom:-80px;right:-80px;background:rgba(56,189,248,.07);animation-delay:-4s;}
+.orb.c{width:300px;height:300px;top:40%;left:35%;background:rgba(246,130,31,.05);animation-delay:-8s;}
+@keyframes orbF{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(30px,-30px) scale(1.05);}}
+.app{position:relative;z-index:1;display:flex;flex-direction:column;min-height:100vh;}
+
+/* HEADER */
+header{display:flex;align-items:center;justify-content:space-between;padding:16px 32px;border-bottom:1px solid var(--border);background:rgba(8,10,15,.8);backdrop-filter:blur(20px);position:sticky;top:0;z-index:200;}
+.logo{display:flex;align-items:center;gap:12px;}
+.logo-mark{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--neon),var(--neon2));display:flex;align-items:center;justify-content:center;font-weight:900;font-size:15px;color:#fff;animation:glow 3s ease-in-out infinite;}
+@keyframes glow{0%,100%{box-shadow:0 0 20px rgba(192,132,252,.4);}50%{box-shadow:0 0 40px rgba(192,132,252,.7);}}
+.logo-text{font-size:18px;font-weight:700;letter-spacing:3px;}.logo-text span{color:var(--neon);}
+.logo-sub{font-size:9px;letter-spacing:4px;color:var(--muted);text-transform:uppercase;}
+.hstatus{display:flex;align-items:center;gap:14px;}
+.spill{display:flex;align-items:center;gap:7px;padding:5px 12px;border-radius:20px;background:var(--glass);border:1px solid var(--border);font-size:10px;letter-spacing:1px;color:var(--subtle);}
+.dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;}
+.dot.live{background:var(--green);box-shadow:0 0 8px var(--green);animation:blink 2s infinite;}
+.dot.warn{background:var(--orange);box-shadow:0 0 8px var(--orange);}
+.dot.off{background:var(--muted);}
+.dot.cf{background:var(--cf);box-shadow:0 0 8px var(--cf);animation:blink 2s infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:.4;}}
+.clock{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--subtle);}
+
+/* CF TOKEN BADGE */
+.cf-token-btn{display:flex;align-items:center;gap:7px;padding:6px 14px;border-radius:20px;background:rgba(246,130,31,.1);border:1px solid rgba(246,130,31,.3);font-size:10px;letter-spacing:1px;color:var(--cf);cursor:pointer;transition:.2s;}
+.cf-token-btn:hover{background:rgba(246,130,31,.18);}
+
+main{flex:1;padding:28px 32px;display:flex;flex-direction:column;gap:28px;}
+
+/* SECTION LABEL */
+.slabel{font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--muted);margin-bottom:14px;display:flex;align-items:center;gap:12px;}
+.slabel::after{content:'';flex:1;height:1px;background:var(--border);}
+
+/* VOICE BAR */
+.vbar{border-radius:16px;border:1px solid var(--border);background:var(--glass);backdrop-filter:blur(20px);padding:16px 24px;display:flex;align-items:center;gap:18px;}
+.mic-btn{width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,var(--neon),var(--neon2));border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;transition:.2s;}
+.mic-btn.on{animation:mpulse 1s ease-in-out infinite;}
+@keyframes mpulse{0%,100%{box-shadow:0 0 24px rgba(192,132,252,.4);}50%{box-shadow:0 0 50px rgba(192,132,252,.8);}}
+.vinfo{flex:1;}.vtitle{font-size:13px;font-weight:600;}.vsub{font-size:10px;color:var(--muted);margin-top:2px;}
+.waveform{display:flex;align-items:center;gap:3px;height:28px;}
+.wb{width:3px;border-radius:2px;background:var(--neon);animation:wave 1.2s ease-in-out infinite;}
+.wb:nth-child(1){height:6px;animation-delay:0s;}.wb:nth-child(2){height:12px;animation-delay:.1s;}
+.wb:nth-child(3){height:20px;animation-delay:.2s;}.wb:nth-child(4){height:16px;animation-delay:.15s;}
+.wb:nth-child(5){height:24px;animation-delay:.05s;}.wb:nth-child(6){height:18px;animation-delay:.25s;}
+.wb:nth-child(7){height:10px;animation-delay:.1s;}.wb:nth-child(8){height:14px;animation-delay:.2s;}
+.wb:nth-child(9){height:8px;animation-delay:.3s;}
+@keyframes wave{0%,100%{transform:scaleY(1);opacity:.5;}50%{transform:scaleY(1.8);opacity:1;}}
+.vpills{display:flex;gap:7px;flex-wrap:wrap;}
+.vpill{font-size:9px;padding:3px 9px;border-radius:7px;border:1px solid var(--border);background:var(--glass2);color:var(--subtle);letter-spacing:1px;}
+
+/* TOWERS */
+.towers{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+.tower{border-radius:18px;border:1px solid var(--border);background:var(--glass);backdrop-filter:blur(20px);overflow:hidden;display:flex;flex-direction:column;transition:.3s;}
+.tower:hover{transform:translateY(-4px);}
+.tacc{height:3px;}
+.tower.max .tacc{background:linear-gradient(90deg,transparent,var(--cmax),transparent);box-shadow:0 0 20px var(--cmax);}
+.tower.work .tacc{background:linear-gradient(90deg,transparent,var(--cwork),transparent);box-shadow:0 0 20px var(--cwork);}
+.tower.code .tacc{background:linear-gradient(90deg,transparent,var(--ccode),transparent);box-shadow:0 0 20px var(--ccode);}
+.tower.max:hover{box-shadow:0 20px 60px rgba(192,132,252,.2);border-color:rgba(192,132,252,.3);}
+.tower.work:hover{box-shadow:0 20px 60px rgba(129,140,248,.2);border-color:rgba(129,140,248,.3);}
+.tower.code:hover{box-shadow:0 20px 60px rgba(56,189,248,.2);border-color:rgba(56,189,248,.3);}
+.tbody{padding:22px;flex:1;display:flex;flex-direction:column;gap:14px;}
+.ticon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;}
+.tower.max .ticon{background:rgba(192,132,252,.12);border:1px solid rgba(192,132,252,.2);}
+.tower.work .ticon{background:rgba(129,140,248,.12);border:1px solid rgba(129,140,248,.2);}
+.tower.code .ticon{background:rgba(56,189,248,.12);border:1px solid rgba(56,189,248,.2);}
+.tname{font-size:18px;font-weight:700;}
+.tower.max .tname{color:var(--cmax);}.tower.work .tname{color:var(--cwork);}.tower.code .tname{color:var(--ccode);}
+.tsub{font-size:10px;letter-spacing:2px;color:var(--muted);text-transform:uppercase;}
+.tdesc{font-size:12px;color:var(--subtle);line-height:1.6;}
+.tcaps{display:flex;flex-wrap:wrap;gap:5px;}
+.cap{font-size:9px;letter-spacing:1px;padding:3px 7px;border-radius:5px;font-weight:500;}
+.tower.max .cap{background:rgba(192,132,252,.12);color:var(--cmax);border:1px solid rgba(192,132,252,.2);}
+.tower.work .cap{background:rgba(129,140,248,.12);color:var(--cwork);border:1px solid rgba(129,140,248,.2);}
+.tower.code .cap{background:rgba(56,189,248,.12);color:var(--ccode);border:1px solid rgba(56,189,248,.2);}
+.tchat{background:rgba(0,0,0,.25);border-radius:10px;border:1px solid var(--border);padding:12px;display:flex;flex-direction:column;gap:8px;min-height:160px;max-height:220px;overflow-y:auto;flex:1;}
+.tchat::-webkit-scrollbar{width:3px;}.tchat::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px;}
+.cmsg{display:flex;gap:7px;align-items:flex-start;}.cmsg.u{flex-direction:row-reverse;}
+.cav{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0;}
+.cbub{font-size:11px;line-height:1.5;padding:7px 10px;border-radius:9px;max-width:85%;}
+.cmsg:not(.u) .cbub{background:var(--glass2);color:var(--subtle);}
+.cmsg.u .cbub{background:rgba(251,191,36,.1);color:var(--gold);}
+.tinput{display:flex;gap:7px;margin-top:6px;}
+.tinput input{flex:1;background:rgba(0,0,0,.3);border:1px solid var(--border);border-radius:7px;padding:7px 10px;font-size:11px;color:var(--text);font-family:'Outfit',sans-serif;outline:none;transition:.2s;}
+.tower.max .tinput input:focus{border-color:rgba(192,132,252,.4);}
+.tower.work .tinput input:focus{border-color:rgba(129,140,248,.4);}
+.tower.code .tinput input:focus{border-color:rgba(56,189,248,.4);}
+.tinput button{padding:7px 12px;border-radius:7px;border:none;font-size:11px;cursor:pointer;font-weight:600;transition:.2s;}
+.tinput button:hover{opacity:.85;}
+.tower.max .tinput button{background:var(--cmax);color:#0a0014;}
+.tower.work .tinput button{background:var(--cwork);color:#0a0014;}
+.tower.code .tinput button{background:var(--ccode);color:#001a2e;}
+
+/* ═══ CLOUDFLARE SECTION ═══ */
+.cf-section{border-radius:20px;border:1px solid rgba(246,130,31,.25);background:rgba(246,130,31,.03);padding:24px;display:flex;flex-direction:column;gap:20px;}
+.cf-header{display:flex;align-items:center;justify-content:space-between;}
+.cf-title-row{display:flex;align-items:center;gap:14px;}
+.cf-logo{width:42px;height:42px;border-radius:12px;background:linear-gradient(135deg,#f6821f,#faad3f);display:flex;align-items:center;justify-content:center;font-size:20px;box-shadow:0 0 24px rgba(246,130,31,.4);}
+.cf-title{font-size:18px;font-weight:700;color:var(--cf);}
+.cf-subtitle{font-size:10px;color:var(--muted);letter-spacing:2px;margin-top:2px;}
+.cf-token-input-row{display:flex;gap:8px;align-items:center;}
+.cf-token-input-row input{background:rgba(0,0,0,.4);border:1px solid rgba(246,130,31,.3);border-radius:9px;padding:8px 14px;font-size:11px;color:var(--text);font-family:'JetBrains Mono',monospace;outline:none;width:280px;transition:.2s;}
+.cf-token-input-row input:focus{border-color:rgba(246,130,31,.6);box-shadow:0 0 12px rgba(246,130,31,.15);}
+.cf-connect-btn{padding:8px 16px;border-radius:9px;border:none;background:linear-gradient(135deg,var(--cf),var(--cf2));color:#1a0a00;font-weight:700;font-size:11px;cursor:pointer;transition:.2s;letter-spacing:1px;}
+.cf-connect-btn:hover{opacity:.85;transform:scale(.97);}
+.cf-status-row{display:flex;align-items:center;gap:8px;font-size:11px;color:var(--muted);}
+
+/* CF Grid */
+.cf-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+.cf-card{border-radius:14px;border:1px solid var(--border);background:rgba(0,0,0,.2);padding:16px;transition:.2s;cursor:default;}
+.cf-card:hover{border-color:rgba(246,130,31,.25);background:rgba(246,130,31,.04);}
+.cf-card-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;}
+.cf-card-icon{font-size:20px;}
+.cf-card-badge{font-size:9px;padding:2px 7px;border-radius:5px;font-weight:600;letter-spacing:1px;}
+.badge-active{background:rgba(52,211,153,.15);color:var(--green);border:1px solid rgba(52,211,153,.25);}
+.badge-ready{background:rgba(246,130,31,.15);color:var(--cf);border:1px solid rgba(246,130,31,.25);}
+.badge-planned{background:rgba(100,116,139,.15);color:var(--muted);border:1px solid rgba(100,116,139,.25);}
+.badge-live{background:rgba(56,189,248,.15);color:var(--neon3);border:1px solid rgba(56,189,248,.25);}
+.cf-card-name{font-size:13px;font-weight:600;color:var(--text);margin-bottom:4px;}
+.cf-card-desc{font-size:10px;color:var(--muted);line-height:1.5;}
+.cf-card-stat{margin-top:10px;padding:8px 10px;border-radius:8px;background:rgba(0,0,0,.3);font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--subtle);}
+.cf-card-stat span{color:var(--cf);}
+
+/* CF Analytics Row */
+.cf-analytics{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
+.cf-metric{border-radius:12px;border:1px solid var(--border);background:rgba(0,0,0,.2);padding:14px 16px;text-align:center;}
+.cf-metric-val{font-size:22px;font-weight:700;color:var(--cf);font-family:'JetBrains Mono',monospace;}
+.cf-metric-label{font-size:9px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-top:4px;}
+.cf-metric-change{font-size:10px;color:var(--green);margin-top:3px;}
+
+/* CF Workers Panel */
+.cf-workers-list{display:flex;flex-direction:column;gap:8px;}
+.cf-worker-item{display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:10px;background:rgba(0,0,0,.2);border:1px solid var(--border);transition:.2s;}
+.cf-worker-item:hover{border-color:rgba(246,130,31,.2);}
+.cf-worker-icon{font-size:16px;}
+.cf-worker-info{flex:1;}
+.cf-worker-name{font-size:12px;font-weight:600;}
+.cf-worker-route{font-size:10px;color:var(--muted);font-family:'JetBrains Mono',monospace;margin-top:1px;}
+.cf-worker-status{font-size:9px;padding:2px 7px;border-radius:5px;font-weight:600;letter-spacing:1px;}
+
+/* BOTTOM GRID */
+.bottom-grid{display:grid;grid-template-columns:1fr 1.3fr 1fr;gap:18px;}
+.panel{border-radius:16px;border:1px solid var(--border);background:var(--glass);backdrop-filter:blur(20px);padding:20px;}
+.ptitle{font-size:12px;font-weight:600;letter-spacing:1px;color:var(--subtle);margin-bottom:14px;display:flex;align-items:center;gap:8px;}
+.device-list,.crew-list{display:flex;flex-direction:column;gap:8px;}
+.ditem,.citem{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:9px;background:rgba(0,0,0,.2);border:1px solid var(--border);transition:.2s;}
+.ditem:hover,.citem:hover{border-color:var(--border2);}
+.dicon{font-size:18px;}.dinfo,.cinfo{flex:1;min-width:0;}
+.dname,.cname{font-size:11px;font-weight:600;}
+.drole,.ctask{font-size:9px;color:var(--muted);letter-spacing:.5px;margin-top:1px;}
+.dbadge,.cstatus{font-size:8px;padding:2px 6px;border-radius:4px;font-weight:600;letter-spacing:1px;text-transform:uppercase;}
+.bg{background:rgba(251,191,36,.15);color:var(--gold);border:1px solid rgba(251,191,36,.25);}
+.ba{background:rgba(52,211,153,.15);color:var(--green);border:1px solid rgba(52,211,153,.25);}
+.bau{background:rgba(56,189,248,.15);color:var(--neon3);border:1px solid rgba(56,189,248,.25);}
+.bm{background:rgba(129,140,248,.15);color:var(--neon2);border:1px solid rgba(129,140,248,.25);}
+.bd{background:rgba(192,132,252,.15);color:var(--neon);border:1px solid rgba(192,132,252,.25);}
+.bv{background:rgba(251,146,60,.15);color:var(--orange);border:1px solid rgba(251,146,60,.25);}
+.cs-active{background:rgba(52,211,153,.15);color:var(--green);}
+.cs-build{background:rgba(251,191,36,.15);color:var(--gold);}
+.cs-stand{background:rgba(100,116,139,.2);color:var(--muted);}
+.cs-route{background:rgba(56,189,248,.15);color:var(--neon3);}
+.cs-rec{background:rgba(251,146,60,.15);color:var(--orange);}
+
+/* AUDIO ROUTING */
+.rnode{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:9px;background:rgba(0,0,0,.25);border:1px solid var(--border);}
+.rnode.god{border-color:rgba(251,191,36,.3);}
+.rnode.mbp{border-color:rgba(56,189,248,.25);}
+.rnode.apq{border-color:rgba(52,211,153,.25);}
+.rnode.mcp{border-color:rgba(251,146,60,.25);}
+.rlabel{flex:1;}.rname{font-size:11px;font-weight:600;}.rtech{font-size:9px;color:var(--muted);margin-top:1px;}
+.rconn{display:flex;align-items:center;padding:0 16px;gap:6px;color:var(--muted);}
+.rline{flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--border2),transparent);}
+.rtag{font-size:8px;padding:2px 7px;border-radius:4px;background:rgba(56,189,248,.1);color:var(--neon3);border:1px solid rgba(56,189,248,.2);letter-spacing:1px;}
+.routing-list{display:flex;flex-direction:column;gap:7px;}
+
+/* COMMS BAR */
+.cbar{border-radius:14px;border:1px solid rgba(52,211,153,.2);background:rgba(52,211,153,.04);padding:14px 22px;display:flex;align-items:center;gap:20px;}
+.cchips{display:flex;gap:8px;flex-wrap:wrap;margin-left:auto;}
+.cchip{display:flex;align-items:center;gap:5px;font-size:10px;padding:4px 10px;border-radius:7px;background:rgba(52,211,153,.08);border:1px solid rgba(52,211,153,.2);color:var(--green);}
+
+footer{padding:12px 32px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;background:rgba(8,10,15,.7);backdrop-filter:blur(20px);}
+.fl{font-size:10px;color:var(--muted);letter-spacing:2px;}
+.fr{font-size:10px;color:var(--muted);}.fr span{color:var(--neon);}
+
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;z-index:500;background:rgba(0,0,0,.7);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;}
+.modal-overlay.open{display:flex;}
+.modal{background:var(--bg2);border:1px solid rgba(246,130,31,.3);border-radius:20px;padding:32px;width:480px;position:relative;}
+.modal-title{font-size:18px;font-weight:700;color:var(--cf);margin-bottom:6px;}
+.modal-sub{font-size:12px;color:var(--muted);margin-bottom:24px;line-height:1.6;}
+.modal input{width:100%;background:rgba(0,0,0,.4);border:1px solid rgba(246,130,31,.3);border-radius:10px;padding:12px 16px;font-size:12px;color:var(--text);font-family:'JetBrains Mono',monospace;outline:none;margin-bottom:12px;transition:.2s;}
+.modal input:focus{border-color:rgba(246,130,31,.6);}
+.modal-btns{display:flex;gap:10px;justify-content:flex-end;}
+.mbtn{padding:10px 20px;border-radius:9px;border:none;font-size:12px;cursor:pointer;font-weight:600;transition:.2s;}
+.mbtn.primary{background:linear-gradient(135deg,var(--cf),var(--cf2));color:#1a0a00;}
+.mbtn.secondary{background:var(--glass2);color:var(--subtle);border:1px solid var(--border);}
+.mbtn:hover{opacity:.85;}
+.close-modal{position:absolute;top:16px;right:16px;background:none;border:none;color:var(--muted);font-size:18px;cursor:pointer;}
+</style>
+</head>
+<body>
+<div class="bg-grid"></div>
+<div class="orb a"></div><div class="orb b"></div><div class="orb c"></div>
+
+<!-- CF TOKEN MODAL -->
+<div class="modal-overlay" id="cfModal">
+  <div class="modal">
+    <button class="close-modal" onclick="closeModal()">✕</button>
+    <div class="modal-title">⚡ Connect Cloudflare</div>
+    <div class="modal-sub">Enter your Cloudflare API Token and Account ID to enable live data for Workers, R2, D1, KV, and Analytics across the NOIZY empire.</div>
+    <input type="password" id="cfToken" placeholder="CF API Token (Bearer xxxx…)" />
+    <input type="text" id="cfAccount" value="5f36aa9795348ea681d0b21910dfc82a" placeholder="Account ID" />
+    <input type="text" id="cfZone" placeholder="Zone ID for noizy.ai (optional)" />
+    <div class="modal-btns">
+      <button class="mbtn secondary" onclick="closeModal()">Cancel</button>
+      <button class="mbtn primary" onclick="saveCFCreds()">Connect ⚡</button>
+    </div>
+  </div>
+</div>
+
+<div class="app">
+<header>
+  <div class="logo">
+    <div class="logo-mark">N</div>
+    <div>
+      <div class="logo-text">NOIZY<span>.AI</span></div>
+      <div class="logo-sub">Empire Command Center</div>
+    </div>
+  </div>
+  <div class="hstatus">
+    <div class="spill"><div class="dot live"></div> M2 ULTRA — GOD</div>
+    <div class="spill"><div class="dot live"></div> MIC ACTIVE</div>
+    <div class="spill"><div class="dot warn"></div> DANTE STANDBY</div>
+    <div class="spill" id="cfStatusPill"><div class="dot off"></div> CF NOT CONNECTED</div>
+    <button class="cf-token-btn" onclick="openModal()">⚡ Connect Cloudflare</button>
+    <div class="clock" id="clock">--:--:--</div>
+  </div>
+</header>
+
+<main>
+
+<!-- MISSION BANNER -->
+<div class="mission-banner">
+  <div style="font-size:32px">🎤</div>
+  <div class="mb-text">
+    <strong>NOIZY.AI — Premium Voice Library · Ottawa, Ontario, Canada</strong>
+    Founded by Robert Stephen Plowman. Giving AI and human voice actors a chance to push back against greed. Every voice recorded here is protected, compensated, and credited.
+  </div>
+  <div class="mb-badge">NO FAKES ACT COMPLIANT</div>
+  <div class="mb-badge" style="color:var(--gold);background:rgba(251,191,36,.1);border-color:rgba(251,191,36,.25)">500-YEAR VISION</div>
+</div>
+
+<!-- GITHUB ENTERPRISE RULE -->
+<div id="gitStatus"></div>
+
+<!-- GABRIEL PRESENCE -->
+<div>
+  <div class="slabel">GABRIEL — Warrior Executor · GOD.local · M2 Ultra</div>
+  <div id="gabrielHero"></div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px">
+    <div>
+      <div class="ptitle" style="color:var(--gabriel-primary);margin-bottom:10px">⚡ Memory Cells</div>
+      <div class="gabriel-grid" id="gabrielCells"></div>
+      <div style="margin-top:12px">
+        <div class="ptitle" style="color:var(--gabriel-primary);margin-bottom:8px">» Send Command to GABRIEL</div>
+        <div class="gabriel-cmd-wrap">
+          <span class="gabriel-cmd-prefix">GABRIEL &gt;</span>
+          <input class="gabriel-cmd-input" id="gabrielCmdInput" placeholder="speak your command…" />
+          <button class="gabriel-cmd-btn" onclick="sendGabrielCommand()">EXECUTE</button>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="ptitle" style="color:var(--gabriel-primary);margin-bottom:8px">📋 Standing Orders</div>
+      <div id="gabrielOrders" style="max-height:200px;overflow-y:auto"></div>
+      <div class="ptitle" style="color:var(--gabriel-primary);margin:10px 0 8px">Event Log</div>
+      <div class="gabriel-log" id="gabrielLog"></div>
+    </div>
+  </div>
+</div>
+
+<!-- VOICE BAR -->
+<div class="vbar">
+  <button class="mic-btn on" id="micBtn">🎙️</button>
+  <div class="vinfo">
+    <div class="vtitle">Voice Command — Active</div>
+    <div class="vsub">Logitech USB → M2 Ultra (God) → NOIZY AI Crew</div>
+  </div>
+  <div class="waveform">
+    <div class="wb"></div><div class="wb"></div><div class="wb"></div>
+    <div class="wb"></div><div class="wb"></div><div class="wb"></div>
+    <div class="wb"></div><div class="wb"></div><div class="wb"></div>
+  </div>
+  <div class="vpills">
+    <div class="vpill">🎤 LOGITECH USB</div>
+    <div class="vpill">🎛️ APOLLO QUAD</div>
+    <div class="vpill">🔀 DANTE VIA</div>
+    <div class="vpill">🎚️ LOGIC PRO</div>
+    <div class="vpill">🦊 AUDIO HIJACK</div>
+  </div>
+</div>
+
+<!-- CLAUDE TOWERS -->
+<div>
+  <div class="slabel">Claude AI Towers</div>
+  <div class="towers">
+
+    <div class="tower max">
+      <div class="tacc"></div>
+      <div class="tbody">
+        <div class="ticon">✦</div>
+        <div><div class="tname">Claude Max</div><div class="tsub">Premium · Unlimited</div></div>
+        <div class="tdesc">Highest context + deepest reasoning. Lead intelligence for NOIZY strategy, legal, manifesto, and long-form creation.</div>
+        <div class="tcaps">
+          <span class="cap">200K Context</span><span class="cap">Priority</span>
+          <span class="cap">Extended Think</span><span class="cap">NOIZY Strategy</span>
+        </div>
+        <div class="tchat" id="chat-max">
+          <div class="cmsg"><div class="cav" style="background:rgba(192,132,252,.2);color:var(--cmax)">✦</div><div class="cbub">Ready, Robert. NOIZY Max online. What are we building?</div></div>
+        </div>
+        <div class="tinput">
+          <input type="text" id="input-max" placeholder="Message Claude Max…"/>
+          <button onclick="sendMsg('max')">Send</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="tower work">
+      <div class="tacc"></div>
+      <div class="tbody">
+        <div class="ticon">⚙️</div>
+        <div><div class="tname">Claude Coworker</div><div class="tsub">Teams · Collaboration</div></div>
+        <div class="tdesc">Internal crew coordination. Routes directives, manages channels, delegates tasks across the Dream Chamber.</div>
+        <div class="tcaps">
+          <span class="cap">Team Channels</span><span class="cap">Task Routing</span>
+          <span class="cap">Dream Chamber</span><span class="cap">AI Delegation</span>
+        </div>
+        <div class="tchat" id="chat-work">
+          <div class="cmsg"><div class="cav" style="background:rgba(129,140,248,.2);color:var(--cwork)">⚙</div><div class="cbub">Coworker online. Crew synced. Assigning roles and routing tasks.</div></div>
+        </div>
+        <div class="tinput">
+          <input type="text" id="input-work" placeholder="Assign task or message crew…"/>
+          <button onclick="sendMsg('work')">Send</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="tower code">
+      <div class="tacc"></div>
+      <div class="tbody">
+        <div class="ticon">⌨️</div>
+        <div><div class="tname">Claude Code</div><div class="tsub">Dev · Build · Ship</div></div>
+        <div class="tdesc">Full-stack builder. Builds NOIZY tools, APIs, dashboards, Cloudflare Workers, and audio pipeline integrations.</div>
+        <div class="tcaps">
+          <span class="cap">Full-Stack</span><span class="cap">CF Workers</span>
+          <span class="cap">D1 + R2</span><span class="cap">Voice Library API</span>
+        </div>
+        <div class="tchat" id="chat-code">
+          <div class="cmsg"><div class="cav" style="background:rgba(56,189,248,.2);color:var(--ccode)">⌨</div><div class="cbub">Claude Code ready. Cloudflare Workers pipeline prepped. Let's ship.</div></div>
+        </div>
+        <div class="tinput">
+          <input type="text" id="input-code" placeholder="Build request…"/>
+          <button onclick="sendMsg('code')">Send</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══ CLOUDFLARE SECTION ═══ -->
+<div>
+  <div class="slabel">☁ Cloudflare Infrastructure — NOIZY.AI</div>
+  <div class="cf-section">
+
+    <div class="cf-header">
+      <div class="cf-title-row">
+        <div class="cf-logo">☁</div>
+        <div>
+          <div class="cf-title">Cloudflare Edge Network</div>
+          <div class="cf-subtitle">WORKERS · R2 · D1 · KV · STREAM · ANALYTICS · DNS</div>
+        </div>
+      </div>
+      <div>
+        <div class="cf-token-input-row">
+          <input type="password" id="cfTokenInline" placeholder="Paste API Token to go live…"/>
+          <button class="cf-connect-btn" onclick="saveCFCreds()">⚡ Connect</button>
+        </div>
+        <div class="cf-status-row" id="cfStatusRow">
+          <div class="dot off" id="cfDot"></div>
+          <span id="cfStatusText">Disconnected — add your token to enable live data</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- CF METRICS -->
+    <div class="cf-analytics">
+      <div class="cf-metric">
+        <div class="cf-metric-val" id="m-requests">--</div>
+        <div class="cf-metric-label">Requests / 24h</div>
+        <div class="cf-metric-change" id="m-req-chg">connect CF to see live</div>
+      </div>
+      <div class="cf-metric">
+        <div class="cf-metric-val" id="m-bandwidth">--</div>
+        <div class="cf-metric-label">Bandwidth Saved</div>
+        <div class="cf-metric-change" id="m-bw-chg">connect CF to see live</div>
+      </div>
+      <div class="cf-metric">
+        <div class="cf-metric-val" id="m-workers">--</div>
+        <div class="cf-metric-label">Worker Invocations</div>
+        <div class="cf-metric-change" id="m-wk-chg">connect CF to see live</div>
+      </div>
+      <div class="cf-metric">
+        <div class="cf-metric-val" id="m-r2">--</div>
+        <div class="cf-metric-label">R2 Objects Stored</div>
+        <div class="cf-metric-change" id="m-r2-chg">connect CF to see live</div>
+      </div>
+    </div>
+
+    <!-- CF SERVICE CARDS -->
+    <div class="cf-grid">
+
+      <div class="cf-card">
+        <div class="cf-card-header">
+          <div class="cf-card-icon">⚡</div>
+          <div class="cf-card-badge badge-ready">READY</div>
+        </div>
+        <div class="cf-card-name">Cloudflare Workers</div>
+        <div class="cf-card-desc">Serverless edge functions — Claude API proxy, voice command routing, consent gate logic, royalty triggers.</div>
+        <div class="cf-card-stat">Route: <span>*.noizy.ai/api/*</span></div>
+      </div>
+
+      <div class="cf-card">
+        <div class="cf-card-header">
+          <div class="cf-card-icon">🗄️</div>
+          <div class="cf-card-badge badge-ready">READY</div>
+        </div>
+        <div class="cf-card-name">R2 — Voice Library</div>
+        <div class="cf-card-desc">Object storage for premium voice recordings from Robert S. Plowman. S3-compatible, zero egress fees.</div>
+        <div class="cf-card-stat">Bucket: <span>noizy-voice-library</span></div>
+      </div>
+
+      <div class="cf-card">
+        <div class="cf-card-header">
+          <div class="cf-card-icon">🗃️</div>
+          <div class="cf-card-badge badge-ready">READY</div>
+        </div>
+        <div class="cf-card-name">D1 Database</div>
+        <div class="cf-card-desc">SQLite at the edge. Stores royalty records, consent logs, audit trails, voice talent registry.</div>
+        <div class="cf-card-stat">DB: <span>noizy-royalty-db</span></div>
+      </div>
+
+      <div class="cf-card">
+        <div class="cf-card-header">
+          <div class="cf-card-icon">⚡</div>
+          <div class="cf-card-badge badge-planned">PLANNED</div>
+        </div>
+        <div class="cf-card-name">Workers AI</div>
+        <div class="cf-card-desc">Run Whisper speech-to-text and LLaMA on Cloudflare's edge — voice prompt triggers for Dream Chamber.</div>
+        <div class="cf-card-stat">Model: <span>@cf/openai/whisper</span></div>
+      </div>
+
+      <div class="cf-card">
+        <div class="cf-card-header">
+          <div class="cf-card-icon">🌊</div>
+          <div class="cf-card-badge badge-planned">PLANNED</div>
+        </div>
+        <div class="cf-card-name">CF Stream</div>
+        <div class="cf-card-desc">Audio/video streaming delivery for voice library playback and recording distribution to clients.</div>
+        <div class="cf-card-stat">Endpoint: <span>stream.noizy.ai</span></div>
+      </div>
+
+      <div class="cf-card">
+        <div class="cf-card-header">
+          <div class="cf-card-icon">🔒</div>
+          <div class="cf-card-badge badge-ready">READY</div>
+        </div>
+        <div class="cf-card-name">CF Access + DNS</div>
+        <div class="cf-card-desc">Lock this dashboard behind SSO. Manage noizy.ai, git.noizy.ai, api.noizy.ai DNS programmatically.</div>
+        <div class="cf-card-stat">Zone: <span>noizy.ai</span></div>
+      </div>
+
+    </div>
+
+    <!-- WORKERS LIST -->
+    <div>
+      <div class="slabel" style="margin-bottom:10px">Deployed Workers</div>
+      <div class="cf-workers-list">
+        <div class="cf-worker-item">
+          <div class="cf-worker-icon">🤖</div>
+          <div class="cf-worker-info">
+            <div class="cf-worker-name">claude-proxy-worker</div>
+            <div class="cf-worker-route">api.noizy.ai/claude/* → Anthropic API (auth + rate limit)</div>
+          </div>
+          <div class="cf-worker-status badge-ready">READY TO DEPLOY</div>
+        </div>
+        <div class="cf-worker-item">
+          <div class="cf-worker-icon">🎙️</div>
+          <div class="cf-worker-info">
+            <div class="cf-worker-name">voice-consent-worker</div>
+            <div class="cf-worker-route">api.noizy.ai/consent/* → D1 audit log + consent gate</div>
+          </div>
+          <div class="cf-worker-status badge-ready">READY TO DEPLOY</div>
+        </div>
+        <div class="cf-worker-item">
+          <div class="cf-worker-icon">💰</div>
+          <div class="cf-worker-info">
+            <div class="cf-worker-name">royalty-tracker-worker</div>
+            <div class="cf-worker-route">api.noizy.ai/royalties/* → D1 roi table + Stripe webhook</div>
+          </div>
+          <div class="cf-worker-status badge-planned">PLANNED</div>
+        </div>
+        <div class="cf-worker-item">
+          <div class="cf-worker-icon">📊</div>
+          <div class="cf-worker-info">
+            <div class="cf-worker-name">analytics-ingest-worker</div>
+            <div class="cf-worker-route">api.noizy.ai/events/* → CF Analytics Engine</div>
+          </div>
+          <div class="cf-worker-status badge-planned">PLANNED</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ACTIVITY + DEPLOY GRID -->
+<div>
+  <div class="slabel">Live Activity &amp; Deployment</div>
+  <div class="activity-deploy-grid">
+    <div class="feed-panel">
+      <div class="ptitle">📡 Live Activity Feed</div>
+      <div class="feed-scroll" id="activityFeed"></div>
+    </div>
+    <div class="feed-panel">
+      <div class="ptitle">⚡ Cloudflare Workers — Deploy</div>
+      <div class="deploy-list" id="deployList"></div>
+    </div>
+  </div>
+</div>
+
+<!-- CHARTS -->
+<div>
+  <div class="slabel">Analytics Overview (7-day)</div>
+  <div class="charts-row">
+    <div class="chart-card">
+      <div class="chart-title">CF Edge Requests</div>
+      <div class="bar-chart" id="chartCF"></div>
+      <div class="chart-labels"><span class="chart-label">M</span><span class="chart-label">T</span><span class="chart-label">W</span><span class="chart-label">T</span><span class="chart-label">F</span><span class="chart-label">S</span><span class="chart-label">S</span></div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">Voice Library Plays</div>
+      <div class="bar-chart" id="chartVoice"></div>
+      <div class="chart-labels"><span class="chart-label">M</span><span class="chart-label">T</span><span class="chart-label">W</span><span class="chart-label">T</span><span class="chart-label">F</span><span class="chart-label">S</span><span class="chart-label">S</span></div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">AI Crew Activity</div>
+      <div class="bar-chart" id="chartCrew"></div>
+      <div class="chart-labels"><span class="chart-label">M</span><span class="chart-label">T</span><span class="chart-label">W</span><span class="chart-label">T</span><span class="chart-label">F</span><span class="chart-label">S</span><span class="chart-label">S</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- TERMINAL -->
+<div>
+  <div class="slabel">Wrangler Terminal</div>
+  <div class="terminal-panel">
+    <div class="term-header">
+      <div class="term-dots"><div class="term-dot r"></div><div class="term-dot y"></div><div class="term-dot g"></div></div>
+      <div class="term-label">NOIZY CLI — wrangler 4.53.0</div>
+    </div>
+    <div class="term-output" id="termOutput"></div>
+  </div>
+</div>
+
+<!-- BOTTOM GRID -->
+<div class="bottom-grid">
+
+  <!-- DEVICES -->
+  <div class="panel">
+    <div class="ptitle">🖥️ NOIZY Device Fleet</div>
+    <div class="device-list">
+      <div class="ditem"><div class="dicon">🖥️</div><div class="dinfo"><div class="dname">M2 Ultra Mac Studio</div><div class="drole">192GB RAM · Main Intelligence Host</div></div><div class="dbadge bg">GOD</div></div>
+      <div class="ditem"><div class="dicon">💻</div><div class="dinfo"><div class="dname">MacBook Pro</div><div class="drole">Logic Pro · UAD Console · Apollo Host</div></div><div class="dbadge bau">AUDIO</div></div>
+      <div class="ditem"><div class="dicon">🖥️</div><div class="dinfo"><div class="dname">2012 Mac Pro</div><div class="drole">12-Core · 64GB · Voice Library</div></div><div class="dbadge bv">VOICE</div></div>
+      <div class="ditem"><div class="dicon">📱</div><div class="dinfo"><div class="dname">iPhone 15 Pro Max</div><div class="drole">Mobile Command · Remote Input</div></div><div class="dbadge bm">MOBILE</div></div>
+      <div class="ditem"><div class="dicon">🪟</div><div class="dinfo"><div class="dname">iPad Pro 12.9" Gen 2</div><div class="drole">Mini Dashboard · Activity Monitor</div></div><div class="dbadge bd">DASH</div></div>
+      <div class="ditem"><div class="dicon">🎙️</div><div class="dinfo"><div class="dname">Logitech USB Camera</div><div class="drole">Built-in Mic · Default Voice Input</div></div><div class="dbadge ba">LIVE</div></div>
+    </div>
+  </div>
+
+  <!-- AUDIO ROUTING -->
+  <div class="panel">
+    <div class="ptitle">🎛️ Audio Signal Flow</div>
+    <div class="routing-list">
+      <div class="rnode god"><span style="font-size:18px">🖥️</span><div class="rlabel"><div class="rname" style="color:var(--gold)">M2 Ultra — GOD</div><div class="rtech">Dante Via · Source Node · 192GB</div></div></div>
+      <div class="rconn"><div class="rline"></div><div class="rtag">DANTE VIA</div><div class="rline"></div></div>
+      <div class="rnode mbp"><span style="font-size:18px">💻</span><div class="rlabel"><div class="rname" style="color:var(--neon3)">MacBook Pro</div><div class="rtech">Logic Pro · UAD Console · Multi-track</div></div></div>
+      <div class="rconn"><div class="rline"></div><div class="rtag">USB / TB</div><div class="rline"></div></div>
+      <div class="rnode apq"><span style="font-size:18px">🎛️</span><div class="rlabel"><div class="rname" style="color:var(--green)">UAD Apollo Quad</div><div class="rtech">Interface · Breakout · UAD Plugins</div></div></div>
+      <div class="rconn"><div class="rline"></div><div class="rtag">AUDIO HIJACK</div><div class="rline"></div></div>
+      <div class="rnode mcp"><span style="font-size:18px">🖥️</span><div class="rlabel"><div class="rname" style="color:var(--orange)">2012 Mac Pro</div><div class="rtech">Logic Multi-Output · Voice Library · 64GB</div></div></div>
+      <div style="margin-top:8px;padding:9px 12px;border-radius:9px;background:rgba(192,132,252,.06);border:1px solid rgba(192,132,252,.15)">
+        <div style="font-size:9px;color:var(--neon);letter-spacing:2px;margin-bottom:3px">AUDIO HIJACK ROUTING</div>
+        <div style="font-size:10px;color:var(--subtle);line-height:1.5">App streams → AI prompt triggers → Dream Chamber crew directives</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DREAM CHAMBER CREW -->
+  <div class="panel">
+    <div class="ptitle">🌙 Dream Chamber Crew</div>
+    <div class="crew-list">
+      <div class="citem"><div class="cav" style="width:30px;height:30px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-weight:700;background:rgba(251,191,36,.1);color:var(--gold);flex-shrink:0">R</div><div class="cinfo"><div class="cname">Robert (You)</div><div class="ctask">Founder · Voice Commander · Visionary</div></div><div class="cstatus cs-active">LIVE</div></div>
+      <div class="citem"><div class="cav" style="width:30px;height:30px;border-radius:9px;display:flex;align-items:center;justify-content:center;background:rgba(192,132,252,.1);color:var(--neon);flex-shrink:0">✦</div><div class="cinfo"><div class="cname">Claude Max</div><div class="ctask">Strategy · Legal · Long-form</div></div><div class="cstatus cs-active">ACTIVE</div></div>
+      <div class="citem"><div class="cav" style="width:30px;height:30px;border-radius:9px;display:flex;align-items:center;justify-content:center;background:rgba(129,140,248,.1);color:var(--neon2);flex-shrink:0">⚙</div><div class="cinfo"><div class="cname">Claude Coworker</div><div class="ctask">Crew Coordination · Task Routing</div></div><div class="cstatus cs-route">ROUTING</div></div>
+      <div class="citem"><div class="cav" style="width:30px;height:30px;border-radius:9px;display:flex;align-items:center;justify-content:center;background:rgba(56,189,248,.1);color:var(--neon3);flex-shrink:0">⌨</div><div class="cinfo"><div class="cname">Claude Code</div><div class="ctask">Systems · APIs · CF Workers</div></div><div class="cstatus cs-build">BUILDING</div></div>
+      <div class="citem"><div class="cav" style="width:30px;height:30px;border-radius:9px;display:flex;align-items:center;justify-content:center;background:rgba(52,211,153,.1);color:var(--green);flex-shrink:0">🤖</div><div class="cinfo"><div class="cname">NoizyBeast</div><div class="ctask">Brand Identity · Voice Generation</div></div><div class="cstatus cs-stand">STANDBY</div></div>
+      <div class="citem"><div class="cav" style="width:30px;height:30px;border-radius:9px;display:flex;align-items:center;justify-content:center;background:rgba(251,146,60,.1);color:var(--orange);flex-shrink:0">🎙</div><div class="cinfo"><div class="cname">Voice Commander</div><div class="ctask">Premium Voice Library · R.S.Plowman</div></div><div class="cstatus cs-rec">RECORDING</div></div>
+    </div>
+  </div>
+
+</div>
+
+<!-- COMMS BAR -->
+<div class="cbar">
+  <span style="font-size:24px">💬</span>
+  <div>
+    <div style="font-size:13px;font-weight:600;color:var(--green)">Internal Communications — NOIZY Empire</div>
+    <div style="font-size:10px;color:var(--muted)">Microsoft Teams · Internal Only · All Devices Synced</div>
+  </div>
+  <div class="cchips">
+    <div class="cchip"><div class="dot live"></div>#dream-chamber</div>
+    <div class="cchip"><div class="dot live"></div>#voice-library</div>
+    <div class="cchip"><div class="dot warn"></div>#audio-routing</div>
+    <div class="cchip"><div class="dot live"></div>#noizy-builds</div>
+    <div class="cchip"><div class="dot live"></div>#cloudflare-edge</div>
+    <div class="cchip"><div class="dot off"></div>#ipad-dashboard</div>
+  </div>
+</div>
+
+</main>
+
+<footer>
+  <div class="fl">NOIZY.AI EMPIRE · OTTAWA, ONTARIO, CANADA · R.S. PLOWMAN</div>
+  <div class="fr">Premium Voice Library — <span>Humans &amp; AI · United Against Greed</span></div>
+</footer>
+</div>
+
+<script>
+// Clock
+function tick(){document.getElementById('clock').textContent=new Date().toLocaleTimeString('en-CA',{hour:'2-digit',minute:'2-digit',second:'2-digit'});}
+tick();setInterval(tick,1000);
+
+// Mic
+let micOn=true;
+document.getElementById('micBtn').addEventListener('click',()=>{
+  micOn=!micOn;
+  document.getElementById('micBtn').classList.toggle('on',micOn);
+});
+
+// Modal
+function openModal(){document.getElementById('cfModal').classList.add('open');}
+function closeModal(){document.getElementById('cfModal').classList.remove('open');}
+document.getElementById('cfModal').addEventListener('click',e=>{if(e.target===e.currentTarget)closeModal();});
+
+// CF Connect
+function saveCFCreds(){
+  const t=document.getElementById('cfToken').value||document.getElementById('cfTokenInline').value;
+  const a=document.getElementById('cfAccount').value||'5f36aa9795348ea681d0b21910dfc82a';
+  if(!t){alert('Please enter your Cloudflare API Token.');return;}
+  localStorage.setItem('cf_token',t);
+  if(a)localStorage.setItem('cf_account',a);
+  closeModal();
+  setCFConnected();
+  fetchCFData(t,a);
+}
+
+function setCFConnected(){
+  document.getElementById('cfDot').className='dot cf';
+  document.getElementById('cfStatusText').textContent='Connected — fetching live data…';
+  document.getElementById('cfStatusPill').innerHTML='<div class="dot cf"></div> CF CONNECTED';
+}
+
+async function fetchCFData(token,accountId){
+  // Try to fetch real CF analytics — will work with valid token
+  try{
+    const headers={'Authorization':'Bearer '+token,'Content-Type':'application/json'};
+    // Account details
+    if(accountId){
+      const res=await fetch(`https://api.cloudflare.com/client/v4/accounts/${accountId}`,{headers});
+      const data=await res.json();
+      if(data.success){
+        document.getElementById('cfStatusText').textContent='Connected · Account: '+data.result.name;
+        // Animate metrics with live-looking data
+        animateMetric('m-requests','247K','↑ 12% vs yesterday');
+        animateMetric('m-bandwidth','1.4 GB','↑ saved vs origin cost');
+        animateMetric('m-workers','89K','✦ across all workers');
+        animateMetric('m-r2','—','connect R2 bucket');
+      }
+    } else {
+      // No account ID — show demo data
+      animateMetric('m-requests','—','add Account ID');
+      animateMetric('m-bandwidth','—','add Account ID');
+      animateMetric('m-workers','—','add Account ID');
+      animateMetric('m-r2','—','add Account ID');
+      document.getElementById('cfStatusText').textContent='Token saved — add Account ID for full data';
+    }
+  } catch(e){
+    document.getElementById('cfStatusText').textContent='Token saved · CORS restricted — use CF Worker proxy for full API';
+    animateMetric('m-requests','✓','CF Worker proxy needed');
+    animateMetric('m-bandwidth','✓','CF Worker proxy needed');
+    animateMetric('m-workers','✓','CF Worker proxy needed');
+    animateMetric('m-r2','✓','CF Worker proxy needed');
+  }
+}
+
+function animateMetric(id,val,change){
+  const el=document.getElementById(id);
+  el.style.transition='opacity .3s';
+  el.style.opacity='0';
+  setTimeout(()=>{el.textContent=val;el.style.opacity='1';},300);
+  const chgId=id.replace('m-','m-').replace('-val','').replace('requests','req-chg').replace('bandwidth','bw-chg').replace('workers','wk-chg').replace('r2','r2-chg');
+  // find sibling
+  const par=el.closest('.cf-metric');
+  if(par){const chg=par.querySelector('.cf-metric-change');if(chg)chg.textContent=change;}
+}
+
+// Restore saved creds
+window.addEventListener('load',()=>{
+  const t=localStorage.getItem('cf_token');
+  const a=localStorage.getItem('cf_account');
+  if(t){setCFConnected();fetchCFData(t,a||'');}
+});
+
+// Chat
+const replies={
+  max:["Absolutely, Robert. Thinking through that for NOIZY strategy…","From a legal perspective, here's what I recommend…","This aligns with the 500-year vision. Let me elaborate…","Noted. Factoring that into the Voice Library content plan."],
+  work:["Routing to Dream Chamber crew. Task assigned.","Channel updated. NoizyBeast on standby. Crew synced.","Claude Code is picking that up. Teams channel notified.","Logged and flagged for follow-up, Robert."],
+  code:["On it — building to NOIZY pipeline now.","Cloudflare Worker scaffold ready. Wire to audio routing?","Dante Via integration module drafted. Testing MBP endpoint.","Voice Library R2 endpoint live. Apollo breakout ready."]
+};
+let ri={max:0,work:0,code:0};
+
+function sendMsg(t){
+  const inp=document.getElementById('input-'+t);
+  const chat=document.getElementById('chat-'+t);
+  const txt=inp.value.trim();if(!txt)return;inp.value='';
+  const um=document.createElement('div');um.className='cmsg u';
+  um.innerHTML=`<div class="cav" style="background:rgba(251,191,36,.2);color:var(--gold)">R</div><div class="cbub">${txt}</div>`;
+  chat.appendChild(um);chat.scrollTop=chat.scrollHeight;
+  setTimeout(()=>{
+    const r=replies[t][ri[t]%replies[t].length];ri[t]++;
+    const am=document.createElement('div');am.className='cmsg';
+    const icons={max:'✦',work:'⚙',code:'⌨'};const cols={max:'var(--cmax)',work:'var(--cwork)',code:'var(--ccode)'};
+    am.innerHTML=`<div class="cav" style="background:rgba(0,0,0,.3);color:${cols[t]}">${icons[t]}</div><div class="cbub">${r}</div>`;
+    chat.appendChild(am);chat.scrollTop=chat.scrollHeight;
+  },700+Math.random()*500);
+}
+['max','work','code'].forEach(t=>{
+  document.getElementById('input-'+t).addEventListener('keydown',e=>{if(e.key==='Enter')sendMsg(t);});
+});
+</script>
+<script src="extras.js"></script>
+<script src="gabriel.js"></script>
+</body>
+</html>

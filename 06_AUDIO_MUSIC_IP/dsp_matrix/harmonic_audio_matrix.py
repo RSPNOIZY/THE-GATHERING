@@ -7,12 +7,11 @@ Invariants: The Plowman Standard (75/25), 396Hz Reference Pitch, 96 BPM Beat Syn
 from __future__ import annotations
 
 import math
-import struct
 import hashlib
 import json
 import time
 import uuid
-from typing import Dict, Any, List, Optional, Tuple
+from typing import Dict, Any
 
 
 class HarmonicAudioMatrix:

@@ -1,0 +1,31 @@
+{
+  "vault_domain": "WireGuard Sovereign Mesh Network",
+  "version": "4.0.0-SOVEREIGN",
+  "interface": "wg0",
+  "subnet": "10.96.0.0/24",
+  "mtu": 1420,
+  "persistent_keepalive": 25,
+  "nodes": {
+    "m2ultra_gateway": {
+      "hostname": "GOD-M2ULTRA",
+      "ip": "10.96.0.1/32",
+      "role": "Primary Sovereign Hub & Neural Server",
+      "port": 51820
+    },
+    "mobile_iphone": {
+      "hostname": "RSP-IPHONE",
+      "ip": "10.96.0.2/32",
+      "role": "Voice Commander & Siri Audio Remote"
+    },
+    "mobile_ipad": {
+      "hostname": "LUCY-IPAD",
+      "ip": "10.96.0.3/32",
+      "role": "Cockpit Dashboard & Multi-Touch Controller"
+    },
+    "cloud_gateway": {
+      "hostname": "NOIZY-CLOUD-RUN",
+      "ip": "10.96.0.4/32",
+      "role": "Edge Relay & Cloudflare Gateway Bridge"
+    }
+  }
+}

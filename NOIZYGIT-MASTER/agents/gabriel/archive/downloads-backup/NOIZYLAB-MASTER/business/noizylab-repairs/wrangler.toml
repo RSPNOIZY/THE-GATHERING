@@ -1,0 +1,25 @@
+name = "noizylab-repairs"
+main = "worker.js"
+compatibility_date = "2024-12-01"
+
+# D1 Database binding
+[[d1_databases]]
+binding = "DB"
+database_name = "noizylab-repairs"
+database_id = "2bd4aa06-f9b2-4761-b235-e92e8a21fe45"
+
+# KV Namespace binding
+[[kv_namespaces]]
+binding = "SUBMISSIONS"
+id = "6e888a017ebe4ba78ed7497c4929439b"
+
+# Custom domain (when ready)
+# routes = [
+#   { pattern = "noizylab.ca/*", zone_name = "noizylab.ca" },
+#   { pattern = "www.noizylab.ca/*", zone_name = "noizylab.ca" }
+# ]
+
+[vars]
+ENVIRONMENT = "production"
+PRICE_PER_REPAIR = "89"
+DAILY_TARGET = "12"

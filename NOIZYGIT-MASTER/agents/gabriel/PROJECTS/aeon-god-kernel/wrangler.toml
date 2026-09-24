@@ -1,0 +1,44 @@
+# ╔══════════════════════════════════════════════════════════════════════════════════════════════════════════╗
+# ║     ⚡ AEON GOD-KERNEL v1.0 - THE OMNIPOTENT                                                             ║
+# ╚══════════════════════════════════════════════════════════════════════════════════════════════════════════╝
+
+name = "aeon-god-kernel"
+main = "src/index.js"
+compatibility_date = "2025-01-01"
+compatibility_flags = ["nodejs_compat"]
+
+# Workers AI - THE TRIUMVIRATE
+[ai]
+binding = "AI"
+
+# D1 Database
+[[d1_databases]]
+binding = "DB"
+database_name = "rsp-master-budget"
+database_id = "74e6b824-5c10-4b02-8060-3c20217a8ba9"
+
+# KV Namespace
+[[kv_namespaces]]
+binding = "KV"
+id = "fa91fd99c24444baa723daf64238124d"
+
+# Hourly Leviathan Scan
+[triggers]
+crons = ["0 * * * *"]
+
+# Production
+[env.production]
+name = "aeon-god-kernel-prod"
+workers_dev = false
+
+[env.production.ai]
+binding = "AI"
+
+[[env.production.d1_databases]]
+binding = "DB"
+database_name = "rsp-master-budget"
+database_id = "74e6b824-5c10-4b02-8060-3c20217a8ba9"
+
+[[env.production.kv_namespaces]]
+binding = "KV"
+id = "fa91fd99c24444baa723daf64238124d"

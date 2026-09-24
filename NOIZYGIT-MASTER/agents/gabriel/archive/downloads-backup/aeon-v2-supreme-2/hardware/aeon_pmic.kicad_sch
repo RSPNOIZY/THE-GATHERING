@@ -1,0 +1,108 @@
+(kicad_sch (version 20230121) (generator eeschema)
+
+  (title "AEON PMIC v2.0 SUPREME")
+  (date "2025-01-01")
+  (rev "2.0")
+  (company "MC96ECOUNIVERSE / NOIZYLAB")
+  
+  ; ═══════════════════════════════════════════════════════════════════════
+  ; COMPONENT NETLIST (Simplified for documentation)
+  ; Import into KiCad for full schematic
+  ; ═══════════════════════════════════════════════════════════════════════
+  
+  (symbol (lib_id "MCU_Module:ESP32-C3-MINI-1") (at 100 100 0)
+    (property "Reference" "U1"
+    (property "Value" "ESP32-C3-MINI-1")
+    (property "Footprint" "RF_Module:ESP32-C3-MINI-1"))
+  )
+  
+  (symbol (lib_id "Power_Management:BQ25570") (at 50 50 0)
+    (property "Reference" "U2")
+    (property "Value" "BQ25570")
+    (property "Footprint" "Package_DFN_QFN:QFN-20-1EP_3.5x3.5mm_P0.5mm"))
+  )
+  
+  (symbol (lib_id "Sensor_Temperature:MAX17048") (at 150 50 0)
+    (property "Reference" "U3")
+    (property "Value" "MAX17048")
+    (property "Footprint" "Package_DFN_QFN:TDFN-8-1EP_2x2mm_P0.5mm"))
+  )
+  
+  (symbol (lib_id "Power_Management:TPS61200") (at 50 150 0)
+    (property "Reference" "U4")
+    (property "Value" "TPS61200")
+    (property "Footprint" "Package_SON:WSON-10_2.5x2.5mm_P0.5mm"))
+  )
+  
+  (symbol (lib_id "Power_Management:LTC3108") (at 150 150 0)
+    (property "Reference" "U5")
+    (property "Value" "LTC3108")
+    (property "Footprint" "Package_DFN_QFN:DFN-12-1EP_3x4mm_P0.5mm"))
+  )
+  
+  (symbol (lib_id "Power_Management:TPS22860") (at 100 200 0)
+    (property "Reference" "U6")
+    (property "Value" "TPS22860")
+    (property "Footprint" "Package_SON:WSON-6_1.5x1.5mm_P0.5mm"))
+  )
+  
+  (symbol (lib_id "Device:Battery_Cell") (at 200 100 0)
+    (property "Reference" "BT1")
+    (property "Value" "LiPo_2000mAh")
+    (property "Footprint" "Connector_JST:JST_PH_S2B-PH-K"))
+  )
+  
+  (symbol (lib_id "Device:CP") (at 200 50 0)
+    (property "Reference" "C_SC1")
+    (property "Value" "1F_5.5V")
+    (property "Footprint" "Capacitor_THT:CP_Radial_D10.0mm_P5.00mm"))
+  )
+  
+  ; ═══════════════════════════════════════════════════════════════════════
+  ; NET CONNECTIONS
+  ; ═══════════════════════════════════════════════════════════════════════
+  
+  ; Power Rails
+  (net "VBAT" (node (ref "U2") (pin "VBAT")) (node (ref "BT1") (pin "+")))
+  (net "VSTOR" (node (ref "U2") (pin "VSTOR")) (node (ref "C_SC1") (pin "1")))
+  (net "3V3" (node (ref "U1") (pin "VDD")) (node (ref "U3") (pin "VDD")))
+  (net "5V" (node (ref "U4") (pin "VOUT")))
+  (net "GND" (node (ref "U1") (pin "GND")) (node (ref "U2") (pin "GND")) (node (ref "BT1") (pin "-")))
+  
+  ; Solar Input
+  (net "SOLAR+" (node (ref "U2") (pin "VIN_DC")))
+  (net "SOLAR-" (node (ref "GND")))
+  
+  ; Piezo Input (through rectifier to VIN_DC)
+  (net "PIEZO+" (node (ref "D1") (pin "A")))
+  (net "PIEZO_RECT" (node (ref "D1") (pin "C")) (node (ref "U2") (pin "VIN_DC")))
+  
+  ; TEG Input (through LTC3108 boost)
+  (net "TEG+" (node (ref "U5") (pin "VIN")))
+  (net "TEG_BOOST" (node (ref "U5") (pin "VOUT")) (node (ref "U2") (pin "VIN_DC")))
+  
+  ; I2C (Fuel Gauge)
+  (net "SDA" (node (ref "U1") (pin "GPIO8")) (node (ref "U3") (pin "SDA")))
+  (net "SCL" (node (ref "U1") (pin "GPIO9")) (node (ref "U3") (pin "SCL")))
+  
+  ; GPIO Controls
+  (net "CHARGER_EN" (node (ref "U1") (pin "GPIO6")) (node (ref "U2") (pin "EN")))
+  (net "BOOST_EN" (node (ref "U1") (pin "GPIO7")) (node (ref "U4") (pin "EN")))
+  (net "LOAD_EN" (node (ref "U1") (pin "GPIO10")) (node (ref "U6") (pin "ON")))
+  
+  ; ADC Inputs
+  (net "SOLAR_SENSE" (node (ref "U1") (pin "GPIO0")))
+  (net "BATT_SENSE" (node (ref "U1") (pin "GPIO1")))
+  (net "SUPERCAP_SENSE" (node (ref "U1") (pin "GPIO2")))
+  
+  ; USB-C
+  (net "USB_D+" (node (ref "U1") (pin "GPIO18")) (node (ref "J1") (pin "D+")))
+  (net "USB_D-" (node (ref "U1") (pin "GPIO19")) (node (ref "J1") (pin "D-")))
+  (net "USB_VBUS" (node (ref "J1") (pin "VBUS")))
+  
+  ; LED
+  (net "LED_R" (node (ref "U1") (pin "GPIO18")))
+  (net "LED_G" (node (ref "U1") (pin "GPIO19")))
+  (net "LED_B" (node (ref "U1") (pin "GPIO21")))
+  
+)

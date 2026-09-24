@@ -10,7 +10,6 @@ import json
 import sqlite3
 from pathlib import Path
 from datetime import datetime
-from typing import Optional
 from ..models import AudioAsset, ScanReport
 
 
@@ -326,7 +325,7 @@ class LocalCatalog:
         with open(path, "w") as f:
             f.write("-- SUPERSONIC D1 Export\n")
             f.write(f"-- Generated: {datetime.now().isoformat()}\n")
-            f.write(f"-- Machine: GOD\n\n")
+            f.write("-- Machine: GOD\n\n")
             f.write(D1_SCHEMA)
             f.write("\n\n-- Data\n")
 

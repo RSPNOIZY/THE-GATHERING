@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://noizy.ai/schemas/command-v1.json",
+  "title": "NOIZY Command Schema",
+  "type": "object",
+  "required": [
+    "command_id",
+    "actor",
+    "source",
+    "intent",
+    "parameters",
+    "risk_class",
+    "timestamp",
+    "idempotency_key"
+  ],
+  "properties": {
+    "command_id": {
+      "type": "string",
+      "description": "Unique UUID identifying the command."
+    },
+    "actor": {
+      "type": "string",
+      "enum": ["RSP_001", "GABRIEL", "LUCY", "ALEX_WARD"],
+      "description": "The identity issuing the command."
+    },
+    "source": {
+      "type": "string",
+      "enum": ["Notion", "Siri", "Discord", "Slack", "iPad", "iPhone", "MICHAEL"],
+      "description": "The source platform where the command originated."
+    },
+    "intent": {
+      "type": "string",
+      "enum": [
+        "record_idea",
+        "search_catalog",
+        "send_message",
+        "start_car_mode",
+        "archive_audio",
+        "run_backup",
+        "deploy",
+        "system_health"
+      ],
+      "description": "The specific operation to be executed."
+    },
+    "parameters": {
+      "type": "object",
+      "description": "Intent-specific arguments."
+    },
+    "risk_class": {
+      "type": "string",
+      "enum": ["low", "medium", "high", "critical"],
+      "description": "Risk categorization to enforce Rule Zero verification gates."
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp of command generation."
+    },
+    "idempotency_key": {
+      "type": "string",
+      "description": "Unique key to prevent replay attacks and duplicate execution."
+    }
+  },
+  "additionalProperties": false
+}

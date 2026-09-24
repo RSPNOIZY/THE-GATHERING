@@ -35,10 +35,8 @@ March 23, 2026
 import subprocess
 import json
 import os
-import tempfile
 from pathlib import Path
 from datetime import datetime
-from typing import Optional
 
 # ═══════════════════════════════════════════════════════════════
 # CONFIGURATION

@@ -1,0 +1,259 @@
+#!/bin/bash
+# ═══════════════════════════════════════════════════════════════════════════
+# vsc-hotrod - Initialize a project with NOIZYLAB hot-rodded VS Code settings
+# Usage: vsc-hotrod [project_dir]
+# ═══════════════════════════════════════════════════════════════════════════
+
+set -euo pipefail
+
+# Colors
+GREEN='\033[0;32m'
+CYAN='\033[0;36m'
+YELLOW='\033[1;33m'
+NC='\033[0m'
+
+PROJECT_DIR="${1:-.}"
+PROJECT_NAME=$(basename "$(realpath "$PROJECT_DIR")")
+
+echo -e "${CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+echo -e "${CYAN}🔥 VSC HOT ROD - NOIZYLAB Edition${NC}"
+echo -e "${CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+echo ""
+echo -e "Project: ${GREEN}$PROJECT_NAME${NC}"
+echo ""
+
+# Create .vscode directory
+mkdir -p "$PROJECT_DIR/.vscode"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Create settings.json
+# ─────────────────────────────────────────────────────────────────────────────
+cat > "$PROJECT_DIR/.vscode/settings.json" << 'EOF'
+{
+  // ═══════════════════════════════════════════════════════════════════════════
+  // NOIZYLAB HOT ROD SETTINGS
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  "editor.fontSize": 14,
+  "editor.fontFamily": "Fira Code, JetBrains Mono, Menlo, monospace",
+  "editor.fontLigatures": true,
+  "editor.lineHeight": 1.6,
+  "editor.tabSize": 2,
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "explicit",
+    "source.organizeImports": "explicit"
+  },
+  "editor.minimap.enabled": false,
+  "editor.bracketPairColorization.enabled": true,
+  "editor.stickyScroll.enabled": true,
+  "editor.inlineSuggest.enabled": true,
+
+  "files.autoSave": "afterDelay",
+  "files.autoSaveDelay": 1000,
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true,
+  "files.exclude": {
+    "**/.git": true,
+    "**/.DS_Store": true,
+    "**/node_modules": true,
+    "**/__pycache__": true,
+    "**/dist": true
+  },
+
+  "[python]": {
+    "editor.defaultFormatter": "charliermarsh.ruff",
+    "editor.tabSize": 4
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[yaml]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
+}
+EOF
+echo -e "  ${GREEN}✓${NC} Created .vscode/settings.json"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Create extensions.json
+# ─────────────────────────────────────────────────────────────────────────────
+cat > "$PROJECT_DIR/.vscode/extensions.json" << 'EOF'
+{
+  "recommendations": [
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+    "eamodio.gitlens",
+    "anthropic.claude-code",
+    "ms-python.python",
+    "charliermarsh.ruff",
+    "usernamehw.errorlens",
+    "gruntfuggly.todo-tree"
+  ]
+}
+EOF
+echo -e "  ${GREEN}✓${NC} Created .vscode/extensions.json"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Create launch.json
+# ─────────────────────────────────────────────────────────────────────────────
+cat > "$PROJECT_DIR/.vscode/launch.json" << 'EOF'
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Python: Current File",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${file}",
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "Node: Current File",
+      "type": "node",
+      "request": "launch",
+      "program": "${file}",
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "Node: npm start",
+      "type": "node",
+      "request": "launch",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev"],
+      "console": "integratedTerminal"
+    }
+  ]
+}
+EOF
+echo -e "  ${GREEN}✓${NC} Created .vscode/launch.json"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Create tasks.json
+# ─────────────────────────────────────────────────────────────────────────────
+cat > "$PROJECT_DIR/.vscode/tasks.json" << 'EOF'
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Build",
+      "type": "shell",
+      "command": "npm run build 2>/dev/null || python -m build 2>/dev/null || echo 'No build configured'",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Test",
+      "type": "shell",
+      "command": "npm test 2>/dev/null || pytest 2>/dev/null || echo 'No tests configured'",
+      "group": {
+        "kind": "test",
+        "isDefault": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Lint",
+      "type": "shell",
+      "command": "npm run lint 2>/dev/null || ruff check . 2>/dev/null || echo 'No linter configured'",
+      "problemMatcher": []
+    },
+    {
+      "label": "Dev Server",
+      "type": "shell",
+      "command": "npm run dev 2>/dev/null || python -m uvicorn main:app --reload 2>/dev/null",
+      "isBackground": true,
+      "problemMatcher": []
+    }
+  ]
+}
+EOF
+echo -e "  ${GREEN}✓${NC} Created .vscode/tasks.json"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Create CLAUDE.md if it doesn't exist
+# ─────────────────────────────────────────────────────────────────────────────
+if [[ ! -f "$PROJECT_DIR/CLAUDE.md" ]]; then
+cat > "$PROJECT_DIR/CLAUDE.md" << EOF
+# $PROJECT_NAME
+
+## Project Description
+[Add description here]
+
+## Setup
+\`\`\`bash
+# Installation steps
+\`\`\`
+
+## Architecture
+[Add architecture notes]
+
+## Conventions
+- [Add coding conventions]
+EOF
+echo -e "  ${GREEN}✓${NC} Created CLAUDE.md"
+else
+echo -e "  ${YELLOW}⏭${NC} CLAUDE.md already exists"
+fi
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Create .editorconfig
+# ─────────────────────────────────────────────────────────────────────────────
+if [[ ! -f "$PROJECT_DIR/.editorconfig" ]]; then
+cat > "$PROJECT_DIR/.editorconfig" << 'EOF'
+root = true
+
+[*]
+indent_style = space
+indent_size = 2
+end_of_line = lf
+charset = utf-8
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+[*.py]
+indent_size = 4
+
+[*.md]
+trim_trailing_whitespace = false
+
+[Makefile]
+indent_style = tab
+EOF
+echo -e "  ${GREEN}✓${NC} Created .editorconfig"
+fi
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Create .prettierrc
+# ─────────────────────────────────────────────────────────────────────────────
+if [[ ! -f "$PROJECT_DIR/.prettierrc" ]]; then
+cat > "$PROJECT_DIR/.prettierrc" << 'EOF'
+{
+  "semi": true,
+  "singleQuote": true,
+  "tabWidth": 2,
+  "trailingComma": "all",
+  "printWidth": 100
+}
+EOF
+echo -e "  ${GREEN}✓${NC} Created .prettierrc"
+fi
+
+echo ""
+echo -e "${CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+echo -e "${GREEN}✅ Project hot-rodded!${NC}"
+echo ""
+echo -e "Open with: ${CYAN}code-insiders $PROJECT_DIR${NC}"
+echo -e "${CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"

@@ -1,0 +1,379 @@
+{
+  "monorepo_name": "NOIZYGIT-MASTER",
+  "canonical_repository": "https://github.com/RSPNOIZY/THE-GATHERING/NOIZYGIT-MASTER",
+  "architecture_version": "4.0.0-SOVEREIGN",
+  "generated_at": "2026-09-24T18:19:12Z",
+  "domains": {
+    "apps": {
+      "name": "apps",
+      "description": "User Interfaces, Dashboards & Client Applications",
+      "exists": true,
+      "submodule_count": 6,
+      "submodules": [
+        {
+          "name": "apps",
+          "relative_path": "apps/apps",
+          "file_count": 41885,
+          "size_bytes": 257733894,
+          "size_mb": 245.79
+        },
+        {
+          "name": "command-center",
+          "relative_path": "apps/command-center",
+          "file_count": 2,
+          "size_bytes": 2069,
+          "size_mb": 0.0
+        },
+        {
+          "name": "mission-control-96",
+          "relative_path": "apps/mission-control-96",
+          "file_count": 371,
+          "size_bytes": 65029460,
+          "size_mb": 62.02
+        },
+        {
+          "name": "noizy-ios-native",
+          "relative_path": "apps/noizy-ios-native",
+          "file_count": 2527,
+          "size_bytes": 243729529,
+          "size_mb": 232.44
+        },
+        {
+          "name": "noizylab-web",
+          "relative_path": "apps/noizylab-web",
+          "file_count": 30,
+          "size_bytes": 239753,
+          "size_mb": 0.23
+        },
+        {
+          "name": "operator-panel",
+          "relative_path": "apps/operator-panel",
+          "file_count": 1,
+          "size_bytes": 293,
+          "size_mb": 0.0
+        }
+      ],
+      "total_files": 44817,
+      "total_bytes": 566735522,
+      "total_mb": 540.48
+    },
+    "agents": {
+      "name": "agents",
+      "description": "Autonomous Multi-Agent Swarms & Cognitive Entities",
+      "exists": true,
+      "submodule_count": 6,
+      "submodules": [
+        {
+          "name": "gabriel",
+          "relative_path": "agents/gabriel",
+          "file_count": 1367,
+          "size_bytes": 18689035,
+          "size_mb": 17.82
+        },
+        {
+          "name": "lucy",
+          "relative_path": "agents/lucy",
+          "file_count": 1,
+          "size_bytes": 284,
+          "size_mb": 0.0
+        },
+        {
+          "name": "michael-merkle",
+          "relative_path": "agents/michael-merkle",
+          "file_count": 1,
+          "size_bytes": 305,
+          "size_mb": 0.0
+        },
+        {
+          "name": "swarms",
+          "relative_path": "agents/swarms",
+          "file_count": 1,
+          "size_bytes": 277,
+          "size_mb": 0.0
+        },
+        {
+          "name": "the-conductor",
+          "relative_path": "agents/the-conductor",
+          "file_count": 1,
+          "size_bytes": 283,
+          "size_mb": 0.0
+        },
+        {
+          "name": "the-perfectionist",
+          "relative_path": "agents/the-perfectionist",
+          "file_count": 1,
+          "size_bytes": 306,
+          "size_mb": 0.0
+        }
+      ],
+      "total_files": 1373,
+      "total_bytes": 18691061,
+      "total_mb": 17.83
+    },
+    "mcps": {
+      "name": "mcps",
+      "description": "Model Context Protocol Servers",
+      "exists": true,
+      "submodule_count": 5,
+      "submodules": [
+        {
+          "name": "consent-oracle",
+          "relative_path": "mcps/consent-oracle",
+          "file_count": 1,
+          "size_bytes": 291,
+          "size_mb": 0.0
+        },
+        {
+          "name": "dream-mcp",
+          "relative_path": "mcps/dream-mcp",
+          "file_count": 1,
+          "size_bytes": 283,
+          "size_mb": 0.0
+        },
+        {
+          "name": "filesystem-mcp",
+          "relative_path": "mcps/filesystem-mcp",
+          "file_count": 1,
+          "size_bytes": 291,
+          "size_mb": 0.0
+        },
+        {
+          "name": "lucy-mcp",
+          "relative_path": "mcps/lucy-mcp",
+          "file_count": 1,
+          "size_bytes": 274,
+          "size_mb": 0.0
+        },
+        {
+          "name": "routes-mcp",
+          "relative_path": "mcps/routes-mcp",
+          "file_count": 1,
+          "size_bytes": 280,
+          "size_mb": 0.0
+        }
+      ],
+      "total_files": 6,
+      "total_bytes": 1889,
+      "total_mb": 0.0
+    },
+    "packages": {
+      "name": "packages",
+      "description": "Shared SDKs, Core Libraries & Verification Engines",
+      "exists": true,
+      "submodule_count": 3,
+      "submodules": [
+        {
+          "name": "hvs-sovereignty",
+          "relative_path": "packages/hvs-sovereignty",
+          "file_count": 4,
+          "size_bytes": 5984,
+          "size_mb": 0.01
+        },
+        {
+          "name": "noizy-core-ts",
+          "relative_path": "packages/noizy-core-ts",
+          "file_count": 13,
+          "size_bytes": 49630,
+          "size_mb": 0.05
+        },
+        {
+          "name": "noizy-sdk-python",
+          "relative_path": "packages/noizy-sdk-python",
+          "file_count": 6,
+          "size_bytes": 16496,
+          "size_mb": 0.02
+        }
+      ],
+      "total_files": 25,
+      "total_bytes": 77557,
+      "total_mb": 0.07
+    },
+    "audio_music": {
+      "name": "audio_music",
+      "description": "Audio Architecture, Instruments & Sound Design",
+      "exists": true,
+      "submodule_count": 3,
+      "submodules": [
+        {
+          "name": "kontakt_lab",
+          "relative_path": "audio_music/kontakt_lab",
+          "file_count": 1,
+          "size_bytes": 293,
+          "size_mb": 0.0
+        },
+        {
+          "name": "sonic_branding",
+          "relative_path": "audio_music/sonic_branding",
+          "file_count": 1,
+          "size_bytes": 301,
+          "size_mb": 0.0
+        },
+        {
+          "name": "voice_army",
+          "relative_path": "audio_music/voice_army",
+          "file_count": 1,
+          "size_bytes": 293,
+          "size_mb": 0.0
+        }
+      ],
+      "total_files": 4,
+      "total_bytes": 1246,
+      "total_mb": 0.0
+    },
+    "docs": {
+      "name": "docs",
+      "description": "Canonical Knowledge Base, Specs, Blueprints & Master Idea Vault",
+      "exists": true,
+      "submodule_count": 5,
+      "submodules": [
+        {
+          "name": "architecture",
+          "relative_path": "docs/architecture",
+          "file_count": 4,
+          "size_bytes": 9220,
+          "size_mb": 0.01
+        },
+        {
+          "name": "canonical",
+          "relative_path": "docs/canonical",
+          "file_count": 40,
+          "size_bytes": 969964,
+          "size_mb": 0.93
+        },
+        {
+          "name": "guides",
+          "relative_path": "docs/guides",
+          "file_count": 1,
+          "size_bytes": 282,
+          "size_mb": 0.0
+        },
+        {
+          "name": "ideas_vault",
+          "relative_path": "docs/ideas_vault",
+          "file_count": 17270,
+          "size_bytes": 4379568881,
+          "size_mb": 4176.68
+        },
+        {
+          "name": "research",
+          "relative_path": "docs/research",
+          "file_count": 31,
+          "size_bytes": 17948675,
+          "size_mb": 17.12
+        }
+      ],
+      "total_files": 17347,
+      "total_bytes": 4398497480,
+      "total_mb": 4194.73
+    },
+    "config": {
+      "name": "config",
+      "description": "Unified Infrastructure & Deployment Configurations",
+      "exists": true,
+      "submodule_count": 4,
+      "submodules": [
+        {
+          "name": "cloudflare",
+          "relative_path": "config/cloudflare",
+          "file_count": 1,
+          "size_bytes": 285,
+          "size_mb": 0.0
+        },
+        {
+          "name": "docker",
+          "relative_path": "config/docker",
+          "file_count": 1,
+          "size_bytes": 281,
+          "size_mb": 0.0
+        },
+        {
+          "name": "supabase",
+          "relative_path": "config/supabase",
+          "file_count": 1,
+          "size_bytes": 286,
+          "size_mb": 0.0
+        },
+        {
+          "name": "workflows",
+          "relative_path": "config/workflows",
+          "file_count": 1,
+          "size_bytes": 282,
+          "size_mb": 0.0
+        }
+      ],
+      "total_files": 5,
+      "total_bytes": 1541,
+      "total_mb": 0.0
+    },
+    "scripts": {
+      "name": "scripts",
+      "description": "Operational, Sync & Verification Utilities",
+      "exists": true,
+      "submodule_count": 3,
+      "submodules": [
+        {
+          "name": "bootstrap",
+          "relative_path": "scripts/bootstrap",
+          "file_count": 1,
+          "size_bytes": 291,
+          "size_mb": 0.0
+        },
+        {
+          "name": "sync",
+          "relative_path": "scripts/sync",
+          "file_count": 2,
+          "size_bytes": 5820,
+          "size_mb": 0.01
+        },
+        {
+          "name": "verification",
+          "relative_path": "scripts/verification",
+          "file_count": 1,
+          "size_bytes": 294,
+          "size_mb": 0.0
+        }
+      ],
+      "total_files": 5,
+      "total_bytes": 6757,
+      "total_mb": 0.01
+    },
+    "tools": {
+      "name": "tools",
+      "description": "Internal Developer & Automation Tools",
+      "exists": true,
+      "submodule_count": 3,
+      "submodules": [
+        {
+          "name": "audio_dsp",
+          "relative_path": "tools/audio_dsp",
+          "file_count": 6,
+          "size_bytes": 82800,
+          "size_mb": 0.08
+        },
+        {
+          "name": "automation",
+          "relative_path": "tools/automation",
+          "file_count": 0,
+          "size_bytes": 0,
+          "size_mb": 0.0
+        },
+        {
+          "name": "cli",
+          "relative_path": "tools/cli",
+          "file_count": 139,
+          "size_bytes": 1278395187,
+          "size_mb": 1219.17
+        }
+      ],
+      "total_files": 148,
+      "total_bytes": 1278519056,
+      "total_mb": 1219.29
+    }
+  },
+  "summary": {
+    "total_domains": 9,
+    "total_files": 63730,
+    "total_bytes": 6262532109,
+    "total_mb": 5972.42
+  }
+}

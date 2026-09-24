@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+  "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.noizy.macos-bridge</string>
+
+  <key>ProgramArguments</key>
+  <array>
+    <string>/Users/m2ultra/NOIZYLAB/swift-library/noizy-macos-bridge/.build/release/noizy-macos-bridge</string>
+  </array>
+
+  <key>WorkingDirectory</key>
+  <string>/Users/m2ultra/NOIZYLAB/swift-library/noizy-macos-bridge</string>
+
+  <key>RunAtLoad</key>
+  <true/>
+
+  <key>KeepAlive</key>
+  <true/>
+
+  <key>StandardOutPath</key>
+  <string>/Users/m2ultra/.noizy/macos-bridge/launchd.out.log</string>
+
+  <key>StandardErrorPath</key>
+  <string>/Users/m2ultra/.noizy/macos-bridge/launchd.err.log</string>
+
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>NOIZY_BRIDGE_DATA_DIR</key>
+    <string>/Users/m2ultra/.noizy/macos-bridge</string>
+  </dict>
+</dict>
+</plist>

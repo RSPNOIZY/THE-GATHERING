@@ -10,7 +10,6 @@ import subprocess
 import socket
 import platform
 import psutil
-import os
 
 PORT = 8080
 ALLOWED_COMMANDS = ['systeminfo', 'dir', 'hostname', 'ipconfig', 'whoami', 'date', 'time', 'tasklist', 'wmic', 'netstat']

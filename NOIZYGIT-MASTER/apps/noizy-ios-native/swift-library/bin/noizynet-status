@@ -1,0 +1,68 @@
+#!/bin/bash
+# noizynet-status — Check all NOIZYNET connections and services
+# Usage: noizynet-status
+
+BOLD='\033[1m'
+GREEN='\033[0;32m'
+RED='\033[0;31m'
+YELLOW='\033[0;33m'
+CYAN='\033[0;36m'
+DIM='\033[2m'
+NC='\033[0m'
+
+echo ""
+echo -e "${BOLD}╔═══════════════════════════════════════════════════════╗${NC}"
+echo -e "${BOLD}║           NOIZYNET STATUS — $(date '+%Y-%m-%d %H:%M')            ║${NC}"
+echo -e "${BOLD}╚═══════════════════════════════════════════════════════╝${NC}"
+
+echo ""
+echo -e "${BOLD}${CYAN}  HOSTS${NC}"
+
+for host_info in "god:10.90.90.20:GOD (M2 Ultra)" "micky-p:10.90.90.10:Micky-P (Recording)" "gateway:10.90.90.1:Gateway/Router"; do
+    IFS=':' read -r host ip label <<< "$host_info"
+    if ping -c1 -t2 "$ip" &>/dev/null; then
+        ms=$(ping -c1 -t2 "$ip" 2>/dev/null | grep "time=" | sed 's/.*time=\([0-9.]*\).*/\1/')
+        echo -e "  ${GREEN}●${NC} ${BOLD}$label${NC} ($ip) — ${GREEN}${ms}ms${NC}"
+    else
+        echo -e "  ${RED}●${NC} ${BOLD}$label${NC} ($ip) — ${RED}OFFLINE${NC}"
+    fi
+done
+
+echo ""
+echo -e "${BOLD}${CYAN}  SERVICES${NC}"
+
+for svc_info in "GABRIEL API:127.0.0.1:9099" "n8n:127.0.0.1:5678" "SSH (GOD):127.0.0.1:22"; do
+    IFS=':' read -r name host port <<< "$svc_info"
+    if nc -z -w2 "$host" "$port" 2>/dev/null; then
+        echo -e "  ${GREEN}●${NC} $name ($host:$port) — ${GREEN}UP${NC}"
+    else
+        echo -e "  ${RED}●${NC} $name ($host:$port) — ${RED}DOWN${NC}"
+    fi
+done
+
+# WireGuard
+if command -v wg &>/dev/null && sudo wg show noizynet &>/dev/null 2>&1; then
+    echo ""
+    echo -e "${BOLD}${CYAN}  WIREGUARD VPN${NC}"
+    echo -e "  ${GREEN}●${NC} NOIZYNET VPN — ${GREEN}ACTIVE${NC}"
+    sudo wg show noizynet 2>/dev/null | grep -E "peer|endpoint|latest" | while read line; do
+        echo -e "  ${DIM}  $line${NC}"
+    done
+else
+    echo ""
+    echo -e "${BOLD}${CYAN}  WIREGUARD VPN${NC}"
+    echo -e "  ${YELLOW}●${NC} NOIZYNET VPN — ${YELLOW}INACTIVE${NC}"
+fi
+
+# Cloudflare Tunnel
+if pgrep -f "cloudflared tunnel" &>/dev/null; then
+    echo ""
+    echo -e "${BOLD}${CYAN}  CLOUDFLARE TUNNEL${NC}"
+    echo -e "  ${GREEN}●${NC} NOIZYNET Tunnel — ${GREEN}RUNNING${NC}"
+else
+    echo ""
+    echo -e "${BOLD}${CYAN}  CLOUDFLARE TUNNEL${NC}"
+    echo -e "  ${YELLOW}●${NC} NOIZYNET Tunnel — ${YELLOW}NOT RUNNING${NC}"
+fi
+
+echo ""

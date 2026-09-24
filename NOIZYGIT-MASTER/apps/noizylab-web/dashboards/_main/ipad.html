@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+<meta name="apple-mobile-web-app-title" content="NOIZY"/>
+<title>NOIZY — Satellite Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"/>
+<style>
+/* ── Reset & Root ── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+:root{
+  --bg:#08090c;
+  --surface:rgba(255,255,255,.04);
+  --border:rgba(255,255,255,.08);
+  --text:#e8eaf0;
+  --muted:#64748b;
+  --green:#00ff9d;
+  --neon:#c084fc;
+  --gold:#fbbf24;
+  --cf:#f6821f;
+  --red:#ff4466;
+  --amber:#ffaa00;
+  --font:'Outfit',sans-serif;
+  --mono:'JetBrains Mono',monospace;
+  --safe-top: env(safe-area-inset-top, 0px);
+}
+html,body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--font);
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+/* ── Layout ── */
+.ipad-shell{
+  max-width:1024px;
+  margin:0 auto;
+  padding:calc(var(--safe-top) + 16px) 16px 32px;
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+}
+
+/* ── Header ── */
+.ipad-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:14px 20px;
+  border-radius:16px;
+  background:rgba(0,255,157,.04);
+  border:1px solid rgba(0,255,157,.15);
+}
+.ipad-logo{
+  font-size:20px;
+  font-weight:900;
+  letter-spacing:3px;
+  color:var(--green);
+}
+.ipad-sub{
+  font-size:10px;
+  color:rgba(0,255,157,.5);
+  letter-spacing:2px;
+  margin-top:2px;
+}
+.ipad-clock{
+  font-family:var(--mono);
+  font-size:22px;
+  font-weight:600;
+  color:var(--text);
+}
+.ipad-date{font-size:10px;color:var(--muted);text-align:right;margin-top:2px;}
+
+/* ── GABRIEL Status Strip ── */
+.gabriel-strip{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  padding:16px 20px;
+  border-radius:14px;
+  background:rgba(0,0,0,.5);
+  border:1px solid rgba(0,255,157,.2);
+  position:relative;
+  overflow:hidden;
+}
+.gabriel-strip::before{
+  content:'';
+  position:absolute;
+  top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,var(--green),transparent);
+  animation:scanline 3s linear infinite;
+}
+@keyframes scanline{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
+.gabriel-dot-wrap{position:relative;flex-shrink:0;}
+.gabriel-dot{
+  width:42px;height:42px;border-radius:50%;
+  background:radial-gradient(circle,rgba(0,255,157,.2),rgba(0,0,0,.8));
+  border:2px solid var(--green);
+  display:flex;align-items:center;justify-content:center;
+  font-size:20px;
+}
+.gabriel-ping{
+  position:absolute;inset:-4px;border-radius:50%;
+  border:1px solid var(--green);
+  animation:ping 2s ease-out infinite;
+}
+@keyframes ping{0%{opacity:.8;transform:scale(.9)}100%{opacity:0;transform:scale(1.5)}}
+.gabriel-info{flex:1;}
+.gabriel-name-sm{font-size:14px;font-weight:800;color:var(--green);letter-spacing:2px;}
+.gabriel-desc{font-size:10px;color:rgba(0,255,157,.5);letter-spacing:1px;margin-top:1px;}
+.gabriel-machine{font-family:var(--mono);font-size:9px;color:var(--muted);margin-top:3px;}
+.g-badge{
+  font-size:9px;padding:4px 10px;border-radius:6px;
+  letter-spacing:1px;font-weight:700;white-space:nowrap;
+}
+.g-badge.on{background:rgba(0,255,157,.1);color:var(--green);border:1px solid rgba(0,255,157,.25);}
+.g-badge.off{background:rgba(255,68,102,.1);color:var(--red);border:1px solid rgba(255,68,102,.25);}
+.g-badge.wait{background:rgba(255,170,0,.1);color:var(--amber);border:1px solid rgba(255,170,0,.25);}
+
+/* ── Metrics Row ── */
+.metrics-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
+.metric-card{
+  border-radius:14px;border:1px solid var(--border);
+  background:var(--surface);
+  padding:14px 16px;
+  display:flex;flex-direction:column;gap:4px;
+}
+.metric-label{font-size:9px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;}
+.metric-value{font-size:22px;font-weight:800;font-family:var(--mono);}
+.metric-sub{font-size:9px;color:var(--muted);}
+.metric-value.green{color:var(--green);}
+.metric-value.neon{color:var(--neon);}
+.metric-value.gold{color:var(--gold);}
+.metric-value.cf{color:var(--cf);}
+
+/* ── Voice Command ── */
+.voice-panel{
+  border-radius:16px;
+  border:1px solid rgba(192,132,252,.3);
+  background:rgba(192,132,252,.04);
+  padding:20px;
+}
+.voice-panel-title{
+  font-size:11px;letter-spacing:2px;color:var(--neon);
+  text-transform:uppercase;margin-bottom:14px;
+}
+.mic-row{display:flex;align-items:center;gap:14px;}
+.mic-big{
+  width:72px;height:72px;border-radius:50%;flex-shrink:0;
+  background:radial-gradient(circle,rgba(192,132,252,.2),rgba(0,0,0,.8));
+  border:2px solid var(--neon);
+  display:flex;align-items:center;justify-content:center;
+  font-size:32px;cursor:pointer;
+  transition:.2s;
+  -webkit-user-select:none;user-select:none;
+}
+.mic-big:active{transform:scale(.93);background:radial-gradient(circle,rgba(192,132,252,.35),rgba(0,0,0,.6));}
+.mic-big.recording{
+  border-color:var(--red);
+  animation:micPulse 1s ease-in-out infinite;
+}
+@keyframes micPulse{0%,100%{box-shadow:0 0 0 0 rgba(255,68,102,.4)}50%{box-shadow:0 0 0 12px rgba(255,68,102,0)}}
+.voice-input-col{flex:1;}
+.voice-text-display{
+  font-family:var(--mono);font-size:13px;
+  color:var(--text);
+  background:rgba(0,0,0,.4);
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:12px 14px;
+  min-height:52px;
+  word-break:break-word;
+  line-height:1.5;
+}
+.voice-text-display.empty{color:var(--muted);}
+.voice-tower-row{display:flex;gap:8px;margin-top:10px;}
+.tower-btn{
+  flex:1;padding:12px 8px;border-radius:10px;border:1px solid var(--border);
+  background:rgba(255,255,255,.04);
+  font-size:11px;font-weight:700;letter-spacing:1px;
+  cursor:pointer;transition:.15s;color:var(--text);
+  display:flex;flex-direction:column;align-items:center;gap:4px;
+}
+.tower-btn:active{transform:scale(.96);}
+.tower-btn.max{border-color:rgba(192,132,252,.3);color:var(--neon);}
+.tower-btn.code{border-color:rgba(56,189,248,.3);color:#38bdf8;}
+.tower-btn.work{border-color:rgba(52,211,153,.3);color:var(--green);}
+.tower-btn-icon{font-size:20px;}
+.tower-btn-label{font-size:9px;letter-spacing:1px;}
+
+/* ── Quick Actions ── */
+.actions-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+.action-btn{
+  padding:18px 12px;border-radius:14px;
+  border:1px solid var(--border);
+  background:var(--surface);
+  cursor:pointer;transition:.15s;
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  color:var(--text);
+}
+.action-btn:active{transform:scale(.96);border-color:rgba(255,255,255,.2);}
+.action-icon{font-size:28px;}
+.action-label{font-size:10px;letter-spacing:1px;font-weight:600;text-transform:uppercase;color:var(--muted);}
+.action-btn.primary{border-color:rgba(246,130,31,.3);background:rgba(246,130,31,.05);}
+.action-btn.primary .action-label{color:var(--cf);}
+.action-btn.danger{border-color:rgba(255,68,102,.3);background:rgba(255,68,102,.04);}
+.action-btn.danger .action-label{color:var(--red);}
+.action-btn.success{border-color:rgba(0,255,157,.2);background:rgba(0,255,157,.03);}
+.action-btn.success .action-label{color:var(--green);}
+
+/* ── Two-col split ── */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+
+/* ── Panel ── */
+.panel{
+  border-radius:14px;border:1px solid var(--border);
+  background:var(--surface);padding:16px;
+}
+.panel-title{font-size:10px;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-bottom:12px;}
+
+/* ── Standing Orders ── */
+.order-item{
+  display:flex;gap:8px;align-items:flex-start;
+  padding:6px 0;border-bottom:1px solid rgba(255,255,255,.04);
+  font-size:11px;line-height:1.4;
+}
+.order-dot{flex-shrink:0;margin-top:2px;}
+
+/* ── Log ── */
+.log-scroll{max-height:180px;overflow-y:auto;}
+.log-scroll::-webkit-scrollbar{display:none;}
+.log-item{
+  display:flex;gap:8px;
+  padding:5px 0;border-bottom:1px solid rgba(255,255,255,.03);
+  font-size:10px;font-family:var(--mono);
+}
+.log-ts{color:var(--muted);flex-shrink:0;}
+.log-msg{color:var(--text);line-height:1.4;}
+.log-msg.warn{color:var(--amber);}
+.log-msg.ok{color:var(--green);}
+
+/* ── Response card ── */
+.response-card{
+  border-radius:14px;border:1px solid var(--border);
+  background:rgba(0,0,0,.4);padding:16px;
+  display:none;
+}
+.response-card.visible{display:block;}
+.response-card-header{
+  display:flex;align-items:center;gap:8px;
+  margin-bottom:10px;font-size:11px;color:var(--muted);
+}
+.response-tower-badge{
+  font-size:9px;padding:3px 8px;border-radius:5px;
+  font-weight:700;letter-spacing:1px;
+}
+.response-text{font-size:13px;line-height:1.7;color:var(--text);}
+.response-copy{
+  margin-top:12px;padding:10px;border-radius:8px;
+  border:1px solid var(--border);background:rgba(255,255,255,.03);
+  font-size:11px;color:var(--muted);cursor:pointer;text-align:center;
+  transition:.15s;
+}
+.response-copy:active{background:rgba(255,255,255,.07);}
+
+/* ── Deploy status ── */
+.deploy-status{display:flex;flex-direction:column;gap:8px;}
+.deploy-row{
+  display:flex;align-items:center;gap:10px;
+  padding:10px 12px;border-radius:10px;
+  background:rgba(0,0,0,.2);border:1px solid var(--border);
+}
+.deploy-icon{font-size:18px;flex-shrink:0;}
+.deploy-info{flex:1;}
+.deploy-name{font-size:11px;font-weight:600;}
+.deploy-desc{font-size:9px;color:var(--muted);margin-top:1px;}
+.deploy-tag{font-size:8px;padding:2px 7px;border-radius:4px;font-weight:700;letter-spacing:1px;white-space:nowrap;}
+.deploy-tag.live{background:rgba(0,255,157,.1);color:var(--green);border:1px solid rgba(0,255,157,.2);}
+.deploy-tag.pending{background:rgba(255,170,0,.1);color:var(--amber);border:1px solid rgba(255,170,0,.2);}
+.deploy-tag.blocked{background:rgba(255,68,102,.1);color:var(--red);border:1px solid rgba(255,68,102,.2);}
+
+/* ── Toast ── */
+.toast{
+  position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(80px);
+  background:rgba(0,255,157,.1);border:1px solid rgba(0,255,157,.3);
+  color:var(--green);border-radius:10px;padding:12px 24px;
+  font-size:12px;font-weight:600;letter-spacing:1px;
+  transition:transform .3s ease;z-index:999;white-space:nowrap;
+}
+.toast.show{transform:translateX(-50%) translateY(0);}
+</style>
+</head>
+<body>
+<div class="ipad-shell">
+
+  <!-- HEADER -->
+  <div class="ipad-header">
+    <div>
+      <div class="ipad-logo">NOIZY.AI</div>
+      <div class="ipad-sub">SATELLITE DASHBOARD · IPAD 12.9"</div>
+    </div>
+    <div style="text-align:right">
+      <div class="ipad-clock" id="clockDisplay">--:--</div>
+      <div class="ipad-date" id="dateDisplay">--</div>
+    </div>
+  </div>
+
+  <!-- GABRIEL STRIP -->
+  <div class="gabriel-strip">
+    <div class="gabriel-dot-wrap">
+      <div class="gabriel-ping"></div>
+      <div class="gabriel-dot">⚡</div>
+    </div>
+    <div class="gabriel-info">
+      <div class="gabriel-name-sm">GABRIEL — ACTIVE</div>
+      <div class="gabriel-desc">WARRIOR EXECUTOR · GABRIEL_V3 · GORUNFREE</div>
+      <div class="gabriel-machine">GOD.local · M2 Ultra 192GB · 10.90.90.10 · CF: 5f36aa9795348ea681d0b21910dfc82a</div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:6px;align-items:flex-end">
+      <div class="g-badge wait" id="gabrielBadge">⬤ CHECKING</div>
+      <div class="g-badge on" style="font-size:8px">DAZEFLOW 2026-03-27</div>
+    </div>
+  </div>
+
+  <!-- METRICS -->
+  <div class="metrics-row">
+    <div class="metric-card">
+      <div class="metric-label">Voice Bridge</div>
+      <div class="metric-value green" id="metricBridge">—</div>
+      <div class="metric-sub">localhost:8080</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">Ollama</div>
+      <div class="metric-value neon" id="metricOllama">—</div>
+      <div class="metric-sub">Gemma3 · Mistral</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">MCP Servers</div>
+      <div class="metric-value gold">10</div>
+      <div class="metric-sub">registered</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">Session</div>
+      <div class="metric-value cf" id="metricUptime">0:00</div>
+      <div class="metric-sub">uptime</div>
+    </div>
+  </div>
+
+  <!-- VOICE COMMAND -->
+  <div class="voice-panel">
+    <div class="voice-panel-title">🎙️ Voice Command — Robert's hands</div>
+    <div class="mic-row">
+      <div class="mic-big" id="micBtn" onclick="toggleMic()">🎙️</div>
+      <div class="voice-input-col">
+        <div class="voice-text-display empty" id="voiceDisplay">Tap mic and speak your command…</div>
+        <div class="voice-tower-row">
+          <button class="tower-btn max" onclick="sendToTower('max')">
+            <span class="tower-btn-icon">✦</span>
+            <span class="tower-btn-label">MAX</span>
+          </button>
+          <button class="tower-btn code" onclick="sendToTower('code')">
+            <span class="tower-btn-icon">⌨️</span>
+            <span class="tower-btn-label">CODE</span>
+          </button>
+          <button class="tower-btn work" onclick="sendToTower('work')">
+            <span class="tower-btn-icon">⚙️</span>
+            <span class="tower-btn-label">CREW</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RESPONSE -->
+  <div class="response-card" id="responseCard">
+    <div class="response-card-header">
+      <span id="responseTowerBadge" class="response-tower-badge"></span>
+      <span id="responseTime"></span>
+    </div>
+    <div class="response-text" id="responseText"></div>
+    <div class="response-copy" onclick="copyResponse()">📋 Copy Response</div>
+  </div>
+
+  <!-- QUICK ACTIONS -->
+  <div class="actions-row">
+    <div class="action-btn primary" onclick="runAction('deploy')">
+      <div class="action-icon">⚡</div>
+      <div class="action-label">Deploy HEAVEN</div>
+    </div>
+    <div class="action-btn success" onclick="runAction('status')">
+      <div class="action-icon">📡</div>
+      <div class="action-label">Empire Status</div>
+    </div>
+    <div class="action-btn" onclick="runAction('dreamchamber')">
+      <div class="action-icon">🌙</div>
+      <div class="action-label">DreamChamber</div>
+    </div>
+    <div class="action-btn" onclick="runAction('whisper')">
+      <div class="action-icon">🎧</div>
+      <div class="action-label">Test Whisper</div>
+    </div>
+    <div class="action-btn success" onclick="runAction('gabriel-status')">
+      <div class="action-icon">⚡</div>
+      <div class="action-label">GABRIEL Check</div>
+    </div>
+    <div class="action-btn danger" onclick="runAction('wrangler-login')">
+      <div class="action-icon">🔐</div>
+      <div class="action-label">CF Login</div>
+    </div>
+  </div>
+
+  <!-- SPLIT: Deployments + Orders -->
+  <div class="two-col">
+    <div class="panel">
+      <div class="panel-title">Deployment Status</div>
+      <div class="deploy-status">
+        <div class="deploy-row">
+          <div class="deploy-icon">⚡</div>
+          <div class="deploy-info">
+            <div class="deploy-name">HEAVEN Worker</div>
+            <div class="deploy-desc">claude-proxy · NCP · TypeScript</div>
+          </div>
+          <div class="deploy-tag pending">PENDING</div>
+        </div>
+        <div class="deploy-row">
+          <div class="deploy-icon">🤖</div>
+          <div class="deploy-info">
+            <div class="deploy-name">Gemma3 MCP</div>
+            <div class="deploy-desc">GOD.local · Ollama · 10 tools</div>
+          </div>
+          <div class="deploy-tag live" id="deployGemma3">LIVE</div>
+        </div>
+        <div class="deploy-row">
+          <div class="deploy-icon">🎙️</div>
+          <div class="deploy-info">
+            <div class="deploy-name">Voice Bridge</div>
+            <div class="deploy-desc">GOD.local:8080 · express</div>
+          </div>
+          <div class="deploy-tag pending" id="deployBridge">CHECKING</div>
+        </div>
+        <div class="deploy-row">
+          <div class="deploy-icon">🌐</div>
+          <div class="deploy-info">
+            <div class="deploy-name">CF Tunnel</div>
+            <div class="deploy-desc">voice.noizy.ai → localhost:8080</div>
+          </div>
+          <div class="deploy-tag blocked">NOT SET UP</div>
+        </div>
+        <div class="deploy-row">
+          <div class="deploy-icon">📱</div>
+          <div class="deploy-info">
+            <div class="deploy-name">Teams iPhone</div>
+            <div class="deploy-desc">NOIZY Dream Chamber channels</div>
+          </div>
+          <div class="deploy-tag blocked">INSTALL NEEDED</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-title">Standing Orders</div>
+      <div id="ordersPanel">
+        <!-- Populated by JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- LOG -->
+  <div class="panel">
+    <div class="panel-title">Event Log</div>
+    <div class="log-scroll" id="logPanel"></div>
+  </div>
+
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ── CONFIG ──────────────────────────────────────────────────
+const GOD = 'http://localhost';
+const BRIDGE = `${GOD}:8080`;
+const OLLAMA = `${GOD}:11434`;
+let sessionSecs = 0;
+let recognizing = false;
+let recognition = null;
+let lastTranscript = '';
+let currentTower = 'max';
+
+// ── ORDERS ──────────────────────────────────────────────────
+const ORDERS = [
+  { text: 'wrangler login → deploy HEAVEN Worker', done: false },
+  { text: 'Cloudflare Tunnel → voice.noizy.ai', done: false },
+  { text: 'Teams on iPhone → NOIZY Dream Chamber', done: false },
+  { text: 'Audio Hijack → arm Recording Stop script', done: false },
+  { text: 'mlx-whisper install on GOD.local', done: false },
+  { text: 'pm2 start ecosystem.config.cjs', done: false },
+  { text: 'GitHub Enterprise restructure — ARCHIVE/ ✓', done: true },
+  { text: 'CF account 5f36aa97… locked in ✓', done: true },
+  { text: 'Gemma3 MCP server running ✓', done: true },
+  { text: 'robplowman → m2ultra path fix ✓', done: true },
+];
+
+// ── CLOCK ───────────────────────────────────────────────────
+function updateClock() {
+  const now = new Date();
+  document.getElementById('clockDisplay').textContent =
+    now.toLocaleTimeString('en-CA', { hour:'2-digit', minute:'2-digit', hour12:false });
+  document.getElementById('dateDisplay').textContent =
+    now.toLocaleDateString('en-CA', { weekday:'short', month:'short', day:'numeric' });
+}
+setInterval(updateClock, 1000);
+updateClock();
+
+// ── UPTIME ──────────────────────────────────────────────────
+setInterval(() => {
+  sessionSecs++;
+  const m = Math.floor(sessionSecs/60), s = sessionSecs%60;
+  document.getElementById('metricUptime').textContent = `${m}:${String(s).padStart(2,'0')}`;
+}, 1000);
+
+// ── STATUS CHECKS ────────────────────────────────────────────
+async function checkStatus() {
+  // Voice Bridge
+  try {
+    const r = await fetch(`${BRIDGE}/health`, { signal: AbortSignal.timeout(3000) });
+    const ok = r.ok;
+    document.getElementById('metricBridge').textContent = ok ? 'LIVE' : 'DOWN';
+    document.getElementById('metricBridge').style.color = ok ? 'var(--green)' : 'var(--red)';
+    document.getElementById('deployBridge').textContent = ok ? 'LIVE' : 'DOWN';
+    document.getElementById('deployBridge').className = `deploy-tag ${ok ? 'live' : 'blocked'}`;
+  } catch { 
+    document.getElementById('metricBridge').textContent = 'DOWN';
+    document.getElementById('metricBridge').style.color = 'var(--red)';
+    document.getElementById('deployBridge').textContent = 'DOWN';
+    document.getElementById('deployBridge').className = 'deploy-tag blocked';
+  }
+
+  // Ollama
+  try {
+    const r = await fetch(`${OLLAMA}/api/tags`, { signal: AbortSignal.timeout(3000) });
+    const ok = r.ok;
+    document.getElementById('metricOllama').textContent = ok ? 'LIVE' : 'DOWN';
+    document.getElementById('metricOllama').style.color = ok ? 'var(--neon)' : 'var(--red)';
+  } catch { 
+    document.getElementById('metricOllama').textContent = 'DOWN';
+    document.getElementById('metricOllama').style.color = 'var(--red)';
+  }
+
+  const online = document.getElementById('metricBridge').textContent === 'LIVE';
+  const badge = document.getElementById('gabrielBadge');
+  badge.textContent = online ? '⬤ ONLINE' : '⬤ OFFLINE';
+  badge.className = `g-badge ${online ? 'on' : 'off'}`;
+}
+setInterval(checkStatus, 15000);
+checkStatus();
+
+// ── ORDERS RENDER ─────────────────────────────────────────────
+function renderOrders() {
+  const el = document.getElementById('ordersPanel');
+  el.innerHTML = ORDERS.map(o => `
+    <div class="order-item">
+      <span class="order-dot" style="color:${o.done ? 'var(--green)' : 'var(--amber)'}">${o.done ? '✓' : '›'}</span>
+      <span style="color:${o.done ? 'var(--muted)' : 'var(--text)'};text-decoration:${o.done ? 'line-through' : 'none'}">${o.text}</span>
+    </div>`).join('');
+}
+renderOrders();
+
+// ── LOG ───────────────────────────────────────────────────────
+const logItems = [
+  { ts:'13:27', msg:'iPad satellite dashboard — initialized', cls:'ok' },
+  { ts:'13:26', msg:'GABRIEL relocated to GOD.local (M2 Ultra)', cls:'ok' },
+  { ts:'13:24', msg:'NOIZY BEAST workspace rules loaded', cls:'ok' },
+  { ts:'13:21', msg:'CF account corrected: 2446d788…', cls:'ok' },
+  { ts:'13:16', msg:'Gemma3 MCP server — running', cls:'ok' },
+  { ts:'13:09', msg:'HEAVEN Worker (TypeScript) — deploy pending', cls:'warn' },
+];
+
+function renderLog() {
+  const el = document.getElementById('logPanel');
+  el.innerHTML = logItems.map(l =>
+    `<div class="log-item"><span class="log-ts">${l.ts}</span><span class="log-msg ${l.cls}">${l.msg}</span></div>`
+  ).join('');
+}
+
+function addLog(msg, cls='') {
+  const now = new Date();
+  const ts = now.toTimeString().substring(0,5);
+  logItems.unshift({ ts, msg, cls });
+  if (logItems.length > 40) logItems.pop();
+  renderLog();
+}
+renderLog();
+
+// ── VOICE ────────────────────────────────────────────────────
+function toggleMic() {
+  if (!('webkitSpeechRecognition' in window || 'SpeechRecognition' in window)) {
+    showToast('⚠️ Speech recognition not available in this browser');
+    addLog('Speech API not supported — use text input', 'warn');
+    return;
+  }
+  if (recognizing) { recognition?.stop(); return; }
+
+  const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
+  recognition = new SpeechRec();
+  recognition.continuous = false;
+  recognition.interimResults = true;
+  recognition.lang = 'en-CA';
+
+  recognition.onstart = () => {
+    recognizing = true;
+    document.getElementById('micBtn').classList.add('recording');
+    document.getElementById('voiceDisplay').textContent = 'Listening…';
+    document.getElementById('voiceDisplay').classList.remove('empty');
+  };
+
+  recognition.onresult = (e) => {
+    const transcript = Array.from(e.results).map(r => r[0].transcript).join('');
+    document.getElementById('voiceDisplay').textContent = transcript;
+    lastTranscript = transcript;
+    if (e.results[e.results.length-1].isFinal) {
+      currentTower = autoDetect(transcript);
+      sendToTower(currentTower);
+    }
+  };
+
+  recognition.onend = () => {
+    recognizing = false;
+    document.getElementById('micBtn').classList.remove('recording');
+  };
+
+  recognition.onerror = (e) => {
+    recognizing = false;
+    document.getElementById('micBtn').classList.remove('recording');
+    addLog(`Mic error: ${e.error}`, 'warn');
+  };
+
+  recognition.start();
+}
+
+function autoDetect(text) {
+  const t = text.toLowerCase();
+  if (/build|code|deploy|script|npm|wrangler|bash|git/.test(t)) return 'code';
+  if (/task|assign|route|crew|delegate|team|channel/.test(t)) return 'work';
+  return 'max';
+}
+
+// ── SEND TO TOWER ─────────────────────────────────────────────
+async function sendToTower(tower) {
+  const text = lastTranscript || document.getElementById('voiceDisplay').textContent;
+  if (!text || text === 'Tap mic and speak your command…' || text === 'Listening…') {
+    showToast('Speak a command first');
+    return;
+  }
+
+  addLog(`→ Claude ${tower}: ${text.substring(0,50)}…`);
+  showToast(`⚡ Sending to Claude ${tower.toUpperCase()}…`);
+
+  try {
+    const res = await fetch(`${BRIDGE}/claude`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ text, tower, userId: 'ipad-dashboard', source: 'ipad-12.9' }),
+    });
+
+    if (res.ok) {
+      const data = await res.json();
+      const reply = data.result || data.response || JSON.stringify(data);
+      showResponse(tower, text, reply);
+      addLog(`← Claude ${tower}: ${reply.substring(0,60)}…`, 'ok');
+    } else {
+      addLog(`Bridge error ${res.status}`, 'warn');
+      showToast('⚠️ Voice Bridge not responding');
+    }
+  } catch {
+    addLog('Cannot reach GOD.local:8080 — Voice Bridge offline', 'warn');
+    showToast('⚠️ GOD.local:8080 offline');
+  }
+}
+
+// ── RESPONSE CARD ─────────────────────────────────────────────
+const TOWER_COLORS = { max:'#c084fc', code:'#38bdf8', work:'#00ff9d' };
+function showResponse(tower, prompt, reply) {
+  const card = document.getElementById('responseCard');
+  const badge = document.getElementById('responseTowerBadge');
+  badge.textContent = `Claude ${tower.toUpperCase()}`;
+  badge.style.cssText = `background:${TOWER_COLORS[tower]}22;color:${TOWER_COLORS[tower]};border:1px solid ${TOWER_COLORS[tower]}44;font-size:9px;padding:3px 8px;border-radius:5px;font-weight:700;letter-spacing:1px;`;
+  document.getElementById('responseTime').textContent = new Date().toLocaleTimeString('en-CA', {hour:'2-digit',minute:'2-digit'});
+  document.getElementById('responseText').textContent = reply;
+  card.classList.add('visible');
+  card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+function copyResponse() {
+  const text = document.getElementById('responseText').textContent;
+  navigator.clipboard?.writeText(text).then(() => showToast('✓ Copied'));
+}
+
+// ── QUICK ACTIONS ─────────────────────────────────────────────
+const ACTION_PROMPTS = {
+  'deploy':          { text: 'Run the deploy script for the HEAVEN Cloudflare Worker. What command do I run?', tower: 'code' },
+  'status':          { text: 'Give me a full NOIZY Empire status — what is live, what is pending, what is blocked?', tower: 'max' },
+  'dreamchamber':    { text: 'Check DreamChamber status. Is it running? How do I start it?', tower: 'code' },
+  'whisper':         { text: 'How do I test mlx-whisper on the M2 Ultra with a sample audio file?', tower: 'code' },
+  'gabriel-status':  { text: 'GABRIEL status check. Voice Bridge, Ollama, Gemma3, MCP servers — what is online?', tower: 'max' },
+  'wrangler-login':  { text: 'I need to run wrangler login to authenticate Cloudflare. What is the exact command?', tower: 'code' },
+};
+
+function runAction(action) {
+  const p = ACTION_PROMPTS[action];
+  if (!p) return;
+  document.getElementById('voiceDisplay').textContent = p.text;
+  document.getElementById('voiceDisplay').classList.remove('empty');
+  lastTranscript = p.text;
+  sendToTower(p.tower);
+}
+
+// ── TOAST ─────────────────────────────────────────────────────
+let toastTimer = null;
+function showToast(msg) {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => el.classList.remove('show'), 2500);
+}
+</script>
+</body>
+</html>

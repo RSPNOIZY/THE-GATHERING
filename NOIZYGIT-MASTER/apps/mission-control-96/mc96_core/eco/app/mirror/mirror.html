@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+<meta name="apple-mobile-web-app-title" content="NOIZY Mirror"/>
+<title>NOIZY Mirror — Tell us what you're feeling</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+:root{
+  --bg:#08090c;
+  --surface:rgba(255,255,255,.04);
+  --border:rgba(255,255,255,.08);
+  --text:#e8eaf0;
+  --muted:#64748b;
+  --neon:#c084fc;
+  --green:#00ff9d;
+  --gold:#fbbf24;
+  --red:#ff4466;
+  --font:'Outfit',sans-serif;
+  --mono:'JetBrains Mono',monospace;
+  --safe-top:env(safe-area-inset-top,0px);
+}
+html,body{background:var(--bg);color:var(--text);font-family:var(--font);min-height:100vh;overflow-x:hidden;}
+
+/* Layout */
+.shell{max-width:680px;margin:0 auto;padding:calc(var(--safe-top) + 24px) 20px 48px;display:flex;flex-direction:column;gap:20px;}
+
+/* Header */
+.header{text-align:center;padding:24px 0 8px;}
+.logo{font-size:28px;font-weight:900;letter-spacing:4px;color:var(--neon);}
+.tagline{font-size:12px;color:rgba(192,132,252,.5);letter-spacing:3px;margin-top:4px;}
+
+/* Screen 1: Input */
+.input-panel{
+  border-radius:16px;border:1px solid rgba(192,132,252,.2);
+  background:rgba(192,132,252,.03);padding:24px;position:relative;overflow:hidden;
+}
+.input-panel::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,var(--neon),transparent);
+  animation:scan 4s linear infinite;
+}
+@keyframes scan{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
+
+.input-label{font-size:10px;letter-spacing:2px;color:var(--neon);text-transform:uppercase;margin-bottom:10px;}
+
+.source-select{
+  display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px;
+}
+.source-btn{
+  padding:6px 12px;border-radius:8px;border:1px solid var(--border);
+  background:rgba(255,255,255,.03);font-size:10px;font-weight:600;
+  letter-spacing:1px;cursor:pointer;transition:.15s;color:var(--muted);
+  font-family:var(--font);
+}
+.source-btn:active{transform:scale(.96);}
+.source-btn.active{border-color:rgba(192,132,252,.4);color:var(--neon);background:rgba(192,132,252,.08);}
+
+.main-input{
+  width:100%;min-height:140px;resize:vertical;
+  background:rgba(0,0,0,.4);border:1px solid var(--border);border-radius:12px;
+  padding:14px 16px;font-family:var(--font);font-size:14px;
+  color:var(--text);line-height:1.6;outline:none;
+  transition:border-color .2s;
+}
+.main-input:focus{border-color:rgba(192,132,252,.4);}
+.main-input::placeholder{color:var(--muted);}
+
+.extra-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px;}
+.extra-input{
+  width:100%;background:rgba(0,0,0,.3);border:1px solid var(--border);
+  border-radius:10px;padding:10px 12px;font-size:12px;
+  color:var(--text);font-family:var(--font);outline:none;
+}
+.extra-input:focus{border-color:rgba(192,132,252,.3);}
+.extra-input::placeholder{color:var(--muted);}
+
+.submit-row{display:flex;justify-content:center;margin-top:18px;}
+.submit-btn{
+  padding:14px 48px;border-radius:12px;
+  border:1px solid rgba(192,132,252,.4);
+  background:linear-gradient(135deg,rgba(192,132,252,.12),rgba(0,255,157,.06));
+  font-size:13px;font-weight:800;letter-spacing:2px;
+  color:var(--neon);cursor:pointer;transition:.2s;
+  font-family:var(--font);
+}
+.submit-btn:active{transform:scale(.97);}
+.submit-btn:disabled{opacity:.4;cursor:wait;}
+
+/* Loading */
+.loading{display:none;text-align:center;padding:32px 0;}
+.loading.active{display:block;}
+.loading-text{font-size:12px;color:var(--neon);letter-spacing:2px;animation:pulse 1.5s ease-in-out infinite;}
+@keyframes pulse{0%,100%{opacity:.4}50%{opacity:1}}
+
+/* Screen 2: Response */
+.response-panel{display:none;border-radius:16px;border:1px solid rgba(0,255,157,.15);background:rgba(0,255,157,.02);padding:24px;position:relative;}
+.response-panel.active{display:block;}
+.response-panel::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,var(--green),transparent);
+  animation:scan 5s linear infinite;
+}
+
+.section{margin-bottom:20px;}
+.section-title{font-size:9px;letter-spacing:2px;color:var(--green);text-transform:uppercase;margin-bottom:8px;}
+.section-body{font-size:13px;line-height:1.7;color:var(--text);}
+.section-body.mono{font-family:var(--mono);font-size:11px;color:rgba(255,255,255,.8);}
+
+.palette-tags{display:flex;flex-wrap:wrap;gap:6px;}
+.palette-tag{
+  padding:4px 10px;border-radius:6px;font-size:10px;
+  border:1px solid rgba(192,132,252,.25);
+  background:rgba(192,132,252,.06);color:var(--neon);
+  letter-spacing:.5px;
+}
+
+.caution-list{list-style:none;}
+.caution-list li{padding:4px 0;font-size:12px;color:var(--gold);}
+.caution-list li::before{content:'⚠ ';font-size:10px;}
+
+.moves-list{list-style:none;counter-reset:moves;}
+.moves-list li{
+  counter-increment:moves;
+  padding:8px 12px;margin-bottom:6px;
+  border-radius:8px;border:1px solid var(--border);
+  background:rgba(0,0,0,.2);font-size:12px;line-height:1.5;
+}
+.moves-list li::before{
+  content:counter(moves);
+  display:inline-block;width:18px;height:18px;
+  border-radius:50%;background:rgba(0,255,157,.15);
+  color:var(--green);font-size:10px;font-weight:700;
+  text-align:center;line-height:18px;margin-right:8px;
+}
+
+.lane-badge{
+  display:inline-block;padding:4px 12px;border-radius:6px;
+  font-size:10px;font-weight:700;letter-spacing:1.5px;
+  border:1px solid rgba(192,132,252,.3);
+  background:rgba(192,132,252,.08);color:var(--neon);
+}
+
+.delta-block{
+  border-radius:10px;border:1px solid var(--border);
+  background:rgba(0,0,0,.3);padding:14px 16px;
+  font-size:12px;line-height:1.6;
+}
+.delta-label{font-size:9px;letter-spacing:1.5px;color:var(--gold);margin-bottom:6px;}
+
+/* Screen 3: Actions */
+.action-panel{display:none;border-radius:16px;border:1px solid var(--border);background:var(--surface);padding:20px;}
+.action-panel.active{display:block;}
+.action-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.action-card{
+  padding:16px;border-radius:12px;border:1px solid var(--border);
+  background:rgba(0,0,0,.2);cursor:pointer;transition:.15s;
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  text-align:center;
+}
+.action-card:active{transform:scale(.97);}
+.action-card-icon{font-size:24px;}
+.action-card-label{font-size:10px;letter-spacing:1px;font-weight:600;text-transform:uppercase;color:var(--muted);}
+.action-card.primary{border-color:rgba(0,255,157,.2);} .action-card.primary .action-card-label{color:var(--green);}
+.action-card.neon{border-color:rgba(192,132,252,.2);} .action-card.neon .action-card-label{color:var(--neon);}
+
+/* Confidence */
+.confidence{font-size:11px;color:var(--muted);font-style:italic;line-height:1.5;}
+.section.lane-row{display:flex;align-items:center;gap:12px;}
+.section.lane-row .section-title{margin:0;}
+
+/* Toast */
+.toast{
+  position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(80px);
+  background:rgba(0,255,157,.1);border:1px solid rgba(0,255,157,.3);
+  color:var(--green);border-radius:10px;padding:12px 24px;
+  font-size:12px;font-weight:600;letter-spacing:1px;
+  transition:transform .3s ease;z-index:999;white-space:nowrap;
+}
+.toast.show{transform:translateX(-50%) translateY(0);}
+</style>
+</head>
+<body>
+<div class="shell">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="logo">NOIZY MIRROR</div>
+    <div class="tagline">TELL US WHAT YOU'RE FEELING</div>
+  </div>
+
+  <!-- SCREEN 1: INPUT -->
+  <div class="input-panel" id="inputPanel">
+    <div class="input-label">What are you working on?</div>
+
+    <div class="source-select" id="sourceSelect">
+      <button type="button" class="source-btn active" data-type="paragraph">Paragraph</button>
+      <button type="button" class="source-btn" data-type="lyric_fragment">Lyric</button>
+      <button type="button" class="source-btn" data-type="voice_memo_transcript">Voice Memo</button>
+      <button type="button" class="source-btn" data-type="reference_track_note">Reference</button>
+      <button type="button" class="source-btn" data-type="mood_phrase">Mood</button>
+    </div>
+
+    <textarea class="main-input" id="mainInput" placeholder="Drop in a story, lyric fragment, voice memo, or just a feeling. Mirror will reflect the creative path forward without taking the pen from your hand."></textarea>
+
+    <div class="extra-row">
+      <input type="text" class="extra-input" id="refNotes" placeholder="Reference notes (optional)"/>
+      <input type="text" class="extra-input" id="voiceTx" placeholder="Voice transcript (optional)"/>
+    </div>
+
+    <div class="submit-row">
+      <button type="button" class="submit-btn" id="submitBtn" onclick="submitMirror()">REFLECT</button>
+    </div>
+  </div>
+
+  <!-- LOADING -->
+  <div class="loading" id="loadingState">
+    <div class="loading-text">MIRROR IS LISTENING...</div>
+  </div>
+
+  <!-- SCREEN 2: RESPONSE -->
+  <div class="response-panel" id="responsePanel">
+
+    <div class="section">
+      <div class="section-title">Interpretation</div>
+      <div class="section-body" id="rInterpretation"></div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Emotional Center</div>
+      <div class="section-body" id="rEmotional"></div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Sonic Palette</div>
+      <div class="palette-tags" id="rPalette"></div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Structure</div>
+      <div class="section-body" id="rStructure"></div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Production Cautions</div>
+      <ul class="caution-list" id="rCautions"></ul>
+    </div>
+
+    <div class="section">
+      <div class="delta-block">
+        <div class="delta-label">What Changed</div>
+        <div id="rChanged"></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="delta-block">
+        <div class="delta-label">Why</div>
+        <div id="rWhy"></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Next 3 Moves</div>
+      <ol class="moves-list" id="rMoves"></ol>
+    </div>
+
+    <div class="section lane-row">
+      <div class="section-title">Suggested Lane</div>
+      <div class="lane-badge" id="rLane"></div>
+    </div>
+
+    <div class="section">
+      <div class="confidence" id="rConfidence"></div>
+    </div>
+  </div>
+
+  <!-- SCREEN 3: ACTIONS -->
+  <div class="action-panel" id="actionPanel">
+    <div class="action-grid">
+      <div class="action-card primary" onclick="doAction('notion')">
+        <div class="action-card-icon">📓</div>
+        <div class="action-card-label">Save to Notion</div>
+      </div>
+      <div class="action-card neon" onclick="doAction('spec')">
+        <div class="action-card-icon">📄</div>
+        <div class="action-card-label">Turn into Spec</div>
+      </div>
+      <div class="action-card" onclick="doAction('claude')">
+        <div class="action-card-icon">⚡</div>
+        <div class="action-card-label">Route to Claude Code</div>
+      </div>
+      <div class="action-card" onclick="doAction('ledger')">
+        <div class="action-card-icon">🔒</div>
+        <div class="action-card-label">Mark for Ledger</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const MIRROR_API = 'http://localhost:7781';
+let selectedSource = 'paragraph';
+let lastResult = null;
+
+// Source type selector
+document.getElementById('sourceSelect').addEventListener('click', e => {
+  const btn = e.target.closest('.source-btn');
+  if (!btn) return;
+  document.querySelectorAll('.source-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  selectedSource = btn.dataset.type;
+});
+
+async function submitMirror() {
+  const text = document.getElementById('mainInput').value.trim();
+  if (!text) { toast('Write something first'); return; }
+
+  const btn = document.getElementById('submitBtn');
+  btn.disabled = true;
+  document.getElementById('loadingState').classList.add('active');
+  document.getElementById('responsePanel').classList.remove('active');
+  document.getElementById('actionPanel').classList.remove('active');
+
+  const payload = {
+    source_text: text,
+    source_type: selectedSource,
+    artist_name: 'Robert Stephen Plowman',
+    reference_notes: document.getElementById('refNotes').value || undefined,
+    voice_transcript: document.getElementById('voiceTx').value || undefined,
+  };
+
+  try {
+    const res = await fetch(`${MIRROR_API}/mirror`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+    const data = await res.json();
+    if (data.ok) {
+      lastResult = data;
+      renderResponse(data);
+      toast('Mirror reflected');
+    } else {
+      toast('Error: ' + (data.error || 'Unknown'));
+    }
+  } catch {
+    toast('Mirror offline — start with: cd mirror && npx tsx api.ts');
+  }
+
+  btn.disabled = false;
+  document.getElementById('loadingState').classList.remove('active');
+}
+
+function renderResponse(data) {
+  const { analysis } = data;
+  document.getElementById('rInterpretation').textContent = analysis.interpretation;
+  document.getElementById('rEmotional').textContent = data.brief.emotional_target;
+
+  document.getElementById('rPalette').innerHTML =
+    (data.brief.sonic_palette || []).map(p => `<span class="palette-tag">${p}</span>`).join('');
+
+  document.getElementById('rStructure').textContent = data.brief.structure_notes;
+
+  document.getElementById('rCautions').innerHTML =
+    (data.brief.production_cautions || []).map(c => `<li>${c}</li>`).join('');
+
+  document.getElementById('rChanged').textContent = analysis.what_changed;
+  document.getElementById('rWhy').textContent = analysis.why_changed;
+
+  document.getElementById('rMoves').innerHTML =
+    (analysis.next_moves || []).map(m => `<li>${m}</li>`).join('');
+
+  document.getElementById('rLane').textContent = (analysis.suggested_lane || 'signal').toUpperCase();
+  document.getElementById('rConfidence').textContent = analysis.confidence_notes || '';
+
+  document.getElementById('responsePanel').classList.add('active');
+  document.getElementById('actionPanel').classList.add('active');
+  document.getElementById('responsePanel').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function doAction(type) {
+  if (!lastResult) { toast('No brief to act on'); return; }
+  const { brief, run } = lastResult;
+  switch (type) {
+    case 'notion':
+      toast('Saving to Notion (via n8n)...');
+      // In production: POST to n8n webhook or Notion API
+      break;
+    case 'spec':
+      toast('Generating spec...');
+      break;
+    case 'claude':
+      toast('Routing to Claude Code...');
+      break;
+    case 'ledger':
+      toast('Marked for Ledger — provenance stamp later');
+      break;
+  }
+}
+
+let toastTimer = null;
+function toast(msg) {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => el.classList.remove('show'), 2500);
+}
+</script>
+</body>
+</html>

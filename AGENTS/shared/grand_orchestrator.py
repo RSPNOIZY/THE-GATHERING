@@ -12,13 +12,10 @@ Usage:
     python3 grand_orchestrator.py --expose-api       # start searchable endpoint
 """
 
-import os
-import sys
 import json
 import argparse
 import subprocess
 from pathlib import Path
-from datetime import datetime
 
 HOME = Path.home()
 EMPIRE_ROOT = HOME / "NOIZY_EMPIRE"
@@ -38,7 +35,7 @@ def run_archivist(execute=False, force=False):
         cmd.append("--execute")
 
     print(f"\n{'='*70}")
-    print(f"  GRAND ORCHESTRATOR — Starting Doc Vacuum")
+    print("  GRAND ORCHESTRATOR — Starting Doc Vacuum")
     print(f"  Mode: {'EXECUTE' if execute else 'DRY-RUN (catalog only)'}")
     print(f"  Empire root: {EMPIRE_ROOT}")
     print(f"  Catalog: {CATALOG}")
@@ -101,7 +98,7 @@ def show_stats():
     catalog = json.load(open(CATALOG))
 
     print(f"\n{'='*70}")
-    print(f"  CATALOG STATISTICS")
+    print("  CATALOG STATISTICS")
     print(f"  Generated: {catalog.get('generated_at', 'unknown')}")
     print(f"{'='*70}\n")
 
@@ -112,7 +109,7 @@ def show_stats():
     print(f"  Conflicts (ties):        {stats.get('conflicts', 0)}")
     print(f"  Duplicates found:        {stats.get('duplicates', 0)}")
 
-    print(f"\n  BY PROJECT:")
+    print("\n  BY PROJECT:")
     project_counts = catalog.get("project_counts", {})
     for proj, count in sorted(project_counts.items(), key=lambda x: -x[1]):
         pct = (count / stats.get('total', 1)) * 100
@@ -187,15 +184,15 @@ def expose_api(port=9099):
 
         server = HTTPServer(("127.0.0.1", port), DocSearchHandler)
         print(f"\n{'='*70}")
-        print(f"  DOC SEARCH API — ONLINE")
+        print("  DOC SEARCH API — ONLINE")
         print(f"{'='*70}")
         print(f"  Listening: http://127.0.0.1:{port}")
         print(f"  Health:    GET http://127.0.0.1:{port}/health")
         print(f"  Search:    GET http://127.0.0.1:{port}/search?q=QUERY[&project=PROJECT][&limit=20]")
-        print(f"\n  Examples:")
+        print("\n  Examples:")
         print(f"    curl 'http://127.0.0.1:{port}/search?q=NOIZYVOX'")
         print(f"    curl 'http://127.0.0.1:{port}/search?q=vocal&project=GABRIEL'")
-        print(f"\n  Press Ctrl+C to stop.\n")
+        print("\n  Press Ctrl+C to stop.\n")
 
         server.serve_forever()
     except KeyboardInterrupt:

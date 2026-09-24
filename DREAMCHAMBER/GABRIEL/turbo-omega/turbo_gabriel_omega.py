@@ -20,7 +20,6 @@ import threading
 import subprocess
 from pathlib import Path
 
-import msgpack
 import mido
 import sounddevice as sd
 import mlx.core as mx
@@ -74,7 +73,6 @@ except ImportError:
     # Fallback if unitor path not in sys
     sys.path.append(str(BASE_DIR))
     from turbo_memcell import MemCell
-    import turbo_prompts as prompts
 
 
 # ==========================================

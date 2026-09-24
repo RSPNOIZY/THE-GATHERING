@@ -1,0 +1,80 @@
+#!/bin/bash
+# ═══════════════════════════════════════════════════════════════════════════
+# cleanup - System cleanup script for macOS
+# Usage: cleanup [--dry-run]
+# ═══════════════════════════════════════════════════════════════════════════
+
+DRY_RUN=false
+[[ "$1" == "--dry-run" ]] && DRY_RUN=true
+
+bytes_to_human() {
+    local bytes=$1
+    if [[ $bytes -lt 1024 ]]; then
+        echo "${bytes}B"
+    elif [[ $bytes -lt 1048576 ]]; then
+        echo "$((bytes / 1024))KB"
+    elif [[ $bytes -lt 1073741824 ]]; then
+        echo "$((bytes / 1048576))MB"
+    else
+        echo "$((bytes / 1073741824))GB"
+    fi
+}
+
+TOTAL_FREED=0
+
+cleanup_dir() {
+    local dir="$1"
+    local desc="$2"
+
+    if [[ -d "$dir" ]]; then
+        local size=$(du -sk "$dir" 2>/dev/null | cut -f1)
+        size=$((size * 1024))
+
+        if [[ $size -gt 0 ]]; then
+            echo "  $desc: $(bytes_to_human $size)"
+            if [[ "$DRY_RUN" == "false" ]]; then
+                rm -rf "$dir"/* 2>/dev/null || true
+            fi
+            TOTAL_FREED=$((TOTAL_FREED + size))
+        fi
+    fi
+}
+
+echo "🧹 macOS Cleanup Script"
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+[[ "$DRY_RUN" == "true" ]] && echo "  (DRY RUN - no files deleted)"
+echo ""
+
+echo "📦 Package Managers:"
+cleanup_dir "$HOME/Library/Caches/Homebrew" "Homebrew cache"
+cleanup_dir "$HOME/.npm/_cacache" "npm cache"
+cleanup_dir "$HOME/Library/Caches/pip" "pip cache"
+cleanup_dir "$HOME/.cache/uv" "uv cache"
+
+echo ""
+echo "🗑️  System Caches:"
+cleanup_dir "$HOME/Library/Caches/com.apple.dt.Xcode" "Xcode cache"
+cleanup_dir "$HOME/Library/Developer/Xcode/DerivedData" "Xcode derived data"
+cleanup_dir "$HOME/Library/Caches/com.microsoft.VSCodeInsiders" "VS Code cache"
+cleanup_dir "$HOME/Library/Caches/Google/Chrome" "Chrome cache"
+
+echo ""
+echo "📝 Logs:"
+cleanup_dir "$HOME/Library/Logs" "User logs"
+
+echo ""
+echo "🗃️  Trash:"
+if [[ -d "$HOME/.Trash" ]]; then
+    trash_size=$(du -sk "$HOME/.Trash" 2>/dev/null | cut -f1)
+    trash_size=$((trash_size * 1024))
+    echo "  Trash: $(bytes_to_human $trash_size)"
+    if [[ "$DRY_RUN" == "false" ]]; then
+        rm -rf "$HOME/.Trash"/* 2>/dev/null || true
+    fi
+    TOTAL_FREED=$((TOTAL_FREED + trash_size))
+fi
+
+echo ""
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo "✨ Total space freed: $(bytes_to_human $TOTAL_FREED)"
+[[ "$DRY_RUN" == "true" ]] && echo "   (Run without --dry-run to actually clean)"

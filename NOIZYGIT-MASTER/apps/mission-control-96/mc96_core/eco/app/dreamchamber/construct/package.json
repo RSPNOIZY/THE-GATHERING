@@ -1,0 +1,29 @@
+{
+  "name": "dreamchamber-construct",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "file-writer": "dist/file-writer.js",
+    "lock-session": "dist/cli/lock-session.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "typecheck": "tsc --noEmit",
+    "scan": "tsx src/cli/lock-session.ts --scan",
+    "write": "tsx src/file-writer.ts",
+    "bless": "tsx src/cli/lock-session.ts --bless",
+    "lock": "tsx src/cli/lock-session.ts --lock",
+    "archive": "tsx src/cli/lock-session.ts --archive"
+  },
+  "dependencies": {
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.5",
+    "tsx": "^4.19.3",
+    "typescript": "^5.7.3"
+  }
+}

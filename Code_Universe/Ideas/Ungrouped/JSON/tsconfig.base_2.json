@@ -1,14 +1,14 @@
 {
-	"compilerOptions": {
-		"target": "es6",
-		"moduleResolution": "node",
-		"outDir": "out",
-		"sourceMap": true,
-		"skipLibCheck": true,
-		"plugins": [
-			{
-				"name": "eslint"
-			}
-		],
-	}
+  "compilerOptions": {
+    "target": "es6",
+    "moduleResolution": "node",
+    "outDir": "out",
+    "sourceMap": true,
+    "skipLibCheck": true,
+    "plugins": [
+      {
+        "name": "eslint"
+      }
+    ]
+  }
 }

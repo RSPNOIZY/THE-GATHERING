@@ -1,0 +1,87 @@
+{
+  "portfolio_name": "MC96ECOUNIVERSE — Sovereign Domains & Brand Portfolio",
+  "version": "4.0.0-SOVEREIGN",
+  "generated_at": "2026-09-24T15:00:00Z",
+  "domains": {
+    "NOIZYFISH": {
+      "name": "NOIZYFISH / FishMusicInc",
+      "canonical_domain": "fishmusicinc.com",
+      "category": "Publishing, Royalties, Catalog & Audio Master Rights",
+      "persona_alignment": "Alex Warden & Robert Stephen Plowman",
+      "architecture": "Next.js / Cloudflare Pages / D1 Catalog Database",
+      "assets": "Master Stems, ASCAP/BMI Catalog, Audio Contracts, Licensing Engine"
+    },
+    "NOIZYVOX": {
+      "name": "NOIZYVOX",
+      "canonical_domain": "noizyvox.ai",
+      "category": "Neural Voice Synthesis, Voice Bridge & Audio Clone Engine",
+      "persona_alignment": "Gabriel & Engr Keith",
+      "architecture": "FastAPI / CoreAudio BlackHole 16ch / Whisper.cpp / Piper TTS",
+      "assets": "Voice Models, Real-time IPC Voice Bridge, Speech Stems"
+    },
+    "NOIZYKIDS.COM": {
+      "name": "NOIZYKIDS",
+      "canonical_domain": "noizykids.com",
+      "category": "Interactive Children's Audio, Sonic Learning & Safe EdTech",
+      "persona_alignment": "Shirley Marie",
+      "architecture": "Interactive WebGL / WebAudio API / Storytelling Engine",
+      "assets": "Illustrated Characters, Educational Sonic Games, Family Audiobooks"
+    },
+    "NOIZYLAB.CA": {
+      "name": "NOIZYLAB.CA",
+      "canonical_domain": "noizylab.ca",
+      "category": "Canadian Sovereign R&D Lab, Audio Hardware & AI Prototyping",
+      "persona_alignment": "Engr Keith & Lucy",
+      "architecture": "Astro / Cloudflare Workers / Tailscale Sovereign Mesh",
+      "assets": "Lab Blueprints, Hardware Schematics, Local AI Daemon Testbenches"
+    },
+    "myFAMILY.ai": {
+      "name": "myFAMILY.ai",
+      "canonical_domain": "myfamily.ai",
+      "category": "Sovereign Family Operating System, Private Memories & Vault",
+      "persona_alignment": "Pops & Shirley Marie",
+      "architecture": "Local-First SQLite / Encrypted Proton Vault / PWA",
+      "assets": "Family Archives, Private Neural Memory Network, Secure Communications"
+    },
+    "OXYGEN.io": {
+      "name": "OXYGEN.io",
+      "canonical_domain": "oxygen.io",
+      "category": "Zero-Latency Substrate, Core Infrastructure & Real-Time Mesh",
+      "persona_alignment": "Gabriel & Engr Keith",
+      "architecture": "Rust / C++ / WebSockets / WireGuard Kernel Mesh",
+      "assets": "Sub-millisecond IPC Engine, Memory-Mapped Substrates, High-Throughput Relays"
+    },
+    "AQ.IO": {
+      "name": "AQ.IO",
+      "canonical_domain": "aq.io",
+      "category": "High-Frequency Autonomous Intelligence & Quantitative Analytics",
+      "persona_alignment": "Alex Warden & Michael Corleone",
+      "architecture": "Python / BigQuery / Ray Distributed Execution",
+      "assets": "Algorithmic Arbitrage, Market Telemetry, Quantitative Risk Models"
+    },
+    "AQuarium.io": {
+      "name": "AQuarium.io",
+      "canonical_domain": "aquarium.io",
+      "category": "Autonomous Multi-Agent Sandbox & Evolutionary Simulation Environment",
+      "persona_alignment": "Gabriel & Lucy",
+      "architecture": "Node.js / Docker Orchestration / Vector Memory Embeddings",
+      "assets": "Agent Swarm Simulation, Persona Interaction Chambers, Synthetic Ecosystems"
+    },
+    "THE-GATHERING.io": {
+      "name": "THE-GATHERING.io",
+      "canonical_domain": "the-gathering.io",
+      "category": "Canonical Sovereign Monorepo, Council Governance & Hub",
+      "persona_alignment": "Council Master Nexus (All 8 Personas)",
+      "architecture": "Git Monorepo / n8n Governance / Cloudflare Tunnels",
+      "assets": "63,000+ Monorepo Tracked Files, MissionControl96, Unified Code Master"
+    },
+    "THE-DREAMCHAMBER.io": {
+      "name": "THE-DREAMCHAMBER.io",
+      "canonical_domain": "the-dreamchamber.io",
+      "category": "Immersive Generative AI, Sonic Hallucination & Neural Art Studio",
+      "persona_alignment": "Dream / Magenta",
+      "architecture": "PyTorch / Metal GPU / Stable Diffusion / AudioLDM",
+      "assets": "Subconscious Neural Canvas, Generative Soundscapes, Latent Space Visualizers"
+    }
+  }
+}

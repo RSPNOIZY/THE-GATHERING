@@ -1,0 +1,324 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C10000010000000000000001 /* GabrielApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20000010000000000000001; };
+		C10000010000000000000002 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20000010000000000000002; };
+		C10000010000000000000003 /* CommandCenterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20000010000000000000003; };
+		C10000010000000000000004 /* DispatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20000010000000000000004; };
+		C10000010000000000000005 /* AuditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20000010000000000000005; };
+		C10000010000000000000006 /* FamilyOpsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20000010000000000000006; };
+		C10000010000000000000007 /* VoiceOpsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20000010000000000000007; };
+		C10000010000000000000008 /* HealingOpsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20000010000000000000008; };
+		C10000010000000000000009 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20000010000000000000009; };
+		C10000010000000000000010 /* HeavenAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20000010000000000000010; };
+		C10000010000000000000011 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20000010000000000000011; };
+		C10000010000000000000012 /* GabrielEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20000010000000000000012; };
+		C10000010000000000000013 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C20000010000000000000013; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		C20000010000000000000001 /* GabrielApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GabrielApp.swift; sourceTree = "<group>"; };
+		C20000010000000000000002 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		C20000010000000000000003 /* CommandCenterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandCenterView.swift; sourceTree = "<group>"; };
+		C20000010000000000000004 /* DispatchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispatchView.swift; sourceTree = "<group>"; };
+		C20000010000000000000005 /* AuditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuditView.swift; sourceTree = "<group>"; };
+		C20000010000000000000006 /* FamilyOpsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FamilyOpsView.swift; sourceTree = "<group>"; };
+		C20000010000000000000007 /* VoiceOpsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceOpsView.swift; sourceTree = "<group>"; };
+		C20000010000000000000008 /* HealingOpsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealingOpsView.swift; sourceTree = "<group>"; };
+		C20000010000000000000009 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		C20000010000000000000010 /* HeavenAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeavenAPI.swift; sourceTree = "<group>"; };
+		C20000010000000000000011 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		C20000010000000000000012 /* GabrielEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GabrielEngine.swift; sourceTree = "<group>"; };
+		C20000010000000000000013 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C30000010000000000000001 /* Gabriel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gabriel.app; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		C40000010000000000000001 = {
+			isa = PBXGroup;
+			children = (
+				C40000010000000000000002 /* Gabriel */,
+				C40000010000000000000006 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C40000010000000000000002 /* Gabriel */ = {
+			isa = PBXGroup;
+			children = (
+				C20000010000000000000001 /* GabrielApp.swift */,
+				C20000010000000000000002 /* ContentView.swift */,
+				C40000010000000000000003 /* Views */,
+				C40000010000000000000004 /* Services */,
+				C40000010000000000000005 /* Models */,
+				C20000010000000000000013 /* Assets.xcassets */,
+			);
+			path = Gabriel;
+			sourceTree = "<group>";
+		};
+		C40000010000000000000003 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C20000010000000000000003 /* CommandCenterView.swift */,
+				C20000010000000000000004 /* DispatchView.swift */,
+				C20000010000000000000005 /* AuditView.swift */,
+				C20000010000000000000006 /* FamilyOpsView.swift */,
+				C20000010000000000000007 /* VoiceOpsView.swift */,
+				C20000010000000000000008 /* HealingOpsView.swift */,
+				C20000010000000000000009 /* SettingsView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		C40000010000000000000004 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				C20000010000000000000010 /* HeavenAPI.swift */,
+				C20000010000000000000012 /* GabrielEngine.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		C40000010000000000000005 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C20000010000000000000011 /* Models.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		C40000010000000000000006 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C30000010000000000000001 /* Gabriel.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C50000010000000000000001 /* Gabriel */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C70000010000000000000003 /* Build configuration list for PBXNativeTarget "Gabriel" */;
+			buildPhases = (
+				C60000010000000000000001 /* Sources */,
+				C60000010000000000000002 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Gabriel;
+			productName = Gabriel;
+			productReference = C30000010000000000000001 /* Gabriel.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C80000010000000000000001 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1600;
+				LastUpgradeCheck = 1600;
+				TargetAttributes = {
+					C50000010000000000000001 = {
+						CreatedOnToolsVersion = 16.0;
+					};
+				};
+			};
+			buildConfigurationList = C70000010000000000000001 /* Build configuration list for PBXProject "Gabriel" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = C40000010000000000000001;
+			productRefGroup = C40000010000000000000006 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C50000010000000000000001 /* Gabriel */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C60000010000000000000002 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C10000010000000000000013 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C60000010000000000000001 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C10000010000000000000001 /* GabrielApp.swift in Sources */,
+				C10000010000000000000002 /* ContentView.swift in Sources */,
+				C10000010000000000000003 /* CommandCenterView.swift in Sources */,
+				C10000010000000000000004 /* DispatchView.swift in Sources */,
+				C10000010000000000000005 /* AuditView.swift in Sources */,
+				C10000010000000000000006 /* FamilyOpsView.swift in Sources */,
+				C10000010000000000000007 /* VoiceOpsView.swift in Sources */,
+				C10000010000000000000008 /* HealingOpsView.swift in Sources */,
+				C10000010000000000000009 /* SettingsView.swift in Sources */,
+				C10000010000000000000010 /* HeavenAPI.swift in Sources */,
+				C10000010000000000000011 /* Models.swift in Sources */,
+				C10000010000000000000012 /* GabrielEngine.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		C90000010000000000000001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		C90000010000000000000002 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C90000010000000000000003 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Gabriel;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ai.noizy.gabriel;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C90000010000000000000004 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Gabriel;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ai.noizy.gabriel;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C70000010000000000000001 /* Build configuration list for PBXProject "Gabriel" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C90000010000000000000001 /* Debug */,
+				C90000010000000000000002 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C70000010000000000000003 /* Build configuration list for PBXNativeTarget "Gabriel" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C90000010000000000000003 /* Debug */,
+				C90000010000000000000004 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+	};
+	rootObject = C80000010000000000000001 /* Project object */;
+}

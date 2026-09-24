@@ -1,0 +1,11 @@
+# Swift
+.build/
+.swiftpm/
+Package.resolved
+
+# IDE
+.vscode
+.DS_Store
+
+# MCPB package
+mcpb/*.mcpb

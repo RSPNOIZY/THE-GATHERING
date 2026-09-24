@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NOIZY Empire — Command Center</title>
+<style>
+:root {
+  --dark: #020409;
+  --darker: #010208;
+  --gold: #F59E0B;
+  --gold-dim: rgba(245,158,11,0.15);
+  --cyan: #06B6D4;
+  --cyan-dim: rgba(6,182,212,0.15);
+  --green: #10B981;
+  --red: #EF4444;
+  --purple: #8B5CF6;
+  --text: #E2E8F0;
+  --text-dim: rgba(226,232,240,0.5);
+  --border: rgba(255,255,255,0.08);
+  --surface: rgba(255,255,255,0.03);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  background: var(--dark);
+  color: var(--text);
+  font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace;
+  font-size: 13px;
+  line-height: 1.5;
+  overflow-x: hidden;
+}
+.ambient {
+  position: fixed; top:0; left:0; width:100%; height:100%;
+  background: radial-gradient(ellipse at 15% 30%, rgba(245,158,11,0.02) 0%, transparent 50%),
+              radial-gradient(ellipse at 85% 70%, rgba(6,182,212,0.015) 0%, transparent 50%);
+  pointer-events: none; z-index:0;
+}
+.grid { position:relative; z-index:10; display:grid; grid-template-columns:280px 1fr 320px; grid-template-rows:auto 1fr; min-height:100vh; gap:1px; background:var(--border); }
+.header { grid-column:1/-1; background:var(--darker); padding:12px 20px; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid var(--border); }
+.header h1 { font-size:16px; font-weight:700; background:linear-gradient(135deg,var(--gold),var(--cyan)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; letter-spacing:1px; }
+.header .meta { font-size:11px; color:var(--text-dim); }
+.header .status-dot { display:inline-block; width:8px; height:8px; border-radius:50%; margin-right:6px; animation:pulse 2s ease infinite; }
+.header .status-dot.live { background:var(--green); }
+.header .status-dot.down { background:var(--red); }
+@keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.4;} }
+.panel { background:var(--darker); padding:16px; overflow-y:auto; }
+.panel h2 { font-size:11px; text-transform:uppercase; letter-spacing:2px; color:var(--gold); margin-bottom:12px; padding-bottom:6px; border-bottom:1px solid var(--border); }
+.panel h3 { font-size:11px; text-transform:uppercase; letter-spacing:1.5px; color:var(--cyan); margin:16px 0 8px; }
+.card { background:var(--surface); border:1px solid var(--border); border-radius:6px; padding:12px; margin-bottom:8px; transition:border-color 0.2s; }
+.card:hover { border-color:rgba(245,158,11,0.3); }
+.card .label { font-size:10px; text-transform:uppercase; letter-spacing:1px; color:var(--text-dim); margin-bottom:4px; }
+.card .value { font-size:18px; font-weight:700; color:var(--gold); }
+.card .value.cyan { color:var(--cyan); }
+.card .value.green { color:var(--green); }
+.card .value.red { color:var(--red); }
+.card .value.purple { color:var(--purple); }
+.agent-row { display:flex; align-items:center; gap:8px; padding:8px 10px; border-radius:4px; margin-bottom:4px; background:var(--surface); border:1px solid var(--border); cursor:default; transition:all 0.15s; }
+.agent-row:hover { border-color:var(--gold); background:var(--gold-dim); }
+.agent-dot { width:6px; height:6px; border-radius:50%; flex-shrink:0; }
+.agent-dot.ops { background:var(--cyan); }
+.agent-dot.fam { background:var(--purple); }
+.agent-dot.sys { background:var(--gold); }
+.agent-name { font-weight:600; font-size:12px; flex:1; }
+.agent-tools { font-size:10px; color:var(--text-dim); }
+.db-row { display:flex; justify-content:space-between; align-items:center; padding:6px 10px; border-radius:4px; margin-bottom:3px; background:var(--surface); border:1px solid var(--border); font-size:11px; }
+.db-size { color:var(--cyan); font-weight:600; }
+.kv-row { display:flex; justify-content:space-between; padding:4px 8px; margin-bottom:2px; font-size:10px; border-radius:3px; background:var(--surface); }
+.roadmap-item { display:flex; align-items:center; gap:8px; padding:6px 8px; margin-bottom:3px; font-size:11px; border-radius:4px; }
+.roadmap-item.done { color:var(--green); }
+.roadmap-item.pending { color:var(--text-dim); }
+.roadmap-check { font-size:14px; flex-shrink:0; }
+.roadmap-text { flex:1; }
+.metric-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+.never-clause { padding:4px 8px; margin-bottom:3px; font-size:10px; border-radius:3px; background:rgba(239,68,68,0.05); border:1px solid rgba(239,68,68,0.15); color:var(--red); font-weight:500; }
+.section-divider { height:1px; background:var(--border); margin:16px 0; }
+.freq-bar { display:flex; align-items:center; gap:8px; margin:4px 0; }
+.freq-fill { height:4px; border-radius:2px; background:linear-gradient(90deg,var(--gold),var(--cyan)); }
+.timeline { position:relative; padding-left:16px; border-left:2px solid var(--border); }
+.timeline-item { position:relative; padding:6px 0 12px 12px; font-size:11px; }
+.timeline-item::before { content:''; position:absolute; left:-21px; top:10px; width:10px; height:10px; border-radius:50%; background:var(--gold); border:2px solid var(--darker); }
+.timeline-item.future::before { background:var(--border); }
+.timeline-date { font-size:9px; color:var(--text-dim); text-transform:uppercase; letter-spacing:1px; }
+@media(max-width:1200px) { .grid { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<div class="ambient"></div>
+<div class="grid">
+  <div class="header">
+    <div>
+      <h1>NOIZY EMPIRE — COMMAND CENTER</h1>
+      <div class="meta">RSP_001 · GOD.local · M2 Ultra · <span id="clock"></span></div>
+    </div>
+    <div style="text-align:right">
+      <div style="font-size:11px;"><span class="status-dot live"></span>Fishmusicinc · CF Account 2446d788</div>
+      <div style="font-size:10px;color:var(--text-dim);">Target: April 17, 2026</div>
+    </div>
+  </div>
+
+  <!-- LEFT PANEL: AGENTS & INFRASTRUCTURE -->
+  <div class="panel">
+    <h2>Agent Family</h2>
+    <div class="agent-row"><div class="agent-dot ops"></div><div class="agent-name">GABRIEL</div><div class="agent-tools">4 tools · Lead</div></div>
+    <div class="agent-row"><div class="agent-dot ops"></div><div class="agent-name">LUCY</div><div class="agent-tools">11 tools · DAZEFLOW</div></div>
+    <div class="agent-row"><div class="agent-dot ops"></div><div class="agent-name">ENGR_KEITH</div><div class="agent-tools">6 tools · Architect</div></div>
+    <div class="agent-row"><div class="agent-dot ops"></div><div class="agent-name">DREAM</div><div class="agent-tools">5 tools · Vision</div></div>
+    <div class="agent-row"><div class="agent-dot ops"></div><div class="agent-name">CB01</div><div class="agent-tools">6 tools · Ops</div></div>
+    <div class="agent-row"><div class="agent-dot ops"></div><div class="agent-name">SHIRLEY</div><div class="agent-tools">6 tools · Code</div></div>
+    <div class="agent-row"><div class="agent-dot fam"></div><div class="agent-name">POPS</div><div class="agent-tools">Family MCP</div></div>
+    <div class="agent-row"><div class="agent-dot fam"></div><div class="agent-name">SHIRL</div><div class="agent-tools">Family MCP</div></div>
+
+    <h3>MCP Servers (9)</h3>
+    <div class="agent-row"><div class="agent-dot sys"></div><div class="agent-name">gabriel-mcp</div><div class="agent-tools">:7777</div></div>
+    <div class="agent-row"><div class="agent-dot sys"></div><div class="agent-name">lucy-mcp</div><div class="agent-tools">local</div></div>
+    <div class="agent-row"><div class="agent-dot sys"></div><div class="agent-name">heaven17-mcp</div><div class="agent-tools">CF Worker</div></div>
+    <div class="agent-row"><div class="agent-dot sys"></div><div class="agent-name">engr-keith-mcp</div><div class="agent-tools">local</div></div>
+    <div class="agent-row"><div class="agent-dot sys"></div><div class="agent-name">dream-mcp</div><div class="agent-tools">local</div></div>
+    <div class="agent-row"><div class="agent-dot sys"></div><div class="agent-name">cb01-mcp</div><div class="agent-tools">local</div></div>
+    <div class="agent-row"><div class="agent-dot sys"></div><div class="agent-name">shirley-mcp</div><div class="agent-tools">local</div></div>
+    <div class="agent-row"><div class="agent-dot sys"></div><div class="agent-name">family-mcp</div><div class="agent-tools">local</div></div>
+    <div class="agent-row"><div class="agent-dot sys"></div><div class="agent-name">audio-mcp</div><div class="agent-tools">FastMCP</div></div>
+
+    <h3>D1 Databases (10)</h3>
+    <div class="db-row"><span>gabriel_db</span><span class="db-size">565 KB</span></div>
+    <div class="db-row"><span>agent-memory</span><span class="db-size">2.5 MB</span></div>
+    <div class="db-row"><span>rsp-master-budget</span><span class="db-size">840 KB</span></div>
+    <div class="db-row"><span>noizylab-repairs</span><span class="db-size">459 KB</span></div>
+    <div class="db-row"><span>tencc-pipeline</span><span class="db-size">250 KB</span></div>
+    <div class="db-row"><span>mc96-command-central</span><span class="db-size">250 KB</span></div>
+    <div class="db-row"><span>aquarium-archive</span><span class="db-size">233 KB</span></div>
+    <div class="db-row"><span>godaddy-escape-tracker</span><span class="db-size">94 KB</span></div>
+    <div class="db-row"><span>noizyanthropic</span><span class="db-size">80 KB</span></div>
+    <div class="db-row"><span>subscription-killer</span><span class="db-size">66 KB</span></div>
+  </div>
+
+  <!-- CENTER PANEL: MAIN DISPLAY -->
+  <div class="panel">
+    <h2>Empire Status</h2>
+    <div class="metric-grid">
+      <div class="card"><div class="label">Endpoints</div><div class="value">55</div></div>
+      <div class="card"><div class="label">Tables + Views</div><div class="value cyan">25 + 9</div></div>
+      <div class="card"><div class="label">MCP Tools</div><div class="value green">74</div></div>
+      <div class="card"><div class="label">AI Providers</div><div class="value purple">11</div></div>
+      <div class="card"><div class="label">Agent Definitions</div><div class="value">10</div></div>
+      <div class="card"><div class="label">D1 Total Size</div><div class="value cyan">4.8 MB</div></div>
+      <div class="card"><div class="label">KV Namespaces</div><div class="value green">20+</div></div>
+      <div class="card"><div class="label">R2 Storage</div><div class="value red">NOT ENABLED</div></div>
+    </div>
+
+    <h3>Live Systems</h3>
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center;">
+        <div><span style="color:var(--gold);font-weight:700;">HEAVEN17</span> — Consent Kernel</div>
+        <div style="font-size:10px;color:var(--text-dim);">heaven.rsp-5f3.workers.dev</div>
+      </div>
+      <div style="margin-top:8px;font-size:11px;">
+        55 endpoints · 25 tables · X-NOIZY-Key auth · KV rate limiting<br>
+        D1: gabriel_db · <span style="color:var(--cyan);">f75939d5-5747-4a9c</span>
+      </div>
+    </div>
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center;">
+        <div><span style="color:var(--cyan);font-weight:700;">DREAMCHAMBER</span> — AI Command Center</div>
+        <div style="font-size:10px;color:var(--text-dim);">localhost:7777</div>
+      </div>
+      <div style="margin-top:8px;font-size:11px;">
+        11 providers (all streaming) · WebSocket + in-memory state<br>
+        Contact Sequence · Three.js · 396 Hz liberation
+      </div>
+    </div>
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center;">
+        <div><span style="color:var(--green);font-weight:700;">VOICE BRIDGE</span> — Phone → GOD.local</div>
+        <div style="font-size:10px;color:var(--text-dim);">localhost:8080</div>
+      </div>
+      <div style="margin-top:8px;font-size:11px;">
+        Siri/Google → Power Automate → Commands
+      </div>
+    </div>
+    <div class="card" style="border-color:rgba(245,158,11,0.3);">
+      <div style="display:flex;justify-content:space-between;align-items:center;">
+        <div><span style="color:var(--gold);font-weight:700;">NOIZY.AI</span> — Landing Page</div>
+        <div style="font-size:10px;color:var(--red);">AWAITING DEPLOY</div>
+      </div>
+      <div style="margin-top:8px;font-size:11px;">
+        "The Museum That Reminds Everyone It Was Always a Cathedral"<br>
+        Gold particles · Waveform viz · Waitlist form · Trust metrics
+      </div>
+    </div>
+
+    <h3>Dispatch Architecture</h3>
+    <div class="card" style="font-size:11px;">
+      <pre style="color:var(--text);font-family:inherit;white-space:pre-wrap;">DreamChamber (Task Definition)
+    ↓
+GABRIEL (Lead Orchestrator)
+    ├── ENGR_KEITH → worktree isolation
+    ├── CONSENT_AUDITOR → worktree isolation
+    ├── SHIRLEY → worktree isolation
+    ├── TEST_RUNNER → worktree isolation
+    └── ... (as needed)
+    ↓
+GABRIEL (Merge + Verify)
+    ↓
+LUCY (Log to DAZEFLOW)</pre>
+      <div style="margin-top:8px;color:var(--text-dim);">
+        scripts/gabriel-dispatch.sh · scripts/gabriel-merge.sh<br>
+        tmux sessions · git worktree isolation · parallel execution
+      </div>
+    </div>
+
+    <h3>Never Clauses (9 — Immovable Law)</h3>
+    <div class="never-clause">1. NO_SYNTH_WITHOUT_CONSENT</div>
+    <div class="never-clause">2. NO_TRAINING_WITHOUT_CONSENT</div>
+    <div class="never-clause">3. NO_IDENTITY_IMPERSONATION</div>
+    <div class="never-clause">4. NO_SUBLICENSING_WITHOUT_ACTOR</div>
+    <div class="never-clause">5. NO_BYPASS_KILL_SWITCH</div>
+    <div class="never-clause">6. NO_HIDDEN_PROVENANCE</div>
+    <div class="never-clause">7. NO_EXPLOITATION (75/25 always)</div>
+    <div class="never-clause">8. NO_MINOR_VOICE_SYNTHESIS</div>
+    <div class="never-clause">9. NO_LEDGER_TAMPERING (append-only)</div>
+  </div>
+
+  <!-- RIGHT PANEL: ROADMAP & TIMELINE -->
+  <div class="panel">
+    <h2>Active Roadmap</h2>
+    <div class="roadmap-item done"><span class="roadmap-check">✓</span><span class="roadmap-text">Contact Sequence (Three.js, 396 Hz)</span></div>
+    <div class="roadmap-item done"><span class="roadmap-check">✓</span><span class="roadmap-text">Streaming on all 11 providers</span></div>
+    <div class="roadmap-item done"><span class="roadmap-check">✓</span><span class="roadmap-text">C2PA content credentials</span></div>
+    <div class="roadmap-item done"><span class="roadmap-check">✓</span><span class="roadmap-text">Gemma 3 / Shirley added</span></div>
+    <div class="roadmap-item done"><span class="roadmap-check">✓</span><span class="roadmap-text">noizy.ai landing page built</span></div>
+    <div class="roadmap-item done"><span class="roadmap-check">✓</span><span class="roadmap-text">DreamChamber Audio MCP (13 tools)</span></div>
+    <div class="roadmap-item done"><span class="roadmap-check">✓</span><span class="roadmap-text">Full Empire Excavation Manifest</span></div>
+    <div class="roadmap-item done"><span class="roadmap-check">✓</span><span class="roadmap-text">.claude/rules/ directory (10 files)</span></div>
+    <div class="roadmap-item done"><span class="roadmap-check">✓</span><span class="roadmap-text">Auto-format + lint hooks</span></div>
+    <div class="roadmap-item done"><span class="roadmap-check">✓</span><span class="roadmap-text">Agent subagent architecture (10 defs)</span></div>
+    <div class="roadmap-item done"><span class="roadmap-check">✓</span><span class="roadmap-text">8 MCP servers (74 total tools)</span></div>
+    <div class="roadmap-item done"><span class="roadmap-check">✓</span><span class="roadmap-text">Worktree + tmux dispatch scripts</span></div>
+    <div class="roadmap-item done"><span class="roadmap-check">✓</span><span class="roadmap-text">NOI-15 archived from Slack</span></div>
+    <div class="roadmap-item done"><span class="roadmap-check">✓</span><span class="roadmap-text">Memory graph populated</span></div>
+    <div class="section-divider"></div>
+    <div class="roadmap-item pending"><span class="roadmap-check">○</span><span class="roadmap-text">Deploy noizy.ai landing page</span></div>
+    <div class="roadmap-item pending"><span class="roadmap-check">○</span><span class="roadmap-text">Deploy Heaven17 (replace stub)</span></div>
+    <div class="roadmap-item pending"><span class="roadmap-check">○</span><span class="roadmap-text">GoDaddy exit — Step 0: CF login</span></div>
+    <div class="roadmap-item pending"><span class="roadmap-check">○</span><span class="roadmap-text">Record first Voice DNA session</span></div>
+    <div class="roadmap-item pending"><span class="roadmap-check">○</span><span class="roadmap-text">Enable Cloudflare R2</span></div>
+    <div class="roadmap-item pending"><span class="roadmap-check">○</span><span class="roadmap-text">Kill Switch webhooks</span></div>
+    <div class="roadmap-item pending"><span class="roadmap-check">○</span><span class="roadmap-text">First real licensee onboarding</span></div>
+
+    <h3>KV Namespaces (Live)</h3>
+    <div class="kv-row"><span>GABRIEL_KV</span><span style="color:var(--gold)">68710a32</span></div>
+    <div class="kv-row"><span>GABRIEL_VOICE</span><span style="color:var(--gold)">28f2fdce</span></div>
+    <div class="kv-row"><span>agent-state</span><span style="color:var(--text-dim)">150a3c32</span></div>
+    <div class="kv-row"><span>noizyvox-signups</span><span style="color:var(--text-dim)">392c1bf4</span></div>
+    <div class="kv-row"><span>noizyvox-royalties</span><span style="color:var(--text-dim)">4cf36e4b</span></div>
+    <div class="kv-row"><span>noizylab-customers</span><span style="color:var(--text-dim)">1fb0ba03</span></div>
+    <div class="kv-row"><span>session-cache</span><span style="color:var(--text-dim)">36120a47</span></div>
+    <div class="kv-row"><span>model-performance</span><span style="color:var(--text-dim)">341737a9</span></div>
+    <div class="kv-row"><span>emergency-alerts</span><span style="color:var(--text-dim)">5fb15b70</span></div>
+    <div class="kv-row"><span>command-queue</span><span style="color:var(--text-dim)">41d546e3</span></div>
+    <div class="kv-row"><span>discord-queue</span><span style="color:var(--text-dim)">1f41fb3c</span></div>
+    <div class="kv-row"><span>CRAWLER_KV</span><span style="color:var(--text-dim)">355f0d9b</span></div>
+    <div class="kv-row"><span>+ 8 more</span><span style="color:var(--text-dim)">20+ total</span></div>
+
+    <h3>Mission</h3>
+    <div class="card" style="border-color:rgba(245,158,11,0.2);text-align:center;">
+      <div style="font-size:11px;color:var(--gold);font-style:italic;line-height:1.8;">
+        "Consent as executable code.<br>
+        Provenance as default.<br>
+        Revocation as sacred.<br>
+        Compensation as automatic."
+      </div>
+      <div style="margin-top:12px;font-size:10px;color:var(--text-dim);">
+        We are the new punk rockers:<br>
+        capitalist free thinkers who believe in<br>
+        peace, love, and understanding.
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+function updateClock() {
+  const now = new Date();
+  document.getElementById('clock').textContent = now.toISOString().slice(0,19).replace('T',' ') + ' UTC';
+}
+updateClock();
+setInterval(updateClock, 1000);
+</script>
+</body>
+</html>

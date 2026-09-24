@@ -1,0 +1,3 @@
+module NOIZYMacOSBridgeCore {
+    header "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/include/NOIZYMacOSBridgeCore-Swift.h"
+}

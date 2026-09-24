@@ -7,7 +7,6 @@ Comprehensive Test Suite for NOIZY Sovereign Runtime:
 4. Sonic Passport Graph (Multi-Generational Lineage & Rights Assertions)
 """
 
-import os
 import sys
 import unittest
 
@@ -20,8 +19,7 @@ from core.sovereign_runtime.rsp_cognitive_firewall import (
     Reversibility
 )
 from core.sovereign_runtime.gabriel_capability_broker import (
-    GabrielCapabilityBroker,
-    CapabilityClass
+    GabrielCapabilityBroker
 )
 from core.sovereign_runtime.dreamchamber_telemetry_fabric import (
     DreamchamberTelemetryFabric

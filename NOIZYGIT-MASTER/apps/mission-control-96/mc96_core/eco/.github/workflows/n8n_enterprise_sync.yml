@@ -1,0 +1,40 @@
+name: NOIZY Enterprise Sync & n8n Automation
+
+on:
+  push:
+    branches:
+      - main
+  release:
+    types: [published]
+  workflow_dispatch: # Allows manual trigger from the GitHub UI
+
+jobs:
+  notify-n8n-system:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Extract Commit Data
+        id: commit_info
+        run: |
+          echo "AUTHOR=${{ github.actor }}" >> $GITHUB_ENV
+          echo "MESSAGE=$(git log -1 --pretty=format:'%s')" >> $GITHUB_ENV
+
+      - name: Trigger n8n System Webhook
+        uses: fjogeleit/http-request-action@v1
+        with:
+          url: ${{ secrets.N8N_ENTERPRISE_WEBHOOK_URL }}
+          method: 'POST'
+          bearerToken: ${{ secrets.N8N_WEBHOOK_SECRET }}
+          customHeaders: '{"Content-Type": "application/json"}'
+          data: >-
+            {
+              "event": "${{ github.event_name }}",
+              "repository": "${{ github.repository }}",
+              "commit_sha": "${{ github.sha }}",
+              "author": "${{ env.AUTHOR }}",
+              "message": "${{ env.MESSAGE }}",
+              "environment": "production",
+              "system": "NOIZY.ai Core"
+            }

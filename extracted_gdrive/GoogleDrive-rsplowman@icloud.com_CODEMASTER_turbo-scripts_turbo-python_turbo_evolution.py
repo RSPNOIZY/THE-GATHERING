@@ -5,8 +5,6 @@ The Evolution Engine.
 Analyzes MemCell V3 data to generate self-improvement insights.
 """
 import json
-import os
-import sys
 from pathlib import Path
 from collections import Counter
 import datetime

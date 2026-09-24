@@ -1,0 +1,59 @@
+{
+  "NOIZY Consent Check": {
+    "prefix": "noizy-consent",
+    "body": [
+      "// NOIZY Consent Check — ${1:description}",
+      "const consentResult = await fetch('${2:https://heaven.rsp-5f3.workers.dev}/api/v1/consent-tokens', {",
+      "  headers: { 'X-NOIZY-Key': process.env.NOIZY_KEY }",
+      "});",
+      "const consent = await consentResult.json();",
+      "if (!consent.valid) throw new Error('Consent denied: ${3:reason}');"
+    ],
+    "description": "NOIZY consent verification block"
+  },
+  "NOIZY Never Clause Guard": {
+    "prefix": "noizy-never",
+    "body": [
+      "// Never Clause Guard — SACRED BOUNDARY",
+      "const neverClauses = await fetch('${1:https://heaven.rsp-5f3.workers.dev}/api/v1/actors/${2:RSP_001}/never-clauses', {",
+      "  headers: { 'X-NOIZY-Key': process.env.NOIZY_KEY }",
+      "});",
+      "const clauses = await neverClauses.json();",
+      "for (const clause of clauses) {",
+      "  if (${3:requestContext}.includes(clause.keyword)) {",
+      "    throw new Error(`NEVER CLAUSE VIOLATION: ${clause.description}`);",
+      "  }",
+      "}"
+    ],
+    "description": "Never clause boundary check"
+  },
+  "NOIZY Ledger Event": {
+    "prefix": "noizy-ledger",
+    "body": [
+      "// Immutable Ledger Entry",
+      "await fetch('${1:https://heaven.rsp-5f3.workers.dev}/api/v1/ledger', {",
+      "  method: 'POST',",
+      "  headers: {",
+      "    'Content-Type': 'application/json',",
+      "    'X-NOIZY-Key': process.env.NOIZY_KEY",
+      "  },",
+      "  body: JSON.stringify({",
+      "    event_type: '${2:action}',",
+      "    actor_id: '${3:RSP_001}',",
+      "    details: { ${4:key}: ${5:value} }",
+      "  })",
+      "});"
+    ],
+    "description": "Write to NOIZY immutable audit ledger"
+  },
+  "NOIZY GABRIEL Ping": {
+    "prefix": "noizy-gabriel",
+    "body": [
+      "// GABRIEL Health Check",
+      "const gabriel = await fetch('http://localhost:7777/health');",
+      "const status = await gabriel.json();",
+      "console.log('GABRIEL:', status.ok ? '✅ LIVE' : '❌ DOWN', status);"
+    ],
+    "description": "Quick GABRIEL health check"
+  }
+}

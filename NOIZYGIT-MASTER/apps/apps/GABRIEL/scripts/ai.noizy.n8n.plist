@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>ai.noizy.n8n</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/Users/m2ultra/.npm-global/bin/n8n</string>
+        <string>start</string>
+    </array>
+
+    <key>WorkingDirectory</key>
+    <string>/Users/m2ultra</string>
+
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>HOME</key>
+        <string>/Users/m2ultra</string>
+        <key>PATH</key>
+        <string>/usr/local/bin:/usr/bin:/bin:/opt/homebrew/bin:/Users/m2ultra/.npm-global/bin</string>
+        <key>N8N_PUBLIC_API_ENABLED</key>
+        <string>true</string>
+        <key>N8N_PUBLIC_API_DISABLED</key>
+        <string>false</string>
+        <key>N8N_PORT</key>
+        <string>5678</string>
+        <key>N8N_PROTOCOL</key>
+        <string>http</string>
+        <key>N8N_HOST</key>
+        <string>0.0.0.0</string>
+        <key>N8N_RUNNERS_ENABLED</key>
+        <string>true</string>
+        <key>N8N_DIAGNOSTICS_ENABLED</key>
+        <string>false</string>
+        <key>N8N_PERSONALIZATION_ENABLED</key>
+        <string>false</string>
+    </dict>
+
+    <key>StandardOutPath</key>
+    <string>/Users/m2ultra/NOIZYANTHROPIC/GABRIEL/logs/n8n.log</string>
+
+    <key>StandardErrorPath</key>
+    <string>/Users/m2ultra/NOIZYANTHROPIC/GABRIEL/logs/n8n.err</string>
+
+    <key>RunAtLoad</key>
+    <true/>
+
+    <key>KeepAlive</key>
+    <true/>
+
+    <key>ThrottleInterval</key>
+    <integer>10</integer>
+</dict>
+</plist>

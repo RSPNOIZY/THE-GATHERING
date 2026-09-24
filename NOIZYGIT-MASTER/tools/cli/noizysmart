@@ -1,0 +1,149 @@
+#!/usr/bin/env python3
+"""
+⚡ NOIZYSMART · MASTER SOVEREIGN CLI & NEURAL SUPERINTELLIGENCE INTERFACE
+Fish Music Inc. · NOIZY Ecosystem · RSP_001
+=============================================================================
+Commands:
+  • noizysmart status      - Complete system health, M2 Ultra telemetry, daemons, AI models
+  • noizysmart query <q>   - Sub-10ms RAG memory search across all 16 Canonical SQLite databases
+  • noizysmart council <q> - Neural deliberation with Sovereign AI Council (RSP_001, GABRIEL, LUCY, MC96)
+  • noizysmart heal        - Run self-healing and code/config diagnostics
+  • noizysmart sync        - Auto-heal & clean commit with git push
+"""
+
+import os
+import sys
+import json
+import time
+import argparse
+import subprocess
+from pathlib import Path
+
+ROUTER_PATH = Path("/Users/m2ultra/THE-GATHERING/NOIZYGIT-MASTER/packages/sovereign-intelligence-router")
+sys.path.insert(0, str(ROUTER_PATH))
+
+try:
+    import sovereign_intelligence_router as router
+except Exception as e:
+    print(f"❌ Error loading Sovereign Intelligence Router: {e}")
+    sys.exit(1)
+
+def show_banner():
+    print("""
+\033[1;36m╔═══════════════════════════════════════════════════════════════════════╗
+║   🧠 NOIZYSMART · SOVEREIGN SUPERINTELLIGENCE & COUNCIL CLI v2.0      ║
+║   Apple Silicon M2 Ultra · 192GB Unified Memory · 16 Canonical DBs    ║
+╚═══════════════════════════════════════════════════════════════════════╝\033[0m
+""")
+
+def cmd_status(args):
+    show_banner()
+    print("\033[1;33m[1] ⚡ HARDWARE & ACCELERATORS TELEMETRY\033[0m")
+    health = router.check_local_model_health()
+    print(f"  • Architecture:  {health['m2_accelerators']}")
+    print(f"  • LM Studio:     \033[32m{'🟢 ONLINE (127.0.0.1:1234)' if health['lm_studio'] else '⚪ STANDBY'}\033[0m")
+    print(f"  • Ollama:        \033[32m{'🟢 ONLINE (127.0.0.1:11434)' if health['ollama'] else '⚪ STANDBY'}\033[0m")
+    
+    print("\n\033[1;33m[2] 📚 CANONICAL REGISTRIES INDEX (16 SQLite Registries)\033[0m")
+    total_size_mb = 0
+    for db in router.CANONICAL_DATABASES:
+        if db.exists():
+            size_mb = db.stat().st_size / (1024 * 1024)
+            total_size_mb += size_mb
+            print(f"  • {db.stem:.<48} \033[1;32m{size_mb:6.2f} MB\033[0m")
+        else:
+            print(f"  • {db.stem:.<48} \033[31mMISSING\033[0m")
+    print(f"  ─────────────────────────────────────────────────────────────")
+    print(f"  • \033[1mTOTAL SOVEREIGN MEMORY FOOTPRINT:\033[0m              \033[1;32m{total_size_mb:.2f} MB\033[0m")
+
+    print("\n\033[1;33m[3] 🛡️ SYSTEM DAEMONS & SERVICES\033[0m")
+    res = subprocess.run(["ps", "-ax"], capture_output=True, text=True)
+    ps_text = res.stdout
+    daemons = [
+        ("GABRIEL Daemon", "gabriel"),
+        ("Voice Bridge", "voice-bridge"),
+        ("MCP Gabriel Server", "gabriel-mcp"),
+        ("n8n Workflow Engine", "n8n"),
+        ("LM Studio Core", "LM Studio")
+    ]
+    for name, proc in daemons:
+        active = proc in ps_text
+        print(f"  • {name:.<40} \033[32m{'🟢 RUNNING' if active else '⚪ IDLE'}\033[0m")
+
+def cmd_query(args):
+    q = " ".join(args.query)
+    if not q:
+        print("❌ Please provide a search query.")
+        return
+    print(f"\n🔍 Searching across 16 Canonical Registries for: '\033[1;36m{q}\033[0m'...")
+    res = router.query_sovereign_memory(q, limit=args.limit, db_filter=args.filter)
+    print(f"⚡ Retrieval completed in \033[1;32m{res['elapsed_ms']} ms\033[0m (Found {res['total_matches']} matches)\n")
+    
+    for idx, r in enumerate(res["results"], 1):
+        print(f"\033[1;33m[{idx}] \033[1;34m{r['database']} \033[0m:: \033[1;37m{r['table']}\033[0m")
+        print(f"    {r['preview']}\n")
+
+def cmd_council(args):
+    prompt = " ".join(args.prompt)
+    if not prompt:
+        print("❌ Please provide a prompt for the Sovereign Council.")
+        return
+    show_banner()
+    print(f"\033[1;33m🏛️ Deliberating with Sovereign AI Council...\033[0m")
+    print(f"Prompt: \033[1;37m\"{prompt}\"\033[0m\n")
+    delib = router.execute_council_deliberation(prompt, forced_persona=args.persona)
+    
+    print(f"🎤 \033[1;36mSPEAKING:\033[0m \033[1;32m{delib['selected_persona']}\033[0m ({delib['title']})")
+    print(f"📜 \033[1;36mCREED:\033[0m    {delib['creed']}")
+    print(f"🎨 \033[1;36mSTYLE:\033[0m    {delib['style']}")
+    print(f"⚡ \033[1;36mRAG CONTEXT (Retrieved in {delib['rag_telemetry']['query_time_ms']} ms):\033[0m")
+    print(delib["retrieved_context"])
+    print(f"\n📋 \033[1;36mDIRECTIVES:\033[0m")
+    for d in delib["actionable_directives"]:
+        print(f"  • {d}")
+    print(f"\n\033[1;32m✨ STATUS: {delib['system_status']}\033[0m\n")
+
+def cmd_heal(args):
+    print("🛠️ Running Sovereign Auto-Healing Diagnostics...")
+    subprocess.run(["python3", "/Users/m2ultra/THE-GATHERING/NOIZYGIT-MASTER/scripts/sync/fix_and_upgrade_all_broken_and_substandard.py"])
+
+def cmd_sync(args):
+    print("🚀 Executing Master Multi-Drive & Sovereign Git Alignment...")
+    subprocess.run(["git", "add", "-A"], cwd="/Users/m2ultra/THE-GATHERING")
+    subprocess.run(["git", "commit", "-m", "feat(sovereign): seal ecosystem intelligence upgrade v2.0"], cwd="/Users/m2ultra/THE-GATHERING")
+    subprocess.run(["git", "push", "origin", "main"], cwd="/Users/m2ultra/THE-GATHERING")
+
+def main():
+    parser = argparse.ArgumentParser(description="NOIZYSMART Sovereign Intelligence CLI")
+    subparsers = parser.add_subparsers(dest="command")
+
+    p_status = subparsers.add_parser("status", help="Show system, database, and hardware status")
+    
+    p_query = subparsers.add_parser("query", help="Query all 16 canonical databases")
+    p_query.add_argument("query", nargs="+", help="Query string")
+    p_query.add_argument("--limit", type=int, default=10, help="Max results")
+    p_query.add_argument("--filter", type=str, default=None, help="Database filter substring")
+
+    p_council = subparsers.add_parser("council", help="Deliberate with Sovereign AI Council")
+    p_council.add_argument("prompt", nargs="+", help="Council prompt")
+    p_council.add_argument("--persona", choices=["RSP_001", "GABRIEL", "LUCY", "MC96"], default=None, help="Force specific Council persona")
+
+    p_heal = subparsers.add_parser("heal", help="Run auto-heal diagnostics")
+    p_sync = subparsers.add_parser("sync", help="Run git auto-sync")
+
+    args = parser.parse_args()
+    if args.command == "status":
+        cmd_status(args)
+    elif args.command == "query":
+        cmd_query(args)
+    elif args.command == "council":
+        cmd_council(args)
+    elif args.command == "heal":
+        cmd_heal(args)
+    elif args.command == "sync":
+        cmd_sync(args)
+    else:
+        cmd_status(args)
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,61 @@
+# ═══════════════════════════════════════════════════════════════
+# HEADSCALE — Self-Hosted Sovereign Tailscale Control Server
+# MC96ECOUNIVERSE · Architecture 4.0.0-SOVEREIGN
+# ═══════════════════════════════════════════════════════════════
+
+server_url: https://headscale.noizy.ai:443
+listen_addr: 0.0.0.0:8080
+metrics_listen_addr: 127.0.0.1:9090
+
+grpc_listen_addr: 127.0.0.1:50443
+grpc_allow_insecure: false
+
+# ── Private IP Allocation ────────────────────────────────────
+ip_prefixes:
+  - 100.96.0.0/16
+  - fd7a:115c:a1e0:96::/64
+
+# ── MagicDNS ─────────────────────────────────────────────────
+dns:
+  magic_dns: true
+  base_domain: noizy.mesh
+  nameservers:
+    split:
+      {}
+    global:
+      - 1.1.1.1
+      - 1.0.0.1
+  search_domains: []
+  extra_records:
+    - name: god.noizy.mesh
+      type: A
+      value: 100.96.0.1
+    - name: gabriel.noizy.mesh
+      type: A
+      value: 100.96.0.2
+    - name: lucy.noizy.mesh
+      type: A
+      value: 100.96.0.3
+
+# ── Database ─────────────────────────────────────────────────
+database:
+  type: sqlite3
+  sqlite:
+    path: /var/lib/headscale/headscale.sqlite
+
+# ── DERP Relay Configuration ─────────────────────────────────
+derp:
+  server:
+    enabled: true
+    region_id: 996
+    region_code: "noizy-toronto"
+    region_name: "NOIZY Sovereign Relay"
+    stun_listen_addr: "0.0.0.0:3478"
+  urls:
+    - https://controlplane.tailscale.com/derpmap/default
+  auto_update_enabled: true
+  update_frequency: 24h
+
+# ── Node Expiry & Security ───────────────────────────────────
+ephemeral_node_inactivity_timeout: 30m
+node_expiry: 180d

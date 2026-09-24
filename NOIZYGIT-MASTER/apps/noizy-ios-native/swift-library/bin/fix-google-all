@@ -1,0 +1,25 @@
+#!/bin/bash
+# Run this AFTER: gcloud auth login rsplowman@icloud.com
+set -euo pipefail
+
+echo "Enabling all Google APIs on noizy-ai..."
+gcloud services enable \
+    cloudaicompanion.googleapis.com \
+    generativelanguage.googleapis.com \
+    drive.googleapis.com \
+    gmail.googleapis.com \
+    calendar-json.googleapis.com \
+    texttospeech.googleapis.com \
+    --project=noizy-ai
+
+echo ""
+echo "Setting application default credentials..."
+gcloud auth application-default login
+
+echo ""
+echo "Verifying..."
+gcloud services list --enabled --project=noizy-ai | grep -iE "companion|gemini|drive|gmail|calendar|speech"
+
+echo ""
+echo "✓ All Google services enabled. Restart Antigravity."
+echo "  killall Antigravity && open /Applications/Antigravity.app"

@@ -19,7 +19,6 @@ from typing import Dict, Optional, Tuple
 from dataclasses import dataclass
 from datetime import datetime
 from enum import Enum
-import base64
 
 # ═══════════════════════════════════════════════════════════════════════════
 # DISPLAY MODELS

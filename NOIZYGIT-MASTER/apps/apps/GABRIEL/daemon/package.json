@@ -1,0 +1,17 @@
+{
+  "name": "gabriel-daemon",
+  "version": "2.0.0",
+  "description": "GABRIEL unified intelligence daemon — NOIZY EMPIRE · GORUNFREE",
+  "main": "gabriel-daemon.js",
+  "scripts": {
+    "start": "node gabriel-daemon.js",
+    "dev": "node --watch gabriel-daemon.js",
+    "install-agent": "bash ../scripts/install-launch-agent.sh",
+    "test": "curl -s http://localhost:7777/health | python3 -m json.tool"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.80.0",
+    "better-sqlite3": "^12.8.0",
+    "ws": "^8.18.0"
+  }
+}

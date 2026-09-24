@@ -1,0 +1,26 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "wisdom-noizy-ai",
+  "main": "src/index.ts",
+  "compatibility_date": "2025-04-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "observability": { "enabled": true },
+
+  "d1_databases": [
+    {
+      "binding": "WISDOM_DB",
+      "database_name": "noizyai-db",
+      "database_id": "ebcf576f-51e3-4e3d-829e-219f8fe6001c"
+    }
+  ],
+
+  "vars": {
+    "NOTION_API_KEY": "REPLACE_WITH_NOTION_KEY",
+    "NOTION_DATABASE_ID": "REPLACE_WITH_DB_ID"
+  },
+
+  "env": {
+    "staging": {},
+    "production": {}
+  }
+}

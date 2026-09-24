@@ -8,11 +8,8 @@ from __future__ import annotations
 
 import hashlib
 import hmac
-import math
-import struct
-import uuid
 import time
-from typing import Dict, Any, List, Optional, Tuple
+from typing import Dict, Any
 
 
 class AudioImprintEngine:

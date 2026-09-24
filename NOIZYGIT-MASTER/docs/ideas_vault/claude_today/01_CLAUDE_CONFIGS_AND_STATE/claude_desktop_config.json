@@ -1,0 +1,54 @@
+{
+  "mcpServers": {
+    "GitKraken": {
+      "command": "/Users/m2ultra/Library/Application Support/GitKrakenCLI/gk-alpha",
+      "args": [
+        "mcp",
+        "--host=claude",
+        "--session=kepler"
+      ]
+    },
+    "pencil": {
+      "command": "/Users/m2ultra/.pencil/mcp/antigravity_ide/out/mcp-server-darwin-arm64",
+      "args": [
+        "--app",
+        "antigravity_ide",
+        "--agent",
+        "claudeDesktop"
+      ],
+      "env": {},
+      "type": "stdio"
+    }
+  },
+  "coworkUserFilesPath": "/Users/m2ultra/Claude",
+  "preferences": {
+    "coworkBrowserToolsEnabled": true,
+    "coworkPreferredBrowser": "built_in",
+    "launchPreviewPersistedWorkspaces": [],
+    "launchPreviewSessionScopedSessions": [],
+    "coworkScheduledTasksEnabled": false,
+    "coworkHipaaRestricted": false,
+    "orgWorkAcrossAppsDisabled": true,
+    "ccdScheduledTasksEnabled": false,
+    "bypassPermissionsGateByAccount": {
+      "4403b21c-5350-4d01-ac2b-69123b76099a": false,
+      "a8ffb160-a2ff-466b-86a6-0ffac24402f9": false
+    },
+    "coworkWebSearchEnabled": true,
+    "coworkModelAutoFallbackByAccount": {
+      "4403b21c-5350-4d01-ac2b-69123b76099a": true,
+      "a8ffb160-a2ff-466b-86a6-0ffac24402f9": true
+    },
+    "remoteToolsDeviceName": "m2ultras-mac-studio-local",
+    "epitaxyPrefs": {
+      "starred-local-code-sessions": [],
+      "starred-cowork-spaces": [],
+      "starred-session-groups": [],
+      "dframe-group-scopes": {},
+      "dframe-local-slice": {
+        "pinnedOrder": [],
+        "homeProjectsPinnedOrder": []
+      }
+    }
+  }
+}

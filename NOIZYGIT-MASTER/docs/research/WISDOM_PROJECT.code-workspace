@@ -1,0 +1,19 @@
+{
+  "folders": [
+    {
+      "name": "SOUND_DESIGN",
+      "path": "../../../../../../../Volumes/SOUND_DESIGN"
+    }
+  ],
+  "settings": {
+    "chat.mcp.discovery.enabled": {
+      "claude-desktop": true,
+      "windsurf": true,
+      "cursor-global": true,
+      "cursor-workspace": true
+    },
+    "idf.pythonInstallPath": "/opt/homebrew/bin/python3",
+    "search-online.search-engine": "Google",
+    "git.ignoreLimitWarning": true
+  }
+}

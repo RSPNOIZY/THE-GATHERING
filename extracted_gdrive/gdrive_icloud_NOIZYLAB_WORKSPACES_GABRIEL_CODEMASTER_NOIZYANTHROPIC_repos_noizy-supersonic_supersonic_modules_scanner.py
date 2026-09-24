@@ -7,7 +7,6 @@ Knows the difference between your masters and scipy test data.
 
 from __future__ import annotations
 import os
-import stat
 from pathlib import Path
 from datetime import datetime
 from typing import Generator

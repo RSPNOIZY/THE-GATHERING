@@ -1,0 +1,446 @@
+{
+  "name": "noizybeast",
+  "displayName": "NOIZYBEAST — NOIZY Empire IDE",
+  "description": "Turbo scripts, GABRIEL V4 status, consent oracle, voice registry, and DreamChamber integration for the NOIZY.AI empire. Works in VS Code, VS Code Insiders, Windsurf, and Cursor.",
+  "version": "4.0.0",
+  "publisher": "noizy-ai",
+  "author": {
+    "name": "Robert Stephen Plowman",
+    "email": "rsp@noizy.ai"
+  },
+  "license": "UNLICENSED",
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": [
+    "Other",
+    "Snippets",
+    "Keymaps"
+  ],
+  "keywords": [
+    "noizy",
+    "noizybeast",
+    "gabriel",
+    "consent",
+    "voice",
+    "dreamchamber",
+    "turbo"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "out/extension.js",
+  "icon": "resources/icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/NOIZY-AI/noizybeast-vscode"
+  },
+  "contributes": {
+    "commands": [
+      {
+        "command": "noizybeast.t1",
+        "title": "T1 Scaffold — New Project",
+        "category": "NOIZY"
+      },
+      {
+        "command": "noizybeast.t2",
+        "title": "T2 Flow Sync — Load Session",
+        "category": "NOIZY"
+      },
+      {
+        "command": "noizybeast.t3",
+        "title": "T3 Deploy Cannon — Ship It",
+        "category": "NOIZY"
+      },
+      {
+        "command": "noizybeast.t4",
+        "title": "T4 Cell Burst — Save to GABRIEL",
+        "category": "NOIZY"
+      },
+      {
+        "command": "noizybeast.t5",
+        "title": "T5 Consent Snap — Rights Check",
+        "category": "NOIZY"
+      },
+      {
+        "command": "noizybeast.t6",
+        "title": "T6 Mutation Replay — Show Lineage",
+        "category": "NOIZY"
+      },
+      {
+        "command": "noizybeast.t7",
+        "title": "T7 Forge — Voice Synthesis",
+        "category": "NOIZY"
+      },
+      {
+        "command": "noizybeast.t8",
+        "title": "T8 X1000 — Max Quality Mode",
+        "category": "NOIZY"
+      },
+      {
+        "command": "noizybeast.t9",
+        "title": "T9 Fix Canon — Diagnose & Repair",
+        "category": "NOIZY"
+      },
+      {
+        "command": "noizybeast.t10",
+        "title": "T10 Dream Capture — Close Session",
+        "category": "NOIZY"
+      },
+      {
+        "command": "noizybeast.status",
+        "title": "Empire Status — Full Report",
+        "category": "NOIZY"
+      },
+      {
+        "command": "noizybeast.openPanel",
+        "title": "Open NOIZY IDE Panel",
+        "category": "NOIZY"
+      },
+      {
+        "command": "noizybeast.consent",
+        "title": "Consent Snap for Current File",
+        "category": "NOIZY"
+      },
+      {
+        "command": "noizybeast.gabrielPing",
+        "title": "GABRIEL — Health Check",
+        "category": "NOIZY"
+      },
+      {
+        "command": "noizybeast.dreamCapture",
+        "title": "DreamChamber — Capture This Session",
+        "category": "NOIZY"
+      },
+      {
+        "command": "noizybeast.scaffold",
+        "title": "Scaffold NOIZY Component Here",
+        "category": "NOIZY"
+      },
+      {
+        "command": "noizybeast.turboPipeline",
+        "title": "Turbo Pipeline — HEAL→DEDUPE→UNIFY→VERIFY",
+        "category": "NOIZY Turbo"
+      },
+      {
+        "command": "noizybeast.turboZap",
+        "title": "Turbo Zap — DNS flush + network reset",
+        "category": "NOIZY Turbo"
+      },
+      {
+        "command": "noizybeast.turboGitSync",
+        "title": "Turbo Git Sync — push all repos",
+        "category": "NOIZY Turbo"
+      },
+      {
+        "command": "noizybeast.turboReset",
+        "title": "Turbo Reset — full env reset",
+        "category": "NOIZY Turbo"
+      },
+      {
+        "command": "noizybeast.turboMountOmen",
+        "title": "Turbo Mount Omen — HP-OMEN volume",
+        "category": "NOIZY Turbo"
+      },
+      {
+        "command": "noizybeast.activateVoice",
+        "title": "Activate Voice Command",
+        "category": "NOIZY"
+      },
+      {
+        "command": "noizybeast.sendToGabriel",
+        "title": "Send Selection to GABRIEL",
+        "category": "NOIZY"
+      },
+      {
+        "command": "noizybeast.deployWorker",
+        "title": "Deploy to CF Edge",
+        "category": "NOIZY"
+      },
+      {
+        "command": "noizybeast.runTurbo",
+        "title": "Run Turbo Script",
+        "category": "NOIZY"
+      },
+      {
+        "command": "noizybeast.openCommandCenter",
+        "title": "Open Command Center",
+        "category": "NOIZY"
+      },
+      {
+        "command": "noizybeast.lucyAsk",
+        "title": "Ask LUCY",
+        "category": "NOIZY Agents"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "noizybeast.t2",
+        "key": "ctrl+shift+alt+2",
+        "mac": "cmd+shift+alt+2"
+      },
+      {
+        "command": "noizybeast.t3",
+        "key": "ctrl+shift+alt+3",
+        "mac": "cmd+shift+alt+3"
+      },
+      {
+        "command": "noizybeast.t4",
+        "key": "ctrl+shift+alt+4",
+        "mac": "cmd+shift+alt+4"
+      },
+      {
+        "command": "noizybeast.t5",
+        "key": "ctrl+shift+alt+5",
+        "mac": "cmd+shift+alt+5"
+      },
+      {
+        "command": "noizybeast.t10",
+        "key": "ctrl+shift+alt+0",
+        "mac": "cmd+shift+alt+0"
+      },
+      {
+        "command": "noizybeast.openPanel",
+        "key": "ctrl+shift+alt+n",
+        "mac": "cmd+shift+alt+n"
+      },
+      {
+        "command": "noizybeast.t9",
+        "key": "ctrl+shift+alt+9",
+        "mac": "cmd+shift+alt+9"
+      },
+      {
+        "command": "noizybeast.turboPipeline",
+        "key": "ctrl+shift+alt+p",
+        "mac": "cmd+shift+alt+p"
+      },
+      {
+        "command": "noizybeast.turboZap",
+        "key": "ctrl+shift+alt+z",
+        "mac": "cmd+shift+alt+z"
+      },
+      {
+        "command": "noizybeast.turboGitSync",
+        "key": "ctrl+shift+alt+g",
+        "mac": "cmd+shift+alt+g"
+      },
+      {
+        "command": "noizybeast.activateVoice",
+        "key": "ctrl+shift+v",
+        "mac": "cmd+shift+v"
+      },
+      {
+        "command": "noizybeast.sendToGabriel",
+        "key": "ctrl+shift+g",
+        "mac": "cmd+shift+g"
+      },
+      {
+        "command": "noizybeast.runTurbo",
+        "key": "ctrl+shift+t",
+        "mac": "cmd+shift+t"
+      },
+      {
+        "command": "noizybeast.openCommandCenter",
+        "key": "ctrl+shift+alt+c",
+        "mac": "cmd+shift+alt+c"
+      },
+      {
+        "command": "noizybeast.lucyAsk",
+        "key": "ctrl+shift+alt+l",
+        "mac": "cmd+shift+alt+l"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "noizybeast",
+          "title": "NOIZYBEAST",
+          "icon": "resources/icon-mono.svg"
+        }
+      ]
+    },
+    "views": {
+      "noizybeast": [
+        {
+          "id": "noizybeast.empireView",
+          "name": "Empire Status",
+          "type": "webview"
+        },
+        {
+          "id": "noizybeast.turbosView",
+          "name": "Turbo Scripts",
+          "type": "tree"
+        },
+        {
+          "id": "noizybeast.ordersView",
+          "name": "Standing Orders",
+          "type": "tree"
+        }
+      ]
+    },
+    "menus": {
+      "editor/context": [
+        {
+          "command": "noizybeast.consent",
+          "group": "noizy@1",
+          "when": "editorHasSelection"
+        },
+        {
+          "command": "noizybeast.t4",
+          "group": "noizy@2"
+        },
+        {
+          "command": "noizybeast.scaffold",
+          "group": "noizy@3"
+        }
+      ],
+      "explorer/context": [
+        {
+          "command": "noizybeast.t3",
+          "group": "noizy@1"
+        },
+        {
+          "command": "noizybeast.t9",
+          "group": "noizy@2"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "noizybeast.t1"
+        },
+        {
+          "command": "noizybeast.t2"
+        },
+        {
+          "command": "noizybeast.t3"
+        },
+        {
+          "command": "noizybeast.t4"
+        },
+        {
+          "command": "noizybeast.t5"
+        },
+        {
+          "command": "noizybeast.t6"
+        },
+        {
+          "command": "noizybeast.t7"
+        },
+        {
+          "command": "noizybeast.t8"
+        },
+        {
+          "command": "noizybeast.t9"
+        },
+        {
+          "command": "noizybeast.t10"
+        },
+        {
+          "command": "noizybeast.status"
+        },
+        {
+          "command": "noizybeast.openPanel"
+        },
+        {
+          "command": "noizybeast.turboPipeline"
+        },
+        {
+          "command": "noizybeast.turboZap"
+        },
+        {
+          "command": "noizybeast.turboGitSync"
+        },
+        {
+          "command": "noizybeast.turboReset"
+        },
+        {
+          "command": "noizybeast.turboMountOmen"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "NOIZYBEAST",
+      "properties": {
+        "noizybeast.gabrielUrl": {
+          "type": "string",
+          "default": "http://localhost:9777",
+          "description": "GABRIEL V4 DreamChamber URL (port 9777)"
+        },
+        "noizybeast.voiceBridgeUrl": {
+          "type": "string",
+          "default": "http://localhost:8080",
+          "description": "Voice Bridge server URL"
+        },
+        "noizybeast.ollamaUrl": {
+          "type": "string",
+          "default": "http://localhost:11434",
+          "description": "Ollama / Gemma3 URL"
+        },
+        "noizybeast.cfAccount": {
+          "type": "string",
+          "default": "5f36aa9795348ea681d0b21910dfc82a",
+          "description": "Cloudflare Account ID"
+        },
+        "noizybeast.operator": {
+          "type": "string",
+          "default": "RSP_001",
+          "description": "Operator ID for consent and audit logging"
+        },
+        "noizybeast.noizyLabPath": {
+          "type": "string",
+          "default": "~/NOIZYLAB",
+          "description": "Path to NOIZYLAB directory"
+        },
+        "noizybeast.targetDate": {
+          "type": "string",
+          "default": "2026-04-17",
+          "description": "Target delivery date (April 17)"
+        },
+        "noizybeast.autoFlowSync": {
+          "type": "boolean",
+          "default": true,
+          "description": "Auto-run T2 Flow Sync when VS Code opens"
+        },
+        "noizybeast.autoCapture": {
+          "type": "boolean",
+          "default": false,
+          "description": "Auto-run T10 Dream Capture on window close"
+        },
+        "noizybeast.heavenEdgeUrl": {
+          "type": "string",
+          "default": "https://heaven.rsp-5f3.workers.dev",
+          "description": "Heaven edge worker URL (Cloudflare)"
+        },
+        "noizybeast.gabrielWssUrl": {
+          "type": "string",
+          "default": "wss://heaven.rsp-5f3.workers.dev/ws",
+          "description": "Gabriel Edge WebSocket URL"
+        }
+      }
+    },
+    "snippets": [
+      {
+        "language": "typescript",
+        "path": "./snippets/noizy-ts.json"
+      },
+      {
+        "language": "javascript",
+        "path": "./snippets/noizy-js.json"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "package": "vsce package",
+    "publish": "vsce publish"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/vscode": "^1.74.0",
+    "@vscode/vsce": "^3.0.0",
+    "typescript": "^5.0.0"
+  }
+}

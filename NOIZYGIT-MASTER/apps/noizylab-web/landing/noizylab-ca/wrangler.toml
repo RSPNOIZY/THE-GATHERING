@@ -1,0 +1,14 @@
+name = "noizylab-ca-landing"
+account_id = "5f36aa9795348ea681d0b21910dfc82a"
+main = "src/index.js"
+compatibility_date = "2025-01-01"
+workers_dev = true
+
+# Custom domain routing — enable once DNS zone is active on this account
+# [[routes]]
+# pattern = "noizylab.ca"
+# custom_domain = true
+#
+# [[routes]]
+# pattern = "www.noizylab.ca"
+# custom_domain = true

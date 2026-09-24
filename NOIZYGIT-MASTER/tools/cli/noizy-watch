@@ -1,0 +1,38 @@
+#!/bin/bash
+# ═══════════════════════════════════════════════════════════════════════════
+# noizy-watch - Watch NOIZYLAB directory and auto-sync on changes
+# Usage: noizy-watch [interval_seconds]
+# Default: Check every 5 minutes
+# ═══════════════════════════════════════════════════════════════════════════
+
+INTERVAL="${1:-300}"  # 5 minutes default
+WATCH_DIR="$HOME/NOIZYLAB"
+
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo "👁️  NOIZY.AI Auto-Sync Watcher"
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo "  Watching: $WATCH_DIR"
+echo "  Interval: ${INTERVAL}s"
+echo ""
+echo "  Press Ctrl+C to stop"
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo ""
+
+sync_count=0
+
+while true; do
+    TIMESTAMP=$(date "+%Y-%m-%d %H:%M:%S")
+
+    # Check for changes in main repo
+    cd "$WATCH_DIR"
+    if ! git diff --quiet || ! git diff --staged --quiet || [[ -n $(git ls-files --others --exclude-standard) ]]; then
+        echo "[$TIMESTAMP] 🔄 Changes detected, syncing..."
+        noizy-sync "auto: $TIMESTAMP" 2>/dev/null
+        ((sync_count++))
+        echo ""
+    else
+        echo "[$TIMESTAMP] ✓ No changes (synced $sync_count times)"
+    fi
+
+    sleep "$INTERVAL"
+done

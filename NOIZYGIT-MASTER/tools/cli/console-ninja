@@ -1,0 +1,4 @@
+#!/bin/sh
+test -n "$fish_pid" && eval 'set -gx NODE_OPTIONS "--no-warnings --require \"/Users/m2ultra/.console-ninja/.bin/loader.js\""; if set -q argv[1]; $argv; end; return' 2>/dev/null
+export NODE_OPTIONS='--no-warnings --require "/Users/m2ultra/.console-ninja/.bin/loader.js"'
+eval '"$@"'

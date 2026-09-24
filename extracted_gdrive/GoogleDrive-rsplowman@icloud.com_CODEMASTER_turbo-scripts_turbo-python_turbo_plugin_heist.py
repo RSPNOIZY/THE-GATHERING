@@ -78,7 +78,7 @@ def execute_heist(loot):
             pass
 
     print("-" * 40)
-    print(f"🏆 HEIST COMPLETE.")
+    print("🏆 HEIST COMPLETE.")
     print(f"   Items Secured: {count}")
     print(f"   Total Value: {size_mb:.1f} MB")
     print("-" * 40)

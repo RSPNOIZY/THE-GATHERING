@@ -1,0 +1,261 @@
+#!/bin/bash
+# ═══════════════════════════════════════════════════════════════════════════
+# brew-hotrod - NOIZYLAB Modular Brewfile Installer
+# Install exactly what you need, nothing more
+# ═══════════════════════════════════════════════════════════════════════════
+
+set -euo pipefail
+
+# Colors
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+CYAN='\033[0;36m'
+MAGENTA='\033[0;35m'
+BOLD='\033[1m'
+NC='\033[0m'
+
+BREWFILES_DIR="$HOME/.brewfiles"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Banner
+# ─────────────────────────────────────────────────────────────────────────────
+show_banner() {
+    echo ""
+    echo -e "${CYAN}${BOLD}"
+    echo "  ╔══════════════════════════════════════════════════════════════════╗"
+    echo "  ║  ____  ____  _______        __  _   _  ___ _____ ____   ___  ____  ║"
+    echo "  ║ | __ )|  _ \| ____\ \      / / | | | |/ _ \_   _|  _ \ / _ \|  _ \ ║"
+    echo "  ║ |  _ \| |_) |  _|  \ \ /\ / /  | |_| | | | || | | |_) | | | | | | |║"
+    echo "  ║ | |_) |  _ <| |___  \ V  V /   |  _  | |_| || | |  _ <| |_| | |_| |║"
+    echo "  ║ |____/|_| \_\_____|  \_/\_/    |_| |_|\___/ |_| |_| \_\\\\___/|____/ ║"
+    echo "  ║                                                                   ║"
+    echo "  ║              NOIZYLAB Modular Package Installer                   ║"
+    echo "  ╚══════════════════════════════════════════════════════════════════╝"
+    echo -e "${NC}"
+}
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Available bundles
+# ─────────────────────────────────────────────────────────────────────────────
+show_bundles() {
+    echo -e "${BOLD}Available Bundles:${NC}"
+    echo ""
+    echo -e "  ${GREEN}core${NC}      Essential CLI tools (required first)"
+    echo -e "  ${BLUE}dev${NC}       Full development environment"
+    echo -e "  ${MAGENTA}data${NC}      Databases and data processing"
+    echo -e "  ${CYAN}cloud${NC}     Containers, Kubernetes, infrastructure"
+    echo -e "  ${YELLOW}audio${NC}     Audio production and processing"
+    echo -e "  ${RED}security${NC}  Security tools and scanners"
+    echo -e "  ${GREEN}ai${NC}        AI/ML tools and local LLMs"
+    echo -e "  ${BOLD}all${NC}       Install everything (full hot-rod)"
+    echo ""
+}
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Install a bundle
+# ─────────────────────────────────────────────────────────────────────────────
+install_bundle() {
+    local bundle="$1"
+    local brewfile="$BREWFILES_DIR/Brewfile.$bundle"
+
+    if [[ ! -f "$brewfile" ]]; then
+        echo -e "${RED}Error: Bundle '$bundle' not found${NC}"
+        echo -e "Looking for: $brewfile"
+        return 1
+    fi
+
+    echo -e "${CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+    echo -e "${BOLD}Installing: $bundle${NC}"
+    echo -e "${CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+
+    brew bundle --file="$brewfile" --no-lock
+
+    echo -e "${GREEN}✓ $bundle installed${NC}"
+    echo ""
+}
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Install all bundles
+# ─────────────────────────────────────────────────────────────────────────────
+install_all() {
+    echo -e "${YELLOW}${BOLD}FULL HOT-ROD MODE ACTIVATED${NC}"
+    echo ""
+
+    local bundles=("core" "dev" "data" "cloud" "audio" "security" "ai")
+
+    for bundle in "${bundles[@]}"; do
+        install_bundle "$bundle"
+    done
+
+    echo -e "${GREEN}${BOLD}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+    echo -e "${GREEN}${BOLD}ALL BUNDLES INSTALLED - SYSTEM FULLY HOT-RODDED${NC}"
+    echo -e "${GREEN}${BOLD}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+}
+
+# ─────────────────────────────────────────────────────────────────────────────
+# List what's in a bundle
+# ─────────────────────────────────────────────────────────────────────────────
+list_bundle() {
+    local bundle="$1"
+    local brewfile="$BREWFILES_DIR/Brewfile.$bundle"
+
+    if [[ ! -f "$brewfile" ]]; then
+        echo -e "${RED}Error: Bundle '$bundle' not found${NC}"
+        return 1
+    fi
+
+    echo -e "${BOLD}Contents of $bundle:${NC}"
+    echo ""
+
+    # Count items
+    local brews=$(grep -c '^brew ' "$brewfile" 2>/dev/null || echo 0)
+    local casks=$(grep -c '^cask ' "$brewfile" 2>/dev/null || echo 0)
+    local taps=$(grep -c '^tap ' "$brewfile" 2>/dev/null || echo 0)
+
+    echo -e "  ${GREEN}Formulae:${NC} $brews"
+    echo -e "  ${BLUE}Casks:${NC}     $casks"
+    echo -e "  ${YELLOW}Taps:${NC}      $taps"
+    echo ""
+
+    # Show top items
+    echo -e "${BOLD}Packages:${NC}"
+    grep '^brew \|^cask ' "$brewfile" | head -20 | while read -r line; do
+        name=$(echo "$line" | awk '{print $2}' | tr -d '"')
+        comment=$(echo "$line" | grep -o '#.*' | sed 's/# //')
+        if [[ -n "$comment" ]]; then
+            echo -e "  • ${CYAN}$name${NC} - $comment"
+        else
+            echo -e "  • ${CYAN}$name${NC}"
+        fi
+    done
+
+    local total=$((brews + casks))
+    if [[ $total -gt 20 ]]; then
+        echo -e "  ${YELLOW}... and $((total - 20)) more${NC}"
+    fi
+}
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Interactive mode
+# ─────────────────────────────────────────────────────────────────────────────
+interactive_mode() {
+    show_banner
+    show_bundles
+
+    echo -e "${BOLD}What would you like to install?${NC}"
+    echo -e "(Enter bundle names separated by spaces, or 'all' for everything)"
+    echo ""
+    read -p "> " -a selections
+
+    for selection in "${selections[@]}"; do
+        case "$selection" in
+            all)
+                install_all
+                return
+                ;;
+            core|dev|data|cloud|audio|security|ai)
+                install_bundle "$selection"
+                ;;
+            *)
+                echo -e "${YELLOW}Unknown bundle: $selection (skipping)${NC}"
+                ;;
+        esac
+    done
+}
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Show stats
+# ─────────────────────────────────────────────────────────────────────────────
+show_stats() {
+    echo -e "${BOLD}Bundle Statistics:${NC}"
+    echo ""
+
+    local total_brews=0
+    local total_casks=0
+
+    for bundle in core dev data cloud audio security ai; do
+        local brewfile="$BREWFILES_DIR/Brewfile.$bundle"
+        if [[ -f "$brewfile" ]]; then
+            local brews=$(grep -c '^brew ' "$brewfile" 2>/dev/null || echo 0)
+            local casks=$(grep -c '^cask ' "$brewfile" 2>/dev/null || echo 0)
+            printf "  %-10s %3d formulae, %3d casks\n" "$bundle:" "$brews" "$casks"
+            total_brews=$((total_brews + brews))
+            total_casks=$((total_casks + casks))
+        fi
+    done
+
+    echo ""
+    echo -e "${BOLD}Total: $total_brews formulae, $total_casks casks${NC}"
+}
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Usage
+# ─────────────────────────────────────────────────────────────────────────────
+usage() {
+    show_banner
+    echo -e "${BOLD}Usage:${NC}"
+    echo "  brew-hotrod                    Interactive mode"
+    echo "  brew-hotrod <bundle>           Install specific bundle"
+    echo "  brew-hotrod all                Install all bundles"
+    echo "  brew-hotrod list <bundle>      Show bundle contents"
+    echo "  brew-hotrod stats              Show bundle statistics"
+    echo "  brew-hotrod help               Show this help"
+    echo ""
+    show_bundles
+}
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Main
+# ─────────────────────────────────────────────────────────────────────────────
+main() {
+    # Check for Homebrew
+    if ! command -v brew &> /dev/null; then
+        echo -e "${RED}Error: Homebrew not installed${NC}"
+        echo "Install with: /bin/bash -c \"\$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\""
+        exit 1
+    fi
+
+    # Check for brewfiles directory
+    if [[ ! -d "$BREWFILES_DIR" ]]; then
+        echo -e "${RED}Error: Brewfiles directory not found at $BREWFILES_DIR${NC}"
+        exit 1
+    fi
+
+    case "${1:-}" in
+        "")
+            interactive_mode
+            ;;
+        all)
+            show_banner
+            install_all
+            ;;
+        list)
+            if [[ -n "${2:-}" ]]; then
+                list_bundle "$2"
+            else
+                echo -e "${RED}Error: Specify a bundle to list${NC}"
+                usage
+            fi
+            ;;
+        stats)
+            show_banner
+            show_stats
+            ;;
+        help|--help|-h)
+            usage
+            ;;
+        core|dev|data|cloud|audio|security|ai)
+            show_banner
+            install_bundle "$1"
+            ;;
+        *)
+            echo -e "${RED}Unknown command: $1${NC}"
+            usage
+            exit 1
+            ;;
+    esac
+}
+
+main "$@"

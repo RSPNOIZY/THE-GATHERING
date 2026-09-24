@@ -1,0 +1,41 @@
+#!/bin/bash
+set -e
+cd "$(dirname "$0")"
+
+echo ""
+echo "╔═══════════════════════════════════════════════════════════════╗"
+echo "║  NOIZYLAB EDGE - Zero Trust Gateway                           ║"
+echo "╚═══════════════════════════════════════════════════════════════╝"
+echo ""
+
+# Deploy Worker
+echo "Deploying Worker..."
+wrangler deploy
+
+echo ""
+echo "═══════════════════════════════════════════════════════════════"
+echo ""
+echo "  ✅ WORKER DEPLOYED!"
+echo ""
+echo "  🌐 https://noizylab-edge.fishmusicinc.workers.dev"
+echo ""
+echo "  ENDPOINTS:"
+echo "    /               Dashboard"
+echo "    /health         Status"
+echo "    /gabriel/status GABRIEL tunnel status"
+echo "    /gabriel/exec   Execute command on GABRIEL"
+echo "    /ai             AI query"
+echo "    /speak          AI + TTS"
+echo "    /tts            TTS (HMAC auth)"
+echo ""
+echo "  NEXT: Configure tunnel on GABRIEL"
+echo ""
+echo "  1. Copy gabriel-setup.ps1 to GABRIEL"
+echo "  2. Run as Administrator"
+echo "  3. Follow the prompts"
+echo "  4. Set GABRIEL_URL secret:"
+echo "     wrangler secret put GABRIEL_URL"
+echo "     (enter: https://gabriel.fishmusicinc.com)"
+echo ""
+echo "═══════════════════════════════════════════════════════════════"
+echo ""

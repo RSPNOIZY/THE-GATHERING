@@ -1,0 +1,10 @@
+name = "noizylab-10cc-room"
+main = "src/index.js"
+compatibility_date = "2024-01-01"
+
+[ai]
+binding = "AI"
+
+[[kv_namespaces]]
+binding = "CONFIG"
+id = "58c254f29cc34ea3b8c0d7f932793f65"

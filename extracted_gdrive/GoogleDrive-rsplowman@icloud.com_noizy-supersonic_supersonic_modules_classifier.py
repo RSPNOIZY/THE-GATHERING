@@ -7,8 +7,7 @@ metadata tags, audio characteristics, and NOIZY project context.
 
 from __future__ import annotations
 import re
-from pathlib import Path
-from ..models import AudioAsset, AudioCategory, ProjectAssociation
+from ..models import AudioAsset, AudioCategory
 
 
 # Classification rules — ordered by priority

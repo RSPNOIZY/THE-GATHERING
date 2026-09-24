@@ -1,0 +1,25 @@
+name = "noizyworld"
+account_id = "5f36aa9795348ea681d0b21910dfc82a"
+main = "src/index.js"
+compatibility_date = "2025-01-01"
+compatibility_flags = ["nodejs_compat"]
+workers_dev = true
+
+[vars]
+IDENTITY = "noizyworld"
+ENVIRONMENT = "production"
+HEAVEN_ORIGIN = "https://heaven.rsp-5f3.workers.dev"
+
+[[kv_namespaces]]
+binding = "NOIZYWORLD_KV"
+id = "1ce18b8bc5b24517a01bc285b4e72945"
+
+[[d1_databases]]
+binding = "NW_DB"
+database_name = "noizy-prod"
+database_id = "cd6cae46-e5cd-42b6-a97a-5d0e576c1c2a"
+
+# Future custom domain (requires zone on account)
+# [[routes]]
+# pattern = "noizyworld.noizy.ai"
+# custom_domain = true

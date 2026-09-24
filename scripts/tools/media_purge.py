@@ -67,7 +67,7 @@ def purge_media():
                         log.write(f"ERROR moving {src_file}: {e}\n")
                         print(f"⚠️ Error moving {file}: {e}")
                         
-    print(f"\n✅ PURGE COMPLETE.")
+    print("\n✅ PURGE COMPLETE.")
     print(f"Files Moved: {moved_count}")
     print(f"Space Reclaimed: {total_size / (1024*1024*1024):.2f} GB")
     print(f"Log written to: {LOG_FILE}")

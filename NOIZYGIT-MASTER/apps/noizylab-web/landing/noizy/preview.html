@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>NOIZY.ai — Human Voice Sovereignty</title>
+<meta name="description" content="The NOIZY Empire protects human voice identity. Consent as executable code.">
+<meta name="theme-color" content="#020408">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔊</text></svg>">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&display=swap');
+
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:100%;height:100%;overflow:hidden;background:#020408;color:#c8cad8;
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif}
+
+canvas#universe{display:block;position:fixed;inset:0;z-index:0}
+
+/* Scroll layer */
+.scroll{position:fixed;inset:0;z-index:5;overflow-y:auto;scroll-behavior:smooth;
+  scrollbar-width:none;-ms-overflow-style:none}
+.scroll::-webkit-scrollbar{display:none}
+
+/* ═══════════ HERO ═══════════ */
+.hero{position:relative;height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;overflow:hidden}
+
+/* Platinum wordmark */
+.wordmark{
+  font-family:'Cinzel',serif;
+  font-size:clamp(4rem,15vw,12rem);
+  font-weight:900;
+  letter-spacing:.12em;
+  line-height:1;
+  background:linear-gradient(
+    180deg,
+    #f8f8f8 0%,
+    #e8e4df 15%,
+    #d4cfc8 30%,
+    #f0ece6 45%,
+    #c8c2b8 55%,
+    #e0dbd4 70%,
+    #b8b2a8 85%,
+    #d0cbc4 100%
+  );
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+  filter:drop-shadow(0 0 60px rgba(212,160,23,.08)) drop-shadow(0 4px 20px rgba(0,0,0,.5));
+  opacity:0;
+  animation:platinumFade 4s cubic-bezier(.16,1,.3,1) 0.3s forwards;
+  text-shadow:none;
+  user-select:none;
+}
+.wordmark .dot{
+  background:linear-gradient(180deg,#e94560,#ff6b85);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+
+/* Sub line */
+.sub{
+  font-family:'Cinzel',serif;
+  font-size:clamp(.6rem,1.8vw,.9rem);
+  letter-spacing:.4em;
+  text-transform:uppercase;
+  color:rgba(200,196,188,.25);
+  margin-top:1rem;
+  opacity:0;
+  animation:platinumFade 3s ease 2s forwards;
+}
+
+/* Doctrine */
+.doctrine{
+  font-family:"SF Mono","Fira Code",monospace;
+  font-size:clamp(.55rem,1vw,.75rem);
+  color:rgba(0,212,255,.2);
+  letter-spacing:.08em;
+  margin-top:2.5rem;
+  line-height:2.4;
+  opacity:0;
+  animation:platinumFade 3s ease 3s forwards;
+}
+
+/* Sound trigger */
+.sound-hint{
+  position:absolute;
+  bottom:3rem;
+  font-family:'Cinzel',serif;
+  font-size:.6rem;
+  letter-spacing:.3em;
+  text-transform:uppercase;
+  color:rgba(200,196,188,.12);
+  cursor:pointer;
+  opacity:0;
+  animation:platinumFade 2s ease 4s forwards;
+  transition:color .5s;
+}
+.sound-hint:hover{color:rgba(212,160,23,.3)}
+.sound-hint.active{color:rgba(0,212,255,.3)}
+
+/* Scroll arrow */
+.scroll-arrow{
+  position:absolute;
+  bottom:1.2rem;
+  width:16px;height:16px;
+  border-right:1px solid rgba(200,196,188,.1);
+  border-bottom:1px solid rgba(200,196,188,.1);
+  transform:rotate(45deg);
+  animation:bob 3s ease-in-out infinite;
+  opacity:0;
+  animation:bob 3s ease-in-out infinite, platinumFade 2s ease 5s forwards;
+}
+
+/* ═══════════ SECTIONS ═══════════ */
+.section{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:6rem 2rem}
+.section-inner{max-width:800px;width:100%;opacity:0;transform:translateY(50px);transition:all 1.5s cubic-bezier(.16,1,.3,1)}
+.section-inner.vis{opacity:1;transform:translateY(0)}
+
+.section h2{
+  font-family:'Cinzel',serif;
+  font-size:clamp(1.6rem,4vw,2.5rem);
+  font-weight:700;
+  color:rgba(240,236,230,.9);
+  letter-spacing:.08em;
+  margin-bottom:1.5rem;
+}
+.section h2 em{font-style:normal;
+  background:linear-gradient(90deg,#d4a017,#e8c840);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+
+/* Clauses */
+.clause{display:flex;align-items:baseline;gap:1rem;padding:1.1rem 0;border-bottom:1px solid rgba(255,255,255,.03)}
+.clause:last-child{border:none}
+.clause-code{font-family:"SF Mono","Fira Code",monospace;font-size:.65rem;color:#e94560;padding:.25rem .5rem;background:rgba(233,69,96,.06);border:1px solid rgba(233,69,96,.1);border-radius:3px;white-space:nowrap;flex-shrink:0}
+.clause-text{font-size:.85rem;color:rgba(200,202,216,.5);line-height:1.5}
+
+/* Architecture */
+.arch{background:rgba(8,10,16,.7);border:1px solid rgba(40,42,56,.5);border-radius:16px;padding:2rem;backdrop-filter:blur(30px);margin-top:1.5rem}
+.arch pre{font-family:"SF Mono","Fira Code",monospace;font-size:clamp(.6rem,1.1vw,.75rem);color:rgba(0,212,255,.45);line-height:2.2;white-space:pre-wrap;overflow-x:auto}
+.arch .g{color:rgba(0,255,136,.6)}.arch .r{color:rgba(233,69,96,.7)}.arch .y{color:rgba(212,160,23,.7)}
+
+/* Stats */
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;border-radius:16px;overflow:hidden;margin-top:2rem;background:rgba(255,255,255,.02)}
+.stat{background:rgba(8,10,16,.6);padding:2.5rem 1rem;text-align:center;backdrop-filter:blur(10px)}
+.stat .n{font-family:'Cinzel',serif;font-size:clamp(1.5rem,4vw,2.5rem);font-weight:800}
+.stat .n.g{color:#00ff88}.stat .n.c{color:#00d4ff}.stat .n.y{color:#d4a017}
+.stat .l{font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(200,196,188,.2);margin-top:.5rem}
+
+/* Links */
+.links{display:flex;gap:1.5rem;flex-wrap:wrap;justify-content:center;margin-top:2.5rem}
+.lk{font-family:'Cinzel',serif;padding:.7rem 2rem;border-radius:6px;font-size:.75rem;font-weight:600;letter-spacing:.1em;text-decoration:none;transition:all .4s}
+.lk.p{background:rgba(233,69,96,.08);color:rgba(233,69,96,.7);border:1px solid rgba(233,69,96,.12)}
+.lk.p:hover{background:rgba(233,69,96,.2);box-shadow:0 0 40px rgba(233,69,96,.1)}
+.lk.s{background:rgba(0,212,255,.04);color:rgba(0,212,255,.4);border:1px solid rgba(0,212,255,.08)}
+.lk.s:hover{background:rgba(0,212,255,.12);box-shadow:0 0 40px rgba(0,212,255,.08)}
+
+/* Mission */
+.mis{font-size:clamp(.95rem,2vw,1.15rem);color:rgba(200,202,216,.45);line-height:2.2;max-width:620px}
+.mis strong{color:rgba(240,236,230,.8);font-weight:600}
+.mis-gold{font-family:'Cinzel',serif;color:#d4a017;font-weight:800;font-size:clamp(1.3rem,3vw,2rem);margin-top:2rem;display:block;letter-spacing:.05em}
+
+/* Footer */
+.foot{text-align:center;padding:2rem 0 4rem}
+.foot .fq{font-family:"SF Mono","Fira Code",monospace;font-size:.65rem;color:rgba(212,160,23,.2);margin-bottom:.5rem;letter-spacing:.15em}
+.foot p{font-size:.7rem;color:rgba(200,196,188,.15)}
+.foot a{color:rgba(0,212,255,.25);text-decoration:none}.foot a:hover{color:rgba(0,212,255,.5)}
+.foot strong{color:rgba(240,236,230,.3);font-weight:500}
+
+@keyframes platinumFade{
+  0%{opacity:0;transform:translateY(15px);filter:blur(8px) drop-shadow(0 0 60px rgba(212,160,23,.08))}
+  60%{filter:blur(0) drop-shadow(0 0 80px rgba(212,160,23,.12))}
+  100%{opacity:1;transform:translateY(0);filter:blur(0) drop-shadow(0 0 60px rgba(212,160,23,.08)) drop-shadow(0 4px 20px rgba(0,0,0,.5))}
+}
+@keyframes bob{0%,100%{transform:rotate(45deg) translateY(0)}50%{transform:rotate(45deg) translateY(5px)}}
+
+@media(max-width:600px){.stats{grid-template-columns:repeat(2,1fr)}.clause{flex-direction:column;gap:.3rem}}
+</style>
+</head>
+<body>
+
+<canvas id="universe"></canvas>
+
+<div class="scroll" id="sc">
+
+  <!-- HERO -->
+  <div class="hero" id="hero">
+    <div class="wordmark">NOIZY<span class="dot">.</span>ai</div>
+    <div class="sub">Human Voice Sovereignty</div>
+    <div class="doctrine">
+      consent as executable code<br>
+      provenance as default<br>
+      revocation as sacred<br>
+      compensation as automatic
+    </div>
+    <div class="sound-hint" id="snd" onclick="toggleSound()">Click to enter the frequency</div>
+    <div class="scroll-arrow"></div>
+  </div>
+
+  <!-- NEVER CLAUSES -->
+  <div class="section"><div class="section-inner">
+    <h2>The <em>Never Clauses</em></h2>
+    <p style="color:rgba(200,196,188,.2);margin-bottom:1rem;font-size:.85rem">Immovable prohibitions. No override. No exception. No expiry.</p>
+    <div class="clause"><div class="clause-code">NC_POLITICAL</div><div class="clause-text">No political campaigns or partisan advocacy</div></div>
+    <div class="clause"><div class="clause-code">NC_SEXUAL</div><div class="clause-text">No adult or sexually explicit content</div></div>
+    <div class="clause"><div class="clause-code">NC_WEAPONS</div><div class="clause-text">No weapons or violence promotion</div></div>
+    <div class="clause"><div class="clause-code">NC_DECEPTION</div><div class="clause-text">No fraud, impersonation, or deceptive use</div></div>
+    <div class="clause"><div class="clause-code">NC_HATE</div><div class="clause-text">No hate speech or discriminatory content</div></div>
+    <div class="clause"><div class="clause-code">NC_TRANSFER</div><div class="clause-text">No unauthorized transfer of voice identity</div></div>
+    <div class="clause"><div class="clause-code">NC_SURVEILLANCE</div><div class="clause-text">No surveillance or biometric identification</div></div>
+  </div></div>
+
+  <!-- ARCHITECTURE -->
+  <div class="section"><div class="section-inner">
+    <h2>The <em>Architecture</em></h2>
+    <div class="arch"><pre><span class="y">Voice Actor</span> (human)
+  │
+  ├─→ Registers identity → <span class="g">HVS Actor Record</span>
+  ├─→ Sets Never Clauses → <span class="r">immovable prohibitions</span>
+  ├─→ Records Voice DNA → cryptographic hash
+  │
+  └─→ <span class="g">Consent Token</span> issued
+        │  scoped · time-limited · revocable
+        │
+        ├─→ Synthesis Request
+        │     ├─→ Never Clause check ── <span class="r">BLOCKED?</span> → reject
+        │     ├─→ Token valid? ── <span class="r">NO?</span> → reject
+        │     └─→ <span class="g">APPROVED</span> → synthesize + C2PA + ledger
+        │
+        └─→ <span class="r">KILL SWITCH</span> ── instant revocation
+              └─→ All synthesis halted</pre></div>
+  </div></div>
+
+  <!-- STATS -->
+  <div class="section"><div class="section-inner">
+    <h2>Live <em>Infrastructure</em></h2>
+    <div class="stats">
+      <div class="stat"><div class="n g">35</div><div class="l">API Endpoints</div></div>
+      <div class="stat"><div class="n c">18</div><div class="l">Database Tables</div></div>
+      <div class="stat"><div class="n y">10</div><div class="l">AI Models</div></div>
+      <div class="stat"><div class="n g">9</div><div class="l">Never Clauses</div></div>
+      <div class="stat"><div class="n c">100yr</div><div class="l">OAIS Archive</div></div>
+      <div class="stat"><div class="n y">75%</div><div class="l">Artist Share</div></div>
+    </div>
+    <div class="links">
+      <a href="https://heaven.rsp-5f3.workers.dev/dashboard" class="lk p" target="_blank">Consent Dashboard</a>
+      <a href="https://heaven.rsp-5f3.workers.dev/health" class="lk s" target="_blank">API Health</a>
+    </div>
+  </div></div>
+
+  <!-- MISSION -->
+  <div class="section"><div class="section-inner">
+    <h2>The <em>Mission</em></h2>
+    <p class="mis"><strong>Your voice belongs to you.</strong> Not to a platform. Not to an algorithm. Not to the highest bidder. The NOIZY Empire exists to protect human voice identity in the age of synthetic media.</p>
+    <p class="mis" style="margin-top:1.2rem">We are the new punk rockers — <strong>capitalist free thinkers</strong> who believe in peace, love, and understanding. Creators take the driver's seat.</p>
+    <span class="mis-gold">Artists take 75%. Always.</span>
+    <div class="foot" style="margin-top:4rem">
+      <div class="fq">396 Hz — Liberation</div>
+      <p>Built by <strong>Robert Stephen Plowman</strong> · RSP_001 · Founding Actor</p>
+      <p style="margin-top:.3rem"><a href="mailto:rsplowman@icloud.com">rsplowman@icloud.com</a></p>
+      <p style="margin-top:1.2rem">© 2026 NOIZY Empire · NOIZY Fish Inc.</p>
+    </div>
+  </div></div>
+
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════════════════
+// ORGANIC UNIVERSE — nebulae, star field, connections, breath
+// ═══════════════════════════════════════════════════════════════
+const C = document.getElementById('universe');
+const X = C.getContext('2d');
+let W, H, T = 0, SY = 0, MX = .5, MY = .5;
+
+const PAL = [[233,69,96],[0,212,255],[212,160,23],[0,255,136],[155,89,182],[80,140,220],[255,200,120]];
+
+class Star {
+  constructor(y) {
+    this.x = Math.random() * W;
+    this.y = y !== undefined ? y : Math.random() * H;
+    this.z = Math.random();
+    this.br = Math.random() * 1.8 + 0.2;
+    this.c = PAL[~~(Math.random() * PAL.length)];
+    this.vx = (Math.random() - .5) * .12;
+    this.vy = Math.random() * .06 + .015;
+    this.ph = Math.random() * 6.28;
+    this.fr = Math.random() * .002 + .0008;
+    this.ba = Math.random() * .4 + .6;
+  }
+  update() {
+    this.x += this.vx + Math.sin(T * this.fr + this.ph) * .25;
+    this.y += this.vy * (.4 + this.z * .6);
+    const r = this.br * (1 + Math.sin(T * .001 + this.ph) * .25 * this.ba) * (.3 + this.z * .7);
+    if (this.y > H + 30 || this.x < -30 || this.x > W + 30) { this.x = Math.random() * W; this.y = -10; }
+    return r;
+  }
+}
+
+class Cloud {
+  constructor() {
+    this.x = Math.random() * W; this.y = Math.random() * H;
+    this.r = Math.random() * 350 + 120;
+    this.c = PAL[~~(Math.random() * PAL.length)];
+    this.a = Math.random() * .012 + .004;
+    this.vx = (Math.random() - .5) * .04;
+    this.vy = (Math.random() - .5) * .025;
+    this.ph = Math.random() * 6.28;
+  }
+  draw() {
+    this.x += this.vx + Math.sin(T * .0003 + this.ph) * .15;
+    this.y += this.vy + Math.cos(T * .0004 + this.ph) * .12;
+    if (this.x < -this.r) this.x = W + this.r;
+    if (this.x > W + this.r) this.x = -this.r;
+    if (this.y < -this.r) this.y = H + this.r;
+    if (this.y > H + this.r) this.y = -this.r;
+    const g = X.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.r);
+    const p = Math.sin(T * .0004 + this.ph) * .004;
+    g.addColorStop(0, 'rgba('+this.c+','+(this.a + p)+')');
+    g.addColorStop(1, 'rgba('+this.c+',0)');
+    X.fillStyle = g;
+    X.fillRect(this.x - this.r, this.y - this.r, this.r * 2, this.r * 2);
+  }
+}
+
+let stars = [], clouds = [];
+
+function init() {
+  W = C.width = innerWidth; H = C.height = innerHeight;
+  stars = []; clouds = [];
+  const n = Math.min(220, ~~(W * H / 10000));
+  for (let i = 0; i < n; i++) stars.push(new Star());
+  for (let i = 0; i < 9; i++) clouds.push(new Cloud());
+}
+
+function frame() {
+  T += 16;
+  X.fillStyle = 'rgba(2,4,8,.12)';
+  X.fillRect(0, 0, W, H);
+
+  for (const c of clouds) c.draw();
+
+  for (const s of stars) {
+    const r = s.update();
+    const a = (.25 + s.z * .75) * (.5 + Math.sin(T * .001 + s.ph) * .5);
+    if (r > .8) {
+      const g = X.createRadialGradient(s.x, s.y, 0, s.x, s.y, r * 5);
+      g.addColorStop(0, 'rgba('+s.c+','+(a * .1)+')');
+      g.addColorStop(1, 'rgba('+s.c+',0)');
+      X.fillStyle = g;
+      X.fillRect(s.x - r * 5, s.y - r * 5, r * 10, r * 10);
+    }
+    X.beginPath(); X.arc(s.x, s.y, r, 0, 6.28);
+    X.fillStyle = 'rgba('+s.c+','+a+')'; X.fill();
+  }
+
+  // Connections (sparse, organic)
+  for (let i = 0; i < stars.length; i += 2) {
+    for (let j = i + 1; j < stars.length; j += 2) {
+      const dx = stars[i].x - stars[j].x, dy = stars[i].y - stars[j].y;
+      const d = Math.sqrt(dx * dx + dy * dy);
+      if (d < 90 && stars[i].z > .4 && stars[j].z > .4) {
+        X.beginPath(); X.moveTo(stars[i].x, stars[i].y); X.lineTo(stars[j].x, stars[j].y);
+        X.strokeStyle = 'rgba('+stars[i].c+','+((1 - d / 90) * .04)+')';
+        X.lineWidth = .4; X.stroke();
+      }
+    }
+  }
+
+  requestAnimationFrame(frame);
+}
+
+// ═══ 396 Hz SOUND ENGINE ═══
+let audioCtx, osc, gain, soundOn = false;
+function toggleSound() {
+  const el = document.getElementById('snd');
+  if (!soundOn) {
+    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    // 396 Hz — liberation frequency
+    osc = audioCtx.createOscillator();
+    osc.type = 'sine';
+    osc.frequency.value = 396;
+    // Sub harmonic
+    const osc2 = audioCtx.createOscillator();
+    osc2.type = 'sine';
+    osc2.frequency.value = 198; // octave below
+    // Gentle shimmer
+    const osc3 = audioCtx.createOscillator();
+    osc3.type = 'sine';
+    osc3.frequency.value = 396 * 1.5; // perfect fifth above
+    // Gain nodes
+    gain = audioCtx.createGain();
+    gain.gain.value = 0;
+    const g2 = audioCtx.createGain();
+    g2.gain.value = 0;
+    const g3 = audioCtx.createGain();
+    g3.gain.value = 0;
+    // LFO for organic breathing
+    const lfo = audioCtx.createOscillator();
+    lfo.type = 'sine';
+    lfo.frequency.value = 0.08; // very slow breath
+    const lfoGain = audioCtx.createGain();
+    lfoGain.gain.value = 0.003;
+    lfo.connect(lfoGain);
+    lfoGain.connect(gain.gain);
+    lfo.start();
+    // Connect
+    osc.connect(gain); gain.connect(audioCtx.destination);
+    osc2.connect(g2); g2.connect(audioCtx.destination);
+    osc3.connect(g3); g3.connect(audioCtx.destination);
+    osc.start(); osc2.start(); osc3.start();
+    // Fade in slowly — 6 seconds
+    gain.gain.linearRampToValueAtTime(0.025, audioCtx.currentTime + 6);
+    g2.gain.linearRampToValueAtTime(0.012, audioCtx.currentTime + 8);
+    g3.gain.linearRampToValueAtTime(0.006, audioCtx.currentTime + 10);
+    soundOn = true;
+    el.textContent = '396 Hz — Liberation';
+    el.classList.add('active');
+  } else {
+    gain.gain.linearRampToValueAtTime(0, audioCtx.currentTime + 3);
+    setTimeout(() => { audioCtx.close(); soundOn = false; }, 3500);
+    el.textContent = 'Click to enter the frequency';
+    el.classList.remove('active');
+  }
+}
+
+// ═══ SCROLL REVEAL ═══
+const sc = document.getElementById('sc');
+sc.addEventListener('scroll', () => {
+  SY = sc.scrollTop;
+  document.querySelectorAll('.section-inner').forEach(el => {
+    if (el.getBoundingClientRect().top < innerHeight * .8) el.classList.add('vis');
+  });
+  // Fade hero
+  const h = document.getElementById('hero');
+  if (h) h.style.opacity = Math.max(0, 1 - SY / (H * .4));
+});
+
+addEventListener('resize', init);
+init();
+X.fillStyle = '#020408'; X.fillRect(0, 0, W, H);
+frame();
+</script>
+</body>
+</html>

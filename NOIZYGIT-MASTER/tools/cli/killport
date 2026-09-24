@@ -1,0 +1,37 @@
+#!/bin/bash
+# ═══════════════════════════════════════════════════════════════════════════
+# killport - Kill process running on a specific port
+# Usage: killport <port>
+# ═══════════════════════════════════════════════════════════════════════════
+
+if [[ -z "$1" ]]; then
+    echo "Usage: killport <port>"
+    echo "Example: killport 3000"
+    exit 1
+fi
+
+PORT="$1"
+
+# Find process
+PID=$(lsof -ti tcp:"$PORT" 2>/dev/null)
+
+if [[ -z "$PID" ]]; then
+    echo "No process found on port $PORT"
+    exit 0
+fi
+
+# Get process info
+PROCESS=$(ps -p "$PID" -o comm= 2>/dev/null)
+
+echo "Killing process on port $PORT:"
+echo "  PID: $PID"
+echo "  Process: $PROCESS"
+
+kill -9 "$PID" 2>/dev/null
+
+if [[ $? -eq 0 ]]; then
+    echo "✓ Killed successfully"
+else
+    echo "✗ Failed to kill (may need sudo)"
+    exit 1
+fi

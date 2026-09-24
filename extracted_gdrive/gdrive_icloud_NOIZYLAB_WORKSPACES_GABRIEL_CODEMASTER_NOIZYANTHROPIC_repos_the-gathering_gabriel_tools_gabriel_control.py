@@ -1,10 +1,8 @@
 #!/usr/bin/env python3
 import tkinter as tk
-from tkinter import ttk
 import subprocess
 import threading
 import time
-import random
 import math
 import os
 import queue

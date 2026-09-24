@@ -15,19 +15,18 @@
 
 import os
 import asyncio
-import json
 import hashlib
 import logging
 from pathlib import Path
-from typing import Dict, List, Optional, Set, Tuple
-from dataclasses import dataclass, asdict
-from datetime import datetime, timedelta
+from typing import Dict, List
+from dataclasses import dataclass
+from datetime import datetime
 from enum import Enum
 
 # File sync libraries
 import paramiko
 from watchdog.observers import Observer
-from watchdog.events import FileSystemEventHandler, FileModifiedEvent
+from watchdog.events import FileSystemEventHandler
 import pyperclip
 
 # ═══════════════════════════════════════════════════════════════════════════

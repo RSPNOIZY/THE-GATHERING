@@ -1,0 +1,1074 @@
+{
+  "builtTestProducts" : [
+    {
+      "binaryPath" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/noizy-macos-bridgePackageTests.xctest/Contents/MacOS/noizy-macos-bridgePackageTests",
+      "packagePath" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge",
+      "productName" : "noizy-macos-bridgePackageTests"
+    }
+  ],
+  "copyCommands" : {
+
+  },
+  "explicitTargetDependencyImportCheckingMode" : {
+    "none" : {
+
+    }
+  },
+  "generatedSourceTargetSet" : [
+
+  ],
+  "pluginDescriptions" : [
+
+  ],
+  "swiftCommands" : {
+    "C.NOIZYMacOSBridge-arm64-apple-macosx-debug.module" : {
+      "executable" : "/Users/m2ultra/Library/Developer/Toolchains/swift-6.3-RELEASE.xctoolchain/usr/bin/swiftc",
+      "fileList" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridge.build/sources",
+      "importPath" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/Modules",
+      "inputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/Sources/NOIZYMacOSBridge/main.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/swift-version--72EE9DA32C37EA8D.txt"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/Modules/NOIZYMacOSBridgeCore.swiftmodule"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridge.build/sources"
+        }
+      ],
+      "isLibrary" : false,
+      "moduleName" : "NOIZYMacOSBridge",
+      "moduleOutputPath" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/Modules/NOIZYMacOSBridge.swiftmodule",
+      "objects" : [
+        "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridge.build/main.swift.o"
+      ],
+      "otherArguments" : [
+        "-target",
+        "arm64-apple-macosx13.0",
+        "-incremental",
+        "-enable-batch-mode",
+        "-serialize-diagnostics",
+        "-index-store-path",
+        "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/index/store",
+        "-Onone",
+        "-enable-testing",
+        "-j24",
+        "-DSWIFT_PACKAGE",
+        "-DDEBUG",
+        "-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE",
+        "-module-cache-path",
+        "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/ModuleCache",
+        "-parseable-output",
+        "-Xfrontend",
+        "-entry-point-function-name",
+        "-Xfrontend",
+        "NOIZYMacOSBridge_main",
+        "-parse-as-library",
+        "-swift-version",
+        "6",
+        "-I",
+        "/Users/m2ultra/Library/Developer/Toolchains/swift-6.3-RELEASE.xctoolchain/usr/lib/swift/macosx/testing",
+        "-L",
+        "/Users/m2ultra/Library/Developer/Toolchains/swift-6.3-RELEASE.xctoolchain/usr/lib/swift/macosx/testing",
+        "-plugin-path",
+        "/Users/m2ultra/Library/Developer/Toolchains/swift-6.3-RELEASE.xctoolchain/usr/lib/swift/host/plugins/testing",
+        "-sdk",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-I",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-L",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-g",
+        "-Xcc",
+        "-isysroot",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-Xcc",
+        "-fPIC",
+        "-Xcc",
+        "-g",
+        "-package-name",
+        "noizy_macos_bridge"
+      ],
+      "outputFileMapPath" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridge.build/output-file-map.json",
+      "outputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridge.build/main.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/Modules/NOIZYMacOSBridge.swiftmodule"
+        }
+      ],
+      "prepareForIndexing" : false,
+      "sources" : [
+        "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/Sources/NOIZYMacOSBridge/main.swift"
+      ],
+      "tempsPath" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridge.build",
+      "wholeModuleOptimization" : false
+    },
+    "C.NOIZYMacOSBridgeCore-arm64-apple-macosx-debug.module" : {
+      "executable" : "/Users/m2ultra/Library/Developer/Toolchains/swift-6.3-RELEASE.xctoolchain/usr/bin/swiftc",
+      "fileList" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/sources",
+      "importPath" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/Modules",
+      "inputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/Sources/NOIZYMacOSBridgeCore/AccessibilityMonitor.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/Sources/NOIZYMacOSBridgeCore/BridgeConfig.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/Sources/NOIZYMacOSBridgeCore/BridgeEvent.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/Sources/NOIZYMacOSBridgeCore/DurableDeliveryQueue.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/Sources/NOIZYMacOSBridgeCore/DurableEventJournal.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/Sources/NOIZYMacOSBridgeCore/EventHub.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/Sources/NOIZYMacOSBridgeCore/HTTPServer.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/Sources/NOIZYMacOSBridgeCore/JSONValue.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/Sources/NOIZYMacOSBridgeCore/LangGraphForwarder.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/Sources/NOIZYMacOSBridgeCore/Permissions.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/Sources/NOIZYMacOSBridgeCore/ScriptingBridgeProbe.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/swift-version--72EE9DA32C37EA8D.txt"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/sources"
+        }
+      ],
+      "isLibrary" : true,
+      "moduleName" : "NOIZYMacOSBridgeCore",
+      "moduleOutputPath" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/Modules/NOIZYMacOSBridgeCore.swiftmodule",
+      "objects" : [
+        "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/AccessibilityMonitor.swift.o",
+        "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/BridgeConfig.swift.o",
+        "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/BridgeEvent.swift.o",
+        "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/DurableDeliveryQueue.swift.o",
+        "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/DurableEventJournal.swift.o",
+        "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/EventHub.swift.o",
+        "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/HTTPServer.swift.o",
+        "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/JSONValue.swift.o",
+        "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/LangGraphForwarder.swift.o",
+        "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/Permissions.swift.o",
+        "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/ScriptingBridgeProbe.swift.o"
+      ],
+      "otherArguments" : [
+        "-target",
+        "arm64-apple-macosx13.0",
+        "-incremental",
+        "-enable-batch-mode",
+        "-serialize-diagnostics",
+        "-index-store-path",
+        "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/index/store",
+        "-Onone",
+        "-enable-testing",
+        "-j24",
+        "-DSWIFT_PACKAGE",
+        "-DDEBUG",
+        "-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE",
+        "-module-cache-path",
+        "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/ModuleCache",
+        "-parseable-output",
+        "-parse-as-library",
+        "-emit-objc-header",
+        "-emit-objc-header-path",
+        "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/include/NOIZYMacOSBridgeCore-Swift.h",
+        "-swift-version",
+        "6",
+        "-enable-upcoming-feature",
+        "ExistentialAny",
+        "-I",
+        "/Users/m2ultra/Library/Developer/Toolchains/swift-6.3-RELEASE.xctoolchain/usr/lib/swift/macosx/testing",
+        "-L",
+        "/Users/m2ultra/Library/Developer/Toolchains/swift-6.3-RELEASE.xctoolchain/usr/lib/swift/macosx/testing",
+        "-plugin-path",
+        "/Users/m2ultra/Library/Developer/Toolchains/swift-6.3-RELEASE.xctoolchain/usr/lib/swift/host/plugins/testing",
+        "-sdk",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-I",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-L",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-g",
+        "-Xcc",
+        "-isysroot",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-Xcc",
+        "-fPIC",
+        "-Xcc",
+        "-g",
+        "-package-name",
+        "noizy_macos_bridge"
+      ],
+      "outputFileMapPath" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/output-file-map.json",
+      "outputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/AccessibilityMonitor.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/BridgeConfig.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/BridgeEvent.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/DurableDeliveryQueue.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/DurableEventJournal.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/EventHub.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/HTTPServer.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/JSONValue.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/LangGraphForwarder.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/Permissions.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/ScriptingBridgeProbe.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/Modules/NOIZYMacOSBridgeCore.swiftmodule"
+        }
+      ],
+      "prepareForIndexing" : false,
+      "sources" : [
+        "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/Sources/NOIZYMacOSBridgeCore/AccessibilityMonitor.swift",
+        "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/Sources/NOIZYMacOSBridgeCore/BridgeConfig.swift",
+        "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/Sources/NOIZYMacOSBridgeCore/BridgeEvent.swift",
+        "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/Sources/NOIZYMacOSBridgeCore/DurableDeliveryQueue.swift",
+        "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/Sources/NOIZYMacOSBridgeCore/DurableEventJournal.swift",
+        "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/Sources/NOIZYMacOSBridgeCore/EventHub.swift",
+        "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/Sources/NOIZYMacOSBridgeCore/HTTPServer.swift",
+        "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/Sources/NOIZYMacOSBridgeCore/JSONValue.swift",
+        "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/Sources/NOIZYMacOSBridgeCore/LangGraphForwarder.swift",
+        "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/Sources/NOIZYMacOSBridgeCore/Permissions.swift",
+        "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/Sources/NOIZYMacOSBridgeCore/ScriptingBridgeProbe.swift"
+      ],
+      "tempsPath" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build",
+      "wholeModuleOptimization" : false
+    },
+    "C.NOIZYMacOSBridgeCoreTests-arm64-apple-macosx-debug.module" : {
+      "executable" : "/Users/m2ultra/Library/Developer/Toolchains/swift-6.3-RELEASE.xctoolchain/usr/bin/swiftc",
+      "fileList" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCoreTests.build/sources",
+      "importPath" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/Modules",
+      "inputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/Tests/NOIZYMacOSBridgeCoreTests/BridgeCoreTests.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/swift-version--72EE9DA32C37EA8D.txt"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/Modules/NOIZYMacOSBridgeCore.swiftmodule"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCoreTests.build/sources"
+        }
+      ],
+      "isLibrary" : true,
+      "moduleName" : "NOIZYMacOSBridgeCoreTests",
+      "moduleOutputPath" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/Modules/NOIZYMacOSBridgeCoreTests.swiftmodule",
+      "objects" : [
+        "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCoreTests.build/BridgeCoreTests.swift.o"
+      ],
+      "otherArguments" : [
+        "-target",
+        "arm64-apple-macosx14.0",
+        "-incremental",
+        "-enable-batch-mode",
+        "-serialize-diagnostics",
+        "-index-store-path",
+        "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/index/store",
+        "-Onone",
+        "-enable-testing",
+        "-Xfrontend",
+        "-enable-cross-import-overlays",
+        "-j24",
+        "-DSWIFT_PACKAGE",
+        "-DDEBUG",
+        "-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE",
+        "-module-cache-path",
+        "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/ModuleCache",
+        "-parseable-output",
+        "-parse-as-library",
+        "-swift-version",
+        "6",
+        "-I",
+        "/Users/m2ultra/Library/Developer/Toolchains/swift-6.3-RELEASE.xctoolchain/usr/lib/swift/macosx/testing",
+        "-L",
+        "/Users/m2ultra/Library/Developer/Toolchains/swift-6.3-RELEASE.xctoolchain/usr/lib/swift/macosx/testing",
+        "-plugin-path",
+        "/Users/m2ultra/Library/Developer/Toolchains/swift-6.3-RELEASE.xctoolchain/usr/lib/swift/host/plugins/testing",
+        "-sdk",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-I",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-L",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-g",
+        "-Xcc",
+        "-isysroot",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-Xcc",
+        "-fPIC",
+        "-Xcc",
+        "-g",
+        "-package-name",
+        "noizy_macos_bridge"
+      ],
+      "outputFileMapPath" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCoreTests.build/output-file-map.json",
+      "outputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCoreTests.build/BridgeCoreTests.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/Modules/NOIZYMacOSBridgeCoreTests.swiftmodule"
+        }
+      ],
+      "prepareForIndexing" : false,
+      "sources" : [
+        "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/Tests/NOIZYMacOSBridgeCoreTests/BridgeCoreTests.swift"
+      ],
+      "tempsPath" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCoreTests.build",
+      "wholeModuleOptimization" : false
+    },
+    "C.noizy-macos-bridgePackageTests-arm64-apple-macosx-debug.module" : {
+      "executable" : "/Users/m2ultra/Library/Developer/Toolchains/swift-6.3-RELEASE.xctoolchain/usr/bin/swiftc",
+      "fileList" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/noizy_macos_bridgePackageTests.build/sources",
+      "importPath" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/Modules",
+      "inputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/noizy-macos-bridgePackageTests.derived/runner.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/swift-version--72EE9DA32C37EA8D.txt"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/Modules/NOIZYMacOSBridgeCoreTests.swiftmodule"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/noizy_macos_bridgePackageTests.build/sources"
+        }
+      ],
+      "isLibrary" : true,
+      "moduleName" : "noizy_macos_bridgePackageTests",
+      "moduleOutputPath" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/Modules/noizy_macos_bridgePackageTests.swiftmodule",
+      "objects" : [
+        "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/noizy_macos_bridgePackageTests.build/runner.swift.o"
+      ],
+      "otherArguments" : [
+        "-target",
+        "arm64-apple-macosx13.0",
+        "-incremental",
+        "-enable-batch-mode",
+        "-serialize-diagnostics",
+        "-index-store-path",
+        "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/index/store",
+        "-Onone",
+        "-enable-testing",
+        "-Xfrontend",
+        "-enable-cross-import-overlays",
+        "-j24",
+        "-DSWIFT_PACKAGE",
+        "-DDEBUG",
+        "-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE",
+        "-module-cache-path",
+        "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/ModuleCache",
+        "-parseable-output",
+        "-parse-as-library",
+        "-emit-objc-header",
+        "-emit-objc-header-path",
+        "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/noizy_macos_bridgePackageTests.build/include/noizy-macos-bridgePackageTests-Swift.h",
+        "-I",
+        "/Users/m2ultra/Library/Developer/Toolchains/swift-6.3-RELEASE.xctoolchain/usr/lib/swift/macosx/testing",
+        "-L",
+        "/Users/m2ultra/Library/Developer/Toolchains/swift-6.3-RELEASE.xctoolchain/usr/lib/swift/macosx/testing",
+        "-plugin-path",
+        "/Users/m2ultra/Library/Developer/Toolchains/swift-6.3-RELEASE.xctoolchain/usr/lib/swift/host/plugins/testing",
+        "-sdk",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-I",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-L",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-g",
+        "-Xcc",
+        "-isysroot",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-Xcc",
+        "-fPIC",
+        "-Xcc",
+        "-g",
+        "-package-name",
+        "noizy_macos_bridge"
+      ],
+      "outputFileMapPath" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/noizy_macos_bridgePackageTests.build/output-file-map.json",
+      "outputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/noizy_macos_bridgePackageTests.build/runner.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/Modules/noizy_macos_bridgePackageTests.swiftmodule"
+        }
+      ],
+      "prepareForIndexing" : false,
+      "sources" : [
+        "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/noizy-macos-bridgePackageTests.derived/runner.swift"
+      ],
+      "tempsPath" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/noizy_macos_bridgePackageTests.build",
+      "wholeModuleOptimization" : false
+    }
+  },
+  "swiftFrontendCommands" : {
+
+  },
+  "swiftTargetScanArgs" : {
+    "NOIZYMacOSBridge" : [
+      "/Users/m2ultra/Library/Developer/Toolchains/swift-6.3-RELEASE.xctoolchain/usr/bin/swiftc",
+      "-module-name",
+      "NOIZYMacOSBridge",
+      "-package-name",
+      "noizy_macos_bridge",
+      "-c",
+      "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/Sources/NOIZYMacOSBridge/main.swift",
+      "-I",
+      "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/Modules",
+      "-target",
+      "arm64-apple-macosx13.0",
+      "-incremental",
+      "-enable-batch-mode",
+      "-serialize-diagnostics",
+      "-index-store-path",
+      "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/index/store",
+      "-Onone",
+      "-enable-testing",
+      "-j24",
+      "-DSWIFT_PACKAGE",
+      "-DDEBUG",
+      "-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE",
+      "-module-cache-path",
+      "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/ModuleCache",
+      "-parseable-output",
+      "-Xfrontend",
+      "-entry-point-function-name",
+      "-Xfrontend",
+      "NOIZYMacOSBridge_main",
+      "-parse-as-library",
+      "-swift-version",
+      "6",
+      "-I",
+      "/Users/m2ultra/Library/Developer/Toolchains/swift-6.3-RELEASE.xctoolchain/usr/lib/swift/macosx/testing",
+      "-L",
+      "/Users/m2ultra/Library/Developer/Toolchains/swift-6.3-RELEASE.xctoolchain/usr/lib/swift/macosx/testing",
+      "-plugin-path",
+      "/Users/m2ultra/Library/Developer/Toolchains/swift-6.3-RELEASE.xctoolchain/usr/lib/swift/host/plugins/testing",
+      "-sdk",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-I",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-L",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-g",
+      "-Xcc",
+      "-isysroot",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-Xcc",
+      "-fPIC",
+      "-Xcc",
+      "-g",
+      "-package-name",
+      "noizy_macos_bridge",
+      "-driver-use-frontend-path",
+      "/Users/m2ultra/Library/Developer/Toolchains/swift-6.3-RELEASE.xctoolchain/usr/bin/swiftc"
+    ],
+    "NOIZYMacOSBridgeCore" : [
+      "/Users/m2ultra/Library/Developer/Toolchains/swift-6.3-RELEASE.xctoolchain/usr/bin/swiftc",
+      "-module-name",
+      "NOIZYMacOSBridgeCore",
+      "-package-name",
+      "noizy_macos_bridge",
+      "-c",
+      "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/Sources/NOIZYMacOSBridgeCore/AccessibilityMonitor.swift",
+      "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/Sources/NOIZYMacOSBridgeCore/BridgeConfig.swift",
+      "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/Sources/NOIZYMacOSBridgeCore/BridgeEvent.swift",
+      "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/Sources/NOIZYMacOSBridgeCore/DurableDeliveryQueue.swift",
+      "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/Sources/NOIZYMacOSBridgeCore/DurableEventJournal.swift",
+      "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/Sources/NOIZYMacOSBridgeCore/EventHub.swift",
+      "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/Sources/NOIZYMacOSBridgeCore/HTTPServer.swift",
+      "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/Sources/NOIZYMacOSBridgeCore/JSONValue.swift",
+      "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/Sources/NOIZYMacOSBridgeCore/LangGraphForwarder.swift",
+      "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/Sources/NOIZYMacOSBridgeCore/Permissions.swift",
+      "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/Sources/NOIZYMacOSBridgeCore/ScriptingBridgeProbe.swift",
+      "-I",
+      "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/Modules",
+      "-target",
+      "arm64-apple-macosx13.0",
+      "-incremental",
+      "-enable-batch-mode",
+      "-serialize-diagnostics",
+      "-index-store-path",
+      "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/index/store",
+      "-Onone",
+      "-enable-testing",
+      "-j24",
+      "-DSWIFT_PACKAGE",
+      "-DDEBUG",
+      "-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE",
+      "-module-cache-path",
+      "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/ModuleCache",
+      "-parseable-output",
+      "-parse-as-library",
+      "-emit-objc-header",
+      "-emit-objc-header-path",
+      "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/include/NOIZYMacOSBridgeCore-Swift.h",
+      "-swift-version",
+      "6",
+      "-enable-upcoming-feature",
+      "ExistentialAny",
+      "-I",
+      "/Users/m2ultra/Library/Developer/Toolchains/swift-6.3-RELEASE.xctoolchain/usr/lib/swift/macosx/testing",
+      "-L",
+      "/Users/m2ultra/Library/Developer/Toolchains/swift-6.3-RELEASE.xctoolchain/usr/lib/swift/macosx/testing",
+      "-plugin-path",
+      "/Users/m2ultra/Library/Developer/Toolchains/swift-6.3-RELEASE.xctoolchain/usr/lib/swift/host/plugins/testing",
+      "-sdk",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-I",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-L",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-g",
+      "-Xcc",
+      "-isysroot",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-Xcc",
+      "-fPIC",
+      "-Xcc",
+      "-g",
+      "-package-name",
+      "noizy_macos_bridge",
+      "-driver-use-frontend-path",
+      "/Users/m2ultra/Library/Developer/Toolchains/swift-6.3-RELEASE.xctoolchain/usr/bin/swiftc"
+    ],
+    "NOIZYMacOSBridgeCoreTests" : [
+      "/Users/m2ultra/Library/Developer/Toolchains/swift-6.3-RELEASE.xctoolchain/usr/bin/swiftc",
+      "-module-name",
+      "NOIZYMacOSBridgeCoreTests",
+      "-package-name",
+      "noizy_macos_bridge",
+      "-c",
+      "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/Tests/NOIZYMacOSBridgeCoreTests/BridgeCoreTests.swift",
+      "-I",
+      "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/Modules",
+      "-target",
+      "arm64-apple-macosx14.0",
+      "-incremental",
+      "-enable-batch-mode",
+      "-serialize-diagnostics",
+      "-index-store-path",
+      "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/index/store",
+      "-Onone",
+      "-enable-testing",
+      "-Xfrontend",
+      "-enable-cross-import-overlays",
+      "-j24",
+      "-DSWIFT_PACKAGE",
+      "-DDEBUG",
+      "-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE",
+      "-module-cache-path",
+      "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/ModuleCache",
+      "-parseable-output",
+      "-parse-as-library",
+      "-swift-version",
+      "6",
+      "-I",
+      "/Users/m2ultra/Library/Developer/Toolchains/swift-6.3-RELEASE.xctoolchain/usr/lib/swift/macosx/testing",
+      "-L",
+      "/Users/m2ultra/Library/Developer/Toolchains/swift-6.3-RELEASE.xctoolchain/usr/lib/swift/macosx/testing",
+      "-plugin-path",
+      "/Users/m2ultra/Library/Developer/Toolchains/swift-6.3-RELEASE.xctoolchain/usr/lib/swift/host/plugins/testing",
+      "-sdk",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-I",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-L",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-g",
+      "-Xcc",
+      "-isysroot",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-Xcc",
+      "-fPIC",
+      "-Xcc",
+      "-g",
+      "-package-name",
+      "noizy_macos_bridge",
+      "-driver-use-frontend-path",
+      "/Users/m2ultra/Library/Developer/Toolchains/swift-6.3-RELEASE.xctoolchain/usr/bin/swiftc"
+    ],
+    "noizy_macos_bridgePackageTests" : [
+      "/Users/m2ultra/Library/Developer/Toolchains/swift-6.3-RELEASE.xctoolchain/usr/bin/swiftc",
+      "-module-name",
+      "noizy_macos_bridgePackageTests",
+      "-package-name",
+      "noizy_macos_bridge",
+      "-c",
+      "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/noizy-macos-bridgePackageTests.derived/runner.swift",
+      "-I",
+      "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/Modules",
+      "-target",
+      "arm64-apple-macosx13.0",
+      "-incremental",
+      "-enable-batch-mode",
+      "-serialize-diagnostics",
+      "-index-store-path",
+      "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/index/store",
+      "-Onone",
+      "-enable-testing",
+      "-Xfrontend",
+      "-enable-cross-import-overlays",
+      "-j24",
+      "-DSWIFT_PACKAGE",
+      "-DDEBUG",
+      "-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE",
+      "-module-cache-path",
+      "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/ModuleCache",
+      "-parseable-output",
+      "-parse-as-library",
+      "-emit-objc-header",
+      "-emit-objc-header-path",
+      "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/noizy_macos_bridgePackageTests.build/include/noizy-macos-bridgePackageTests-Swift.h",
+      "-I",
+      "/Users/m2ultra/Library/Developer/Toolchains/swift-6.3-RELEASE.xctoolchain/usr/lib/swift/macosx/testing",
+      "-L",
+      "/Users/m2ultra/Library/Developer/Toolchains/swift-6.3-RELEASE.xctoolchain/usr/lib/swift/macosx/testing",
+      "-plugin-path",
+      "/Users/m2ultra/Library/Developer/Toolchains/swift-6.3-RELEASE.xctoolchain/usr/lib/swift/host/plugins/testing",
+      "-sdk",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-I",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-L",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-g",
+      "-Xcc",
+      "-isysroot",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-Xcc",
+      "-fPIC",
+      "-Xcc",
+      "-g",
+      "-package-name",
+      "noizy_macos_bridge",
+      "-driver-use-frontend-path",
+      "/Users/m2ultra/Library/Developer/Toolchains/swift-6.3-RELEASE.xctoolchain/usr/bin/swiftc"
+    ]
+  },
+  "targetDependencyMap" : {
+    "NOIZYMacOSBridge" : [
+      "NOIZYMacOSBridgeCore"
+    ],
+    "NOIZYMacOSBridgeCore" : [
+
+    ],
+    "NOIZYMacOSBridgeCoreTests" : [
+      "NOIZYMacOSBridgeCore"
+    ],
+    "noizy_macos_bridgePackageTests" : [
+      "NOIZYMacOSBridgeCoreTests",
+      "NOIZYMacOSBridgeCore"
+    ]
+  },
+  "testDiscoveryCommands" : {
+
+  },
+  "testEntryPointCommands" : {
+    "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/noizy-macos-bridgePackageTests.derived/runner.swift" : {
+      "inputs" : [
+
+      ],
+      "outputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/noizy-macos-bridgePackageTests.derived/runner.swift"
+        }
+      ]
+    }
+  },
+  "traitConfiguration" : {
+    "default" : {
+
+    }
+  },
+  "writeCommands" : {
+    "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridge.build/sources" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<sources-file-list>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/Sources/NOIZYMacOSBridge/main.swift"
+        }
+      ],
+      "outputFilePath" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridge.build/sources"
+    },
+    "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/sources" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<sources-file-list>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/Sources/NOIZYMacOSBridgeCore/AccessibilityMonitor.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/Sources/NOIZYMacOSBridgeCore/BridgeConfig.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/Sources/NOIZYMacOSBridgeCore/BridgeEvent.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/Sources/NOIZYMacOSBridgeCore/DurableDeliveryQueue.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/Sources/NOIZYMacOSBridgeCore/DurableEventJournal.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/Sources/NOIZYMacOSBridgeCore/EventHub.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/Sources/NOIZYMacOSBridgeCore/HTTPServer.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/Sources/NOIZYMacOSBridgeCore/JSONValue.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/Sources/NOIZYMacOSBridgeCore/LangGraphForwarder.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/Sources/NOIZYMacOSBridgeCore/Permissions.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/Sources/NOIZYMacOSBridgeCore/ScriptingBridgeProbe.swift"
+        }
+      ],
+      "outputFilePath" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/sources"
+    },
+    "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCoreTests.build/sources" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<sources-file-list>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/Tests/NOIZYMacOSBridgeCoreTests/BridgeCoreTests.swift"
+        }
+      ],
+      "outputFilePath" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCoreTests.build/sources"
+    },
+    "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/noizy-macos-bridge-entitlement.plist" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<entitlement-plist>"
+        },
+        {
+          "kind" : "virtual",
+          "name" : "<com.apple.security.get-task-allow>"
+        }
+      ],
+      "outputFilePath" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/noizy-macos-bridge-entitlement.plist"
+    },
+    "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/noizy-macos-bridge.product/Objects.LinkFileList" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<link-file-list>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridge.build/main.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/AccessibilityMonitor.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/BridgeConfig.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/BridgeEvent.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/DurableDeliveryQueue.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/DurableEventJournal.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/EventHub.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/HTTPServer.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/JSONValue.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/LangGraphForwarder.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/Permissions.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/ScriptingBridgeProbe.swift.o"
+        }
+      ],
+      "outputFilePath" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/noizy-macos-bridge.product/Objects.LinkFileList"
+    },
+    "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/noizy-macos-bridgePackageTests.product/Objects.LinkFileList" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<link-file-list>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/AccessibilityMonitor.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/BridgeConfig.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/BridgeEvent.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/DurableDeliveryQueue.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/DurableEventJournal.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/EventHub.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/HTTPServer.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/JSONValue.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/LangGraphForwarder.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/Permissions.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/ScriptingBridgeProbe.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCoreTests.build/BridgeCoreTests.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/noizy_macos_bridgePackageTests.build/runner.swift.o"
+        }
+      ],
+      "outputFilePath" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/noizy-macos-bridgePackageTests.product/Objects.LinkFileList"
+    },
+    "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/noizy_macos_bridgePackageTests.build/sources" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<sources-file-list>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/noizy-macos-bridgePackageTests.derived/runner.swift"
+        }
+      ],
+      "outputFilePath" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/noizy_macos_bridgePackageTests.build/sources"
+    },
+    "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/swift-version--72EE9DA32C37EA8D.txt" : {
+      "alwaysOutOfDate" : true,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<swift-get-version>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/m2ultra/Library/Developer/Toolchains/swift-6.3-RELEASE.xctoolchain/usr/bin/swiftc"
+        }
+      ],
+      "outputFilePath" : "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/swift-version--72EE9DA32C37EA8D.txt"
+    }
+  }
+}

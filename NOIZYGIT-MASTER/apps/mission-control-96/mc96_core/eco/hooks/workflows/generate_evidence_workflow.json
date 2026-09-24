@@ -1,0 +1,56 @@
+{
+  "name": "NOIZY Generate Evidence Pack",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "generate-evidence",
+        "responseMode": "onReceived",
+        "options": {}
+      },
+      "id": "node-webhook-evidence",
+      "name": "Evidence Trigger Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [100, 200],
+      "webhookId": "generate-evidence"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "// Support both raw body and nested body from n8n webhook\nconst body = $input.item.json.body ?? $input.item.json;\nconst { user_id, audio_hash } = body;\n\nif (!user_id || typeof user_id !== 'string' || user_id.trim() === '') {\n  throw new Error('Missing or invalid field: user_id (string required)');\n}\nif (!audio_hash || typeof audio_hash !== 'string' || audio_hash.trim() === '') {\n  throw new Error('Missing or invalid field: audio_hash (string required)');\n}\n\nconst evidence_id = `ev_${Date.now()}_${Math.random().toString(36).slice(2, 7)}`;\n\nreturn {\n  json: {\n    evidence_id,\n    user:        user_id.trim(),\n    hash:        audio_hash.trim(),\n    status:      'compiling',\n    c2pa_status: 'pending',\n    ts:          Date.now(),\n    ts_iso:      new Date().toISOString()\n  }\n};"
+      },
+      "id": "node-validate-enrich",
+      "name": "Validate & Compile Metadata",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [320, 200]
+    },
+    {
+      "parameters": {
+        "webhookUri": "={{ $env.DISCORD_AUDIT_WEBHOOK }}",
+        "text": "=🔒 **Evidence Pack Compilation Started**\n**User ID:** `{{ $json.user }}`\n**Audio Hash:** `{{ $json.hash }}`\n**Tracking ID:** `{{ $json.evidence_id }}`\n**C2PA Status:** `{{ $json.c2pa_status }}`\n**Timestamp:** `{{ $json.ts_iso }}`\n*Awaiting final C2PA injection into NOIZY Command Center.*",
+        "options": {}
+      },
+      "id": "node-discord-audit",
+      "name": "Audit Log Broadcast",
+      "type": "n8n-nodes-base.discord",
+      "typeVersion": 2,
+      "position": [540, 200]
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Evidence Trigger Webhook": {
+      "main": [
+        [{"node": "Validate & Compile Metadata", "type": "main", "index": 0}]
+      ]
+    },
+    "Validate & Compile Metadata": {
+      "main": [
+        [{"node": "Audit Log Broadcast", "type": "main", "index": 0}]
+      ]
+    }
+  },
+  "active": true
+}

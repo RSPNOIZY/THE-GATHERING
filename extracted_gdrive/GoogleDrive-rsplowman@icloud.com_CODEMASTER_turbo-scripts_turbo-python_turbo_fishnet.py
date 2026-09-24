@@ -8,7 +8,6 @@ Daily Catch Protocol.
 import os
 import sys
 import shutil
-import datetime
 import subprocess
 from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor
@@ -150,7 +149,7 @@ def main():
             return
 
         dest = drive_path / "NOIZYLAB_LIBRARIES"
-        print(f"♾️  INFINITE BACKUP STARTED.")
+        print("♾️  INFINITE BACKUP STARTED.")
         print(f"   Destination: {dest}")
         
         # We start by scanning to find the fish

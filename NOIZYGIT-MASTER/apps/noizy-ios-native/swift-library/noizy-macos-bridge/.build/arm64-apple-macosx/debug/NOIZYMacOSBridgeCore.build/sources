@@ -1,0 +1,11 @@
+/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/Sources/NOIZYMacOSBridgeCore/AccessibilityMonitor.swift
+/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/Sources/NOIZYMacOSBridgeCore/BridgeConfig.swift
+/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/Sources/NOIZYMacOSBridgeCore/BridgeEvent.swift
+/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/Sources/NOIZYMacOSBridgeCore/DurableDeliveryQueue.swift
+/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/Sources/NOIZYMacOSBridgeCore/DurableEventJournal.swift
+/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/Sources/NOIZYMacOSBridgeCore/EventHub.swift
+/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/Sources/NOIZYMacOSBridgeCore/HTTPServer.swift
+/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/Sources/NOIZYMacOSBridgeCore/JSONValue.swift
+/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/Sources/NOIZYMacOSBridgeCore/LangGraphForwarder.swift
+/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/Sources/NOIZYMacOSBridgeCore/Permissions.swift
+/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/Sources/NOIZYMacOSBridgeCore/ScriptingBridgeProbe.swift

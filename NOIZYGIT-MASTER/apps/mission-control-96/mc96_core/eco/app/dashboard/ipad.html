@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+<meta name="apple-mobile-web-app-title" content="NOIZY"/>
+<title>NOIZY — Satellite Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"/>
+<style>
+/* ── Reset & Root ── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+:root{
+  --bg:#08090c;
+  --surface:rgba(255,255,255,.04);
+  --border:rgba(255,255,255,.08);
+  --text:#e8eaf0;
+  --muted:#64748b;
+  --green:#00ff9d;
+  --neon:#c084fc;
+  --gold:#fbbf24;
+  --cf:#f6821f;
+  --red:#ff4466;
+  --amber:#ffaa00;
+  --font:'Outfit',sans-serif;
+  --mono:'JetBrains Mono',monospace;
+  --safe-top: env(safe-area-inset-top, 0px);
+}
+html,body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--font);
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+/* ── Layout ── */
+.ipad-shell{
+  max-width:1024px;
+  margin:0 auto;
+  padding:calc(var(--safe-top) + 16px) 16px 32px;
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+}
+
+/* ── Header ── */
+.ipad-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:14px 20px;
+  border-radius:16px;
+  background:rgba(0,255,157,.04);
+  border:1px solid rgba(0,255,157,.15);
+}
+.ipad-logo{
+  font-size:20px;
+  font-weight:900;
+  letter-spacing:3px;
+  color:var(--green);
+}
+.ipad-sub{
+  font-size:10px;
+  color:rgba(0,255,157,.5);
+  letter-spacing:2px;
+  margin-top:2px;
+}
+.ipad-clock{
+  font-family:var(--mono);
+  font-size:22px;
+  font-weight:600;
+  color:var(--text);
+}
+.ipad-date{font-size:10px;color:var(--muted);text-align:right;margin-top:2px;}
+
+/* ── GABRIEL Status Strip ── */
+.gabriel-strip{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  padding:16px 20px;
+  border-radius:14px;
+  background:rgba(0,0,0,.5);
+  border:1px solid rgba(0,255,157,.2);
+  position:relative;
+  overflow:hidden;
+}
+.gabriel-strip::before{
+  content:'';
+  position:absolute;
+  top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,var(--green),transparent);
+  animation:scanline 3s linear infinite;
+}
+@keyframes scanline{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
+.gabriel-dot-wrap{position:relative;flex-shrink:0;}
+.gabriel-dot{
+  width:42px;height:42px;border-radius:50%;
+  background:radial-gradient(circle,rgba(0,255,157,.2),rgba(0,0,0,.8));
+  border:2px solid var(--green);
+  display:flex;align-items:center;justify-content:center;
+  font-size:20px;
+}
+.gabriel-ping{
+  position:absolute;inset:-4px;border-radius:50%;
+  border:1px solid var(--green);
+  animation:ping 2s ease-out infinite;
+}
+@keyframes ping{0%{opacity:.8;transform:scale(.9)}100%{opacity:0;transform:scale(1.5)}}
+.gabriel-info{flex:1;}
+.gabriel-name-sm{font-size:14px;font-weight:800;color:var(--green);letter-spacing:2px;}
+.gabriel-desc{font-size:10px;color:rgba(0,255,157,.5);letter-spacing:1px;margin-top:1px;}
+.gabriel-machine{font-family:var(--mono);font-size:9px;color:var(--muted);margin-top:3px;}
+.g-badge{
+  font-size:9px;padding:4px 10px;border-radius:6px;
+  letter-spacing:1px;font-weight:700;white-space:nowrap;
+}
+.g-badge.on{background:rgba(0,255,157,.1);color:var(--green);border:1px solid rgba(0,255,157,.25);}
+.g-badge.off{background:rgba(255,68,102,.1);color:var(--red);border:1px solid rgba(255,68,102,.25);}
+.g-badge.wait{background:rgba(255,170,0,.1);color:var(--amber);border:1px solid rgba(255,170,0,.25);}
+
+/* ── Metrics Row ── */
+.metrics-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
+.metric-card{
+  border-radius:14px;border:1px solid var(--border);
+  background:var(--surface);
+  padding:14px 16px;
+  display:flex;flex-direction:column;gap:4px;
+}
+.metric-label{font-size:9px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;}
+.metric-value{font-size:22px;font-weight:800;font-family:var(--mono);}
+.metric-sub{font-size:9px;color:var(--muted);}
+.metric-value.green{color:var(--green);}
+.metric-value.neon{color:var(--neon);}
+.metric-value.gold{color:var(--gold);}
+.metric-value.cf{color:var(--cf);}
+
+/* ── Voice Command ── */
+.voice-panel{
+  border-radius:16px;
+  border:1px solid rgba(192,132,252,.3);
+  background:rgba(192,132,252,.04);
+  padding:20px;
+}
+.voice-panel-title{
+  font-size:11px;letter-spacing:2px;color:var(--neon);
+  text-transform:uppercase;margin-bottom:14px;
+}
+.mic-row{display:flex;align-items:center;gap:14px;}
+.mic-big{
+  width:72px;height:72px;border-radius:50%;flex-shrink:0;
+  background:radial-gradient(circle,rgba(192,132,252,.2),rgba(0,0,0,.8));
+  border:2px solid var(--neon);
+  display:flex;align-items:center;justify-content:center;
+  font-size:32px;cursor:pointer;
+  transition:.2s;
+  -webkit-user-select:none;user-select:none;
+}
+.mic-big:active{transform:scale(.93);background:radial-gradient(circle,rgba(192,132,252,.35),rgba(0,0,0,.6));}
+.mic-big.recording{
+  border-color:var(--red);
+  animation:micPulse 1s ease-in-out infinite;
+}
+@keyframes micPulse{0%,100%{box-shadow:0 0 0 0 rgba(255,68,102,.4)}50%{box-shadow:0 0 0 12px rgba(255,68,102,0)}}
+.voice-input-col{flex:1;}
+.voice-text-display{
+  font-family:var(--mono);font-size:13px;
+  color:var(--text);
+  background:rgba(0,0,0,.4);
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:12px 14px;
+  min-height:52px;
+  word-break:break-word;
+  line-height:1.5;
+}
+.voice-text-display.empty{color:var(--muted);}
+.voice-tower-row{display:flex;gap:8px;margin-top:10px;}
+.tower-btn{
+  flex:1;padding:12px 8px;border-radius:10px;border:1px solid var(--border);
+  background:rgba(255,255,255,.04);
+  font-size:11px;font-weight:700;letter-spacing:1px;
+  cursor:pointer;transition:.15s;color:var(--text);
+  display:flex;flex-direction:column;align-items:center;gap:4px;
+}
+.tower-btn:active{transform:scale(.96);}
+.tower-btn.max{border-color:rgba(192,132,252,.3);color:var(--neon);}
+.tower-btn.code{border-color:rgba(56,189,248,.3);color:#38bdf8;}
+.tower-btn.work{border-color:rgba(52,211,153,.3);color:var(--green);}
+.tower-btn-icon{font-size:20px;}
+.tower-btn-label{font-size:9px;letter-spacing:1px;}
+
+/* ── Quick Actions ── */
+.actions-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+.action-btn{
+  padding:18px 12px;border-radius:14px;
+  border:1px solid var(--border);
+  background:var(--surface);
+  cursor:pointer;transition:.15s;
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  color:var(--text);
+}
+.action-btn:active{transform:scale(.96);border-color:rgba(255,255,255,.2);}
+.action-icon{font-size:28px;}
+.action-label{font-size:10px;letter-spacing:1px;font-weight:600;text-transform:uppercase;color:var(--muted);}
+.action-btn.primary{border-color:rgba(246,130,31,.3);background:rgba(246,130,31,.05);}
+.action-btn.primary .action-label{color:var(--cf);}
+.action-btn.danger{border-color:rgba(255,68,102,.3);background:rgba(255,68,102,.04);}
+.action-btn.danger .action-label{color:var(--red);}
+.action-btn.success{border-color:rgba(0,255,157,.2);background:rgba(0,255,157,.03);}
+.action-btn.success .action-label{color:var(--green);}
+
+/* ── Two-col split ── */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+
+/* ── Panel ── */
+.panel{
+  border-radius:14px;border:1px solid var(--border);
+  background:var(--surface);padding:16px;
+}
+.panel-title{font-size:10px;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-bottom:12px;}
+
+/* ── Standing Orders ── */
+.order-item{
+  display:flex;gap:8px;align-items:flex-start;
+  padding:6px 0;border-bottom:1px solid rgba(255,255,255,.04);
+  font-size:11px;line-height:1.4;
+}
+.order-dot{flex-shrink:0;margin-top:2px;}
+
+/* ── Log ── */
+.log-scroll{max-height:180px;overflow-y:auto;}
+.log-scroll::-webkit-scrollbar{display:none;}
+.log-item{
+  display:flex;gap:8px;
+  padding:5px 0;border-bottom:1px solid rgba(255,255,255,.03);
+  font-size:10px;font-family:var(--mono);
+}
+.log-ts{color:var(--muted);flex-shrink:0;}
+.log-msg{color:var(--text);line-height:1.4;}
+.log-msg.warn{color:var(--amber);}
+.log-msg.ok{color:var(--green);}
+
+/* ── Response card ── */
+.response-card{
+  border-radius:14px;border:1px solid var(--border);
+  background:rgba(0,0,0,.4);padding:16px;
+  display:none;
+}
+.response-card.visible{display:block;}
+.response-card-header{
+  display:flex;align-items:center;gap:8px;
+  margin-bottom:10px;font-size:11px;color:var(--muted);
+}
+.response-tower-badge{
+  font-size:9px;padding:3px 8px;border-radius:5px;
+  font-weight:700;letter-spacing:1px;
+}
+.response-text{font-size:13px;line-height:1.7;color:var(--text);}
+.response-copy{
+  margin-top:12px;padding:10px;border-radius:8px;
+  border:1px solid var(--border);background:rgba(255,255,255,.03);
+  font-size:11px;color:var(--muted);cursor:pointer;text-align:center;
+  transition:.15s;
+}
+.response-copy:active{background:rgba(255,255,255,.07);}
+
+/* ── Deploy status ── */
+.deploy-status{display:flex;flex-direction:column;gap:8px;}
+.deploy-row{
+  display:flex;align-items:center;gap:10px;
+  padding:10px 12px;border-radius:10px;
+  background:rgba(0,0,0,.2);border:1px solid var(--border);
+}
+.deploy-icon{font-size:18px;flex-shrink:0;}
+.deploy-info{flex:1;}
+.deploy-name{font-size:11px;font-weight:600;}
+.deploy-desc{font-size:9px;color:var(--muted);margin-top:1px;}
+.deploy-tag{font-size:8px;padding:2px 7px;border-radius:4px;font-weight:700;letter-spacing:1px;white-space:nowrap;}
+.deploy-tag.live{background:rgba(0,255,157,.1);color:var(--green);border:1px solid rgba(0,255,157,.2);}
+.deploy-tag.pending{background:rgba(255,170,0,.1);color:var(--amber);border:1px solid rgba(255,170,0,.2);}
+.deploy-tag.blocked{background:rgba(255,68,102,.1);color:var(--red);border:1px solid rgba(255,68,102,.2);}
+
+/* ── Toast ── */
+.toast{
+  position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(80px);
+  background:rgba(0,255,157,.1);border:1px solid rgba(0,255,157,.3);
+  color:var(--green);border-radius:10px;padding:12px 24px;
+  font-size:12px;font-weight:600;letter-spacing:1px;
+  transition:transform .3s ease;z-index:999;white-space:nowrap;
+}
+.toast.show{transform:translateX(-50%) translateY(0);}
+
+/* ── NOIZYSTREAM Panel ── */
+.stream-panel{
+  border-radius:16px;
+  border:1px solid rgba(192,132,252,.25);
+  background:rgba(192,132,252,.03);
+  padding:18px 20px;
+  position:relative;overflow:hidden;
+}
+.stream-panel::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,var(--neon),transparent);
+  animation:scanline 4s linear infinite;
+}
+.stream-panel-header{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:14px;
+}
+.stream-panel-title{font-size:11px;letter-spacing:2px;color:var(--neon);text-transform:uppercase;}
+.stream-state-badge{
+  font-size:9px;padding:4px 10px;border-radius:6px;font-weight:700;letter-spacing:1.5px;
+}
+.stream-state-badge.idle{background:rgba(100,116,139,.15);color:var(--muted);border:1px solid rgba(100,116,139,.2);}
+.stream-state-badge.live{background:rgba(0,255,157,.1);color:var(--green);border:1px solid rgba(0,255,157,.3);animation:livePulse 2s ease-in-out infinite;}
+.stream-state-badge.recording{background:rgba(255,68,102,.1);color:var(--red);border:1px solid rgba(255,68,102,.3);animation:livePulse 1s ease-in-out infinite;}
+.stream-state-badge.ended{background:rgba(251,191,36,.08);color:var(--gold);border:1px solid rgba(251,191,36,.2);}
+@keyframes livePulse{0%,100%{opacity:1}50%{opacity:.6}}
+.stream-lanes{display:flex;gap:8px;margin-bottom:14px;}
+.lane-pill{
+  flex:1;padding:8px 6px;border-radius:10px;border:1px solid var(--border);
+  background:rgba(0,0,0,.2);display:flex;flex-direction:column;align-items:center;gap:3px;
+  font-size:9px;letter-spacing:1px;text-transform:uppercase;
+}
+.lane-pill.up{border-color:rgba(0,255,157,.25);background:rgba(0,255,157,.04);}
+.lane-pill.down{border-color:rgba(255,68,102,.2);}
+.lane-dot{width:6px;height:6px;border-radius:50%;}
+.lane-dot.up{background:var(--green);box-shadow:0 0 6px var(--green);}
+.lane-dot.down{background:var(--red);}
+.lane-dot.unknown{background:var(--muted);}
+.lane-label{color:var(--muted);}
+.lane-label.up{color:var(--green);}
+.stream-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px;}
+.stream-stat{border-radius:10px;border:1px solid var(--border);background:rgba(0,0,0,.2);padding:10px 12px;}
+.stream-stat-label{font-size:8px;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:3px;}
+.stream-stat-value{font-family:var(--mono);font-size:18px;font-weight:700;color:var(--neon);}
+.stream-session-row{
+  display:flex;align-items:center;gap:10px;padding:8px 12px;border-radius:10px;
+  background:rgba(0,0,0,.3);border:1px solid var(--border);margin-bottom:10px;font-size:11px;
+}
+.stream-session-name{flex:1;font-weight:600;color:var(--text);}
+.stream-session-id{font-family:var(--mono);font-size:9px;color:var(--muted);}
+.stream-actions{display:flex;gap:8px;}
+.stream-btn{
+  flex:1;padding:11px 8px;border-radius:10px;border:1px solid var(--border);
+  background:rgba(255,255,255,.03);font-size:10px;font-weight:700;letter-spacing:1px;
+  cursor:pointer;transition:.15s;color:var(--text);
+  display:flex;flex-direction:column;align-items:center;gap:4px;
+}
+.stream-btn:active{transform:scale(.96);}
+.stream-btn.start{border-color:rgba(0,255,157,.3);color:var(--green);}
+.stream-btn.stop{border-color:rgba(255,68,102,.3);color:var(--red);}
+.stream-btn.monitor{border-color:rgba(192,132,252,.3);color:var(--neon);}
+.stream-btn-icon{font-size:18px;}
+.proof-scroll{max-height:110px;overflow-y:auto;margin-top:12px;}
+.proof-scroll::-webkit-scrollbar{display:none;}
+.proof-item{
+  display:flex;gap:8px;padding:4px 0;
+  border-bottom:1px solid rgba(255,255,255,.03);font-size:9px;font-family:var(--mono);
+}
+.proof-ts{color:var(--muted);flex-shrink:0;width:42px;}
+.proof-actor{color:var(--neon);flex-shrink:0;width:64px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.proof-event{color:var(--text);}
+.hidden{display:none;}
+.action-btn.mirror{border-color:rgba(192,132,252,.3);background:rgba(192,132,252,.04);}
+.action-btn.mirror .action-label{color:var(--neon);}
+</style>
+</head>
+<body>
+<div class="ipad-shell">
+
+  <!-- HEADER -->
+  <div class="ipad-header">
+    <div>
+      <div class="ipad-logo">NOIZY.AI</div>
+      <div class="ipad-sub">SATELLITE DASHBOARD · IPAD 12.9"</div>
+    </div>
+    <div style="text-align:right">
+      <div class="ipad-clock" id="clockDisplay">--:--</div>
+      <div class="ipad-date" id="dateDisplay">--</div>
+      <div style="font-size:8px;color:rgba(248,113,113,.7);letter-spacing:1px;margin-top:3px;font-family:var(--mono)" id="countdownDisplay">T-minus…</div>
+    </div>
+  </div>
+
+  <!-- GABRIEL STRIP -->
+  <div class="gabriel-strip">
+    <div class="gabriel-dot-wrap">
+      <div class="gabriel-ping"></div>
+      <div class="gabriel-dot">⚡</div>
+    </div>
+    <div class="gabriel-info">
+      <div class="gabriel-name-sm">GABRIEL — ACTIVE <span style="font-size:9px;opacity:.6">v2.0</span></div>
+      <div class="gabriel-desc">WARRIOR EXECUTOR · OPUS 4.6 · GORUNFREE · DREAMCHAMBER :7777</div>
+      <div class="gabriel-machine">GOD.local · M2 Ultra 192GB · CF: 5ba03939 (NOIZY.ai) + 2446d788 (Fishmusicinc)</div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:6px;align-items:flex-end">
+      <div class="g-badge wait" id="gabrielBadge">⬤ CHECKING</div>
+      <div class="g-badge on" style="font-size:8px">DAZEFLOW 2026-03-27</div>
+    </div>
+  </div>
+
+  <!-- METRICS -->
+  <div class="metrics-row">
+    <div class="metric-card">
+      <div class="metric-label">Voice Bridge</div>
+      <div class="metric-value green" id="metricBridge">—</div>
+      <div class="metric-sub">localhost:8080</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">Ollama</div>
+      <div class="metric-value neon" id="metricOllama">—</div>
+      <div class="metric-sub">Gemma3 · Mistral</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">MCP Servers</div>
+      <div class="metric-value gold">10</div>
+      <div class="metric-sub">registered</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">Session</div>
+      <div class="metric-value cf" id="metricUptime">0:00</div>
+      <div class="metric-sub">uptime</div>
+    </div>
+  </div>
+
+  <!-- VOICE COMMAND -->
+  <div class="voice-panel">
+    <div class="voice-panel-title">🎙️ Voice Command — Robert's hands</div>
+    <div class="mic-row">
+      <div class="mic-big" id="micBtn" onclick="toggleMic()">🎙️</div>
+      <div class="voice-input-col">
+        <div class="voice-text-display empty" id="voiceDisplay">Tap mic and speak your command…</div>
+        <div class="voice-tower-row">
+          <button class="tower-btn max" onclick="sendToTower('max')">
+            <span class="tower-btn-icon">✦</span>
+            <span class="tower-btn-label">MAX</span>
+          </button>
+          <button class="tower-btn code" onclick="sendToTower('code')">
+            <span class="tower-btn-icon">⌨️</span>
+            <span class="tower-btn-label">CODE</span>
+          </button>
+          <button class="tower-btn work" onclick="sendToTower('work')">
+            <span class="tower-btn-icon">⚙️</span>
+            <span class="tower-btn-label">CREW</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RESPONSE -->
+  <div class="response-card" id="responseCard">
+    <div class="response-card-header">
+      <span id="responseTowerBadge" class="response-tower-badge"></span>
+      <span id="responseTime"></span>
+    </div>
+    <div class="response-text" id="responseText"></div>
+    <div class="response-copy" onclick="copyResponse()">📋 Copy Response</div>
+  </div>
+
+  <!-- QUICK ACTIONS -->
+  <div class="actions-row">
+    <div class="action-btn primary" onclick="runAction('deploy')">
+      <div class="action-icon">⚡</div>
+      <div class="action-label">Deploy HEAVEN</div>
+    </div>
+    <div class="action-btn success" onclick="runAction('status')">
+      <div class="action-icon">📡</div>
+      <div class="action-label">Empire Status</div>
+    </div>
+    <div class="action-btn" onclick="runAction('dreamchamber')">
+      <div class="action-icon">🌙</div>
+      <div class="action-label">DreamChamber</div>
+    </div>
+    <div class="action-btn" onclick="runAction('whisper')">
+      <div class="action-icon">🎧</div>
+      <div class="action-label">Test Whisper</div>
+    </div>
+    <div class="action-btn success" onclick="runAction('gabriel-status')">
+      <div class="action-icon">⚡</div>
+      <div class="action-label">GABRIEL Check</div>
+    </div>
+    <div class="action-btn danger" onclick="runAction('wrangler-login')">
+      <div class="action-icon">🔐</div>
+      <div class="action-label">CF Login</div>
+    </div>
+    <div class="action-btn mirror" onclick="window.open('mirror.html','_blank')">
+      <div class="action-icon">🪞</div>
+      <div class="action-label">MIRROR</div>
+    </div>
+  </div>
+
+  <!-- SPLIT: Deployments + Orders -->
+  <div class="two-col">
+    <div class="panel">
+      <div class="panel-title">Deployment Status</div>
+      <div class="deploy-status">
+        <div class="deploy-row">
+          <div class="deploy-icon">⚡</div>
+          <div class="deploy-info">
+            <div class="deploy-name">GABRIEL v2.0</div>
+            <div class="deploy-desc">GOD.local:7777 · Opus 4.6 · voice=Daniel</div>
+          </div>
+          <div class="deploy-tag live" id="deployGabriel">CHECKING</div>
+        </div>
+        <div class="deploy-row">
+          <div class="deploy-icon">🎛</div>
+          <div class="deploy-info">
+            <div class="deploy-name">NOIZYSTREAM</div>
+            <div class="deploy-desc">GOD.local:7778 ctrl · :7779 signal</div>
+          </div>
+          <div class="deploy-tag live" id="deployStream">CHECKING</div>
+        </div>
+        <div class="deploy-row">
+          <div class="deploy-icon">🌙</div>
+          <div class="deploy-info">
+            <div class="deploy-name">DreamChamber v2</div>
+            <div class="deploy-desc">GOD.local:7780 · sessions</div>
+          </div>
+          <div class="deploy-tag pending" id="deployDream">CHECKING</div>
+        </div>
+        <div class="deploy-row">
+          <div class="deploy-icon">🎙️</div>
+          <div class="deploy-info">
+            <div class="deploy-name">Voice Bridge</div>
+            <div class="deploy-desc">GOD.local:8080 · voice-v2</div>
+          </div>
+          <div class="deploy-tag pending" id="deployBridge">CHECKING</div>
+        </div>
+        <div class="deploy-row">
+          <div class="deploy-icon">🤖</div>
+          <div class="deploy-info">
+            <div class="deploy-name">Ollama</div>
+            <div class="deploy-desc">GOD.local:11434 · llama3.1:70b</div>
+          </div>
+          <div class="deploy-tag live" id="deployOllama">CHECKING</div>
+        </div>
+        <div class="deploy-row">
+          <div class="deploy-icon">🪞</div>
+          <div class="deploy-info">
+            <div class="deploy-name">Mirror v1</div>
+            <div class="deploy-desc">GOD.local:7781 · creative briefs</div>
+          </div>
+          <div class="deploy-tag pending" id="deployMirror">NOT STARTED</div>
+        </div>
+        <div class="deploy-row">
+          <div class="deploy-icon">🌐</div>
+          <div class="deploy-info">
+            <div class="deploy-name">CF Pages</div>
+            <div class="deploy-desc">noizylab-ca · noizylab-portal</div>
+          </div>
+          <div class="deploy-tag live">DEPLOYED</div>
+        </div>
+        <div class="deploy-row">
+          <div class="deploy-icon">☁️</div>
+          <div class="deploy-info">
+            <div class="deploy-name">CF Workers</div>
+            <div class="deploy-desc">NOIZY.ai acct · 0 workers deployed</div>
+          </div>
+          <div class="deploy-tag blocked">BLOCKED</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-title">Standing Orders</div>
+      <div id="ordersPanel">
+        <!-- Populated by JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- LOG -->
+  <div class="panel">
+    <div class="panel-title">Event Log</div>
+    <div class="log-scroll" id="logPanel"></div>
+  </div>
+
+  <!-- NOIZYSTREAM -->
+  <div class="stream-panel">
+    <div class="stream-panel-header">
+      <div class="stream-panel-title">🎛 NOIZYSTREAM — Audio Fabric</div>
+      <div class="stream-state-badge idle" id="streamStateBadge">IDLE</div>
+    </div>
+
+    <!-- Lane indicators -->
+    <div class="stream-lanes">
+      <div class="lane-pill unknown" id="laneDante">
+        <div class="lane-dot unknown" id="laneDanteDot"></div>
+        <div class="lane-label" id="laneDanteLabel">DANTE</div>
+      </div>
+      <div class="lane-pill unknown" id="laneWebrtc">
+        <div class="lane-dot unknown" id="laneWebrtcDot"></div>
+        <div class="lane-label" id="laneWebrtcLabel">WEBRTC</div>
+      </div>
+      <div class="lane-pill unknown" id="laneAes67">
+        <div class="lane-dot unknown" id="laneAes67Dot"></div>
+        <div class="lane-label" id="laneAes67Label">AES67</div>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="stream-stats">
+      <div class="stream-stat">
+        <div class="stream-stat-label">Sessions</div>
+        <div class="stream-stat-value" id="streamStatSessions">—</div>
+      </div>
+      <div class="stream-stat">
+        <div class="stream-stat-label">Participants</div>
+        <div class="stream-stat-value" id="streamStatParticipants">—</div>
+      </div>
+      <div class="stream-stat">
+        <div class="stream-stat-label">Routes</div>
+        <div class="stream-stat-value" id="streamStatRoutes">—</div>
+      </div>
+      <div class="stream-stat">
+        <div class="stream-stat-label">Uptime</div>
+        <div class="stream-stat-value" id="streamStatUptime">—</div>
+      </div>
+    </div>
+
+    <!-- Active session row -->
+    <div class="stream-session-row hidden" id="streamSessionRow">
+      <div class="stream-session-name" id="streamSessionName">—</div>
+      <div class="stream-session-id" id="streamSessionId">—</div>
+    </div>
+
+    <!-- Actions -->
+    <div class="stream-actions">
+      <button type="button" class="stream-btn start" onclick="streamNewSession()">
+        <span class="stream-btn-icon">⚡</span>
+        <span>NEW SESSION</span>
+      </button>
+      <button type="button" class="stream-btn monitor" onclick="streamOpenMonitor()">
+        <span class="stream-btn-icon">📡</span>
+        <span>MONITOR</span>
+      </button>
+      <button type="button" class="stream-btn stop" onclick="streamEndSession()">
+        <span class="stream-btn-icon">⏹</span>
+        <span>END SESSION</span>
+      </button>
+    </div>
+
+    <!-- Proof log -->
+    <div class="proof-scroll" id="proofLog"></div>
+  </div>
+
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ── CONFIG ──────────────────────────────────────────────────
+const GOD = 'http://localhost';
+const BRIDGE = `${GOD}:8080`;
+const OLLAMA = `${GOD}:11434`;
+const DREAM = `${GOD}:7777`;
+const CF_NOIZY = '5f36aa9795348ea681d0b21910dfc82a';
+const CF_FISH  = '2446d788cc4280f5ea22a9948410c355';
+const TARGET_DATE = new Date('2026-04-17T00:00:00-04:00');
+let sessionSecs = 0;
+let recognizing = false;
+let recognition = null;
+let lastTranscript = '';
+let currentTower = 'max';
+
+// ── ORDERS ──────────────────────────────────────────────────
+const ORDERS = [
+  { text: 'TARGET: April 17, 2026 — T-minus counting…', done: false },
+  { text: 'Mirror v1 → start service :7781 + test creative brief flow', done: false },
+  { text: 'N8N voice-command-router → Whisper → Claude → Notion/GitHub', done: false },
+  { text: 'Deploy HEAVEN Worker to CF NOIZY.ai (0 workers live)', done: false },
+  { text: 'Cloudflare Tunnel → voice.noizy.ai → localhost:8080', done: false },
+  { text: 'Miro Google Workspace OAuth → fix 403 in admin console', done: false },
+  { text: 'Zapier Pro → wire GitHub PR → Claude summary → Notion', done: false },
+  { text: 'NOIZYSTREAM → prove Dante bridge with real hardware', done: false },
+  { text: 'GABRIEL v2.0 → :7777 live, Opus 4.6, voice=Daniel ✓', done: true },
+  { text: 'NOIZYSTREAM Control → :7778 live, WebRTC up ✓', done: true },
+  { text: 'DreamChamber v2 → :7780 live ✓', done: true },
+  { text: 'Voice Bridge → :8080 live ✓', done: true },
+  { text: 'Ollama → :11434 live, llama3.1:70b loaded ✓', done: true },
+  { text: 'Wrangler auth → rsp@noizyfish.com → NOIZY.ai acct ✓', done: true },
+  { text: 'Dual CF accounts inventoried (NOIZY.ai + Fishmusicinc) ✓', done: true },
+  { text: 'CF Pages: noizylab-ca + noizylab-portal deployed ✓', done: true },
+];
+
+// ── COUNTDOWN ───────────────────────────────────────────────
+function getCountdown() {
+  const diff = TARGET_DATE - new Date();
+  if (diff <= 0) return 'TARGET ACHIEVED';
+  const d = Math.floor(diff / 86400000);
+  const h = Math.floor((diff % 86400000) / 3600000);
+  const m = Math.floor((diff % 3600000) / 60000);
+  return `${d}d ${h}h ${m}m to Apr 17`;
+}
+
+// ── CLOCK ───────────────────────────────────────────────────
+function updateClock() {
+  const now = new Date();
+  document.getElementById('clockDisplay').textContent =
+    now.toLocaleTimeString('en-CA', { hour:'2-digit', minute:'2-digit', hour12:false });
+  document.getElementById('dateDisplay').textContent =
+    now.toLocaleDateString('en-CA', { weekday:'short', month:'short', day:'numeric' });
+  const cd = document.getElementById('countdownDisplay');
+  if (cd) cd.textContent = getCountdown();
+}
+setInterval(updateClock, 1000);
+updateClock();
+
+// ── UPTIME ──────────────────────────────────────────────────
+setInterval(() => {
+  sessionSecs++;
+  const m = Math.floor(sessionSecs/60), s = sessionSecs%60;
+  document.getElementById('metricUptime').textContent = `${m}:${String(s).padStart(2,'0')}`;
+}, 1000);
+
+// ── STATUS CHECKS ────────────────────────────────────────────
+async function probe(url, timeout) {
+  try {
+    const r = await fetch(url, { signal: AbortSignal.timeout(timeout || 3000) });
+    return r.ok;
+  } catch { return false; }
+}
+
+function setDeploy(id, ok, liveText, downText) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.textContent = ok ? (liveText || 'LIVE') : (downText || 'DOWN');
+  el.className = `deploy-tag ${ok ? 'live' : 'blocked'}`;
+}
+
+async function checkStatus() {
+  const [bridgeOk, ollamaOk, gabrielOk, streamOk, dreamOk] = await Promise.all([
+    probe(`${BRIDGE}/health`),
+    probe(`${OLLAMA}/api/tags`),
+    probe(`${GOD}:7777/health`),
+    probe(`${GOD}:7778/health`),
+    probe(`${GOD}:7780/health`),
+  ]);
+
+  // Metrics row
+  document.getElementById('metricBridge').textContent = bridgeOk ? 'LIVE' : 'DOWN';
+  document.getElementById('metricBridge').style.color = bridgeOk ? 'var(--green)' : 'var(--red)';
+  document.getElementById('metricOllama').textContent = ollamaOk ? 'LIVE' : 'DOWN';
+  document.getElementById('metricOllama').style.color = ollamaOk ? 'var(--neon)' : 'var(--red)';
+
+  // Deploy panel
+  setDeploy('deployGabriel', gabrielOk);
+  setDeploy('deployStream', streamOk);
+  setDeploy('deployDream', dreamOk);
+  setDeploy('deployBridge', bridgeOk);
+  setDeploy('deployOllama', ollamaOk);
+
+  // Mirror (optional — may not be started yet)
+  const mirrorOk = await probe(`${GOD}:7781/health`, 2000);
+  setDeploy('deployMirror', mirrorOk, 'LIVE', 'NOT STARTED');
+
+  const anyOnline = gabrielOk || bridgeOk || ollamaOk || streamOk;
+  const badge = document.getElementById('gabrielBadge');
+  badge.textContent = anyOnline ? '⬤ ONLINE' : '⬤ OFFLINE';
+  badge.className = `g-badge ${anyOnline ? 'on' : 'off'}`;
+
+  const up = [gabrielOk&&'gabriel', streamOk&&'stream', dreamOk&&'dream', bridgeOk&&'bridge', ollamaOk&&'ollama'].filter(Boolean);
+  addLog(`Status — ${up.length}/5 live: ${up.join(', ') || 'none'}`, up.length >= 3 ? 'ok' : 'warn');
+}
+setInterval(checkStatus, 15000);
+checkStatus();
+
+// ── ORDERS RENDER ─────────────────────────────────────────────
+function renderOrders() {
+  const el = document.getElementById('ordersPanel');
+  el.innerHTML = ORDERS.map(o => `
+    <div class="order-item">
+      <span class="order-dot" style="color:${o.done ? 'var(--green)' : 'var(--amber)'}">${o.done ? '✓' : '›'}</span>
+      <span style="color:${o.done ? 'var(--muted)' : 'var(--text)'};text-decoration:${o.done ? 'line-through' : 'none'}">${o.text}</span>
+    </div>`).join('');
+}
+renderOrders();
+
+// ── LOG ───────────────────────────────────────────────────────
+const logItems = [
+  { ts:'13:27', msg:'iPad satellite dashboard — initialized', cls:'ok' },
+  { ts:'13:26', msg:'GABRIEL relocated to GOD.local (M2 Ultra)', cls:'ok' },
+  { ts:'13:24', msg:'NOIZY BEAST workspace rules loaded', cls:'ok' },
+  { ts:'13:21', msg:'CF account corrected: 2446d788…', cls:'ok' },
+  { ts:'13:16', msg:'Gemma3 MCP server — running', cls:'ok' },
+  { ts:'13:09', msg:'HEAVEN Worker (TypeScript) — deploy pending', cls:'warn' },
+];
+
+function renderLog() {
+  const el = document.getElementById('logPanel');
+  el.innerHTML = logItems.map(l =>
+    `<div class="log-item"><span class="log-ts">${l.ts}</span><span class="log-msg ${l.cls}">${l.msg}</span></div>`
+  ).join('');
+}
+
+function addLog(msg, cls='') {
+  const now = new Date();
+  const ts = now.toTimeString().substring(0,5);
+  logItems.unshift({ ts, msg, cls });
+  if (logItems.length > 40) logItems.pop();
+  renderLog();
+}
+renderLog();
+
+// ── VOICE ────────────────────────────────────────────────────
+function toggleMic() {
+  if (!('webkitSpeechRecognition' in window || 'SpeechRecognition' in window)) {
+    showToast('⚠️ Speech recognition not available in this browser');
+    addLog('Speech API not supported — use text input', 'warn');
+    return;
+  }
+  if (recognizing) { recognition?.stop(); return; }
+
+  const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
+  recognition = new SpeechRec();
+  recognition.continuous = false;
+  recognition.interimResults = true;
+  recognition.lang = 'en-CA';
+
+  recognition.onstart = () => {
+    recognizing = true;
+    document.getElementById('micBtn').classList.add('recording');
+    document.getElementById('voiceDisplay').textContent = 'Listening…';
+    document.getElementById('voiceDisplay').classList.remove('empty');
+  };
+
+  recognition.onresult = (e) => {
+    const transcript = Array.from(e.results).map(r => r[0].transcript).join('');
+    document.getElementById('voiceDisplay').textContent = transcript;
+    lastTranscript = transcript;
+    if (e.results[e.results.length-1].isFinal) {
+      currentTower = autoDetect(transcript);
+      sendToTower(currentTower);
+    }
+  };
+
+  recognition.onend = () => {
+    recognizing = false;
+    document.getElementById('micBtn').classList.remove('recording');
+  };
+
+  recognition.onerror = (e) => {
+    recognizing = false;
+    document.getElementById('micBtn').classList.remove('recording');
+    addLog(`Mic error: ${e.error}`, 'warn');
+  };
+
+  recognition.start();
+}
+
+function autoDetect(text) {
+  const t = text.toLowerCase();
+  if (/build|code|deploy|script|npm|wrangler|bash|git/.test(t)) return 'code';
+  if (/task|assign|route|crew|delegate|team|channel/.test(t)) return 'work';
+  return 'max';
+}
+
+// ── SEND TO TOWER ─────────────────────────────────────────────
+async function sendToTower(tower) {
+  const text = lastTranscript || document.getElementById('voiceDisplay').textContent;
+  if (!text || text === 'Tap mic and speak your command…' || text === 'Listening…') {
+    showToast('Speak a command first');
+    return;
+  }
+
+  addLog(`→ Claude ${tower}: ${text.substring(0,50)}…`);
+  showToast(`⚡ Sending to Claude ${tower.toUpperCase()}…`);
+
+  try {
+    const res = await fetch(`${BRIDGE}/claude`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ text, tower, userId: 'ipad-dashboard', source: 'ipad-12.9' }),
+    });
+
+    if (res.ok) {
+      const data = await res.json();
+      const reply = data.result || data.response || JSON.stringify(data);
+      showResponse(tower, text, reply);
+      addLog(`← Claude ${tower}: ${reply.substring(0,60)}…`, 'ok');
+    } else {
+      addLog(`Bridge error ${res.status}`, 'warn');
+      showToast('⚠️ Voice Bridge not responding');
+    }
+  } catch {
+    addLog('Cannot reach GOD.local:8080 — Voice Bridge offline', 'warn');
+    showToast('⚠️ GOD.local:8080 offline');
+  }
+}
+
+// ── RESPONSE CARD ─────────────────────────────────────────────
+const TOWER_COLORS = { max:'#c084fc', code:'#38bdf8', work:'#00ff9d' };
+function showResponse(tower, prompt, reply) {
+  const card = document.getElementById('responseCard');
+  const badge = document.getElementById('responseTowerBadge');
+  badge.textContent = `Claude ${tower.toUpperCase()}`;
+  badge.style.cssText = `background:${TOWER_COLORS[tower]}22;color:${TOWER_COLORS[tower]};border:1px solid ${TOWER_COLORS[tower]}44;font-size:9px;padding:3px 8px;border-radius:5px;font-weight:700;letter-spacing:1px;`;
+  document.getElementById('responseTime').textContent = new Date().toLocaleTimeString('en-CA', {hour:'2-digit',minute:'2-digit'});
+  document.getElementById('responseText').textContent = reply;
+  card.classList.add('visible');
+  card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+function copyResponse() {
+  const text = document.getElementById('responseText').textContent;
+  navigator.clipboard?.writeText(text).then(() => showToast('✓ Copied'));
+}
+
+// ── QUICK ACTIONS ─────────────────────────────────────────────
+const ACTION_PROMPTS = {
+  'deploy':          { text: 'Run the deploy script for the HEAVEN Cloudflare Worker. What command do I run?', tower: 'code' },
+  'status':          { text: 'Give me a full NOIZY Empire status — what is live, what is pending, what is blocked?', tower: 'max' },
+  'dreamchamber':    { text: 'Check DreamChamber status. Is it running? How do I start it?', tower: 'code' },
+  'whisper':         { text: 'How do I test mlx-whisper on the M2 Ultra with a sample audio file?', tower: 'code' },
+  'gabriel-status':  { text: 'GABRIEL status check. Voice Bridge, Ollama, Gemma3, MCP servers — what is online?', tower: 'max' },
+  'wrangler-login':  { text: 'I need to run wrangler login to authenticate Cloudflare. What is the exact command?', tower: 'code' },
+};
+
+function runAction(action) {
+  const p = ACTION_PROMPTS[action];
+  if (!p) return;
+  document.getElementById('voiceDisplay').textContent = p.text;
+  document.getElementById('voiceDisplay').classList.remove('empty');
+  lastTranscript = p.text;
+  sendToTower(p.tower);
+}
+
+// ── TOAST ─────────────────────────────────────────────────────
+let toastTimer = null;
+function showToast(msg) {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => el.classList.remove('show'), 2500);
+}
+
+// ── NOIZYSTREAM ───────────────────────────────────────────────
+const STREAM = `${GOD}:7778`;
+let streamActiveSessionId = null;
+const proofItems = [];
+
+function fmtTs(epochMs) {
+  return new Date(epochMs).toTimeString().substring(0, 5);
+}
+
+function setLane(lane, state) {
+  const pill = document.getElementById(`lane${lane}`);
+  const dot  = document.getElementById(`lane${lane}Dot`);
+  const lbl  = document.getElementById(`lane${lane}Label`);
+  if (!pill) return;
+  pill.className = `lane-pill ${state}`;
+  dot.className  = `lane-dot ${state}`;
+  lbl.className  = `lane-label ${state}`;
+}
+
+function renderProofLog() {
+  const el = document.getElementById('proofLog');
+  if (!el) return;
+  el.innerHTML = proofItems.slice(0, 20).map(p =>
+    `<div class="proof-item">
+      <span class="proof-ts">${fmtTs(p.ts)}</span>
+      <span class="proof-actor">${p.actor}</span>
+      <span class="proof-event">${p.event}</span>
+    </div>`
+  ).join('');
+}
+
+function addProofEntry(actor, event, ts) {
+  proofItems.unshift({ actor, event, ts: ts || Date.now() });
+  if (proofItems.length > 40) proofItems.pop();
+  renderProofLog();
+}
+
+async function pollStream() {
+  // Check control service health
+  let health = null;
+  try {
+    const r = await fetch(`${STREAM}/health`, { signal: AbortSignal.timeout(2500) });
+    if (r.ok) health = await r.json();
+  } catch {}
+
+  if (!health) {
+    document.getElementById('streamStatSessions').textContent = '—';
+    document.getElementById('streamStatParticipants').textContent = '—';
+    document.getElementById('streamStatRoutes').textContent = '—';
+    document.getElementById('streamStatUptime').textContent = '—';
+    setLane('Webrtc', 'down');
+    setLane('Dante', 'unknown');
+    setLane('Aes67', 'unknown');
+    return;
+  }
+
+  // Health OK — update stats
+  document.getElementById('streamStatSessions').textContent = health.activeSessions ?? 0;
+  const uSec = health.uptime ?? 0;
+  const uMin = Math.floor(uSec / 60), uS = uSec % 60;
+  document.getElementById('streamStatUptime').textContent = `${uMin}:${String(uS).padStart(2,'0')}`;
+
+  setLane('Webrtc', health.lanes?.webrtc ?? 'unknown');
+  setLane('Dante',  health.lanes?.dante  ?? 'unknown');
+  setLane('Aes67',  health.lanes?.aes67  ?? 'unknown');
+
+  // Pull sessions if any active
+  try {
+    const sr = await fetch(`${STREAM}/sessions`, { signal: AbortSignal.timeout(2500) });
+    if (sr.ok) {
+      const { data: sessions } = await sr.json();
+      const liveSessions = sessions.filter(s => s.state !== 'ended');
+      const totalParticipants = liveSessions.reduce((n, s) => n + (s.participants || 0), 0);
+      const totalRoutes = liveSessions.reduce((n, s) => n + (s.routes || 0), 0);
+      document.getElementById('streamStatParticipants').textContent = totalParticipants;
+      document.getElementById('streamStatRoutes').textContent = totalRoutes;
+
+      // Show top active session
+      const top = liveSessions[0];
+      const row = document.getElementById('streamSessionRow');
+      if (top) {
+        streamActiveSessionId = top.id;
+        document.getElementById('streamSessionName').textContent = top.name;
+        document.getElementById('streamSessionId').textContent = top.id.substring(0, 16) + '…';
+        row.classList.remove('hidden');
+        const badge = document.getElementById('streamStateBadge');
+        badge.textContent = top.state.toUpperCase();
+        badge.className = `stream-state-badge ${top.state}`;
+      } else {
+        streamActiveSessionId = null;
+        row.classList.add('hidden');
+        const badge = document.getElementById('streamStateBadge');
+        badge.textContent = 'IDLE';
+        badge.className = 'stream-state-badge idle';
+      }
+    }
+  } catch {}
+}
+
+async function streamNewSession() {
+  const name = `Studio ${new Date().toLocaleTimeString('en-CA', { hour:'2-digit', minute:'2-digit', hour12:false })}`;
+  try {
+    const r = await fetch(`${STREAM}/sessions`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, mode: 'studio', hostUserId: 'robert' }),
+    });
+    if (r.ok) {
+      const { data } = await r.json();
+      streamActiveSessionId = data.id;
+      addProofEntry('robert', 'session.created', data.createdAt);
+      document.getElementById('streamSessionName').textContent = data.name;
+      document.getElementById('streamSessionId').textContent = data.id.substring(0, 16) + '…';
+      document.getElementById('streamSessionRow').classList.remove('hidden');
+      document.getElementById('streamStateBadge').textContent = 'LIVE';
+      document.getElementById('streamStateBadge').className = 'stream-state-badge live';
+      showToast('⚡ NOIZYSTREAM session created');
+      addLog(`NOIZYSTREAM: session created — ${data.name}`, 'ok');
+    } else {
+      showToast('⚠️ Control service not responding');
+    }
+  } catch {
+    showToast('⚠️ NOIZYSTREAM offline — start with: cd noizystream && npm run dev');
+    addLog('NOIZYSTREAM control :7778 offline', 'warn');
+  }
+}
+
+async function streamEndSession() {
+  if (!streamActiveSessionId) { showToast('No active session'); return; }
+  try {
+    const r = await fetch(`${STREAM}/sessions/${streamActiveSessionId}/end`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ userId: 'robert' }),
+    });
+    if (r.ok) {
+      addProofEntry('robert', 'session.ended');
+      streamActiveSessionId = null;
+      document.getElementById('streamSessionRow').classList.add('hidden');
+      document.getElementById('streamStateBadge').textContent = 'IDLE';
+      document.getElementById('streamStateBadge').className = 'stream-state-badge idle';
+      showToast('⏹ Session ended');
+      addLog('NOIZYSTREAM: session ended', 'ok');
+    }
+  } catch {
+    showToast('⚠️ NOIZYSTREAM offline');
+  }
+}
+
+async function streamOpenMonitor() {
+  if (!streamActiveSessionId) { showToast('No active session to monitor'); return; }
+  try {
+    const r = await fetch(`${STREAM}/sessions/${streamActiveSessionId}/proof`, { signal: AbortSignal.timeout(2500) });
+    if (r.ok) {
+      const { data: records } = await r.json();
+      records.slice(0, 20).forEach(p => addProofEntry(p.actor, p.event, p.ts));
+      showToast(`📡 ${records.length} proof records loaded`);
+    }
+  } catch {
+    showToast('⚠️ Cannot reach control service');
+  }
+}
+
+// Poll every 12 seconds
+setInterval(pollStream, 12000);
+pollStream();
+</script>
+</body>
+</html>

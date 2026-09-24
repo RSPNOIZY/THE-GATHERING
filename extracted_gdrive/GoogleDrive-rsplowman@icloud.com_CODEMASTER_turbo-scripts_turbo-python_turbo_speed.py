@@ -6,7 +6,6 @@ Network Bandwidth & Streaming Readiness Test
 
 import time
 import urllib.request
-import sys
 
 # Emojis
 SPEED = "🚀"

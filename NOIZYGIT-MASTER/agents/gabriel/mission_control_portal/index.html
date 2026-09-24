@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GABRIEL MC96 ENABLEMENT PORTAL // GORUNFREE</title>
+    <meta name="description" content="Mission Control Portal for Gabriel System Omega - Zero Latency, Maximum Intelligence">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Neural Background Canvas -->
+    <canvas id="neural-bg"></canvas>
+    
+    <!-- Main Container -->
+    <div class="portal-container">
+        
+        <!-- Hero Section -->
+        <header class="hero">
+            <div class="hero-glow"></div>
+            <div class="logo-container">
+                <div class="logo-ring"></div>
+                <div class="logo-ring delay-1"></div>
+                <div class="logo-ring delay-2"></div>
+                <h1 class="logo-text">GABRIEL</h1>
+            </div>
+            <p class="tagline">SYSTEM OMEGA // MC96ECOUNIVERSE</p>
+            <div class="status-badge" id="system-status">
+                <span class="pulse"></span>
+                <span class="status-text">ONLINE</span>
+            </div>
+        </header>
+
+        <!-- Metrics Bar -->
+        <section class="metrics-bar">
+            <div class="metric">
+                <span class="metric-value" id="latency-value">&lt;7ms</span>
+                <span class="metric-label">LATENCY</span>
+            </div>
+            <div class="metric">
+                <span class="metric-value" id="agents-value">3</span>
+                <span class="metric-label">ACTIVE AGENTS</span>
+            </div>
+            <div class="metric">
+                <span class="metric-value" id="memcell-value">∞</span>
+                <span class="metric-label">MEMCELL NODES</span>
+            </div>
+            <div class="metric">
+                <span class="metric-value" id="uptime-value">99.9%</span>
+                <span class="metric-label">UPTIME</span>
+            </div>
+        </section>
+
+        <!-- Quick Actions Grid -->
+        <section class="quick-actions">
+            <h2 class="section-title">⚡ QUICK ACTIONS</h2>
+            <div class="actions-grid">
+                <button class="action-card" data-action="mission-control">
+                    <div class="action-icon">🎛️</div>
+                    <h3>Mission Control</h3>
+                    <p>Full system dashboard & monitoring</p>
+                </button>
+                <button class="action-card" data-action="memcell">
+                    <div class="action-icon">🧠</div>
+                    <h3>MemCell Brain</h3>
+                    <p>Neural knowledge graph explorer</p>
+                </button>
+                <button class="action-card" data-action="knowledge-graph">
+                    <div class="action-icon">🔗</div>
+                    <h3>Knowledge Graph</h3>
+                    <p>Entity relationships & queries</p>
+                </button>
+                <button class="action-card" data-action="voice-forge">
+                    <div class="action-icon">🎙️</div>
+                    <h3>Voice Forge</h3>
+                    <p>TTS & audio processing</p>
+                </button>
+                <button class="action-card" data-action="sonic-templator">
+                    <div class="action-icon">🎵</div>
+                    <h3>SONIC-TEMPLATOR</h3>
+                    <p>Audio project scaffolding</p>
+                </button>
+                <button class="action-card" data-action="deepseek">
+                    <div class="action-icon">🔮</div>
+                    <h3>DeepSeek R1</h3>
+                    <p>Advanced reasoning engine</p>
+                </button>
+            </div>
+        </section>
+
+        <!-- Active Agents -->
+        <section class="agents-section">
+            <h2 class="section-title">🤖 ACTIVE AGENTS</h2>
+            <div class="agents-grid" id="agents-container">
+                <div class="agent-card online">
+                    <div class="agent-status"></div>
+                    <span class="agent-name">GABRIEL</span>
+                    <span class="agent-role">Primary AI Core</span>
+                </div>
+                <div class="agent-card online">
+                    <div class="agent-status"></div>
+                    <span class="agent-name">SHIRL</span>
+                    <span class="agent-role">Voice Interface</span>
+                </div>
+                <div class="agent-card online">
+                    <div class="agent-status"></div>
+                    <span class="agent-name">ENGR_KEITH</span>
+                    <span class="agent-role">System Engineer</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Neural Visualization -->
+        <section class="neural-section">
+            <h2 class="section-title">🧬 MEMCELL NEURAL NETWORK</h2>
+            <div class="neural-container">
+                <canvas id="neural-graph"></canvas>
+                <div class="neural-controls">
+                    <button id="reset-graph">Reset View</button>
+                    <button id="toggle-physics">Toggle Physics</button>
+                    <button id="export-graph">Export</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Live Feed -->
+        <section class="feed-section">
+            <h2 class="section-title">📡 LIVE FEED</h2>
+            <div class="feed-container" id="live-feed">
+                <div class="feed-line">[INIT] Gabriel Enablement Portal activated...</div>
+            </div>
+        </section>
+
+        <!-- Enablement Resources -->
+        <section class="resources-section">
+            <h2 class="section-title">📚 ENABLEMENT HUB</h2>
+            <div class="resources-grid">
+                <a href="#" class="resource-card">
+                    <div class="resource-icon">📖</div>
+                    <h3>Documentation</h3>
+                    <p>Complete system guides & API references</p>
+                </a>
+                <a href="#" class="resource-card">
+                    <div class="resource-icon">🎓</div>
+                    <h3>Training</h3>
+                    <p>Interactive tutorials & workshops</p>
+                </a>
+                <a href="#" class="resource-card">
+                    <div class="resource-icon">🛠️</div>
+                    <h3>Support</h3>
+                    <p>Troubleshooting & assistance</p>
+                </a>
+                <a href="#" class="resource-card">
+                    <div class="resource-icon">🚀</div>
+                    <h3>Quick Start</h3>
+                    <p>Get up and running in 5 minutes</p>
+                </a>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="portal-footer">
+            <p>GABRIEL SYSTEM OMEGA // MC96ECOUNIVERSE // GORUNFREE PROTOCOL</p>
+            <p class="timestamp" id="timestamp"></p>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="api_bridge.js"></script>
+    <script src="neural_engine.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

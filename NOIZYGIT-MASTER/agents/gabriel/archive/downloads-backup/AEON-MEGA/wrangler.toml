@@ -1,0 +1,22 @@
+name = "aeon-god-kernel"
+main = "aeon-god-kernel.js"
+compatibility_date = "2024-01-01"
+compatibility_flags = ["nodejs_compat"]
+
+[ai]
+binding = "AI"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "aeon-god-kernel"
+database_id = "REPLACE_ME"
+
+[[kv_namespaces]]
+binding = "KV"
+id = "c875b025b2994097a2381132f9256a83"
+
+[triggers]
+crons = ["0 */6 * * *"]
+
+[vars]
+OWNER = "Rob Plowman"

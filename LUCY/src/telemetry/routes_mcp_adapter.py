@@ -7,9 +7,8 @@ Implements: Rate Limiting, Timeout Handling, Quota Alarms, ToS Speech Isolation,
 from __future__ import annotations
 
 import time
-import uuid
 import logging
-from typing import Any, Callable, Dict, Optional, Tuple
+from typing import Any, Callable, Optional, Tuple
 from dataclasses import dataclass, field
 
 logger = logging.getLogger("LUCY.RoutesMcpAdapter")

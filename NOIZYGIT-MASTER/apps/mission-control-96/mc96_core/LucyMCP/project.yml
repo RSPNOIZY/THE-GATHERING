@@ -1,0 +1,67 @@
+name: LucyMCP
+options:
+  bundleIdPrefix: ai.noizy
+  deploymentTarget:
+    iOS: "18.0"
+  xcodeVersion: "26.3"
+  createIntermediateGroups: true
+  groupSortPosition: top
+
+settings:
+  base:
+    SWIFT_VERSION: 6.0
+    TARGETED_DEVICE_FAMILY: "1,2"
+    SUPPORTS_MACCATALYST: false
+    DEVELOPMENT_TEAM: $(DEVELOPMENT_TEAM)
+    MARKETING_VERSION: "1.0.0"
+    CURRENT_PROJECT_VERSION: "1"
+
+targets:
+  LucyMCP:
+    type: application
+    platform: iOS
+    sources:
+      - Sources
+    info:
+      path: LucyMCP/Info.plist
+      properties:
+        CFBundleName: Lucy
+        CFBundleDisplayName: Lucy
+        CFBundleIdentifier: ai.noizy.lucy
+        CFBundleShortVersionString: "1.0.0"
+        NSMicrophoneUsageDescription: "Lucy uses your microphone for voice control and accessibility"
+        NSSpeechRecognitionUsageDescription: "Lucy understands your voice commands via speech recognition"
+        NSCameraUsageDescription: "Lucy uses the camera for eye tracking accessibility"
+        NSLocalNetworkUsageDescription: "Lucy connects to heaven worker and AirPlay devices on your network"
+        UILaunchScreen: {}
+        UIUserInterfaceStyle: Dark
+        UIRequiresFullScreen: true
+        NSAppTransportSecurity:
+          NSAllowsArbitraryLoads: true
+          NSAllowsLocalNetworking: true
+        UIBackgroundModes:
+          - audio
+          - fetch
+          - remote-notification
+        UISupportedInterfaceOrientations~ipad:
+          - UIInterfaceOrientationPortrait
+          - UIInterfaceOrientationLandscapeLeft
+          - UIInterfaceOrientationLandscapeRight
+        UISupportedInterfaceOrientations~iphone:
+          - UIInterfaceOrientationPortrait
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: ai.noizy.lucy
+    scheme:
+      environmentVariables:
+        HEAVEN_WORKER_URL: "https://heaven.mcuniverse.workers.dev"
+      testTargets:
+        - LucyMCPTests
+
+  LucyMCPTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - Tests/LucyMCPTests
+    dependencies:
+      - target: LucyMCP

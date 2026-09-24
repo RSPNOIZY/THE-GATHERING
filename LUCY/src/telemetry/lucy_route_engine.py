@@ -7,10 +7,9 @@ Invariants: Rule Zero (ONE COMMAND -> ONE ACTION -> ONE RECEIPT), Ottawa/YOW Mul
 
 import math
 import uuid
-import time
 import json
 from datetime import datetime, timezone
-from typing import Dict, Any, List, Optional, Tuple
+from typing import Dict, Any, Optional, Tuple
 
 class LucyRouteEngine:
     """

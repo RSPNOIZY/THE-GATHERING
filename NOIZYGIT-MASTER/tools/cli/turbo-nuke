@@ -1,0 +1,58 @@
+#!/bin/bash
+# ==============================================================================
+# ☢️  TURBO NUKE - FULL SYSTEM CLEANUP (DANGEROUS)
+# ==============================================================================
+
+set -euo pipefail
+
+RED='\033[91m'
+YELLOW='\033[93m'
+GREEN='\033[92m'
+RESET='\033[0m'
+BOLD='\033[1m'
+
+echo -e "${BOLD}${RED}"
+echo "╔═══════════════════════════════════════════════════════════════╗"
+echo "║                                                               ║"
+echo "║           ☢️  TURBO NUKE PROTOCOL ☢️                          ║"
+echo "║                                                               ║"
+echo "║   WARNING: This will delete ALL duplicates automatically     ║"
+echo "║                                                               ║"
+echo "╚═══════════════════════════════════════════════════════════════╝"
+echo -e "${RESET}"
+
+echo -e "${YELLOW}This will:${RESET}"
+echo "  1. Run VACUUM on home directory"
+echo "  2. Run DEDUP with --nuke (auto-delete duplicates)"
+echo "  3. Clear all system caches"
+echo ""
+
+read -p "Are you SURE? (type 'NUKE' to confirm): " confirm
+
+if [ "$confirm" != "NUKE" ]; then
+    echo -e "${YELLOW}Aborted.${RESET}"
+    exit 0
+fi
+
+echo ""
+echo -e "${RED}☢️  INITIATING NUKE SEQUENCE...${RESET}"
+echo ""
+
+# Step 1: Vacuum
+echo -e "${BOLD}Step 1: VACUUM${RESET}"
+turbo vacuum ~
+
+# Step 2: Dedup with nuke
+echo ""
+echo -e "${BOLD}Step 2: DEDUP NUKE${RESET}"
+turbo dedup --nuke
+
+# Step 3: Cache cleanup
+echo ""
+echo -e "${BOLD}Step 3: CACHE CLEANUP${RESET}"
+rm -rf ~/Library/Caches/pip/* 2>/dev/null && echo "  pip cache nuked"
+rm -rf ~/Library/Caches/Homebrew/* 2>/dev/null && echo "  Homebrew cache nuked"
+npm cache clean --force 2>/dev/null && echo "  npm cache nuked"
+
+echo ""
+echo -e "${BOLD}${GREEN}☢️  NUKE COMPLETE - SYSTEM PURIFIED ☢️${RESET}"

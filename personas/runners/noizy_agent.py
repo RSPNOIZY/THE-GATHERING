@@ -24,7 +24,6 @@ import argparse
 import asyncio
 import json
 import os
-import sys
 import urllib.request
 
 from mcp import ClientSession, StdioServerParameters

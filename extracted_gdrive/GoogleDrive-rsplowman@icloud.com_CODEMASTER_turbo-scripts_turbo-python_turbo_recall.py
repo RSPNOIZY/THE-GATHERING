@@ -6,9 +6,7 @@ Scans User Projects and ingests metadata into MemCell V3 (Overlap Engine).
 """
 import os
 import sys
-import json
 from pathlib import Path
-from datetime import datetime
 
 # Configuration
 PROJECTS_ROOT = Path(os.path.expanduser("~/Documents/PROJECTS"))

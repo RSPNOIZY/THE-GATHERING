@@ -6,22 +6,12 @@ and raw waveform inspection for quality fingerprinting.
 """
 
 from __future__ import annotations
-import os
 import struct
-import json
-from pathlib import Path
 from typing import Optional
-from datetime import datetime
 
 import mutagen
-from mutagen.mp3 import MP3
-from mutagen.flac import FLAC
-from mutagen.mp4 import MP4
-from mutagen.oggvorbis import OggVorbis
-from mutagen.aiff import AIFF
-from mutagen.wave import WAVE
 
-from ..models import AudioAsset, AudioQuality, AudioFormat
+from ..models import AudioAsset, AudioFormat
 
 
 class MetadataExtractor:

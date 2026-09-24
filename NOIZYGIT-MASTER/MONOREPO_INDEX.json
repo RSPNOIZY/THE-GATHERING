@@ -1,0 +1,17 @@
+{
+  "monorepo_name": "NOIZYGIT-MASTER",
+  "canonical_repository": "https://github.com/RSPNOIZY/THE-GATHERING/NOIZYGIT-MASTER",
+  "architecture_version": "4.0.0-SOVEREIGN",
+  "primary_domains": [
+    "apps",
+    "agents",
+    "mcps",
+    "packages",
+    "audio_music",
+    "docs",
+    "config",
+    "scripts"
+  ],
+  "verified_status": "operational",
+  "idea_vault_indexed": true
+}

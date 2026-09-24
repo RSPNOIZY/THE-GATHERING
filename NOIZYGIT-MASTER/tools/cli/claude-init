@@ -1,0 +1,152 @@
+#!/bin/bash
+# ═══════════════════════════════════════════════════════════════════════════
+# claude-init - Initialize a project with CLAUDE.md template
+# Usage: claude-init [template] [project_name]
+# ═══════════════════════════════════════════════════════════════════════════
+
+set -euo pipefail
+
+# Colors
+GREEN='\033[0;32m'
+CYAN='\033[0;36m'
+YELLOW='\033[1;33m'
+RED='\033[0;31m'
+BOLD='\033[1m'
+NC='\033[0m'
+
+TEMPLATES_DIR="$HOME/.claude/templates"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Show available templates
+# ─────────────────────────────────────────────────────────────────────────────
+list_templates() {
+    echo -e "${BOLD}Available Templates:${NC}"
+    echo ""
+    for file in "$TEMPLATES_DIR"/CLAUDE.*.md; do
+        if [[ -f "$file" ]]; then
+            name=$(basename "$file" | sed 's/CLAUDE\.\(.*\)\.md/\1/')
+            echo -e "  ${CYAN}$name${NC}"
+        fi
+    done
+    echo ""
+}
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Usage
+# ─────────────────────────────────────────────────────────────────────────────
+usage() {
+    echo -e "${BOLD}${CYAN}claude-init${NC} - Initialize project with CLAUDE.md template"
+    echo ""
+    echo -e "${BOLD}Usage:${NC}"
+    echo "  claude-init                    Interactive mode"
+    echo "  claude-init <template>         Use template in current directory"
+    echo "  claude-init <template> <name>  Use template with custom project name"
+    echo "  claude-init list               List available templates"
+    echo ""
+    list_templates
+}
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Interactive template selection
+# ─────────────────────────────────────────────────────────────────────────────
+select_template() {
+    echo -e "${BOLD}Select a template:${NC}"
+    echo ""
+
+    local templates=()
+    local i=1
+    for file in "$TEMPLATES_DIR"/CLAUDE.*.md; do
+        if [[ -f "$file" ]]; then
+            name=$(basename "$file" | sed 's/CLAUDE\.\(.*\)\.md/\1/')
+            templates+=("$name")
+            echo -e "  ${CYAN}$i)${NC} $name"
+            ((i++))
+        fi
+    done
+    echo ""
+
+    read -p "Enter number (or template name): " selection
+
+    # Check if it's a number
+    if [[ "$selection" =~ ^[0-9]+$ ]]; then
+        if [[ "$selection" -ge 1 && "$selection" -le ${#templates[@]} ]]; then
+            echo "${templates[$((selection-1))]}"
+            return
+        fi
+    fi
+
+    # Check if it's a valid template name
+    for t in "${templates[@]}"; do
+        if [[ "$t" == "$selection" ]]; then
+            echo "$selection"
+            return
+        fi
+    done
+
+    echo ""
+    return 1
+}
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Initialize CLAUDE.md
+# ─────────────────────────────────────────────────────────────────────────────
+init_claude() {
+    local template="$1"
+    local project_name="${2:-$(basename "$(pwd)")}"
+    local template_file="$TEMPLATES_DIR/CLAUDE.$template.md"
+
+    if [[ ! -f "$template_file" ]]; then
+        echo -e "${RED}Error: Template '$template' not found${NC}"
+        echo ""
+        list_templates
+        exit 1
+    fi
+
+    # Check if CLAUDE.md already exists
+    if [[ -f "CLAUDE.md" ]]; then
+        echo -e "${YELLOW}Warning: CLAUDE.md already exists${NC}"
+        read -p "Overwrite? (y/N): " confirm
+        if [[ ! "$confirm" =~ ^[Yy]$ ]]; then
+            echo "Aborted."
+            exit 0
+        fi
+    fi
+
+    # Copy and customize template
+    sed "s/{PROJECT_NAME}/$project_name/g" "$template_file" > CLAUDE.md
+
+    echo -e "${GREEN}✓${NC} Created CLAUDE.md using ${CYAN}$template${NC} template"
+    echo -e "  Project: ${BOLD}$project_name${NC}"
+    echo ""
+    echo -e "Edit CLAUDE.md to customize for your project."
+}
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Main
+# ─────────────────────────────────────────────────────────────────────────────
+main() {
+    case "${1:-}" in
+        "")
+            # Interactive mode
+            template=$(select_template)
+            if [[ -n "$template" ]]; then
+                read -p "Project name [$(basename "$(pwd)")]: " name
+                init_claude "$template" "${name:-$(basename "$(pwd)")}"
+            else
+                echo -e "${RED}Invalid selection${NC}"
+                exit 1
+            fi
+            ;;
+        list|--list|-l)
+            list_templates
+            ;;
+        help|--help|-h)
+            usage
+            ;;
+        *)
+            init_claude "$1" "${2:-}"
+            ;;
+    esac
+}
+
+main "$@"

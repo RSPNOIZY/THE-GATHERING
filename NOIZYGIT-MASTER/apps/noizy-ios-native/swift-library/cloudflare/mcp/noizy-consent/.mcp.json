@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "noizy-consent": {
+      "command": "node",
+      "args": ["/Users/m2ultra/swift-library/cloudflare/mcp/noizy-consent/server.mjs"],
+      "env": {
+        "NOIZY_WORKER_URL": "https://noizy-app.rsp-5f3.workers.dev"
+      }
+    }
+  }
+}

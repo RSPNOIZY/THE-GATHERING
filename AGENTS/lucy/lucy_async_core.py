@@ -35,14 +35,13 @@ from __future__ import annotations
 
 import asyncio
 import hashlib
-import json
 import logging
 import time
 import uuid
 from dataclasses import dataclass, field
 from enum import IntEnum
 from pathlib import Path
-from typing import AsyncIterator, Callable, Dict, List, Optional, Tuple
+from typing import AsyncIterator, Callable, List, Optional
 
 logger = logging.getLogger("LUCY")
 

@@ -1,0 +1,35 @@
+#!/bin/bash
+# noizynet-sync — Bidirectional sync a directory with a NOIZYNET host
+# Usage: noizynet-sync <host> <local_dir> <remote_dir>
+# Example: noizynet-sync micky-p ~/sessions/ /shared/sessions/
+
+set -euo pipefail
+
+if [ $# -lt 3 ]; then
+    echo "Usage: noizynet-sync <host> <local_dir> <remote_dir>"
+    echo ""
+    echo "Syncs local_dir with remote_dir (bidirectional via rsync)"
+    exit 1
+fi
+
+HOST="$1"
+LOCAL="$2"
+REMOTE="$3"
+
+echo "⇅ Syncing $LOCAL ↔ $HOST:$REMOTE"
+
+# Pull remote changes first
+echo "  ⇩ Pulling remote..."
+rsync -avz --update --progress \
+    -e "ssh -i ~/.ssh/noizynet_ed25519" \
+    "$HOST:$REMOTE/" \
+    "$LOCAL/"
+
+# Push local changes
+echo "  ⇧ Pushing local..."
+rsync -avz --update --progress \
+    -e "ssh -i ~/.ssh/noizynet_ed25519" \
+    "$LOCAL/" \
+    "$HOST:$REMOTE/"
+
+echo "✓ Sync complete"

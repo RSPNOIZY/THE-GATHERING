@@ -1,0 +1,5 @@
+# Claude Desktop IndexedDB Extracted Fragments
+# Date: 2026-08-31 20:18:38
+
+claude-device-binding
+---

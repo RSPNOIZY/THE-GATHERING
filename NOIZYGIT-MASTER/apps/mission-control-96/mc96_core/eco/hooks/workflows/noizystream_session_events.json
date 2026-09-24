@@ -1,0 +1,76 @@
+{
+  "name": "NOIZY Session Events",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "noizystream-events",
+        "responseMode": "onReceived",
+        "options": {}
+      },
+      "id": "node-wh",
+      "name": "Session Event Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        100,
+        240
+      ],
+      "webhookId": "noizystream-events"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const b=.item.json.body??.item.json;const{sessionId,event,actor,detail,ts,ts_iso}=b;if(!event||!sessionId)throw new Error(\"Missing event/sessionId\");const m={\"session.created\":[\"\ud83c\udfac\",\"Session Created\"],\"session.started\":[\"\ud83d\udd34\",\"LIVE\"],\"session.ended\":[\"\ud83c\udfc1\",\"Ended\"],\"participant.joined\":[\"\ud83d\udc4b\",\"Joined\"],\"participant.left\":[\"\ud83d\udc64\",\"Left\"],\"route.created\":[\"\ud83d\udd17\",\"Route Created\"],\"record.armed\":[\"\u23fa\ufe0f\",\"Recording\"],\"system.error\":[\"\ud83d\udea8\",\"ERROR\"]};const[e,l]=m[event]||[\"\ud83d\udce1\",event];const d=detail&&typeof detail===\"object\"?Object.entries(detail).map(([k,v])=>\"**\"+k+\":** `\"+v+\"`\").join(\"\\n\"):\"\";return{json:{emoji:e,label:l,event,sessionId,actor:actor||\"system\",detail:d,ts_iso:ts_iso||new Date().toISOString()}};"
+      },
+      "id": "node-cls",
+      "name": "Classify Event",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        320,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "webhookUri": "={{ $env.DISCORD_AUDIT_WEBHOOK }}",
+        "text": "={{ $json.emoji }} **{{ $json.label }}**\n**Session:** `{{ $json.sessionId }}`\n**Actor:** `{{ $json.actor }}`\n{{ $json.detail }}\n**Time:** `{{ $json.ts_iso }}`",
+        "options": {}
+      },
+      "id": "node-dc",
+      "name": "Discord Audit",
+      "type": "n8n-nodes-base.discord",
+      "typeVersion": 2,
+      "position": [
+        540,
+        240
+      ]
+    }
+  ],
+  "connections": {
+    "Session Event Webhook": {
+      "main": [
+        [
+          {
+            "node": "Classify Event",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Classify Event": {
+      "main": [
+        [
+          {
+            "node": "Discord Audit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true
+}

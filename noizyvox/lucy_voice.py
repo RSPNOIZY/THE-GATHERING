@@ -28,8 +28,6 @@ Author: RSP_001 / NOIZY Empire / GOD.local
 import subprocess
 import threading
 import queue
-import os
-import time
 from pathlib import Path
 
 # ─────────────────────────────────────────────────────────────────

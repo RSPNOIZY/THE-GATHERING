@@ -12,11 +12,9 @@ Usage:
 """
 
 import os
-import sys
 import json
 import hashlib
 import argparse
-import re
 from pathlib import Path
 from datetime import datetime
 from collections import defaultdict
@@ -358,7 +356,7 @@ def main():
     empire_root = Path(args.empire_root)
 
     print(f"\n{'='*60}")
-    print(f"  THE ARCHIVIST — NOIZY Empire Document Vacuum")
+    print("  THE ARCHIVIST — NOIZY Empire Document Vacuum")
     print(f"  Mode: {'EXECUTE (files will move)' if args.execute else 'DRY RUN (catalog only)'}")
     print(f"  Empire root: {empire_root}")
     print(f"  Scanning {len(SCAN_ROOTS)} root paths...")
@@ -436,21 +434,21 @@ def main():
 
     # Print summary
     print(f"\n{'='*60}")
-    print(f"  CATALOG COMPLETE")
+    print("  CATALOG COMPLETE")
     print(f"{'='*60}")
     print(f"  Total files scanned:  {stats['total']}")
     print(f"  Classified:           {stats['classified']}")
     print(f"  Unclassified:         {stats['unclassified']}")
     print(f"  Conflicts (ties):     {stats['conflicts']}")
     print(f"  Duplicates found:     {stats['duplicates']}")
-    print(f"\n  BY PROJECT:")
+    print("\n  BY PROJECT:")
     for proj, count in sorted(project_counts.items(), key=lambda x: -x[1]):
         print(f"    {proj:30s} {count:4d} files")
     print(f"\n  Catalog saved to: {output_path}")
 
     if args.execute:
         print(f"\n{'='*60}")
-        print(f"  EXECUTING SORT...")
+        print("  EXECUTING SORT...")
         print(f"{'='*60}")
         moved = 0
         skipped_dupes = 0
@@ -496,7 +494,7 @@ def main():
         print(f"  Manifest updated: {output_path}")
     else:
         print(f"\n  Run with --execute to move files into {empire_root}/")
-        print(f"  Review _UNCLASSIFIED and _CONFLICTS in the catalog first.\n")
+        print("  Review _UNCLASSIFIED and _CONFLICTS in the catalog first.\n")
 
 
 if __name__ == "__main__":

@@ -1,0 +1,40 @@
+name: Release Blocker
+description: Anything preventing safe release of noizy.ai
+title: "[BLOCKER] "
+labels: ["blocker", "release"]
+body:
+  - type: textarea
+    id: summary
+    attributes:
+      label: What is blocked?
+      description: What should happen? What is failing or missing?
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: area
+    attributes:
+      label: Area
+      options:
+        - label: Cloudflare config / bindings
+        - label: Wrangler auth / account
+        - label: Consent gateway security
+        - label: Router forwarding
+        - label: CI / workflows
+        - label: Proof bundle / artifacts
+        - label: DNS / domain routing
+        - label: n8n workflows
+
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence (logs / commands — no secrets)
+      description: Paste terminal output, error messages, or logs. Do NOT paste secrets.
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed_fix
+    attributes:
+      label: Proposed fix
+      description: What change likely resolves it?

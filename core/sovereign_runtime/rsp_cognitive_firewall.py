@@ -16,7 +16,7 @@ import enum
 import hashlib
 import time
 import uuid
-from typing import Dict, Any, List, Optional, Tuple
+from typing import Dict, Any, List, Optional
 
 
 class FirewallOutcome(str, enum.Enum):

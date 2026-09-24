@@ -5,7 +5,6 @@ Real-time System Vitals Monitor
 """
 
 import os
-import sys
 import subprocess
 import shutil
 

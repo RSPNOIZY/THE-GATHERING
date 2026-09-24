@@ -37,10 +37,9 @@ from __future__ import annotations
 import asyncio
 import json
 import logging
-import os
 import time
 import uuid
-from dataclasses import dataclass, field, asdict
+from dataclasses import dataclass, field
 from enum import Enum
 from pathlib import Path
 from typing import Any, Callable, Dict, List, Optional, Tuple
@@ -376,7 +375,7 @@ async def _shirl_wellbeing(task: GabrielTask) -> TaskResult:
             task_id=task.task_id, crew="SHIRL", success=True,
             summary="SHIRL says: How's the C3 today? You've been at it hard. Take 10.",
         )
-    except Exception as e:
+    except Exception:
         return TaskResult(task_id=task.task_id, crew="SHIRL", success=True,
                          summary="SHIRL: Breathe. You're doing enough.")
 

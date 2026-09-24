@@ -1,0 +1,28 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "lab-noizy-ai",
+  "main": "src/index.ts",
+  "compatibility_date": "2025-04-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "observability": { "enabled": true },
+
+  "d1_databases": [
+    {
+      "binding": "LAB_DB",
+      "database_name": "noizylab-db",
+      "database_id": "794535eb-9566-4b00-b38f-15cb173d4ad9"
+    }
+  ],
+
+  "vars": {
+    "HEAVEN_DNS_URL": "https://heaven-dns.noizylab.workers.dev",
+    "N8N_WEBHOOK_BASE": "https://noizy.app.n8n.cloud/webhook",
+    "DISCORD_DEPLOY_WEBHOOK": "REPLACE_WITH_WEBHOOK_URL",
+    "DISCORD_AUDIT_WEBHOOK": "REPLACE_WITH_WEBHOOK_URL"
+  },
+
+  "env": {
+    "staging": {},
+    "production": {}
+  }
+}

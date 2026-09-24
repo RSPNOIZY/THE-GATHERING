@@ -1,0 +1,82 @@
+{
+  "": {
+    "swift-dependencies": "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/primary.swiftdeps"
+  },
+  "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/Sources/NOIZYMacOSBridgeCore/AccessibilityMonitor.swift": {
+    "dependencies": "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/AccessibilityMonitor.d",
+    "object": "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/AccessibilityMonitor.swift.o",
+    "swiftmodule": "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/AccessibilityMonitor~partial.swiftmodule",
+    "swift-dependencies": "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/AccessibilityMonitor.swiftdeps",
+    "diagnostics": "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/AccessibilityMonitor.dia"
+  },
+  "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/Sources/NOIZYMacOSBridgeCore/BridgeConfig.swift": {
+    "dependencies": "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/BridgeConfig.d",
+    "object": "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/BridgeConfig.swift.o",
+    "swiftmodule": "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/BridgeConfig~partial.swiftmodule",
+    "swift-dependencies": "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/BridgeConfig.swiftdeps",
+    "diagnostics": "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/BridgeConfig.dia"
+  },
+  "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/Sources/NOIZYMacOSBridgeCore/BridgeEvent.swift": {
+    "dependencies": "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/BridgeEvent.d",
+    "object": "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/BridgeEvent.swift.o",
+    "swiftmodule": "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/BridgeEvent~partial.swiftmodule",
+    "swift-dependencies": "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/BridgeEvent.swiftdeps",
+    "diagnostics": "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/BridgeEvent.dia"
+  },
+  "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/Sources/NOIZYMacOSBridgeCore/DurableDeliveryQueue.swift": {
+    "dependencies": "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/DurableDeliveryQueue.d",
+    "object": "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/DurableDeliveryQueue.swift.o",
+    "swiftmodule": "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/DurableDeliveryQueue~partial.swiftmodule",
+    "swift-dependencies": "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/DurableDeliveryQueue.swiftdeps",
+    "diagnostics": "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/DurableDeliveryQueue.dia"
+  },
+  "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/Sources/NOIZYMacOSBridgeCore/DurableEventJournal.swift": {
+    "dependencies": "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/DurableEventJournal.d",
+    "object": "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/DurableEventJournal.swift.o",
+    "swiftmodule": "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/DurableEventJournal~partial.swiftmodule",
+    "swift-dependencies": "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/DurableEventJournal.swiftdeps",
+    "diagnostics": "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/DurableEventJournal.dia"
+  },
+  "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/Sources/NOIZYMacOSBridgeCore/EventHub.swift": {
+    "dependencies": "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/EventHub.d",
+    "object": "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/EventHub.swift.o",
+    "swiftmodule": "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/EventHub~partial.swiftmodule",
+    "swift-dependencies": "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/EventHub.swiftdeps",
+    "diagnostics": "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/EventHub.dia"
+  },
+  "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/Sources/NOIZYMacOSBridgeCore/HTTPServer.swift": {
+    "dependencies": "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/HTTPServer.d",
+    "object": "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/HTTPServer.swift.o",
+    "swiftmodule": "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/HTTPServer~partial.swiftmodule",
+    "swift-dependencies": "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/HTTPServer.swiftdeps",
+    "diagnostics": "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/HTTPServer.dia"
+  },
+  "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/Sources/NOIZYMacOSBridgeCore/JSONValue.swift": {
+    "dependencies": "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/JSONValue.d",
+    "object": "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/JSONValue.swift.o",
+    "swiftmodule": "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/JSONValue~partial.swiftmodule",
+    "swift-dependencies": "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/JSONValue.swiftdeps",
+    "diagnostics": "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/JSONValue.dia"
+  },
+  "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/Sources/NOIZYMacOSBridgeCore/LangGraphForwarder.swift": {
+    "dependencies": "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/LangGraphForwarder.d",
+    "object": "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/LangGraphForwarder.swift.o",
+    "swiftmodule": "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/LangGraphForwarder~partial.swiftmodule",
+    "swift-dependencies": "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/LangGraphForwarder.swiftdeps",
+    "diagnostics": "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/LangGraphForwarder.dia"
+  },
+  "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/Sources/NOIZYMacOSBridgeCore/Permissions.swift": {
+    "dependencies": "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/Permissions.d",
+    "object": "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/Permissions.swift.o",
+    "swiftmodule": "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/Permissions~partial.swiftmodule",
+    "swift-dependencies": "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/Permissions.swiftdeps",
+    "diagnostics": "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/Permissions.dia"
+  },
+  "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/Sources/NOIZYMacOSBridgeCore/ScriptingBridgeProbe.swift": {
+    "dependencies": "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/ScriptingBridgeProbe.d",
+    "object": "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/ScriptingBridgeProbe.swift.o",
+    "swiftmodule": "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/ScriptingBridgeProbe~partial.swiftmodule",
+    "swift-dependencies": "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/ScriptingBridgeProbe.swiftdeps",
+    "diagnostics": "/Users/m2ultra/NOIZYANTHROPIC/swift-library/noizy-macos-bridge/.build/arm64-apple-macosx/debug/NOIZYMacOSBridgeCore.build/ScriptingBridgeProbe.dia"
+  }
+}

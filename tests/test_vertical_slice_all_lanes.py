@@ -7,7 +7,6 @@ Executes the Unified Vertical Slice across all 13 Parallel Lanes:
 
 import hashlib
 import json
-import os
 import sys
 import time
 import unittest
@@ -15,12 +14,9 @@ import unittest
 sys.path.insert(0, "/Users/m2ultra/THE-GATHERING")
 
 from core.sovereign_runtime.rsp_cognitive_firewall import (
-    RspCognitiveFirewall,
-    FirewallOutcome,
     RiskClass,
     Reversibility
 )
-from core.sovereign_runtime.gabriel_capability_broker import GabrielCapabilityBroker
 from core.sovereign_runtime.sovereign_pipeline_orchestrator import SovereignPipelineOrchestrator
 from core.sovereign_runtime.dreamchamber_telemetry_fabric import DreamchamberTelemetryFabric
 from core.sovereign_runtime.sonic_passport_graph import SonicPassportGraph

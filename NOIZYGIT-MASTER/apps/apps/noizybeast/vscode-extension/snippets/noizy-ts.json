@@ -1,0 +1,95 @@
+{
+  "NOIZY Worker Hono": {
+    "prefix": "noizy-worker",
+    "body": [
+      "// ${1:name} — NOIZY.AI · RSP_001",
+      "// CF Account: 5f36aa9795348ea681d0b21910dfc82a",
+      "import { Hono } from 'hono';",
+      "import type { Env } from './types';",
+      "",
+      "const app = new Hono<{ Bindings: Env }>();",
+      "",
+      "app.get('/health', c => c.json({",
+      "  ok: true,",
+      "  name: '${1:name}',",
+      "  ts: new Date().toISOString(),",
+      "  operator: 'RSP_001',",
+      "}));",
+      "",
+      "app.post('/${2:endpoint}', async c => {",
+      "  const body = await c.req.json();",
+      "  // TODO: implement",
+      "  return c.json({ ok: true, received: body });",
+      "});",
+      "",
+      "export default app;"
+    ],
+    "description": "NOIZY Cloudflare Worker with Hono"
+  },
+  "NOIZY Consent Check": {
+    "prefix": "noizy-consent",
+    "body": [
+      "// T5 Consent Snap — inline check",
+      "const consent = await fetch('http://localhost:7778/query', {",
+      "  method: 'POST',",
+      "  headers: { 'Content-Type': 'application/json' },",
+      "  body: JSON.stringify({",
+      "    voice_id: '${1:voice-id}',",
+      "    requester: 'RSP_001',",
+      "    use_cases: ['${2:synthesis}'],",
+      "  }),",
+      "}).then(r => r.json()).catch(() => ({ allowed: false, reason: 'Consent Oracle offline' }));",
+      "",
+      "if (!consent.allowed) {",
+      "  throw new Error(`Consent denied: ${consent.reason}`);",
+      "}"
+    ],
+    "description": "NOIZY consent check inline"
+  },
+  "NOIZY Mutation Log": {
+    "prefix": "noizy-mutlog",
+    "body": [
+      "await fetch('http://localhost:7782/log', {",
+      "  method: 'POST',",
+      "  headers: { 'Content-Type': 'application/json' },",
+      "  body: JSON.stringify({",
+      "    asset_id: '${1:asset-id}',",
+      "    operation: '${2:synthesis}',",
+      "    operator: 'RSP_001',",
+      "    timestamp: new Date().toISOString(),",
+      "    input_desc: '${3:input}',",
+      "    output_desc: '${4:output}',",
+      "    risk_level: '${5:LOW}',",
+      "    reasoning: '${6:reason}',",
+      "  }),",
+      "}).catch(() => {});"
+    ],
+    "description": "Log mutation to NOIZYBEAST codex"
+  },
+  "NOIZY MCP Server": {
+    "prefix": "noizy-mcp",
+    "body": [
+      "// ${1:name} MCP Server — NOIZY.AI",
+      "import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';",
+      "import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';",
+      "import { z } from 'zod';",
+      "",
+      "const server = new McpServer({",
+      "  name: '${1:name}',",
+      "  version: '1.0.0',",
+      "});",
+      "",
+      "server.tool('${2:tool_name}',",
+      "  { ${3:param}: z.string().describe('${4:description}') },",
+      "  async ({ ${3:param} }) => {",
+      "    // TODO: implement",
+      "    return { content: [{ type: 'text', text: JSON.stringify({ ok: true }) }] };",
+      "  }",
+      ");",
+      "",
+      "const transport = new StdioServerTransport();",
+      "await server.connect(transport);"
+    ],
+    "description": "NOIZY MCP Server scaffold"
+  }
+}

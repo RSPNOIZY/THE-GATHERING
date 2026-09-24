@@ -1,0 +1,44 @@
+GABRIEL DAEMON PATCH — Fix health alert serialization bug
+===========================================================
+Author: Claude (co-architect for Robert Stephen Plowman)
+Date: 2026-04-03
+
+PROBLEM:
+  memSet() uses String(value) on line 308, which converts JavaScript objects
+  to "[object Object]" instead of proper JSON. This corrupts all health alerts
+  and any other memcell values that are objects.
+
+FIX:
+  Replace String(value) with a smart serializer that JSON.stringifies objects
+  and leaves strings/numbers alone.
+
+  Line 307-308 — CHANGE FROM:
+    db.prepare(`INSERT OR REPLACE INTO memcell (key, value, category, updated_at)
+                VALUES (?, ?, ?, datetime('now'))`).run(key, String(value), category);
+
+  TO:
+    const serialized = (typeof value === 'object' && value !== null) ? JSON.stringify(value) : String(value);
+    db.prepare(`INSERT OR REPLACE INTO memcell (key, value, category, updated_at)
+                VALUES (?, ?, ?, datetime('now'))`).run(key, serialized, category);
+
+  Line 310 — CHANGE FROM:
+    memStore.set(key, { value, category, updated_at: new Date().toISOString() });
+
+  TO:
+    const fallbackVal = (typeof value === 'object' && value !== null) ? JSON.stringify(value) : String(value);
+    memStore.set(key, { value: fallbackVal, category, updated_at: new Date().toISOString() });
+
+ALSO FIX — HTTP memcell endpoint (around line 678):
+  The POST /memcell/:key handler passes body.value directly to memSet.
+  If body.value is an object (e.g. from JSON body), memSet should handle it.
+  The fix above in memSet covers this case.
+
+VERIFICATION:
+  After applying fix, restart gabriel-daemon and test:
+    curl -X POST http://localhost:7777/memcell/test:alert \
+      -H "Content-Type: application/json" \
+      -d '{"value": {"severity": "warn", "msg": "test"}, "category": "health"}'
+    
+    curl http://localhost:7777/memcell/test:alert
+    # Should return: {"key":"test:alert","value":"{\"severity\":\"warn\",\"msg\":\"test\"}","category":"health",...}
+    # NOT: {"key":"test:alert","value":"[object Object]",...}

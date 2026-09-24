@@ -1,8 +1,6 @@
 import discord
 from discord.ext import commands
-import platform
 import psutil
-import os
 import asyncio
 import subprocess
 
@@ -48,7 +46,7 @@ class Gabriel(commands.Cog):
 # 5. Engine Boot Sequence
 @bot.event
 async def on_ready():
-    print(f"[-] Dual-Agent Framework Live with Kate Premium Voice.")
+    print("[-] Dual-Agent Framework Live with Kate Premium Voice.")
     speak_kate("Sanctuary framework online. Lucy and Gabriel are listening.")
 
 async def main():

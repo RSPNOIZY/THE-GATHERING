@@ -1,0 +1,57 @@
+{
+  "en-US": {
+    "label": "English (Brooklyn)",
+    "performance_color": "hard-edged cynicism",
+    "execution_markers": [
+      "sharp sarcasm",
+      "clipped phrases",
+      "working-class grit"
+    ],
+    "intensity_scale": 1.0,
+    "breath_scale": 1.0
+  },
+  "ja-JP": {
+    "label": "Japanese (Tokyo)",
+    "performance_color": "dangerous calm",
+    "execution_markers": [
+      "weighted pauses",
+      "controlled restraint",
+      "quiet bitterness"
+    ],
+    "intensity_scale": 0.92,
+    "breath_scale": 1.08
+  },
+  "fr-FR": {
+    "label": "French (Paris)",
+    "performance_color": "philosophical noir",
+    "execution_markers": [
+      "existential tone",
+      "cold precision",
+      "bitter poetics"
+    ],
+    "intensity_scale": 0.97,
+    "breath_scale": 1.02
+  },
+  "ar-EG": {
+    "label": "Arabic (Cairo)",
+    "performance_color": "prophetic realism",
+    "execution_markers": [
+      "fatalistic wisdom",
+      "street-smart wariness",
+      "moral warning cadence"
+    ],
+    "intensity_scale": 1.03,
+    "breath_scale": 0.98
+  },
+  "es-ES": {
+    "label": "Spanish (Madrid)",
+    "performance_color": "streetwise resolve",
+    "execution_markers": [
+      "direct candor",
+      "dry irony",
+      "urban urgency"
+    ],
+    "intensity_scale": 1.01,
+    "breath_scale": 0.99
+  }
+}

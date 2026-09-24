@@ -1,0 +1,18 @@
+#!/bin/bash
+
+echo "Quick Cloudflare Token Setup"
+echo ""
+echo "1. Go to: https://dash.cloudflare.com/profile/api-tokens"
+echo "2. Click 'Create Token'"
+echo "3. Use 'Custom token' template"
+echo "4. Set these permissions:"
+echo "   - Account: Cloudflare Workers Scripts:Edit"
+echo "   - Account: D1:Edit"
+echo "   - Account: Workers KV Storage:Edit"
+echo "5. Account Resources: Include - Your Account (446788C4280F5E828994841355)"
+echo ""
+echo "Once you have the token, run this command:"
+echo "export CLOUDFLARE_API_TOKEN='your-token-here'"
+echo ""
+echo "Then test with:"
+echo "wrangler whoami"

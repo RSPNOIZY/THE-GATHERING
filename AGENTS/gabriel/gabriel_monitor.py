@@ -122,7 +122,7 @@ def print_dashboard(s: dict):
     a = s["audio_stack"]
 
     print(f"\n{c('bold', '═'*60)}")
-    print(c("gold", f"  GABRIEL SYSTEM MONITOR — NOIZY EMPIRE"))
+    print(c("gold", "  GABRIEL SYSTEM MONITOR — NOIZY EMPIRE"))
     print(c("bold", f"  {ts}"))
     print(c("bold", "═"*60))
 

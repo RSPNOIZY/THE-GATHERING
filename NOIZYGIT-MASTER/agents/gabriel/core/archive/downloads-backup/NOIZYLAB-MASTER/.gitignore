@@ -1,0 +1,83 @@
+# Dependencies
+node_modules/
+.npm/
+package-lock.json
+
+# Build outputs
+dist/
+build/
+.wrangler/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+*.env
+
+# API keys and secrets
+.dev.vars
+secrets.json
+*_credentials.json
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Logs
+*.log
+logs/
+npm-debug.log*
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+*.temp
+
+# Archives (too large for git)
+*.zip
+*.tar.gz
+*.rar
+*.7z
+
+# Audio/Video (use LFS or don't commit)
+*.wav
+*.mp3
+*.aiff
+*.flac
+*.mov
+*.mp4
+*.avi
+
+# Pro Tools / DAW sessions
+*.ptx
+*.ptf
+*.logicx/
+
+# Large data
+*.sqlite
+*.db
+
+# Cloudflare
+.wrangler/
+wrangler.lock
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+venv/
+ENV/
+
+# Test coverage
+coverage/
+.nyc_output/

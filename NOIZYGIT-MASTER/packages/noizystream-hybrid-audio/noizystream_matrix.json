@@ -1,0 +1,73 @@
+{
+  "system_name": "HYBRID AUDIO NOIZYSTREAM",
+  "version": "4.0.0-SOVEREIGN",
+  "ecosystem": "MC96ECOUNIVERSE",
+  "target_ide": "NOIZYBEAST.IDE",
+  "hardware_engine": "Apple Silicon M2 Ultra",
+  "sample_rate_hz": 48000,
+  "bit_depth": 24,
+  "virtual_driver": {
+    "name": "BlackHole 16ch",
+    "vendor": "Existential Audio Inc.",
+    "channels": 16,
+    "latency_target_ms": 1.3
+  },
+  "channel_matrix": {
+    "ch_01_02": {
+      "name": "Master Studio Output / Main Monitor",
+      "type": "stereo_out",
+      "routing": "Mac Studio Speakers / HDMI SAM / Studio Monitors",
+      "description": "Master mix bus for real-time monitoring and playback"
+    },
+    "ch_03_04": {
+      "name": "Gabriel Voice & Neural Synthesizer (A.I.V.A.)",
+      "type": "stereo_bus",
+      "routing": "GABRIEL Neural Voice Output -> BlackHole 3-4",
+      "description": "High-fidelity generated voice and vocal synthesis pipeline"
+    },
+    "ch_05_06": {
+      "name": "Lucy Voice / Personal OS & Vehicular Feed",
+      "type": "stereo_bus",
+      "routing": "Lucy Voice Engine -> LUCY-iPad Rogue Amoeba / BlackHole 5-6",
+      "description": "Lucy conversational audio, navigation alerts, and iOS CarPlay tap"
+    },
+    "ch_07_08": {
+      "name": "DAW Stems / Logic Pro / Kontakt Sampler",
+      "type": "stereo_bus",
+      "routing": "Logic Pro (NOIZYSTREAM.logicx) / Kontakt Lab -> BlackHole 7-8",
+      "description": "Live multitrack instrument stems, synth patches, and sound design"
+    },
+    "ch_09_10": {
+      "name": "SonoBus P2P High-Fidelity Network Stream",
+      "type": "stereo_network",
+      "protocol": "Opus / PCM Uncompressed P2P UDP",
+      "routing": "SonoBus Client Matrix -> BlackHole 9-10",
+      "description": "Low-latency peer-to-peer lossless remote studio collaboration"
+    },
+    "ch_11_12": {
+      "name": "Rogue Amoeba Satellite & Airfoil Multi-Room Broadcast",
+      "type": "stereo_broadcast",
+      "routing": "MICKY-P / Airfoil Satellite -> Wireless Remote Endpoints",
+      "description": "Wireless streaming to iPhone, iPad, studio satellite zones"
+    },
+    "ch_13_14": {
+      "name": "Whisper.cpp AI Voice Ingest & Transcription Tap",
+      "type": "stereo_capture",
+      "routing": "Studio Mic / System Audio -> Whisper Local Engine",
+      "description": "Zero-latency real-time voice recognition and prompt capture"
+    },
+    "ch_15_16": {
+      "name": "Loopback Sidetone & Emergency Communication Bridge",
+      "type": "stereo_aux",
+      "routing": "Rogue Amoeba Loopback -> BlackHole 15-16",
+      "description": "Auxiliary talkback, latency calibration, and sidetone monitoring"
+    }
+  },
+  "foss_dsp_stack": {
+    "ffmpeg": "Real-time streaming and lossless flac/wav encoding",
+    "sox": "Audio DSP, dynamic range compression, and sample rate conversion",
+    "whisper_cpp": "Local low-latency speech-to-text on Apple Silicon Metal",
+    "piper_tts": "Ultra-fast neural text-to-speech engine",
+    "sonobus": "Open-source P2P audio streaming bridge"
+  }
+}

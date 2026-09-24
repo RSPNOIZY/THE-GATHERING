@@ -8,7 +8,6 @@ import sys
 import os
 import time
 import argparse
-from pathlib import Path
 
 # Try to import Google GenAI
 try:
@@ -20,7 +19,6 @@ except ImportError:
     print("⚠️  Warning: google-genai not installed. Video generation disabled.")
     print("   Run: pip install google-genai")
 
-import requests
 import turbo_config
 
 # Import MemCell for tracking
@@ -40,7 +38,7 @@ def check_key(key_name):
 
 def generate_video(prompt, output_file="veo_output.mp4"):
     """Text-to-Video using Veo 3.1"""
-    print(f"🎥 VEO 3.1 | Generative Video")
+    print("🎥 VEO 3.1 | Generative Video")
     print(f"   Prompt: '{prompt}'")
     
     if not GOOGLE_GENAI_AVAILABLE: return
@@ -89,7 +87,7 @@ def generate_video(prompt, output_file="veo_output.mp4"):
 
 def animate_image(image_path, prompt, output_file="veo_animated.mp4"):
     """Image-to-Video using Veo 3.1"""
-    print(f"🎥 VEO 3.1 | Image-to-Video")
+    print("🎥 VEO 3.1 | Image-to-Video")
     print(f"   Image: {image_path}")
     print(f"   Prompt: '{prompt}'")
     

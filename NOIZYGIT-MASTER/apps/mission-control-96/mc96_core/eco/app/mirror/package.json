@@ -1,0 +1,19 @@
+{
+  "name": "noizy-mirror",
+  "version": "1.0.0",
+  "description": "NOIZY Mirror — creative interpretation engine",
+  "private": true,
+  "scripts": {
+    "dev": "npx tsx api.ts",
+    "build": "npx tsc --noEmit",
+    "typecheck": "npx tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.7.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

@@ -28,8 +28,6 @@ import os
 import subprocess
 from datetime import datetime
 from pathlib import Path
-from typing import Optional, List
-from enum import Enum
 
 from mcp.server.fastmcp import FastMCP
 from pydantic import BaseModel, Field, ConfigDict
@@ -650,19 +648,19 @@ async def dreamchamber_setup_guide() -> str:
     for key, name in devices.items():
         if key == "master":
             guide_lines.append(f"DEVICE: {name}")
-            guide_lines.append(f"  Type: Master mix bus — all AI voices mixed")
-            guide_lines.append(f"  Sources: All other DreamChamber devices")
+            guide_lines.append("  Type: Master mix bus — all AI voices mixed")
+            guide_lines.append("  Sources: All other DreamChamber devices")
             guide_lines.append(f"  Monitor: {CONFIG['monitor_device']}")
             guide_lines.append("")
         elif key == "rsp_001":
             guide_lines.append(f"DEVICE: {name}")
-            guide_lines.append(f"  Type: Rob's mic input (Apollo)")
-            guide_lines.append(f"  Sources: Apollo interface")
+            guide_lines.append("  Type: Rob's mic input (Apollo)")
+            guide_lines.append("  Sources: Apollo interface")
             guide_lines.append("")
         else:
             guide_lines.append(f"DEVICE: {name}")
             guide_lines.append(f"  Type: AI channel — {key}")
-            guide_lines.append(f"  Sources: Pass-Thru")
+            guide_lines.append("  Sources: Pass-Thru")
             guide_lines.append("")
 
     guide_lines.extend([

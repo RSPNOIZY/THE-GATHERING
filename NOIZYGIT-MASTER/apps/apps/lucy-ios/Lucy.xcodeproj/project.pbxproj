@@ -1,0 +1,316 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B10000010000000000000001 /* LucyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20000010000000000000001; };
+		B10000010000000000000002 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20000010000000000000002; };
+		B10000010000000000000003 /* LucyDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20000010000000000000003; };
+		B10000010000000000000004 /* AnalysisView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20000010000000000000004; };
+		B10000010000000000000005 /* InsightsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20000010000000000000005; };
+		B10000010000000000000006 /* DreamsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20000010000000000000006; };
+		B10000010000000000000007 /* GabrielView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20000010000000000000007; };
+		B10000010000000000000008 /* LucySettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20000010000000000000008; };
+		B10000010000000000000009 /* HeavenAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20000010000000000000009; };
+		B10000010000000000000010 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20000010000000000000010; };
+		B10000010000000000000011 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B20000010000000000000011; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		B20000010000000000000001 /* LucyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LucyApp.swift; sourceTree = "<group>"; };
+		B20000010000000000000002 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		B20000010000000000000003 /* LucyDashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LucyDashboardView.swift; sourceTree = "<group>"; };
+		B20000010000000000000004 /* AnalysisView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalysisView.swift; sourceTree = "<group>"; };
+		B20000010000000000000005 /* InsightsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightsView.swift; sourceTree = "<group>"; };
+		B20000010000000000000006 /* DreamsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DreamsView.swift; sourceTree = "<group>"; };
+		B20000010000000000000007 /* GabrielView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GabrielView.swift; sourceTree = "<group>"; };
+		B20000010000000000000008 /* LucySettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LucySettingsView.swift; sourceTree = "<group>"; };
+		B20000010000000000000009 /* HeavenAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeavenAPI.swift; sourceTree = "<group>"; };
+		B20000010000000000000010 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		B20000010000000000000011 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B30000010000000000000001 /* Lucy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lucy.app; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		B40000010000000000000001 = {
+			isa = PBXGroup;
+			children = (
+				B40000010000000000000002 /* Lucy */,
+				B40000010000000000000006 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B40000010000000000000002 /* Lucy */ = {
+			isa = PBXGroup;
+			children = (
+				B20000010000000000000001 /* LucyApp.swift */,
+				B20000010000000000000002 /* ContentView.swift */,
+				B40000010000000000000003 /* Views */,
+				B40000010000000000000004 /* Services */,
+				B40000010000000000000005 /* Models */,
+				B20000010000000000000011 /* Assets.xcassets */,
+			);
+			path = Lucy;
+			sourceTree = "<group>";
+		};
+		B40000010000000000000003 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B20000010000000000000003 /* LucyDashboardView.swift */,
+				B20000010000000000000004 /* AnalysisView.swift */,
+				B20000010000000000000005 /* InsightsView.swift */,
+				B20000010000000000000006 /* DreamsView.swift */,
+				B20000010000000000000007 /* GabrielView.swift */,
+				B20000010000000000000008 /* LucySettingsView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		B40000010000000000000004 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				B20000010000000000000009 /* HeavenAPI.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		B40000010000000000000005 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B20000010000000000000010 /* Models.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		B40000010000000000000006 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B30000010000000000000001 /* Lucy.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B50000010000000000000001 /* Lucy */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B70000010000000000000003 /* Build configuration list for PBXNativeTarget "Lucy" */;
+			buildPhases = (
+				B60000010000000000000001 /* Sources */,
+				B60000010000000000000002 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Lucy;
+			productName = Lucy;
+			productReference = B30000010000000000000001 /* Lucy.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B80000010000000000000001 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1600;
+				LastUpgradeCheck = 1600;
+				TargetAttributes = {
+					B50000010000000000000001 = {
+						CreatedOnToolsVersion = 16.0;
+					};
+				};
+			};
+			buildConfigurationList = B70000010000000000000001 /* Build configuration list for PBXProject "Lucy" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = B40000010000000000000001;
+			productRefGroup = B40000010000000000000006 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B50000010000000000000001 /* Lucy */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B60000010000000000000002 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B10000010000000000000011 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B60000010000000000000001 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B10000010000000000000001 /* LucyApp.swift in Sources */,
+				B10000010000000000000002 /* ContentView.swift in Sources */,
+				B10000010000000000000003 /* LucyDashboardView.swift in Sources */,
+				B10000010000000000000004 /* AnalysisView.swift in Sources */,
+				B10000010000000000000005 /* InsightsView.swift in Sources */,
+				B10000010000000000000006 /* DreamsView.swift in Sources */,
+				B10000010000000000000007 /* GabrielView.swift in Sources */,
+				B10000010000000000000008 /* LucySettingsView.swift in Sources */,
+				B10000010000000000000009 /* HeavenAPI.swift in Sources */,
+				B10000010000000000000010 /* Models.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		B90000010000000000000001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		B90000010000000000000002 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B90000010000000000000003 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Lucy;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ai.noizy.lucy;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B90000010000000000000004 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Lucy;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ai.noizy.lucy;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B70000010000000000000001 /* Build configuration list for PBXProject "Lucy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B90000010000000000000001 /* Debug */,
+				B90000010000000000000002 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B70000010000000000000003 /* Build configuration list for PBXNativeTarget "Lucy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B90000010000000000000003 /* Debug */,
+				B90000010000000000000004 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+	};
+	rootObject = B80000010000000000000001 /* Project object */;
+}

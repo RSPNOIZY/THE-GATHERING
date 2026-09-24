@@ -1,0 +1,1189 @@
+{
+  "generated_at": "2026-08-31T19:45:04.788835",
+  "total_tools": 177,
+  "system_binaries": [
+    {
+      "binary": "git",
+      "path": "/usr/bin/git",
+      "available": true
+    },
+    {
+      "binary": "python3",
+      "path": "/usr/bin/python3",
+      "available": true
+    },
+    {
+      "binary": "swift",
+      "path": "/usr/bin/swift",
+      "available": true
+    },
+    {
+      "binary": "jq",
+      "path": "/usr/bin/jq",
+      "available": true
+    },
+    {
+      "binary": "osascript",
+      "path": "/usr/bin/osascript",
+      "available": true
+    },
+    {
+      "binary": "screencapture",
+      "path": "/usr/sbin/screencapture",
+      "available": true
+    },
+    {
+      "binary": "afplay",
+      "path": "/usr/bin/afplay",
+      "available": true
+    },
+    {
+      "binary": "say",
+      "path": "/usr/bin/say",
+      "available": true
+    }
+  ],
+  "custom_scripts": [
+    {
+      "name": "actor",
+      "category": "cli",
+      "source": "/Users/m2ultra/.local/bin/actor",
+      "destination": "tools/cli/actor",
+      "type": "binary"
+    },
+    {
+      "name": "agent",
+      "category": "cli",
+      "source": "/Users/m2ultra/.local/bin/agent",
+      "destination": "tools/cli/agent",
+      "type": "binary"
+    },
+    {
+      "name": "agy",
+      "category": "cli",
+      "source": "/Users/m2ultra/.local/bin/agy",
+      "destination": "tools/cli/agy",
+      "type": "binary"
+    },
+    {
+      "name": "agy.1782288765802397000.old",
+      "category": "cli",
+      "source": "/Users/m2ultra/.local/bin/agy.1782288765802397000.old",
+      "destination": "tools/cli/agy.1782288765802397000.old",
+      "type": ".old"
+    },
+    {
+      "name": "amp",
+      "category": "cli",
+      "source": "/Users/m2ultra/.local/bin/amp",
+      "destination": "tools/cli/amp",
+      "type": "binary"
+    },
+    {
+      "name": "apify",
+      "category": "cli",
+      "source": "/Users/m2ultra/.local/bin/apify",
+      "destination": "tools/cli/apify",
+      "type": "binary"
+    },
+    {
+      "name": "apify-cli",
+      "category": "cli",
+      "source": "/Users/m2ultra/.local/bin/apify-cli",
+      "destination": "tools/cli/apify-cli",
+      "type": "binary"
+    },
+    {
+      "name": "brew-hotrod",
+      "category": "cli",
+      "source": "/Users/m2ultra/.local/bin/brew-hotrod",
+      "destination": "tools/cli/brew-hotrod",
+      "type": "binary"
+    },
+    {
+      "name": "claude",
+      "category": "cli",
+      "source": "/Users/m2ultra/.local/bin/claude",
+      "destination": "tools/cli/claude",
+      "type": "binary"
+    },
+    {
+      "name": "claude-init",
+      "category": "cli",
+      "source": "/Users/m2ultra/.local/bin/claude-init",
+      "destination": "tools/cli/claude-init",
+      "type": "binary"
+    },
+    {
+      "name": "cleanup",
+      "category": "cli",
+      "source": "/Users/m2ultra/.local/bin/cleanup",
+      "destination": "tools/cli/cleanup",
+      "type": "binary"
+    },
+    {
+      "name": "console-ninja",
+      "category": "cli",
+      "source": "/Users/m2ultra/.local/bin/console-ninja",
+      "destination": "tools/cli/console-ninja",
+      "type": "binary"
+    },
+    {
+      "name": "copilot",
+      "category": "cli",
+      "source": "/Users/m2ultra/.local/bin/copilot",
+      "destination": "tools/cli/copilot",
+      "type": "binary"
+    },
+    {
+      "name": "cursor-agent",
+      "category": "cli",
+      "source": "/Users/m2ultra/.local/bin/cursor-agent",
+      "destination": "tools/cli/cursor-agent",
+      "type": "binary"
+    },
+    {
+      "name": "git-autosync",
+      "category": "cli",
+      "source": "/Users/m2ultra/.local/bin/git-autosync",
+      "destination": "tools/cli/git-autosync",
+      "type": "binary"
+    },
+    {
+      "name": "git-fresh",
+      "category": "cli",
+      "source": "/Users/m2ultra/.local/bin/git-fresh",
+      "destination": "tools/cli/git-fresh",
+      "type": "binary"
+    },
+    {
+      "name": "killport",
+      "category": "cli",
+      "source": "/Users/m2ultra/.local/bin/killport",
+      "destination": "tools/cli/killport",
+      "type": "binary"
+    },
+    {
+      "name": "m2ultra-boot-startup.sh",
+      "category": "cli",
+      "source": "/Users/m2ultra/.local/bin/m2ultra-boot-startup.sh",
+      "destination": "tools/cli/m2ultra-boot-startup.sh",
+      "type": ".sh"
+    },
+    {
+      "name": "markitdown",
+      "category": "cli",
+      "source": "/Users/m2ultra/.local/bin/markitdown",
+      "destination": "tools/cli/markitdown",
+      "type": "binary"
+    },
+    {
+      "name": "markitdown-mcp",
+      "category": "cli",
+      "source": "/Users/m2ultra/.local/bin/markitdown-mcp",
+      "destination": "tools/cli/markitdown-mcp",
+      "type": "binary"
+    },
+    {
+      "name": "mkproject",
+      "category": "cli",
+      "source": "/Users/m2ultra/.local/bin/mkproject",
+      "destination": "tools/cli/mkproject",
+      "type": "binary"
+    },
+    {
+      "name": "noizy-setup",
+      "category": "cli",
+      "source": "/Users/m2ultra/.local/bin/noizy-setup",
+      "destination": "tools/cli/noizy-setup",
+      "type": "binary"
+    },
+    {
+      "name": "noizy-sync",
+      "category": "cli",
+      "source": "/Users/m2ultra/.local/bin/noizy-sync",
+      "destination": "tools/cli/noizy-sync",
+      "type": "binary"
+    },
+    {
+      "name": "noizy-sync-vault",
+      "category": "cli",
+      "source": "/Users/m2ultra/.local/bin/noizy-sync-vault",
+      "destination": "tools/cli/noizy-sync-vault",
+      "type": "binary"
+    },
+    {
+      "name": "noizy-watch",
+      "category": "cli",
+      "source": "/Users/m2ultra/.local/bin/noizy-watch",
+      "destination": "tools/cli/noizy-watch",
+      "type": "binary"
+    },
+    {
+      "name": "scaffold",
+      "category": "cli",
+      "source": "/Users/m2ultra/.local/bin/scaffold",
+      "destination": "tools/cli/scaffold",
+      "type": "binary"
+    },
+    {
+      "name": "scrapling",
+      "category": "cli",
+      "source": "/Users/m2ultra/.local/bin/scrapling",
+      "destination": "tools/cli/scrapling",
+      "type": "binary"
+    },
+    {
+      "name": "serena",
+      "category": "cli",
+      "source": "/Users/m2ultra/.local/bin/serena",
+      "destination": "tools/cli/serena",
+      "type": "binary"
+    },
+    {
+      "name": "serena-agent",
+      "category": "cli",
+      "source": "/Users/m2ultra/.local/bin/serena-agent",
+      "destination": "tools/cli/serena-agent",
+      "type": "binary"
+    },
+    {
+      "name": "serena-hooks",
+      "category": "cli",
+      "source": "/Users/m2ultra/.local/bin/serena-hooks",
+      "destination": "tools/cli/serena-hooks",
+      "type": "binary"
+    },
+    {
+      "name": "serve",
+      "category": "cli",
+      "source": "/Users/m2ultra/.local/bin/serve",
+      "destination": "tools/cli/serve",
+      "type": "binary"
+    },
+    {
+      "name": "slack",
+      "category": "cli",
+      "source": "/Users/m2ultra/.local/bin/slack",
+      "destination": "tools/cli/slack",
+      "type": "binary"
+    },
+    {
+      "name": "turbo",
+      "category": "cli",
+      "source": "/Users/m2ultra/.local/bin/turbo",
+      "destination": "tools/cli/turbo",
+      "type": "binary"
+    },
+    {
+      "name": "turbo-hunt",
+      "category": "cli",
+      "source": "/Users/m2ultra/.local/bin/turbo-hunt",
+      "destination": "tools/cli/turbo-hunt",
+      "type": "binary"
+    },
+    {
+      "name": "turbo-nuke",
+      "category": "cli",
+      "source": "/Users/m2ultra/.local/bin/turbo-nuke",
+      "destination": "tools/cli/turbo-nuke",
+      "type": "binary"
+    },
+    {
+      "name": "turbo-scan-all",
+      "category": "cli",
+      "source": "/Users/m2ultra/.local/bin/turbo-scan-all",
+      "destination": "tools/cli/turbo-scan-all",
+      "type": "binary"
+    },
+    {
+      "name": "turbo-status",
+      "category": "cli",
+      "source": "/Users/m2ultra/.local/bin/turbo-status",
+      "destination": "tools/cli/turbo-status",
+      "type": "binary"
+    },
+    {
+      "name": "uv",
+      "category": "cli",
+      "source": "/Users/m2ultra/.local/bin/uv",
+      "destination": "tools/cli/uv",
+      "type": "binary"
+    },
+    {
+      "name": "uvx",
+      "category": "cli",
+      "source": "/Users/m2ultra/.local/bin/uvx",
+      "destination": "tools/cli/uvx",
+      "type": "binary"
+    },
+    {
+      "name": "vsc-hotrod",
+      "category": "cli",
+      "source": "/Users/m2ultra/.local/bin/vsc-hotrod",
+      "destination": "tools/cli/vsc-hotrod",
+      "type": "binary"
+    },
+    {
+      "name": "lms",
+      "category": "cli",
+      "source": "/Users/m2ultra/.lmstudio/bin/lms",
+      "destination": "tools/cli/lms",
+      "type": "binary"
+    },
+    {
+      "name": "Michael_Sequoia_Installer.command",
+      "category": "cli",
+      "source": "/Users/m2ultra/THE-GATHERING/scripts/Michael_Sequoia_Installer.command",
+      "destination": "tools/cli/Michael_Sequoia_Installer.command",
+      "type": ".command"
+    },
+    {
+      "name": "QUICK_COMMANDS.sh",
+      "category": "cli",
+      "source": "/Users/m2ultra/THE-GATHERING/scripts/QUICK_COMMANDS.sh",
+      "destination": "tools/cli/QUICK_COMMANDS.sh",
+      "type": ".sh"
+    },
+    {
+      "name": "audit_and_fix_all_mcps.py",
+      "category": "cli",
+      "source": "/Users/m2ultra/THE-GATHERING/scripts/audit_and_fix_all_mcps.py",
+      "destination": "tools/cli/audit_and_fix_all_mcps.py",
+      "type": ".py"
+    },
+    {
+      "name": "audit_fishmusicinc_identity.py",
+      "category": "audio_dsp",
+      "source": "/Users/m2ultra/THE-GATHERING/scripts/audit_fishmusicinc_identity.py",
+      "destination": "tools/audio_dsp/audit_fishmusicinc_identity.py",
+      "type": ".py"
+    },
+    {
+      "name": "backup.sh",
+      "category": "cli",
+      "source": "/Users/m2ultra/THE-GATHERING/scripts/backup.sh",
+      "destination": "tools/cli/backup.sh",
+      "type": ".sh"
+    },
+    {
+      "name": "build-registry.sh",
+      "category": "cli",
+      "source": "/Users/m2ultra/THE-GATHERING/scripts/build-registry.sh",
+      "destination": "tools/cli/build-registry.sh",
+      "type": ".sh"
+    },
+    {
+      "name": "build_and_consolidate_all_software.py",
+      "category": "cli",
+      "source": "/Users/m2ultra/THE-GATHERING/scripts/build_and_consolidate_all_software.py",
+      "destination": "tools/cli/build_and_consolidate_all_software.py",
+      "type": ".py"
+    },
+    {
+      "name": "build_noizygit_master.py",
+      "category": "cli",
+      "source": "/Users/m2ultra/THE-GATHERING/scripts/build_noizygit_master.py",
+      "destination": "tools/cli/build_noizygit_master.py",
+      "type": ".py"
+    },
+    {
+      "name": "connect-michael-ard.sh",
+      "category": "cli",
+      "source": "/Users/m2ultra/THE-GATHERING/scripts/connect-michael-ard.sh",
+      "destination": "tools/cli/connect-michael-ard.sh",
+      "type": ".sh"
+    },
+    {
+      "name": "corral_all_local_tools.py",
+      "category": "cli",
+      "source": "/Users/m2ultra/THE-GATHERING/scripts/corral_all_local_tools.py",
+      "destination": "tools/cli/corral_all_local_tools.py",
+      "type": ".py"
+    },
+    {
+      "name": "create-sequoia-macpro-usb.sh",
+      "category": "cli",
+      "source": "/Users/m2ultra/THE-GATHERING/scripts/create-sequoia-macpro-usb.sh",
+      "destination": "tools/cli/create-sequoia-macpro-usb.sh",
+      "type": ".sh"
+    },
+    {
+      "name": "create-sequoia-mbp2012-usb.sh",
+      "category": "cli",
+      "source": "/Users/m2ultra/THE-GATHERING/scripts/create-sequoia-mbp2012-usb.sh",
+      "destination": "tools/cli/create-sequoia-mbp2012-usb.sh",
+      "type": ".sh"
+    },
+    {
+      "name": "deploy-fleet.sh",
+      "category": "cli",
+      "source": "/Users/m2ultra/THE-GATHERING/scripts/deploy-fleet.sh",
+      "destination": "tools/cli/deploy-fleet.sh",
+      "type": ".sh"
+    },
+    {
+      "name": "find_and_fix_all_broken.py",
+      "category": "cli",
+      "source": "/Users/m2ultra/THE-GATHERING/scripts/find_and_fix_all_broken.py",
+      "destination": "tools/cli/find_and_fix_all_broken.py",
+      "type": ".py"
+    },
+    {
+      "name": "heal_optimize_run.sh",
+      "category": "cli",
+      "source": "/Users/m2ultra/THE-GATHERING/scripts/heal_optimize_run.sh",
+      "destination": "tools/cli/heal_optimize_run.sh",
+      "type": ".sh"
+    },
+    {
+      "name": "health_alerts.sh",
+      "category": "cli",
+      "source": "/Users/m2ultra/THE-GATHERING/scripts/health_alerts.sh",
+      "destination": "tools/cli/health_alerts.sh",
+      "type": ".sh"
+    },
+    {
+      "name": "ingest_all_ideas_and_blueprints.py",
+      "category": "cli",
+      "source": "/Users/m2ultra/THE-GATHERING/scripts/ingest_all_ideas_and_blueprints.py",
+      "destination": "tools/cli/ingest_all_ideas_and_blueprints.py",
+      "type": ".py"
+    },
+    {
+      "name": "install_sequoia_ocps.sh",
+      "category": "cli",
+      "source": "/Users/m2ultra/THE-GATHERING/scripts/install_sequoia_ocps.sh",
+      "destination": "tools/cli/install_sequoia_ocps.sh",
+      "type": ".sh"
+    },
+    {
+      "name": "mc96-cockpit.py",
+      "category": "cli",
+      "source": "/Users/m2ultra/THE-GATHERING/scripts/mc96-cockpit.py",
+      "destination": "tools/cli/mc96-cockpit.py",
+      "type": ".py"
+    },
+    {
+      "name": "noizy_cli.py",
+      "category": "cli",
+      "source": "/Users/m2ultra/THE-GATHERING/scripts/noizy_cli.py",
+      "destination": "tools/cli/noizy_cli.py",
+      "type": ".py"
+    },
+    {
+      "name": "noizymobile-batch-extract.sh",
+      "category": "cli",
+      "source": "/Users/m2ultra/THE-GATHERING/scripts/noizymobile-batch-extract.sh",
+      "destination": "tools/cli/noizymobile-batch-extract.sh",
+      "type": ".sh"
+    },
+    {
+      "name": "noizymobile-sync-queue.sh",
+      "category": "cli",
+      "source": "/Users/m2ultra/THE-GATHERING/scripts/noizymobile-sync-queue.sh",
+      "destination": "tools/cli/noizymobile-sync-queue.sh",
+      "type": ".sh"
+    },
+    {
+      "name": "organize_noizy_chats.py",
+      "category": "cli",
+      "source": "/Users/m2ultra/THE-GATHERING/scripts/organize_noizy_chats.py",
+      "destination": "tools/cli/organize_noizy_chats.py",
+      "type": ".py"
+    },
+    {
+      "name": "performance_tuner.sh",
+      "category": "cli",
+      "source": "/Users/m2ultra/THE-GATHERING/scripts/performance_tuner.sh",
+      "destination": "tools/cli/performance_tuner.sh",
+      "type": ".sh"
+    },
+    {
+      "name": "reset_system_settings.sh",
+      "category": "audio_dsp",
+      "source": "/Users/m2ultra/THE-GATHERING/scripts/reset_system_settings.sh",
+      "destination": "tools/audio_dsp/reset_system_settings.sh",
+      "type": ".sh"
+    },
+    {
+      "name": "restore-conflicted-files.sh",
+      "category": "cli",
+      "source": "/Users/m2ultra/THE-GATHERING/scripts/restore-conflicted-files.sh",
+      "destination": "tools/cli/restore-conflicted-files.sh",
+      "type": ".sh"
+    },
+    {
+      "name": "rollback.sh",
+      "category": "cli",
+      "source": "/Users/m2ultra/THE-GATHERING/scripts/rollback.sh",
+      "destination": "tools/cli/rollback.sh",
+      "type": ".sh"
+    },
+    {
+      "name": "scrape_uncommitted_and_commit_all.py",
+      "category": "cli",
+      "source": "/Users/m2ultra/THE-GATHERING/scripts/scrape_uncommitted_and_commit_all.py",
+      "destination": "tools/cli/scrape_uncommitted_and_commit_all.py",
+      "type": ".py"
+    },
+    {
+      "name": "setup-iphone-hotspot.sh",
+      "category": "cli",
+      "source": "/Users/m2ultra/THE-GATHERING/scripts/setup-iphone-hotspot.sh",
+      "destination": "tools/cli/setup-iphone-hotspot.sh",
+      "type": ".sh"
+    },
+    {
+      "name": "setup_aliases.sh",
+      "category": "cli",
+      "source": "/Users/m2ultra/THE-GATHERING/scripts/setup_aliases.sh",
+      "destination": "tools/cli/setup_aliases.sh",
+      "type": ".sh"
+    },
+    {
+      "name": "silent-drive-control.sh",
+      "category": "cli",
+      "source": "/Users/m2ultra/THE-GATHERING/scripts/silent-drive-control.sh",
+      "destination": "tools/cli/silent-drive-control.sh",
+      "type": ".sh"
+    },
+    {
+      "name": "switch_finalize.sh",
+      "category": "cli",
+      "source": "/Users/m2ultra/THE-GATHERING/scripts/switch_finalize.sh",
+      "destination": "tools/cli/switch_finalize.sh",
+      "type": ".sh"
+    },
+    {
+      "name": "tailscale-fleet-control.sh",
+      "category": "cli",
+      "source": "/Users/m2ultra/THE-GATHERING/scripts/tailscale-fleet-control.sh",
+      "destination": "tools/cli/tailscale-fleet-control.sh",
+      "type": ".sh"
+    },
+    {
+      "name": "upgrade_macos.sh",
+      "category": "cli",
+      "source": "/Users/m2ultra/THE-GATHERING/scripts/upgrade_macos.sh",
+      "destination": "tools/cli/upgrade_macos.sh",
+      "type": ".sh"
+    },
+    {
+      "name": "verify-mc96-noizyworld.sh",
+      "category": "cli",
+      "source": "/Users/m2ultra/THE-GATHERING/scripts/verify-mc96-noizyworld.sh",
+      "destination": "tools/cli/verify-mc96-noizyworld.sh",
+      "type": ".sh"
+    },
+    {
+      "name": "voice_pipeline.py",
+      "category": "audio_dsp",
+      "source": "/Users/m2ultra/THE-GATHERING/scripts/voice_pipeline.py",
+      "destination": "tools/audio_dsp/voice_pipeline.py",
+      "type": ".py"
+    },
+    {
+      "name": "LAUNCH_NOIZYLAB_COMPLETE.sh",
+      "category": "cli",
+      "source": "/Users/m2ultra/NOIZYANTHROPIC/scripts/LAUNCH_NOIZYLAB_COMPLETE.sh",
+      "destination": "tools/cli/LAUNCH_NOIZYLAB_COMPLETE.sh",
+      "type": ".sh"
+    },
+    {
+      "name": "audio-hijack-noizy-airstream.js",
+      "category": "audio_dsp",
+      "source": "/Users/m2ultra/NOIZYANTHROPIC/scripts/audio-hijack-noizy-airstream.js",
+      "destination": "tools/audio_dsp/audio-hijack-noizy-airstream.js",
+      "type": ".js"
+    },
+    {
+      "name": "audit-mickey-p.sh",
+      "category": "cli",
+      "source": "/Users/m2ultra/NOIZYANTHROPIC/scripts/audit-mickey-p.sh",
+      "destination": "tools/cli/audit-mickey-p.sh",
+      "type": ".sh"
+    },
+    {
+      "name": "audit-readiness-gate.sh",
+      "category": "cli",
+      "source": "/Users/m2ultra/NOIZYANTHROPIC/scripts/audit-readiness-gate.sh",
+      "destination": "tools/cli/audit-readiness-gate.sh",
+      "type": ".sh"
+    },
+    {
+      "name": "bootstrap-n8n.sh",
+      "category": "cli",
+      "source": "/Users/m2ultra/NOIZYANTHROPIC/scripts/bootstrap-n8n.sh",
+      "destination": "tools/cli/bootstrap-n8n.sh",
+      "type": ".sh"
+    },
+    {
+      "name": "canary-deploy.sh",
+      "category": "cli",
+      "source": "/Users/m2ultra/NOIZYANTHROPIC/scripts/canary-deploy.sh",
+      "destination": "tools/cli/canary-deploy.sh",
+      "type": ".sh"
+    },
+    {
+      "name": "canary-monitor.sh",
+      "category": "cli",
+      "source": "/Users/m2ultra/NOIZYANTHROPIC/scripts/canary-monitor.sh",
+      "destination": "tools/cli/canary-monitor.sh",
+      "type": ".sh"
+    },
+    {
+      "name": "capture-postmortem.sh",
+      "category": "cli",
+      "source": "/Users/m2ultra/NOIZYANTHROPIC/scripts/capture-postmortem.sh",
+      "destination": "tools/cli/capture-postmortem.sh",
+      "type": ".sh"
+    },
+    {
+      "name": "change-freeze.sh",
+      "category": "cli",
+      "source": "/Users/m2ultra/NOIZYANTHROPIC/scripts/change-freeze.sh",
+      "destination": "tools/cli/change-freeze.sh",
+      "type": ".sh"
+    },
+    {
+      "name": "chaos-test.sh",
+      "category": "cli",
+      "source": "/Users/m2ultra/NOIZYANTHROPIC/scripts/chaos-test.sh",
+      "destination": "tools/cli/chaos-test.sh",
+      "type": ".sh"
+    },
+    {
+      "name": "check-error-budget.js",
+      "category": "cli",
+      "source": "/Users/m2ultra/NOIZYANTHROPIC/scripts/check-error-budget.js",
+      "destination": "tools/cli/check-error-budget.js",
+      "type": ".js"
+    },
+    {
+      "name": "check-no-placeholders.sh",
+      "category": "cli",
+      "source": "/Users/m2ultra/NOIZYANTHROPIC/scripts/check-no-placeholders.sh",
+      "destination": "tools/cli/check-no-placeholders.sh",
+      "type": ".sh"
+    },
+    {
+      "name": "check-placeholders.sh",
+      "category": "cli",
+      "source": "/Users/m2ultra/NOIZYANTHROPIC/scripts/check-placeholders.sh",
+      "destination": "tools/cli/check-placeholders.sh",
+      "type": ".sh"
+    },
+    {
+      "name": "cloudflare-consolidation.sh",
+      "category": "cli",
+      "source": "/Users/m2ultra/NOIZYANTHROPIC/scripts/cloudflare-consolidation.sh",
+      "destination": "tools/cli/cloudflare-consolidation.sh",
+      "type": ".sh"
+    },
+    {
+      "name": "cloudflare-inventory.sh",
+      "category": "cli",
+      "source": "/Users/m2ultra/NOIZYANTHROPIC/scripts/cloudflare-inventory.sh",
+      "destination": "tools/cli/cloudflare-inventory.sh",
+      "type": ".sh"
+    },
+    {
+      "name": "convert-to-cloudflare.sh",
+      "category": "cli",
+      "source": "/Users/m2ultra/NOIZYANTHROPIC/scripts/convert-to-cloudflare.sh",
+      "destination": "tools/cli/convert-to-cloudflare.sh",
+      "type": ".sh"
+    },
+    {
+      "name": "create-noi15-docx.js",
+      "category": "cli",
+      "source": "/Users/m2ultra/NOIZYANTHROPIC/scripts/create-noi15-docx.js",
+      "destination": "tools/cli/create-noi15-docx.js",
+      "type": ".js"
+    },
+    {
+      "name": "create-noizy-prompt-docx.js",
+      "category": "cli",
+      "source": "/Users/m2ultra/NOIZYANTHROPIC/scripts/create-noizy-prompt-docx.js",
+      "destination": "tools/cli/create-noizy-prompt-docx.js",
+      "type": ".js"
+    },
+    {
+      "name": "declutter.sh",
+      "category": "cli",
+      "source": "/Users/m2ultra/NOIZYANTHROPIC/scripts/declutter.sh",
+      "destination": "tools/cli/declutter.sh",
+      "type": ".sh"
+    },
+    {
+      "name": "delete_empty_folders.sh",
+      "category": "cli",
+      "source": "/Users/m2ultra/NOIZYANTHROPIC/scripts/delete_empty_folders.sh",
+      "destination": "tools/cli/delete_empty_folders.sh",
+      "type": ".sh"
+    },
+    {
+      "name": "deploy-heaven.sh",
+      "category": "cli",
+      "source": "/Users/m2ultra/NOIZYANTHROPIC/scripts/deploy-heaven.sh",
+      "destination": "tools/cli/deploy-heaven.sh",
+      "type": ".sh"
+    },
+    {
+      "name": "deploy-readiness.sh",
+      "category": "cli",
+      "source": "/Users/m2ultra/NOIZYANTHROPIC/scripts/deploy-readiness.sh",
+      "destination": "tools/cli/deploy-readiness.sh",
+      "type": ".sh"
+    },
+    {
+      "name": "deploy.sh",
+      "category": "cli",
+      "source": "/Users/m2ultra/NOIZYANTHROPIC/scripts/deploy.sh",
+      "destination": "tools/cli/deploy.sh",
+      "type": ".sh"
+    },
+    {
+      "name": "dr-drill.sh",
+      "category": "cli",
+      "source": "/Users/m2ultra/NOIZYANTHROPIC/scripts/dr-drill.sh",
+      "destination": "tools/cli/dr-drill.sh",
+      "type": ".sh"
+    },
+    {
+      "name": "drill-dr.sh",
+      "category": "cli",
+      "source": "/Users/m2ultra/NOIZYANTHROPIC/scripts/drill-dr.sh",
+      "destination": "tools/cli/drill-dr.sh",
+      "type": ".sh"
+    },
+    {
+      "name": "empire-boot.sh",
+      "category": "cli",
+      "source": "/Users/m2ultra/NOIZYANTHROPIC/scripts/empire-boot.sh",
+      "destination": "tools/cli/empire-boot.sh",
+      "type": ".sh"
+    },
+    {
+      "name": "empire-status-email.js",
+      "category": "cli",
+      "source": "/Users/m2ultra/NOIZYANTHROPIC/scripts/empire-status-email.js",
+      "destination": "tools/cli/empire-status-email.js",
+      "type": ".js"
+    },
+    {
+      "name": "empire-status.sh",
+      "category": "cli",
+      "source": "/Users/m2ultra/NOIZYANTHROPIC/scripts/empire-status.sh",
+      "destination": "tools/cli/empire-status.sh",
+      "type": ".sh"
+    },
+    {
+      "name": "ethics-gate.sh",
+      "category": "cli",
+      "source": "/Users/m2ultra/NOIZYANTHROPIC/scripts/ethics-gate.sh",
+      "destination": "tools/cli/ethics-gate.sh",
+      "type": ".sh"
+    },
+    {
+      "name": "export-audit-log.sh",
+      "category": "cli",
+      "source": "/Users/m2ultra/NOIZYANTHROPIC/scripts/export-audit-log.sh",
+      "destination": "tools/cli/export-audit-log.sh",
+      "type": ".sh"
+    },
+    {
+      "name": "export-dns.sh",
+      "category": "cli",
+      "source": "/Users/m2ultra/NOIZYANTHROPIC/scripts/export-dns.sh",
+      "destination": "tools/cli/export-dns.sh",
+      "type": ".sh"
+    },
+    {
+      "name": "fishnet.sh",
+      "category": "cli",
+      "source": "/Users/m2ultra/NOIZYANTHROPIC/scripts/fishnet.sh",
+      "destination": "tools/cli/fishnet.sh",
+      "type": ".sh"
+    },
+    {
+      "name": "fix-everything.sh",
+      "category": "cli",
+      "source": "/Users/m2ultra/NOIZYANTHROPIC/scripts/fix-everything.sh",
+      "destination": "tools/cli/fix-everything.sh",
+      "type": ".sh"
+    },
+    {
+      "name": "fix-noizylab-mx.sh",
+      "category": "cli",
+      "source": "/Users/m2ultra/NOIZYANTHROPIC/scripts/fix-noizylab-mx.sh",
+      "destination": "tools/cli/fix-noizylab-mx.sh",
+      "type": ".sh"
+    },
+    {
+      "name": "full-status.sh",
+      "category": "cli",
+      "source": "/Users/m2ultra/NOIZYANTHROPIC/scripts/full-status.sh",
+      "destination": "tools/cli/full-status.sh",
+      "type": ".sh"
+    },
+    {
+      "name": "gabriel-dispatch.sh",
+      "category": "cli",
+      "source": "/Users/m2ultra/NOIZYANTHROPIC/scripts/gabriel-dispatch.sh",
+      "destination": "tools/cli/gabriel-dispatch.sh",
+      "type": ".sh"
+    },
+    {
+      "name": "gabriel-merge.sh",
+      "category": "cli",
+      "source": "/Users/m2ultra/NOIZYANTHROPIC/scripts/gabriel-merge.sh",
+      "destination": "tools/cli/gabriel-merge.sh",
+      "type": ".sh"
+    },
+    {
+      "name": "git-align.sh",
+      "category": "cli",
+      "source": "/Users/m2ultra/NOIZYANTHROPIC/scripts/git-align.sh",
+      "destination": "tools/cli/git-align.sh",
+      "type": ".sh"
+    },
+    {
+      "name": "git-mirror.sh",
+      "category": "cli",
+      "source": "/Users/m2ultra/NOIZYANTHROPIC/scripts/git-mirror.sh",
+      "destination": "tools/cli/git-mirror.sh",
+      "type": ".sh"
+    },
+    {
+      "name": "gorunfree-launch.sh",
+      "category": "cli",
+      "source": "/Users/m2ultra/NOIZYANTHROPIC/scripts/gorunfree-launch.sh",
+      "destination": "tools/cli/gorunfree-launch.sh",
+      "type": ".sh"
+    },
+    {
+      "name": "gradual-rollout.sh",
+      "category": "cli",
+      "source": "/Users/m2ultra/NOIZYANTHROPIC/scripts/gradual-rollout.sh",
+      "destination": "tools/cli/gradual-rollout.sh",
+      "type": ".sh"
+    },
+    {
+      "name": "harden-secrets.sh",
+      "category": "cli",
+      "source": "/Users/m2ultra/NOIZYANTHROPIC/scripts/harden-secrets.sh",
+      "destination": "tools/cli/harden-secrets.sh",
+      "type": ".sh"
+    },
+    {
+      "name": "migrate.sh",
+      "category": "cli",
+      "source": "/Users/m2ultra/NOIZYANTHROPIC/scripts/migrate.sh",
+      "destination": "tools/cli/migrate.sh",
+      "type": ".sh"
+    },
+    {
+      "name": "multi-region-health.sh",
+      "category": "cli",
+      "source": "/Users/m2ultra/NOIZYANTHROPIC/scripts/multi-region-health.sh",
+      "destination": "tools/cli/multi-region-health.sh",
+      "type": ".sh"
+    },
+    {
+      "name": "noizyvox-notification-hooks.js",
+      "category": "cli",
+      "source": "/Users/m2ultra/NOIZYANTHROPIC/scripts/noizyvox-notification-hooks.js",
+      "destination": "tools/cli/noizyvox-notification-hooks.js",
+      "type": ".js"
+    },
+    {
+      "name": "optimize-accessibility.sh",
+      "category": "cli",
+      "source": "/Users/m2ultra/NOIZYANTHROPIC/scripts/optimize-accessibility.sh",
+      "destination": "tools/cli/optimize-accessibility.sh",
+      "type": ".sh"
+    },
+    {
+      "name": "organize_projects.sh",
+      "category": "cli",
+      "source": "/Users/m2ultra/NOIZYANTHROPIC/scripts/organize_projects.sh",
+      "destination": "tools/cli/organize_projects.sh",
+      "type": ".sh"
+    },
+    {
+      "name": "policy-compiler-gate.sh",
+      "category": "cli",
+      "source": "/Users/m2ultra/NOIZYANTHROPIC/scripts/policy-compiler-gate.sh",
+      "destination": "tools/cli/policy-compiler-gate.sh",
+      "type": ".sh"
+    },
+    {
+      "name": "preflight-security-gates.sh",
+      "category": "cli",
+      "source": "/Users/m2ultra/NOIZYANTHROPIC/scripts/preflight-security-gates.sh",
+      "destination": "tools/cli/preflight-security-gates.sh",
+      "type": ".sh"
+    },
+    {
+      "name": "production-gate.sh",
+      "category": "cli",
+      "source": "/Users/m2ultra/NOIZYANTHROPIC/scripts/production-gate.sh",
+      "destination": "tools/cli/production-gate.sh",
+      "type": ".sh"
+    },
+    {
+      "name": "promote-variant.sh",
+      "category": "cli",
+      "source": "/Users/m2ultra/NOIZYANTHROPIC/scripts/promote-variant.sh",
+      "destination": "tools/cli/promote-variant.sh",
+      "type": ".sh"
+    },
+    {
+      "name": "rebuild_bottomlayer.sh",
+      "category": "cli",
+      "source": "/Users/m2ultra/NOIZYANTHROPIC/scripts/rebuild_bottomlayer.sh",
+      "destination": "tools/cli/rebuild_bottomlayer.sh",
+      "type": ".sh"
+    },
+    {
+      "name": "regulator-bundle-gate.sh",
+      "category": "cli",
+      "source": "/Users/m2ultra/NOIZYANTHROPIC/scripts/regulator-bundle-gate.sh",
+      "destination": "tools/cli/regulator-bundle-gate.sh",
+      "type": ".sh"
+    },
+    {
+      "name": "rollback.sh",
+      "category": "cli",
+      "source": "/Users/m2ultra/NOIZYANTHROPIC/scripts/rollback.sh",
+      "destination": "tools/cli/rollback.sh",
+      "type": ".sh"
+    },
+    {
+      "name": "scan_workspace.sh",
+      "category": "cli",
+      "source": "/Users/m2ultra/NOIZYANTHROPIC/scripts/scan_workspace.sh",
+      "destination": "tools/cli/scan_workspace.sh",
+      "type": ".sh"
+    },
+    {
+      "name": "setup-feature-flags.sh",
+      "category": "cli",
+      "source": "/Users/m2ultra/NOIZYANTHROPIC/scripts/setup-feature-flags.sh",
+      "destination": "tools/cli/setup-feature-flags.sh",
+      "type": ".sh"
+    },
+    {
+      "name": "setup-integrations.sh",
+      "category": "cli",
+      "source": "/Users/m2ultra/NOIZYANTHROPIC/scripts/setup-integrations.sh",
+      "destination": "tools/cli/setup-integrations.sh",
+      "type": ".sh"
+    },
+    {
+      "name": "setup-local-auth.sh",
+      "category": "cli",
+      "source": "/Users/m2ultra/NOIZYANTHROPIC/scripts/setup-local-auth.sh",
+      "destination": "tools/cli/setup-local-auth.sh",
+      "type": ".sh"
+    },
+    {
+      "name": "setup-zero-trust.sh",
+      "category": "cli",
+      "source": "/Users/m2ultra/NOIZYANTHROPIC/scripts/setup-zero-trust.sh",
+      "destination": "tools/cli/setup-zero-trust.sh",
+      "type": ".sh"
+    },
+    {
+      "name": "smoke-test.sh",
+      "category": "cli",
+      "source": "/Users/m2ultra/NOIZYANTHROPIC/scripts/smoke-test.sh",
+      "destination": "tools/cli/smoke-test.sh",
+      "type": ".sh"
+    },
+    {
+      "name": "smoke_test.sh",
+      "category": "cli",
+      "source": "/Users/m2ultra/NOIZYANTHROPIC/scripts/smoke_test.sh",
+      "destination": "tools/cli/smoke_test.sh",
+      "type": ".sh"
+    },
+    {
+      "name": "talespin-finder.sh",
+      "category": "cli",
+      "source": "/Users/m2ultra/NOIZYANTHROPIC/scripts/talespin-finder.sh",
+      "destination": "tools/cli/talespin-finder.sh",
+      "type": ".sh"
+    },
+    {
+      "name": "test-integrations.sh",
+      "category": "cli",
+      "source": "/Users/m2ultra/NOIZYANTHROPIC/scripts/test-integrations.sh",
+      "destination": "tools/cli/test-integrations.sh",
+      "type": ".sh"
+    },
+    {
+      "name": "time-travel-audit-gate.sh",
+      "category": "cli",
+      "source": "/Users/m2ultra/NOIZYANTHROPIC/scripts/time-travel-audit-gate.sh",
+      "destination": "tools/cli/time-travel-audit-gate.sh",
+      "type": ".sh"
+    },
+    {
+      "name": "triage_downloads.sh",
+      "category": "cli",
+      "source": "/Users/m2ultra/NOIZYANTHROPIC/scripts/triage_downloads.sh",
+      "destination": "tools/cli/triage_downloads.sh",
+      "type": ".sh"
+    },
+    {
+      "name": "verify-staging-endpoints.sh",
+      "category": "cli",
+      "source": "/Users/m2ultra/NOIZYANTHROPIC/scripts/verify-staging-endpoints.sh",
+      "destination": "tools/cli/verify-staging-endpoints.sh",
+      "type": ".sh"
+    },
+    {
+      "name": "voice-bridge-server.js",
+      "category": "audio_dsp",
+      "source": "/Users/m2ultra/NOIZYANTHROPIC/scripts/voice-bridge-server.js",
+      "destination": "tools/audio_dsp/voice-bridge-server.js",
+      "type": ".js"
+    },
+    {
+      "name": "voice-capture.sh",
+      "category": "audio_dsp",
+      "source": "/Users/m2ultra/NOIZYANTHROPIC/scripts/voice-capture.sh",
+      "destination": "tools/audio_dsp/voice-capture.sh",
+      "type": ".sh"
+    },
+    {
+      "name": "wrangler-doctor.sh",
+      "category": "cli",
+      "source": "/Users/m2ultra/NOIZYANTHROPIC/scripts/wrangler-doctor.sh",
+      "destination": "tools/cli/wrangler-doctor.sh",
+      "type": ".sh"
+    }
+  ],
+  "automation_services": [
+    {
+      "name": "Copy Full Path.workflow",
+      "source": "/Users/m2ultra/Library/Services/Copy Full Path.workflow",
+      "type": "Automator Workflow"
+    },
+    {
+      "name": "GORUNFREE-Speak.workflow",
+      "source": "/Users/m2ultra/Library/Services/GORUNFREE-Speak.workflow",
+      "type": "Automator Workflow"
+    },
+    {
+      "name": "Gabriel Sync All Brands.workflow",
+      "source": "/Users/m2ultra/Library/Services/Gabriel Sync All Brands.workflow",
+      "type": "Automator Workflow"
+    }
+  ],
+  "agent_skills": [
+    {
+      "name": "accidental-data-loss-prevention",
+      "path": "/Users/m2ultra/.gemini/config/skills/accidental-data-loss-prevention",
+      "skill_file": "/Users/m2ultra/.gemini/config/skills/accidental-data-loss-prevention/SKILL.md"
+    },
+    {
+      "name": "bigquery-data-transfer-service",
+      "path": "/Users/m2ultra/.gemini/config/skills/bigquery-data-transfer-service",
+      "skill_file": "/Users/m2ultra/.gemini/config/skills/bigquery-data-transfer-service/SKILL.md"
+    },
+    {
+      "name": "building-data-apps",
+      "path": "/Users/m2ultra/.gemini/config/skills/building-data-apps",
+      "skill_file": "/Users/m2ultra/.gemini/config/skills/building-data-apps/SKILL.md"
+    },
+    {
+      "name": "data-autocleaning",
+      "path": "/Users/m2ultra/.gemini/config/skills/data-autocleaning",
+      "skill_file": "/Users/m2ultra/.gemini/config/skills/data-autocleaning/SKILL.md"
+    },
+    {
+      "name": "dataform-bigquery",
+      "path": "/Users/m2ultra/.gemini/config/skills/dataform-bigquery",
+      "skill_file": "/Users/m2ultra/.gemini/config/skills/dataform-bigquery/SKILL.md"
+    },
+    {
+      "name": "dbt-bigquery",
+      "path": "/Users/m2ultra/.gemini/config/skills/dbt-bigquery",
+      "skill_file": "/Users/m2ultra/.gemini/config/skills/dbt-bigquery/SKILL.md"
+    },
+    {
+      "name": "developing-with-bigquery",
+      "path": "/Users/m2ultra/.gemini/config/skills/developing-with-bigquery",
+      "skill_file": "/Users/m2ultra/.gemini/config/skills/developing-with-bigquery/SKILL.md"
+    },
+    {
+      "name": "discovering-gcp-data-assets",
+      "path": "/Users/m2ultra/.gemini/config/skills/discovering-gcp-data-assets",
+      "skill_file": "/Users/m2ultra/.gemini/config/skills/discovering-gcp-data-assets/SKILL.md"
+    },
+    {
+      "name": "federate-lakehouse-catalog",
+      "path": "/Users/m2ultra/.gemini/config/skills/federate-lakehouse-catalog",
+      "skill_file": "/Users/m2ultra/.gemini/config/skills/federate-lakehouse-catalog/SKILL.md"
+    },
+    {
+      "name": "gcloud-auth-verification",
+      "path": "/Users/m2ultra/.gemini/config/skills/gcloud-auth-verification",
+      "skill_file": "/Users/m2ultra/.gemini/config/skills/gcloud-auth-verification/SKILL.md"
+    },
+    {
+      "name": "gcp-composer-troubleshooting",
+      "path": "/Users/m2ultra/.gemini/config/skills/gcp-composer-troubleshooting",
+      "skill_file": "/Users/m2ultra/.gemini/config/skills/gcp-composer-troubleshooting/SKILL.md"
+    },
+    {
+      "name": "gcp-data-pipelines",
+      "path": "/Users/m2ultra/.gemini/config/skills/gcp-data-pipelines",
+      "skill_file": "/Users/m2ultra/.gemini/config/skills/gcp-data-pipelines/SKILL.md"
+    },
+    {
+      "name": "gcp-dataflow",
+      "path": "/Users/m2ultra/.gemini/config/skills/gcp-dataflow",
+      "skill_file": "/Users/m2ultra/.gemini/config/skills/gcp-dataflow/SKILL.md"
+    },
+    {
+      "name": "gcp-pipeline-orchestration",
+      "path": "/Users/m2ultra/.gemini/config/skills/gcp-pipeline-orchestration",
+      "skill_file": "/Users/m2ultra/.gemini/config/skills/gcp-pipeline-orchestration/SKILL.md"
+    },
+    {
+      "name": "gcp-pipeline-resource-provisioning",
+      "path": "/Users/m2ultra/.gemini/config/skills/gcp-pipeline-resource-provisioning",
+      "skill_file": "/Users/m2ultra/.gemini/config/skills/gcp-pipeline-resource-provisioning/SKILL.md"
+    },
+    {
+      "name": "gcp-spark",
+      "path": "/Users/m2ultra/.gemini/config/skills/gcp-spark",
+      "skill_file": "/Users/m2ultra/.gemini/config/skills/gcp-spark/SKILL.md"
+    },
+    {
+      "name": "managing-python-dependencies",
+      "path": "/Users/m2ultra/.gemini/config/skills/managing-python-dependencies",
+      "skill_file": "/Users/m2ultra/.gemini/config/skills/managing-python-dependencies/SKILL.md"
+    },
+    {
+      "name": "ml-best-practices",
+      "path": "/Users/m2ultra/.gemini/config/skills/ml-best-practices",
+      "skill_file": "/Users/m2ultra/.gemini/config/skills/ml-best-practices/SKILL.md"
+    },
+    {
+      "name": "notebook-guidance",
+      "path": "/Users/m2ultra/.gemini/config/skills/notebook-guidance",
+      "skill_file": "/Users/m2ultra/.gemini/config/skills/notebook-guidance/SKILL.md"
+    },
+    {
+      "name": "skill-repair",
+      "path": "/Users/m2ultra/.gemini/config/skills/skill-repair",
+      "skill_file": "/Users/m2ultra/.gemini/config/skills/skill-repair/SKILL.md"
+    }
+  ]
+}

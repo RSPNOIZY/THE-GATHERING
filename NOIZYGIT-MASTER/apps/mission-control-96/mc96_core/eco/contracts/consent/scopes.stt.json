@@ -1,0 +1,20 @@
+{
+  "scope": "speech_to_text",
+  "description": "Grants permission to transcribe audio submitted by the creator. Transcription is treated as a derivative and subject to the same consent terms as audio generation.",
+  "requires_auth": true,
+  "requires_creator_scope": true,
+  "derivatives_allowed": false,
+  "retention": "creator_controlled",
+  "visibility": ["private", "shared"],
+  "enforcement": {
+    "gateway": "consent-gateway",
+    "route": "/verify",
+    "fail_mode": "deny"
+  },
+  "notes": [
+    "STT cannot execute without a valid consent record for scope=speech_to_text.",
+    "Transcripts must not be stored beyond the creator-controlled retention period.",
+    "Sharing a transcript requires an explicit visibility grant from the creator.",
+    "Speech-to-text is generation. It is never always-on surveillance."
+  ]
+}

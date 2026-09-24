@@ -1,0 +1,829 @@
+{
+  "mcp_configs_audited": [
+    {
+      "path": "/Users/m2ultra/Library/Application Support/Claude/claude_desktop_config.json",
+      "servers_count": 2,
+      "server_names": [
+        "GitKraken",
+        "pencil"
+      ]
+    },
+    {
+      "path": "/Users/m2ultra/.gemini/antigravity-ide/mcp_config.json",
+      "servers_count": 32,
+      "server_names": [
+        "gabriel-mcp",
+        "lucy-mcp",
+        "heaven-mcp",
+        "voice-bridge",
+        "engr-keith-mcp",
+        "dream-mcp",
+        "cb01-mcp",
+        "shirley-mcp",
+        "family-mcp",
+        "shortcuts-mcp",
+        "consent-oracle",
+        "synthesis-oracle",
+        "audio-mcp",
+        "gemma3",
+        "supersonic",
+        "god-local-diag",
+        "n8n-mcp",
+        "markitdown",
+        "scrapling",
+        "mac-apps-mcp",
+        "noizyanthropic-mcp",
+        "noizybeast-mcp",
+        "local-intelligence",
+        "localgenius",
+        "desktop-commander",
+        "desktop-commander-src",
+        "tagspaces-mcp",
+        "devonthink-mcp",
+        "lmstudio-mcp",
+        "k8s-mcp",
+        "mcp-health",
+        "gfix"
+      ]
+    },
+    {
+      "path": "/Users/m2ultra/Library/Application Support/Cursor/User/globalStorage/rooveterinaryinc.roo-cline/settings/cline_mcp_settings.json",
+      "servers_count": 20,
+      "server_names": [
+        "gabriel-mcp",
+        "lucy-mcp",
+        "heaven-mcp",
+        "voice-bridge",
+        "engr-keith-mcp",
+        "dream-mcp",
+        "cb01-mcp",
+        "shirley-mcp",
+        "family-mcp",
+        "shortcuts-mcp",
+        "consent-oracle",
+        "synthesis-oracle",
+        "audio-mcp",
+        "gemma3",
+        "supersonic",
+        "god-local-diag",
+        "n8n-mcp",
+        "markitdown",
+        "scrapling",
+        "mac-apps-mcp"
+      ]
+    }
+  ],
+  "mcp_servers_audited": [
+    {
+      "name": "configs",
+      "path": "/Users/m2ultra/THE-GATHERING/mcps/configs",
+      "type": "Other",
+      "status": "HEALTHY",
+      "issues": []
+    },
+    {
+      "name": "registry",
+      "path": "/Users/m2ultra/THE-GATHERING/mcps/registry",
+      "type": "Other",
+      "status": "HEALTHY",
+      "issues": []
+    },
+    {
+      "name": "servers",
+      "path": "/Users/m2ultra/THE-GATHERING/mcps/servers",
+      "type": "Other",
+      "status": "HEALTHY",
+      "issues": []
+    },
+    {
+      "name": "consent-oracle",
+      "path": "/Users/m2ultra/THE-GATHERING/NOIZYGIT-MASTER/mcps/consent-oracle",
+      "type": "Other",
+      "status": "HEALTHY",
+      "issues": []
+    },
+    {
+      "name": "dream-mcp",
+      "path": "/Users/m2ultra/THE-GATHERING/NOIZYGIT-MASTER/mcps/dream-mcp",
+      "type": "Other",
+      "status": "HEALTHY",
+      "issues": []
+    },
+    {
+      "name": "filesystem-mcp",
+      "path": "/Users/m2ultra/THE-GATHERING/NOIZYGIT-MASTER/mcps/filesystem-mcp",
+      "type": "Other",
+      "status": "HEALTHY",
+      "issues": []
+    },
+    {
+      "name": "lucy-mcp",
+      "path": "/Users/m2ultra/THE-GATHERING/NOIZYGIT-MASTER/mcps/lucy-mcp",
+      "type": "Other",
+      "status": "HEALTHY",
+      "issues": []
+    },
+    {
+      "name": "routes-mcp",
+      "path": "/Users/m2ultra/THE-GATHERING/NOIZYGIT-MASTER/mcps/routes-mcp",
+      "type": "Other",
+      "status": "HEALTHY",
+      "issues": []
+    },
+    {
+      "name": "DesktopCommanderMCP",
+      "path": "/Users/m2ultra/NOIZYANTHROPIC/MCPs/DesktopCommanderMCP",
+      "type": "Node/TS",
+      "status": "HEALTHY",
+      "issues": []
+    },
+    {
+      "name": "RSP_VOICE_SAMPLES",
+      "path": "/Users/m2ultra/NOIZYANTHROPIC/MCPs/RSP_VOICE_SAMPLES",
+      "type": "Other",
+      "status": "HEALTHY",
+      "issues": []
+    },
+    {
+      "name": "audio-repair-mcp",
+      "path": "/Users/m2ultra/NOIZYANTHROPIC/MCPs/audio-repair-mcp",
+      "type": "Other",
+      "status": "HEALTHY",
+      "issues": []
+    },
+    {
+      "name": "dreamchamber-audio",
+      "path": "/Users/m2ultra/NOIZYANTHROPIC/MCPs/dreamchamber-audio",
+      "type": "Other",
+      "status": "HEALTHY",
+      "issues": []
+    },
+    {
+      "name": "dreamchamber-audio-mcp",
+      "path": "/Users/m2ultra/NOIZYANTHROPIC/MCPs/dreamchamber-audio-mcp",
+      "type": "Other",
+      "status": "HEALTHY",
+      "issues": []
+    },
+    {
+      "name": "gabriel-mcp",
+      "path": "/Users/m2ultra/NOIZYANTHROPIC/MCPs/gabriel-mcp",
+      "type": "Other",
+      "status": "HEALTHY",
+      "issues": []
+    },
+    {
+      "name": "gathering-dreamchamber-mcp",
+      "path": "/Users/m2ultra/NOIZYANTHROPIC/MCPs/gathering-dreamchamber-mcp",
+      "type": "Other",
+      "status": "HEALTHY",
+      "issues": []
+    },
+    {
+      "name": "lucy-files-mcp",
+      "path": "/Users/m2ultra/NOIZYANTHROPIC/MCPs/lucy-files-mcp",
+      "type": "Other",
+      "status": "HEALTHY",
+      "issues": []
+    },
+    {
+      "name": "lucy-foss-mcp",
+      "path": "/Users/m2ultra/NOIZYANTHROPIC/MCPs/lucy-foss-mcp",
+      "type": "Other",
+      "status": "HEALTHY",
+      "issues": []
+    },
+    {
+      "name": "lucy-mcp",
+      "path": "/Users/m2ultra/NOIZYANTHROPIC/MCPs/lucy-mcp",
+      "type": "Other",
+      "status": "HEALTHY",
+      "issues": []
+    },
+    {
+      "name": "mc96-transport",
+      "path": "/Users/m2ultra/NOIZYANTHROPIC/MCPs/mc96-transport",
+      "type": "Other",
+      "status": "HEALTHY",
+      "issues": []
+    },
+    {
+      "name": "metabeast-remote",
+      "path": "/Users/m2ultra/NOIZYANTHROPIC/MCPs/metabeast-remote",
+      "type": "Other",
+      "status": "HEALTHY",
+      "issues": []
+    },
+    {
+      "name": "repos-mcpd",
+      "path": "/Users/m2ultra/NOIZYANTHROPIC/MCPs/repos-mcpd",
+      "type": "Other",
+      "status": "HEALTHY",
+      "issues": []
+    },
+    {
+      "name": "shortcuts-mcp",
+      "path": "/Users/m2ultra/NOIZYANTHROPIC/MCPs/shortcuts-mcp",
+      "type": "Other",
+      "status": "HEALTHY",
+      "issues": []
+    },
+    {
+      "name": "tagspaces-mcp",
+      "path": "/Users/m2ultra/NOIZYANTHROPIC/MCPs/tagspaces-mcp",
+      "type": "Other",
+      "status": "HEALTHY",
+      "issues": []
+    },
+    {
+      "name": "DesktopCommanderMCP",
+      "path": "/Users/m2ultra/NOIZYANTHROPIC/mcp/DesktopCommanderMCP",
+      "type": "Node/TS",
+      "status": "HEALTHY",
+      "issues": []
+    },
+    {
+      "name": "audio",
+      "path": "/Users/m2ultra/NOIZYANTHROPIC/mcp/audio",
+      "type": "Other",
+      "status": "HEALTHY",
+      "issues": []
+    },
+    {
+      "name": "car-companion-mcp",
+      "path": "/Users/m2ultra/NOIZYANTHROPIC/mcp/car-companion-mcp",
+      "type": "Node/TS",
+      "status": "HEALTHY",
+      "issues": []
+    },
+    {
+      "name": "cb01-mcp",
+      "path": "/Users/m2ultra/NOIZYANTHROPIC/mcp/cb01-mcp",
+      "type": "Node/TS",
+      "status": "HEALTHY",
+      "issues": []
+    },
+    {
+      "name": "consent-oracle",
+      "path": "/Users/m2ultra/NOIZYANTHROPIC/mcp/consent-oracle",
+      "type": "Node/TS",
+      "status": "HEALTHY",
+      "issues": []
+    },
+    {
+      "name": "devonthink-mcp",
+      "path": "/Users/m2ultra/NOIZYANTHROPIC/mcp/devonthink-mcp",
+      "type": "Other",
+      "status": "HEALTHY",
+      "issues": []
+    },
+    {
+      "name": "dream-mcp",
+      "path": "/Users/m2ultra/NOIZYANTHROPIC/mcp/dream-mcp",
+      "type": "Node/TS",
+      "status": "HEALTHY",
+      "issues": []
+    },
+    {
+      "name": "dreamchamber-audio",
+      "path": "/Users/m2ultra/NOIZYANTHROPIC/mcp/dreamchamber-audio",
+      "type": "Python",
+      "status": "HEALTHY",
+      "issues": []
+    },
+    {
+      "name": "engr-keith-mcp",
+      "path": "/Users/m2ultra/NOIZYANTHROPIC/mcp/engr-keith-mcp",
+      "type": "Node/TS",
+      "status": "HEALTHY",
+      "issues": []
+    },
+    {
+      "name": "family-mcp",
+      "path": "/Users/m2ultra/NOIZYANTHROPIC/mcp/family-mcp",
+      "type": "Node/TS",
+      "status": "HEALTHY",
+      "issues": []
+    },
+    {
+      "name": "fleet-mcp",
+      "path": "/Users/m2ultra/NOIZYANTHROPIC/mcp/fleet-mcp",
+      "type": "Other",
+      "status": "HEALTHY",
+      "issues": []
+    },
+    {
+      "name": "gabriel-mcp",
+      "path": "/Users/m2ultra/NOIZYANTHROPIC/mcp/gabriel-mcp",
+      "type": "Node/TS",
+      "status": "HEALTHY",
+      "issues": []
+    },
+    {
+      "name": "gemma3",
+      "path": "/Users/m2ultra/NOIZYANTHROPIC/mcp/gemma3",
+      "type": "Node/TS",
+      "status": "HEALTHY",
+      "issues": []
+    },
+    {
+      "name": "ghostty-mcp",
+      "path": "/Users/m2ultra/NOIZYANTHROPIC/mcp/ghostty-mcp",
+      "type": "Node/TS",
+      "status": "HEALTHY",
+      "issues": []
+    },
+    {
+      "name": "heaven-mcp",
+      "path": "/Users/m2ultra/NOIZYANTHROPIC/mcp/heaven-mcp",
+      "type": "Node/TS",
+      "status": "HEALTHY",
+      "issues": []
+    },
+    {
+      "name": "lucy-mcp",
+      "path": "/Users/m2ultra/NOIZYANTHROPIC/mcp/lucy-mcp",
+      "type": "Node/TS",
+      "status": "HEALTHY",
+      "issues": []
+    },
+    {
+      "name": "mc96-metrics-mcp",
+      "path": "/Users/m2ultra/NOIZYANTHROPIC/mcp/mc96-metrics-mcp",
+      "type": "Other",
+      "status": "HEALTHY",
+      "issues": []
+    },
+    {
+      "name": "metabeast-remote",
+      "path": "/Users/m2ultra/NOIZYANTHROPIC/mcp/metabeast-remote",
+      "type": "Other",
+      "status": "HEALTHY",
+      "issues": []
+    },
+    {
+      "name": "noizyanthropic-mcp",
+      "path": "/Users/m2ultra/NOIZYANTHROPIC/mcp/noizyanthropic-mcp",
+      "type": "Other",
+      "status": "HEALTHY",
+      "issues": []
+    },
+    {
+      "name": "pops-archival-mcp",
+      "path": "/Users/m2ultra/NOIZYANTHROPIC/mcp/pops-archival-mcp",
+      "type": "Other",
+      "status": "HEALTHY",
+      "issues": []
+    },
+    {
+      "name": "shirley-mcp",
+      "path": "/Users/m2ultra/NOIZYANTHROPIC/mcp/shirley-mcp",
+      "type": "Node/TS",
+      "status": "HEALTHY",
+      "issues": []
+    },
+    {
+      "name": "shortcuts-mcp",
+      "path": "/Users/m2ultra/NOIZYANTHROPIC/mcp/shortcuts-mcp",
+      "type": "Node/TS",
+      "status": "HEALTHY",
+      "issues": []
+    },
+    {
+      "name": "supersonic",
+      "path": "/Users/m2ultra/NOIZYANTHROPIC/mcp/supersonic",
+      "type": "Other",
+      "status": "HEALTHY",
+      "issues": []
+    },
+    {
+      "name": "synthesis-oracle",
+      "path": "/Users/m2ultra/NOIZYANTHROPIC/mcp/synthesis-oracle",
+      "type": "Node/TS",
+      "status": "HEALTHY",
+      "issues": []
+    },
+    {
+      "name": "tagspaces-mcp",
+      "path": "/Users/m2ultra/NOIZYANTHROPIC/mcp/tagspaces-mcp",
+      "type": "Other",
+      "status": "HEALTHY",
+      "issues": []
+    },
+    {
+      "name": "voice-bridge",
+      "path": "/Users/m2ultra/NOIZYANTHROPIC/mcp/voice-bridge",
+      "type": "Node/TS",
+      "status": "HEALTHY",
+      "issues": []
+    },
+    {
+      "name": "GitKraken",
+      "path": "/Users/m2ultra/.gemini/antigravity-ide/mcp/GitKraken",
+      "type": "Other",
+      "status": "HEALTHY",
+      "issues": []
+    },
+    {
+      "name": "StitchMCP",
+      "path": "/Users/m2ultra/.gemini/antigravity-ide/mcp/StitchMCP",
+      "type": "Other",
+      "status": "HEALTHY",
+      "issues": []
+    },
+    {
+      "name": "alloydb-postgres-admin",
+      "path": "/Users/m2ultra/.gemini/antigravity-ide/mcp/alloydb-postgres-admin",
+      "type": "Other",
+      "status": "HEALTHY",
+      "issues": []
+    },
+    {
+      "name": "alloydb-postgresql",
+      "path": "/Users/m2ultra/.gemini/antigravity-ide/mcp/alloydb-postgresql",
+      "type": "Other",
+      "status": "HEALTHY",
+      "issues": []
+    },
+    {
+      "name": "android-management-api",
+      "path": "/Users/m2ultra/.gemini/antigravity-ide/mcp/android-management-api",
+      "type": "Other",
+      "status": "HEALTHY",
+      "issues": []
+    },
+    {
+      "name": "arize-tracing-assistant",
+      "path": "/Users/m2ultra/.gemini/antigravity-ide/mcp/arize-tracing-assistant",
+      "type": "Other",
+      "status": "HEALTHY",
+      "issues": []
+    },
+    {
+      "name": "atlassian-mcp-server",
+      "path": "/Users/m2ultra/.gemini/antigravity-ide/mcp/atlassian-mcp-server",
+      "type": "Other",
+      "status": "HEALTHY",
+      "issues": []
+    },
+    {
+      "name": "azure",
+      "path": "/Users/m2ultra/.gemini/antigravity-ide/mcp/azure",
+      "type": "Other",
+      "status": "HEALTHY",
+      "issues": []
+    },
+    {
+      "name": "chrome-devtools-mcp",
+      "path": "/Users/m2ultra/.gemini/antigravity-ide/mcp/chrome-devtools-mcp",
+      "type": "Other",
+      "status": "HEALTHY",
+      "issues": []
+    },
+    {
+      "name": "clickhouse",
+      "path": "/Users/m2ultra/.gemini/antigravity-ide/mcp/clickhouse",
+      "type": "Other",
+      "status": "HEALTHY",
+      "issues": []
+    },
+    {
+      "name": "cloud-sql",
+      "path": "/Users/m2ultra/.gemini/antigravity-ide/mcp/cloud-sql",
+      "type": "Other",
+      "status": "HEALTHY",
+      "issues": []
+    },
+    {
+      "name": "cloud-sql-managed-mcp",
+      "path": "/Users/m2ultra/.gemini/antigravity-ide/mcp/cloud-sql-managed-mcp",
+      "type": "Other",
+      "status": "HEALTHY",
+      "issues": []
+    },
+    {
+      "name": "cloud-sql-postgresql-admin",
+      "path": "/Users/m2ultra/.gemini/antigravity-ide/mcp/cloud-sql-postgresql-admin",
+      "type": "Other",
+      "status": "HEALTHY",
+      "issues": []
+    },
+    {
+      "name": "cloud-sql-sqlserver-admin",
+      "path": "/Users/m2ultra/.gemini/antigravity-ide/mcp/cloud-sql-sqlserver-admin",
+      "type": "Other",
+      "status": "HEALTHY",
+      "issues": []
+    },
+    {
+      "name": "cloudflare",
+      "path": "/Users/m2ultra/.gemini/antigravity-ide/mcp/cloudflare",
+      "type": "Other",
+      "status": "HEALTHY",
+      "issues": []
+    },
+    {
+      "name": "cloudrun",
+      "path": "/Users/m2ultra/.gemini/antigravity-ide/mcp/cloudrun",
+      "type": "Other",
+      "status": "HEALTHY",
+      "issues": []
+    },
+    {
+      "name": "dart-mcp-server",
+      "path": "/Users/m2ultra/.gemini/antigravity-ide/mcp/dart-mcp-server",
+      "type": "Other",
+      "status": "HEALTHY",
+      "issues": []
+    },
+    {
+      "name": "firebase-mcp-server",
+      "path": "/Users/m2ultra/.gemini/antigravity-ide/mcp/firebase-mcp-server",
+      "type": "Other",
+      "status": "HEALTHY",
+      "issues": []
+    },
+    {
+      "name": "genkit-mcp-server",
+      "path": "/Users/m2ultra/.gemini/antigravity-ide/mcp/genkit-mcp-server",
+      "type": "Other",
+      "status": "HEALTHY",
+      "issues": []
+    },
+    {
+      "name": "gitlab-orbit",
+      "path": "/Users/m2ultra/.gemini/antigravity-ide/mcp/gitlab-orbit",
+      "type": "Other",
+      "status": "HEALTHY",
+      "issues": []
+    },
+    {
+      "name": "gke-oss",
+      "path": "/Users/m2ultra/.gemini/antigravity-ide/mcp/gke-oss",
+      "type": "Other",
+      "status": "HEALTHY",
+      "issues": []
+    },
+    {
+      "name": "gmp-code-assist",
+      "path": "/Users/m2ultra/.gemini/antigravity-ide/mcp/gmp-code-assist",
+      "type": "Other",
+      "status": "HEALTHY",
+      "issues": []
+    },
+    {
+      "name": "google-cloud-bigtable-admin",
+      "path": "/Users/m2ultra/.gemini/antigravity-ide/mcp/google-cloud-bigtable-admin",
+      "type": "Other",
+      "status": "HEALTHY",
+      "issues": []
+    },
+    {
+      "name": "google-cloud-firestore",
+      "path": "/Users/m2ultra/.gemini/antigravity-ide/mcp/google-cloud-firestore",
+      "type": "Other",
+      "status": "HEALTHY",
+      "issues": []
+    },
+    {
+      "name": "google-cloud-logging",
+      "path": "/Users/m2ultra/.gemini/antigravity-ide/mcp/google-cloud-logging",
+      "type": "Other",
+      "status": "HEALTHY",
+      "issues": []
+    },
+    {
+      "name": "google-cloud-monitoring",
+      "path": "/Users/m2ultra/.gemini/antigravity-ide/mcp/google-cloud-monitoring",
+      "type": "Other",
+      "status": "HEALTHY",
+      "issues": []
+    },
+    {
+      "name": "google-cloud-pubsub",
+      "path": "/Users/m2ultra/.gemini/antigravity-ide/mcp/google-cloud-pubsub",
+      "type": "Other",
+      "status": "HEALTHY",
+      "issues": []
+    },
+    {
+      "name": "google-cloud-resource-manager",
+      "path": "/Users/m2ultra/.gemini/antigravity-ide/mcp/google-cloud-resource-manager",
+      "type": "Other",
+      "status": "HEALTHY",
+      "issues": []
+    },
+    {
+      "name": "google-cloud-spanner",
+      "path": "/Users/m2ultra/.gemini/antigravity-ide/mcp/google-cloud-spanner",
+      "type": "Other",
+      "status": "HEALTHY",
+      "issues": []
+    },
+    {
+      "name": "google-compute-engine",
+      "path": "/Users/m2ultra/.gemini/antigravity-ide/mcp/google-compute-engine",
+      "type": "Other",
+      "status": "HEALTHY",
+      "issues": []
+    },
+    {
+      "name": "google-developer-knowledge",
+      "path": "/Users/m2ultra/.gemini/antigravity-ide/mcp/google-developer-knowledge",
+      "type": "Other",
+      "status": "HEALTHY",
+      "issues": []
+    },
+    {
+      "name": "google-managed-service-for-apache-kafka",
+      "path": "/Users/m2ultra/.gemini/antigravity-ide/mcp/google-managed-service-for-apache-kafka",
+      "type": "Other",
+      "status": "HEALTHY",
+      "issues": []
+    },
+    {
+      "name": "gopls-mcp-server",
+      "path": "/Users/m2ultra/.gemini/antigravity-ide/mcp/gopls-mcp-server",
+      "type": "Other",
+      "status": "HEALTHY",
+      "issues": []
+    },
+    {
+      "name": "heroku",
+      "path": "/Users/m2ultra/.gemini/antigravity-ide/mcp/heroku",
+      "type": "Other",
+      "status": "HEALTHY",
+      "issues": []
+    },
+    {
+      "name": "localgenius",
+      "path": "/Users/m2ultra/.gemini/antigravity-ide/mcp/localgenius",
+      "type": "Other",
+      "status": "HEALTHY",
+      "issues": []
+    },
+    {
+      "name": "locofy",
+      "path": "/Users/m2ultra/.gemini/antigravity-ide/mcp/locofy",
+      "type": "Other",
+      "status": "HEALTHY",
+      "issues": []
+    },
+    {
+      "name": "mcp-server-neon",
+      "path": "/Users/m2ultra/.gemini/antigravity-ide/mcp/mcp-server-neon",
+      "type": "Other",
+      "status": "HEALTHY",
+      "issues": []
+    },
+    {
+      "name": "mongodb-mcp-server",
+      "path": "/Users/m2ultra/.gemini/antigravity-ide/mcp/mongodb-mcp-server",
+      "type": "Other",
+      "status": "HEALTHY",
+      "issues": []
+    },
+    {
+      "name": "netlify",
+      "path": "/Users/m2ultra/.gemini/antigravity-ide/mcp/netlify",
+      "type": "Other",
+      "status": "HEALTHY",
+      "issues": []
+    },
+    {
+      "name": "notebooks",
+      "path": "/Users/m2ultra/.gemini/antigravity-ide/mcp/notebooks",
+      "type": "Other",
+      "status": "HEALTHY",
+      "issues": []
+    },
+    {
+      "name": "notion-mcp-server",
+      "path": "/Users/m2ultra/.gemini/antigravity-ide/mcp/notion-mcp-server",
+      "type": "Other",
+      "status": "HEALTHY",
+      "issues": []
+    },
+    {
+      "name": "pinecone-mcp-server",
+      "path": "/Users/m2ultra/.gemini/antigravity-ide/mcp/pinecone-mcp-server",
+      "type": "Other",
+      "status": "HEALTHY",
+      "issues": []
+    },
+    {
+      "name": "posthog",
+      "path": "/Users/m2ultra/.gemini/antigravity-ide/mcp/posthog",
+      "type": "Other",
+      "status": "HEALTHY",
+      "issues": []
+    },
+    {
+      "name": "prisma-mcp-server",
+      "path": "/Users/m2ultra/.gemini/antigravity-ide/mcp/prisma-mcp-server",
+      "type": "Other",
+      "status": "HEALTHY",
+      "issues": []
+    },
+    {
+      "name": "redis",
+      "path": "/Users/m2ultra/.gemini/antigravity-ide/mcp/redis",
+      "type": "Other",
+      "status": "HEALTHY",
+      "issues": []
+    },
+    {
+      "name": "sequential-thinking",
+      "path": "/Users/m2ultra/.gemini/antigravity-ide/mcp/sequential-thinking",
+      "type": "Other",
+      "status": "HEALTHY",
+      "issues": []
+    },
+    {
+      "name": "sonatype-guide",
+      "path": "/Users/m2ultra/.gemini/antigravity-ide/mcp/sonatype-guide",
+      "type": "Other",
+      "status": "HEALTHY",
+      "issues": []
+    },
+    {
+      "name": "supabase",
+      "path": "/Users/m2ultra/.gemini/antigravity-ide/mcp/supabase",
+      "type": "Other",
+      "status": "HEALTHY",
+      "issues": []
+    },
+    {
+      "name": "vertex-ai-search",
+      "path": "/Users/m2ultra/.gemini/antigravity-ide/mcp/vertex-ai-search",
+      "type": "Other",
+      "status": "HEALTHY",
+      "issues": []
+    },
+    {
+      "name": "visualization",
+      "path": "/Users/m2ultra/.gemini/antigravity-ide/mcp/visualization",
+      "type": "Other",
+      "status": "HEALTHY",
+      "issues": []
+    }
+  ],
+  "local_apis_audited": [
+    {
+      "name": "LM Studio",
+      "status": "ONLINE",
+      "details": "21 models"
+    },
+    {
+      "name": "Desktop Commander",
+      "status": "LISTENING",
+      "code": 404
+    },
+    {
+      "name": "Apache httpd",
+      "status": "SYNTAX_OK"
+    }
+  ],
+  "broken_items": [
+    "MCP 'gabriel-mcp' command 'node' not found in PATH",
+    "MCP 'lucy-mcp' command 'node' not found in PATH",
+    "MCP 'heaven-mcp' command 'node' not found in PATH",
+    "MCP 'voice-bridge' command 'node' not found in PATH",
+    "MCP 'engr-keith-mcp' command 'node' not found in PATH",
+    "MCP 'dream-mcp' command 'node' not found in PATH",
+    "MCP 'cb01-mcp' command 'node' not found in PATH",
+    "MCP 'shirley-mcp' command 'node' not found in PATH",
+    "MCP 'family-mcp' command 'node' not found in PATH",
+    "MCP 'shortcuts-mcp' command 'node' not found in PATH",
+    "MCP 'consent-oracle' command 'node' not found in PATH",
+    "MCP 'synthesis-oracle' command 'node' not found in PATH",
+    "MCP 'gemma3' command 'node' not found in PATH",
+    "MCP 'supersonic' command 'node' not found in PATH",
+    "MCP 'god-local-diag' command 'node' not found in PATH",
+    "MCP 'n8n-mcp' command 'npx' not found in PATH",
+    "MCP 'mac-apps-mcp' command 'node' not found in PATH",
+    "MCP 'local-intelligence' command 'node' not found in PATH",
+    "MCP 'k8s-mcp' command 'node' not found in PATH",
+    "MCP 'mcp-health' command 'node' not found in PATH",
+    "MCP 'gabriel-mcp' command 'node' not found in PATH",
+    "MCP 'lucy-mcp' command 'node' not found in PATH",
+    "MCP 'heaven-mcp' command 'node' not found in PATH",
+    "MCP 'voice-bridge' command 'node' not found in PATH",
+    "MCP 'engr-keith-mcp' command 'node' not found in PATH",
+    "MCP 'dream-mcp' command 'node' not found in PATH",
+    "MCP 'cb01-mcp' command 'node' not found in PATH",
+    "MCP 'shirley-mcp' command 'node' not found in PATH",
+    "MCP 'family-mcp' command 'node' not found in PATH",
+    "MCP 'shortcuts-mcp' command 'node' not found in PATH",
+    "MCP 'consent-oracle' command 'node' not found in PATH",
+    "MCP 'synthesis-oracle' command 'node' not found in PATH",
+    "MCP 'gemma3' command 'node' not found in PATH",
+    "MCP 'supersonic' command 'node' not found in PATH",
+    "MCP 'god-local-diag' command 'node' not found in PATH",
+    "MCP 'n8n-mcp' command 'npx' not found in PATH",
+    "MCP 'markitdown' command 'markitdown-mcp' not found in PATH",
+    "MCP 'scrapling' command 'scrapling' not found in PATH",
+    "MCP 'mac-apps-mcp' command 'node' not found in PATH"
+  ],
+  "fixed_items": []
+}

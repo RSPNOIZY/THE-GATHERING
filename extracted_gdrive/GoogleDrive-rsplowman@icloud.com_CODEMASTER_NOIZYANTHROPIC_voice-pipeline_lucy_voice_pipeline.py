@@ -23,15 +23,12 @@ Voice: Kate (en_AU, Siri neural) / Karen (en_AU, macOS fallback)
 """
 
 import json
-import os
 import subprocess
-import sys
 import hashlib
 import time
 from datetime import datetime, timezone
 from pathlib import Path
 from http.client import HTTPConnection
-from urllib.parse import urlencode
 
 # ═══════════════════════════════════════════════════════════════
 # CONFIGURATION
@@ -510,10 +507,10 @@ def main():
         parser.print_help()
         print()
         print(f"  {M}Examples:{N}")
-        print(f"    python lucy_voice_pipeline.py speak \"Session is live, all green\"")
-        print(f"    python lucy_voice_pipeline.py reference")
-        print(f"    python lucy_voice_pipeline.py shortcut -o ~/Desktop/lucy_shortcut.json")
-        print(f"    python lucy_voice_pipeline.py status")
+        print("    python lucy_voice_pipeline.py speak \"Session is live, all green\"")
+        print("    python lucy_voice_pipeline.py reference")
+        print("    python lucy_voice_pipeline.py shortcut -o ~/Desktop/lucy_shortcut.json")
+        print("    python lucy_voice_pipeline.py status")
 
 
 if __name__ == "__main__":

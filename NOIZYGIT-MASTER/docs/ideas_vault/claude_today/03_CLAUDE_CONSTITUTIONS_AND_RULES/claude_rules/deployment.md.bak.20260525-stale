@@ -1,0 +1,100 @@
+---
+description: Deployment procedures, smoke tests, infrastructure commands, and critical deployment rules.
+paths:
+  - "deploy.sh"
+  - "smoke_test.sh"
+  - "wrangler.toml"
+  - "docker-compose.yml"
+  - "ecosystem.config.js"
+  - "Dockerfile"
+---
+
+# DEPLOYMENT — PROCEDURES & RULES
+
+## ⛔ CONFIG FREEZE — April 16 → April 17 18:00 ET
+
+**Purpose:** Lock the empire state before launch. No MCP/hook/plugin config changes except P0 fixes.
+
+- Do NOT edit `~/.claude/settings.json`, `.mcp.json`, `claude_desktop_config.json`, or any `mcp*.json`
+- Do NOT install or uninstall Claude Code plugins or MCP servers
+- Do NOT add or remove agents, skills, or hooks
+- P0 exception: a confirmed production-blocking bug, with explicit RSP_001 approval, logged to DAZEFLOW
+- Freeze lifts April 17 after the launch milestone is hit
+
+## Heaven (Cloudflare Worker)
+
+```bash
+# Deploy from project root
+npx wrangler deploy
+
+# Seed database (idempotent — safe to re-run)
+npx wrangler d1 execute gabriel_db --remote --file seed.sql
+
+# Run smoke tests (14 tests with auth)
+bash smoke_test.sh
+
+# Health check
+curl https://heaven.rsp-5f3.workers.dev/health
+```
+
+## DreamChamber (Local on GOD.local)
+
+```bash
+cd dreamchamber && npm start    # port 7777
+```
+
+Docker stack: `docker-compose up -d` (nginx + dreamchamber + postgres + redis)
+
+## Voice Bridge
+
+```bash
+node scripts/voice-bridge-server.js     # port 8080
+```
+
+Target: deploy as PM2 service.
+
+## noizy.ai Landing Page
+
+```bash
+cd noizy-landing && npx wrangler deploy
+```
+
+Worker source: `noizy-landing/src/index.js`
+Routes: `noizy.ai/*` and `noizy.ai`
+
+## Critical Deployment Rules
+
+1. **NEVER commit `.env` files** — API keys stay local
+2. **NEVER deploy without running smoke tests first** — use `noizy-deploy` skill
+3. **NEVER deploy consent changes without running consent-audit skill first**
+4. **Single process mode** for DreamChamber — WebSocket + in-memory state require `instances: 1`
+5. **D1 database ID**: `a31d68e2-f2d4-4203-a803-8039fdff31cb` — verify in `wrangler.toml`
+6. **deploy.sh URL**: must point to `rsp-5f3.workers.dev` (not `rsplowman` or `noizylab`)
+7. **macOS BSD compatibility**: use `sed '$d'` not `head -n -1` in shell scripts
+8. **CLOUDFLARE LOGIN**: Currently `rsp@noizyfish.com` — MUST change to `rsplowman@icloud.com` BEFORE completing the GoDaddy registrar transfer (see below). `rsp@noizy.ai` has never been registered at GoDaddy. There is no M365.
+9. **Agent dispatch**: For complex deploys, use `gabriel-ops` skill to dispatch parallel agents
+
+> **Skills**: `noizy-deploy`, `consent-audit`, `empire-status`, `godaddy-migration` — use before every deploy.
+
+## GoDaddy Exit Dependencies
+
+GoDaddy holds **domain registration only** for fishmusicinc.com, noizyfish.com, noizyfish.ca, and noizy.ai. No mail host, no M365. DNS and email routing (Cloudflare Email Routing, free forwarding) already live inside the Cloudflare account.
+
+The circular dependency: the Cloudflare account login is `rsp@noizyfish.com`, and that address's forwarding is managed *inside* the same Cloudflare account. If anything breaks during the registrar transfer, you could lose access to the mailbox that recovers the account. **Step 0 of the GoDaddy exit**: change Cloudflare login to `rsplowman@icloud.com` (iCloud — no domain dependency). Then proceed with registrar transfer via the `godaddy-migration` skill.
+
+## Environment Variables (Required)
+
+```
+NOIZY_API_KEY          — Heaven auth
+ANTHROPIC_API_KEY      — Claude models
+GOOGLE_API_KEY         — Gemini + Gemma models
+OPENAI_API_KEY         — GPT models
+TOGETHER_API_KEY       — Llama models
+MISTRAL_API_KEY        — Mistral models
+COHERE_API_KEY         — Command R+
+PERPLEXITY_API_KEY     — Search model
+HEAVEN_URL           — https://heaven.rsp-5f3.workers.dev
+GABRIEL_MODEL          — default: claude-sonnet-4
+JWT_SECRET             — DreamChamber auth
+VOICE_AUTH_TOKEN       — Voice bridge auth
+```

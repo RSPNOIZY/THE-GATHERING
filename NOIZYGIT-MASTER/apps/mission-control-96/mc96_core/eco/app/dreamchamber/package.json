@@ -1,0 +1,31 @@
+{
+  "name": "dreamchamber-control",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev:server": "tsx watch server/src/index.ts",
+    "build:server": "tsc -p server",
+    "dev:app": "vite",
+    "dev": "concurrently \"npm:dev:server\" \"npm:dev:app\""
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.2",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.1",
+    "@types/node": "^22.13.5",
+    "@types/react": "^19.0.10",
+    "@types/react-dom": "^19.0.4",
+    "@vitejs/plugin-react": "^4.4.1",
+    "concurrently": "^9.1.2",
+    "tsx": "^4.19.3",
+    "typescript": "^5.7.3",
+    "vite": "^6.2.0"
+  }
+}

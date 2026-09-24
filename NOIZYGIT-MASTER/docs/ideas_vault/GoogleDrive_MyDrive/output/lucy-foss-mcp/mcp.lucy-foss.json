@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "lucy-foss": {
+      "command": "/opt/homebrew/bin/python3",
+      "args": [
+        "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/output/lucy-foss-mcp/server.py"
+      ],
+      "env": {
+        "LUCY_WORKSPACE": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive",
+        "LUCY_OUTPUT": "/Users/m2ultra/Library/CloudStorage/GoogleDrive-rspplowman@gmail.com/My Drive/output/lucy-foss-mcp/generated"
+      }
+    }
+  }
+}

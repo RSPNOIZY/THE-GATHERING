@@ -1,0 +1,46 @@
+#!/bin/bash
+# noizynet-tunnel — Create SSH tunnels to NOIZYNET services
+# Usage: noizynet-tunnel <profile>
+# Profiles: audio, api, full
+
+set -euo pipefail
+
+PROFILE="${1:-full}"
+
+case "$PROFILE" in
+    audio)
+        echo "🎧 Opening audio tunnel to Micky-P..."
+        ssh -N -L 52800:127.0.0.1:52800 \
+               -L 52801:127.0.0.1:52801 \
+               micky-p &
+        echo "✓ AU Net Send ports forwarded (52800, 52801)"
+        echo "  PID: $!"
+        ;;
+    api)
+        echo "🔌 Opening API tunnels..."
+        ssh -N -L 9099:127.0.0.1:9099 \
+               -L 5678:127.0.0.1:5678 \
+               god &
+        echo "✓ GABRIEL API (9099) and n8n (5678) forwarded"
+        echo "  PID: $!"
+        ;;
+    full)
+        echo "🌐 Opening full NOIZYNET tunnel..."
+        ssh -N -L 52800:127.0.0.1:52800 \
+               -L 52801:127.0.0.1:52801 \
+               micky-p &
+        AUDIO_PID=$!
+        echo "✓ Audio tunnels: PID $AUDIO_PID"
+
+        echo ""
+        echo "Active tunnels:"
+        echo "  52800 → Micky-P AU Net Send (default)"
+        echo "  52801 → Micky-P AU Net Send (alt)"
+        echo ""
+        echo "Kill all: kill $AUDIO_PID"
+        ;;
+    *)
+        echo "Usage: noizynet-tunnel <audio|api|full>"
+        exit 1
+        ;;
+esac

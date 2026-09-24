@@ -1,0 +1,51 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "noizy-teams-bridge",
+  "main": "index.ts",
+  "compatibility_date": "2025-04-01",
+  "compatibility_flags": ["nodejs_compat"],
+
+  // Production-level observability
+  "observability": {
+    "enabled": true
+  },
+
+  // D1 binding — request logging
+  "d1_databases": [
+    {
+      "binding": "NOIZY_DB",
+      "database_name": "noizyai-db",
+      "database_id": "ebcf576f-51e3-4e3d-829e-219f8fe6001c"
+    }
+  ],
+
+  // Staging environment
+  "env": {
+    "staging": {
+      "name": "noizy-teams-bridge-staging",
+      "vars": {
+        "ENVIRONMENT": "staging"
+      },
+      "d1_databases": [
+        {
+          "binding": "NOIZY_DB",
+          "database_name": "noizyai-db",
+          "database_id": "ebcf576f-51e3-4e3d-829e-219f8fe6001c"
+        }
+      ]
+    },
+    "production": {
+      "name": "noizy-teams-bridge",
+      "vars": {
+        "ENVIRONMENT": "production"
+      },
+      "d1_databases": [
+        {
+          "binding": "NOIZY_DB",
+          "database_name": "noizyai-db",
+          "database_id": "ebcf576f-51e3-4e3d-829e-219f8fe6001c"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "vault_domain": "Cloudflare Zero Trust & Edge Gateway",
+  "version": "4.0.0-SOVEREIGN",
+  "organization": "NOIZYLAB / Fishmusicinc",
+  "tunnels": {
+    "primary_tunnel": {
+      "name": "noizy-god-tunnel",
+      "service_plist": "/Users/m2ultra/Library/LaunchAgents/com.noizy.cloudflared-tunnel.plist",
+      "routes": {
+        "api.noizy.ai": "http://localhost:8080",
+        "gabriel.dreamchamber": "http://localhost:7777",
+        "n8n.noizy.ai": "http://localhost:5678",
+        "metrics.noizy.ai": "http://localhost:3000"
+      }
+    }
+  },
+  "worker_secrets": {
+    "heaven_worker": {
+      "worker_name": "heaven",
+      "account_id": "5f36aa9795348ea681d0b21910dfc82a",
+      "subdomain": "rsp-5f3.workers.dev",
+      "required_secrets": [
+        "NOIZY_KEY",
+        "ANTHROPIC_API_KEY",
+        "LINEAR_API_KEY",
+        "N8N_WEBHOOK_SECRET"
+      ]
+    }
+  },
+  "zero_trust_access": {
+    "team_domain": "noizylab",
+    "jwt_header": "Cf-Access-Jwt-Assertion",
+    "mfa_enforced": true
+  }
+}

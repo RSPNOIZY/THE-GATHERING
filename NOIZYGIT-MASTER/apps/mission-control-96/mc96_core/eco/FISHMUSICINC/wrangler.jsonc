@@ -1,0 +1,39 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "fish-noizy-ai",
+  "main": "src/index.ts",
+  "compatibility_date": "2025-04-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "observability": { "enabled": true },
+
+  "d1_databases": [
+    {
+      "binding": "FISH_DB",
+      "database_name": "fishmusicinc-db",
+      "database_id": "6d568a02-7301-45ad-8254-33cfe09ae1ea"
+    }
+  ],
+
+  "kv_namespaces": [
+    { "binding": "KV_ROYALTIES", "id": "2cf2dce6685f4ff9a34b8ff02edb4cbd" },
+    { "binding": "KV_SESSIONS", "id": "fae96fe5457c4cba9376a0204f0ae348" }
+  ],
+
+  "vars": {
+    "NOIZYSTREAM_URL": "http://GOD.local:7778",
+    "CONSENT_GATEWAY_URL": "https://consent-gateway.rsp-5f3.workers.dev"
+  },
+
+  "env": {
+    "staging": {
+      "vars": {
+        "NOIZYSTREAM_URL": "http://GOD.local:7778"
+      }
+    },
+    "production": {
+      "vars": {
+        "NOIZYSTREAM_URL": "http://GOD.local:7778"
+      }
+    }
+  }
+}

@@ -1,0 +1,89 @@
+# ═══════════════════════════════════════════════════════════════
+# NOIZY AI BUSINESS SUITE — Caddy Reverse Proxy
+# All services accessible via clean URLs
+# ═══════════════════════════════════════════════════════════════
+
+# Nextcloud (Drive/Docs/Calendar) — :8080
+cloud.noizy.local {
+	reverse_proxy noizy-nextcloud:80
+}
+
+# NocoDB (AI Spreadsheets) — :8081
+sheets.noizy.local {
+	reverse_proxy noizy-nocodb:8080
+}
+
+# SearXNG (Private Search) — :8082
+search.noizy.local {
+	reverse_proxy noizy-searxng:8080
+}
+
+# Stirling PDF — :8083
+pdf.noizy.local {
+	reverse_proxy noizy-stirling-pdf:8080
+}
+
+# Formbricks (Forms) — :8084
+forms.noizy.local {
+	reverse_proxy noizy-formbricks:3000
+}
+
+# Plausible (Analytics) — :8085
+analytics.noizy.local {
+	reverse_proxy noizy-plausible:8000
+}
+
+# Langfuse (AI Observability) — :8086
+ai.noizy.local {
+	reverse_proxy noizy-langfuse:3000
+}
+
+# LiteLLM (AI Gateway) — :4000
+api.noizy.local {
+	reverse_proxy noizy-litellm:4000
+}
+
+# Uptime Kuma (Monitoring) — :3001
+status.noizy.local {
+	reverse_proxy noizy-uptime-kuma:3001
+}
+
+# Collabora (Office editing) — :9980
+office.noizy.local {
+	reverse_proxy noizy-collabora:9980
+}
+
+# Default — service directory
+:80 {
+	respond `
+NOIZY AI BUSINESS SUITE — GOD (M2 Ultra)
+═════════════════════════════════════════
+
+CLOUD & DOCS
+  cloud.noizy.local   → Nextcloud (Drive/Docs/Calendar)
+  office.noizy.local  → Collabora (Document Editor)
+  sheets.noizy.local  → NocoDB (AI Spreadsheets)
+  pdf.noizy.local     → Stirling PDF (AI PDF Tools)
+  forms.noizy.local   → Formbricks (AI Forms)
+
+AI & SEARCH
+  api.noizy.local     → LiteLLM (AI Gateway: Claude + Ollama)
+  search.noizy.local  → SearXNG (Private Search)
+  ai.noizy.local      → Langfuse (AI Observability)
+
+MONITORING
+  status.noizy.local  → Uptime Kuma
+  analytics.noizy.local → Plausible
+
+EXISTING SERVICES
+  localhost:3080      → Open WebUI (AI Chat)
+  localhost:5678      → n8n (24 Workflows)
+  localhost:9099      → GABRIEL API
+  localhost:3000      → Grafana
+  localhost:7474      → Neo4j
+  localhost:6333      → Qdrant
+  localhost:11434     → Ollama (19 models)
+
+RSP_001 — NOIZY EMPIRE — 5th EPOCH
+` 200
+}

@@ -15,7 +15,6 @@ Motto: GORUNFREE!!
 """
 
 import os
-import json
 from dataclasses import dataclass
 from typing import Optional, Dict, Any, List
 from enum import Enum
@@ -101,7 +100,7 @@ class GabrielMCPOrchestrator:
         active = [k for k, v in self._active_servers.items() if v]
         missing = [k for k, v in self._active_servers.items() if not v]
 
-        print(f"🤖 GABRIEL MCP Orchestrator initialized")
+        print("🤖 GABRIEL MCP Orchestrator initialized")
         print(f"✅ Active servers: {', '.join(active) if active else 'None'}")
         if missing:
             print(f"⚠️  Missing credentials for: {', '.join(missing)}")

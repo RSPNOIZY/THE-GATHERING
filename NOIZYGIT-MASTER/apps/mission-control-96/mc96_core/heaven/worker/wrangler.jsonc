@@ -1,0 +1,23 @@
+// Heaven — Cloudflare Worker Configuration
+// MC96 Ecosystem — NOIZYLAB
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "heaven",
+  "main": "src/index.ts",
+  "compatibility_date": "2024-12-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": true,
+
+  "vars": {
+    "IDENTITY": "heaven",
+    "ENVIRONMENT": "production",
+    "CF_TEAM_DOMAIN": "noizylab",
+    "TUNNEL_DOMAIN": "noizy.ai"
+  }
+
+  // KV + D1 bindings will be added after deployment
+  // Step 1: Deploy worker (this file)
+  // Step 2: wrangler kv namespace create HEAVEN_KV
+  // Step 3: wrangler d1 create heaven-db
+  // Step 4: Paste IDs back and redeploy
+}

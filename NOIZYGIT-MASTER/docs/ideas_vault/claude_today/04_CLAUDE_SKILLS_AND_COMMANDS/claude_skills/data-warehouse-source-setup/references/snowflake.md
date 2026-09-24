@@ -1,0 +1,86 @@
+# Linking Snowflake as a source - Docs
+
+The data warehouse can link to data in Snowflake.
+
+Start by going to the [Data pipeline page](https://app.posthog.com/data-management/sources) and the sources tab and clicking **New source**. Choose Snowflake and enter the following data:
+
+-   **Account identifier**: Likely a combination of your organization and the name of the account (e.g. `myorg-account123`). You can find this in the sidebar account selector or by executing the `CURRENT_ACCOUNT_NAME` and `CURRENT_ORGANIZATION_NAME` functions in SQL.
+-   **Database**: Like `tasty_bytes_sample_data`
+-   **Warehouse**: Like `compute_wh`
+-   **User**: Your username like `IANVPH`
+-   **Password**: The password for your user
+-   **Role (optional)**: The role with necessary privileges to access your context like `accountadmin`.
+-   **Schema**: The schema for your database like `RAW_POS`. If it isn't working, trying using all caps.
+-   **Table Prefix:** The optional prefix for your tables in PostHog. For example, if your table name ended up being `menu`, a prefix of `snow_prod_` would create a table in PostHog called `snow_prod_menu`.
+
+![Snowflake details](https://res.cloudinary.com/dmukukwp6/image/upload/Clean_Shot_2024_07_23_at_13_50_56_2x_c31bfa6237.png)![Snowflake details](https://res.cloudinary.com/dmukukwp6/image/upload/Clean_Shot_2024_07_23_at_13_50_42_2x_aa20de1109.png)
+
+Once added, click **Next**, select the tables you want to sync, as well as the [sync method](/docs/cdp/sources.md#incremental-vs-full-table), and then press **Import**.
+
+Once done, you can now [query](/docs/data-warehouse/query.md) your new table using the table name.
+
+![Snowflake details](https://res.cloudinary.com/dmukukwp6/image/upload/Clean_Shot_2024_07_23_at_13_56_32_2x_9c0bc2d35f.png)![Snowflake details](https://res.cloudinary.com/dmukukwp6/image/upload/Clean_Shot_2024_07_23_at_13_56_53_2x_76a2b7f711.png)
+
+## Troubleshooting
+
+### Network policy blocking connection
+
+**Problem:** Your Snowflake sync fails with an error like:
+
+> Incoming request with IP/Token is not allowed to access Snowflake. Contact your account administrator.
+
+**Solution:** Your Snowflake account has a [network policy](https://docs.snowflake.com/en/user-guide/network-policies) (IP allowlist) that doesn't include PostHog's egress IP addresses. Ask your Snowflake administrator to add the IP addresses listed in the [Configuration](#configuration) section below to your network policy allowlist. Once updated, retry the sync.
+
+### Invalid JWT token with key-pair authentication
+
+**Problem:** Your Snowflake sync fails with an error like:
+
+> JWT token is invalid
+
+**Solution:** Snowflake rejected key-pair authentication because the private key you configured doesn't match the public key registered on the Snowflake user. This can happen when:
+
+-   The public key was rotated or removed from the Snowflake user
+-   You pasted the wrong private key
+-   The private key belongs to a different Snowflake user
+
+To fix this, verify that the public key matching your private key is registered on your Snowflake user. See [Snowflake's key-pair authentication documentation](https://docs.snowflake.com/en/user-guide/key-pair-auth) for instructions. Either re-register the matching public key on the Snowflake user, or update your PostHog source configuration with the correct private key. Once corrected, resync your data.
+
+### Multi-factor authentication enrollment required
+
+**Problem:** Your Snowflake sync fails with an error like:
+
+> Multi-factor authentication is required for this account. Log in to Snowsight to enroll.
+
+**Solution:** The Snowflake account requires MFA enrollment, but the connecting user hasn't enrolled. PostHog runs unattended syncs that can't complete an MFA enrollment flow, so retrying never succeeds.
+
+To fix this, connect with a service user that uses [key-pair authentication](https://docs.snowflake.com/en/user-guide/key-pair-auth) (which bypasses MFA), or use a user account that is exempt from your account's MFA requirement. Once updated, resync your data.
+
+## Configuration
+
+| Option | Type | Required |
+| --- | --- | --- |
+| Connection string (optional) | text | No |
+| Account id | text | Yes |
+| Database | text | Yes |
+| Warehouse | text | Yes |
+| Authentication type | select | Yes |
+| Role (optional) | text | No |
+| Schema (optional) | text | No |
+
+#### Inbound IP addresses
+
+We use a set of IP addresses to access your instance. To ensure this connector works, add these IPs to your inbound security rules:
+
+| US | EU |
+| --- | --- |
+| 44.205.89.55 | 3.75.65.221 |
+| 52.4.194.122 | 18.197.246.42 |
+| 44.208.188.173 | 3.120.223.253 |
+
+### Community questions
+
+Ask a question
+
+### Was this page useful?
+
+HelpfulCould be better

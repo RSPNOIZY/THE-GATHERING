@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MC96 — NOIZY Eco Universe Portal</title>
+<meta name="description" content="MC96 Eco Universe — NOIZY Empire asset portal. Voice DNA, consent ledger, system health, and infrastructure command center.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-deep: #0a0a0f;
+    --bg-card: rgba(18, 18, 28, 0.85);
+    --bg-hover: rgba(30, 30, 45, 0.95);
+    --border: rgba(255, 255, 255, 0.06);
+    --border-glow: rgba(120, 90, 255, 0.3);
+    --text-primary: #e8e6f0;
+    --text-muted: #8b8799;
+    --accent-purple: #785aff;
+    --accent-gold: #f5c842;
+    --accent-green: #34d399;
+    --accent-red: #ef4444;
+    --accent-blue: #60a5fa;
+    --accent-pink: #f472b6;
+    --font-sans: 'Inter', -apple-system, sans-serif;
+    --font-mono: 'JetBrains Mono', 'SF Mono', monospace;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { font-size: 15px; }
+  body {
+    font-family: var(--font-sans);
+    background: var(--bg-deep);
+    color: var(--text-primary);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  /* Ambient glow */
+  body::before {
+    content: '';
+    position: fixed; top: -200px; left: 50%; width: 800px; height: 800px;
+    background: radial-gradient(circle, rgba(120,90,255,0.08) 0%, transparent 70%);
+    transform: translateX(-50%); z-index: 0; pointer-events: none;
+  }
+
+  .container {
+    max-width: 1200px; margin: 0 auto; padding: 2rem 1.5rem;
+    position: relative; z-index: 1;
+  }
+
+  /* Header */
+  .header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.5rem 0; border-bottom: 1px solid var(--border); margin-bottom: 2rem;
+  }
+  .header h1 {
+    font-size: 1.8rem; font-weight: 900; letter-spacing: -0.03em;
+    background: linear-gradient(135deg, var(--accent-purple), var(--accent-gold));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .header .subtitle { color: var(--text-muted); font-size: 0.85rem; font-weight: 400; }
+  .badge {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    background: rgba(52, 211, 153, 0.12); color: var(--accent-green);
+    padding: 0.3rem 0.8rem; border-radius: 100px; font-size: 0.75rem; font-weight: 600;
+    border: 1px solid rgba(52, 211, 153, 0.2);
+  }
+  .badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent-green); animation: pulse 2s infinite; }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+  /* Grid */
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 1.2rem; margin-bottom: 2rem; }
+
+  /* Cards */
+  .card {
+    background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px;
+    padding: 1.5rem; transition: all 0.3s ease; position: relative; overflow: hidden;
+    backdrop-filter: blur(20px);
+  }
+  .card:hover { border-color: var(--border-glow); transform: translateY(-2px); background: var(--bg-hover); }
+  .card::after {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent-purple), transparent);
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .card:hover::after { opacity: 1; }
+
+  .card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; }
+  .card-icon { font-size: 1.4rem; }
+  .card-title { font-size: 1rem; font-weight: 700; color: var(--text-primary); }
+  .card-label { font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600; }
+
+  .stat { font-family: var(--font-mono); font-size: 2rem; font-weight: 700; margin: 0.5rem 0; }
+  .stat-purple { color: var(--accent-purple); }
+  .stat-gold { color: var(--accent-gold); }
+  .stat-green { color: var(--accent-green); }
+  .stat-blue { color: var(--accent-blue); }
+  .stat-pink { color: var(--accent-pink); }
+
+  .meta { color: var(--text-muted); font-size: 0.8rem; line-height: 1.6; }
+  .meta a { color: var(--accent-purple); text-decoration: none; }
+  .meta a:hover { text-decoration: underline; }
+
+  /* Status rows */
+  .status-row { display: flex; justify-content: space-between; align-items: center; padding: 0.5rem 0; border-bottom: 1px solid var(--border); }
+  .status-row:last-child { border-bottom: none; }
+  .status-label { font-size: 0.85rem; color: var(--text-muted); }
+  .status-value { font-family: var(--font-mono); font-size: 0.85rem; font-weight: 500; }
+  .status-live { color: var(--accent-green); }
+  .status-warn { color: var(--accent-gold); }
+  .status-dead { color: var(--accent-red); }
+
+  /* Links */
+  .link-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; margin-top: 0.8rem; }
+  .link-btn {
+    display: flex; align-items: center; gap: 0.5rem;
+    padding: 0.6rem 1rem; border-radius: 10px; font-size: 0.8rem; font-weight: 500;
+    background: rgba(120, 90, 255, 0.08); border: 1px solid rgba(120, 90, 255, 0.15);
+    color: var(--text-primary); text-decoration: none; transition: all 0.2s;
+  }
+  .link-btn:hover { background: rgba(120, 90, 255, 0.18); border-color: rgba(120, 90, 255, 0.35); transform: translateY(-1px); }
+
+  /* Footer */
+  .footer {
+    text-align: center; padding: 2rem 0; border-top: 1px solid var(--border);
+    color: var(--text-muted); font-size: 0.75rem; line-height: 1.8;
+  }
+  .footer .brand { color: var(--accent-purple); font-weight: 700; }
+  .mono { font-family: var(--font-mono); font-size: 0.78rem; }
+
+  /* Full-width card */
+  .card-full { grid-column: 1 / -1; }
+
+  /* Table */
+  table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+  th { text-align: left; color: var(--text-muted); font-weight: 600; padding: 0.5rem 0.8rem; border-bottom: 1px solid var(--border); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; }
+  td { padding: 0.6rem 0.8rem; border-bottom: 1px solid var(--border); }
+  tr:hover td { background: rgba(120, 90, 255, 0.04); }
+
+  @media (max-width: 768px) {
+    .grid { grid-template-columns: 1fr; }
+    .link-grid { grid-template-columns: 1fr; }
+    .header { flex-direction: column; gap: 0.5rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Header -->
+  <header class="header">
+    <div>
+      <h1>MC96 · Eco Universe</h1>
+      <div class="subtitle">NOIZY Empire — Asset & Infrastructure Portal</div>
+    </div>
+    <div class="badge">SOVEREIGN</div>
+  </header>
+
+  <!-- Status Grid -->
+  <div class="grid">
+
+    <!-- HEAVEN Kernel -->
+    <div class="card" id="heaven-card">
+      <div class="card-header">
+        <span class="card-icon">⚡</span>
+        <span class="card-label">Consent Kernel</span>
+      </div>
+      <div class="card-title">HEAVEN</div>
+      <div class="stat stat-purple" id="heaven-status">—</div>
+      <div class="meta">
+        <a href="https://heaven.rsp-5f3.workers.dev/health" target="_blank">Health</a> ·
+        <a href="https://heaven.rsp-5f3.workers.dev/dashboard" target="_blank">Dashboard</a> ·
+        <a href="https://heaven.rsp-5f3.workers.dev/gabriel" target="_blank">Gabriel</a>
+      </div>
+    </div>
+
+    <!-- DreamChamber -->
+    <div class="card" id="dc-card">
+      <div class="card-header">
+        <span class="card-icon">🌙</span>
+        <span class="card-label">AI Orchestration</span>
+      </div>
+      <div class="card-title">DreamChamber</div>
+      <div class="stat stat-blue" id="dc-status">—</div>
+      <div class="meta">
+        localhost:7777 · WebSocket · <span id="dc-uptime">—</span>
+      </div>
+    </div>
+
+    <!-- Ollama -->
+    <div class="card" id="ollama-card">
+      <div class="card-header">
+        <span class="card-icon">🧠</span>
+        <span class="card-label">Local Models</span>
+      </div>
+      <div class="card-title">Ollama</div>
+      <div class="stat stat-green" id="ollama-status">—</div>
+      <div class="meta">
+        localhost:11434 · M2 Ultra GPU · <span id="ollama-version">—</span>
+      </div>
+    </div>
+
+    <!-- Machine Stats -->
+    <div class="card">
+      <div class="card-header">
+        <span class="card-icon">🖥️</span>
+        <span class="card-label">GOD.local</span>
+      </div>
+      <div class="card-title">M2 Ultra</div>
+      <div class="stat stat-gold">192 GB</div>
+      <div class="meta">
+        24 cores · 2 TB SSD · 10.90.90.10<br>
+        Apple Silicon · AC Power · macOS
+      </div>
+    </div>
+
+    <!-- Email Routing -->
+    <div class="card">
+      <div class="card-header">
+        <span class="card-icon">📧</span>
+        <span class="card-label">Email</span>
+      </div>
+      <div class="card-title">noisy.ai Email</div>
+      <div class="stat stat-pink">rsp@</div>
+      <div class="meta">
+        Cloudflare Email Routing<br>
+        rsp@noisy.ai · hello@noisy.ai · catch-all
+      </div>
+    </div>
+
+    <!-- Consent Gateway -->
+    <div class="card">
+      <div class="card-header">
+        <span class="card-icon">🛡️</span>
+        <span class="card-label">12-Step Engine</span>
+      </div>
+      <div class="card-title">Consent Gateway</div>
+      <div class="stat stat-green">37/37</div>
+      <div class="meta">
+        Tests passing · Auth enforced · DEPLOY READY<br>
+        <a href="https://noizy-consent-gateway.workers.dev/health" target="_blank">Health</a>
+      </div>
+    </div>
+
+    <!-- Infrastructure Map (full width) -->
+    <div class="card card-full">
+      <div class="card-header">
+        <span class="card-icon">🗺️</span>
+        <span class="card-label">Empire Infrastructure</span>
+      </div>
+      <div class="card-title">Service Map</div>
+      <table>
+        <thead>
+          <tr><th>Service</th><th>Location</th><th>Status</th><th>Role</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>HEAVEN</td>
+            <td class="mono">heaven.rsp-5f3.workers.dev</td>
+            <td><span class="status-live" id="svc-heaven">●</span></td>
+            <td>Consent kernel, ledger, dashboard</td>
+          </tr>
+          <tr>
+            <td>Consent Gateway</td>
+            <td class="mono">noizy-consent-gateway.workers.dev</td>
+            <td><span class="status-live">●</span></td>
+            <td>12-step eligibility engine</td>
+          </tr>
+          <tr>
+            <td>CB01 Router</td>
+            <td class="mono">noizy-cb01-router.workers.dev</td>
+            <td><span class="status-live">●</span></td>
+            <td>Transparent request forwarding</td>
+          </tr>
+          <tr>
+            <td>Claude Proxy</td>
+            <td class="mono">noizy-claude-proxy.workers.dev</td>
+            <td><span class="status-warn">○</span></td>
+            <td>Tower routing, voice ingest, NCP</td>
+          </tr>
+          <tr>
+            <td>DreamChamber</td>
+            <td class="mono">localhost:7777</td>
+            <td><span class="status-live" id="svc-dc">●</span></td>
+            <td>AI orchestration, WebSocket</td>
+          </tr>
+          <tr>
+            <td>Ollama</td>
+            <td class="mono">localhost:11434</td>
+            <td><span class="status-live" id="svc-ollama">●</span></td>
+            <td>Local model inference</td>
+          </tr>
+          <tr>
+            <td>D1: agent-memory</td>
+            <td class="mono">7b813205-fd12-4a23-84a6-ce83bc49ec70</td>
+            <td><span class="status-live">●</span></td>
+            <td>Consent records, audit log</td>
+          </tr>
+          <tr>
+            <td>D1: gabriel_db</td>
+            <td class="mono">fc0edd97-5a4c-49ff-a5fb-b3d7d8fda1aa</td>
+            <td><span class="status-live">●</span></td>
+            <td>HVS actors, never clauses, ledger</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Quick Links -->
+    <div class="card card-full">
+      <div class="card-header">
+        <span class="card-icon">🔗</span>
+        <span class="card-label">Quick Access</span>
+      </div>
+      <div class="card-title">Command Center</div>
+      <div class="link-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+        <a href="https://heaven.rsp-5f3.workers.dev/dashboard" class="link-btn" target="_blank">📊 HEAVEN Dashboard</a>
+        <a href="https://heaven.rsp-5f3.workers.dev/health" class="link-btn" target="_blank">💚 System Health</a>
+        <a href="https://heaven.rsp-5f3.workers.dev/api/v1/stats" class="link-btn" target="_blank">📈 Live Stats</a>
+        <a href="https://heaven.rsp-5f3.workers.dev/api/v1/actors" class="link-btn" target="_blank">🎭 Voice Actors</a>
+        <a href="https://dash.cloudflare.com" class="link-btn" target="_blank">☁️ Cloudflare</a>
+        <a href="https://github.com/noizylab" class="link-btn" target="_blank">🐙 GitHub</a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <span class="brand">MC96 · ECO UNIVERSE</span> — NOIZY Empire<br>
+    HEAVEN v17.0.0 · D1: agent-memory · Cloudflare Edge · Constitutional at every layer<br>
+    RSP_001 · GORUNFREE · Protocol > Promises · Proof > Vibes
+  </footer>
+
+</div>
+
+<script>
+// Live status polling
+async function checkHealth(url, elId, label) {
+  try {
+    const res = await fetch(url, { signal: AbortSignal.timeout(5000) });
+    if (res.ok) {
+      const data = await res.json();
+      document.getElementById(elId).textContent = label || 'LIVE';
+      return data;
+    }
+  } catch {}
+  document.getElementById(elId).textContent = 'OFFLINE';
+  document.getElementById(elId).className = 'stat stat-red';
+  return null;
+}
+
+async function refresh() {
+  // HEAVEN
+  const h = await checkHealth('https://heaven.rsp-5f3.workers.dev/health', 'heaven-status', 'LIVE');
+
+  // DreamChamber
+  try {
+    const dcRes = await fetch('http://localhost:7777/health', { signal: AbortSignal.timeout(3000) });
+    if (dcRes.ok) {
+      const dc = await dcRes.json();
+      document.getElementById('dc-status').textContent = dc.status === 'healthy' ? 'LIVE' : 'DEGRADED';
+      document.getElementById('dc-uptime').textContent = `Uptime: ${Math.round(dc.uptime / 60)}m`;
+    }
+  } catch {
+    document.getElementById('dc-status').textContent = 'OFFLINE';
+    document.getElementById('dc-status').className = 'stat stat-red';
+    document.getElementById('svc-dc').className = 'status-dead';
+    document.getElementById('svc-dc').textContent = '●';
+  }
+
+  // Ollama
+  try {
+    const olRes = await fetch('http://localhost:11434/api/version', { signal: AbortSignal.timeout(3000) });
+    if (olRes.ok) {
+      const ol = await olRes.json();
+      document.getElementById('ollama-status').textContent = 'LIVE';
+      document.getElementById('ollama-version').textContent = `v${ol.version}`;
+    }
+  } catch {
+    document.getElementById('ollama-status').textContent = 'OFFLINE';
+    document.getElementById('ollama-status').className = 'stat stat-red';
+    document.getElementById('svc-ollama').className = 'status-dead';
+  }
+}
+
+refresh();
+setInterval(refresh, 30000);
+
+// Timestamp
+document.querySelector('.footer').insertAdjacentHTML('beforeend',
+  `<br><span class="mono" style="opacity:0.5">Last loaded: ${new Date().toISOString()}</span>`
+);
+</script>
+</body>
+</html>

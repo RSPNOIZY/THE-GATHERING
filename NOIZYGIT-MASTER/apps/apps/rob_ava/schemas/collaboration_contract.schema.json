@@ -1,0 +1,158 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Rob.AVA Collaboration Contract",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "collaboration_id",
+    "ava_owner",
+    "partner_ava",
+    "allowed_languages",
+    "max_interaction_minutes",
+    "prohibited_topics",
+    "consent_required",
+    "royalty_split",
+    "nda_enforced",
+    "session_logging",
+    "audit_trail",
+    "never_clauses"
+  ],
+  "properties": {
+    "collaboration_id": {
+      "type": "string",
+      "description": "Unique collaboration agreement identifier.",
+      "pattern": "^[a-zA-Z0-9_-]{8,}$"
+    },
+    "ava_owner": {
+      "type": "string",
+      "minLength": 2
+    },
+    "partner_ava": {
+      "type": "string",
+      "minLength": 2
+    },
+    "allowed_languages": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z]{2,3}(-[A-Z]{2})?$"
+      },
+      "uniqueItems": true
+    },
+    "max_interaction_minutes": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 720
+    },
+    "prohibited_topics": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "consent_required": {
+      "type": "boolean"
+    },
+    "royalty_split": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["ava_owner", "partner"],
+      "properties": {
+        "ava_owner": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "partner": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      },
+      "allOf": [
+        {
+          "properties": {
+            "ava_owner": {},
+            "partner": {}
+          }
+        }
+      ],
+      "description": "Revenue split ratios. Operational validation must enforce owner + partner == 1.0."
+    },
+    "nda_enforced": {
+      "type": "boolean"
+    },
+    "session_logging": {
+      "type": "boolean"
+    },
+    "audit_trail": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/audit_event"
+      }
+    },
+    "never_clauses": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 3
+      },
+      "uniqueItems": true
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["draft", "active", "expired", "revoked"],
+      "default": "draft"
+    }
+  },
+  "definitions": {
+    "audit_event": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["timestamp_utc", "event_type", "actor_id", "summary"],
+      "properties": {
+        "timestamp_utc": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "event_type": {
+          "type": "string",
+          "enum": [
+            "contract_created",
+            "consent_granted",
+            "consent_revoked",
+            "session_started",
+            "session_blocked",
+            "session_completed",
+            "rule_violation",
+            "royalty_settled"
+          ]
+        },
+        "actor_id": {
+          "type": "string",
+          "minLength": 2
+        },
+        "summary": {
+          "type": "string",
+          "minLength": 1
+        },
+        "details": {
+          "type": "object",
+          "additionalProperties": true
+        }
+      }
+    }
+  }
+}

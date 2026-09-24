@@ -13,15 +13,11 @@ Implements:
 """
 
 import asyncio
-import json
-import socket
 import subprocess
-import threading
 import time
 from dataclasses import dataclass
-from datetime import datetime, timedelta
 from enum import Enum
-from typing import Dict, List, Optional, Tuple
+from typing import Dict, List, Optional
 import logging
 
 logging.basicConfig(level=logging.INFO)
@@ -106,7 +102,7 @@ class SSHTunnelManager:
 
         except subprocess.TimeoutExpired:
             self.status = ConnectionStatus.FAILED
-            logger.error(f"❌ SSH tunnel timeout")
+            logger.error("❌ SSH tunnel timeout")
             self.retry_count += 1
             return False
         except Exception as e:
@@ -221,7 +217,7 @@ class VPNFallback:
                 )
 
             self.connected = False
-            logger.info(f"✅ VPN disconnected")
+            logger.info("✅ VPN disconnected")
             return result.returncode == 0
 
         except Exception as e:

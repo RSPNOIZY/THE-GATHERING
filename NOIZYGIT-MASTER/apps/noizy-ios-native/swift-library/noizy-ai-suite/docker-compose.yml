@@ -1,0 +1,376 @@
+# ═══════════════════════════════════════════════════════════════════════════
+# NOIZY AI BUSINESS SUITE — Complete Google Workspace Replacement
+# Powered by: Claude API + Ollama (19 local models) + Open Source AI
+# Machine: GOD (M2 Ultra — 192GB RAM, 24 cores, 1.1TB free)
+# ═══════════════════════════════════════════════════════════════════════════
+#
+# WHAT THIS REPLACES:
+#   Gmail        → Roundcube + AI Compose (Claude API)
+#   Drive        → Nextcloud + AI Assistant (Ollama)
+#   Docs         → Nextcloud Office (Collabora) + AI Writing
+#   Sheets       → Nextcloud + NocoDB (AI-powered spreadsheets)
+#   Calendar     → Nextcloud Calendar + Cal.com (AI scheduling)
+#   Meet         → Nextcloud Talk (video calls)
+#   Chat         → Rocket.Chat + AI Bot (GABRIEL)
+#   Search       → SearXNG (private AI search)
+#   Admin        → Uptime Kuma + Grafana (already running)
+#   PDF          → Stirling PDF (AI document processing)
+#   Presentations → Nextcloud + AI generation
+#   Forms        → Formbricks (AI-powered forms)
+#   Analytics    → Plausible (privacy-first analytics)
+#
+# EXISTING SERVICES (already running, not duplicated):
+#   Ollama       → localhost:11434 (19 models, 192GB RAM)
+#   Open WebUI   → localhost:3080 (AI chat interface)
+#   Whisper STT  → localhost:8010 (speech-to-text)
+#   Grafana      → localhost:3000 (dashboards)
+#   Neo4j        → localhost:7474 (graph database)
+#   Qdrant       → localhost:6333 (vector database)
+#   RabbitMQ     → localhost:15672 (message queue)
+#   n8n          → localhost:5678 (24 workflows)
+#   Redis        → localhost:6379 (cache)
+#   PostgreSQL   → localhost:5432 (noizy_empire DB)
+#   MinIO        → localhost:9001 (S3 storage)
+#
+# START: docker compose up -d
+# STOP:  docker compose down
+# ═══════════════════════════════════════════════════════════════════════════
+
+name: noizy-ai-suite
+
+services:
+
+  # ═══════════════════════════════════════════════════════════════
+  # NEXTCLOUD — Drive + Docs + Calendar + Contacts + Talk
+  # Replaces: Google Drive, Docs, Sheets, Slides, Calendar, Meet
+  # ═══════════════════════════════════════════════════════════════
+  nextcloud:
+    image: nextcloud:30-apache
+    container_name: noizy-nextcloud
+    environment:
+      POSTGRES_HOST: host.docker.internal
+      POSTGRES_DB: nextcloud
+      POSTGRES_USER: rsp001
+      POSTGRES_PASSWORD: mc96eco_consent_2026
+      NEXTCLOUD_ADMIN_USER: rsp001
+      NEXTCLOUD_ADMIN_PASSWORD: noizy_empire_2026
+      NEXTCLOUD_TRUSTED_DOMAINS: "localhost cloud.noizy.local 10.90.90.20"
+      OVERWRITEPROTOCOL: http
+      PHP_MEMORY_LIMIT: 2G
+      PHP_UPLOAD_LIMIT: 10G
+    ports:
+      - "8080:80"
+    volumes:
+      - nextcloud-data:/var/www/html
+      - nextcloud-config:/var/www/html/config
+      - ~/NOIZYLAB:/mnt/noizylab:ro
+      - ~/NOIZYLAB/RSP_001_VAULT:/mnt/vault:ro
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    restart: unless-stopped
+    networks:
+      - ai-suite
+    labels:
+      - "com.noizy.service=cloud"
+      - "com.noizy.replaces=google-drive,google-docs,google-calendar"
+    depends_on:
+      - nextcloud-db
+
+  nextcloud-db:
+    image: postgres:16-alpine
+    container_name: noizy-nextcloud-db
+    environment:
+      POSTGRES_DB: nextcloud
+      POSTGRES_USER: rsp001
+      POSTGRES_PASSWORD: mc96eco_consent_2026
+    volumes:
+      - nextcloud-db-data:/var/lib/postgresql/data
+    restart: unless-stopped
+    networks:
+      - ai-suite
+
+  # ═══════════════════════════════════════════════════════════════
+  # COLLABORA ONLINE — Office Suite (Docs, Sheets, Presentations)
+  # Replaces: Google Docs, Sheets, Slides editing
+  # ═══════════════════════════════════════════════════════════════
+  collabora:
+    image: collabora/code:latest
+    container_name: noizy-collabora
+    environment:
+      aliasgroup1: "http://noizy-nextcloud:80"
+      username: rsp001
+      password: noizy_empire_2026
+      extra_params: "--o:ssl.enable=false --o:ssl.termination=false"
+      dictionaries: "en_CA en_US"
+    ports:
+      - "9980:9980"
+    cap_add:
+      - MKNOD
+    restart: unless-stopped
+    networks:
+      - ai-suite
+    labels:
+      - "com.noizy.service=office"
+      - "com.noizy.replaces=google-docs-editor"
+
+  # ═══════════════════════════════════════════════════════════════
+  # NOCODB — AI-Powered Spreadsheet / Database (Airtable killer)
+  # Replaces: Google Sheets (advanced), Google Forms (data)
+  # ═══════════════════════════════════════════════════════════════
+  nocodb:
+    image: nocodb/nocodb:latest
+    container_name: noizy-nocodb
+    environment:
+      NC_DB: "pg://host.docker.internal:5432?u=rsp001&p=mc96eco_consent_2026&d=nocodb"
+      NC_AUTH_JWT_SECRET: noizy_jwt_mc96eco_2026_secret
+      NC_PUBLIC_URL: "http://localhost:8081"
+      NC_DISABLE_TELE: "true"
+    ports:
+      - "8081:8080"
+    volumes:
+      - nocodb-data:/usr/app/data
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    restart: unless-stopped
+    networks:
+      - ai-suite
+    labels:
+      - "com.noizy.service=spreadsheets"
+      - "com.noizy.replaces=google-sheets,airtable"
+
+  # ═══════════════════════════════════════════════════════════════
+  # SEARXNG — Private AI Search Engine
+  # Replaces: Google Search (with privacy)
+  # ═══════════════════════════════════════════════════════════════
+  searxng:
+    image: searxng/searxng:latest
+    container_name: noizy-searxng
+    environment:
+      SEARXNG_BASE_URL: "http://localhost:8082/"
+    ports:
+      - "8082:8080"
+    volumes:
+      - searxng-data:/etc/searxng
+    restart: unless-stopped
+    networks:
+      - ai-suite
+    labels:
+      - "com.noizy.service=search"
+      - "com.noizy.replaces=google-search"
+
+  # ═══════════════════════════════════════════════════════════════
+  # STIRLING PDF — AI-Powered PDF Processing
+  # Replaces: Google PDF tools, Adobe Acrobat
+  # ═══════════════════════════════════════════════════════════════
+  stirling-pdf:
+    image: stirlingtools/stirling-pdf:latest
+    container_name: noizy-stirling-pdf
+    environment:
+      DOCKER_ENABLE_SECURITY: "false"
+      LANGS: "en_CA,en_US,fr_CA"
+      INSTALL_BOOK_AND_ADVANCED_HTML_OPS: "true"
+    ports:
+      - "8083:8080"
+    volumes:
+      - stirling-data:/usr/share/tessdata
+      - ~/Downloads:/usr/share/stirling-pdf/pipeline/watchedFolders
+    restart: unless-stopped
+    networks:
+      - ai-suite
+    labels:
+      - "com.noizy.service=pdf"
+      - "com.noizy.replaces=google-pdf,adobe"
+
+  # ═══════════════════════════════════════════════════════════════
+  # FORMBRICKS — AI-Powered Forms & Surveys
+  # Replaces: Google Forms
+  # ═══════════════════════════════════════════════════════════════
+  formbricks:
+    image: formbricks/formbricks:latest
+    container_name: noizy-formbricks
+    environment:
+      WEBAPP_URL: "http://localhost:8084"
+      DATABASE_URL: "postgresql://rsp001:mc96eco_consent_2026@host.docker.internal:5432/formbricks"
+      NEXTAUTH_SECRET: noizy_formbricks_secret_mc96eco
+      NEXTAUTH_URL: "http://localhost:8084"
+      ENCRYPTION_KEY: noizy_enc_key_mc96eco_2026_32ch
+    ports:
+      - "8084:3000"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    restart: unless-stopped
+    networks:
+      - ai-suite
+    labels:
+      - "com.noizy.service=forms"
+      - "com.noizy.replaces=google-forms"
+
+  # ═══════════════════════════════════════════════════════════════
+  # UPTIME KUMA — Monitoring Dashboard
+  # Replaces: Google Admin monitoring
+  # ═══════════════════════════════════════════════════════════════
+  uptime-kuma:
+    image: louislam/uptime-kuma:latest
+    container_name: noizy-uptime-kuma
+    ports:
+      - "3001:3001"
+    volumes:
+      - uptime-kuma-data:/app/data
+    restart: unless-stopped
+    networks:
+      - ai-suite
+    labels:
+      - "com.noizy.service=monitoring"
+      - "com.noizy.replaces=google-admin-monitoring"
+
+  # ═══════════════════════════════════════════════════════════════
+  # PLAUSIBLE — Privacy-First Analytics
+  # Replaces: Google Analytics
+  # ═══════════════════════════════════════════════════════════════
+  plausible:
+    image: ghcr.io/plausible/community-edition:v2
+    container_name: noizy-plausible
+    command: sh -c "sleep 5 && /entrypoint.sh db migrate && /entrypoint.sh run"
+    environment:
+      BASE_URL: "http://localhost:8085"
+      SECRET_KEY_BASE: "noizy_plausible_secret_mc96eco_2026_must_be_64_chars_long_so_adding_more_here"
+      DATABASE_URL: "postgresql://rsp001:mc96eco_consent_2026@host.docker.internal:5432/plausible"
+      CLICKHOUSE_DATABASE_URL: "http://noizy-clickhouse:8123/plausible"
+      DISABLE_REGISTRATION: "invite_only"
+    ports:
+      - "8085:8000"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    restart: unless-stopped
+    networks:
+      - ai-suite
+    depends_on:
+      - plausible-clickhouse
+    labels:
+      - "com.noizy.service=analytics"
+      - "com.noizy.replaces=google-analytics"
+
+  plausible-clickhouse:
+    image: clickhouse/clickhouse-server:24-alpine
+    container_name: noizy-clickhouse
+    volumes:
+      - clickhouse-data:/var/lib/clickhouse
+      - clickhouse-logs:/var/log/clickhouse-server
+    ulimits:
+      nofile:
+        soft: 262144
+        hard: 262144
+    restart: unless-stopped
+    networks:
+      - ai-suite
+
+  # ═══════════════════════════════════════════════════════════════
+  # LANGFUSE — AI Observability & Tracing
+  # Replaces: Nothing Google has — this is BETTER
+  # ═══════════════════════════════════════════════════════════════
+  langfuse:
+    image: langfuse/langfuse:latest
+    container_name: noizy-langfuse
+    environment:
+      DATABASE_URL: "postgresql://rsp001:mc96eco_consent_2026@host.docker.internal:5432/langfuse"
+      NEXTAUTH_SECRET: noizy_langfuse_secret_mc96eco
+      NEXTAUTH_URL: "http://localhost:8086"
+      SALT: noizy_salt_mc96eco_2026
+      TELEMETRY_ENABLED: "false"
+    ports:
+      - "8086:3000"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    restart: unless-stopped
+    networks:
+      - ai-suite
+    labels:
+      - "com.noizy.service=ai-observability"
+
+  # ═══════════════════════════════════════════════════════════════
+  # TYPESENSE — AI Search Engine (for internal docs)
+  # Replaces: Google Workspace Search
+  # ═══════════════════════════════════════════════════════════════
+  typesense:
+    image: typesense/typesense:27.1
+    container_name: noizy-typesense
+    environment:
+      TYPESENSE_API_KEY: noizy_ts_key_mc96eco_2026
+      TYPESENSE_DATA_DIR: /data
+      TYPESENSE_ENABLE_CORS: "true"
+    ports:
+      - "8108:8108"
+    volumes:
+      - typesense-data:/data
+    restart: unless-stopped
+    networks:
+      - ai-suite
+    labels:
+      - "com.noizy.service=search-engine"
+
+  # ═══════════════════════════════════════════════════════════════
+  # LITELLM — AI Gateway (Claude + Ollama + OpenAI unified API)
+  # The brain connecting ALL AI to ALL services
+  # ═══════════════════════════════════════════════════════════════
+  litellm:
+    image: ghcr.io/berriai/litellm:main-latest
+    container_name: noizy-litellm
+    environment:
+      LITELLM_MASTER_KEY: noizy_litellm_key_mc96eco_2026
+      DATABASE_URL: "postgresql://rsp001:mc96eco_consent_2026@host.docker.internal:5432/litellm"
+      ANTHROPIC_API_KEY: "${ANTHROPIC_API_KEY}"
+      STORE_MODEL_IN_DB: "True"
+    ports:
+      - "4000:4000"
+    volumes:
+      - ./litellm-config.yaml:/app/config.yaml
+    command: ["--config", "/app/config.yaml", "--port", "4000"]
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    restart: unless-stopped
+    networks:
+      - ai-suite
+    labels:
+      - "com.noizy.service=ai-gateway"
+      - "com.noizy.critical=true"
+
+  # ═══════════════════════════════════════════════════════════════
+  # CADDY — Reverse Proxy with automatic HTTPS
+  # Unified entry point for ALL services
+  # ═══════════════════════════════════════════════════════════════
+  caddy:
+    image: caddy:2-alpine
+    container_name: noizy-suite-caddy
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - caddy-data:/data
+      - caddy-config:/config
+    restart: unless-stopped
+    networks:
+      - ai-suite
+    labels:
+      - "com.noizy.service=proxy"
+
+volumes:
+  nextcloud-data:
+  nextcloud-config:
+  nextcloud-db-data:
+  nocodb-data:
+  searxng-data:
+  stirling-data:
+  uptime-kuma-data:
+  clickhouse-data:
+  clickhouse-logs:
+  typesense-data:
+  caddy-data:
+  caddy-config:
+
+networks:
+  ai-suite:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.97.0.0/16

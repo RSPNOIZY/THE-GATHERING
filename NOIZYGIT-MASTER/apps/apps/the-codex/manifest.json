@@ -1,0 +1,43 @@
+{
+  "name": "THE CODEX",
+  "version": "1.0.0",
+  "subtitle": "The 500-Year Living Document of the NOIZY Empire",
+  "author": "Robert Stephen Plowman (RSP_001)",
+  "description": "A unified intelligence layer that connects every NOIZY system — GABRIEL, Heaven, DreamChamber, NOIZYSTREAM, the Agent Family, all 36TB of creative legacy — into one queryable, evolving, sovereign brain.",
+  "architecture": "local-first hybrid",
+  "doctrine": "GORUNFREE",
+  "standard": "Plowman 75/25",
+  "port": 5500,
+  "services": {
+    "gabriel":      { "url": "http://localhost:7777",  "role": "orchestrator" },
+    "voice_bridge": { "url": "http://localhost:8080",  "role": "voice_input" },
+    "noizyvox":     { "url": "http://localhost:8421",  "role": "voice_platform" },
+    "noizystream":  { "url": "http://localhost:4040",  "role": "audio_fabric" },
+    "airplay":      { "url": "http://localhost:3001",  "role": "device_bridge" },
+    "health":       { "url": "http://localhost:9090",  "role": "monitoring" },
+    "n8n":          { "url": "http://localhost:5678",  "role": "automation" },
+    "ollama":       { "url": "http://localhost:11434", "role": "local_ai" },
+    "heaven":       { "url": "https://heaven.rsp-5f3.workers.dev", "role": "consent_kernel" }
+  },
+  "agents": ["gabriel", "lucy", "pops", "dream", "shirl", "shirley", "cb01", "engr-keith", "voice-specialist", "test-runner"],
+  "towers": ["max", "code", "work", "fast", "lucy", "pops", "dream", "shirl", "cb01", "heaven"],
+  "ollama_models": ["llama3.1:70b", "qwen2.5-coder:7b", "gemma3:latest", "mistral:latest", "llava:34b", "llama3.2:latest", "deepseek-coder:latest"],
+  "platforms": {
+    "linear":     { "team": "NOIZYLAB", "projects": 7, "issues": "20+" },
+    "notion":     { "databases": ["Creative Briefs", "Mirror Analyses", "Automation Runs", "Agent Family", "Echo Moments"] },
+    "cloudflare": { "accounts": ["Fishmusicinc (2446d788)", "NOIZY.ai (5ba03939)"], "d1": 9, "kv": 20, "workers": 1 },
+    "github":     { "org": "NOIZY-AI", "auth": "needs re-auth" },
+    "vercel":     { "account": "rsp-6455", "deployments": 0 },
+    "postman":    { "collection": "NOIZY_EMPIRE_COMPLETE", "endpoints": "50+" }
+  },
+  "tests": { "consent_gateway": 37, "cb01_router": 7, "claude_proxy": 29, "total": 73 },
+  "storage": {
+    "god_internal": "467 GB",
+    "external_drives": "4.6 TB (6TB) + more",
+    "smb_network": "14+ TB (MACPRO)",
+    "total_estimated": "36 TB"
+  },
+  "created": "2024",
+  "target": "2026-04-17",
+  "mission": "Consent as executable code. Provenance as default. Revocation as sacred. Compensation as automatic."
+}

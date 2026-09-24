@@ -1,0 +1,199 @@
+#!/bin/bash
+# ==============================================================================
+# 🚀 TURBO LAUNCHER - GOD MODE ENABLED
+# ==============================================================================
+# Quick access to all turbo scripts from anywhere
+# Usage: turbo <command> [args]
+# ==============================================================================
+
+set -euo pipefail
+
+SCRIPTS_DIR="/Users/m2ultra/.gemini/antigravity/playground/infinite-omega/Audio_Unitor/Scripts"
+CYAN='\033[96m'
+GREEN='\033[92m'
+YELLOW='\033[93m'
+RED='\033[91m'
+MAGENTA='\033[95m'
+RESET='\033[0m'
+BOLD='\033[1m'
+
+show_help() {
+    echo -e "${BOLD}${CYAN}"
+    echo "╔═══════════════════════════════════════════════════════════════════════════════╗"
+    echo "║                                                                               ║"
+    echo "║  ████████╗██╗   ██╗██████╗ ██████╗  ██████╗                                   ║"
+    echo "║  ╚══██╔══╝██║   ██║██╔══██╗██╔══██╗██╔═══██╗                                  ║"
+    echo "║     ██║   ██║   ██║██████╔╝██████╔╝██║   ██║                                  ║"
+    echo "║     ██║   ██║   ██║██╔══██╗██╔══██╗██║   ██║                                  ║"
+    echo "║     ██║   ╚██████╔╝██║  ██║██████╔╝╚██████╔╝                                  ║"
+    echo "║     ╚═╝    ╚═════╝ ╚═╝  ╚═╝╚═════╝  ╚═════╝                                   ║"
+    echo "║                                                                               ║"
+    echo "║                    ⚡ GOD MODE LAUNCHER ⚡                                    ║"
+    echo "║                                                                               ║"
+    echo "╚═══════════════════════════════════════════════════════════════════════════════╝"
+    echo -e "${RESET}"
+    echo ""
+    echo -e "${BOLD}CORE COMMANDS:${RESET}"
+    echo -e "  ${GREEN}omega${RESET}      - Full system optimization (VACUUM → WORMHOLE → INDEX → SINGULARITY)"
+    echo -e "  ${GREEN}nexus${RESET}      - Interactive control dashboard"
+    echo -e "  ${GREEN}vacuum${RESET}     - Clean junk files (.DS_Store, empty dirs, ghost files)"
+    echo -e "  ${GREEN}dedup${RESET}      - Find and report duplicate files"
+    echo -e "  ${GREEN}validate${RESET}   - Validate all turbo scripts"
+    echo ""
+    echo -e "${BOLD}SCANNING:${RESET}"
+    echo -e "  ${CYAN}scanner${RESET}    - Scan volumes for audio content"
+    echo -e "  ${CYAN}indexer${RESET}    - Neural indexing of files"
+    echo -e "  ${CYAN}ghost${RESET}      - Find unmounted volumes"
+    echo -e "  ${CYAN}wormhole${RESET}   - Detect ingestion zones"
+    echo -e "  ${CYAN}cartographer${RESET} - Create file density heatmaps"
+    echo ""
+    echo -e "${BOLD}PROCESSING:${RESET}"
+    echo -e "  ${YELLOW}singularity${RESET} - Atomic file unification"
+    echo -e "  ${YELLOW}converter${RESET}  - Audio format conversion"
+    echo -e "  ${YELLOW}sanitizer${RESET}  - Filename cleanup"
+    echo -e "  ${YELLOW}organizer${RESET}  - File organization"
+    echo -e "  ${YELLOW}librarian${RESET}  - Metadata injection"
+    echo ""
+    echo -e "${BOLD}AI & AGENTS:${RESET}"
+    echo -e "  ${MAGENTA}gabriel${RESET}    - Gabriel AI agent"
+    echo -e "  ${MAGENTA}memcell${RESET}    - Memory system"
+    echo -e "  ${MAGENTA}server${RESET}     - HTTP API server (port 8080)"
+    echo -e "  ${MAGENTA}sentinel${RESET}   - File system watcher"
+    echo ""
+    echo -e "${BOLD}UTILITIES:${RESET}"
+    echo -e "  ${RESET}search${RESET}     - Search universe database"
+    echo -e "  ${RESET}keith${RESET}      - Library integrity check"
+    echo -e "  ${RESET}scavenger${RESET}  - Hunt for buried assets"
+    echo -e "  ${RESET}archaeologist${RESET} - Analyze audio artifacts"
+    echo ""
+    echo -e "${BOLD}USAGE:${RESET}"
+    echo "  turbo <command> [arguments]"
+    echo ""
+    echo -e "${BOLD}EXAMPLES:${RESET}"
+    echo "  turbo omega ~              # Full optimization on home"
+    echo "  turbo vacuum ~/Downloads   # Clean downloads folder"
+    echo "  turbo dedup --nuke         # Delete all duplicates"
+    echo "  turbo nexus                # Launch interactive dashboard"
+    echo ""
+}
+
+if [ $# -eq 0 ]; then
+    show_help
+    exit 0
+fi
+
+CMD="$1"
+shift
+
+case "$CMD" in
+    # Core
+    omega|OMEGA)
+        python3 "$SCRIPTS_DIR/turbo_omega.py" "${@:-$HOME}"
+        ;;
+    nexus|NEXUS)
+        python3 "$SCRIPTS_DIR/turbo_nexus.py" "$@"
+        ;;
+    vacuum|VACUUM)
+        python3 "$SCRIPTS_DIR/turbo_vacuum.py" "${@:-$HOME}"
+        ;;
+    dedup|DEDUP)
+        python3 "$SCRIPTS_DIR/turbo_dedup.py" "$@"
+        ;;
+    validate|VALIDATE)
+        python3 "$SCRIPTS_DIR/turbo_suite_validator.py" "$@"
+        ;;
+
+    # Scanning
+    scanner|SCANNER)
+        python3 "$SCRIPTS_DIR/turbo_scanner.py" "$@"
+        ;;
+    indexer|INDEXER)
+        python3 "$SCRIPTS_DIR/turbo_indexer.py" "${@:-$HOME}"
+        ;;
+    ghost|GHOST)
+        python3 "$SCRIPTS_DIR/turbo_ghost.py" "$@"
+        ;;
+    wormhole|WORMHOLE)
+        python3 "$SCRIPTS_DIR/turbo_wormhole.py" "$@"
+        ;;
+    cartographer|CARTOGRAPHER)
+        python3 "$SCRIPTS_DIR/turbo_cartographer.py" "$@"
+        ;;
+
+    # Processing
+    singularity|SINGULARITY)
+        python3 "$SCRIPTS_DIR/turbo_singularity.py" "${@:-$HOME}"
+        ;;
+    converter|CONVERTER)
+        python3 "$SCRIPTS_DIR/turbo_converter.py" "$@"
+        ;;
+    sanitizer|SANITIZER)
+        python3 "$SCRIPTS_DIR/turbo_sanitizer.py" "$@"
+        ;;
+    organizer|ORGANIZER)
+        python3 "$SCRIPTS_DIR/turbo_organizer.py" "$@"
+        ;;
+    librarian|LIBRARIAN)
+        python3 "$SCRIPTS_DIR/turbo_librarian.py" "$@"
+        ;;
+
+    # AI & Agents
+    gabriel|GABRIEL)
+        python3 "$SCRIPTS_DIR/turbo_gabriel.py" "$@"
+        ;;
+    memcell|MEMCELL)
+        python3 "$SCRIPTS_DIR/turbo_memcell.py" "$@"
+        ;;
+    server|SERVER)
+        python3 "$SCRIPTS_DIR/turbo_server.py" "$@"
+        ;;
+    sentinel|SENTINEL)
+        python3 "$SCRIPTS_DIR/turbo_sentinel.py" "$@"
+        ;;
+
+    # Utilities
+    search|SEARCH)
+        python3 "$SCRIPTS_DIR/turbo_search.py" "$@"
+        ;;
+    keith|KEITH)
+        python3 "$SCRIPTS_DIR/turbo_keith.py" "$@"
+        ;;
+    scavenger|SCAVENGER)
+        python3 "$SCRIPTS_DIR/turbo_scavenger.py" "$@"
+        ;;
+    archaeologist|ARCHAEOLOGIST)
+        python3 "$SCRIPTS_DIR/turbo_archaeologist.py" "$@"
+        ;;
+    ingest|INGEST)
+        python3 "$SCRIPTS_DIR/turbo_ingest.py" "$@"
+        ;;
+
+    # Extended
+    dashboard|DASHBOARD)
+        python3 "$SCRIPTS_DIR/turbo_dashboard.py" "$@"
+        ;;
+    audio|AUDIO)
+        python3 "$SCRIPTS_DIR/turbo_audio_ai.py" "$@"
+        ;;
+    video|VIDEO)
+        python3 "$SCRIPTS_DIR/turbo_video_ai.py" "$@"
+        ;;
+    voice|VOICE)
+        python3 "$SCRIPTS_DIR/turbo_voice.py" "$@"
+        ;;
+    flow|FLOW)
+        python3 "$SCRIPTS_DIR/turbo_flow.py" "$@"
+        ;;
+
+    # Direct script execution
+    *)
+        SCRIPT="$SCRIPTS_DIR/turbo_${CMD}.py"
+        if [ -f "$SCRIPT" ]; then
+            python3 "$SCRIPT" "$@"
+        else
+            echo -e "${RED}Unknown command: $CMD${RESET}"
+            echo "Run 'turbo' without arguments to see available commands."
+            exit 1
+        fi
+        ;;
+esac

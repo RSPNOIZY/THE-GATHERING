@@ -1,0 +1,91 @@
+{
+  "generated_at": "2026-08-31T19:45:30.679161",
+  "models": {
+    "qwen/qwen2.5-coder-32b": {
+      "role": "Master Code Synthesizer & Refactoring Specialist",
+      "tier": "Tier 1 (Heavy Local Coding)",
+      "best_for": "Writing full TypeScript/Python modules, complex regex, API bridges, and debugging AST/syntax errors.",
+      "latency": "Fast (Apple Silicon GPU MLX)",
+      "context": "32k - 128k"
+    },
+    "deepseek-r1-distill-qwen-32b": {
+      "role": "Deep Mathematical & Cryptographic Reasoner",
+      "tier": "Tier 1 (Logical Reasoning)",
+      "best_for": "Step-by-step chain of thought, contract verification, edge-case analysis, and algorithm proofs.",
+      "latency": "Medium (High Compute Density)",
+      "context": "64k"
+    },
+    "llama-3.3-70b-instruct": {
+      "role": "Universal Cognitive Brain & Strategic Planner",
+      "tier": "Tier 1 (Flagship Reasoning)",
+      "best_for": "High-level architectural planning, founder blueprint evaluation, deep document synthesis, and nuanced creative writing.",
+      "latency": "Moderate (4-bit QAT Metal Accelerated)",
+      "context": "128k"
+    },
+    "granite-speech-4.1-2b-mlx": {
+      "role": "Real-Time Acoustic & Speech Acoustic Modeling",
+      "tier": "Tier 1 (Voice & Speech Processing)",
+      "best_for": "Speech recognition, phoneme extraction, voice cloning alignment, and real-time audio telemetry.",
+      "latency": "Ultra-Fast (Real-Time Streaming)",
+      "context": "8k"
+    },
+    "qwen2.5-vl-72b-instruct": {
+      "role": "Master Vision & Visual UI Inspector",
+      "tier": "Tier 1 (Multimodal Vision)",
+      "best_for": "Reading UI mockups, inspecting waveforms/spectrograms, OCR on blueprints, and visual layout audits.",
+      "latency": "Moderate",
+      "context": "32k"
+    },
+    "qwen2.5-vl-32b-instruct-i1": {
+      "role": "Fast Multimodal & Diagram Analyst",
+      "tier": "Tier 2 (High-Speed Vision)",
+      "best_for": "Quick screen analysis, video frame inspection, and glassmorphic UI verification.",
+      "latency": "Fast",
+      "context": "32k"
+    },
+    "google/gemma-4-26b-a4b-qat": {
+      "role": "Sovereign Edge Assistant & Mobile Companion",
+      "tier": "Tier 2 (Efficient Generalist)",
+      "best_for": "Concise conversational responses, Siri AppIntents routing, and low-memory background tasks.",
+      "latency": "Very Fast",
+      "context": "32k"
+    },
+    "google/gemma-3-1b": {
+      "role": "Micro-Agent & Instant Tool Router",
+      "tier": "Tier 3 (Zero-Latency Triage)",
+      "best_for": "Keyword classification, prompt routing, instant regex matching, and health checks.",
+      "latency": "Instant (<15ms)",
+      "context": "8k"
+    },
+    "text-embedding-nomic-embed-text-v1.5": {
+      "role": "Semantic Vector Embedding Engine",
+      "tier": "Tier 1 (Embeddings & RAG)",
+      "best_for": "High-dimensional vector search across the 100,000+ file NOIZY archive and Obsidian vault indexing.",
+      "latency": "Microsecond Batching",
+      "context": "8k"
+    }
+  },
+  "agents": {
+    "GABRIEL": {
+      "domain": "Master Audio & Voice Orchestration",
+      "capabilities": "Supervises NOIZYVOX voice army, stem separation, Kontakt script compilation, and real-time audio routing."
+    },
+    "LUCY v4.0": {
+      "domain": "Personal Autonomous OS & World Model",
+      "capabilities": "Maintains user state, CR-V vehicle telemetry, CarPlay integration, active task context, and proactive daily briefings."
+    },
+    "THE CONDUCTOR": {
+      "domain": "Multi-Agent Swarm Director",
+      "capabilities": "Decomposes complex requests into parallel sub-tasks, manages priority queues, and resolves multi-agent output conflicts."
+    },
+    "THE PERFECTIONIST": {
+      "domain": "Code Verification & Zero-Flaw Quality Assurance",
+      "capabilities": "Runs AST syntax checks, enforces type safety, audits dead links, and validates git clean working trees."
+    },
+    "MICHAEL MERKLE": {
+      "domain": "Cryptographic Archivist & Knowledge Graph",
+      "capabilities": "Computes SHA-256 Merkle trees of all documents, deduplicates ideas, and ensures historical provenance."
+    }
+  },
+  "outdated_packages_sample": []
+}

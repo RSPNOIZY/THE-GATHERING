@@ -1,0 +1,119 @@
+# NOIZYLAB — Cloudflare Zero Trust Tunnel Config
+# File: ~/.cloudflared/config.yml
+#
+# Setup:
+#   cloudflared tunnel login
+#   cloudflared tunnel create noizylab
+#   # Copy the tunnel UUID from output, replace <TUNNEL-ID> below
+#   cp tunnel-config.yml ~/.cloudflared/config.yml
+#   cloudflared tunnel route dns noizylab keith.noizy.ai
+#   cloudflared tunnel route dns noizylab heaven.noizy.ai
+#   cloudflared tunnel route dns noizylab gabriel.dreamchamber.noizy.ai
+#   cloudflared tunnel route dns noizylab lucy.noizy.ai
+#   cloudflared tunnel route dns noizylab dreamchamber.noizy.ai
+#   cloudflared tunnel route dns noizylab api.noizy.ai
+#   cloudflared tunnel route dns noizylab n8n.noizy.ai
+#   cloudflared tunnel run noizylab
+
+tunnel: noizylab
+credentials-file: /Users/m2ultra/.cloudflared/<TUNNEL-ID>.json
+
+# Tunnel-level defaults
+originRequest:
+  connectTimeout: 10s
+  noTLSVerify: false
+
+ingress:
+  # ─── Heaven AI API (Zero Trust protected) ───────────────
+  - hostname: heaven.noizy.ai
+    service: http://localhost:8080
+    originRequest:
+      access:
+        required: true
+        teamName: noizylab
+
+  # ─── GABRIEL Codemaster (Zero Trust protected) ──────────
+  - hostname: gabriel.dreamchamber.noizy.ai
+    service: http://localhost:7777
+    originRequest:
+      access:
+        required: true
+        teamName: noizylab
+
+  # ─── Lucy AI API (Zero Trust protected) ─────────────────
+  - hostname: lucy.noizy.ai
+    service: http://localhost:8081
+    originRequest:
+      access:
+        required: true
+        teamName: noizylab
+
+  # ─── DreamChamber Core ──────────────────────────────────
+  - hostname: dreamchamber.noizy.ai
+    service: http://localhost:7777
+    originRequest:
+      access:
+        required: true
+        teamName: noizylab
+
+  # ─── Main API Gateway ──────────────────────────────────
+  - hostname: api.noizy.ai
+    service: http://localhost:7778
+    originRequest:
+      access:
+        required: true
+        teamName: noizylab
+
+  # ─── Voice Pipeline ────────────────────────────────────
+  - hostname: voice.noizy.ai
+    service: http://localhost:17017
+    originRequest:
+      access:
+        required: true
+        teamName: noizylab
+
+  # ─── n8n Automation (GABRIEL node) ─────────────────────
+  - hostname: n8n.noizy.ai
+    service: http://localhost:5678
+    originRequest:
+      access:
+        required: true
+        teamName: noizylab
+
+  # ─── Open WebUI (Ollama frontend) ──────────────────────
+  - hostname: ai.noizy.ai
+    service: http://localhost:3080
+    originRequest:
+      access:
+        required: true
+        teamName: noizylab
+
+  # ─── Grafana Analytics ─────────────────────────────────
+  - hostname: metrics.noizy.ai
+    service: http://localhost:3000
+    originRequest:
+      access:
+        required: true
+        teamName: noizylab
+
+  # ─── ENGR_KEITH Agent (port 7006) ───────────────────────
+  - hostname: keith.noizy.ai
+    service: http://localhost:7006
+    originRequest:
+      access:
+        required: true
+        teamName: noizylab
+
+  # ─── Mickey-P Legacy Bridge (audio ingress from old MBP) ──
+  # Mickey-P runs its own tunnel; this route is for GOD-side
+  # audio processing when Mickey-P streams are received locally
+  - hostname: mickey-p.noizy.ai
+    service: http://localhost:9090
+    originRequest:
+      access:
+        required: true
+        teamName: noizylab
+      connectTimeout: 5s
+
+  # ─── Catch-all 404 ─────────────────────────────────────
+  - service: http_status:404

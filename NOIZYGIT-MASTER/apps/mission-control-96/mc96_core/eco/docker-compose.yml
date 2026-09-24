@@ -1,0 +1,49 @@
+version: '3.9'
+
+services:
+  # Vector Database for AI
+  qdrant:
+    image: qdrant/qdrant:latest
+    ports:
+      - "6333:6333"
+      - "6334:6334"
+    volumes:
+      - qdrant_data:/qdrant/storage
+    restart: unless-stopped
+
+  # Graph Database for Voice DNA relationships
+  neo4j:
+    image: neo4j:5
+    ports:
+      - "7474:7474"
+      - "7687:7687"
+    environment:
+      - NEO4J_AUTH=neo4j/noizy2026
+    volumes:
+      - neo4j_data:/data
+    restart: unless-stopped
+
+  # Message Queue for consent events
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      - RABBITMQ_DEFAULT_USER=noizy
+      - RABBITMQ_DEFAULT_PASS=mc96eco
+    restart: unless-stopped
+
+  # Monitoring
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana_data:/var/lib/grafana
+    restart: unless-stopped
+
+volumes:
+  qdrant_data:
+  neo4j_data:
+  grafana_data:

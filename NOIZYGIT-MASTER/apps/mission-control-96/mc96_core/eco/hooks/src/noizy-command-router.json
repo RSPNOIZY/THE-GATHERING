@@ -1,0 +1,252 @@
+{
+  "name": "NOIZY Command Router",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "noizy-command",
+        "responseMode": "lastNode",
+        "options": {}
+      },
+      "id": "wh-trigger",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [100, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "const raw = $input.first().json;\nconst body = raw.body ?? raw;\nconst intent = body.intent ?? '';\nconst params = body.params ?? {};\nconst source = body.source ?? 'unknown';\nconst VALID = ['check_dns','deploy_system','plan_dns','apply_dns','health_check','sync_notion','consent_revoke'];\nif (!VALID.includes(intent)) {\n  throw new Error(`Invalid intent: ${intent}. Valid: ${VALID.join(', ')}`);\n}\nconst request_id = `nr-${Date.now()}-${Math.random().toString(36).slice(2,8)}`;\nreturn [{ json: { intent, params, source, request_id } }];"
+      },
+      "id": "parse-validate",
+      "name": "Parse & Validate",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [300, 300]
+    },
+    {
+      "parameters": {
+        "rules": {
+          "rules": [
+            { "outputKey": "check_dns", "conditions": { "conditions": [{ "leftValue": "={{ $json.intent }}", "rightValue": "check_dns", "operator": { "type": "string", "operation": "equals" } }] } },
+            { "outputKey": "deploy_system", "conditions": { "conditions": [{ "leftValue": "={{ $json.intent }}", "rightValue": "deploy_system", "operator": { "type": "string", "operation": "equals" } }] } },
+            { "outputKey": "plan_dns", "conditions": { "conditions": [{ "leftValue": "={{ $json.intent }}", "rightValue": "plan_dns", "operator": { "type": "string", "operation": "equals" } }] } },
+            { "outputKey": "apply_dns", "conditions": { "conditions": [{ "leftValue": "={{ $json.intent }}", "rightValue": "apply_dns", "operator": { "type": "string", "operation": "equals" } }] } },
+            { "outputKey": "health_check", "conditions": { "conditions": [{ "leftValue": "={{ $json.intent }}", "rightValue": "health_check", "operator": { "type": "string", "operation": "equals" } }] } },
+            { "outputKey": "sync_notion", "conditions": { "conditions": [{ "leftValue": "={{ $json.intent }}", "rightValue": "sync_notion", "operator": { "type": "string", "operation": "equals" } }] } },
+            { "outputKey": "consent_revoke", "conditions": { "conditions": [{ "leftValue": "={{ $json.intent }}", "rightValue": "consent_revoke", "operator": { "type": "string", "operation": "equals" } }] } }
+          ]
+        },
+        "options": {}
+      },
+      "id": "intent-router",
+      "name": "Intent Router",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3,
+      "position": [520, 300]
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "={{ $env.DNS_WORKER_URL }}/dns/list",
+        "options": { "timeout": 10000 }
+      },
+      "id": "exec-check-dns",
+      "name": "Check DNS",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [760, 60]
+    },
+    {
+      "parameters": {
+        "jsCode": "const p = $input.first().json.params ?? {};\nif (!p.confirmed) throw new Error('deploy_system requires params.confirmed=true');\nif (!p.repo) throw new Error('deploy_system requires params.repo');\nif (!p.workflow_id) throw new Error('deploy_system requires params.workflow_id');\nreturn [{ json: { repo: p.repo, workflow_id: p.workflow_id, ref: p.ref ?? 'main', inputs: p.inputs ?? {} } }];"
+      },
+      "id": "deploy-guard",
+      "name": "Deploy Guard",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [760, 160]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.github.com/repos/{{ $json.repo }}/actions/workflows/{{ $json.workflow_id }}/dispatches",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            { "name": "ref", "value": "={{ $json.ref }}" },
+            { "name": "inputs", "value": "={{ JSON.stringify($json.inputs) }}" }
+          ]
+        },
+        "options": { "timeout": 15000 }
+      },
+      "id": "exec-deploy-system",
+      "name": "Dispatch GitHub Workflow",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [960, 160]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $env.DNS_WORKER_URL }}/dns/bootstrap/noizy",
+        "sendBody": true,
+        "bodyParameters": { "parameters": [] },
+        "options": { "timeout": 10000 }
+      },
+      "id": "exec-plan-dns",
+      "name": "Plan DNS",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [760, 280]
+    },
+    {
+      "parameters": {
+        "jsCode": "const p = $input.first().json.params ?? {};\nif (p.confirm !== true) throw new Error('apply_dns requires params.confirm=true — run plan_dns first');\nreturn [$input.first()];"
+      },
+      "id": "apply-dns-guard",
+      "name": "Apply DNS Guard",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [760, 380]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $env.DNS_WORKER_URL }}/dns/apply",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={ \"desired\": [], \"confirm\": true }",
+        "options": { "timeout": 15000 }
+      },
+      "id": "exec-apply-dns",
+      "name": "Apply DNS",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [960, 380]
+    },
+    {
+      "parameters": {
+        "jsCode": "const targets = [\n  { name: 'GABRIEL', url: 'http://GOD.local:7777/health' },\n  { name: 'NOIZYSTREAM', url: 'http://GOD.local:7778/health' },\n  { name: 'DreamChamber', url: 'http://GOD.local:7780/health' },\n  { name: 'Voice Bridge', url: 'http://GOD.local:8080/health' }\n];\nconst results = [];\nfor (const t of targets) {\n  try {\n    const r = await fetch(t.url, { signal: AbortSignal.timeout(5000) });\n    results.push({ name: t.name, status: r.ok ? 'LIVE' : 'DOWN', code: r.status });\n  } catch (e) {\n    results.push({ name: t.name, status: 'UNREACHABLE', error: e.message });\n  }\n}\nconst live = results.filter(r => r.status === 'LIVE').length;\nreturn [{ json: { health_results: results, overall_status: live === results.length ? 'healthy' : 'degraded', live_count: live, total: results.length } }];"
+      },
+      "id": "exec-health-check",
+      "name": "Health Check",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [760, 480],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $env.NOTION_SYNC_WEBHOOK }}",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ source: $json.source, triggered_at: new Date().toISOString() }) }}",
+        "options": { "timeout": 10000 }
+      },
+      "id": "exec-sync-notion",
+      "name": "Sync Notion",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [760, 560]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $env.CONSENT_KILLSWITCH_WEBHOOK }}",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify($json.params) }}",
+        "options": { "timeout": 8000 },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "X-Noizy-Intent", "value": "consent_revoke" },
+            { "name": "X-Noizy-Request-Id", "value": "={{ $json.request_id }}" }
+          ]
+        }
+      },
+      "id": "exec-consent-revoke",
+      "name": "Consent Revoke (INSTANT)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [760, 660]
+    },
+    {
+      "parameters": {
+        "jsCode": "const input = $input.first().json;\nconst base = $('Parse & Validate').first().json;\nreturn [{ json: {\n  ok: true,\n  intent: base.intent,\n  request_id: base.request_id,\n  source: base.source,\n  result: input,\n  responded_at: new Date().toISOString()\n} }];"
+      },
+      "id": "normalize-result",
+      "name": "Normalize Result",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1200, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $env.DISCORD_DEPLOY_WEBHOOK }}",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ content: `**NOIZY Command** | \\`${$json.intent}\\` | ${$json.ok ? '✅' : '❌'} | source: ${$json.source} | ${$json.responded_at}` }) }}",
+        "options": { "timeout": 5000 }
+      },
+      "id": "notify-discord",
+      "name": "Notify Discord",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [1400, 200],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ $json }}"
+      },
+      "id": "respond-caller",
+      "name": "Respond to Caller",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [1400, 400]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": { "main": [[{ "node": "Parse & Validate", "type": "main", "index": 0 }]] },
+    "Parse & Validate": { "main": [[{ "node": "Intent Router", "type": "main", "index": 0 }]] },
+    "Intent Router": {
+      "main": [
+        [{ "node": "Check DNS", "type": "main", "index": 0 }],
+        [{ "node": "Deploy Guard", "type": "main", "index": 0 }],
+        [{ "node": "Plan DNS", "type": "main", "index": 0 }],
+        [{ "node": "Apply DNS Guard", "type": "main", "index": 0 }],
+        [{ "node": "Health Check", "type": "main", "index": 0 }],
+        [{ "node": "Sync Notion", "type": "main", "index": 0 }],
+        [{ "node": "Consent Revoke (INSTANT)", "type": "main", "index": 0 }]
+      ]
+    },
+    "Check DNS": { "main": [[{ "node": "Normalize Result", "type": "main", "index": 0 }]] },
+    "Deploy Guard": { "main": [[{ "node": "Dispatch GitHub Workflow", "type": "main", "index": 0 }]] },
+    "Dispatch GitHub Workflow": { "main": [[{ "node": "Normalize Result", "type": "main", "index": 0 }]] },
+    "Plan DNS": { "main": [[{ "node": "Normalize Result", "type": "main", "index": 0 }]] },
+    "Apply DNS Guard": { "main": [[{ "node": "Apply DNS", "type": "main", "index": 0 }]] },
+    "Apply DNS": { "main": [[{ "node": "Normalize Result", "type": "main", "index": 0 }]] },
+    "Health Check": { "main": [[{ "node": "Normalize Result", "type": "main", "index": 0 }]] },
+    "Sync Notion": { "main": [[{ "node": "Normalize Result", "type": "main", "index": 0 }]] },
+    "Consent Revoke (INSTANT)": { "main": [[{ "node": "Normalize Result", "type": "main", "index": 0 }]] },
+    "Normalize Result": { "main": [[
+      { "node": "Notify Discord", "type": "main", "index": 0 },
+      { "node": "Respond to Caller", "type": "main", "index": 0 }
+    ]] },
+    "Notify Discord": { "main": [[]] }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [{ "name": "noizy-command-center" }, { "name": "routing" }],
+  "triggerCount": 1,
+  "active": false
+}

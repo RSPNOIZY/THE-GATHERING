@@ -16,10 +16,7 @@ import os
 from typing import Dict, Any, Optional
 
 from core.sovereign_runtime.rsp_cognitive_firewall import (
-    RspCognitiveFirewall,
-    FirewallOutcome,
-    RiskClass,
-    Reversibility
+    RspCognitiveFirewall
 )
 from core.sovereign_runtime.gabriel_capability_broker import GabrielCapabilityBroker
 from core.sovereign_runtime.counterfactual_policy_engine import CounterfactualPolicyEngine

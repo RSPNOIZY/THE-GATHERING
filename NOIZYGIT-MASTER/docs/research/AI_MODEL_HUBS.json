@@ -1,0 +1,31 @@
+{
+  "registry_name": "NOIZY_AI_OPEN_SOURCE_AND_ACADEMIC_REGISTRY",
+  "version": "2026.1.0",
+  "generated_at": "2026-08-31T19:38:00",
+  "categories": {
+    "huggingface_models": [
+      {"name": "Kokoro-82M", "org": "hexgrad", "type": "TTS", "latency": "ultra-fast-cpu"},
+      {"name": "F5-TTS", "org": "SWivid", "type": "Zero-Shot Voice Cloning", "architecture": "Diffusion Transformer"},
+      {"name": "StyleTTS2", "org": "yl4579", "type": "Expressive Style TTS", "affiliation": "Columbia/MIT"},
+      {"name": "AudioCraft", "org": "facebook", "type": "Music & SFX Generation", "architecture": "EnCodec + Transformer"},
+      {"name": "faster-whisper", "org": "Systran", "type": "ASR & Alignment", "quantization": "INT8/FP16"},
+      {"name": "Bark", "org": "suno-ai", "type": "Generative Audio & Expression", "architecture": "GPT Acoustic Tokens"},
+      {"name": "OpenVoice", "org": "myshell-ai", "type": "Tone Color Transfer", "speed": "real-time"}
+    ],
+    "kaggle_benchmarks": [
+      {"dataset": "AudioSet", "curator": "Google Research", "size_clips": "2.1M"},
+      {"dataset": "FSD50K", "curator": "Freesound / MTG UPF", "classes": 200},
+      {"dataset": "Lakh MIDI Dataset", "curator": "Colin Raffel (Columbia/UNC)", "size_midi": "176k"},
+      {"dataset": "MAESTRO", "curator": "Magenta / Google", "hours": "200+"},
+      {"dataset": "LibriTTS-R", "curator": "Google Research", "hours": 585}
+    ],
+    "academic_centers": {
+      "MIT": ["CSAIL Audio-Visual Analysis", "MIT Media Lab Opera of the Future", "CAST Audio Technology"],
+      "Columbia": ["LabROSA (Dan Ellis)", "Center for Speech & Language Engineering", "librosa foundations"],
+      "Boston_Ecosystem": ["Harvard NLP", "Boston University Auditory Neuroscience", "Berklee College of Music"]
+    },
+    "python_libraries": [
+      "librosa", "essentia", "madmom", "pedalboard", "demucs", "mido", "pretty_midi", "music21", "deepfilternet"
+    ]
+  }
+}

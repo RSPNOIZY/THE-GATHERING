@@ -1,0 +1,220 @@
+# ════════════════════════════════════════════════════════════
+# Docker Compose — Heaven Backend Stack
+# Runs alongside the Swift iOS app
+# All services: heaven17, accessibility-bridge, + full NOIZY
+# ════════════════════════════════════════════════════════════
+
+version: "3.9"
+
+networks:
+  heaven:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.28.0.0/16
+
+volumes:
+  qdrant_data:
+  surreal_data:
+  neo4j_data:
+  redis_data:
+  postgres_data:
+  gitea_data:
+  meilisearch_data:
+  n8n_data:
+
+services:
+
+  # ── HEAVEN17 — Voice Intelligence Core ─────────────────────
+  heaven17:
+    build:
+      context: ./heaven17
+      dockerfile: Dockerfile
+    container_name: heaven17
+    restart: unless-stopped
+    ports:
+      - "17017:17017"
+    environment:
+      - OLLAMA_URL=http://host.docker.internal:11434
+      - DREAMCHAMBER_URL=http://dreamchamber:7777
+      - PORT=17017
+      - PERSONA=RSP
+    networks:
+      - heaven
+    labels:
+      - "com.noizylab.service=heaven17"
+      - "com.noizylab.persona=RSP"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:17017/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # ── LUCY17 — Lucy's Voice Intelligence (Fork) ──────────────
+  lucy17:
+    build:
+      context: ./heaven17
+      dockerfile: Dockerfile
+    container_name: lucy17
+    restart: unless-stopped
+    ports:
+      - "17018:17017"
+    environment:
+      - OLLAMA_URL=http://host.docker.internal:11434
+      - DREAMCHAMBER_URL=http://dreamchamber:7777
+      - PORT=17017
+      - PERSONA=Lucy
+      - AI_MODEL=noizy-family-keeper
+      - VOICE_NAME=Lucy
+    networks:
+      - heaven
+    labels:
+      - "com.noizylab.service=lucy17"
+      - "com.noizylab.persona=Lucy"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:17017/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # ── ACCESSIBILITY BRIDGE ────────────────────────────────────
+  accessibility-bridge:
+    build:
+      context: ./accessibility-bridge
+      dockerfile: Dockerfile
+    container_name: accessibility-bridge
+    restart: unless-stopped
+    ports:
+      - "7778:7778"
+    environment:
+      - HEAVEN17_URL=http://heaven17:17017
+      - LUCY17_URL=http://lucy17:17017
+      - DREAMCHAMBER_URL=http://host.docker.internal:7777
+      - GORUNFREE_URL=http://host.docker.internal:9099
+      - PORT=7778
+    depends_on:
+      heaven17:
+        condition: service_healthy
+    networks:
+      - heaven
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:7778/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # ── QDRANT — Vector Memory ──────────────────────────────────
+  qdrant:
+    image: qdrant/qdrant:latest
+    container_name: qdrant
+    restart: unless-stopped
+    ports:
+      - "6333:6333"
+      - "6334:6334"
+    volumes:
+      - qdrant_data:/qdrant/storage
+    networks:
+      - heaven
+
+  # ── SURREALDB — Unified Data Layer ─────────────────────────
+  surrealdb:
+    image: surrealdb/surrealdb:latest
+    container_name: surrealdb
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    volumes:
+      - surreal_data:/data
+    command: start --log info --user root --pass root file:/data/heaven.db
+    networks:
+      - heaven
+
+  # ── NEO4J — Knowledge Graph ─────────────────────────────────
+  neo4j:
+    image: neo4j:latest
+    container_name: neo4j
+    restart: unless-stopped
+    ports:
+      - "7474:7474"
+      - "7687:7687"
+    volumes:
+      - neo4j_data:/data
+    environment:
+      - NEO4J_AUTH=neo4j/heavennoizy
+      - NEO4J_PLUGINS=["apoc", "graph-data-science"]
+    networks:
+      - heaven
+
+  # ── N8N — Workflow Automation ───────────────────────────────
+  n8n:
+    image: n8nio/n8n:latest
+    container_name: n8n
+    restart: unless-stopped
+    ports:
+      - "5678:5678"
+    volumes:
+      - n8n_data:/home/node/.n8n
+    environment:
+      - N8N_HOST=0.0.0.0
+      - N8N_PORT=5678
+      - N8N_PROTOCOL=http
+      - WEBHOOK_URL=http://localhost:5678/
+      - N8N_BASIC_AUTH_ACTIVE=false
+    networks:
+      - heaven
+
+  # ── REDIS — Session Cache ───────────────────────────────────
+  redis:
+    image: redis:alpine
+    container_name: redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - heaven
+
+  # ── MEILISEARCH — Full-text Search ─────────────────────────
+  meilisearch:
+    image: getmeili/meilisearch:latest
+    container_name: meilisearch
+    restart: unless-stopped
+    ports:
+      - "7700:7700"
+    volumes:
+      - meilisearch_data:/meili_data
+    environment:
+      - MEILI_NO_ANALYTICS=true
+    networks:
+      - heaven
+
+  # ── RABBITM Q— Message Bus ──────────────────────────────────
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: rabbitmq
+    restart: unless-stopped
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      - RABBITMQ_DEFAULT_USER=heaven
+      - RABBITMQ_DEFAULT_PASS=noizydream
+    networks:
+      - heaven
+
+  # ── OPEN WEBUI — Ollama Frontend ────────────────────────────
+  open-webui:
+    image: ghcr.io/open-webui/open-webui:main
+    container_name: open-webui
+    restart: unless-stopped
+    ports:
+      - "3080:8080"
+    volumes:
+      - ./data/webui:/app/backend/data
+    environment:
+      - OLLAMA_BASE_URL=http://host.docker.internal:11434
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    networks:
+      - heaven

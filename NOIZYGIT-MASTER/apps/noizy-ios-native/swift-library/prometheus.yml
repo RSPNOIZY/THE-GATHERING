@@ -1,0 +1,12 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+scrape_configs:
+  - job_name: 'noizy-services'
+    static_configs:
+      - targets:
+          - 'host.docker.internal:9099'  # GABRIEL API
+          - 'host.docker.internal:5678'  # n8n
+          - 'host.docker.internal:3000'  # Grafana
+          - 'host.docker.internal:9100'  # Voice Pipeline

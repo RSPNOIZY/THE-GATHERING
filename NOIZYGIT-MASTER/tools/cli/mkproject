@@ -1,0 +1,140 @@
+#!/bin/bash
+# ═══════════════════════════════════════════════════════════════════════════
+# mkproject - Quick project scaffolding
+# Usage: mkproject <name> [type]
+# Types: node, python, rust, go, basic
+# ═══════════════════════════════════════════════════════════════════════════
+
+set -e
+
+NAME="${1:-myproject}"
+TYPE="${2:-basic}"
+
+echo "Creating $TYPE project: $NAME"
+
+mkdir -p "$NAME"
+cd "$NAME"
+
+# Initialize git
+git init -q
+
+# Create .gitignore
+cat > .gitignore << 'EOF'
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Dependencies
+node_modules/
+__pycache__/
+*.pyc
+.env
+.env.local
+venv/
+.venv/
+
+# Build
+dist/
+build/
+*.egg-info/
+target/
+
+# Logs
+*.log
+logs/
+EOF
+
+# Create CLAUDE.md
+cat > CLAUDE.md << EOF
+# $NAME
+
+## Project Description
+[Add description here]
+
+## Setup
+[Add setup instructions]
+
+## Architecture
+[Add architecture notes]
+EOF
+
+case "$TYPE" in
+  node)
+    npm init -y -q
+    cat > tsconfig.json << 'EOF'
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "outDir": "dist"
+  },
+  "include": ["src/**/*"]
+}
+EOF
+    mkdir -p src
+    echo 'console.log("Hello from '$NAME'!");' > src/index.ts
+    echo "  Created Node/TypeScript project"
+    ;;
+
+  python)
+    python3 -m venv .venv
+    cat > requirements.txt << 'EOF'
+# Add dependencies here
+EOF
+    cat > pyproject.toml << EOF
+[project]
+name = "$NAME"
+version = "0.1.0"
+requires-python = ">=3.11"
+
+[tool.ruff]
+line-length = 100
+EOF
+    mkdir -p src tests
+    touch src/__init__.py
+    echo 'def main(): print("Hello from '$NAME'!")' > src/main.py
+    echo "  Created Python project with venv"
+    ;;
+
+  rust)
+    cargo init -q
+    echo "  Created Rust project"
+    ;;
+
+  go)
+    go mod init "$NAME" 2>/dev/null || true
+    cat > main.go << 'EOF'
+package main
+
+import "fmt"
+
+func main() {
+    fmt.Println("Hello from $NAME!")
+}
+EOF
+    echo "  Created Go project"
+    ;;
+
+  *)
+    mkdir -p src docs
+    echo "# $NAME" > README.md
+    echo "  Created basic project structure"
+    ;;
+esac
+
+# Initial commit
+git add -A
+git commit -q -m "feat: initial project setup"
+
+echo "Done! Project created at $(pwd)"

@@ -1,0 +1,63 @@
+#!/bin/bash
+# ═══════════════════════════════════════════════════════════════════════════
+# noizy-sync - Sync all NOIZYLAB repos to GitHub (noizy-ai org)
+# Usage: noizy-sync [message]
+# ═══════════════════════════════════════════════════════════════════════════
+
+set -e
+
+# NOIZYLAB repos to sync
+REPOS=(
+    "$HOME/NOIZYLAB"
+    "$HOME/NOIZYLAB/GABRIEL"
+)
+
+MESSAGE="${*:-sync: $(date '+%Y-%m-%d %H:%M')}"
+
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo "🔷 NOIZY.AI Multi-Repo Sync"
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo "  Message: $MESSAGE"
+echo ""
+
+SYNCED=0
+SKIPPED=0
+FAILED=0
+
+for REPO in "${REPOS[@]}"; do
+    if [[ -d "$REPO/.git" ]]; then
+        REPO_NAME=$(basename "$REPO")
+        echo "📁 $REPO_NAME"
+
+        cd "$REPO"
+
+        # Check for changes
+        if git diff --quiet && git diff --staged --quiet && [[ -z $(git ls-files --others --exclude-standard) ]]; then
+            echo "   ⏭️  No changes"
+            ((SKIPPED++))
+        else
+            # Stage, commit, push
+            git add -A
+            if git commit -m "$MESSAGE" --no-verify 2>/dev/null; then
+                if git push --no-verify 2>/dev/null; then
+                    echo "   ✅ Synced"
+                    ((SYNCED++))
+                else
+                    echo "   ❌ Push failed"
+                    ((FAILED++))
+                fi
+            else
+                echo "   ⏭️  Nothing to commit"
+                ((SKIPPED++))
+            fi
+        fi
+        echo ""
+    else
+        echo "⚠️  Not a git repo: $REPO"
+        ((SKIPPED++))
+    fi
+done
+
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo "📊 Summary: $SYNCED synced, $SKIPPED skipped, $FAILED failed"
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"

@@ -1,0 +1,63 @@
+version: "3.9"
+
+# NOIZY Ops Overlay — private lane for internal services.
+# All services bind to localhost only. Tailscale provides identity-based mesh access.
+# Cloudflare Workers remain the only public edge.
+#
+# Usage:
+#   TS_AUTHKEY="tskey-..." docker compose -f ops/docker-compose.noizy.yml up -d
+#   docker compose -f ops/docker-compose.noizy.yml down
+
+services:
+
+  # Private mesh — exposes no public ports, provides identity-based access across machines
+  tailscale:
+    image: tailscale/tailscale:stable
+    container_name: noizy-tailscale
+    network_mode: host
+    cap_add:
+      - NET_ADMIN
+      - SYS_MODULE
+    volumes:
+      - tailscale-state:/var/lib/tailscale
+      - /dev/net/tun:/dev/net/tun
+    environment:
+      # Provide at runtime via env. Do NOT hardcode auth keys.
+      - TS_AUTHKEY=${TS_AUTHKEY:-}
+      - TS_HOSTNAME=noizy-ops
+      - TS_EXTRA_ARGS=--accept-dns=true
+    restart: unless-stopped
+
+  # Speech-to-text — consent-gated (scope: speech_to_text)
+  # See contracts/consent/scopes.stt.json for enforcement policy.
+  # STT is generation. Consent-gateway /verify must pass before any transcript is produced.
+  # Engine: faster-whisper (CPU). Swap image for GPU variant when ready.
+  stt:
+    image: fedirz/faster-whisper-server:latest-cpu
+    container_name: noizy-stt
+    ports:
+      - "127.0.0.1:8000:8000"   # localhost only — never expose publicly
+    volumes:
+      - ./hf_cache:/root/.cache/huggingface
+    networks: [noizy]
+    restart: unless-stopped
+
+  # Internal command bridge — receives POST requests from local tooling/n8n
+  command-bridge:
+    image: node:20-alpine
+    container_name: noizy-command-bridge
+    working_dir: /app
+    volumes:
+      - ./bridge:/app
+    command: ["node", "server.js"]
+    ports:
+      # Localhost only — not exposed to public internet
+      - "127.0.0.1:8888:8888"
+    restart: unless-stopped
+
+networks:
+  noizy:
+    driver: bridge
+
+volumes:
+  tailscale-state:

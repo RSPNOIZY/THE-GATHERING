@@ -6,12 +6,11 @@ Vehicle: 2026 Honda CR-V Sport Touring Hybrid (Plowman Standard)
 
 from __future__ import annotations
 
-import asyncio
 import json
 import time
 import uuid
 import logging
-from typing import Dict, Any, List, Optional
+from typing import Dict, Any
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] [LUCY-HUB] %(message)s")
 

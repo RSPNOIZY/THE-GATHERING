@@ -18,24 +18,18 @@ Proves 14 Continuous Invariants & Fault Injections:
 14. Unverified receipt -> Test failure
 """
 
-import hashlib
-import json
-import os
 import sys
 import unittest
-import time
 
 sys.path.insert(0, "/Users/m2ultra/THE-GATHERING")
 
 from core.sovereign_runtime.rsp_cognitive_firewall import (
-    RspCognitiveFirewall,
     FirewallOutcome,
     RiskClass,
     Reversibility
 )
 from core.sovereign_runtime.gabriel_capability_broker import (
-    GabrielCapabilityBroker,
-    CapabilityClass
+    GabrielCapabilityBroker
 )
 from core.sovereign_runtime.sovereign_pipeline_orchestrator import (
     SovereignPipelineOrchestrator
@@ -44,7 +38,7 @@ from core.sovereign_runtime.sonic_passport_graph import SonicPassportGraph
 from core.sovereign_runtime.dreamchamber_telemetry_fabric import DreamchamberTelemetryFabric
 from core.sovereign_runtime.counterfactual_policy_engine import CounterfactualPolicyEngine
 from core.sovereign_runtime.structured_correction_learner import StructuredCorrectionLearner
-from core.sovereign_runtime.audio_vehicle_scenes import AudioVehicleSceneEngine, AudioSceneType
+from core.sovereign_runtime.audio_vehicle_scenes import AudioVehicleSceneEngine
 
 
 class TestContinuousEvidenceHarness(unittest.TestCase):

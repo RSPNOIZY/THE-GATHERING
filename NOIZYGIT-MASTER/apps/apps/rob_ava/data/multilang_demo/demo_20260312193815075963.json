@@ -1,0 +1,205 @@
+{
+  "session_id": "demo_20260312193815075963",
+  "created_at": "2026-03-12T19:38:15.076551+00:00",
+  "request": {
+    "ava_id": "rsp001_commander_v1",
+    "base_line": "I've seen enough bodies to know when someone is lying.",
+    "director_note_key": "restrained_anger",
+    "locales": [
+      "en-US",
+      "ja-JP",
+      "fr-FR",
+      "ar-EG",
+      "es-ES"
+    ],
+    "consent_key_signed": true,
+    "require_consent": true,
+    "use_llm": false,
+    "write_artifact": true
+  },
+  "character": {
+    "character_id": "morrison_v1",
+    "name": "Detective Morrison"
+  },
+  "director_note_key": "restrained_anger",
+  "emotional_signature": "c018a0b27267",
+  "directed_dna": {
+    "slow_burn_tension": 0.94,
+    "sarcasm_defense": 0.73,
+    "moral_weight": 0.94,
+    "vulnerability_latency": 0.64,
+    "controlled_breath": 0.89
+  },
+  "regional_renders": [
+    {
+      "locale": "en-US",
+      "region_label": "English (Brooklyn)",
+      "performance_color": "hard-edged cynicism",
+      "execution_markers": [
+        "sharp sarcasm",
+        "clipped phrases",
+        "working-class grit"
+      ],
+      "emotional_signature": "c018a0b27267",
+      "expressive_vector": {
+        "intensity": 0.94,
+        "guardedness": 0.73,
+        "moral_weight": 0.94,
+        "vulnerability_reveal": 0.36,
+        "breath_control": 0.89
+      },
+      "rag_context": [
+        {
+          "id": "farm-001",
+          "language": "en-US",
+          "text": "Morrison archetype: cynical protector with exhausted moral center."
+        },
+        {
+          "id": "farm-002",
+          "language": "fr-FR",
+          "text": "Maintain noir tone while preserving trust in vulnerable scenes."
+        }
+      ],
+      "generated_line": "I've seen enough bodies to know when someone is lying. [hard-edged cynicism; pressure held under calm surface; markers: sharp sarcasm, clipped phrases, working-class grit]",
+      "render_job_id": "render_en-US_demo_20260312193815075963",
+      "render_status": "completed",
+      "artifact_uri": "rob_ava/data/renders/demo_20260312193815075963/en-US.wav"
+    },
+    {
+      "locale": "ja-JP",
+      "region_label": "Japanese (Tokyo)",
+      "performance_color": "dangerous calm",
+      "execution_markers": [
+        "weighted pauses",
+        "controlled restraint",
+        "quiet bitterness"
+      ],
+      "emotional_signature": "c018a0b27267",
+      "expressive_vector": {
+        "intensity": 0.8648,
+        "guardedness": 0.6716,
+        "moral_weight": 0.94,
+        "vulnerability_reveal": 0.36,
+        "breath_control": 0.9612
+      },
+      "rag_context": [
+        {
+          "id": "farm-001",
+          "language": "en-US",
+          "text": "Morrison archetype: cynical protector with exhausted moral center."
+        },
+        {
+          "id": "farm-002",
+          "language": "fr-FR",
+          "text": "Maintain noir tone while preserving trust in vulnerable scenes."
+        }
+      ],
+      "generated_line": "I've seen enough bodies to know when someone is lying. [dangerous calm; pressure held under calm surface; markers: weighted pauses, controlled restraint, quiet bitterness]",
+      "render_job_id": "render_ja-JP_demo_20260312193815075963",
+      "render_status": "completed",
+      "artifact_uri": "rob_ava/data/renders/demo_20260312193815075963/ja-JP.wav"
+    },
+    {
+      "locale": "fr-FR",
+      "region_label": "French (Paris)",
+      "performance_color": "philosophical noir",
+      "execution_markers": [
+        "existential tone",
+        "cold precision",
+        "bitter poetics"
+      ],
+      "emotional_signature": "c018a0b27267",
+      "expressive_vector": {
+        "intensity": 0.9118,
+        "guardedness": 0.7081,
+        "moral_weight": 0.94,
+        "vulnerability_reveal": 0.36,
+        "breath_control": 0.9078
+      },
+      "rag_context": [
+        {
+          "id": "farm-001",
+          "language": "en-US",
+          "text": "Morrison archetype: cynical protector with exhausted moral center."
+        },
+        {
+          "id": "farm-002",
+          "language": "fr-FR",
+          "text": "Maintain noir tone while preserving trust in vulnerable scenes."
+        }
+      ],
+      "generated_line": "I've seen enough bodies to know when someone is lying. [philosophical noir; pressure held under calm surface; markers: existential tone, cold precision, bitter poetics]",
+      "render_job_id": "render_fr-FR_demo_20260312193815075963",
+      "render_status": "completed",
+      "artifact_uri": "rob_ava/data/renders/demo_20260312193815075963/fr-FR.wav"
+    },
+    {
+      "locale": "ar-EG",
+      "region_label": "Arabic (Cairo)",
+      "performance_color": "prophetic realism",
+      "execution_markers": [
+        "fatalistic wisdom",
+        "street-smart wariness",
+        "moral warning cadence"
+      ],
+      "emotional_signature": "c018a0b27267",
+      "expressive_vector": {
+        "intensity": 0.9682,
+        "guardedness": 0.7519,
+        "moral_weight": 0.94,
+        "vulnerability_reveal": 0.36,
+        "breath_control": 0.8722
+      },
+      "rag_context": [
+        {
+          "id": "farm-001",
+          "language": "en-US",
+          "text": "Morrison archetype: cynical protector with exhausted moral center."
+        },
+        {
+          "id": "farm-002",
+          "language": "fr-FR",
+          "text": "Maintain noir tone while preserving trust in vulnerable scenes."
+        }
+      ],
+      "generated_line": "I've seen enough bodies to know when someone is lying. [prophetic realism; pressure held under calm surface; markers: fatalistic wisdom, street-smart wariness, moral warning cadence]",
+      "render_job_id": "render_ar-EG_demo_20260312193815075963",
+      "render_status": "completed",
+      "artifact_uri": "rob_ava/data/renders/demo_20260312193815075963/ar-EG.wav"
+    },
+    {
+      "locale": "es-ES",
+      "region_label": "Spanish (Madrid)",
+      "performance_color": "streetwise resolve",
+      "execution_markers": [
+        "direct candor",
+        "dry irony",
+        "urban urgency"
+      ],
+      "emotional_signature": "c018a0b27267",
+      "expressive_vector": {
+        "intensity": 0.9494,
+        "guardedness": 0.7373,
+        "moral_weight": 0.94,
+        "vulnerability_reveal": 0.36,
+        "breath_control": 0.8811
+      },
+      "rag_context": [
+        {
+          "id": "farm-001",
+          "language": "en-US",
+          "text": "Morrison archetype: cynical protector with exhausted moral center."
+        },
+        {
+          "id": "farm-002",
+          "language": "fr-FR",
+          "text": "Maintain noir tone while preserving trust in vulnerable scenes."
+        }
+      ],
+      "generated_line": "I've seen enough bodies to know when someone is lying. [streetwise resolve; pressure held under calm surface; markers: direct candor, dry irony, urban urgency]",
+      "render_job_id": "render_es-ES_demo_20260312193815075963",
+      "render_status": "completed",
+      "artifact_uri": "rob_ava/data/renders/demo_20260312193815075963/es-ES.wav"
+    }
+  ]
+}

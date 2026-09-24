@@ -1,0 +1,10 @@
+#!/Users/m2ultra/.local/share/uv/tools/serena-agent/bin/python
+# -*- coding: utf-8 -*-
+import sys
+from serena.cli import top_level
+if __name__ == "__main__":
+    if sys.argv[0].endswith("-script.pyw"):
+        sys.argv[0] = sys.argv[0][:-11]
+    elif sys.argv[0].endswith(".exe"):
+        sys.argv[0] = sys.argv[0][:-4]
+    sys.exit(top_level())

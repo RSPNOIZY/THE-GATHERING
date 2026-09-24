@@ -13,25 +13,22 @@ Built in the DREAMCHAMBER. GORUNFREE.
 
 from __future__ import annotations
 import os
-import sys
 import json
 import shutil
 from pathlib import Path
-from datetime import datetime
 
 import click
 from rich.console import Console
 from rich.table import Table
 from rich.progress import Progress, SpinnerColumn, TextColumn, BarColumn, TaskProgressColumn
 from rich.panel import Panel
-from rich.text import Text
 
 from .modules.scanner import SupersonicScanner
 from .modules.extractor import MetadataExtractor
 from .modules.fingerprinter import AudioFingerprinter
 from .modules.classifier import AudioClassifier
 from .cloud.d1_catalog import LocalCatalog
-from .models import AudioAsset, ScanReport, AudioCategory
+from .models import ScanReport
 
 console = Console()
 
@@ -368,7 +365,7 @@ def organize(target_root, dry_run, copy):
     console.print(table)
 
     if dry_run:
-        console.print(f"\n[yellow]DRY RUN — no files were moved. Use --execute to proceed.[/yellow]")
+        console.print("\n[yellow]DRY RUN — no files were moved. Use --execute to proceed.[/yellow]")
     else:
         with Progress(SpinnerColumn(), TextColumn("{task.description}"), BarColumn(), TaskProgressColumn(), console=console) as progress:
             task = progress.add_task(f"[cyan]{action.lower()}ing files...", total=len(moves))
@@ -451,9 +448,9 @@ def _print_scan_summary(report: ScanReport, catalog: LocalCatalog):
     if needs_review:
         console.print(f"\n[yellow]{len(needs_review)} files need human review[/yellow]")
 
-    console.print(f"\n[dim]Catalog stored at: ~/.noizy/supersonic/catalog.db[/dim]")
-    console.print(f"[dim]Run 'supersonic report' for full statistics[/dim]")
-    console.print(f"[dim]Run 'supersonic organize <path> --dry-run' to preview file organization[/dim]\n")
+    console.print("\n[dim]Catalog stored at: ~/.noizy/supersonic/catalog.db[/dim]")
+    console.print("[dim]Run 'supersonic report' for full statistics[/dim]")
+    console.print("[dim]Run 'supersonic organize <path> --dry-run' to preview file organization[/dim]\n")
 
 
 if __name__ == "__main__":

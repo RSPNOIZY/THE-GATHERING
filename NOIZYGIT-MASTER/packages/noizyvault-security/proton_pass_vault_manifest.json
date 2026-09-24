@@ -1,0 +1,54 @@
+{
+  "vault_domain": "Proton Pass Sovereign Secrets Vault",
+  "version": "4.0.0-SOVEREIGN",
+  "account_primary": "rspnoizy@gmail.com",
+  "proton_bridge": "Proton Pass Encrypted Vault",
+  "vault_categories": {
+    "01_EMPIRE_PRODUCTION_KEYS": {
+      "name": "Production API Keys & Tokens",
+      "items": [
+        "NOIZY_API_KEY (Heaven Consent Kernel)",
+        "CLOUDFLARE_API_TOKEN (Workers & Zero Trust)",
+        "ANTHROPIC_API_KEY (Claude Opus / Sonnet)",
+        "OPENAI_API_KEY (Fallback Models)",
+        "LINEAR_API_KEY (Issue Tracking)",
+        "STRIPE_API_KEY (75/25 Creator Royalties)"
+      ]
+    },
+    "02_HARDWARE_SSH_PGP_KEYS": {
+      "name": "Hardware Keys & Cryptographic Identity",
+      "items": [
+        "M2 Ultra Primary SSH Key (id_ed25519)",
+        "GitHub Sovereign Signing PGP Key",
+        "WireGuard Private Keys (M2 Ultra, iPhone, iPad)",
+        "Apple Developer Team Certificates"
+      ]
+    },
+    "03_CLOUD_ACCOUNTS_AND_SERVICES": {
+      "name": "Cloud Infrastructure Accounts",
+      "items": [
+        "Cloudflare Dashboard (Fishmusicinc / noizy.ai)",
+        "Google Cloud Platform (GCP NOIZY Project)",
+        "Supabase Production Database",
+        "Vercel / Cloud Run Edge Hosting"
+      ]
+    },
+    "04_SOVEREIGN_RECOVERY_SEEDS": {
+      "name": "Sovereign Emergency Recovery Seeds",
+      "items": [
+        "Proton Pass 24-Word Recovery Phrase",
+        "Hardware MFA FIDO2 Backup Codes",
+        "Offline Cold Storage Recovery Key"
+      ]
+    },
+    "05_SOVEREIGN_BANKING_AND_CREDIT": {
+      "name": "Sovereign Banking, Corporate Cards & Royalties",
+      "items": [
+        "Canonical Mastercard (Cardholder: R.S PLOWMAN)",
+        "Corporate Operating Account (Fish Music Inc.)",
+        "Stripe Master Rights & Royalty Payouts",
+        "CRA Business Tax & HST/GST Direct Filing Account"
+      ]
+    }
+  }
+}

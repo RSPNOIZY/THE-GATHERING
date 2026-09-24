@@ -1,0 +1,44 @@
+name: NOIZY Deploy System
+
+on:
+  workflow_dispatch:
+    inputs:
+      run_id:
+        description: "Run ID"
+        required: true
+      actor:
+        description: "Actor"
+        required: true
+      environment:
+        description: "Environment"
+        required: true
+        default: "production"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install deps
+        run: npm install
+
+      - name: Build frontend
+        run: npm run build || echo "No build script"
+
+      - name: Deploy marker
+        run: |
+          echo "RUN_ID=${{ github.event.inputs.run_id }}"
+          echo "ACTOR=${{ github.event.inputs.actor }}"
+          echo "ENV=${{ github.event.inputs.environment }}"
+          echo "DEPLOYED_AT=$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+
+      - name: Success
+        run: echo "NOIZY DEPLOY COMPLETE"

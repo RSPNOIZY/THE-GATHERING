@@ -1,0 +1,40 @@
+#!/bin/bash
+# ═══════════════════════════════════════════════════════════════════════════
+# git-fresh - Clean up local branches that are gone from remote
+# Usage: git fresh
+# ═══════════════════════════════════════════════════════════════════════════
+
+set -e
+
+echo "🔄 Fetching and pruning..."
+git fetch --all --prune
+
+echo ""
+echo "🗑️  Finding merged/gone branches..."
+
+# Get branches that are gone from remote
+GONE_BRANCHES=$(git branch -vv | grep ': gone]' | awk '{print $1}')
+
+if [[ -z "$GONE_BRANCHES" ]]; then
+    echo "✨ No stale branches found!"
+    exit 0
+fi
+
+echo "Branches to delete:"
+echo "$GONE_BRANCHES" | while read branch; do
+    echo "  - $branch"
+done
+
+echo ""
+read -p "Delete these branches? [y/N] " -n 1 -r
+echo ""
+
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+    echo "$GONE_BRANCHES" | while read branch; do
+        git branch -D "$branch" 2>/dev/null && echo "  ✓ Deleted $branch"
+    done
+    echo ""
+    echo "✨ Cleanup complete!"
+else
+    echo "Aborted."
+fi

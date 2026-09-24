@@ -1,0 +1,220 @@
+/* ═══════════════════════════════════════════════════
+   GABRIEL — Living Presence Styles
+   HP Omen @ 10.90.90.20 | GABRIEL_V3 | Executor
+═══════════════════════════════════════════════════ */
+
+:root {
+  --gabriel-primary: #00ff9d;
+  --gabriel-dim: rgba(0,255,157,.15);
+  --gabriel-border: rgba(0,255,157,.25);
+  --gabriel-red: #ff4466;
+  --gabriel-amber: #ffaa00;
+}
+
+/* ── Hero Banner ── */
+.gabriel-hero {
+  border-radius: 18px;
+  border: 1px solid var(--gabriel-border);
+  background: linear-gradient(135deg, rgba(0,0,0,.7) 0%, rgba(0,255,157,.03) 100%);
+  padding: 28px 32px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 24px;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+.gabriel-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg, transparent, transparent 40px,
+    rgba(0,255,157,.015) 40px, rgba(0,255,157,.015) 41px
+  );
+  pointer-events: none;
+}
+
+/* Pulse ring */
+.gabriel-avatar {
+  position: relative;
+  width: 72px; height: 72px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.gabriel-avatar-inner {
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0,255,157,.2) 0%, rgba(0,0,0,.8) 70%);
+  border: 2px solid var(--gabriel-primary);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 26px;
+  z-index: 1;
+  position: relative;
+}
+.gabriel-ring {
+  position: absolute;
+  width: 70px; height: 70px;
+  border-radius: 50%;
+  border: 1px solid var(--gabriel-primary);
+  animation: gabrielPulse 2.5s ease-out infinite;
+}
+.gabriel-ring:nth-child(2) { animation-delay: .8s; }
+.gabriel-ring:nth-child(3) { animation-delay: 1.6s; }
+@keyframes gabrielPulse {
+  0%   { opacity: .6; transform: scale(.8); }
+  100% { opacity: 0;  transform: scale(1.6); }
+}
+
+/* Identity block */
+.gabriel-identity { flex: 1; }
+.gabriel-name {
+  font-size: 22px; font-weight: 800;
+  color: var(--gabriel-primary);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+.gabriel-title {
+  font-size: 11px; color: rgba(0,255,157,.6);
+  letter-spacing: 2px; margin-top: 2px;
+}
+.gabriel-ip {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; color: var(--muted);
+  margin-top: 6px;
+}
+.gabriel-doctrine {
+  font-size: 11px; color: var(--text);
+  margin-top: 10px; line-height: 1.6;
+  max-width: 500px;
+  border-left: 2px solid var(--gabriel-border);
+  padding-left: 12px;
+}
+
+/* Status badges */
+.gabriel-status-col {
+  display: flex; flex-direction: column; gap: 8px; align-items: flex-end;
+}
+.gabriel-badge {
+  font-size: 9px; font-weight: 700;
+  padding: 4px 10px; border-radius: 5px;
+  letter-spacing: 2px; text-transform: uppercase;
+  white-space: nowrap;
+}
+.gabriel-badge.online {
+  background: rgba(0,255,157,.12);
+  color: var(--gabriel-primary);
+  border: 1px solid var(--gabriel-border);
+}
+.gabriel-badge.offline {
+  background: rgba(255,68,102,.12);
+  color: var(--gabriel-red);
+  border: 1px solid rgba(255,68,102,.25);
+}
+.gabriel-badge.checking {
+  background: rgba(255,170,0,.08);
+  color: var(--gabriel-amber);
+  border: 1px solid rgba(255,170,0,.2);
+  animation: blink 1s step-end infinite;
+}
+
+/* ── Memory Cells ── */
+.gabriel-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 14px;
+}
+.gabriel-cell {
+  border-radius: 12px;
+  border: 1px solid var(--gabriel-border);
+  background: rgba(0,0,0,.4);
+  padding: 16px;
+  position: relative;
+  overflow: hidden;
+  transition: border-color .2s;
+}
+.gabriel-cell:hover { border-color: rgba(0,255,157,.5); }
+.gabriel-cell::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gabriel-primary), transparent);
+  opacity: 0;
+  transition: opacity .3s;
+}
+.gabriel-cell:hover::after { opacity: 1; }
+.gabriel-cell-title {
+  font-size: 9px; color: var(--gabriel-primary);
+  letter-spacing: 2px; text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.gabriel-cell-value {
+  font-size: 24px; font-weight: 800;
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--text);
+}
+.gabriel-cell-sub {
+  font-size: 10px; color: var(--muted);
+  margin-top: 4px;
+}
+.gabriel-cell-bar {
+  height: 3px; border-radius: 2px;
+  background: rgba(255,255,255,.08);
+  margin-top: 10px; overflow: hidden;
+}
+.gabriel-cell-fill {
+  height: 100%; border-radius: 2px;
+  background: linear-gradient(90deg, var(--gabriel-primary), rgba(0,255,157,.4));
+  transition: width 1s ease;
+}
+
+/* ── Command Input ── */
+.gabriel-cmd-wrap {
+  display: flex; gap: 10px; align-items: center;
+  border-radius: 12px;
+  border: 1px solid var(--gabriel-border);
+  background: rgba(0,0,0,.4);
+  padding: 12px 16px;
+}
+.gabriel-cmd-prefix {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px; color: var(--gabriel-primary);
+  flex-shrink: 0;
+}
+.gabriel-cmd-input {
+  flex: 1; background: transparent; border: none; outline: none;
+  color: var(--text); font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+}
+.gabriel-cmd-input::placeholder { color: var(--muted); }
+.gabriel-cmd-btn {
+  background: rgba(0,255,157,.1);
+  border: 1px solid var(--gabriel-border);
+  color: var(--gabriel-primary);
+  font-size: 11px; font-weight: 700;
+  padding: 6px 14px; border-radius: 7px;
+  cursor: pointer; letter-spacing: 1px;
+  transition: .2s;
+}
+.gabriel-cmd-btn:hover { background: rgba(0,255,157,.2); }
+
+/* ── Log ── */
+.gabriel-log {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; line-height: 1.9;
+  max-height: 140px; overflow-y: auto;
+  color: rgba(0,255,157,.7);
+  padding: 12px 14px;
+  border-radius: 10px;
+  background: rgba(0,0,0,.5);
+  border: 1px solid var(--gabriel-border);
+}
+.gabriel-log::-webkit-scrollbar { width: 3px; }
+.gabriel-log::-webkit-scrollbar-thumb { background: var(--gabriel-border); border-radius: 3px; }
+.gl-line { display: flex; gap: 10px; }
+.gl-ts { color: rgba(0,255,157,.35); flex-shrink: 0; }
+.gl-msg { color: rgba(0,255,157,.8); }
+.gl-msg.warn { color: var(--gabriel-amber); }
+.gl-msg.err  { color: var(--gabriel-red); }
+.gl-msg.cmd  { color: #fff; }

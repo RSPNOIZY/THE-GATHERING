@@ -1,0 +1,75 @@
+#!/bin/bash
+# ==============================================================================
+# 🎯 TURBO HUNT - FIND FILES ACROSS ALL VOLUMES
+# ==============================================================================
+
+set -euo pipefail
+
+CYAN='\033[96m'
+GREEN='\033[92m'
+YELLOW='\033[93m'
+RESET='\033[0m'
+BOLD='\033[1m'
+
+if [ $# -eq 0 ]; then
+    echo -e "${BOLD}${CYAN}TURBO HUNT - Universal File Search${RESET}"
+    echo ""
+    echo "Usage: turbo-hunt <pattern> [type]"
+    echo ""
+    echo "Types:"
+    echo "  audio   - Search for audio files (.wav, .mp3, .aiff, .flac)"
+    echo "  video   - Search for video files (.mov, .mp4, .avi)"
+    echo "  image   - Search for images (.png, .jpg, .gif)"
+    echo "  code    - Search for code files (.py, .js, .ts)"
+    echo "  all     - Search all files (default)"
+    echo ""
+    echo "Examples:"
+    echo "  turbo-hunt 'kick' audio"
+    echo "  turbo-hunt 'synth' all"
+    exit 0
+fi
+
+PATTERN="$1"
+TYPE="${2:-all}"
+
+echo -e "${BOLD}${CYAN}🎯 TURBO HUNT${RESET}"
+echo -e "Pattern: ${YELLOW}$PATTERN${RESET}"
+echo -e "Type: ${YELLOW}$TYPE${RESET}"
+echo ""
+
+# Build find pattern
+case "$TYPE" in
+    audio)
+        EXT='\.(wav|mp3|aiff|aif|flac|m4a|ogg)$'
+        ;;
+    video)
+        EXT='\.(mov|mp4|avi|mkv|webm)$'
+        ;;
+    image)
+        EXT='\.(png|jpg|jpeg|gif|tiff|bmp|webp)$'
+        ;;
+    code)
+        EXT='\.(py|js|ts|jsx|tsx|sh|rb|go|rs)$'
+        ;;
+    *)
+        EXT='.*'
+        ;;
+esac
+
+# Search home + all volumes
+SEARCH_PATHS="/Users/m2ultra $(ls -d /Volumes/* 2>/dev/null | grep -v 'Simulator' | head -20)"
+
+echo -e "${BOLD}Searching...${RESET}"
+echo ""
+
+for path in $SEARCH_PATHS; do
+    if [ -d "$path" ]; then
+        find "$path" -iname "*${PATTERN}*" -type f 2>/dev/null | grep -iE "$EXT" | head -50 | while read f; do
+            SIZE=$(ls -lh "$f" 2>/dev/null | awk '{print $5}')
+            echo -e "${CYAN}[$SIZE]${RESET} $f"
+        done
+    fi
+done
+
+echo ""
+echo -e "${GREEN}Hunt complete.${RESET}"

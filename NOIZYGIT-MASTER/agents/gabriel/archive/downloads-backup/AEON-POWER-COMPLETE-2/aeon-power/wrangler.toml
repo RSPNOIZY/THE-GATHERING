@@ -1,0 +1,6 @@
+# 🔋 AEON POWER MANAGEMENT
+# Real physics-based energy system for wearable AI
+
+name = "aeon-power"
+main = "src/index.js"
+compatibility_date = "2025-01-01"

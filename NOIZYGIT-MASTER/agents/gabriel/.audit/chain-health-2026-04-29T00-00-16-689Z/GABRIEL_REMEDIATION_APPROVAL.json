@@ -1,0 +1,11 @@
+{
+  "receipt_type": "GABRIEL_REMEDIATION_APPROVAL",
+  "table": "nk_haptic_events",
+  "status": "RSP_APPROVED",
+  "approved_by": "RSP",
+  "approved_at": "2026-04-29T00:52:11.162Z",
+  "rsp_override_marker": "RSP_APPROVED_REPAIR_LATEST_DETECTED_BREAK",
+  "receipt_id": "repair_auth_1777423931162",
+  "d1_insert_status": "degraded:Command failed: npx wrangler d1 execute agent-memory --remote --command \n      INSERT INTO nk_proof_repair_receipts (\n        id, table_name, first_broken_row_id, status, rsp_override_marker, reason, ",
+  "law": "Detection is automatic. Repair is governed. History keeps the scar."
+}
