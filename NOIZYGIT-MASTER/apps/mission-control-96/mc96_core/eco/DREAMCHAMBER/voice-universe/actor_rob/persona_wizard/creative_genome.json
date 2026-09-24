@@ -28,7 +28,7 @@
   "emotional_spectrum": {
     "primary_states": ["gravitas", "wonder", "knowing", "sorrow", "ancient_warmth"],
     "emotional_transitions": {
-      "gravitas_to_wonder": { "speed": "slow", "breathiness_shift": +0.12 },
+      "gravitas_to_wonder": { "speed": "slow", "breathiness_shift": 0.12 },
       "knowing_to_sorrow": { "speed": "medium", "pitch_descent_hz": -8 },
       "ancient_warmth_to_gravitas": { "speed": "very_slow", "resonance_shift": "chest_deepen" }
     },

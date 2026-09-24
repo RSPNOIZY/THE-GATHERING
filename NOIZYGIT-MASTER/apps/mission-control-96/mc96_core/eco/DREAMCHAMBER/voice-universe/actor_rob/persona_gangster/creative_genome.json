@@ -28,8 +28,8 @@
   "emotional_spectrum": {
     "primary_states": ["menace", "control", "cold_charm", "explosive_rage", "quiet_dominance"],
     "emotional_transitions": {
-      "control_to_menace": { "speed": "instant", "dynamic_spike_db": +6 },
-      "cold_charm_to_explosive_rage": { "speed": "snap", "pitch_rise_hz": +14 },
+      "control_to_menace": { "speed": "instant", "dynamic_spike_db": 6 },
+      "cold_charm_to_explosive_rage": { "speed": "snap", "pitch_rise_hz": 14 },
       "quiet_dominance_to_control": { "speed": "slow", "breathiness_shift": -0.04 }
     },
     "forbidden_states": ["vulnerability", "pleading", "warmth"],
