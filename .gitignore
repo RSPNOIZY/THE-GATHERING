@@ -147,6 +147,13 @@ NOIZYGIT-MASTER/tools/cli/claude
 
 NOIZYGIT-MASTER/tools/cli/copilot
 
-NOIZYGIT-MASTER/tools/cli/lms
-
 NOIZYGIT-MASTER/tools/cli/uv
+
+# ── Cloud Storage Virtual Mounts ──────────────────────────────
+GoogleDrive-*/
+OneDrive-*/
+OneDrive-Personal/
+OneDrive-Personal(2)/
+iCloudDrive-*/
+Dropbox/
+
